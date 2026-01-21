@@ -1,0 +1,610 @@
+//! nautobot api client
+
+use crate::circuits::CircuitsApi;
+use crate::cloud::CloudApi;
+use crate::config::ClientConfig;
+use crate::core::CoreApi;
+use crate::dcim::DcimApi;
+use crate::error::{Error, Result};
+use crate::extras::ExtrasApi;
+use crate::graphql::GraphqlApi;
+use crate::ipam::IpamApi;
+use crate::metrics::MetricsApi;
+use crate::status::StatusApi;
+use crate::tenancy::TenancyApi;
+use crate::ui::UiApi;
+use crate::users::UsersApi;
+use crate::virtualization::VirtualizationApi;
+use crate::wireless::WirelessApi;
+use reqwest::header::{AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderValue, USER_AGENT};
+use reqwest::{Method, StatusCode};
+use serde::Serialize;
+use serde::de::DeserializeOwned;
+use serde_json::Value;
+use std::sync::Arc;
+use std::sync::OnceLock;
+use std::time::Duration;
+use tokio::time::sleep;
+
+/// the main nautobot api client
+///
+/// # Example
+///
+/// ```no_run
+/// use nautobot::{Client, ClientConfig};
+///
+/// # async fn example() -> Result<(), Box<dyn std::error::Error>> {
+/// let config = ClientConfig::new("https://nautobot.example.com", "your-api-token");
+/// let client = Client::new(config)?;
+///
+/// // Use the client to access different api modules
+/// // let devices = client.dcim().devices().list().await?;
+/// # Ok(())
+/// # }
+/// ```
+#[derive(Clone)]
+pub struct Client {
+    config: Arc<ClientConfig>,
+    http_client: reqwest::Client,
+    openapi_config: OnceLock<nautobot_openapi::apis::configuration::Configuration>,
+}
+
+impl Client {
+    /// create a new nautobot client
+    ///
+    /// # Errors
+    ///
+    /// returns an error if the configuration is invalid or the http client cannot be created.
+    pub fn new(config: ClientConfig) -> Result<Self> {
+        config.validate()?;
+
+        // Build default headers
+        let mut headers = HeaderMap::new();
+        headers.insert(
+            AUTHORIZATION,
+            HeaderValue::from_str(&format!("Token {}", config.token))
+                .map_err(|e| Error::Config(format!("Invalid token format: {}", e)))?,
+        );
+        headers.insert(
+            USER_AGENT,
+            HeaderValue::from_str(&config.user_agent)
+                .map_err(|e| Error::Config(format!("Invalid user agent: {}", e)))?,
+        );
+        headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
+        headers.extend(config.extra_headers.clone());
+
+        // Build HTTP client
+        let http_client = reqwest::Client::builder()
+            .default_headers(headers)
+            .timeout(config.timeout)
+            .danger_accept_invalid_certs(!config.verify_ssl)
+            .build()
+            .map_err(|e| Error::Config(format!("Failed to create HTTP client: {}", e)))?;
+
+        Ok(Self {
+            config: Arc::new(config),
+            http_client,
+            openapi_config: OnceLock::new(),
+        })
+    }
+
+    fn openapi_config_cached(
+        &self,
+    ) -> &OnceLock<nautobot_openapi::apis::configuration::Configuration> {
+        &self.openapi_config
+    }
+
+    /// access the underlying http client
+    pub fn http_client(&self) -> &reqwest::Client {
+        &self.http_client
+    }
+
+    /// access dcim (Data Center Infrastructure Management) api endpoints
+    pub fn dcim(&self) -> DcimApi {
+        DcimApi::new(self.clone())
+    }
+
+    /// access circuits api endpoints
+    pub fn circuits(&self) -> CircuitsApi {
+        CircuitsApi::new(self.clone())
+    }
+
+    /// access cloud api endpoints
+    pub fn cloud(&self) -> CloudApi {
+        CloudApi::new(self.clone())
+    }
+
+    /// access core api endpoints
+    pub fn core(&self) -> CoreApi {
+        CoreApi::new(self.clone())
+    }
+
+    /// access extras api endpoints
+    pub fn extras(&self) -> ExtrasApi {
+        ExtrasApi::new(self.clone())
+    }
+
+    /// access graphql query helper
+    pub fn graphql(&self) -> GraphqlApi {
+        GraphqlApi::new(self.clone())
+    }
+
+    /// access ipam (IP Address Management) api endpoints
+    pub fn ipam(&self) -> IpamApi {
+        IpamApi::new(self.clone())
+    }
+
+    /// access metrics endpoint
+    pub fn metrics(&self) -> MetricsApi {
+        MetricsApi::new(self.clone())
+    }
+
+    /// access the nautobot status endpoint
+    pub fn status(&self) -> StatusApi {
+        StatusApi::new(self.clone())
+    }
+
+    /// access tenancy api endpoints
+    pub fn tenancy(&self) -> TenancyApi {
+        TenancyApi::new(self.clone())
+    }
+
+    /// access users api endpoints
+    pub fn users(&self) -> UsersApi {
+        UsersApi::new(self.clone())
+    }
+
+    /// access ui endpoints
+    pub fn ui(&self) -> UiApi {
+        UiApi::new(self.clone())
+    }
+
+    /// access virtualization api endpoints
+    pub fn virtualization(&self) -> VirtualizationApi {
+        VirtualizationApi::new(self.clone())
+    }
+
+    /// access wireless api endpoints
+    pub fn wireless(&self) -> WirelessApi {
+        WirelessApi::new(self.clone())
+    }
+
+    /// get the client configuration
+    pub fn config(&self) -> &ClientConfig {
+        &self.config
+    }
+
+    /// build a configuration for the generated openapi client.
+    pub fn openapi_config(&self) -> Result<nautobot_openapi::apis::configuration::Configuration> {
+        if let Some(config) = self.openapi_config_cached().get() {
+            return Ok(config.clone());
+        }
+
+        let headers = self.config.extra_headers.clone();
+        let client = reqwest::Client::builder()
+            .default_headers(headers)
+            .timeout(self.config.timeout)
+            .danger_accept_invalid_certs(!self.config.verify_ssl)
+            .build()
+            .map_err(Error::from)?;
+
+        let config = nautobot_openapi::apis::configuration::Configuration {
+            base_path: self
+                .config
+                .base_url
+                .as_str()
+                .trim_end_matches('/')
+                .to_string(),
+            user_agent: Some(self.config.user_agent.clone()),
+            client,
+            basic_auth: None,
+            oauth_access_token: None,
+            bearer_access_token: None,
+            api_key: Some(nautobot_openapi::apis::configuration::ApiKey {
+                prefix: Some("Token".to_string()),
+                key: self.config.token.clone(),
+            }),
+        };
+
+        let _ = self.openapi_config_cached().set(config.clone());
+        Ok(config)
+    }
+
+    /// make a get request to the api
+    pub(crate) async fn get<T>(&self, path: &str) -> Result<T>
+    where
+        T: DeserializeOwned,
+    {
+        self.request_with_retries(Method::GET, path, None::<&()>)
+            .await
+    }
+
+    /// make a get request with query parameters
+    pub(crate) async fn get_with_params<T, Q>(&self, path: &str, query: &Q) -> Result<T>
+    where
+        T: DeserializeOwned,
+        Q: Serialize,
+    {
+        self.retry_loop(Method::GET, |_attempt| async move {
+            let mut url = self.config.build_url(path)?;
+            let query_string = serde_urlencoded::to_string(query)?;
+            if !query_string.is_empty() {
+                url.set_query(Some(&query_string));
+            }
+            let response = self.http_client.get(url).send().await;
+            match response {
+                Ok(response) => self.handle_response(response).await,
+                Err(err) => Err(Error::from(err)),
+            }
+        })
+        .await
+    }
+
+    /// make a raw http request and return json or null for empty bodies
+    pub async fn request_raw(
+        &self,
+        method: Method,
+        path: &str,
+        body: Option<&Value>,
+    ) -> Result<Value> {
+        self.retry_loop(method.clone(), move |_attempt| {
+            let method = method.clone();
+            async move {
+                let url = self.config.build_url(path)?;
+                let mut request = self.http_client.request(method, url);
+                if let Some(body) = body {
+                    request = request.json(body);
+                }
+                let response = request.send().await.map_err(Error::from)?;
+                let status = response.status();
+                if status.is_success() {
+                    let body_text = response.text().await.map_err(Error::from)?;
+                    if body_text.trim().is_empty() {
+                        Ok(Value::Null)
+                    } else {
+                        Ok(serde_json::from_str(&body_text)?)
+                    }
+                } else {
+                    let body_text = response.text().await.unwrap_or_default();
+                    Err(Error::from_response(status, body_text))
+                }
+            }
+        })
+        .await
+    }
+
+    /// make a post request to the api
+    pub(crate) async fn post<T, B>(&self, path: &str, body: &B) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        self.request(Method::POST, path, Some(body)).await
+    }
+
+    /// make a put request to the api
+    pub(crate) async fn put<T, B>(&self, path: &str, body: &B) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        self.request(Method::PUT, path, Some(body)).await
+    }
+
+    /// make a patch request to the api
+    pub(crate) async fn patch<T, B>(&self, path: &str, body: &B) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        self.request(Method::PATCH, path, Some(body)).await
+    }
+
+    /// make a delete request to the api
+    pub(crate) async fn delete(&self, path: &str) -> Result<()> {
+        let url = self.config.build_url(path)?;
+        let response = self.http_client.delete(url).send().await?;
+
+        if response.status().is_success() || response.status() == StatusCode::NO_CONTENT {
+            Ok(())
+        } else {
+            let status = response.status();
+            let body = response.text().await.unwrap_or_default();
+            Err(Error::from_response(status, body))
+        }
+    }
+
+    /// make a delete request with a json body
+    pub(crate) async fn delete_with_body<B>(&self, path: &str, body: &B) -> Result<()>
+    where
+        B: Serialize + ?Sized,
+    {
+        let url = self.config.build_url(path)?;
+        let response = self.http_client.delete(url).json(body).send().await?;
+
+        if response.status().is_success() || response.status() == StatusCode::NO_CONTENT {
+            Ok(())
+        } else {
+            let status = response.status();
+            let body = response.text().await.unwrap_or_default();
+            Err(Error::from_response(status, body))
+        }
+    }
+
+    /// make a generic http request
+    async fn request<T, B>(&self, method: Method, path: &str, body: Option<&B>) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        self.request_with_retries(method, path, body).await
+    }
+
+    async fn request_with_retries<T, B>(
+        &self,
+        method: Method,
+        path: &str,
+        body: Option<&B>,
+    ) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        self.retry_loop(method.clone(), move |_attempt| {
+            let method = method.clone();
+            async move { self.request_once(method, path, body).await }
+        })
+        .await
+    }
+
+    async fn request_once<T, B>(&self, method: Method, path: &str, body: Option<&B>) -> Result<T>
+    where
+        T: DeserializeOwned,
+        B: Serialize + ?Sized,
+    {
+        let url = self.config.build_url(path)?;
+
+        let mut request = self.http_client.request(method, url);
+
+        if let Some(body) = body {
+            request = request.json(body);
+        }
+
+        let response = request.send().await.map_err(Error::from)?;
+        self.handle_response(response).await
+    }
+
+    async fn retry_loop<T, F, Fut>(&self, method: Method, mut operation: F) -> Result<T>
+    where
+        F: FnMut(u32) -> Fut,
+        Fut: std::future::Future<Output = Result<T>>,
+    {
+        let mut attempts = 0;
+        loop {
+            let result = operation(attempts).await;
+            match result {
+                Ok(value) => return Ok(value),
+                Err(err) => {
+                    if !Self::should_retry(&err, method.clone(), attempts, self.config.max_retries)
+                    {
+                        return Err(err);
+                    }
+                    attempts += 1;
+                    sleep(Self::retry_delay(attempts)).await;
+                }
+            }
+        }
+    }
+
+    fn should_retry(err: &Error, method: Method, attempts: u32, max_retries: u32) -> bool {
+        if attempts >= max_retries {
+            return false;
+        }
+        if method != Method::GET {
+            return false;
+        }
+        match err {
+            Error::Http(inner) => inner.is_timeout() || inner.is_connect(),
+            Error::ApiError { status, .. } => *status == 429 || *status >= 500,
+            _ => false,
+        }
+    }
+
+    fn retry_delay(attempt: u32) -> Duration {
+        if attempt == 0 {
+            return Duration::from_millis(0);
+        }
+
+        let exp = attempt.saturating_sub(1);
+        let backoff_ms = 200u64.saturating_mul(2u64.saturating_pow(exp));
+        let jitter = (backoff_ms / 4).min(500);
+        let offset = if jitter == 0 {
+            0
+        } else {
+            Self::jitter_seed(attempt) % (jitter + 1)
+        };
+        Duration::from_millis(backoff_ms.saturating_add(offset))
+    }
+
+    fn jitter_seed(attempt: u32) -> u64 {
+        let nanos = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap_or_default()
+            .subsec_nanos() as u64;
+        nanos.wrapping_mul(31).wrapping_add(attempt as u64)
+    }
+
+    /// handle http response and deserialize or return error
+    async fn handle_response<T>(&self, response: reqwest::Response) -> Result<T>
+    where
+        T: DeserializeOwned,
+    {
+        let status = response.status();
+
+        if status.is_success() {
+            // Successful response, deserialize JSON
+            response.json().await.map_err(Error::from)
+        } else {
+            // Error response
+            let body = response.text().await.unwrap_or_default();
+            Err(Error::from_response(status, body))
+        }
+    }
+}
+
+impl std::fmt::Debug for Client {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Client")
+            .field("base_url", &self.config.base_url)
+            .field("timeout", &self.config.timeout)
+            .finish()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use httpmock::prelude::*;
+    use reqwest::header::{HeaderName, HeaderValue};
+    use serde_json::json;
+
+    #[test]
+    fn test_client_creation() {
+        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
+        let client = Client::new(config);
+        assert!(client.is_ok());
+    }
+
+    #[test]
+    fn test_client_invalid_config() {
+        let config = ClientConfig::new("https://nautobot.example.com", "");
+        let client = Client::new(config);
+        assert!(client.is_err());
+    }
+
+    #[test]
+    fn test_client_debug() {
+        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
+        let client = Client::new(config).unwrap();
+        let debug_str = format!("{:?}", client);
+        assert!(debug_str.contains("nautobot.example.com"));
+    }
+
+    #[test]
+    fn test_openapi_config() {
+        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
+        let client = Client::new(config).unwrap();
+        let openapi_config = client.openapi_config().unwrap();
+        assert_eq!(openapi_config.base_path, "https://nautobot.example.com");
+        let api_key = openapi_config.api_key.expect("api key should be set");
+        assert_eq!(api_key.prefix.as_deref(), Some("Token"));
+        assert_eq!(api_key.key, "test-token");
+    }
+
+    #[test]
+    fn test_should_retry_respects_limits_and_method() {
+        let err = Error::ApiError {
+            status: 500,
+            message: "server".to_string(),
+            body: "".to_string(),
+        };
+        assert!(Client::should_retry(&err, Method::GET, 0, 3));
+        assert!(!Client::should_retry(&err, Method::POST, 0, 3));
+        assert!(!Client::should_retry(&err, Method::GET, 3, 3));
+    }
+
+    #[test]
+    fn test_should_retry_status_codes() {
+        let err_429 = Error::ApiError {
+            status: 429,
+            message: "rate".to_string(),
+            body: "".to_string(),
+        };
+        let err_500 = Error::ApiError {
+            status: 500,
+            message: "server".to_string(),
+            body: "".to_string(),
+        };
+        let err_404 = Error::ApiError {
+            status: 404,
+            message: "missing".to_string(),
+            body: "".to_string(),
+        };
+        assert!(Client::should_retry(&err_429, Method::GET, 0, 1));
+        assert!(Client::should_retry(&err_500, Method::GET, 0, 1));
+        assert!(!Client::should_retry(&err_404, Method::GET, 0, 1));
+    }
+
+    #[test]
+    fn test_retry_delay_backoff() {
+        assert_eq!(Client::retry_delay(0), Duration::from_millis(0));
+        let delay1 = Client::retry_delay(1).as_millis();
+        let delay2 = Client::retry_delay(2).as_millis();
+        let delay3 = Client::retry_delay(3).as_millis();
+        assert!((200..=700).contains(&delay1));
+        assert!((400..=900).contains(&delay2));
+        assert!((800..=1300).contains(&delay3));
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn request_raw_returns_json() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET).path("/api/status/");
+            then.status(200).json_body(json!({ "ready": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
+        let client = Client::new(config).unwrap();
+        let value = client
+            .request_raw(Method::GET, "status/", None)
+            .await
+            .unwrap();
+        assert_eq!(value, json!({ "ready": true }));
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn request_raw_returns_null_on_empty_body() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(DELETE).path("/api/test/");
+            then.status(204);
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
+        let client = Client::new(config).unwrap();
+        let value = client
+            .request_raw(Method::DELETE, "test/", None)
+            .await
+            .unwrap();
+        assert_eq!(value, Value::Null);
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn request_raw_includes_extra_headers() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/status/")
+                .header("x-custom", "value");
+            then.status(200).json_body(json!({ "ready": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token").with_header(
+            HeaderName::from_static("x-custom"),
+            HeaderValue::from_static("value"),
+        );
+        let client = Client::new(config).unwrap();
+        let value = client
+            .request_raw(Method::GET, "status/", None)
+            .await
+            .unwrap();
+        assert_eq!(value, json!({ "ready": true }));
+        mock.assert();
+    }
+}

@@ -1,0 +1,441 @@
+//! generic api resource wrapper for standard nautobot crud endpoints.
+
+use crate::Client;
+use crate::error::Result;
+use crate::pagination::{Page, Paginator};
+use crate::query::QueryBuilder;
+use serde::Serialize;
+use serde::de::DeserializeOwned;
+
+/// generic resource wrapper for list/get/create/update/patch/delete operations.
+#[derive(Clone)]
+pub struct Resource<T> {
+    client: Client,
+    path: &'static str,
+    _marker: std::marker::PhantomData<T>,
+}
+
+/// bulk update wrapper that includes an id with the update payload.
+#[derive(Debug, Clone, Serialize)]
+pub struct BulkUpdate<T> {
+    /// resource id.
+    pub id: u64,
+    /// update payload to serialize alongside the id.
+    #[serde(flatten)]
+    pub data: T,
+}
+
+impl<T> BulkUpdate<T> {
+    /// create a new bulk update entry.
+    pub fn new(id: u64, data: T) -> Self {
+        Self { id, data }
+    }
+}
+
+/// bulk delete wrapper that includes the id to delete.
+#[derive(Debug, Clone, Serialize)]
+pub struct BulkDelete {
+    /// resource id.
+    pub id: u64,
+}
+
+impl BulkDelete {
+    /// create a new bulk delete entry.
+    pub fn new(id: u64) -> Self {
+        Self { id }
+    }
+}
+
+impl<T> Resource<T>
+where
+    T: DeserializeOwned,
+{
+    pub(crate) fn new(client: Client, path: &'static str) -> Self {
+        Self {
+            client,
+            path,
+            _marker: std::marker::PhantomData,
+        }
+    }
+
+    /// list all resources for this endpoint.
+    pub async fn list(&self, query: Option<QueryBuilder>) -> Result<Page<T>> {
+        let query = query.unwrap_or_default();
+        self.client.get_with_params(self.path, &query).await
+    }
+
+    /// list notes for a resource by id.
+    pub async fn notes(
+        &self,
+        id: u64,
+        query: Option<QueryBuilder>,
+    ) -> Result<Page<crate::models::Note>> {
+        let query = query.unwrap_or_default();
+        self.client
+            .get_with_params(&format!("{}{}/notes/", self.path, id), &query)
+            .await
+    }
+
+    /// create a note for a resource by id.
+    pub async fn create_note<B>(&self, id: u64, body: &B) -> Result<crate::models::Note>
+    where
+        B: Serialize,
+    {
+        self.client
+            .post(&format!("{}{}/notes/", self.path, id), body)
+            .await
+    }
+
+    /// get a paginator for iterating through all resources.
+    pub fn paginate(&self, query: Option<QueryBuilder>) -> Result<Paginator<T>> {
+        let path = if let Some(q) = query {
+            let query_string = serde_urlencoded::to_string(&q)?;
+            if query_string.is_empty() {
+                self.path.to_string()
+            } else {
+                format!("{}?{}", self.path.trim_end_matches('/'), query_string)
+            }
+        } else {
+            self.path.to_string()
+        };
+        Ok(Paginator::new(self.client.clone(), path))
+    }
+
+    /// get a resource by id.
+    pub async fn get(&self, id: u64) -> Result<T> {
+        self.client.get(&format!("{}{}/", self.path, id)).await
+    }
+
+    /// create a resource.
+    pub async fn create<B>(&self, body: &B) -> Result<T>
+    where
+        B: Serialize,
+    {
+        self.client.post(self.path, body).await
+    }
+
+    /// create resources in bulk.
+    pub async fn bulk_create<B>(&self, body: &[B]) -> Result<Vec<T>>
+    where
+        B: Serialize,
+    {
+        self.client.post(self.path, body).await
+    }
+
+    /// update a resource (full update).
+    pub async fn update<B>(&self, id: u64, body: &B) -> Result<T>
+    where
+        B: Serialize,
+    {
+        self.client
+            .put(&format!("{}{}/", self.path, id), body)
+            .await
+    }
+
+    /// update resources in bulk (full update).
+    pub async fn bulk_update<B>(&self, body: &[B]) -> Result<Vec<T>>
+    where
+        B: Serialize,
+    {
+        self.client.put(self.path, body).await
+    }
+
+    /// partially update a resource.
+    pub async fn patch<B>(&self, id: u64, body: &B) -> Result<T>
+    where
+        B: Serialize,
+    {
+        self.client
+            .patch(&format!("{}{}/", self.path, id), body)
+            .await
+    }
+
+    /// partially update resources in bulk.
+    pub async fn bulk_patch<B>(&self, body: &[B]) -> Result<Vec<T>>
+    where
+        B: Serialize,
+    {
+        self.client.patch(self.path, body).await
+    }
+
+    /// delete a resource.
+    pub async fn delete(&self, id: u64) -> Result<()> {
+        self.client.delete(&format!("{}{}/", self.path, id)).await
+    }
+
+    /// delete resources in bulk.
+    pub async fn bulk_delete<B>(&self, body: &[B]) -> Result<()>
+    where
+        B: Serialize,
+    {
+        self.client.delete_with_body(self.path, body).await
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::ClientConfig;
+    use httpmock::Method::GET;
+    use httpmock::{Method::DELETE, Method::PATCH, Method::POST, Method::PUT, MockServer};
+
+    fn test_client() -> Client {
+        let config = ClientConfig::new("https://nautobot.example.com", "token");
+        Client::new(config).unwrap()
+    }
+
+    #[test]
+    fn paginate_without_query_uses_base_path() {
+        let resource: Resource<serde_json::Value> = Resource::new(test_client(), "dcim/devices/");
+        let paginator = resource.paginate(None).unwrap();
+        assert_eq!(paginator.next_url(), Some("dcim/devices/"));
+    }
+
+    #[test]
+    fn paginate_with_query_encodes_path() {
+        let resource: Resource<serde_json::Value> = Resource::new(test_client(), "dcim/devices/");
+        let query = QueryBuilder::new().filter("status", "active").limit(10);
+        let paginator = resource.paginate(Some(query)).unwrap();
+        let query = QueryBuilder::new().filter("status", "active").limit(10);
+        let expected_query = serde_urlencoded::to_string(&query).expect("query should serialize");
+        let expected = if expected_query.is_empty() {
+            "dcim/devices/".to_string()
+        } else {
+            format!("dcim/devices?{}", expected_query)
+        };
+        let actual = paginator.next_url().expect("expected paginator url");
+        let (actual_path, actual_query) = actual.split_once('?').unwrap_or((actual, ""));
+        let (expected_path, expected_query) =
+            expected.split_once('?').unwrap_or((expected.as_str(), ""));
+        assert_eq!(actual_path, expected_path);
+
+        let mut actual_pairs: Vec<(String, String)> =
+            url::form_urlencoded::parse(actual_query.as_bytes())
+                .into_owned()
+                .collect();
+        let mut expected_pairs: Vec<(String, String)> =
+            url::form_urlencoded::parse(expected_query.as_bytes())
+                .into_owned()
+                .collect();
+        actual_pairs.sort();
+        expected_pairs.sort();
+        assert_eq!(actual_pairs, expected_pairs);
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn resource_crud_calls_expected_paths() {
+        let server = MockServer::start();
+        let base_url = server.base_url();
+        let config = ClientConfig::new(&base_url, "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
+
+        let list_response = serde_json::json!({
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "results": [{"id": 1}]
+        });
+
+        server.mock(|when, then| {
+            when.method(GET).path("/api/dcim/devices/");
+            then.status(200).json_body(list_response.clone());
+        });
+
+        server.mock(|when, then| {
+            when.method(GET).path("/api/dcim/devices/1/");
+            then.status(200).json_body(serde_json::json!({"id": 1}));
+        });
+
+        server.mock(|when, then| {
+            when.method(POST).path("/api/dcim/devices/");
+            then.status(201).json_body(serde_json::json!({"id": 2}));
+        });
+
+        server.mock(|when, then| {
+            when.method(PUT).path("/api/dcim/devices/1/");
+            then.status(200)
+                .json_body(serde_json::json!({"id": 1, "updated": true}));
+        });
+
+        server.mock(|when, then| {
+            when.method(PATCH).path("/api/dcim/devices/1/");
+            then.status(200)
+                .json_body(serde_json::json!({"id": 1, "patched": true}));
+        });
+
+        server.mock(|when, then| {
+            when.method(DELETE).path("/api/dcim/devices/1/");
+            then.status(204);
+        });
+
+        let page = resource.list(None).await.unwrap();
+        assert_eq!(page.count, 1);
+        assert_eq!(page.results[0]["id"], 1);
+
+        let item = resource.get(1u64).await.unwrap();
+        assert_eq!(item["id"], 1);
+
+        let created = resource
+            .create(&serde_json::json!({"name": "device"}))
+            .await
+            .unwrap();
+        assert_eq!(created["id"], 2);
+
+        let updated = resource
+            .update(1u64, &serde_json::json!({"name": "device"}))
+            .await
+            .unwrap();
+        assert_eq!(updated["updated"], true);
+
+        let patched = resource
+            .patch(1u64, &serde_json::json!({"name": "device"}))
+            .await
+            .unwrap();
+        assert_eq!(patched["patched"], true);
+
+        resource.delete(1u64).await.unwrap();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn resource_notes_calls_expected_paths() {
+        let server = MockServer::start();
+        let base_url = server.base_url();
+        let config = ClientConfig::new(&base_url, "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
+
+        let list_response = serde_json::json!({
+            "count": 0,
+            "next": null,
+            "previous": null,
+            "results": []
+        });
+
+        server.mock(|when, then| {
+            when.method(GET).path("/api/dcim/devices/1/notes/");
+            then.status(200).json_body(list_response);
+        });
+
+        server.mock(|when, then| {
+            when.method(POST)
+                .path("/api/dcim/devices/1/notes/")
+                .json_body(serde_json::json!({"note": "note"}));
+            then.status(201).json_body(serde_json::json!({
+                "assigned_object_type": "dcim.device",
+                "assigned_object_id": "00000000-0000-0000-0000-000000000000",
+                "note": "note"
+            }));
+        });
+
+        let notes = resource.notes(1u64, None).await.unwrap();
+        assert!(notes.results.is_empty());
+
+        let note_request = crate::models::NoteInputRequest::new("note".to_string());
+        let created = resource.create_note(1u64, &note_request).await.unwrap();
+        assert_eq!(created.note, "note");
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn resource_bulk_calls_expected_paths() {
+        let server = MockServer::start();
+        let base_url = server.base_url();
+        let config = ClientConfig::new(&base_url, "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
+
+        let bulk_response = serde_json::json!([{"id": 1}, {"id": 2}]);
+
+        server.mock(|when, then| {
+            when.method(POST)
+                .path("/api/dcim/devices/")
+                .json_body(serde_json::json!([{"name": "a"}, {"name": "b"}]));
+            then.status(201).json_body(bulk_response.clone());
+        });
+
+        server.mock(|when, then| {
+            when.method(PUT)
+                .path("/api/dcim/devices/")
+                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+            then.status(200).json_body(bulk_response.clone());
+        });
+
+        server.mock(|when, then| {
+            when.method(PATCH)
+                .path("/api/dcim/devices/")
+                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+            then.status(200).json_body(bulk_response.clone());
+        });
+
+        server.mock(|when, then| {
+            when.method(DELETE)
+                .path("/api/dcim/devices/")
+                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+            then.status(204);
+        });
+
+        let created = resource
+            .bulk_create(&[
+                serde_json::json!({"name": "a"}),
+                serde_json::json!({"name": "b"}),
+            ])
+            .await
+            .unwrap();
+        assert_eq!(created.len(), 2);
+
+        let updated = resource
+            .bulk_update(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
+            .await
+            .unwrap();
+        assert_eq!(updated.len(), 2);
+
+        let patched = resource
+            .bulk_patch(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
+            .await
+            .unwrap();
+        assert_eq!(patched.len(), 2);
+
+        let deleted = resource
+            .bulk_delete(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
+            .await;
+        assert!(deleted.is_ok());
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn list_with_query_encodes_parameters() {
+        let server = MockServer::start();
+        let base_url = server.base_url();
+        let config = ClientConfig::new(&base_url, "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
+
+        let list_response = serde_json::json!({
+            "count": 0,
+            "next": null,
+            "previous": null,
+            "results": []
+        });
+
+        server.mock(|when, then| {
+            let query = QueryBuilder::new().limit(5);
+            let query_string = serde_urlencoded::to_string(&query).expect("query should serialize");
+            let pairs = url::form_urlencoded::parse(query_string.as_bytes())
+                .into_owned()
+                .collect::<Vec<_>>();
+
+            let mut when = when.method(GET).path("/api/dcim/devices/");
+            for (key, value) in pairs {
+                when = when.query_param(key, value);
+            }
+            then.status(200).json_body(list_response);
+        });
+
+        let query = QueryBuilder::new().limit(5);
+        let page = resource.list(Some(query)).await.unwrap();
+        assert_eq!(page.count, 0);
+    }
+}

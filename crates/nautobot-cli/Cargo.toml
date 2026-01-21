@@ -1,0 +1,29 @@
+[package]
+name = "nautobot-cli"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "cli client for the nautobot api"
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+nautobot = { version = "0.1.0", path = "../nautobot" }
+clap = { workspace = true }
+tokio = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
+reqwest = { workspace = true }
+serde_urlencoded = "0.7"
+async-trait = "0.1"
+comfy-table = "7.1"
+serde_yaml = "0.9"
+terminal_size = "0.3"
+
+[[bin]]
+name = "nautobot-cli"
+path = "src/main.rs"

@@ -1,0 +1,28 @@
+# Platform
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**object_type** | Option<**String**> |  | [optional][readonly]
+**display** | Option<**String**> | Human friendly display value | [optional][readonly]
+**url** | Option<**String**> |  | [optional][readonly]
+**natural_slug** | Option<**String**> |  | [optional][readonly]
+**network_driver_mappings** | Option<[**serde_json::Value**](.md)> |  | [optional][readonly]
+**device_count** | Option<**i32**> |  | [optional][readonly]
+**virtual_machine_count** | Option<**i32**> |  | [optional][readonly]
+**name** | **String** |  | 
+**network_driver** | Option<**String**> | The normalized network driver to use when interacting with devices, e.g. cisco_ios, arista_eos, etc. Library-specific driver names will be derived from this setting as appropriate | [optional]
+**napalm_driver** | Option<**String**> | The name of the NAPALM driver to use when Nautobot internals interact with devices | [optional]
+**napalm_args** | Option<[**serde_json::Value**](.md)> | Additional arguments to pass when initiating the NAPALM driver (JSON format) | [optional]
+**description** | Option<**String**> |  | [optional]
+**manufacturer** | Option<[**crate::models::BulkWritablePlatformRequestManufacturer**](BulkWritablePlatformRequest_manufacturer.md)> |  | [optional]
+**created** | Option<**String**> |  | [optional][readonly]
+**last_updated** | Option<**String**> |  | [optional][readonly]
+**notes_url** | Option<**String**> |  | [optional][readonly]
+**custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
