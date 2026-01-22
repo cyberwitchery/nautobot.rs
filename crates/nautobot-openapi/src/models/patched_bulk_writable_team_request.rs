@@ -19,7 +19,7 @@ pub struct PatchedBulkWritableTeamRequest {
     #[serde(rename = "phone", skip_serializing_if = "Option::is_none")]
     pub phone: Option<String>,
     #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
-    pub email: Option<Box<crate::models::EMail>>,
+    pub email: Option<String>,
     #[serde(rename = "address", skip_serializing_if = "Option::is_none")]
     pub address: Option<String>,
     #[serde(rename = "comments", skip_serializing_if = "Option::is_none")]

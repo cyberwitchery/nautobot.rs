@@ -516,8 +516,6 @@ pub mod dynamic_group_membership_request;
 pub use self::dynamic_group_membership_request::DynamicGroupMembershipRequest;
 pub mod dynamic_group_request;
 pub use self::dynamic_group_request::DynamicGroupRequest;
-pub mod e_mail;
-pub use self::e_mail::EMail;
 pub mod export_template;
 pub use self::export_template::ExportTemplate;
 pub mod export_template_owner;

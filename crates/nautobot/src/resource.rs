@@ -67,7 +67,7 @@ where
     /// list notes for a resource by id.
     pub async fn notes(
         &self,
-        id: u64,
+        id: &str,
         query: Option<QueryBuilder>,
     ) -> Result<Page<crate::models::Note>> {
         let query = query.unwrap_or_default();
@@ -77,7 +77,7 @@ where
     }
 
     /// create a note for a resource by id.
-    pub async fn create_note<B>(&self, id: u64, body: &B) -> Result<crate::models::Note>
+    pub async fn create_note<B>(&self, id: &str, body: &B) -> Result<crate::models::Note>
     where
         B: Serialize,
     {
@@ -101,8 +101,8 @@ where
         Ok(Paginator::new(self.client.clone(), path))
     }
 
-    /// get a resource by id.
-    pub async fn get(&self, id: u64) -> Result<T> {
+    /// get a resource by id (UUID string).
+    pub async fn get(&self, id: &str) -> Result<T> {
         self.client.get(&format!("{}{}/", self.path, id)).await
     }
 
@@ -123,7 +123,7 @@ where
     }
 
     /// update a resource (full update).
-    pub async fn update<B>(&self, id: u64, body: &B) -> Result<T>
+    pub async fn update<B>(&self, id: &str, body: &B) -> Result<T>
     where
         B: Serialize,
     {
@@ -141,7 +141,7 @@ where
     }
 
     /// partially update a resource.
-    pub async fn patch<B>(&self, id: u64, body: &B) -> Result<T>
+    pub async fn patch<B>(&self, id: &str, body: &B) -> Result<T>
     where
         B: Serialize,
     {
@@ -159,7 +159,7 @@ where
     }
 
     /// delete a resource.
-    pub async fn delete(&self, id: u64) -> Result<()> {
+    pub async fn delete(&self, id: &str) -> Result<()> {
         self.client.delete(&format!("{}{}/", self.path, id)).await
     }
 
@@ -274,7 +274,7 @@ mod tests {
         assert_eq!(page.count, 1);
         assert_eq!(page.results[0]["id"], 1);
 
-        let item = resource.get(1u64).await.unwrap();
+        let item = resource.get("1").await.unwrap();
         assert_eq!(item["id"], 1);
 
         let created = resource
@@ -284,18 +284,18 @@ mod tests {
         assert_eq!(created["id"], 2);
 
         let updated = resource
-            .update(1u64, &serde_json::json!({"name": "device"}))
+            .update("1", &serde_json::json!({"name": "device"}))
             .await
             .unwrap();
         assert_eq!(updated["updated"], true);
 
         let patched = resource
-            .patch(1u64, &serde_json::json!({"name": "device"}))
+            .patch("1", &serde_json::json!({"name": "device"}))
             .await
             .unwrap();
         assert_eq!(patched["patched"], true);
 
-        resource.delete(1u64).await.unwrap();
+        resource.delete("1").await.unwrap();
     }
 
     #[cfg_attr(miri, ignore)]
@@ -330,11 +330,11 @@ mod tests {
             }));
         });
 
-        let notes = resource.notes(1u64, None).await.unwrap();
+        let notes = resource.notes("1", None).await.unwrap();
         assert!(notes.results.is_empty());
 
         let note_request = crate::models::NoteInputRequest::new("note".to_string());
-        let created = resource.create_note(1u64, &note_request).await.unwrap();
+        let created = resource.create_note("1", &note_request).await.unwrap();
         assert_eq!(created.note, "note");
     }
 

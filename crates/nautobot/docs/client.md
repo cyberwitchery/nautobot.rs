@@ -54,7 +54,6 @@ fn example() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-<!--
 ## list and filter
 
 ```rust,no_run
@@ -92,21 +91,32 @@ while let Some(page) = paginator.next_page().await? {
 ```
 
 note: for local dev instances with self-signed certs, call `with_ssl_verification(false)` in your config.
-note: `paginate` returns `Result<Paginator<T>>`. handle errors before calling `next_page`.
 
 ## create, update, delete
 
+nautobot uses uuid strings for all resource ids, not integers.
+
 ```rust,no_run
 use nautobot::{Client, ClientConfig};
-// use nautobot::dcim::CreateDeviceRequest;
 
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
-// Implementation coming soon
+
+// Get a device by UUID
+let device = client.dcim().devices().get("device-uuid-here").await?;
+println!("Device: {}", device.display.as_deref().unwrap_or("<unknown>"));
+
+// Create a tag (note: content_types is required in Nautobot)
+use nautobot::models::TagRequest;
+let tag = TagRequest::new(vec!["dcim.device".to_string()], "my-tag".to_string());
+let created = client.extras().tags().create(&tag).await?;
+
+// Delete by UUID (id is a UUID)
+let tag_id = created.id.expect("tag should have id").to_string();
+client.extras().tags().delete(&tag_id).await?;
 # Ok(())
 # }
 ```
--->
 
 ## error handling
 
@@ -138,13 +148,77 @@ use this when you need an endpoint not yet wrapped by the high-level client.
 
 ```rust,no_run
 use nautobot::{Client, ClientConfig};
-// use nautobot::openapi::apis::dcim_api;
 
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
-let openapi_config = client.openapi_config()?;
-// let device = dcim_api::dcim_devices_retrieve(&openapi_config, 42).await?;
-// println!("{}", device.display.as_deref().unwrap_or("<unknown>"));
+
+// Access raw JSON API
+let value = client.request_raw(reqwest::Method::GET, "dcim/devices/", None).await?;
+println!("{}", value);
+# Ok(())
+# }
+```
+
+## special endpoints
+
+nautobot provides ergonomic helpers for special endpoints beyond basic CRUD:
+
+### ipam allocation
+
+```rust,no_run
+use nautobot::{Client, ClientConfig};
+use nautobot::ipam::{IpAllocationRequest, PrefixLengthRequest};
+use nautobot::models::BulkWritableCableRequestStatus;
+
+# async fn example() -> Result<(), Box<dyn std::error::Error>> {
+let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
+
+// List available IPs in a prefix
+let available = client.ipam().prefix_available_ips("prefix-uuid", None).await?;
+println!("Available IPs: {}", available.count);
+
+// Allocate an IP from a prefix
+let status = BulkWritableCableRequestStatus::new();
+let request = IpAllocationRequest::new(status);
+let allocated = client.ipam().allocate_prefix_ips("prefix-uuid", &[request]).await?;
+# Ok(())
+# }
+```
+
+### dcim tracing
+
+```rust,no_run
+use nautobot::{Client, ClientConfig};
+
+# async fn example() -> Result<(), Box<dyn std::error::Error>> {
+let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
+
+// Trace an interface path
+let trace = client.dcim().interface_trace("interface-uuid").await?;
+
+// Trace a power port
+let power_trace = client.dcim().power_port_trace("power-port-uuid").await?;
+# Ok(())
+# }
+```
+
+### extras jobs
+
+```rust,no_run
+use nautobot::{Client, ClientConfig};
+use nautobot::extras::JobInputRequest;
+
+# async fn example() -> Result<(), Box<dyn std::error::Error>> {
+let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
+
+// Run a job by UUID
+let response = client.extras().job_run("job-uuid", &JobInputRequest::new()).await?;
+
+// Run a job by name
+let response = client.extras().job_run_by_name("my-job", &JobInputRequest::new()).await?;
+
+// Approve a scheduled job
+let approved = client.extras().scheduled_job_approve("scheduled-job-uuid").await?;
 # Ok(())
 # }
 ```

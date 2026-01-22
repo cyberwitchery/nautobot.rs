@@ -124,8 +124,7 @@ impl RequestError {
 
 impl fmt::Display for RequestError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        if let Some(message) =
-            format_nautobot_error(&self.method, &self.path, self.source.as_ref())
+        if let Some(message) = format_nautobot_error(&self.method, &self.path, self.source.as_ref())
         {
             return write!(f, "{message}");
         }
@@ -152,7 +151,10 @@ struct ResourceEntry {
 }
 
 const DCIM_RESOURCES: &[ResourceEntry] = &[
-    ResourceEntry { name: "cables", path: "dcim/cables/" },
+    ResourceEntry {
+        name: "cables",
+        path: "dcim/cables/",
+    },
     ResourceEntry {
         name: "console-connections",
         path: "dcim/console-connections/",
@@ -177,12 +179,18 @@ const DCIM_RESOURCES: &[ResourceEntry] = &[
         name: "controller-managed-device-groups",
         path: "dcim/controller-managed-device-groups/",
     },
-    ResourceEntry { name: "controllers", path: "dcim/controllers/" },
+    ResourceEntry {
+        name: "controllers",
+        path: "dcim/controllers/",
+    },
     ResourceEntry {
         name: "device-bay-templates",
         path: "dcim/device-bay-templates/",
     },
-    ResourceEntry { name: "device-bays", path: "dcim/device-bays/" },
+    ResourceEntry {
+        name: "device-bays",
+        path: "dcim/device-bays/",
+    },
     ResourceEntry {
         name: "device-families",
         path: "dcim/device-families/",
@@ -195,13 +203,22 @@ const DCIM_RESOURCES: &[ResourceEntry] = &[
         name: "device-types-to-software-image-files",
         path: "dcim/device-types-to-software-image-files/",
     },
-    ResourceEntry { name: "device-types", path: "dcim/device-types/" },
-    ResourceEntry { name: "devices", path: "dcim/devices/" },
+    ResourceEntry {
+        name: "device-types",
+        path: "dcim/device-types/",
+    },
+    ResourceEntry {
+        name: "devices",
+        path: "dcim/devices/",
+    },
     ResourceEntry {
         name: "front-port-templates",
         path: "dcim/front-port-templates/",
     },
-    ResourceEntry { name: "front-ports", path: "dcim/front-ports/" },
+    ResourceEntry {
+        name: "front-ports",
+        path: "dcim/front-ports/",
+    },
     ResourceEntry {
         name: "interface-connections",
         path: "dcim/interface-connections/",
@@ -222,53 +239,98 @@ const DCIM_RESOURCES: &[ResourceEntry] = &[
         name: "interface-vdc-assignments",
         path: "dcim/interface-vdc-assignments/",
     },
-    ResourceEntry { name: "interfaces", path: "dcim/interfaces/" },
+    ResourceEntry {
+        name: "interfaces",
+        path: "dcim/interfaces/",
+    },
     ResourceEntry {
         name: "inventory-items",
         path: "dcim/inventory-items/",
     },
-    ResourceEntry { name: "location-types", path: "dcim/location-types/" },
-    ResourceEntry { name: "locations", path: "dcim/locations/" },
-    ResourceEntry { name: "manufacturers", path: "dcim/manufacturers/" },
+    ResourceEntry {
+        name: "location-types",
+        path: "dcim/location-types/",
+    },
+    ResourceEntry {
+        name: "locations",
+        path: "dcim/locations/",
+    },
+    ResourceEntry {
+        name: "manufacturers",
+        path: "dcim/manufacturers/",
+    },
     ResourceEntry {
         name: "module-bay-templates",
         path: "dcim/module-bay-templates/",
     },
-    ResourceEntry { name: "module-bays", path: "dcim/module-bays/" },
+    ResourceEntry {
+        name: "module-bays",
+        path: "dcim/module-bays/",
+    },
     ResourceEntry {
         name: "module-families",
         path: "dcim/module-families/",
     },
-    ResourceEntry { name: "module-types", path: "dcim/module-types/" },
-    ResourceEntry { name: "modules", path: "dcim/modules/" },
-    ResourceEntry { name: "platforms", path: "dcim/platforms/" },
+    ResourceEntry {
+        name: "module-types",
+        path: "dcim/module-types/",
+    },
+    ResourceEntry {
+        name: "modules",
+        path: "dcim/modules/",
+    },
+    ResourceEntry {
+        name: "platforms",
+        path: "dcim/platforms/",
+    },
     ResourceEntry {
         name: "power-connections",
         path: "dcim/power-connections/",
     },
-    ResourceEntry { name: "power-feeds", path: "dcim/power-feeds/" },
+    ResourceEntry {
+        name: "power-feeds",
+        path: "dcim/power-feeds/",
+    },
     ResourceEntry {
         name: "power-outlet-templates",
         path: "dcim/power-outlet-templates/",
     },
-    ResourceEntry { name: "power-outlets", path: "dcim/power-outlets/" },
-    ResourceEntry { name: "power-panels", path: "dcim/power-panels/" },
+    ResourceEntry {
+        name: "power-outlets",
+        path: "dcim/power-outlets/",
+    },
+    ResourceEntry {
+        name: "power-panels",
+        path: "dcim/power-panels/",
+    },
     ResourceEntry {
         name: "power-port-templates",
         path: "dcim/power-port-templates/",
     },
-    ResourceEntry { name: "power-ports", path: "dcim/power-ports/" },
-    ResourceEntry { name: "rack-groups", path: "dcim/rack-groups/" },
+    ResourceEntry {
+        name: "power-ports",
+        path: "dcim/power-ports/",
+    },
+    ResourceEntry {
+        name: "rack-groups",
+        path: "dcim/rack-groups/",
+    },
     ResourceEntry {
         name: "rack-reservations",
         path: "dcim/rack-reservations/",
     },
-    ResourceEntry { name: "racks", path: "dcim/racks/" },
+    ResourceEntry {
+        name: "racks",
+        path: "dcim/racks/",
+    },
     ResourceEntry {
         name: "rear-port-templates",
         path: "dcim/rear-port-templates/",
     },
-    ResourceEntry { name: "rear-ports", path: "dcim/rear-ports/" },
+    ResourceEntry {
+        name: "rear-ports",
+        path: "dcim/rear-ports/",
+    },
     ResourceEntry {
         name: "software-image-files",
         path: "dcim/software-image-files/",
@@ -292,22 +354,46 @@ const IPAM_RESOURCES: &[ResourceEntry] = &[
         name: "ip-address-to-interface",
         path: "ipam/ip-address-to-interface/",
     },
-    ResourceEntry { name: "ip-addresses", path: "ipam/ip-addresses/" },
-    ResourceEntry { name: "namespaces", path: "ipam/namespaces/" },
+    ResourceEntry {
+        name: "ip-addresses",
+        path: "ipam/ip-addresses/",
+    },
+    ResourceEntry {
+        name: "namespaces",
+        path: "ipam/namespaces/",
+    },
     ResourceEntry {
         name: "prefix-location-assignments",
         path: "ipam/prefix-location-assignments/",
     },
-    ResourceEntry { name: "prefixes", path: "ipam/prefixes/" },
-    ResourceEntry { name: "rirs", path: "ipam/rirs/" },
-    ResourceEntry { name: "route-targets", path: "ipam/route-targets/" },
-    ResourceEntry { name: "services", path: "ipam/services/" },
-    ResourceEntry { name: "vlan-groups", path: "ipam/vlan-groups/" },
+    ResourceEntry {
+        name: "prefixes",
+        path: "ipam/prefixes/",
+    },
+    ResourceEntry {
+        name: "rirs",
+        path: "ipam/rirs/",
+    },
+    ResourceEntry {
+        name: "route-targets",
+        path: "ipam/route-targets/",
+    },
+    ResourceEntry {
+        name: "services",
+        path: "ipam/services/",
+    },
+    ResourceEntry {
+        name: "vlan-groups",
+        path: "ipam/vlan-groups/",
+    },
     ResourceEntry {
         name: "vlan-location-assignments",
         path: "ipam/vlan-location-assignments/",
     },
-    ResourceEntry { name: "vlans", path: "ipam/vlans/" },
+    ResourceEntry {
+        name: "vlans",
+        path: "ipam/vlans/",
+    },
     ResourceEntry {
         name: "vrf-device-assignments",
         path: "ipam/vrf-device-assignments/",
@@ -316,7 +402,10 @@ const IPAM_RESOURCES: &[ResourceEntry] = &[
         name: "vrf-prefix-assignments",
         path: "ipam/vrf-prefix-assignments/",
     },
-    ResourceEntry { name: "vrfs", path: "ipam/vrfs/" },
+    ResourceEntry {
+        name: "vrfs",
+        path: "ipam/vrfs/",
+    },
 ];
 
 const CIRCUITS_RESOURCES: &[ResourceEntry] = &[
@@ -324,22 +413,37 @@ const CIRCUITS_RESOURCES: &[ResourceEntry] = &[
         name: "circuit-terminations",
         path: "circuits/circuit-terminations/",
     },
-    ResourceEntry { name: "circuit-types", path: "circuits/circuit-types/" },
-    ResourceEntry { name: "circuits", path: "circuits/circuits/" },
+    ResourceEntry {
+        name: "circuit-types",
+        path: "circuits/circuit-types/",
+    },
+    ResourceEntry {
+        name: "circuits",
+        path: "circuits/circuits/",
+    },
     ResourceEntry {
         name: "provider-networks",
         path: "circuits/provider-networks/",
     },
-    ResourceEntry { name: "providers", path: "circuits/providers/" },
+    ResourceEntry {
+        name: "providers",
+        path: "circuits/providers/",
+    },
 ];
 
 const CLOUD_RESOURCES: &[ResourceEntry] = &[
-    ResourceEntry { name: "cloud-accounts", path: "cloud/cloud-accounts/" },
+    ResourceEntry {
+        name: "cloud-accounts",
+        path: "cloud/cloud-accounts/",
+    },
     ResourceEntry {
         name: "cloud-network-prefix-assignments",
         path: "cloud/cloud-network-prefix-assignments/",
     },
-    ResourceEntry { name: "cloud-networks", path: "cloud/cloud-networks/" },
+    ResourceEntry {
+        name: "cloud-networks",
+        path: "cloud/cloud-networks/",
+    },
     ResourceEntry {
         name: "cloud-resource-types",
         path: "cloud/cloud-resource-types/",
@@ -348,95 +452,215 @@ const CLOUD_RESOURCES: &[ResourceEntry] = &[
         name: "cloud-service-network-assignments",
         path: "cloud/cloud-service-network-assignments/",
     },
-    ResourceEntry { name: "cloud-services", path: "cloud/cloud-services/" },
+    ResourceEntry {
+        name: "cloud-services",
+        path: "cloud/cloud-services/",
+    },
 ];
 
 const TENANCY_RESOURCES: &[ResourceEntry] = &[
-    ResourceEntry { name: "tenant-groups", path: "tenancy/tenant-groups/" },
-    ResourceEntry { name: "tenants", path: "tenancy/tenants/" },
+    ResourceEntry {
+        name: "tenant-groups",
+        path: "tenancy/tenant-groups/",
+    },
+    ResourceEntry {
+        name: "tenants",
+        path: "tenancy/tenants/",
+    },
 ];
 
 const EXTRAS_RESOURCES: &[ResourceEntry] = &[
-    ResourceEntry { name: "computed-fields", path: "extras/computed-fields/" },
+    ResourceEntry {
+        name: "computed-fields",
+        path: "extras/computed-fields/",
+    },
     ResourceEntry {
         name: "config-context-schemas",
         path: "extras/config-context-schemas/",
     },
-    ResourceEntry { name: "config-contexts", path: "extras/config-contexts/" },
+    ResourceEntry {
+        name: "config-contexts",
+        path: "extras/config-contexts/",
+    },
     ResourceEntry {
         name: "contact-associations",
         path: "extras/contact-associations/",
     },
-    ResourceEntry { name: "contacts", path: "extras/contacts/" },
-    ResourceEntry { name: "content-types", path: "extras/content-types/" },
+    ResourceEntry {
+        name: "contacts",
+        path: "extras/contacts/",
+    },
+    ResourceEntry {
+        name: "content-types",
+        path: "extras/content-types/",
+    },
     ResourceEntry {
         name: "custom-field-choices",
         path: "extras/custom-field-choices/",
     },
-    ResourceEntry { name: "custom-fields", path: "extras/custom-fields/" },
-    ResourceEntry { name: "custom-links", path: "extras/custom-links/" },
+    ResourceEntry {
+        name: "custom-fields",
+        path: "extras/custom-fields/",
+    },
+    ResourceEntry {
+        name: "custom-links",
+        path: "extras/custom-links/",
+    },
     ResourceEntry {
         name: "dynamic-group-memberships",
         path: "extras/dynamic-group-memberships/",
     },
-    ResourceEntry { name: "dynamic-groups", path: "extras/dynamic-groups/" },
-    ResourceEntry { name: "export-templates", path: "extras/export-templates/" },
+    ResourceEntry {
+        name: "dynamic-groups",
+        path: "extras/dynamic-groups/",
+    },
+    ResourceEntry {
+        name: "export-templates",
+        path: "extras/export-templates/",
+    },
     ResourceEntry {
         name: "external-integrations",
         path: "extras/external-integrations/",
     },
-    ResourceEntry { name: "file-proxies", path: "extras/file-proxies/" },
-    ResourceEntry { name: "git-repositories", path: "extras/git-repositories/" },
-    ResourceEntry { name: "graphql-queries", path: "extras/graphql-queries/" },
-    ResourceEntry { name: "image-attachments", path: "extras/image-attachments/" },
-    ResourceEntry { name: "job-buttons", path: "extras/job-buttons/" },
-    ResourceEntry { name: "job-hooks", path: "extras/job-hooks/" },
-    ResourceEntry { name: "job-logs", path: "extras/job-logs/" },
+    ResourceEntry {
+        name: "file-proxies",
+        path: "extras/file-proxies/",
+    },
+    ResourceEntry {
+        name: "git-repositories",
+        path: "extras/git-repositories/",
+    },
+    ResourceEntry {
+        name: "graphql-queries",
+        path: "extras/graphql-queries/",
+    },
+    ResourceEntry {
+        name: "image-attachments",
+        path: "extras/image-attachments/",
+    },
+    ResourceEntry {
+        name: "job-buttons",
+        path: "extras/job-buttons/",
+    },
+    ResourceEntry {
+        name: "job-hooks",
+        path: "extras/job-hooks/",
+    },
+    ResourceEntry {
+        name: "job-logs",
+        path: "extras/job-logs/",
+    },
     ResourceEntry {
         name: "job-queue-assignments",
         path: "extras/job-queue-assignments/",
     },
-    ResourceEntry { name: "job-queues", path: "extras/job-queues/" },
-    ResourceEntry { name: "job-results", path: "extras/job-results/" },
-    ResourceEntry { name: "jobs", path: "extras/jobs/" },
-    ResourceEntry { name: "metadata-choices", path: "extras/metadata-choices/" },
-    ResourceEntry { name: "metadata-types", path: "extras/metadata-types/" },
-    ResourceEntry { name: "notes", path: "extras/notes/" },
-    ResourceEntry { name: "object-changes", path: "extras/object-changes/" },
-    ResourceEntry { name: "object-metadata", path: "extras/object-metadata/" },
+    ResourceEntry {
+        name: "job-queues",
+        path: "extras/job-queues/",
+    },
+    ResourceEntry {
+        name: "job-results",
+        path: "extras/job-results/",
+    },
+    ResourceEntry {
+        name: "jobs",
+        path: "extras/jobs/",
+    },
+    ResourceEntry {
+        name: "metadata-choices",
+        path: "extras/metadata-choices/",
+    },
+    ResourceEntry {
+        name: "metadata-types",
+        path: "extras/metadata-types/",
+    },
+    ResourceEntry {
+        name: "notes",
+        path: "extras/notes/",
+    },
+    ResourceEntry {
+        name: "object-changes",
+        path: "extras/object-changes/",
+    },
+    ResourceEntry {
+        name: "object-metadata",
+        path: "extras/object-metadata/",
+    },
     ResourceEntry {
         name: "relationship-associations",
         path: "extras/relationship-associations/",
     },
-    ResourceEntry { name: "relationships", path: "extras/relationships/" },
-    ResourceEntry { name: "roles", path: "extras/roles/" },
-    ResourceEntry { name: "saved-views", path: "extras/saved-views/" },
-    ResourceEntry { name: "scheduled-jobs", path: "extras/scheduled-jobs/" },
+    ResourceEntry {
+        name: "relationships",
+        path: "extras/relationships/",
+    },
+    ResourceEntry {
+        name: "roles",
+        path: "extras/roles/",
+    },
+    ResourceEntry {
+        name: "saved-views",
+        path: "extras/saved-views/",
+    },
+    ResourceEntry {
+        name: "scheduled-jobs",
+        path: "extras/scheduled-jobs/",
+    },
     ResourceEntry {
         name: "secrets-groups-associations",
         path: "extras/secrets-groups-associations/",
     },
-    ResourceEntry { name: "secrets-groups", path: "extras/secrets-groups/" },
-    ResourceEntry { name: "secrets", path: "extras/secrets/" },
+    ResourceEntry {
+        name: "secrets-groups",
+        path: "extras/secrets-groups/",
+    },
+    ResourceEntry {
+        name: "secrets",
+        path: "extras/secrets/",
+    },
     ResourceEntry {
         name: "static-group-associations",
         path: "extras/static-group-associations/",
     },
-    ResourceEntry { name: "statuses", path: "extras/statuses/" },
-    ResourceEntry { name: "tags", path: "extras/tags/" },
-    ResourceEntry { name: "teams", path: "extras/teams/" },
+    ResourceEntry {
+        name: "statuses",
+        path: "extras/statuses/",
+    },
+    ResourceEntry {
+        name: "tags",
+        path: "extras/tags/",
+    },
+    ResourceEntry {
+        name: "teams",
+        path: "extras/teams/",
+    },
     ResourceEntry {
         name: "user-saved-view-associations",
         path: "extras/user-saved-view-associations/",
     },
-    ResourceEntry { name: "webhooks", path: "extras/webhooks/" },
+    ResourceEntry {
+        name: "webhooks",
+        path: "extras/webhooks/",
+    },
 ];
 
 const USERS_RESOURCES: &[ResourceEntry] = &[
-    ResourceEntry { name: "groups", path: "users/groups/" },
-    ResourceEntry { name: "permissions", path: "users/permissions/" },
-    ResourceEntry { name: "tokens", path: "users/tokens/" },
-    ResourceEntry { name: "users", path: "users/users/" },
+    ResourceEntry {
+        name: "groups",
+        path: "users/groups/",
+    },
+    ResourceEntry {
+        name: "permissions",
+        path: "users/permissions/",
+    },
+    ResourceEntry {
+        name: "tokens",
+        path: "users/tokens/",
+    },
+    ResourceEntry {
+        name: "users",
+        path: "users/users/",
+    },
 ];
 
 const VIRTUALIZATION_RESOURCES: &[ResourceEntry] = &[
@@ -448,8 +672,14 @@ const VIRTUALIZATION_RESOURCES: &[ResourceEntry] = &[
         name: "cluster-types",
         path: "virtualization/cluster-types/",
     },
-    ResourceEntry { name: "clusters", path: "virtualization/clusters/" },
-    ResourceEntry { name: "interfaces", path: "virtualization/interfaces/" },
+    ResourceEntry {
+        name: "clusters",
+        path: "virtualization/clusters/",
+    },
+    ResourceEntry {
+        name: "interfaces",
+        path: "virtualization/interfaces/",
+    },
     ResourceEntry {
         name: "virtual-machines",
         path: "virtualization/virtual-machines/",
@@ -465,12 +695,18 @@ const WIRELESS_RESOURCES: &[ResourceEntry] = &[
         name: "controller-managed-device-group-wireless-network-assignments",
         path: "wireless/controller-managed-device-group-wireless-network-assignments/",
     },
-    ResourceEntry { name: "radio-profiles", path: "wireless/radio-profiles/" },
+    ResourceEntry {
+        name: "radio-profiles",
+        path: "wireless/radio-profiles/",
+    },
     ResourceEntry {
         name: "supported-data-rates",
         path: "wireless/supported-data-rates/",
     },
-    ResourceEntry { name: "wireless-networks", path: "wireless/wireless-networks/" },
+    ResourceEntry {
+        name: "wireless-networks",
+        path: "wireless/wireless-networks/",
+    },
 ];
 
 #[derive(Parser)]
@@ -612,8 +848,8 @@ enum ResourceAction {
         #[arg(long = "query")]
         query: Vec<String>,
     },
-    /// Get a resource by id
-    Get { id: u64 },
+    /// Get a resource by id (UUID string)
+    Get { id: String },
     /// Create a resource
     Create {
         #[command(flatten)]
@@ -621,18 +857,18 @@ enum ResourceAction {
     },
     /// Update a resource (PUT)
     Update {
-        id: u64,
+        id: String,
         #[command(flatten)]
         input: JsonInput,
     },
     /// Patch a resource
     Patch {
-        id: u64,
+        id: String,
         #[command(flatten)]
         input: JsonInput,
     },
     /// Delete a resource
-    Delete { id: u64 },
+    Delete { id: String },
 }
 
 #[derive(Args, Debug)]
@@ -851,7 +1087,7 @@ async fn handle_resource_action(
             print_output(&response, output)?;
         }
         ResourceAction::Get { id } => {
-            let full_path = resource_path_with_id(&path, id);
+            let full_path = resource_path_with_id(&path, &id);
             let response = request_raw_with_context(client, Method::GET, &full_path, None).await?;
             print_output(&response, output)?;
         }
@@ -867,7 +1103,7 @@ async fn handle_resource_action(
         }
         ResourceAction::Update { id, input } => {
             let body: Value = load_json(&input)?;
-            let full_path = resource_path_with_id(&path, id);
+            let full_path = resource_path_with_id(&path, &id);
             if output.dry_run {
                 print_dry_run(Method::PUT, &full_path, None, Some(&body))?;
             } else {
@@ -878,7 +1114,7 @@ async fn handle_resource_action(
         }
         ResourceAction::Patch { id, input } => {
             let body: Value = load_json(&input)?;
-            let full_path = resource_path_with_id(&path, id);
+            let full_path = resource_path_with_id(&path, &id);
             if output.dry_run {
                 print_dry_run(Method::PATCH, &full_path, None, Some(&body))?;
             } else {
@@ -889,7 +1125,7 @@ async fn handle_resource_action(
             }
         }
         ResourceAction::Delete { id } => {
-            let full_path = resource_path_with_id(&path, id);
+            let full_path = resource_path_with_id(&path, &id);
             if output.dry_run {
                 print_dry_run(Method::DELETE, &full_path, None, None)?;
             } else {
@@ -907,106 +1143,6 @@ async fn handle_resource_action(
     Ok(())
 }
 
-async fn handle_dashboard_action(
-    client: &impl ApiClient,
-    output: &OutputConfig,
-    action: DashboardAction,
-) -> Result<(), Box<dyn std::error::Error>> {
-    match action {
-        DashboardAction::Get => {
-            let response =
-                request_raw_with_context(client, Method::GET, "extras/dashboard/", None).await?;
-            print_output(&response, output)?;
-        }
-        DashboardAction::Update { input } => {
-            let body: Value = load_json(&input)?;
-            if output.dry_run {
-                print_dry_run(Method::PUT, "extras/dashboard/", None, Some(&body))?;
-            } else {
-                let response =
-                    request_raw_with_context(client, Method::PUT, "extras/dashboard/", Some(&body))
-                        .await?;
-                print_output(&response, output)?;
-            }
-        }
-        DashboardAction::Patch { input } => {
-            let body: Value = load_json(&input)?;
-            if output.dry_run {
-                print_dry_run(Method::PATCH, "extras/dashboard/", None, Some(&body))?;
-            } else {
-                let response = request_raw_with_context(
-                    client,
-                    Method::PATCH,
-                    "extras/dashboard/",
-                    Some(&body),
-                )
-                .await?;
-                print_output(&response, output)?;
-            }
-        }
-        DashboardAction::Delete => {
-            if output.dry_run {
-                print_dry_run(Method::DELETE, "extras/dashboard/", None, None)?;
-            } else {
-                let response =
-                    request_raw_with_context(client, Method::DELETE, "extras/dashboard/", None)
-                        .await?;
-                if response == Value::Null {
-                    println!("deleted dashboard");
-                } else {
-                    print_output(&response, output)?;
-                }
-            }
-        }
-    }
-
-    Ok(())
-}
-
-async fn handle_named_lookup(
-    client: &impl ApiClient,
-    output: &OutputConfig,
-    base_path: &str,
-    action: NamedLookupAction,
-) -> Result<(), Box<dyn std::error::Error>> {
-    let base_path = normalize_api_path(base_path);
-    match action {
-        NamedLookupAction::List => {
-            let response = request_raw_with_context(client, Method::GET, &base_path, None).await?;
-            print_output(&response, output)?;
-        }
-        NamedLookupAction::Get { name } => {
-            let path = format!("{}/{}/", base_path.trim_end_matches('/'), name);
-            let response = request_raw_with_context(client, Method::GET, &path, None).await?;
-            print_output(&response, output)?;
-        }
-    }
-
-    Ok(())
-}
-
-async fn handle_branch_action(
-    client: &impl ApiClient,
-    output: &OutputConfig,
-    id: u64,
-    action: BranchAction,
-) -> Result<(), Box<dyn std::error::Error>> {
-    let (suffix, body) = match action {
-        BranchAction::Merge { input } => ("merge", load_json(&input)?),
-        BranchAction::Revert { input } => ("revert", load_json(&input)?),
-        BranchAction::Sync { input } => ("sync", load_json(&input)?),
-    };
-
-    let path = format!("plugins/branching/branches/{}/{}/", id, suffix);
-    if output.dry_run {
-        print_dry_run(Method::POST, &path, None, Some(&body))?;
-    } else {
-        let response = request_raw_with_context(client, Method::POST, &path, Some(&body)).await?;
-        print_output(&response, output)?;
-    }
-    Ok(())
-}
-
 fn print_resources(group: Option<&str>) {
     match group {
         None => {
@@ -1016,34 +1152,28 @@ fn print_resources(group: Option<&str>) {
             list_resource_group(IPAM_RESOURCES);
             println!("circuits");
             list_resource_group(CIRCUITS_RESOURCES);
+            println!("cloud");
+            list_resource_group(CLOUD_RESOURCES);
             println!("tenancy");
             list_resource_group(TENANCY_RESOURCES);
             println!("extras");
             list_resource_group(EXTRAS_RESOURCES);
-            println!("core");
-            list_resource_group(CORE_RESOURCES);
             println!("users");
             list_resource_group(USERS_RESOURCES);
             println!("virtualization");
             list_resource_group(VIRTUALIZATION_RESOURCES);
-            println!("vpn");
-            list_resource_group(VPN_RESOURCES);
             println!("wireless");
             list_resource_group(WIRELESS_RESOURCES);
-            println!("plugins");
-            list_resource_group(PLUGINS_RESOURCES);
         }
         Some("dcim") => list_resource_group(DCIM_RESOURCES),
         Some("ipam") => list_resource_group(IPAM_RESOURCES),
         Some("circuits") => list_resource_group(CIRCUITS_RESOURCES),
+        Some("cloud") => list_resource_group(CLOUD_RESOURCES),
         Some("tenancy") => list_resource_group(TENANCY_RESOURCES),
         Some("extras") => list_resource_group(EXTRAS_RESOURCES),
-        Some("core") => list_resource_group(CORE_RESOURCES),
         Some("users") => list_resource_group(USERS_RESOURCES),
         Some("virtualization") => list_resource_group(VIRTUALIZATION_RESOURCES),
-        Some("vpn") => list_resource_group(VPN_RESOURCES),
         Some("wireless") => list_resource_group(WIRELESS_RESOURCES),
-        Some("plugins") => list_resource_group(PLUGINS_RESOURCES),
         Some(other) => {
             println!("unknown group '{}'", other);
         }
@@ -1063,7 +1193,7 @@ fn find_resource_path(resources: &[ResourceEntry], name: &str) -> Option<&'stati
         .map(|entry| entry.path)
 }
 
-fn resource_path_with_id(path: &str, id: u64) -> String {
+fn resource_path_with_id(path: &str, id: &str) -> String {
     format!("{}/{}/", path.trim_end_matches('/'), id)
 }
 
@@ -1494,19 +1624,19 @@ mod tests {
         ]
     }
 
-    fn env_api_client() -> Result<Option<NetboxApiClient>, Box<dyn Error>> {
-        let token = match std::env::var("NETBOX_TOKEN") {
+    fn env_api_client() -> Result<Option<NautobotApiClient>, Box<dyn Error>> {
+        let token = match std::env::var("NAUTOBOT_TOKEN") {
             Ok(token) => token,
             Err(_) => return Ok(None),
         };
         let url =
-            std::env::var("NETBOX_URL").unwrap_or_else(|_| "http://localhost:8000".to_string());
+            std::env::var("NAUTOBOT_URL").unwrap_or_else(|_| "http://localhost:8080".to_string());
         let mut config = ClientConfig::new(url, token).with_max_retries(0);
-        if std::env::var("NETBOX_INSECURE").as_deref() == Ok("1") {
+        if std::env::var("NAUTOBOT_INSECURE").as_deref() == Ok("1") {
             config = config.with_ssl_verification(false);
         }
         let client = Client::new(config)?;
-        Ok(Some(NetboxApiClient { inner: client }))
+        Ok(Some(NautobotApiClient { inner: client }))
     }
 
     #[derive(Clone, Debug, PartialEq)]
@@ -1559,6 +1689,10 @@ mod tests {
             Err("api error".into())
         }
 
+        async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+
         async fn schema(
             &self,
             _format: Option<&str>,
@@ -1594,6 +1728,10 @@ mod tests {
         }
 
         async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Ok(self.next.lock().unwrap().clone())
+        }
+
+        async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>> {
             Ok(self.next.lock().unwrap().clone())
         }
 
@@ -1762,7 +1900,7 @@ mod tests {
 
     #[test]
     fn resource_path_with_id_appends_trailing_slash() {
-        let path = resource_path_with_id("dcim/devices/", 42);
+        let path = resource_path_with_id("dcim/devices/", "42");
         assert_eq!(path, "dcim/devices/42/");
     }
 
@@ -1801,7 +1939,7 @@ mod tests {
     #[test]
     fn format_netbox_error_includes_status_path_and_request_id() {
         let body = r#"{"request_id":"req-123","detail":"bad"}"#.to_string();
-        let err = netbox::Error::ApiError {
+        let err = nautobot::Error::ApiError {
             status: 400,
             message: "bad".to_string(),
             body,
@@ -1816,9 +1954,15 @@ mod tests {
     }
 
     #[test]
-    fn build_schema_path_includes_query() {
-        let path = build_schema_path(Some("json"), Some("en")).unwrap();
-        assert_eq!(path, "schema/?format=json&lang=en");
+    fn build_schema_path_returns_swagger_json() {
+        let path = build_schema_path(Some("json")).unwrap();
+        assert_eq!(path, "swagger.json");
+    }
+
+    #[test]
+    fn build_schema_path_returns_swagger_yaml() {
+        let path = build_schema_path(Some("yaml")).unwrap();
+        assert_eq!(path, "swagger.yaml");
     }
 
     #[test]
@@ -1918,39 +2062,6 @@ mod tests {
         }
     }
 
-    #[test]
-    fn parse_dashboard_update_requires_json_or_file() {
-        let mut args = base_args();
-        args.extend(["extras-dashboard", "update"]);
-        let result = Cli::try_parse_from(&args);
-        assert!(result.is_err());
-    }
-
-    #[test]
-    fn parse_branch_action_with_file() {
-        let mut args = base_args();
-        args.extend([
-            "plugin-branch-action",
-            "12",
-            "merge",
-            "--file",
-            "payload.json",
-        ]);
-        let cli = parse_args(&args);
-        match cli.command {
-            Commands::PluginBranchAction { id, action } => {
-                assert_eq!(id, 12u64);
-                match action {
-                    BranchAction::Merge { input } => {
-                        assert!(input.file.is_some());
-                    }
-                    _ => panic!("expected merge action"),
-                }
-            }
-            _ => panic!("expected plugin-branch-action command"),
-        }
-    }
-
     #[tokio::test]
     async fn handle_resource_action_list_calls_get() {
         let client = FakeApiClient::new(json!({"ok": true}));
@@ -1970,7 +2081,7 @@ mod tests {
     #[tokio::test]
     async fn handle_resource_action_get_calls_get() {
         let client = FakeApiClient::new(json!({"ok": true}));
-        let action = ResourceAction::Get { id: 42 };
+        let action = ResourceAction::Get { id: "42".to_string() };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2003,7 +2114,7 @@ mod tests {
             json: Some(r#"{"name":"leaf-1"}"#.to_string()),
             file: None,
         };
-        let action = ResourceAction::Update { id: 7, input };
+        let action = ResourceAction::Update { id: "7".to_string(), input };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2019,7 +2130,7 @@ mod tests {
             json: Some(r#"{"name":"leaf-1"}"#.to_string()),
             file: None,
         };
-        let action = ResourceAction::Patch { id: 7, input };
+        let action = ResourceAction::Patch { id: "7".to_string(), input };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2031,55 +2142,13 @@ mod tests {
     #[tokio::test]
     async fn handle_resource_action_delete_calls_delete() {
         let client = FakeApiClient::new(Value::Null);
-        let action = ResourceAction::Delete { id: 7 };
+        let action = ResourceAction::Delete { id: "7".to_string() };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
         let calls = client.calls();
         assert_eq!(calls[0].method, Method::DELETE);
         assert_eq!(calls[0].path, "dcim/devices/7/");
-    }
-
-    #[tokio::test]
-    async fn handle_dashboard_action_paths() {
-        let client = FakeApiClient::new(Value::Null);
-        handle_dashboard_action(&client, &output_config(), DashboardAction::Get)
-            .await
-            .unwrap();
-        handle_dashboard_action(&client, &output_config(), DashboardAction::Delete)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].path, "extras/dashboard/");
-        assert_eq!(calls[1].path, "extras/dashboard/");
-    }
-
-    #[tokio::test]
-    async fn handle_named_lookup_get_builds_path() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let action = NamedLookupAction::Get {
-            name: "queue-1".to_string(),
-        };
-        handle_named_lookup(&client, &output_config(), "core/background-queues/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].path, "core/background-queues/queue-1/");
-    }
-
-    #[tokio::test]
-    async fn handle_branch_action_builds_path() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let input = JsonInput {
-            json: Some(r#"{"confirm":true}"#.to_string()),
-            file: None,
-        };
-        handle_branch_action(&client, &output_config(), 9, BranchAction::Merge { input })
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::POST);
-        assert_eq!(calls[0].path, "plugins/branching/branches/9/merge/");
     }
 
     #[tokio::test]
@@ -2125,7 +2194,7 @@ mod tests {
     #[ignore]
     async fn smoke_status() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_status");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_status");
             return Ok(());
         };
         let _ = api.status().await?;
@@ -2136,7 +2205,7 @@ mod tests {
     #[ignore]
     async fn smoke_list_devices() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_list_devices");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_list_devices");
             return Ok(());
         };
         handle_resource_action(
@@ -2155,7 +2224,7 @@ mod tests {
     #[ignore]
     async fn smoke_output_formats() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_output_formats");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_output_formats");
             return Ok(());
         };
         let status = api.status().await?;
@@ -2178,7 +2247,7 @@ mod tests {
     #[ignore]
     async fn smoke_select_output() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_select_output");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_select_output");
             return Ok(());
         };
         let status = api.status().await?;
@@ -2196,7 +2265,7 @@ mod tests {
     #[ignore]
     async fn smoke_users_config() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_users_config");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_users_config");
             return Ok(());
         };
         let _ = api.request_raw(Method::GET, "users/config/", None).await?;
@@ -2207,7 +2276,7 @@ mod tests {
     #[ignore]
     async fn smoke_raw_tag_roundtrip() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_raw_tag_roundtrip");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_raw_tag_roundtrip");
             return Ok(());
         };
 
@@ -2222,14 +2291,15 @@ mod tests {
             "name": name,
             "slug": name,
             "color": "9e9e9e",
+            "content_types": ["dcim.device"],
         });
         let created = api
             .request_raw(Method::POST, "extras/tags/", Some(&body))
             .await?;
         let tag_id = created
             .get("id")
-            .and_then(|value| value.as_i64())
-            .ok_or("missing tag id")? as u64;
+            .and_then(|value| value.as_str())
+            .ok_or("missing tag id")?;
         let path = format!("extras/tags/{}/", tag_id);
         let _ = api.request_raw(Method::DELETE, &path, None).await?;
         Ok(())
@@ -2239,7 +2309,7 @@ mod tests {
     #[ignore]
     async fn smoke_resource_crud_tag() -> Result<(), Box<dyn Error>> {
         let Some(api) = env_api_client()? else {
-            eprintln!("NETBOX_TOKEN not set; skipping smoke_resource_crud_tag");
+            eprintln!("NAUTOBOT_TOKEN not set; skipping smoke_resource_crud_tag");
             return Ok(());
         };
 
@@ -2252,7 +2322,7 @@ mod tests {
         );
         let create = JsonInput {
             json: Some(format!(
-                r#"{{"name":"{0}","slug":"{0}","color":"9e9e9e"}}"#,
+                r#"{{"name":"{0}","slug":"{0}","color":"9e9e9e","content_types":["dcim.device"]}}"#,
                 name
             )),
             file: None,
@@ -2272,12 +2342,13 @@ mod tests {
             .and_then(|value| value.as_array())
             .and_then(|results| results.first())
             .and_then(|value| value.get("id"))
-            .and_then(|value| value.as_i64())
-            .ok_or("missing tag id")? as u64;
+            .and_then(|value| value.as_str())
+            .ok_or("missing tag id")?
+            .to_string();
 
         let update = JsonInput {
             json: Some(format!(
-                r#"{{"name":"{0}-updated","slug":"{0}-updated","color":"2196f3"}}"#,
+                r#"{{"name":"{0}-updated","slug":"{0}-updated","color":"2196f3","content_types":["dcim.device"]}}"#,
                 name
             )),
             file: None,
@@ -2287,7 +2358,7 @@ mod tests {
             &output_config(),
             "extras/tags/",
             ResourceAction::Update {
-                id: tag_id,
+                id: tag_id.clone(),
                 input: update,
             },
         )
@@ -2302,7 +2373,7 @@ mod tests {
             &output_config(),
             "extras/tags/",
             ResourceAction::Patch {
-                id: tag_id,
+                id: tag_id.clone(),
                 input: patch,
             },
         )

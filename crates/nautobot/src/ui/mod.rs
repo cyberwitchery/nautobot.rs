@@ -5,9 +5,9 @@
 //! # use nautobot::{Client, ClientConfig};
 //! # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 //! # let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
-//! let request = nautobot::models::RenderJinjaRequest { template: "{{ hello }}".to_string() };
+//! let request = nautobot::models::RenderJinjaRequest::new("{{ hello }}".to_string());
 //! let rendered = client.ui().render_jinja_template(&request).await?;
-//! println!("{}", rendered.result.unwrap_or_default());
+//! println!("{}", rendered.rendered_template.unwrap_or_default());
 //! # Ok(())
 //! # }
 //! ```

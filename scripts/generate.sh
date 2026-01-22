@@ -39,11 +39,10 @@ with open(src, "r", encoding="utf-8") as handle:
     data = json.load(handle)
 
 anchor_re = re.compile(r'<a href="(https?://[^"]+)"[^>]*>([^<]+)</a>')
-url_re = re.compile(r'(?<!<)(https?://[^\s<>()]+)(?P<punct>[)\].,;:]?)')
+url_re = re.compile(r'(?<!<)(https?://[^\s<>()]+)(?P<punct>[)][].,;:]?)')
 
 def sanitize_doc_text(text: str) -> str:
-    text = text.replace("<id>", "&lt;id&gt;")
-    text = anchor_re.sub(r'\2 (<\1>)', text)
+    text = anchor_re.sub(r'\2 (<>)', text)
 
     def wrap_url(match: re.Match) -> str:
         url = match.group(1)
@@ -76,40 +75,34 @@ def drop_integer_enums(obj: dict) -> None:
     obj.pop("enum", None)
     obj.pop("x-spec-enum-id", None)
 
-def normalize_ip_oneof(obj: dict) -> None:
-    if "oneOf" not in obj:
-        return
+def simplify_oneof_strings(obj: dict) -> None:
+    """Simplify oneOf containing only string types to a plain string."""
     one_of = obj.get("oneOf")
-    if not isinstance(one_of, list) or not one_of:
+    if not isinstance(one_of, list):
         return
-    if not all(
-        isinstance(item, dict)
-        and item.get("type") == "string"
-        and item.get("format") in {"ipv4", "ipv6"}
-        for item in one_of
-    ):
-        return
-    obj.pop("oneOf", None)
-    obj["type"] = "string"
-    obj.pop("format", None)
+    # Check if all variants are strings (possibly with different formats)
+    if all(isinstance(v, dict) and v.get("type") == "string" for v in one_of):
+        obj.pop("oneOf", None)
+        obj["type"] = "string"
 
-def flatten_array_of_arrays(obj: dict) -> None:
+def flatten_nested_arrays(obj: dict) -> None:
+    """Flatten nested array types (array of arrays) to single-level arrays."""
     if obj.get("type") != "array":
         return
     items = obj.get("items")
-    if not isinstance(items, dict) or items.get("type") != "array":
+    if not isinstance(items, dict):
         return
-    inner_items = items.get("items")
-    if not isinstance(inner_items, dict):
-        return
-    obj["items"] = inner_items
+    if items.get("type") == "array":
+        # Replace nested array with the inner items type
+        inner_items = items.get("items", {})
+        obj["items"] = inner_items
 
 def normalize(obj):
     if isinstance(obj, dict):
         drop_readonly_required(obj)
         drop_integer_enums(obj)
-        normalize_ip_oneof(obj)
-        flatten_array_of_arrays(obj)
+        simplify_oneof_strings(obj)
+        flatten_nested_arrays(obj)
         for key, value in obj.items():
             if key == "enum" and isinstance(value, list):
                 obj[key] = ["none" if item == "---------" else item for item in value]

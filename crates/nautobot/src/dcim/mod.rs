@@ -681,10 +681,7 @@ mod tests {
         assert_path(api.platforms(), "dcim/platforms/");
         assert_path(api.power_connections(), "dcim/power-connections/");
         assert_path(api.power_feeds(), "dcim/power-feeds/");
-        assert_path(
-            api.power_outlet_templates(),
-            "dcim/power-outlet-templates/",
-        );
+        assert_path(api.power_outlet_templates(), "dcim/power-outlet-templates/");
         assert_path(api.power_outlets(), "dcim/power-outlets/");
         assert_path(api.power_panels(), "dcim/power-panels/");
         assert_path(api.power_port_templates(), "dcim/power-port-templates/");

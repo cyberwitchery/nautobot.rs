@@ -610,7 +610,10 @@ mod tests {
         let api = ExtrasApi::new(test_client());
 
         assert_path(api.computed_fields(), "extras/computed-fields/");
-        assert_path(api.config_context_schemas(), "extras/config-context-schemas/");
+        assert_path(
+            api.config_context_schemas(),
+            "extras/config-context-schemas/",
+        );
         assert_path(api.config_contexts(), "extras/config-contexts/");
         assert_path(api.contact_associations(), "extras/contact-associations/");
         assert_path(api.contacts(), "extras/contacts/");
@@ -632,10 +635,7 @@ mod tests {
         assert_path(api.job_buttons(), "extras/job-buttons/");
         assert_path(api.job_hooks(), "extras/job-hooks/");
         assert_path(api.job_logs(), "extras/job-logs/");
-        assert_path(
-            api.job_queue_assignments(),
-            "extras/job-queue-assignments/",
-        );
+        assert_path(api.job_queue_assignments(), "extras/job-queue-assignments/");
         assert_path(api.job_queues(), "extras/job-queues/");
         assert_path(api.job_results(), "extras/job-results/");
         assert_path(api.jobs(), "extras/jobs/");

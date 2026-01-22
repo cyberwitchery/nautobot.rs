@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **name** | **String** |  | 
 **phone** | Option<**String**> |  | [optional][default to ]
-**email** | Option<[**crate::models::EMail**](E_mail.md)> |  | [optional]
+**email** | Option<**String**> |  | [optional][default to ]
 **address** | Option<**String**> |  | [optional]
 **comments** | Option<**String**> |  | [optional]
 **contacts** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]

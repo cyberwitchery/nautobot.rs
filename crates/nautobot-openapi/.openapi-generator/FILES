@@ -265,7 +265,6 @@ docs/DynamicGroupAssociatedObject.md
 docs/DynamicGroupMembership.md
 docs/DynamicGroupMembershipRequest.md
 docs/DynamicGroupRequest.md
-docs/EMail.md
 docs/ExportTemplate.md
 docs/ExportTemplateOwner.md
 docs/ExportTemplateRequest.md
@@ -1361,7 +1360,6 @@ src/models/dynamic_group_associated_object.rs
 src/models/dynamic_group_membership.rs
 src/models/dynamic_group_membership_request.rs
 src/models/dynamic_group_request.rs
-src/models/e_mail.rs
 src/models/export_template.rs
 src/models/export_template_owner.rs
 src/models/export_template_request.rs

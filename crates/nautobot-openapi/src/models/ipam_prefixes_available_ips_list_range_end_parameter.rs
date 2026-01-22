@@ -9,16 +9,10 @@
  */
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct IpamPrefixesAvailableIpsListRangeEndParameter(pub String);
+pub struct IpamPrefixesAvailableIpsListRangeEndParameter {}
 
 impl IpamPrefixesAvailableIpsListRangeEndParameter {
-    pub fn new(value: String) -> IpamPrefixesAvailableIpsListRangeEndParameter {
-        IpamPrefixesAvailableIpsListRangeEndParameter(value)
-    }
-}
-
-impl std::fmt::Display for IpamPrefixesAvailableIpsListRangeEndParameter {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(&self.0)
+    pub fn new() -> IpamPrefixesAvailableIpsListRangeEndParameter {
+        IpamPrefixesAvailableIpsListRangeEndParameter {}
     }
 }

@@ -1646,7 +1646,6 @@ Class | Method | HTTP request | Description
  - [DynamicGroupMembership](docs/DynamicGroupMembership.md)
  - [DynamicGroupMembershipRequest](docs/DynamicGroupMembershipRequest.md)
  - [DynamicGroupRequest](docs/DynamicGroupRequest.md)
- - [EMail](docs/EMail.md)
  - [ExportTemplate](docs/ExportTemplate.md)
  - [ExportTemplateOwner](docs/ExportTemplateOwner.md)
  - [ExportTemplateRequest](docs/ExportTemplateRequest.md)

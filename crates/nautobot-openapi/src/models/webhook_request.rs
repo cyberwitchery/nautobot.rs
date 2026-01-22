@@ -34,7 +34,7 @@ pub struct WebhookRequest {
     pub enabled: Option<bool>,
     #[serde(rename = "http_method", skip_serializing_if = "Option::is_none")]
     pub http_method: Option<crate::models::HttpMethodEnum>,
-    /// The complete list of official content types is available here (<https://www.iana.org/assignments/media-types/media-types.xhtml>).
+    /// The complete list of official content types is available here (<>).
     #[serde(rename = "http_content_type", skip_serializing_if = "Option::is_none")]
     pub http_content_type: Option<String>,
     /// User-supplied HTTP headers to be sent with the request in addition to the HTTP content type. Headers should be defined in the format <code>Name: Value</code>. Jinja2 template processing is supported with the same context as the request body (below).
