@@ -26,7 +26,6 @@ or set:
 - `NAUTOBOT_URL`
 - `NAUTOBOT_TOKEN`
 
-<!--
 ## resources
 
 list resource groups:
@@ -44,7 +43,7 @@ list:
 nautobot-cli dcim devices list
 nautobot-cli ipam prefixes list
 ```
--->
+
 
 ## output formats
 

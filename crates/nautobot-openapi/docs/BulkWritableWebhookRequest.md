@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **payload_url** | **String** | A POST will be sent to this URL when the webhook is called. | 
 **enabled** | Option<**bool**> |  | [optional]
 **http_method** | Option<[**crate::models::HttpMethodEnum**](HttpMethodEnum.md)> |  | [optional]
-**http_content_type** | Option<**String**> | The complete list of official content types is available here (<>). | [optional]
+**http_content_type** | Option<**String**> | The complete list of official content types is available here (<https://www.iana.org/assignments/media-types/media-types.xhtml>). | [optional]
 **additional_headers** | Option<**String**> | User-supplied HTTP headers to be sent with the request in addition to the HTTP content type. Headers should be defined in the format <code>Name: Value</code>. Jinja2 template processing is supported with the same context as the request body (below). | [optional]
 **body_template** | Option<**String**> | Jinja2 template for a custom request body. If blank, a JSON object representing the change will be included. Available context data includes: <code>event</code>, <code>model</code>, <code>timestamp</code>, <code>username</code>, <code>request_id</code>, and <code>data</code>. | [optional]
 **secret** | Option<**String**> | When provided, the request will include a 'X-Hook-Signature' header containing a HMAC hex digest of the payload body using the secret as the key. The secret is not transmitted in the request. | [optional]

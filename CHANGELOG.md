@@ -1,5 +1,16 @@
 # changelog
 
+## [0.1.0] - 2026-01-23
+
+### documentation
+- aligned documentation style with `netbox.rs` (lowercase, code-heavy)
+- added comprehensive `README.md` for `nautobot` and `nautobot-cli` crates
+- added functional examples in `crates/nautobot/examples/` (`status`, `raw_request`, `graphql_query`)
+- updated cli documentation to reflect full resource coverage
+
+### features
+- full cli support for standard api operations
+
 ## [0.0.1] - 2026-01-22
 
 ### initial release
@@ -8,5 +19,6 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.1.0
 [0.0.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.0.1

@@ -39,10 +39,11 @@ with open(src, "r", encoding="utf-8") as handle:
     data = json.load(handle)
 
 anchor_re = re.compile(r'<a href="(https?://[^"]+)"[^>]*>([^<]+)</a>')
-url_re = re.compile(r'(?<!<)(https?://[^\s<>()]+)(?P<punct>[)][].,;:]?)')
+url_re = re.compile(r'(?<!<)(https?://[^\s<>()]+)(?P<punct>[)\].,;:]?)')
 
 def sanitize_doc_text(text: str) -> str:
-    text = anchor_re.sub(r'\2 (<>)', text)
+    text = anchor_re.sub(r'\2 (<\1>)', text)
+    text = text.replace("<id>", "{id}")
 
     def wrap_url(match: re.Match) -> str:
         url = match.group(1)
