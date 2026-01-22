@@ -1,3 +1,5 @@
+#![doc = include_str!("../docs/cli.md")]
+
 use clap::{Args, Parser, Subcommand, ValueEnum};
 use comfy_table::{Cell, ContentArrangement, Table};
 use nautobot::{Client, ClientConfig};
@@ -17,6 +19,18 @@ trait ApiClient {
         path: &str,
         body: Option<&Value>,
     ) -> Result<Value, Box<dyn std::error::Error>>;
+    async fn graphql(
+        &self,
+        query: &str,
+        variables: Option<&Value>,
+    ) -> Result<Value, Box<dyn std::error::Error>>;
+    async fn status(&self) -> Result<Value, Box<dyn std::error::Error>>;
+    async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>>;
+    async fn schema(
+        &self,
+        format: Option<&str>,
+        lang: Option<&str>,
+    ) -> Result<Value, Box<dyn std::error::Error>>;
 }
 
 struct NautobotApiClient {
@@ -32,6 +46,44 @@ impl ApiClient for NautobotApiClient {
         body: Option<&Value>,
     ) -> Result<Value, Box<dyn std::error::Error>> {
         Ok(self.inner.request_raw(method, path, body).await?)
+    }
+
+    async fn graphql(
+        &self,
+        query: &str,
+        variables: Option<&Value>,
+    ) -> Result<Value, Box<dyn std::error::Error>> {
+        let data = self
+            .inner
+            .graphql()
+            .query(query, variables.cloned())
+            .await?;
+        Ok(data)
+    }
+
+    async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
+        let status = self.inner.status().status().await?;
+        Ok(serde_json::to_value(status)?)
+    }
+
+    async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>> {
+        let metrics = self.inner.metrics().metrics().await?;
+        Ok(Value::String(metrics))
+    }
+
+    async fn schema(
+        &self,
+        format: Option<&str>,
+        lang: Option<&str>,
+    ) -> Result<Value, Box<dyn std::error::Error>> {
+        if lang.is_some() {
+            return Err("schema lang is not supported by nautobot".into());
+        }
+        match format.unwrap_or("json") {
+            "json" => Ok(self.inner.core().swagger_json().await?),
+            "yaml" => Ok(Value::String(self.inner.core().swagger_yaml().await?)),
+            other => Err(format!("unsupported schema format: {other}").into()),
+        }
     }
 }
 
@@ -72,6 +124,11 @@ impl RequestError {
 
 impl fmt::Display for RequestError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        if let Some(message) =
+            format_nautobot_error(&self.method, &self.path, self.source.as_ref())
+        {
+            return write!(f, "{message}");
+        }
         write!(
             f,
             "request failed: {} {}: {}",
@@ -87,6 +144,334 @@ impl std::error::Error for RequestError {
         Some(&*self.source)
     }
 }
+
+#[derive(Clone, Copy)]
+struct ResourceEntry {
+    name: &'static str,
+    path: &'static str,
+}
+
+const DCIM_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry { name: "cables", path: "dcim/cables/" },
+    ResourceEntry {
+        name: "console-connections",
+        path: "dcim/console-connections/",
+    },
+    ResourceEntry {
+        name: "console-port-templates",
+        path: "dcim/console-port-templates/",
+    },
+    ResourceEntry {
+        name: "console-ports",
+        path: "dcim/console-ports/",
+    },
+    ResourceEntry {
+        name: "console-server-port-templates",
+        path: "dcim/console-server-port-templates/",
+    },
+    ResourceEntry {
+        name: "console-server-ports",
+        path: "dcim/console-server-ports/",
+    },
+    ResourceEntry {
+        name: "controller-managed-device-groups",
+        path: "dcim/controller-managed-device-groups/",
+    },
+    ResourceEntry { name: "controllers", path: "dcim/controllers/" },
+    ResourceEntry {
+        name: "device-bay-templates",
+        path: "dcim/device-bay-templates/",
+    },
+    ResourceEntry { name: "device-bays", path: "dcim/device-bays/" },
+    ResourceEntry {
+        name: "device-families",
+        path: "dcim/device-families/",
+    },
+    ResourceEntry {
+        name: "device-redundancy-groups",
+        path: "dcim/device-redundancy-groups/",
+    },
+    ResourceEntry {
+        name: "device-types-to-software-image-files",
+        path: "dcim/device-types-to-software-image-files/",
+    },
+    ResourceEntry { name: "device-types", path: "dcim/device-types/" },
+    ResourceEntry { name: "devices", path: "dcim/devices/" },
+    ResourceEntry {
+        name: "front-port-templates",
+        path: "dcim/front-port-templates/",
+    },
+    ResourceEntry { name: "front-ports", path: "dcim/front-ports/" },
+    ResourceEntry {
+        name: "interface-connections",
+        path: "dcim/interface-connections/",
+    },
+    ResourceEntry {
+        name: "interface-redundancy-group-associations",
+        path: "dcim/interface-redundancy-group-associations/",
+    },
+    ResourceEntry {
+        name: "interface-redundancy-groups",
+        path: "dcim/interface-redundancy-groups/",
+    },
+    ResourceEntry {
+        name: "interface-templates",
+        path: "dcim/interface-templates/",
+    },
+    ResourceEntry {
+        name: "interface-vdc-assignments",
+        path: "dcim/interface-vdc-assignments/",
+    },
+    ResourceEntry { name: "interfaces", path: "dcim/interfaces/" },
+    ResourceEntry {
+        name: "inventory-items",
+        path: "dcim/inventory-items/",
+    },
+    ResourceEntry { name: "location-types", path: "dcim/location-types/" },
+    ResourceEntry { name: "locations", path: "dcim/locations/" },
+    ResourceEntry { name: "manufacturers", path: "dcim/manufacturers/" },
+    ResourceEntry {
+        name: "module-bay-templates",
+        path: "dcim/module-bay-templates/",
+    },
+    ResourceEntry { name: "module-bays", path: "dcim/module-bays/" },
+    ResourceEntry {
+        name: "module-families",
+        path: "dcim/module-families/",
+    },
+    ResourceEntry { name: "module-types", path: "dcim/module-types/" },
+    ResourceEntry { name: "modules", path: "dcim/modules/" },
+    ResourceEntry { name: "platforms", path: "dcim/platforms/" },
+    ResourceEntry {
+        name: "power-connections",
+        path: "dcim/power-connections/",
+    },
+    ResourceEntry { name: "power-feeds", path: "dcim/power-feeds/" },
+    ResourceEntry {
+        name: "power-outlet-templates",
+        path: "dcim/power-outlet-templates/",
+    },
+    ResourceEntry { name: "power-outlets", path: "dcim/power-outlets/" },
+    ResourceEntry { name: "power-panels", path: "dcim/power-panels/" },
+    ResourceEntry {
+        name: "power-port-templates",
+        path: "dcim/power-port-templates/",
+    },
+    ResourceEntry { name: "power-ports", path: "dcim/power-ports/" },
+    ResourceEntry { name: "rack-groups", path: "dcim/rack-groups/" },
+    ResourceEntry {
+        name: "rack-reservations",
+        path: "dcim/rack-reservations/",
+    },
+    ResourceEntry { name: "racks", path: "dcim/racks/" },
+    ResourceEntry {
+        name: "rear-port-templates",
+        path: "dcim/rear-port-templates/",
+    },
+    ResourceEntry { name: "rear-ports", path: "dcim/rear-ports/" },
+    ResourceEntry {
+        name: "software-image-files",
+        path: "dcim/software-image-files/",
+    },
+    ResourceEntry {
+        name: "software-versions",
+        path: "dcim/software-versions/",
+    },
+    ResourceEntry {
+        name: "virtual-chassis",
+        path: "dcim/virtual-chassis/",
+    },
+    ResourceEntry {
+        name: "virtual-device-contexts",
+        path: "dcim/virtual-device-contexts/",
+    },
+];
+
+const IPAM_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry {
+        name: "ip-address-to-interface",
+        path: "ipam/ip-address-to-interface/",
+    },
+    ResourceEntry { name: "ip-addresses", path: "ipam/ip-addresses/" },
+    ResourceEntry { name: "namespaces", path: "ipam/namespaces/" },
+    ResourceEntry {
+        name: "prefix-location-assignments",
+        path: "ipam/prefix-location-assignments/",
+    },
+    ResourceEntry { name: "prefixes", path: "ipam/prefixes/" },
+    ResourceEntry { name: "rirs", path: "ipam/rirs/" },
+    ResourceEntry { name: "route-targets", path: "ipam/route-targets/" },
+    ResourceEntry { name: "services", path: "ipam/services/" },
+    ResourceEntry { name: "vlan-groups", path: "ipam/vlan-groups/" },
+    ResourceEntry {
+        name: "vlan-location-assignments",
+        path: "ipam/vlan-location-assignments/",
+    },
+    ResourceEntry { name: "vlans", path: "ipam/vlans/" },
+    ResourceEntry {
+        name: "vrf-device-assignments",
+        path: "ipam/vrf-device-assignments/",
+    },
+    ResourceEntry {
+        name: "vrf-prefix-assignments",
+        path: "ipam/vrf-prefix-assignments/",
+    },
+    ResourceEntry { name: "vrfs", path: "ipam/vrfs/" },
+];
+
+const CIRCUITS_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry {
+        name: "circuit-terminations",
+        path: "circuits/circuit-terminations/",
+    },
+    ResourceEntry { name: "circuit-types", path: "circuits/circuit-types/" },
+    ResourceEntry { name: "circuits", path: "circuits/circuits/" },
+    ResourceEntry {
+        name: "provider-networks",
+        path: "circuits/provider-networks/",
+    },
+    ResourceEntry { name: "providers", path: "circuits/providers/" },
+];
+
+const CLOUD_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry { name: "cloud-accounts", path: "cloud/cloud-accounts/" },
+    ResourceEntry {
+        name: "cloud-network-prefix-assignments",
+        path: "cloud/cloud-network-prefix-assignments/",
+    },
+    ResourceEntry { name: "cloud-networks", path: "cloud/cloud-networks/" },
+    ResourceEntry {
+        name: "cloud-resource-types",
+        path: "cloud/cloud-resource-types/",
+    },
+    ResourceEntry {
+        name: "cloud-service-network-assignments",
+        path: "cloud/cloud-service-network-assignments/",
+    },
+    ResourceEntry { name: "cloud-services", path: "cloud/cloud-services/" },
+];
+
+const TENANCY_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry { name: "tenant-groups", path: "tenancy/tenant-groups/" },
+    ResourceEntry { name: "tenants", path: "tenancy/tenants/" },
+];
+
+const EXTRAS_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry { name: "computed-fields", path: "extras/computed-fields/" },
+    ResourceEntry {
+        name: "config-context-schemas",
+        path: "extras/config-context-schemas/",
+    },
+    ResourceEntry { name: "config-contexts", path: "extras/config-contexts/" },
+    ResourceEntry {
+        name: "contact-associations",
+        path: "extras/contact-associations/",
+    },
+    ResourceEntry { name: "contacts", path: "extras/contacts/" },
+    ResourceEntry { name: "content-types", path: "extras/content-types/" },
+    ResourceEntry {
+        name: "custom-field-choices",
+        path: "extras/custom-field-choices/",
+    },
+    ResourceEntry { name: "custom-fields", path: "extras/custom-fields/" },
+    ResourceEntry { name: "custom-links", path: "extras/custom-links/" },
+    ResourceEntry {
+        name: "dynamic-group-memberships",
+        path: "extras/dynamic-group-memberships/",
+    },
+    ResourceEntry { name: "dynamic-groups", path: "extras/dynamic-groups/" },
+    ResourceEntry { name: "export-templates", path: "extras/export-templates/" },
+    ResourceEntry {
+        name: "external-integrations",
+        path: "extras/external-integrations/",
+    },
+    ResourceEntry { name: "file-proxies", path: "extras/file-proxies/" },
+    ResourceEntry { name: "git-repositories", path: "extras/git-repositories/" },
+    ResourceEntry { name: "graphql-queries", path: "extras/graphql-queries/" },
+    ResourceEntry { name: "image-attachments", path: "extras/image-attachments/" },
+    ResourceEntry { name: "job-buttons", path: "extras/job-buttons/" },
+    ResourceEntry { name: "job-hooks", path: "extras/job-hooks/" },
+    ResourceEntry { name: "job-logs", path: "extras/job-logs/" },
+    ResourceEntry {
+        name: "job-queue-assignments",
+        path: "extras/job-queue-assignments/",
+    },
+    ResourceEntry { name: "job-queues", path: "extras/job-queues/" },
+    ResourceEntry { name: "job-results", path: "extras/job-results/" },
+    ResourceEntry { name: "jobs", path: "extras/jobs/" },
+    ResourceEntry { name: "metadata-choices", path: "extras/metadata-choices/" },
+    ResourceEntry { name: "metadata-types", path: "extras/metadata-types/" },
+    ResourceEntry { name: "notes", path: "extras/notes/" },
+    ResourceEntry { name: "object-changes", path: "extras/object-changes/" },
+    ResourceEntry { name: "object-metadata", path: "extras/object-metadata/" },
+    ResourceEntry {
+        name: "relationship-associations",
+        path: "extras/relationship-associations/",
+    },
+    ResourceEntry { name: "relationships", path: "extras/relationships/" },
+    ResourceEntry { name: "roles", path: "extras/roles/" },
+    ResourceEntry { name: "saved-views", path: "extras/saved-views/" },
+    ResourceEntry { name: "scheduled-jobs", path: "extras/scheduled-jobs/" },
+    ResourceEntry {
+        name: "secrets-groups-associations",
+        path: "extras/secrets-groups-associations/",
+    },
+    ResourceEntry { name: "secrets-groups", path: "extras/secrets-groups/" },
+    ResourceEntry { name: "secrets", path: "extras/secrets/" },
+    ResourceEntry {
+        name: "static-group-associations",
+        path: "extras/static-group-associations/",
+    },
+    ResourceEntry { name: "statuses", path: "extras/statuses/" },
+    ResourceEntry { name: "tags", path: "extras/tags/" },
+    ResourceEntry { name: "teams", path: "extras/teams/" },
+    ResourceEntry {
+        name: "user-saved-view-associations",
+        path: "extras/user-saved-view-associations/",
+    },
+    ResourceEntry { name: "webhooks", path: "extras/webhooks/" },
+];
+
+const USERS_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry { name: "groups", path: "users/groups/" },
+    ResourceEntry { name: "permissions", path: "users/permissions/" },
+    ResourceEntry { name: "tokens", path: "users/tokens/" },
+    ResourceEntry { name: "users", path: "users/users/" },
+];
+
+const VIRTUALIZATION_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry {
+        name: "cluster-groups",
+        path: "virtualization/cluster-groups/",
+    },
+    ResourceEntry {
+        name: "cluster-types",
+        path: "virtualization/cluster-types/",
+    },
+    ResourceEntry { name: "clusters", path: "virtualization/clusters/" },
+    ResourceEntry { name: "interfaces", path: "virtualization/interfaces/" },
+    ResourceEntry {
+        name: "virtual-machines",
+        path: "virtualization/virtual-machines/",
+    },
+];
+
+const WIRELESS_RESOURCES: &[ResourceEntry] = &[
+    ResourceEntry {
+        name: "controller-managed-device-group-radio-profile-assignments",
+        path: "wireless/controller-managed-device-group-radio-profile-assignments/",
+    },
+    ResourceEntry {
+        name: "controller-managed-device-group-wireless-network-assignments",
+        path: "wireless/controller-managed-device-group-wireless-network-assignments/",
+    },
+    ResourceEntry { name: "radio-profiles", path: "wireless/radio-profiles/" },
+    ResourceEntry {
+        name: "supported-data-rates",
+        path: "wireless/supported-data-rates/",
+    },
+    ResourceEntry { name: "wireless-networks", path: "wireless/wireless-networks/" },
+];
 
 #[derive(Parser)]
 #[command(name = "nautobot-cli")]
@@ -118,8 +503,91 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// List resources by group (or all resources)
+    Resources {
+        /// Resource group name (dcim, ipam, circuits, cloud, tenancy, extras, users, virtualization, wireless)
+        group: Option<String>,
+    },
+    /// DCIM resources (devices, racks, interfaces, ...)
+    Dcim {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// IPAM resources (prefixes, addresses, vlans, ...)
+    Ipam {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Circuits resources (providers, circuits, ...)
+    Circuits {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Cloud resources (accounts, networks, services, ...)
+    Cloud {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Tenancy resources (tenants, contacts, ...)
+    Tenancy {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Extras resources (tags, jobs, custom fields, ...)
+    Extras {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Users resources (users, groups, tokens, ...)
+    Users {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Virtualization resources (clusters, vms, ...)
+    Virtualization {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Wireless resources (profiles, networks, ...)
+    Wireless {
+        resource: String,
+        #[command(subcommand)]
+        action: ResourceAction,
+    },
+    /// Fetch current user config
+    UsersConfig,
     /// Fetch Nautobot status
     Status,
+    /// Fetch OpenAPI schema
+    Schema {
+        /// Schema format (json, yaml)
+        #[arg(long)]
+        format: Option<String>,
+    },
+    /// Run a read-only graphql query
+    Graphql {
+        #[command(flatten)]
+        input: GraphqlInput,
+    },
+    /// Find a device connected to a peer device/interface
+    ConnectedDevice {
+        /// Peer device name
+        #[arg(long)]
+        peer_device: String,
+        /// Peer interface name
+        #[arg(long)]
+        peer_interface: String,
+    },
+    /// Fetch Prometheus metrics
+    Metrics,
     /// Make a raw API request (covers all endpoints)
     Raw {
         /// HTTP method (GET, POST, PATCH, PUT, DELETE)
@@ -136,6 +604,47 @@ enum Commands {
     },
 }
 
+#[derive(Subcommand)]
+enum ResourceAction {
+    /// List resources
+    List {
+        /// Query string parameters (repeatable key=value)
+        #[arg(long = "query")]
+        query: Vec<String>,
+    },
+    /// Get a resource by id
+    Get { id: u64 },
+    /// Create a resource
+    Create {
+        #[command(flatten)]
+        input: JsonInput,
+    },
+    /// Update a resource (PUT)
+    Update {
+        id: u64,
+        #[command(flatten)]
+        input: JsonInput,
+    },
+    /// Patch a resource
+    Patch {
+        id: u64,
+        #[command(flatten)]
+        input: JsonInput,
+    },
+    /// Delete a resource
+    Delete { id: u64 },
+}
+
+#[derive(Args, Debug)]
+struct JsonInput {
+    /// JSON payload string
+    #[arg(long, required_unless_present = "file")]
+    json: Option<String>,
+    /// JSON payload file path
+    #[arg(long, required_unless_present = "json")]
+    file: Option<PathBuf>,
+}
+
 #[derive(Args, Debug)]
 struct JsonInputOptional {
     /// JSON payload string
@@ -144,6 +653,19 @@ struct JsonInputOptional {
     /// JSON payload file path
     #[arg(long)]
     file: Option<PathBuf>,
+}
+
+#[derive(Args, Debug)]
+struct GraphqlInput {
+    /// GraphQL query string
+    #[arg(long, required_unless_present = "query_file")]
+    query: Option<String>,
+    /// GraphQL query file path
+    #[arg(long, required_unless_present = "query")]
+    query_file: Option<PathBuf>,
+    /// JSON variables payload
+    #[arg(long)]
+    vars: Option<String>,
 }
 
 #[tokio::main]
@@ -160,9 +682,120 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     match cli.command {
-        Commands::Status => {
-            let response = request_raw_with_context(&api, Method::GET, "status/", None).await?;
+        Commands::Resources { group } => {
+            print_resources(group.as_deref());
+        }
+        Commands::Dcim { resource, action } => {
+            handle_resource_group(&api, &output, "dcim", DCIM_RESOURCES, &resource, action).await?;
+        }
+        Commands::Ipam { resource, action } => {
+            handle_resource_group(&api, &output, "ipam", IPAM_RESOURCES, &resource, action).await?;
+        }
+        Commands::Circuits { resource, action } => {
+            handle_resource_group(
+                &api,
+                &output,
+                "circuits",
+                CIRCUITS_RESOURCES,
+                &resource,
+                action,
+            )
+            .await?;
+        }
+        Commands::Cloud { resource, action } => {
+            handle_resource_group(&api, &output, "cloud", CLOUD_RESOURCES, &resource, action)
+                .await?;
+        }
+        Commands::Tenancy { resource, action } => {
+            handle_resource_group(
+                &api,
+                &output,
+                "tenancy",
+                TENANCY_RESOURCES,
+                &resource,
+                action,
+            )
+            .await?;
+        }
+        Commands::Extras { resource, action } => {
+            handle_resource_group(&api, &output, "extras", EXTRAS_RESOURCES, &resource, action)
+                .await?;
+        }
+        Commands::Users { resource, action } => {
+            handle_resource_group(&api, &output, "users", USERS_RESOURCES, &resource, action)
+                .await?;
+        }
+        Commands::Virtualization { resource, action } => {
+            handle_resource_group(
+                &api,
+                &output,
+                "virtualization",
+                VIRTUALIZATION_RESOURCES,
+                &resource,
+                action,
+            )
+            .await?;
+        }
+        Commands::Wireless { resource, action } => {
+            handle_resource_group(
+                &api,
+                &output,
+                "wireless",
+                WIRELESS_RESOURCES,
+                &resource,
+                action,
+            )
+            .await?;
+        }
+        Commands::UsersConfig => {
+            let response =
+                request_raw_with_context(&api, Method::GET, "users/config/", None).await?;
             print_output(&response, &output)?;
+        }
+        Commands::Status => {
+            let value = api
+                .status()
+                .await
+                .map_err(|err| wrap_request_error(Method::GET, "status/", err))?;
+            print_output(&value, &output)?;
+        }
+        Commands::Schema { format } => {
+            let schema_path = build_schema_path(format.as_deref())?;
+            let value = api
+                .schema(format.as_deref(), None)
+                .await
+                .map_err(|err| wrap_request_error(Method::GET, &schema_path, err))?;
+            print_output(&value, &output)?;
+        }
+        Commands::Graphql { input } => {
+            let query = load_graphql_query(&input)?;
+            let vars = load_graphql_vars(&input)?;
+            let response = api
+                .graphql(&query, vars.as_ref())
+                .await
+                .map_err(|err| wrap_request_error(Method::POST, "graphql/", err))?;
+            print_output(&response, &output)?;
+        }
+        Commands::ConnectedDevice {
+            peer_device,
+            peer_interface,
+        } => {
+            let path = append_query(
+                "dcim/connected-device/",
+                &[
+                    format!("peer_device={}", peer_device),
+                    format!("peer_interface={}", peer_interface),
+                ],
+            )?;
+            let response = request_raw_with_context(&api, Method::GET, &path, None).await?;
+            print_output(&response, &output)?;
+        }
+        Commands::Metrics => {
+            let value = api
+                .metrics()
+                .await
+                .map_err(|err| wrap_request_error(Method::GET, "metrics/", err))?;
+            print_output(&value, &output)?;
         }
         Commands::Raw {
             method,
@@ -185,6 +818,253 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     Ok(())
+}
+
+async fn handle_resource_group(
+    client: &impl ApiClient,
+    output: &OutputConfig,
+    group: &str,
+    resources: &[ResourceEntry],
+    resource: &str,
+    action: ResourceAction,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let path = find_resource_path(resources, resource).ok_or_else(|| {
+        format!(
+            "unknown {} resource '{}'. use `netbox-cli resources {}` to list options.",
+            group, resource, group
+        )
+    })?;
+    handle_resource_action(client, output, path, action).await
+}
+
+async fn handle_resource_action(
+    client: &impl ApiClient,
+    output: &OutputConfig,
+    path: &str,
+    action: ResourceAction,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let path = normalize_api_path(path);
+    match action {
+        ResourceAction::List { query } => {
+            let full_path = append_query(&path, &query)?;
+            let response = request_raw_with_context(client, Method::GET, &full_path, None).await?;
+            print_output(&response, output)?;
+        }
+        ResourceAction::Get { id } => {
+            let full_path = resource_path_with_id(&path, id);
+            let response = request_raw_with_context(client, Method::GET, &full_path, None).await?;
+            print_output(&response, output)?;
+        }
+        ResourceAction::Create { input } => {
+            let body: Value = load_json(&input)?;
+            if output.dry_run {
+                print_dry_run(Method::POST, &path, None, Some(&body))?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::POST, &path, Some(&body)).await?;
+                print_output(&response, output)?;
+            }
+        }
+        ResourceAction::Update { id, input } => {
+            let body: Value = load_json(&input)?;
+            let full_path = resource_path_with_id(&path, id);
+            if output.dry_run {
+                print_dry_run(Method::PUT, &full_path, None, Some(&body))?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::PUT, &full_path, Some(&body)).await?;
+                print_output(&response, output)?;
+            }
+        }
+        ResourceAction::Patch { id, input } => {
+            let body: Value = load_json(&input)?;
+            let full_path = resource_path_with_id(&path, id);
+            if output.dry_run {
+                print_dry_run(Method::PATCH, &full_path, None, Some(&body))?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::PATCH, &full_path, Some(&body))
+                        .await?;
+                print_output(&response, output)?;
+            }
+        }
+        ResourceAction::Delete { id } => {
+            let full_path = resource_path_with_id(&path, id);
+            if output.dry_run {
+                print_dry_run(Method::DELETE, &full_path, None, None)?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::DELETE, &full_path, None).await?;
+                if response == Value::Null {
+                    println!("deleted {}", id);
+                } else {
+                    print_output(&response, output)?;
+                }
+            }
+        }
+    }
+
+    Ok(())
+}
+
+async fn handle_dashboard_action(
+    client: &impl ApiClient,
+    output: &OutputConfig,
+    action: DashboardAction,
+) -> Result<(), Box<dyn std::error::Error>> {
+    match action {
+        DashboardAction::Get => {
+            let response =
+                request_raw_with_context(client, Method::GET, "extras/dashboard/", None).await?;
+            print_output(&response, output)?;
+        }
+        DashboardAction::Update { input } => {
+            let body: Value = load_json(&input)?;
+            if output.dry_run {
+                print_dry_run(Method::PUT, "extras/dashboard/", None, Some(&body))?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::PUT, "extras/dashboard/", Some(&body))
+                        .await?;
+                print_output(&response, output)?;
+            }
+        }
+        DashboardAction::Patch { input } => {
+            let body: Value = load_json(&input)?;
+            if output.dry_run {
+                print_dry_run(Method::PATCH, "extras/dashboard/", None, Some(&body))?;
+            } else {
+                let response = request_raw_with_context(
+                    client,
+                    Method::PATCH,
+                    "extras/dashboard/",
+                    Some(&body),
+                )
+                .await?;
+                print_output(&response, output)?;
+            }
+        }
+        DashboardAction::Delete => {
+            if output.dry_run {
+                print_dry_run(Method::DELETE, "extras/dashboard/", None, None)?;
+            } else {
+                let response =
+                    request_raw_with_context(client, Method::DELETE, "extras/dashboard/", None)
+                        .await?;
+                if response == Value::Null {
+                    println!("deleted dashboard");
+                } else {
+                    print_output(&response, output)?;
+                }
+            }
+        }
+    }
+
+    Ok(())
+}
+
+async fn handle_named_lookup(
+    client: &impl ApiClient,
+    output: &OutputConfig,
+    base_path: &str,
+    action: NamedLookupAction,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let base_path = normalize_api_path(base_path);
+    match action {
+        NamedLookupAction::List => {
+            let response = request_raw_with_context(client, Method::GET, &base_path, None).await?;
+            print_output(&response, output)?;
+        }
+        NamedLookupAction::Get { name } => {
+            let path = format!("{}/{}/", base_path.trim_end_matches('/'), name);
+            let response = request_raw_with_context(client, Method::GET, &path, None).await?;
+            print_output(&response, output)?;
+        }
+    }
+
+    Ok(())
+}
+
+async fn handle_branch_action(
+    client: &impl ApiClient,
+    output: &OutputConfig,
+    id: u64,
+    action: BranchAction,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let (suffix, body) = match action {
+        BranchAction::Merge { input } => ("merge", load_json(&input)?),
+        BranchAction::Revert { input } => ("revert", load_json(&input)?),
+        BranchAction::Sync { input } => ("sync", load_json(&input)?),
+    };
+
+    let path = format!("plugins/branching/branches/{}/{}/", id, suffix);
+    if output.dry_run {
+        print_dry_run(Method::POST, &path, None, Some(&body))?;
+    } else {
+        let response = request_raw_with_context(client, Method::POST, &path, Some(&body)).await?;
+        print_output(&response, output)?;
+    }
+    Ok(())
+}
+
+fn print_resources(group: Option<&str>) {
+    match group {
+        None => {
+            println!("dcim");
+            list_resource_group(DCIM_RESOURCES);
+            println!("ipam");
+            list_resource_group(IPAM_RESOURCES);
+            println!("circuits");
+            list_resource_group(CIRCUITS_RESOURCES);
+            println!("tenancy");
+            list_resource_group(TENANCY_RESOURCES);
+            println!("extras");
+            list_resource_group(EXTRAS_RESOURCES);
+            println!("core");
+            list_resource_group(CORE_RESOURCES);
+            println!("users");
+            list_resource_group(USERS_RESOURCES);
+            println!("virtualization");
+            list_resource_group(VIRTUALIZATION_RESOURCES);
+            println!("vpn");
+            list_resource_group(VPN_RESOURCES);
+            println!("wireless");
+            list_resource_group(WIRELESS_RESOURCES);
+            println!("plugins");
+            list_resource_group(PLUGINS_RESOURCES);
+        }
+        Some("dcim") => list_resource_group(DCIM_RESOURCES),
+        Some("ipam") => list_resource_group(IPAM_RESOURCES),
+        Some("circuits") => list_resource_group(CIRCUITS_RESOURCES),
+        Some("tenancy") => list_resource_group(TENANCY_RESOURCES),
+        Some("extras") => list_resource_group(EXTRAS_RESOURCES),
+        Some("core") => list_resource_group(CORE_RESOURCES),
+        Some("users") => list_resource_group(USERS_RESOURCES),
+        Some("virtualization") => list_resource_group(VIRTUALIZATION_RESOURCES),
+        Some("vpn") => list_resource_group(VPN_RESOURCES),
+        Some("wireless") => list_resource_group(WIRELESS_RESOURCES),
+        Some("plugins") => list_resource_group(PLUGINS_RESOURCES),
+        Some(other) => {
+            println!("unknown group '{}'", other);
+        }
+    }
+}
+
+fn list_resource_group(resources: &[ResourceEntry]) {
+    for entry in resources {
+        println!("  {}", entry.name);
+    }
+}
+
+fn find_resource_path(resources: &[ResourceEntry], name: &str) -> Option<&'static str> {
+    resources
+        .iter()
+        .find(|entry| entry.name == name)
+        .map(|entry| entry.path)
+}
+
+fn resource_path_with_id(path: &str, id: u64) -> String {
+    format!("{}/{}/", path.trim_end_matches('/'), id)
 }
 
 fn normalize_api_path(path: &str) -> String {
@@ -283,11 +1163,7 @@ fn value_to_cell(value: Option<&Value>) -> String {
         Some(Value::String(value)) => value.clone(),
         Some(Value::Number(value)) => value.to_string(),
         Some(Value::Bool(value)) => value.to_string(),
-        Some(Value::Array(items)) => format!(
-            "[{}]
-",
-            items.len()
-        ),
+        Some(Value::Array(items)) => format!("[{}]", items.len()),
         Some(Value::Object(map)) => extract_display(map)
             .or_else(|| {
                 map.get("id")
@@ -426,6 +1302,43 @@ fn compact_json(value: &Value) -> String {
     }
 }
 
+fn format_nautobot_error(
+    method: &Method,
+    path: &str,
+    err: &(dyn std::error::Error + 'static),
+) -> Option<String> {
+    let nautobot_err = err.downcast_ref::<nautobot::Error>()?;
+    let nautobot::Error::ApiError {
+        status,
+        message,
+        body,
+    } = nautobot_err
+    else {
+        return None;
+    };
+
+    let mut detail = format!("status {}", status);
+    if let Some(request_id) = extract_request_id(body) {
+        detail.push_str(&format!(", request_id {request_id}"));
+    }
+    let mut summary = format!("request failed: {} {} ({detail})", method.as_str(), path);
+    if !message.is_empty() {
+        summary.push_str(": ");
+        summary.push_str(message);
+    }
+    Some(summary)
+}
+
+fn extract_request_id(body: &str) -> Option<String> {
+    let value: Value = serde_json::from_str(body).ok()?;
+    for key in ["request_id", "requestId", "request-id"] {
+        if let Some(Value::String(id)) = value.get(key) {
+            return Some(id.clone());
+        }
+    }
+    None
+}
+
 fn select_value(value: &Value, path: &str) -> Value {
     let segments: Vec<&str> = path.split('.').filter(|seg| !seg.is_empty()).collect();
     select_value_segments(value, &segments)
@@ -474,6 +1387,21 @@ fn dry_run_payload(method: Method, path: &str, body: Option<&Value>) -> Value {
     })
 }
 
+fn load_json<T>(input: &JsonInput) -> Result<T, Box<dyn std::error::Error>>
+where
+    T: DeserializeOwned,
+{
+    let content = if let Some(json) = &input.json {
+        json.clone()
+    } else if let Some(path) = &input.file {
+        fs::read_to_string(path)?
+    } else {
+        return Err("Provide --json or --file".into());
+    };
+
+    Ok(serde_json::from_str(&content)?)
+}
+
 fn load_json_optional<T>(input: &JsonInputOptional) -> Result<Option<T>, Box<dyn std::error::Error>>
 where
     T: DeserializeOwned,
@@ -488,6 +1416,23 @@ where
 
     match content {
         Some(content) => Ok(Some(serde_json::from_str(&content)?)),
+        None => Ok(None),
+    }
+}
+
+fn load_graphql_query(input: &GraphqlInput) -> Result<String, Box<dyn std::error::Error>> {
+    if let Some(query) = &input.query {
+        return Ok(query.clone());
+    }
+    if let Some(path) = &input.query_file {
+        return Ok(fs::read_to_string(path)?);
+    }
+    Err("Provide --query or --query-file".into())
+}
+
+fn load_graphql_vars(input: &GraphqlInput) -> Result<Option<Value>, Box<dyn std::error::Error>> {
+    match &input.vars {
+        Some(vars) => Ok(Some(serde_json::from_str(vars)?)),
         None => Ok(None),
     }
 }
@@ -517,4 +1462,859 @@ fn parse_query_pairs(
         pairs.push((key.to_string(), value.unwrap().to_string()));
     }
     Ok(pairs)
+}
+
+fn build_schema_path(format: Option<&str>) -> Result<String, Box<dyn std::error::Error>> {
+    match format.unwrap_or("json") {
+        "json" => Ok("swagger.json".to_string()),
+        "yaml" => Ok("swagger.yaml".to_string()),
+        other => Err(format!("unsupported schema format: {other}").into()),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+    use std::env;
+    use std::error::Error;
+    use std::sync::{Arc, Mutex};
+
+    fn parse_args(args: &[&str]) -> Cli {
+        Cli::parse_from(args)
+    }
+
+    fn base_args() -> Vec<&'static str> {
+        vec![
+            "netbox-cli",
+            "--url",
+            "http://localhost:8000",
+            "--token",
+            "token",
+        ]
+    }
+
+    fn env_api_client() -> Result<Option<NetboxApiClient>, Box<dyn Error>> {
+        let token = match std::env::var("NETBOX_TOKEN") {
+            Ok(token) => token,
+            Err(_) => return Ok(None),
+        };
+        let url =
+            std::env::var("NETBOX_URL").unwrap_or_else(|_| "http://localhost:8000".to_string());
+        let mut config = ClientConfig::new(url, token).with_max_retries(0);
+        if std::env::var("NETBOX_INSECURE").as_deref() == Ok("1") {
+            config = config.with_ssl_verification(false);
+        }
+        let client = Client::new(config)?;
+        Ok(Some(NetboxApiClient { inner: client }))
+    }
+
+    #[derive(Clone, Debug, PartialEq)]
+    struct RecordedCall {
+        method: Method,
+        path: String,
+        body: Option<Value>,
+    }
+
+    struct FakeApiClient {
+        calls: Arc<Mutex<Vec<RecordedCall>>>,
+        next: Arc<Mutex<Value>>,
+    }
+
+    impl FakeApiClient {
+        fn new(response: Value) -> Self {
+            Self {
+                calls: Arc::new(Mutex::new(Vec::new())),
+                next: Arc::new(Mutex::new(response)),
+            }
+        }
+
+        fn calls(&self) -> Vec<RecordedCall> {
+            self.calls.lock().unwrap().clone()
+        }
+    }
+
+    struct ErrorApiClient;
+
+    #[async_trait::async_trait]
+    impl ApiClient for ErrorApiClient {
+        async fn request_raw(
+            &self,
+            _method: Method,
+            _path: &str,
+            _body: Option<&Value>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+
+        async fn graphql(
+            &self,
+            _query: &str,
+            _variables: Option<&Value>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+
+        async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+
+        async fn schema(
+            &self,
+            _format: Option<&str>,
+            _lang: Option<&str>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+    }
+
+    #[async_trait::async_trait]
+    impl ApiClient for FakeApiClient {
+        async fn request_raw(
+            &self,
+            method: Method,
+            path: &str,
+            body: Option<&Value>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            let body = body.cloned();
+            self.calls.lock().unwrap().push(RecordedCall {
+                method,
+                path: path.to_string(),
+                body,
+            });
+            Ok(self.next.lock().unwrap().clone())
+        }
+
+        async fn graphql(
+            &self,
+            _query: &str,
+            _variables: Option<&Value>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            Ok(self.next.lock().unwrap().clone())
+        }
+
+        async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Ok(self.next.lock().unwrap().clone())
+        }
+
+        async fn schema(
+            &self,
+            _format: Option<&str>,
+            _lang: Option<&str>,
+        ) -> Result<Value, Box<dyn std::error::Error>> {
+            Ok(self.next.lock().unwrap().clone())
+        }
+    }
+
+    fn output_config() -> OutputConfig {
+        OutputConfig {
+            format: OutputFormat::Json,
+            select: None,
+            dry_run: false,
+        }
+    }
+
+    #[test]
+    fn load_json_from_inline() {
+        let input = JsonInput {
+            json: Some(r#"{"name":"carrier","slug":"carrier"}"#.to_string()),
+            file: None,
+        };
+        let value: Value = load_json(&input).unwrap();
+        assert_eq!(value["name"], "carrier");
+        assert_eq!(value["slug"], "carrier");
+    }
+
+    #[test]
+    fn load_json_from_file() {
+        let mut path = env::temp_dir();
+        path.push("netbox-cli-test.json");
+        fs::write(&path, r#"{"name":"carrier","slug":"carrier"}"#).unwrap();
+
+        let input = JsonInput {
+            json: None,
+            file: Some(path.clone()),
+        };
+        let value: Value = load_json(&input).unwrap();
+        assert_eq!(value["name"], "carrier");
+        assert_eq!(value["slug"], "carrier");
+
+        let _ = fs::remove_file(path);
+    }
+
+    #[test]
+    fn load_json_requires_input() {
+        let input = JsonInput {
+            json: None,
+            file: None,
+        };
+        let result: Result<Value, _> = load_json(&input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn load_json_rejects_invalid_json() {
+        let input = JsonInput {
+            json: Some("{invalid}".to_string()),
+            file: None,
+        };
+        let result: Result<Value, _> = load_json(&input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn load_json_optional_handles_none() {
+        let input = JsonInputOptional {
+            json: None,
+            file: None,
+        };
+        let value: Option<Value> = load_json_optional(&input).unwrap();
+        assert!(value.is_none());
+    }
+
+    #[test]
+    fn load_json_optional_rejects_invalid_json() {
+        let input = JsonInputOptional {
+            json: Some("{invalid}".to_string()),
+            file: None,
+        };
+        let result: Result<Option<Value>, _> = load_json_optional(&input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn load_graphql_query_prefers_inline() {
+        let input = GraphqlInput {
+            query: Some("{ devices { name } }".to_string()),
+            query_file: None,
+            vars: None,
+        };
+        let query = load_graphql_query(&input).unwrap();
+        assert_eq!(query, "{ devices { name } }");
+    }
+
+    #[test]
+    fn load_graphql_query_reads_file() {
+        let mut path = env::temp_dir();
+        path.push("netbox-cli-graphql.graphql");
+        fs::write(&path, "{ devices { name } }").unwrap();
+
+        let input = GraphqlInput {
+            query: None,
+            query_file: Some(path.clone()),
+            vars: None,
+        };
+        let query = load_graphql_query(&input).unwrap();
+        assert_eq!(query, "{ devices { name } }");
+
+        let _ = fs::remove_file(path);
+    }
+
+    #[test]
+    fn load_graphql_vars_parses_json() {
+        let input = GraphqlInput {
+            query: Some("{ devices { name } }".to_string()),
+            query_file: None,
+            vars: Some(r#"{"limit":5}"#.to_string()),
+        };
+        let vars = load_graphql_vars(&input).unwrap().unwrap();
+        assert_eq!(vars["limit"], 5);
+    }
+
+    #[test]
+    fn append_query_encodes_pairs() {
+        let path = "dcim/devices/";
+        let query = vec!["name=leaf 1".to_string(), "limit=5".to_string()];
+        let full = append_query(path, &query).unwrap();
+        assert_eq!(full, "dcim/devices/?name=leaf+1&limit=5");
+    }
+
+    #[test]
+    fn append_query_rejects_missing_value() {
+        let path = "dcim/devices/";
+        let query = vec!["name".to_string()];
+        let result = append_query(path, &query);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn append_query_appends_when_query_present() {
+        let path = "dcim/devices/?name=leaf-1";
+        let query = vec!["limit=5".to_string()];
+        let full = append_query(path, &query).unwrap();
+        assert_eq!(full, "dcim/devices/?name=leaf-1&limit=5");
+    }
+
+    #[test]
+    fn parse_query_pairs_rejects_empty_key() {
+        let query = vec!["=value".to_string()];
+        let result = parse_query_pairs(&query);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn normalize_api_path_strips_prefix() {
+        assert_eq!(normalize_api_path("api/dcim/devices/"), "dcim/devices/");
+        assert_eq!(normalize_api_path("/api/dcim/devices/"), "dcim/devices/");
+        assert_eq!(normalize_api_path("dcim/devices/"), "dcim/devices/");
+        assert_eq!(normalize_api_path("/dcim/devices/"), "dcim/devices/");
+    }
+
+    #[test]
+    fn resource_path_with_id_appends_trailing_slash() {
+        let path = resource_path_with_id("dcim/devices/", 42);
+        assert_eq!(path, "dcim/devices/42/");
+    }
+
+    #[test]
+    fn select_value_handles_arrays() {
+        let value = json!({
+            "results": [
+                {"name": "a"},
+                {"name": "b"}
+            ]
+        });
+        let selected = select_value(&value, "results.name");
+        assert_eq!(selected, json!(["a", "b"]));
+    }
+
+    #[test]
+    fn format_table_handles_objects() {
+        let value = json!({"name": "leaf-1", "status": "active"});
+        let table = format_table(&value);
+        assert!(table.contains("name"));
+        assert!(table.contains("leaf-1"));
+    }
+
+    #[test]
+    fn dry_run_payload_includes_path_and_body() {
+        let payload = dry_run_payload(
+            Method::POST,
+            "dcim/devices/",
+            Some(&json!({"name":"leaf-1"})),
+        );
+        assert_eq!(payload["method"], "POST");
+        assert_eq!(payload["path"], "dcim/devices/");
+        assert_eq!(payload["body"]["name"], "leaf-1");
+    }
+
+    #[test]
+    fn format_netbox_error_includes_status_path_and_request_id() {
+        let body = r#"{"request_id":"req-123","detail":"bad"}"#.to_string();
+        let err = netbox::Error::ApiError {
+            status: 400,
+            message: "bad".to_string(),
+            body,
+        };
+        let wrapped = RequestError::new(Method::POST, "dcim/devices/", Box::new(err));
+        let message = wrapped.to_string();
+        assert!(message.contains("POST"));
+        assert!(message.contains("dcim/devices/"));
+        assert!(message.contains("status 400"));
+        assert!(message.contains("request_id req-123"));
+        assert!(message.contains("bad"));
+    }
+
+    #[test]
+    fn build_schema_path_includes_query() {
+        let path = build_schema_path(Some("json"), Some("en")).unwrap();
+        assert_eq!(path, "schema/?format=json&lang=en");
+    }
+
+    #[test]
+    fn format_table_flattens_results() {
+        let value = json!({
+            "count": 2,
+            "next": null,
+            "previous": null,
+            "results": [
+                {"id": 1, "name": "alpha"},
+                {"id": 2, "name": "beta"}
+            ]
+        });
+        let table = format_table(&value);
+        assert!(table.contains("count: 2"));
+        assert!(table.contains("alpha"));
+        assert!(table.contains("beta"));
+    }
+
+    #[test]
+    fn find_resource_path_matches_known_resource() {
+        let path = find_resource_path(DCIM_RESOURCES, "devices");
+        assert_eq!(path, Some("dcim/devices/"));
+        let missing = find_resource_path(DCIM_RESOURCES, "not-a-device");
+        assert!(missing.is_none());
+    }
+
+    #[test]
+    fn parse_resources_command_with_group() {
+        let mut args = base_args();
+        args.extend(["resources", "dcim"]);
+        let cli = parse_args(&args);
+        match cli.command {
+            Commands::Resources { group } => {
+                assert_eq!(group.as_deref(), Some("dcim"));
+            }
+            _ => panic!("expected resources command"),
+        }
+    }
+
+    #[test]
+    fn parse_dcim_list_command_with_query() {
+        let mut args = base_args();
+        args.extend([
+            "dcim",
+            "devices",
+            "list",
+            "--query",
+            "name=leaf-1",
+            "--query",
+            "limit=5",
+        ]);
+        let cli = parse_args(&args);
+        match cli.command {
+            Commands::Dcim { resource, action } => {
+                assert_eq!(resource, "devices");
+                match action {
+                    ResourceAction::List { query } => {
+                        assert_eq!(query, vec!["name=leaf-1", "limit=5"]);
+                    }
+                    _ => panic!("expected list action"),
+                }
+            }
+            _ => panic!("expected dcim command"),
+        }
+    }
+
+    #[test]
+    fn parse_raw_command_with_json() {
+        let mut args = base_args();
+        args.extend([
+            "raw",
+            "--method",
+            "POST",
+            "--path",
+            "api/dcim/sites/",
+            "--query",
+            "name=dc1",
+            "--json",
+            r#"{"name":"dc1"}"#,
+        ]);
+        let cli = parse_args(&args);
+        match cli.command {
+            Commands::Raw {
+                method,
+                path,
+                query,
+                input,
+            } => {
+                assert_eq!(method, "POST");
+                assert_eq!(path, "api/dcim/sites/");
+                assert_eq!(query, vec!["name=dc1"]);
+                assert!(input.json.is_some());
+                assert!(input.file.is_none());
+            }
+            _ => panic!("expected raw command"),
+        }
+    }
+
+    #[test]
+    fn parse_dashboard_update_requires_json_or_file() {
+        let mut args = base_args();
+        args.extend(["extras-dashboard", "update"]);
+        let result = Cli::try_parse_from(&args);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn parse_branch_action_with_file() {
+        let mut args = base_args();
+        args.extend([
+            "plugin-branch-action",
+            "12",
+            "merge",
+            "--file",
+            "payload.json",
+        ]);
+        let cli = parse_args(&args);
+        match cli.command {
+            Commands::PluginBranchAction { id, action } => {
+                assert_eq!(id, 12u64);
+                match action {
+                    BranchAction::Merge { input } => {
+                        assert!(input.file.is_some());
+                    }
+                    _ => panic!("expected merge action"),
+                }
+            }
+            _ => panic!("expected plugin-branch-action command"),
+        }
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_list_calls_get() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let action = ResourceAction::List {
+            query: vec!["name=leaf-1".to_string()],
+        };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls.len(), 1);
+        assert_eq!(calls[0].method, Method::GET);
+        assert_eq!(calls[0].path, "dcim/devices/?name=leaf-1");
+        assert!(calls[0].body.is_none());
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_get_calls_get() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let action = ResourceAction::Get { id: 42 };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::GET);
+        assert_eq!(calls[0].path, "dcim/devices/42/");
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_create_calls_post() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let input = JsonInput {
+            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+            file: None,
+        };
+        let action = ResourceAction::Create { input };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::POST);
+        assert_eq!(calls[0].path, "dcim/devices/");
+        assert_eq!(calls[0].body.as_ref().unwrap()["name"], "leaf-1");
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_update_calls_put() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let input = JsonInput {
+            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+            file: None,
+        };
+        let action = ResourceAction::Update { id: 7, input };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::PUT);
+        assert_eq!(calls[0].path, "dcim/devices/7/");
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_patch_calls_patch() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let input = JsonInput {
+            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+            file: None,
+        };
+        let action = ResourceAction::Patch { id: 7, input };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::PATCH);
+        assert_eq!(calls[0].path, "dcim/devices/7/");
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_delete_calls_delete() {
+        let client = FakeApiClient::new(Value::Null);
+        let action = ResourceAction::Delete { id: 7 };
+        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::DELETE);
+        assert_eq!(calls[0].path, "dcim/devices/7/");
+    }
+
+    #[tokio::test]
+    async fn handle_dashboard_action_paths() {
+        let client = FakeApiClient::new(Value::Null);
+        handle_dashboard_action(&client, &output_config(), DashboardAction::Get)
+            .await
+            .unwrap();
+        handle_dashboard_action(&client, &output_config(), DashboardAction::Delete)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].path, "extras/dashboard/");
+        assert_eq!(calls[1].path, "extras/dashboard/");
+    }
+
+    #[tokio::test]
+    async fn handle_named_lookup_get_builds_path() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let action = NamedLookupAction::Get {
+            name: "queue-1".to_string(),
+        };
+        handle_named_lookup(&client, &output_config(), "core/background-queues/", action)
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].path, "core/background-queues/queue-1/");
+    }
+
+    #[tokio::test]
+    async fn handle_branch_action_builds_path() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let input = JsonInput {
+            json: Some(r#"{"confirm":true}"#.to_string()),
+            file: None,
+        };
+        handle_branch_action(&client, &output_config(), 9, BranchAction::Merge { input })
+            .await
+            .unwrap();
+        let calls = client.calls();
+        assert_eq!(calls[0].method, Method::POST);
+        assert_eq!(calls[0].path, "plugins/branching/branches/9/merge/");
+    }
+
+    #[tokio::test]
+    async fn handle_resource_group_unknown_resource_errors() {
+        let client = FakeApiClient::new(json!({"ok": true}));
+        let result = handle_resource_group(
+            &client,
+            &output_config(),
+            "dcim",
+            DCIM_RESOURCES,
+            "not-a-device",
+            ResourceAction::List { query: vec![] },
+        )
+        .await;
+        assert!(result.is_err());
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_bubbles_api_error() {
+        let client = ErrorApiClient;
+        let action = ResourceAction::List { query: vec![] };
+        let result =
+            handle_resource_action(&client, &output_config(), "dcim/devices/", action).await;
+        assert!(result.is_err());
+    }
+
+    #[tokio::test]
+    async fn handle_resource_action_create_dry_run_skips_api() {
+        let client = ErrorApiClient;
+        let mut output = output_config();
+        output.dry_run = true;
+        let input = JsonInput {
+            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+            file: None,
+        };
+        let action = ResourceAction::Create { input };
+        handle_resource_action(&client, &output, "dcim/devices/", action)
+            .await
+            .unwrap();
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_status() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_status");
+            return Ok(());
+        };
+        let _ = api.status().await?;
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_list_devices() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_list_devices");
+            return Ok(());
+        };
+        handle_resource_action(
+            &api,
+            &output_config(),
+            "dcim/devices/",
+            ResourceAction::List {
+                query: vec!["limit=1".to_string()],
+            },
+        )
+        .await?;
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_output_formats() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_output_formats");
+            return Ok(());
+        };
+        let status = api.status().await?;
+        for format in [OutputFormat::Json, OutputFormat::Yaml, OutputFormat::Table] {
+            let output = OutputConfig {
+                format,
+                select: None,
+                dry_run: false,
+            };
+            let rendered = format_output(&status, &output)?;
+            assert!(
+                !rendered.trim().is_empty(),
+                "expected output for {format:?}"
+            );
+        }
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_select_output() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_select_output");
+            return Ok(());
+        };
+        let status = api.status().await?;
+        let output = OutputConfig {
+            format: OutputFormat::Json,
+            select: Some("netbox-version".to_string()),
+            dry_run: false,
+        };
+        let rendered = format_output(&status, &output)?;
+        assert!(!rendered.trim().is_empty());
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_users_config() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_users_config");
+            return Ok(());
+        };
+        let _ = api.request_raw(Method::GET, "users/config/", None).await?;
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_raw_tag_roundtrip() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_raw_tag_roundtrip");
+            return Ok(());
+        };
+
+        let name = format!(
+            "cli-raw-tag-{}",
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap_or_default()
+                .as_secs()
+        );
+        let body = json!({
+            "name": name,
+            "slug": name,
+            "color": "9e9e9e",
+        });
+        let created = api
+            .request_raw(Method::POST, "extras/tags/", Some(&body))
+            .await?;
+        let tag_id = created
+            .get("id")
+            .and_then(|value| value.as_i64())
+            .ok_or("missing tag id")? as u64;
+        let path = format!("extras/tags/{}/", tag_id);
+        let _ = api.request_raw(Method::DELETE, &path, None).await?;
+        Ok(())
+    }
+
+    #[tokio::test]
+    #[ignore]
+    async fn smoke_resource_crud_tag() -> Result<(), Box<dyn Error>> {
+        let Some(api) = env_api_client()? else {
+            eprintln!("NETBOX_TOKEN not set; skipping smoke_resource_crud_tag");
+            return Ok(());
+        };
+
+        let name = format!(
+            "cli-resource-tag-{}",
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap_or_default()
+                .as_secs()
+        );
+        let create = JsonInput {
+            json: Some(format!(
+                r#"{{"name":"{0}","slug":"{0}","color":"9e9e9e"}}"#,
+                name
+            )),
+            file: None,
+        };
+        handle_resource_action(
+            &api,
+            &output_config(),
+            "extras/tags/",
+            ResourceAction::Create { input: create },
+        )
+        .await?;
+
+        let list_path = format!("extras/tags/?name={}", name);
+        let list = api.request_raw(Method::GET, &list_path, None).await?;
+        let tag_id = list
+            .get("results")
+            .and_then(|value| value.as_array())
+            .and_then(|results| results.first())
+            .and_then(|value| value.get("id"))
+            .and_then(|value| value.as_i64())
+            .ok_or("missing tag id")? as u64;
+
+        let update = JsonInput {
+            json: Some(format!(
+                r#"{{"name":"{0}-updated","slug":"{0}-updated","color":"2196f3"}}"#,
+                name
+            )),
+            file: None,
+        };
+        handle_resource_action(
+            &api,
+            &output_config(),
+            "extras/tags/",
+            ResourceAction::Update {
+                id: tag_id,
+                input: update,
+            },
+        )
+        .await?;
+
+        let patch = JsonInput {
+            json: Some(r#"{"description":"cli smoke test"}"#.to_string()),
+            file: None,
+        };
+        handle_resource_action(
+            &api,
+            &output_config(),
+            "extras/tags/",
+            ResourceAction::Patch {
+                id: tag_id,
+                input: patch,
+            },
+        )
+        .await?;
+
+        handle_resource_action(
+            &api,
+            &output_config(),
+            "extras/tags/",
+            ResourceAction::Delete { id: tag_id },
+        )
+        .await?;
+        Ok(())
+    }
 }
