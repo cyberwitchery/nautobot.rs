@@ -1,6 +1,6 @@
 [package]
 name = "nautobot-openapi"
-version = "0.1.0"
+version = "0.0.1"
 authors = ["OpenAPI Generator team and contributors"]
 description = "Source of truth and network automation platform"
 license = "Apache v2 License"

@@ -2081,7 +2081,9 @@ mod tests {
     #[tokio::test]
     async fn handle_resource_action_get_calls_get() {
         let client = FakeApiClient::new(json!({"ok": true}));
-        let action = ResourceAction::Get { id: "42".to_string() };
+        let action = ResourceAction::Get {
+            id: "42".to_string(),
+        };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2114,7 +2116,10 @@ mod tests {
             json: Some(r#"{"name":"leaf-1"}"#.to_string()),
             file: None,
         };
-        let action = ResourceAction::Update { id: "7".to_string(), input };
+        let action = ResourceAction::Update {
+            id: "7".to_string(),
+            input,
+        };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2130,7 +2135,10 @@ mod tests {
             json: Some(r#"{"name":"leaf-1"}"#.to_string()),
             file: None,
         };
-        let action = ResourceAction::Patch { id: "7".to_string(), input };
+        let action = ResourceAction::Patch {
+            id: "7".to_string(),
+            input,
+        };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();
@@ -2142,7 +2150,9 @@ mod tests {
     #[tokio::test]
     async fn handle_resource_action_delete_calls_delete() {
         let client = FakeApiClient::new(Value::Null);
-        let action = ResourceAction::Delete { id: "7".to_string() };
+        let action = ResourceAction::Delete {
+            id: "7".to_string(),
+        };
         handle_resource_action(&client, &output_config(), "dcim/devices/", action)
             .await
             .unwrap();

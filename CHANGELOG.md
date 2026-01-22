@@ -1,17 +1,12 @@
 # changelog
 
-## [unreleased]
-
-### added
-- resource note helpers (`notes`, `create_note`) for object-scoped notes
-- dcim helpers for device napalm, rack elevation, and port path lookups
-- ipam helpers for available IP/prefix/VLAN listing and allocation
-- core swagger schema fetch helpers
-
-## [0.1.0] - 2026-01-21
+## [0.0.1] - 2026-01-22
 
 ### initial release
 - initial project setup mirroring netbox.rs
-- client library with basic structure
-- cli with status and raw commands
+- client library with comprehensive structure
+- cli with initial set of commands
 - openapi generation infrastructure
+
+[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.0.1

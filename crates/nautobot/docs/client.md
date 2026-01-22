@@ -6,7 +6,7 @@ this crate provides a typed, ergonomic client for the nautobot rest api.
 
 ```toml
 [dependencies]
-nautobot = { path = "../nautobot" } # Use version 0.1.0 when published
+nautobot = "0.0.1"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
