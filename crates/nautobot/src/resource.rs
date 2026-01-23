@@ -50,7 +50,8 @@ impl<T> Resource<T>
 where
     T: DeserializeOwned,
 {
-    pub(crate) fn new(client: Client, path: &'static str) -> Self {
+    /// create a new resource wrapper for a given api path.
+    pub fn new(client: Client, path: &'static str) -> Self {
         Self {
             client,
             path,

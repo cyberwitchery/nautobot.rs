@@ -211,7 +211,7 @@ impl Client {
     }
 
     /// make a get request to the api
-    pub(crate) async fn get<T>(&self, path: &str) -> Result<T>
+    pub async fn get<T>(&self, path: &str) -> Result<T>
     where
         T: DeserializeOwned,
     {
@@ -220,7 +220,7 @@ impl Client {
     }
 
     /// make a get request with query parameters
-    pub(crate) async fn get_with_params<T, Q>(&self, path: &str, query: &Q) -> Result<T>
+    pub async fn get_with_params<T, Q>(&self, path: &str, query: &Q) -> Result<T>
     where
         T: DeserializeOwned,
         Q: Serialize,
@@ -274,7 +274,7 @@ impl Client {
     }
 
     /// make a post request to the api
-    pub(crate) async fn post<T, B>(&self, path: &str, body: &B) -> Result<T>
+    pub async fn post<T, B>(&self, path: &str, body: &B) -> Result<T>
     where
         T: DeserializeOwned,
         B: Serialize + ?Sized,
@@ -283,7 +283,7 @@ impl Client {
     }
 
     /// make a put request to the api
-    pub(crate) async fn put<T, B>(&self, path: &str, body: &B) -> Result<T>
+    pub async fn put<T, B>(&self, path: &str, body: &B) -> Result<T>
     where
         T: DeserializeOwned,
         B: Serialize + ?Sized,
@@ -292,7 +292,7 @@ impl Client {
     }
 
     /// make a patch request to the api
-    pub(crate) async fn patch<T, B>(&self, path: &str, body: &B) -> Result<T>
+    pub async fn patch<T, B>(&self, path: &str, body: &B) -> Result<T>
     where
         T: DeserializeOwned,
         B: Serialize + ?Sized,
@@ -301,7 +301,7 @@ impl Client {
     }
 
     /// make a delete request to the api
-    pub(crate) async fn delete(&self, path: &str) -> Result<()> {
+    pub async fn delete(&self, path: &str) -> Result<()> {
         let url = self.config.build_url(path)?;
         let response = self.http_client.delete(url).send().await?;
 
@@ -315,7 +315,7 @@ impl Client {
     }
 
     /// make a delete request with a json body
-    pub(crate) async fn delete_with_body<B>(&self, path: &str, body: &B) -> Result<()>
+    pub async fn delete_with_body<B>(&self, path: &str, body: &B) -> Result<()>
     where
         B: Serialize + ?Sized,
     {

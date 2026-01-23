@@ -1,5 +1,10 @@
 # changelog
 
+## [0.1.1] - 2026-01-23
+
+### features
+- exposed `Resource::new`, `Paginator::new`, and generic `Client` request methods (`get`, `post`, `put`, `patch`, `delete`) to allow generic/dynamic API adapters (like `alembic`).
+
 ## [0.1.0] - 2026-01-23
 
 ### documentation
@@ -19,6 +24,7 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.1.1
 [0.1.0]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.1.0
 [0.0.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.0.1
