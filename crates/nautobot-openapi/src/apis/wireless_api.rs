@@ -10,7 +10,7 @@
 
 use reqwest;
 
-use super::{configuration, Error};
+use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
 /// struct for typed errors of method [`wireless_controller_managed_device_group_radio_profile_assignments_bulk_destroy`]

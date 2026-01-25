@@ -7,7 +7,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.1.1"
+version = "0.2.0"
 authors = ["cyber witchery labs"]
 edition = "2024"
 rust-version = "1.85"
@@ -26,7 +26,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # nautobot bindings
-nautobot-openapi = { version = "0.1.1", path = "crates/nautobot-openapi" }
+nautobot-openapi = { version = "0.2.0", path = "crates/nautobot-openapi" }
 
 # Error handling
 thiserror = "1.0"

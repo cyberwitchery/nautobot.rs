@@ -1,4 +1,4 @@
-use nautobot::{ Client, ClientConfig };
+use nautobot::{Client, ClientConfig};
 use reqwest::Method;
 use std::env;
 
@@ -15,9 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = Client::new(config)?;
 
     // Make a raw GET request to the status endpoint
-    let response = client
-        .request_raw(Method::GET, "status/", None)
-        .await?;
+    let response = client.request_raw(Method::GET, "status/", None).await?;
 
     println!("Raw status response:\n{:#?}", response);
 

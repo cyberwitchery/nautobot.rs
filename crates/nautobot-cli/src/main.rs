@@ -1,7 +1,10 @@
 #![doc = include_str!("../docs/cli.md")]
 
+mod config;
+
 use clap::{Args, Parser, Subcommand, ValueEnum};
 use comfy_table::{Cell, ContentArrangement, Table};
+use config::{ConfigFile, Profile, config_path, load_config, validate_profile};
 use nautobot::{Client, ClientConfig};
 use reqwest::Method;
 use serde::de::DeserializeOwned;
@@ -9,6 +12,7 @@ use serde_json::{Value, to_string_pretty};
 use std::fmt;
 use std::fs;
 use std::path::PathBuf;
+use std::time::Duration;
 use terminal_size::{Width, terminal_size};
 
 #[async_trait::async_trait]
@@ -98,6 +102,8 @@ enum OutputFormat {
 struct OutputConfig {
     format: OutputFormat,
     select: Option<String>,
+    columns: Option<Vec<String>>,
+    max_columns: usize,
     dry_run: bool,
 }
 
@@ -713,21 +719,33 @@ const WIRELESS_RESOURCES: &[ResourceEntry] = &[
 #[command(name = "nautobot-cli")]
 #[command(about = "CLI tool for testing Nautobot API client", long_about = None)]
 struct Cli {
-    /// Nautobot instance URL
-    #[arg(short, long, env)]
-    url: String,
+    /// Nautobot instance URL (overrides config file)
+    #[arg(short, long, env = "NAUTOBOT_URL")]
+    url: Option<String>,
 
-    /// API token
-    #[arg(short, long, env)]
-    token: String,
+    /// API token (overrides config file)
+    #[arg(short, long, env = "NAUTOBOT_TOKEN")]
+    token: Option<String>,
+
+    /// Config profile to use (default: "default")
+    #[arg(short, long, default_value = "default")]
+    profile: String,
 
     /// Output format (json, yaml, table)
-    #[arg(long, value_enum, default_value = "json")]
-    output: OutputFormat,
+    #[arg(long, value_enum)]
+    output: Option<OutputFormat>,
 
     /// Select a field from the response (dot path)
     #[arg(long)]
     select: Option<String>,
+
+    /// Columns to show in table output (comma-separated)
+    #[arg(long, value_delimiter = ',')]
+    columns: Option<Vec<String>>,
+
+    /// Maximum columns in table output (default: 6)
+    #[arg(long, default_value = "6")]
+    max_columns: usize,
 
     /// Print the request and skip write operations
     #[arg(long)]
@@ -738,7 +756,24 @@ struct Cli {
 }
 
 #[derive(Subcommand)]
+enum ConfigAction {
+    /// Show the resolved configuration for a profile
+    Show,
+    /// List all available profiles
+    List,
+    /// Validate a profile configuration
+    Validate,
+    /// Show the config file path
+    Path,
+}
+
+#[derive(Subcommand)]
 enum Commands {
+    /// Manage configuration profiles
+    Config {
+        #[command(subcommand)]
+        action: ConfigAction,
+    },
     /// List resources by group (or all resources)
     Resources {
         /// Resource group name (dcim, ipam, circuits, cloud, tenancy, extras, users, virtualization, wireless)
@@ -908,16 +943,83 @@ struct GraphqlInput {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
-    let config = ClientConfig::new(&cli.url, &cli.token);
-    let client = Client::new(config)?;
+    // Load config file
+    let config_file = load_config().ok().flatten();
+
+    // Handle config commands first (no API access needed)
+    if let Commands::Config { action } = &cli.command {
+        return handle_config_command(action, &cli.profile, config_file.as_ref());
+    }
+
+    // Resolve profile from config file
+    let mut profile = Profile::default();
+    if let Some(ref cf) = config_file {
+        if let Some(p) = cf.get_profile(&cli.profile) {
+            profile = p.clone();
+        } else if cli.profile != "default" {
+            return Err(format!("profile '{}' not found in config file", cli.profile).into());
+        }
+    }
+
+    // CLI args override config
+    if cli.url.is_some() {
+        profile.url = cli.url.clone();
+    }
+    if cli.token.is_some() {
+        profile.token = cli.token.clone();
+    }
+    if cli.output.is_some() {
+        profile.output = cli.output.map(|o| format!("{:?}", o).to_lowercase());
+    }
+
+    // Resolve URL and token
+    let url = profile
+        .url
+        .clone()
+        .ok_or("url not specified (use --url, NAUTOBOT_URL, or config file)")?;
+    let token = profile.resolve_token()?.ok_or(
+        "token not specified (use --token, NAUTOBOT_TOKEN, token_env, or token_command in config)",
+    )?;
+
+    // Build client config
+    let mut client_config = ClientConfig::new(&url, &token);
+    if let Some(timeout) = profile.timeout {
+        client_config = client_config.with_timeout(Duration::from_secs(timeout));
+    }
+    if let Some(retries) = profile.retries {
+        client_config = client_config.with_max_retries(retries);
+    }
+    if let Some(ssl_verify) = profile.ssl_verify {
+        client_config = client_config.with_ssl_verification(ssl_verify);
+    }
+
+    let client = Client::new(client_config)?;
     let api = NautobotApiClient { inner: client };
+
+    // Resolve output format
+    let output_format = cli.output.unwrap_or_else(|| {
+        profile
+            .output
+            .as_deref()
+            .and_then(|s| match s {
+                "json" => Some(OutputFormat::Json),
+                "yaml" => Some(OutputFormat::Yaml),
+                "table" => Some(OutputFormat::Table),
+                _ => None,
+            })
+            .unwrap_or(OutputFormat::Json)
+    });
+
     let output = OutputConfig {
-        format: cli.output,
+        format: output_format,
         select: cli.select.clone(),
+        columns: cli.columns.clone(),
+        max_columns: cli.max_columns,
         dry_run: cli.dry_run,
     };
 
     match cli.command {
+        Commands::Config { .. } => unreachable!(), // handled above
         Commands::Resources { group } => {
             print_resources(group.as_deref());
         }
@@ -1056,6 +1158,81 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+fn handle_config_command(
+    action: &ConfigAction,
+    profile_name: &str,
+    config_file: Option<&ConfigFile>,
+) -> Result<(), Box<dyn std::error::Error>> {
+    match action {
+        ConfigAction::Path => match config_path() {
+            Some(path) => println!("{}", path.display()),
+            None => println!("(could not determine config directory)"),
+        },
+        ConfigAction::List => match config_file {
+            Some(cf) => {
+                let mut names: Vec<_> = cf.profile_names();
+                names.sort();
+                for name in names {
+                    if name == profile_name {
+                        println!("{} (active)", name);
+                    } else {
+                        println!("{}", name);
+                    }
+                }
+            }
+            None => {
+                println!("(no config file found)");
+                if let Some(path) = config_path() {
+                    println!("expected at: {}", path.display());
+                }
+            }
+        },
+        ConfigAction::Show => match config_file {
+            Some(cf) => {
+                if let Some(profile) = cf.get_profile(profile_name) {
+                    let toml = toml::to_string_pretty(profile)?;
+                    println!("[{}]", profile_name);
+                    print!("{}", toml);
+                } else {
+                    return Err(format!("profile '{}' not found", profile_name).into());
+                }
+            }
+            None => {
+                return Err("no config file found".into());
+            }
+        },
+        ConfigAction::Validate => match config_file {
+            Some(cf) => {
+                if let Some(profile) = cf.get_profile(profile_name) {
+                    match validate_profile(profile) {
+                        Ok(()) => {
+                            println!("profile '{}' is valid", profile_name);
+                            match profile.resolve_token() {
+                                Ok(Some(_)) => println!("  token: ok"),
+                                Ok(None) => {
+                                    println!(
+                                        "  token: (not set, will need --token or NAUTOBOT_TOKEN)"
+                                    )
+                                }
+                                Err(e) => println!("  token: error - {}", e),
+                            }
+                        }
+                        Err(e) => {
+                            return Err(format!("profile '{}' invalid: {}", profile_name, e).into());
+                        }
+                    }
+                } else {
+                    return Err(format!("profile '{}' not found", profile_name).into());
+                }
+            }
+            None => {
+                return Err("no config file found".into());
+            }
+        },
+    }
+    Ok(())
+}
+
 async fn handle_resource_group(
     client: &impl ApiClient,
     output: &OutputConfig,
@@ -1066,7 +1243,7 @@ async fn handle_resource_group(
 ) -> Result<(), Box<dyn std::error::Error>> {
     let path = find_resource_path(resources, resource).ok_or_else(|| {
         format!(
-            "unknown {} resource '{}'. use `netbox-cli resources {}` to list options.",
+            "unknown {} resource '{}'. use `nautobot-cli resources {}` to list options.",
             group, resource, group
         )
     })?;
@@ -1243,16 +1420,20 @@ fn format_output(
     match output.format {
         OutputFormat::Json => Ok(to_string_pretty(&selected)?),
         OutputFormat::Yaml => Ok(serde_yaml::to_string(&selected)?),
-        OutputFormat::Table => Ok(format_table(&selected)),
+        OutputFormat::Table => Ok(format_table(
+            &selected,
+            output.columns.as_deref(),
+            output.max_columns,
+        )),
     }
 }
 
-fn format_table(value: &Value) -> String {
+fn format_table(value: &Value, columns: Option<&[String]>, max_columns: usize) -> String {
     let width = terminal_width().unwrap_or(120).min(u16::MAX as usize) as u16;
     if let Value::Object(map) = value {
         if let Some(Value::Array(items)) = map.get("results") {
             let summary = format_table_summary(map);
-            let table = table_from_items(items, width);
+            let table = table_from_items(items, width, columns, max_columns);
             return if summary.is_empty() {
                 table
             } else {
@@ -1262,10 +1443,14 @@ fn format_table(value: &Value) -> String {
     }
 
     match value {
-        Value::Array(items) => table_from_items(items, width),
+        Value::Array(items) => table_from_items(items, width, columns, max_columns),
         Value::Object(map) => {
             let mut table = base_table(width);
-            let headers: Vec<String> = map.keys().cloned().collect();
+            let headers: Vec<String> = if let Some(cols) = columns {
+                cols.to_vec()
+            } else {
+                map.keys().take(max_columns).cloned().collect()
+            };
             table.set_header(headers.iter().map(Cell::new));
             let row = headers
                 .iter()
@@ -1313,10 +1498,19 @@ fn base_table(width: u16) -> Table {
     table
 }
 
-fn table_from_items(items: &[Value], width: u16) -> String {
+fn table_from_items(
+    items: &[Value],
+    width: u16,
+    columns: Option<&[String]>,
+    max_columns: usize,
+) -> String {
     let mut table = base_table(width);
     if let Some(Value::Object(first)) = items.first() {
-        let headers = infer_columns(items, first);
+        let headers = if let Some(cols) = columns {
+            cols.to_vec()
+        } else {
+            infer_columns(items, first, max_columns)
+        };
         table.set_header(headers.iter().map(Cell::new));
         for item in items {
             if let Value::Object(map) = item {
@@ -1338,7 +1532,11 @@ fn table_from_items(items: &[Value], width: u16) -> String {
     table.to_string()
 }
 
-fn infer_columns(items: &[Value], first: &serde_json::Map<String, Value>) -> Vec<String> {
+fn infer_columns(
+    items: &[Value],
+    first: &serde_json::Map<String, Value>,
+    max_columns: usize,
+) -> Vec<String> {
     let preferred = [
         "id",
         "name",
@@ -1355,27 +1553,27 @@ fn infer_columns(items: &[Value], first: &serde_json::Map<String, Value>) -> Vec
 
     let mut columns = Vec::new();
     for key in preferred {
-        if first.contains_key(key) {
+        if first.contains_key(key) && columns.len() < max_columns {
             columns.push(key.to_string());
         }
     }
 
     if columns.is_empty() {
-        columns = first.keys().take(6).cloned().collect();
+        columns = first.keys().take(max_columns).cloned().collect();
     }
 
-    if columns.len() < 6 {
+    if columns.len() < max_columns {
         let mut additional = first
             .keys()
             .filter(|key| !columns.iter().any(|col| col == *key))
-            .take(6 - columns.len())
+            .take(max_columns - columns.len())
             .cloned()
             .collect::<Vec<_>>();
         columns.append(&mut additional);
     }
 
-    if columns.len() > 6 {
-        columns.truncate(6);
+    if columns.len() > max_columns {
+        columns.truncate(max_columns);
     }
 
     if columns.len() > 1 && items.iter().any(|item| matches!(item, Value::Object(_))) {
@@ -1616,7 +1814,7 @@ mod tests {
 
     fn base_args() -> Vec<&'static str> {
         vec![
-            "netbox-cli",
+            "nautobot-cli",
             "--url",
             "http://localhost:8000",
             "--token",
@@ -1748,6 +1946,8 @@ mod tests {
         OutputConfig {
             format: OutputFormat::Json,
             select: None,
+            columns: None,
+            max_columns: 6,
             dry_run: false,
         }
     }
@@ -1919,7 +2119,7 @@ mod tests {
     #[test]
     fn format_table_handles_objects() {
         let value = json!({"name": "leaf-1", "status": "active"});
-        let table = format_table(&value);
+        let table = format_table(&value, None, 6);
         assert!(table.contains("name"));
         assert!(table.contains("leaf-1"));
     }
@@ -1976,7 +2176,7 @@ mod tests {
                 {"id": 2, "name": "beta"}
             ]
         });
-        let table = format_table(&value);
+        let table = format_table(&value, None, 6);
         assert!(table.contains("count: 2"));
         assert!(table.contains("alpha"));
         assert!(table.contains("beta"));
@@ -2242,6 +2442,8 @@ mod tests {
             let output = OutputConfig {
                 format,
                 select: None,
+                columns: None,
+                max_columns: 6,
                 dry_run: false,
             };
             let rendered = format_output(&status, &output)?;
@@ -2263,7 +2465,9 @@ mod tests {
         let status = api.status().await?;
         let output = OutputConfig {
             format: OutputFormat::Json,
-            select: Some("netbox-version".to_string()),
+            select: Some("nautobot-version".to_string()),
+            columns: None,
+            max_columns: 6,
             dry_run: false,
         };
         let rendered = format_output(&status, &output)?;
@@ -2397,5 +2601,137 @@ mod tests {
         )
         .await?;
         Ok(())
+    }
+
+    #[test]
+    fn parse_config_path_command() {
+        let args = vec!["nautobot-cli", "config", "path"];
+        let cli = Cli::parse_from(args);
+        match cli.command {
+            Commands::Config {
+                action: ConfigAction::Path,
+            } => {}
+            _ => panic!("expected config path command"),
+        }
+    }
+
+    #[test]
+    fn parse_config_list_command() {
+        let args = vec!["nautobot-cli", "config", "list"];
+        let cli = Cli::parse_from(args);
+        match cli.command {
+            Commands::Config {
+                action: ConfigAction::List,
+            } => {}
+            _ => panic!("expected config list command"),
+        }
+    }
+
+    #[test]
+    fn parse_config_show_command() {
+        let args = vec!["nautobot-cli", "--profile", "prod", "config", "show"];
+        let cli = Cli::parse_from(args);
+        assert_eq!(cli.profile, "prod");
+        match cli.command {
+            Commands::Config {
+                action: ConfigAction::Show,
+            } => {}
+            _ => panic!("expected config show command"),
+        }
+    }
+
+    #[test]
+    fn parse_config_validate_command() {
+        let args = vec!["nautobot-cli", "config", "validate"];
+        let cli = Cli::parse_from(args);
+        match cli.command {
+            Commands::Config {
+                action: ConfigAction::Validate,
+            } => {}
+            _ => panic!("expected config validate command"),
+        }
+    }
+
+    #[test]
+    fn parse_columns_flag() {
+        let mut args = base_args();
+        args.extend(["--columns", "id,name,status", "dcim", "devices", "list"]);
+        let cli = Cli::parse_from(args);
+        assert_eq!(
+            cli.columns,
+            Some(vec![
+                "id".to_string(),
+                "name".to_string(),
+                "status".to_string()
+            ])
+        );
+    }
+
+    #[test]
+    fn parse_max_columns_flag() {
+        let mut args = base_args();
+        args.extend(["--max-columns", "10", "dcim", "devices", "list"]);
+        let cli = Cli::parse_from(args);
+        assert_eq!(cli.max_columns, 10);
+    }
+
+    #[test]
+    fn parse_max_columns_default() {
+        let mut args = base_args();
+        args.extend(["dcim", "devices", "list"]);
+        let cli = Cli::parse_from(args);
+        assert_eq!(cli.max_columns, 6);
+    }
+
+    #[test]
+    fn parse_profile_flag() {
+        let mut args = base_args();
+        args.extend(["--profile", "prod", "status"]);
+        let cli = Cli::parse_from(args);
+        assert_eq!(cli.profile, "prod");
+    }
+
+    #[test]
+    fn parse_profile_default() {
+        let mut args = base_args();
+        args.extend(["status"]);
+        let cli = Cli::parse_from(args);
+        assert_eq!(cli.profile, "default");
+    }
+
+    #[test]
+    fn format_table_respects_explicit_columns() {
+        let value = json!({
+            "results": [
+                {"id": 1, "name": "alpha", "status": "active", "extra": "foo"},
+                {"id": 2, "name": "beta", "status": "inactive", "extra": "bar"}
+            ]
+        });
+        let columns = vec!["name".to_string(), "extra".to_string()];
+        let table = format_table(&value, Some(&columns), 6);
+        assert!(table.contains("name"));
+        assert!(table.contains("extra"));
+        assert!(table.contains("alpha"));
+        assert!(table.contains("foo"));
+        // id should not be shown since explicit columns were provided
+        assert!(!table.contains("| id"));
+    }
+
+    #[test]
+    fn format_table_respects_max_columns() {
+        let value = json!({
+            "results": [
+                {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}
+            ]
+        });
+        let table = format_table(&value, None, 2);
+        // With max_columns=2, only 2 columns should be shown
+        let header_line = table.lines().nth(1).unwrap_or("");
+        let column_count = header_line.matches('|').count() - 1;
+        assert!(
+            column_count <= 2,
+            "expected at most 2 columns, got {}",
+            column_count
+        );
     }
 }

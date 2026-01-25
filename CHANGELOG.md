@@ -1,5 +1,20 @@
 # changelog
 
+## [0.2.0] - 2026-01-25
+
+### features
+- **config file support**: added `~/.config/nautobot-cli/config.toml` with named profiles
+- **token sources**: three-tier token resolution (token_command > token_env > token)
+- **config subcommand**: `nautobot-cli config {path,list,show,validate}` for profile management
+- **`--profile` flag**: select configuration profile (default: "default")
+- **`--columns` flag**: explicit column selection for table output (comma-separated)
+- **`--max-columns` flag**: limit auto-selected columns in table output (default: 6)
+- cli now at feature parity with netbox-cli for configuration and table output
+
+### changes
+- `--url` and `--token` are now optional when using config file or environment variables
+- `--output` format can be set in config file profile
+
 ## [0.1.1] - 2026-01-23
 
 ### features
@@ -24,7 +39,8 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/netbox.rs/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.1.1
-[0.1.0]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.1.0
-[0.0.1]: https://github.com/cyberwitchery/netbox.rs/releases/tag/v0.0.1
+[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.2.0
+[0.1.1]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.1.1
+[0.1.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.1.0
+[0.0.1]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.0.1
