@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    runs-on: medium
+    runs-on: big
     timeout-minutes: 15
     permissions:
       contents: read

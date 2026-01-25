@@ -11,7 +11,7 @@ on:
 
 jobs:
   coverage:
-    runs-on: medium
+    runs-on: big
     timeout-minutes: 10
     env:
       RUSTFLAGS: "-C debuginfo=0"
