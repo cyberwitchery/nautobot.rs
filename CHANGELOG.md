@@ -1,5 +1,10 @@
 # changelog
 
+## [unreleased]
+
+### release
+- add release SBOM generation and upload (CycloneDX)
+
 ## [0.2.0] - 2026-01-25
 
 ### features
