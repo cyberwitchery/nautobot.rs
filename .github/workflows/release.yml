@@ -51,11 +51,26 @@ jobs:
               --all-features)
           done
 
+      - name: collect and clean sbom files
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/nautobot-sbom
+
+          # Collect SBOMs emitted in /tmp.
+          find /tmp -maxdepth 1 -type f -name "sbom-${{ github.ref_name }}-*.cdx.json" \
+            -exec cp {} /tmp/nautobot-sbom/ \;
+
+          # Some cargo-cyclonedx invocations can emit next to manifests; collect then remove.
+          find "$GITHUB_WORKSPACE" -type f -name "sbom-${{ github.ref_name }}-*.cdx.json" \
+            -exec cp {} /tmp/nautobot-sbom/ \; \
+            -delete
+
       - name: upload sbom
         uses: actions/upload-artifact@v4
         with:
           name: sbom-${{ github.ref_name }}
-          path: "/tmp/sbom-${{ github.ref_name }}-*.cdx.json"
+          path: "/tmp/nautobot-sbom/sbom-${{ github.ref_name }}-*.cdx.json"
+          if-no-files-found: error
 
       - name: publish nautobot-openapi
         env:
