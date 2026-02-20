@@ -14,7 +14,7 @@ add to `Cargo.toml`:
 
 ```toml
 [dependencies]
-nautobot = "0.1.0"
+nautobot = "0.3"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
@@ -86,4 +86,6 @@ cargo run -p nautobot-cli -- extras tags create --json '{"name":"test","slug":"t
 - **special endpoints**: trace, available-ips, job execution, git sync, etc.
 - **pagination support** with async iterator
 - **configurable retry logic** and timeout handling
+- **tracing**: optional `tracing` feature for request lifecycle instrumentation
+- **hooks**: `HttpHooks` trait for observing and mutating requests/responses
 - **cli tool** for quick api interactions

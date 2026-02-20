@@ -9,6 +9,9 @@ mod pagination;
 mod query;
 mod resource;
 
+pub mod hooks;
+pub use hooks::HttpHooks;
+
 // api endpoint modules
 /// circuits and provider resources.
 pub mod circuits;

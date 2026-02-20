@@ -24,6 +24,7 @@ use serde_json::Value;
 use std::sync::Arc;
 use std::sync::OnceLock;
 use std::time::Duration;
+use std::time::Instant;
 use tokio::time::sleep;
 
 /// the main nautobot api client
@@ -58,28 +59,39 @@ impl Client {
     pub fn new(config: ClientConfig) -> Result<Self> {
         config.validate()?;
 
-        // Build default headers
-        let mut headers = HeaderMap::new();
-        headers.insert(
-            AUTHORIZATION,
-            HeaderValue::from_str(&format!("Token {}", config.token))
-                .map_err(|e| Error::Config(format!("Invalid token format: {}", e)))?,
-        );
-        headers.insert(
-            USER_AGENT,
-            HeaderValue::from_str(&config.user_agent)
-                .map_err(|e| Error::Config(format!("Invalid user agent: {}", e)))?,
-        );
-        headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
-        headers.extend(config.extra_headers.clone());
+        let http_client = if let Some(http_client) = config.http_client.clone() {
+            http_client
+        } else {
+            // Build default headers
+            let mut headers = HeaderMap::new();
+            headers.insert(
+                AUTHORIZATION,
+                HeaderValue::from_str(&format!("Token {}", config.token))
+                    .map_err(|e| Error::Config(format!("Invalid token format: {}", e)))?,
+            );
+            headers.insert(
+                USER_AGENT,
+                HeaderValue::from_str(&config.user_agent)
+                    .map_err(|e| Error::Config(format!("Invalid user agent: {}", e)))?,
+            );
+            headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
+            headers.extend(config.extra_headers.clone());
 
-        // Build HTTP client
-        let http_client = reqwest::Client::builder()
-            .default_headers(headers)
-            .timeout(config.timeout)
-            .danger_accept_invalid_certs(!config.verify_ssl)
-            .build()
-            .map_err(|e| Error::Config(format!("Failed to create HTTP client: {}", e)))?;
+            // Build HTTP client
+            let builder = reqwest::Client::builder()
+                .default_headers(headers)
+                .timeout(config.timeout)
+                .danger_accept_invalid_certs(!config.verify_ssl);
+            let builder = if let Some(customize) = &config.http_client_builder {
+                customize(builder)
+            } else {
+                builder
+            };
+
+            builder
+                .build()
+                .map_err(|e| Error::Config(format!("Failed to create HTTP client: {}", e)))?
+        };
 
         Ok(Self {
             config: Arc::new(config),
@@ -180,13 +192,21 @@ impl Client {
             return Ok(config.clone());
         }
 
-        let headers = self.config.extra_headers.clone();
-        let client = reqwest::Client::builder()
-            .default_headers(headers)
-            .timeout(self.config.timeout)
-            .danger_accept_invalid_certs(!self.config.verify_ssl)
-            .build()
-            .map_err(Error::from)?;
+        let client = if let Some(http_client) = self.config.http_client.clone() {
+            http_client
+        } else {
+            let headers = self.config.extra_headers.clone();
+            let builder = reqwest::Client::builder()
+                .default_headers(headers)
+                .timeout(self.config.timeout)
+                .danger_accept_invalid_certs(!self.config.verify_ssl);
+            let builder = if let Some(customize) = &self.config.http_client_builder {
+                customize(builder)
+            } else {
+                builder
+            };
+            builder.build().map_err(Error::from)?
+        };
 
         let config = nautobot_openapi::apis::configuration::Configuration {
             base_path: self
@@ -225,16 +245,53 @@ impl Client {
         T: DeserializeOwned,
         Q: Serialize,
     {
-        self.retry_loop(Method::GET, |_attempt| async move {
-            let mut url = self.config.build_url(path)?;
+        self.retry_loop(Method::GET, path, |attempt| async move {
+            #[cfg(not(feature = "tracing"))]
+            let _ = attempt;
+            let mut url = self.build_api_url(path)?;
             let query_string = serde_urlencoded::to_string(query)?;
             if !query_string.is_empty() {
                 url.set_query(Some(&query_string));
             }
-            let response = self.http_client.get(url).send().await;
+            #[cfg(feature = "tracing")]
+            tracing::debug!(
+                method = %Method::GET,
+                path,
+                attempt,
+                timeout_ms = self.config.timeout.as_millis() as u64,
+                verify_ssl = self.config.verify_ssl,
+                "sending request"
+            );
+            #[cfg(feature = "tracing")]
+            let started = Instant::now();
+            let response = self
+                .execute_request(&Method::GET, path, self.http_client.get(url))
+                .await;
             match response {
-                Ok(response) => self.handle_response(response).await,
-                Err(err) => Err(Error::from(err)),
+                Ok(response) => {
+                    #[cfg(feature = "tracing")]
+                    tracing::debug!(
+                        method = %Method::GET,
+                        path,
+                        attempt,
+                        status = response.status().as_u16(),
+                        duration_ms = started.elapsed().as_millis() as u64,
+                        "received response"
+                    );
+                    self.handle_response(response).await
+                }
+                Err(err) => {
+                    #[cfg(feature = "tracing")]
+                    tracing::warn!(
+                        method = %Method::GET,
+                        path,
+                        attempt,
+                        duration_ms = started.elapsed().as_millis() as u64,
+                        error = %err,
+                        "request send failed"
+                    );
+                    Err(err)
+                }
             }
         })
         .await
@@ -247,16 +304,52 @@ impl Client {
         path: &str,
         body: Option<&Value>,
     ) -> Result<Value> {
-        self.retry_loop(method.clone(), move |_attempt| {
+        self.retry_loop(method.clone(), path, move |attempt| {
+            #[cfg(not(feature = "tracing"))]
+            let _ = attempt;
             let method = method.clone();
             async move {
-                let url = self.config.build_url(path)?;
-                let mut request = self.http_client.request(method, url);
+                let url = self.build_api_url(path)?;
+                let mut request = self.http_client.request(method.clone(), url);
                 if let Some(body) = body {
                     request = request.json(body);
                 }
-                let response = request.send().await.map_err(Error::from)?;
+                #[cfg(feature = "tracing")]
+                tracing::debug!(
+                    method = %method,
+                    path,
+                    attempt,
+                    timeout_ms = self.config.timeout.as_millis() as u64,
+                    verify_ssl = self.config.verify_ssl,
+                    "sending raw request"
+                );
+                #[cfg(feature = "tracing")]
+                let started = Instant::now();
+                let response =
+                    self.execute_request(&method, path, request)
+                        .await
+                        .map_err(|err| {
+                            #[cfg(feature = "tracing")]
+                            tracing::warn!(
+                                method = %method,
+                                path,
+                                attempt,
+                                duration_ms = started.elapsed().as_millis() as u64,
+                                error = %err,
+                                "raw request send failed"
+                            );
+                            err
+                        })?;
                 let status = response.status();
+                #[cfg(feature = "tracing")]
+                tracing::debug!(
+                    method = %method,
+                    path,
+                    attempt,
+                    status = status.as_u16(),
+                    duration_ms = started.elapsed().as_millis() as u64,
+                    "received raw response"
+                );
                 if status.is_success() {
                     let body_text = response.text().await.map_err(Error::from)?;
                     if body_text.trim().is_empty() {
@@ -302,8 +395,39 @@ impl Client {
 
     /// make a delete request to the api
     pub async fn delete(&self, path: &str) -> Result<()> {
-        let url = self.config.build_url(path)?;
-        let response = self.http_client.delete(url).send().await?;
+        let url = self.build_api_url(path)?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %Method::DELETE,
+            path,
+            timeout_ms = self.config.timeout.as_millis() as u64,
+            verify_ssl = self.config.verify_ssl,
+            "sending request"
+        );
+        #[cfg(feature = "tracing")]
+        let started = Instant::now();
+        let response = self
+            .execute_request(&Method::DELETE, path, self.http_client.delete(url))
+            .await
+            .map_err(|err| {
+                #[cfg(feature = "tracing")]
+                tracing::warn!(
+                    method = %Method::DELETE,
+                    path,
+                    duration_ms = started.elapsed().as_millis() as u64,
+                    error = %err,
+                    "request send failed"
+                );
+                err
+            })?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %Method::DELETE,
+            path,
+            status = response.status().as_u16(),
+            duration_ms = started.elapsed().as_millis() as u64,
+            "received response"
+        );
 
         if response.status().is_success() || response.status() == StatusCode::NO_CONTENT {
             Ok(())
@@ -319,8 +443,43 @@ impl Client {
     where
         B: Serialize + ?Sized,
     {
-        let url = self.config.build_url(path)?;
-        let response = self.http_client.delete(url).json(body).send().await?;
+        let url = self.build_api_url(path)?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %Method::DELETE,
+            path,
+            timeout_ms = self.config.timeout.as_millis() as u64,
+            verify_ssl = self.config.verify_ssl,
+            "sending request with body"
+        );
+        #[cfg(feature = "tracing")]
+        let started = Instant::now();
+        let response = self
+            .execute_request(
+                &Method::DELETE,
+                path,
+                self.http_client.delete(url).json(body),
+            )
+            .await
+            .map_err(|err| {
+                #[cfg(feature = "tracing")]
+                tracing::warn!(
+                    method = %Method::DELETE,
+                    path,
+                    duration_ms = started.elapsed().as_millis() as u64,
+                    error = %err,
+                    "request send failed"
+                );
+                err
+            })?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %Method::DELETE,
+            path,
+            status = response.status().as_u16(),
+            duration_ms = started.elapsed().as_millis() as u64,
+            "received response"
+        );
 
         if response.status().is_success() || response.status() == StatusCode::NO_CONTENT {
             Ok(())
@@ -350,31 +509,73 @@ impl Client {
         T: DeserializeOwned,
         B: Serialize + ?Sized,
     {
-        self.retry_loop(method.clone(), move |_attempt| {
+        self.retry_loop(method.clone(), path, move |attempt| {
             let method = method.clone();
-            async move { self.request_once(method, path, body).await }
+            async move { self.request_once(method, path, body, attempt).await }
         })
         .await
     }
 
-    async fn request_once<T, B>(&self, method: Method, path: &str, body: Option<&B>) -> Result<T>
+    #[cfg_attr(not(feature = "tracing"), allow(unused_variables))]
+    async fn request_once<T, B>(
+        &self,
+        method: Method,
+        path: &str,
+        body: Option<&B>,
+        attempt: u32,
+    ) -> Result<T>
     where
         T: DeserializeOwned,
         B: Serialize + ?Sized,
     {
-        let url = self.config.build_url(path)?;
+        let url = self.build_api_url(path)?;
 
-        let mut request = self.http_client.request(method, url);
+        let mut request = self.http_client.request(method.clone(), url);
 
         if let Some(body) = body {
             request = request.json(body);
         }
 
-        let response = request.send().await.map_err(Error::from)?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %method,
+            path,
+            attempt,
+            timeout_ms = self.config.timeout.as_millis() as u64,
+            verify_ssl = self.config.verify_ssl,
+            "sending request"
+        );
+        #[cfg(feature = "tracing")]
+        let started = Instant::now();
+        let response = self
+            .execute_request(&method, path, request)
+            .await
+            .map_err(|err| {
+                #[cfg(feature = "tracing")]
+                tracing::warn!(
+                    method = %method,
+                    path,
+                    attempt,
+                    duration_ms = started.elapsed().as_millis() as u64,
+                    error = %err,
+                    "request send failed"
+                );
+                err
+            })?;
+        #[cfg(feature = "tracing")]
+        tracing::debug!(
+            method = %method,
+            path,
+            attempt,
+            status = response.status().as_u16(),
+            duration_ms = started.elapsed().as_millis() as u64,
+            "received response"
+        );
         self.handle_response(response).await
     }
 
-    async fn retry_loop<T, F, Fut>(&self, method: Method, mut operation: F) -> Result<T>
+    #[cfg_attr(not(feature = "tracing"), allow(unused_variables))]
+    async fn retry_loop<T, F, Fut>(&self, method: Method, path: &str, mut operation: F) -> Result<T>
     where
         F: FnMut(u32) -> Fut,
         Fut: std::future::Future<Output = Result<T>>,
@@ -385,18 +586,39 @@ impl Client {
             match result {
                 Ok(value) => return Ok(value),
                 Err(err) => {
-                    if !Self::should_retry(&err, method.clone(), attempts, self.config.max_retries)
-                    {
+                    #[cfg(feature = "tracing")]
+                    Self::trace_error(&method, path, attempts, &err);
+
+                    let should_retry =
+                        Self::should_retry(&err, &method, attempts, self.config.max_retries);
+                    if !should_retry {
+                        #[cfg(feature = "tracing")]
+                        tracing::debug!(
+                            method = %method,
+                            path,
+                            attempt = attempts,
+                            max_retries = self.config.max_retries,
+                            "retry skipped"
+                        );
                         return Err(err);
                     }
                     attempts += 1;
-                    sleep(Self::retry_delay(attempts)).await;
+                    let delay = Self::retry_delay(attempts);
+                    #[cfg(feature = "tracing")]
+                    tracing::debug!(
+                        method = %method,
+                        path,
+                        attempt = attempts,
+                        backoff_ms = delay.as_millis() as u64,
+                        "retrying request after backoff"
+                    );
+                    sleep(delay).await;
                 }
             }
         }
     }
 
-    fn should_retry(err: &Error, method: Method, attempts: u32, max_retries: u32) -> bool {
+    fn should_retry(err: &Error, method: &Method, attempts: u32, max_retries: u32) -> bool {
         if attempts >= max_retries {
             return false;
         }
@@ -407,6 +629,106 @@ impl Client {
             Error::Http(inner) => inner.is_timeout() || inner.is_connect(),
             Error::ApiError { status, .. } => *status == 429 || *status >= 500,
             _ => false,
+        }
+    }
+
+    fn build_api_url(&self, path: &str) -> Result<url::Url> {
+        #[cfg(feature = "tracing")]
+        tracing::trace!(path, "building request url");
+        let result = self.config.build_url(path);
+        #[cfg(feature = "tracing")]
+        match &result {
+            Ok(url) => tracing::trace!(path, url = %url, "built request url"),
+            Err(err) => tracing::warn!(path, error = %err, "failed to build request url"),
+        }
+        result
+    }
+
+    fn apply_request_hooks(
+        &self,
+        method: &Method,
+        path: &str,
+        request: &mut reqwest::Request,
+    ) -> Result<()> {
+        if let Some(hooks) = &self.config.http_hooks {
+            hooks.on_request(method, path, request)?;
+        }
+        Ok(())
+    }
+
+    fn emit_response_hooks(
+        &self,
+        method: &Method,
+        path: &str,
+        status: StatusCode,
+        duration: Duration,
+    ) {
+        if let Some(hooks) = &self.config.http_hooks {
+            hooks.on_response(method, path, status, duration);
+        }
+    }
+
+    fn emit_error_hooks(&self, method: &Method, path: &str, error: &Error, duration: Duration) {
+        if let Some(hooks) = &self.config.http_hooks {
+            hooks.on_error(method, path, error, duration);
+        }
+    }
+
+    async fn execute_request(
+        &self,
+        method: &Method,
+        path: &str,
+        request: reqwest::RequestBuilder,
+    ) -> Result<reqwest::Response> {
+        let mut request = request.build().map_err(Error::from)?;
+        self.apply_request_hooks(method, path, &mut request)?;
+
+        let started = Instant::now();
+        let response = self.http_client.execute(request).await;
+        let duration = started.elapsed();
+
+        match response {
+            Ok(response) => {
+                self.emit_response_hooks(method, path, response.status(), duration);
+                Ok(response)
+            }
+            Err(err) => {
+                let err = Error::from(err);
+                self.emit_error_hooks(method, path, &err, duration);
+                Err(err)
+            }
+        }
+    }
+
+    #[cfg(feature = "tracing")]
+    fn trace_error(method: &Method, path: &str, attempt: u32, err: &Error) {
+        match err {
+            Error::ApiError {
+                status, message, ..
+            } => tracing::warn!(
+                method = %method,
+                path,
+                attempt,
+                status = *status,
+                message,
+                "request failed with api error"
+            ),
+            Error::Http(inner) => tracing::warn!(
+                method = %method,
+                path,
+                attempt,
+                timeout = inner.is_timeout(),
+                connect = inner.is_connect(),
+                error = %inner,
+                "request failed with transport error"
+            ),
+            other => tracing::warn!(
+                method = %method,
+                path,
+                attempt,
+                error = %other,
+                "request failed"
+            ),
         }
     }
 
@@ -464,9 +786,11 @@ impl std::fmt::Debug for Client {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::HttpHooks;
     use httpmock::prelude::*;
     use reqwest::header::{HeaderName, HeaderValue};
     use serde_json::json;
+    use std::sync::{Arc, Mutex};
 
     #[test]
     fn test_client_creation() {
@@ -508,9 +832,9 @@ mod tests {
             message: "server".to_string(),
             body: "".to_string(),
         };
-        assert!(Client::should_retry(&err, Method::GET, 0, 3));
-        assert!(!Client::should_retry(&err, Method::POST, 0, 3));
-        assert!(!Client::should_retry(&err, Method::GET, 3, 3));
+        assert!(Client::should_retry(&err, &Method::GET, 0, 3));
+        assert!(!Client::should_retry(&err, &Method::POST, 0, 3));
+        assert!(!Client::should_retry(&err, &Method::GET, 3, 3));
     }
 
     #[test]
@@ -530,9 +854,9 @@ mod tests {
             message: "missing".to_string(),
             body: "".to_string(),
         };
-        assert!(Client::should_retry(&err_429, Method::GET, 0, 1));
-        assert!(Client::should_retry(&err_500, Method::GET, 0, 1));
-        assert!(!Client::should_retry(&err_404, Method::GET, 0, 1));
+        assert!(Client::should_retry(&err_429, &Method::GET, 0, 1));
+        assert!(Client::should_retry(&err_500, &Method::GET, 0, 1));
+        assert!(!Client::should_retry(&err_404, &Method::GET, 0, 1));
     }
 
     #[test]
@@ -606,5 +930,125 @@ mod tests {
             .unwrap();
         assert_eq!(value, json!({ "ready": true }));
         mock.assert();
+    }
+
+    struct AddHeaderHook;
+
+    impl HttpHooks for AddHeaderHook {
+        fn on_request(
+            &self,
+            _method: &Method,
+            _path: &str,
+            request: &mut reqwest::Request,
+        ) -> Result<()> {
+            request.headers_mut().insert(
+                HeaderName::from_static("x-hook"),
+                HeaderValue::from_static("enabled"),
+            );
+            Ok(())
+        }
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn request_hooks_can_modify_request() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/status/")
+                .header("x-hook", "enabled");
+            then.status(200).json_body(json!({ "ready": true }));
+        });
+
+        let config =
+            ClientConfig::new(server.base_url(), "test-token").with_http_hooks(AddHeaderHook);
+        let client = Client::new(config).unwrap();
+        let value = client
+            .request_raw(Method::GET, "status/", None)
+            .await
+            .unwrap();
+        assert_eq!(value, json!({ "ready": true }));
+        mock.assert();
+    }
+
+    struct ResponseCaptureHook {
+        statuses: Arc<Mutex<Vec<u16>>>,
+    }
+
+    impl HttpHooks for ResponseCaptureHook {
+        fn on_response(
+            &self,
+            _method: &Method,
+            _path: &str,
+            status: StatusCode,
+            _duration: Duration,
+        ) {
+            self.statuses.lock().unwrap().push(status.as_u16());
+        }
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn request_hooks_receive_responses() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET).path("/api/status/");
+            then.status(200).json_body(json!({ "ready": true }));
+        });
+
+        let statuses = Arc::new(Mutex::new(Vec::new()));
+        let hook = ResponseCaptureHook {
+            statuses: statuses.clone(),
+        };
+        let config = ClientConfig::new(server.base_url(), "test-token").with_http_hooks(hook);
+        let client = Client::new(config).unwrap();
+        let _ = client
+            .request_raw(Method::GET, "status/", None)
+            .await
+            .unwrap();
+
+        let captured = statuses.lock().unwrap().clone();
+        assert_eq!(captured, vec![200]);
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn prebuilt_http_client_is_used() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/status/")
+                .header("x-prebuilt", "yes");
+            then.status(200).json_body(json!({ "ready": true }));
+        });
+
+        let mut headers = HeaderMap::new();
+        headers.insert(
+            HeaderName::from_static("x-prebuilt"),
+            HeaderValue::from_static("yes"),
+        );
+        let prebuilt = reqwest::Client::builder()
+            .default_headers(headers)
+            .build()
+            .unwrap();
+
+        let config =
+            ClientConfig::new(server.base_url(), "test-token").with_http_client(prebuilt);
+        let client = Client::new(config).unwrap();
+        let value = client
+            .request_raw(Method::GET, "status/", None)
+            .await
+            .unwrap();
+        assert_eq!(value, json!({ "ready": true }));
+        mock.assert();
+    }
+
+    #[cfg(feature = "tracing")]
+    #[test]
+    fn tracing_feature_client_creation() {
+        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
+        let client = Client::new(config);
+        assert!(client.is_ok());
     }
 }

@@ -2,8 +2,18 @@
 
 ## [unreleased]
 
+## [0.3.0] - 2026-02-20
+
 ### release
 - add release SBOM generation and upload (CycloneDX)
+
+### client
+- add optional `tracing` feature for request lifecycle instrumentation (URL build, send/response timing, retries, and error classification)
+- add configurable HTTP extension points: injected prebuilt reqwest client, client-builder callback, and request/response hooks (`HttpHooks`)
+- add `query_typed<T>` on `GraphqlApi` to deserialize graphql `data` into a typed struct directly
+
+### tests
+- add golden output test harness for CLI (`cargo test -p nautobot-cli --test golden`)
 
 ## [0.2.0] - 2026-01-25
 
@@ -44,7 +54,8 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.2.0
 [0.1.1]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.1.1
 [0.1.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.1.0

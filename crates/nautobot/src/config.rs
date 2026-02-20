@@ -1,7 +1,9 @@
 //! client configuration
 
 use crate::error::{Error, Result};
+use crate::hooks::HttpHooks;
 use reqwest::header::{HeaderMap, HeaderName, HeaderValue};
+use std::sync::Arc;
 use std::time::Duration;
 use url::Url;
 
@@ -34,6 +36,16 @@ pub struct ClientConfig {
 
     /// additional headers to send with every request
     pub(crate) extra_headers: HeaderMap,
+
+    /// prebuilt http client (takes precedence over http_client_builder)
+    pub(crate) http_client: Option<reqwest::Client>,
+
+    /// callback to customize the http client builder
+    pub(crate) http_client_builder:
+        Option<Arc<dyn Fn(reqwest::ClientBuilder) -> reqwest::ClientBuilder + Send + Sync>>,
+
+    /// lifecycle hooks for request/response observation
+    pub(crate) http_hooks: Option<Arc<dyn HttpHooks>>,
 }
 
 impl ClientConfig {
@@ -75,6 +87,9 @@ impl ClientConfig {
             user_agent: format!("nautobot-rs/{} (Rust)", env!("CARGO_PKG_VERSION")),
             verify_ssl: true,
             extra_headers: HeaderMap::new(),
+            http_client: None,
+            http_client_builder: None,
+            http_hooks: None,
         }
     }
 
@@ -127,6 +142,35 @@ impl ClientConfig {
         &self.extra_headers
     }
 
+    /// inject a prebuilt http client.
+    ///
+    /// this takes precedence over `with_http_client_builder`.
+    /// the prebuilt client is responsible for auth headers and tls settings.
+    pub fn with_http_client(mut self, http_client: reqwest::Client) -> Self {
+        self.http_client = Some(http_client);
+        self
+    }
+
+    /// customize the http client builder before the client is created.
+    ///
+    /// this is ignored if `with_http_client` is also used.
+    pub fn with_http_client_builder<F>(mut self, builder: F) -> Self
+    where
+        F: Fn(reqwest::ClientBuilder) -> reqwest::ClientBuilder + Send + Sync + 'static,
+    {
+        self.http_client_builder = Some(Arc::new(builder));
+        self
+    }
+
+    /// attach lifecycle hooks for observing request/response events.
+    pub fn with_http_hooks<H>(mut self, hooks: H) -> Self
+    where
+        H: HttpHooks + 'static,
+    {
+        self.http_hooks = Some(Arc::new(hooks));
+        self
+    }
+
     /// validate the configuration
     pub(crate) fn validate(&self) -> Result<()> {
         if !self.base_url_valid {
@@ -172,6 +216,9 @@ impl std::fmt::Debug for ClientConfig {
             .field("user_agent", &self.user_agent)
             .field("verify_ssl", &self.verify_ssl)
             .field("extra_headers", &self.extra_headers.len())
+            .field("http_client", &self.http_client.is_some())
+            .field("http_client_builder", &self.http_client_builder.is_some())
+            .field("http_hooks", &self.http_hooks.is_some())
             .field("token", &"<redacted>")
             .finish()
     }

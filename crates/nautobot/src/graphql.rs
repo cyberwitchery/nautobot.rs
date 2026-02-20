@@ -17,6 +17,7 @@
 use crate::Client;
 use crate::error::{Error, Result};
 use serde::Serialize;
+use serde::de::DeserializeOwned;
 use serde_json::Value;
 use url::Url;
 
@@ -77,6 +78,15 @@ impl GraphqlApi {
         Ok(value.get("data").cloned().unwrap_or(value))
     }
 
+    /// run a graphql query and deserialize the `data` field into `T`.
+    pub async fn query_typed<T>(&self, query: &str, variables: Option<Value>) -> Result<T>
+    where
+        T: DeserializeOwned,
+    {
+        let data = self.query(query, variables).await?;
+        serde_json::from_value(data).map_err(Error::from)
+    }
+
     fn graphql_url(&self) -> Result<Url> {
         let base = self.client.config().base_url.as_str().trim_end_matches('/');
         let url = format!("{}/graphql/", base);
@@ -126,6 +136,39 @@ mod tests {
 
         let data = api.query("{ devices { name } }", None).await.unwrap();
         assert_eq!(data["devices"], json!([]));
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn graphql_query_typed_deserializes() {
+        use serde::Deserialize;
+
+        #[derive(Deserialize, Debug, PartialEq)]
+        struct Devices {
+            devices: Vec<String>,
+        }
+
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let api = GraphqlApi::new(client);
+
+        server.mock(|when, then| {
+            when.method(POST).path("/graphql/");
+            then.status(200)
+                .json_body(json!({ "data": { "devices": ["router-1", "router-2"] } }));
+        });
+
+        let result: Devices = api
+            .query_typed("{ devices { name } }", None)
+            .await
+            .unwrap();
+        assert_eq!(
+            result,
+            Devices {
+                devices: vec!["router-1".to_string(), "router-2".to_string()]
+            }
+        );
     }
 
     #[cfg_attr(miri, ignore)]

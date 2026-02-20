@@ -13,8 +13,15 @@ add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-nautobot = "0.1.1"
+nautobot = "0.3"
 tokio = { version = "1.0", features = ["full"] }
+```
+
+optional tracing instrumentation:
+
+```toml
+[dependencies]
+nautobot = { version = "0.3", features = ["tracing"] }
 ```
 
 ## usage
@@ -65,3 +72,6 @@ let response = client.extras().job_run("job-uuid", &JobInputRequest::new()).awai
 - **pagination**: built-in support for handling paginated responses.
 - **async**: built on `tokio` and `reqwest` for non-blocking i/o.
 - **openapi**: leverages `nautobot-openapi` for comprehensive schema coverage.
+- **tracing**: optional `tracing` feature for request lifecycle instrumentation.
+- **hooks**: `HttpHooks` trait for observing and mutating requests/responses.
+- **graphql**: `query_typed<T>` for deserializing graphql responses into typed structs.

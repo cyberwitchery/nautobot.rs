@@ -12,9 +12,9 @@
 - integration harness + golden outputs for cli
 - cli `--output table` column selection and max column count override
 
-## 0.3.0 (library extensibility + observability)
+## 0.3.0 (library extensibility + observability) ✓
 
 - optional tracing instrumentation
-- request middleware/hooks
-- typed graphql response helper
-- per-request retry/backoff tuning
+- request middleware/hooks (`HttpHooks`)
+- typed graphql response helper (`query_typed<T>`)
+- cli golden test harness
