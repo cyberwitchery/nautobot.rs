@@ -60,6 +60,7 @@ jobs:
           NAUTOBOT_SECRET_KEY: thisisaverylongfixedsecretkeyforciandtestingonly123
           NAUTOBOT_CREATE_SUPERUSER: "true"
           NAUTOBOT_SUPERUSER_API_TOKEN: ci-superuser-api-token
+          NAUTOBOT_SUPERUSER_PASSWORD: ci-superuser-password
           NAUTOBOT_ALLOWED_HOSTS: "*"
         ports:
           - 8000:8080
