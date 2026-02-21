@@ -75,6 +75,7 @@ docs/BulkWritableInterfaceRedundancyGroupRequest.md
 docs/BulkWritableInterfaceRequest.md
 docs/BulkWritableInterfaceRequestParentInterface.md
 docs/BulkWritableInterfaceTemplateRequest.md
+docs/BulkWritableInterfaceTemplateRequestDuplex.md
 docs/BulkWritableInterfaceVdcAssignmentRequest.md
 docs/BulkWritableInventoryItemRequest.md
 docs/BulkWritableInventoryItemRequestSoftwareVersion.md
@@ -260,6 +261,7 @@ docs/DeviceType.md
 docs/DeviceTypeSubdeviceRole.md
 docs/DeviceTypeToSoftwareImageFile.md
 docs/DeviceTypeToSoftwareImageFileRequest.md
+docs/DuplexEnum.md
 docs/DynamicGroup.md
 docs/DynamicGroupAssociatedObject.md
 docs/DynamicGroupMembership.md
@@ -302,6 +304,7 @@ docs/ImageAttachment.md
 docs/ImageAttachmentRequest.md
 docs/Interface.md
 docs/InterfaceConnection.md
+docs/InterfaceDuplex.md
 docs/InterfaceMode.md
 docs/InterfaceModeChoices.md
 docs/InterfaceRedundancyGroup.md
@@ -357,7 +360,6 @@ docs/MetadataChoice.md
 docs/MetadataChoiceRequest.md
 docs/MetadataType.md
 docs/MetadataTypeRequest.md
-docs/MetricsApi.md
 docs/Module.md
 docs/ModuleBay.md
 docs/ModuleBayRequest.md
@@ -614,6 +616,7 @@ docs/PaginatedServiceList.md
 docs/PaginatedSoftwareImageFileList.md
 docs/PaginatedSoftwareVersionList.md
 docs/PaginatedStaticGroupAssociationList.md
+docs/PaginatedStatsList.md
 docs/PaginatedStatusList.md
 docs/PaginatedSupportedDataRateList.md
 docs/PaginatedTagList.md
@@ -996,6 +999,7 @@ docs/SoftwareVersionRequest.md
 docs/StandardEnum.md
 docs/StaticGroupAssociation.md
 docs/StaticGroupAssociationRequest.md
+docs/Stats.md
 docs/Status.md
 docs/StatusApi.md
 docs/StatusRequest.md
@@ -1089,7 +1093,6 @@ src/apis/dcim_api.rs
 src/apis/extras_api.rs
 src/apis/graphql_api.rs
 src/apis/ipam_api.rs
-src/apis/metrics_api.rs
 src/apis/mod.rs
 src/apis/status_api.rs
 src/apis/swagger_api.rs
@@ -1174,6 +1177,7 @@ src/models/bulk_writable_interface_redundancy_group_request.rs
 src/models/bulk_writable_interface_request.rs
 src/models/bulk_writable_interface_request_parent_interface.rs
 src/models/bulk_writable_interface_template_request.rs
+src/models/bulk_writable_interface_template_request_duplex.rs
 src/models/bulk_writable_interface_vdc_assignment_request.rs
 src/models/bulk_writable_inventory_item_request.rs
 src/models/bulk_writable_inventory_item_request_software_version.rs
@@ -1355,6 +1359,7 @@ src/models/device_type.rs
 src/models/device_type_subdevice_role.rs
 src/models/device_type_to_software_image_file.rs
 src/models/device_type_to_software_image_file_request.rs
+src/models/duplex_enum.rs
 src/models/dynamic_group.rs
 src/models/dynamic_group_associated_object.rs
 src/models/dynamic_group_membership.rs
@@ -1395,6 +1400,7 @@ src/models/image_attachment.rs
 src/models/image_attachment_request.rs
 src/models/interface.rs
 src/models/interface_connection.rs
+src/models/interface_duplex.rs
 src/models/interface_mode.rs
 src/models/interface_mode_choices.rs
 src/models/interface_redundancy_group.rs
@@ -1706,6 +1712,7 @@ src/models/paginated_service_list.rs
 src/models/paginated_software_image_file_list.rs
 src/models/paginated_software_version_list.rs
 src/models/paginated_static_group_association_list.rs
+src/models/paginated_stats_list.rs
 src/models/paginated_status_list.rs
 src/models/paginated_supported_data_rate_list.rs
 src/models/paginated_tag_list.rs
@@ -2088,6 +2095,7 @@ src/models/software_version_request.rs
 src/models/standard_enum.rs
 src/models/static_group_association.rs
 src/models/static_group_association_request.rs
+src/models/stats.rs
 src/models/status.rs
 src/models/status_request.rs
 src/models/status_retrieve_200_response.rs

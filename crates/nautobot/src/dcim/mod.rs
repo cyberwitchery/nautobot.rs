@@ -72,6 +72,8 @@ pub type InventoryItem = crate::models::InventoryItem;
 pub type LocationType = crate::models::LocationType;
 /// Location model.
 pub type Location = crate::models::Location;
+/// Stats model (location statistics).
+pub type Stats = crate::models::Stats;
 /// Manufacturer model.
 pub type Manufacturer = crate::models::Manufacturer;
 /// ModuleBayTemplate model.
@@ -464,6 +466,18 @@ impl DcimApi {
         Resource::new(self.client.clone(), "dcim/locations/")
     }
 
+    /// retrieve statistics for counts of related models associated to a location and its descendants.
+    pub async fn location_stats(
+        &self,
+        id: &str,
+        query: Option<QueryBuilder>,
+    ) -> Result<Page<Stats>> {
+        let query = query.unwrap_or_default();
+        self.client
+            .get_with_params(&format!("dcim/locations/{}/stats/", id), &query)
+            .await
+    }
+
     /// returns the manufacturers resource.
     pub fn manufacturers(&self) -> ManufacturersApi {
         Resource::new(self.client.clone(), "dcim/manufacturers/")
@@ -843,6 +857,22 @@ mod tests {
             when.method(GET).path("/api/dcim/racks/1/elevation/");
             then.status(200).json_body(list_response.clone());
         });
+        server.mock(|when, then| {
+            when.method(GET).path("/api/dcim/locations/1/stats/");
+            then.status(200).json_body(json!({
+                "count": 1,
+                "next": null,
+                "previous": null,
+                "results": [
+                    {
+                        "title": "Devices",
+                        "count": 5,
+                        "ui_url": "https://nautobot.example.com/dcim/devices/?location=1",
+                        "api_url": "https://nautobot.example.com/api/dcim/devices/?location=1"
+                    }
+                ]
+            }));
+        });
 
         let napalm = api.device_napalm("1").await.unwrap();
         assert!(napalm.method.is_empty());
@@ -855,5 +885,10 @@ mod tests {
 
         let elevation = api.rack_elevation("1", None).await.unwrap();
         assert!(elevation.results.is_empty());
+
+        let stats = api.location_stats("1", None).await.unwrap();
+        assert_eq!(stats.count, 1);
+        assert_eq!(stats.results[0].title, "Devices");
+        assert_eq!(stats.results[0].count, 5);
     }
 }

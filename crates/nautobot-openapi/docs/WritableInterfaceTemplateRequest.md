@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **description** | Option<**String**> |  | [optional]
 **r#type** | [**crate::models::InterfaceTypeChoices**](InterfaceTypeChoices.md) |  | 
 **mgmt_only** | Option<**bool**> |  | [optional]
+**speed** | Option<**i32**> |  | [optional]
+**duplex** | Option<[**crate::models::BulkWritableInterfaceTemplateRequestDuplex**](BulkWritableInterfaceTemplateRequest_duplex.md)> |  | [optional]
 **device_type** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
 **module_type** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]

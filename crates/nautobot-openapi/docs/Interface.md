@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **mode** | Option<[**crate::models::InterfaceMode**](Interface_mode.md)> |  | [optional]
 **mac_address** | Option<**String**> |  | [optional]
 **ip_address_count** | Option<**i32**> |  | [optional][readonly]
+**speed** | Option<**i32**> |  | [optional]
+**duplex** | Option<[**crate::models::InterfaceDuplex**](Interface_duplex.md)> |  | [optional]
 **name** | **String** |  | 
 **label** | Option<**String**> | Physical label | [optional]
 **description** | Option<**String**> |  | [optional]

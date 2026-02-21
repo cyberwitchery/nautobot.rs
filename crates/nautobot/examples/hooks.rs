@@ -8,8 +8,8 @@
 use nautobot::{Client, ClientConfig, HttpHooks};
 use reqwest::{Method, Request, StatusCode};
 use std::env;
-use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::Duration;
 
 struct MetricsHook {
@@ -25,19 +25,14 @@ impl HttpHooks for MetricsHook {
         request: &mut Request,
     ) -> nautobot::Result<()> {
         self.request_count.fetch_add(1, Ordering::Relaxed);
-        request
-            .headers_mut()
-            .insert("x-client-id", "hooks-example".parse().expect("valid header"));
+        request.headers_mut().insert(
+            "x-client-id",
+            "hooks-example".parse().expect("valid header"),
+        );
         Ok(())
     }
 
-    fn on_response(
-        &self,
-        method: &Method,
-        path: &str,
-        status: StatusCode,
-        duration: Duration,
-    ) {
+    fn on_response(&self, method: &Method, path: &str, status: StatusCode, duration: Duration) {
         let ms = duration.as_millis() as u64;
         self.total_ms.fetch_add(ms, Ordering::Relaxed);
         println!("{method} {path} -> {status} ({ms}ms)");

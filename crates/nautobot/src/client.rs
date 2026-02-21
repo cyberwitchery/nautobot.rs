@@ -1033,8 +1033,7 @@ mod tests {
             .build()
             .unwrap();
 
-        let config =
-            ClientConfig::new(server.base_url(), "test-token").with_http_client(prebuilt);
+        let config = ClientConfig::new(server.base_url(), "test-token").with_http_client(prebuilt);
         let client = Client::new(config).unwrap();
         let value = client
             .request_raw(Method::GET, "status/", None)
@@ -1049,13 +1048,7 @@ mod tests {
     }
 
     impl HttpHooks for ErrorCaptureHook {
-        fn on_error(
-            &self,
-            _method: &Method,
-            _path: &str,
-            error: &Error,
-            _duration: Duration,
-        ) {
+        fn on_error(&self, _method: &Method, _path: &str, error: &Error, _duration: Duration) {
             self.errors.lock().unwrap().push(error.to_string());
         }
     }

@@ -321,7 +321,9 @@ Method | HTTP request | Description
 [**extras_saved_views_retrieve**](ExtrasApi.md#extras_saved_views_retrieve) | **GET** /extras/saved-views/{id}/ | 
 [**extras_saved_views_update**](ExtrasApi.md#extras_saved_views_update) | **PUT** /extras/saved-views/{id}/ | 
 [**extras_scheduled_jobs_approve_create**](ExtrasApi.md#extras_scheduled_jobs_approve_create) | **POST** /extras/scheduled-jobs/{id}/approve/ | 
+[**extras_scheduled_jobs_bulk_destroy**](ExtrasApi.md#extras_scheduled_jobs_bulk_destroy) | **DELETE** /extras/scheduled-jobs/ | 
 [**extras_scheduled_jobs_deny_create**](ExtrasApi.md#extras_scheduled_jobs_deny_create) | **POST** /extras/scheduled-jobs/{id}/deny/ | 
+[**extras_scheduled_jobs_destroy**](ExtrasApi.md#extras_scheduled_jobs_destroy) | **DELETE** /extras/scheduled-jobs/{id}/ | 
 [**extras_scheduled_jobs_dry_run_create**](ExtrasApi.md#extras_scheduled_jobs_dry_run_create) | **POST** /extras/scheduled-jobs/{id}/dry-run/ | 
 [**extras_scheduled_jobs_list**](ExtrasApi.md#extras_scheduled_jobs_list) | **GET** /extras/scheduled-jobs/ | 
 [**extras_scheduled_jobs_retrieve**](ExtrasApi.md#extras_scheduled_jobs_retrieve) | **GET** /extras/scheduled-jobs/{id}/ | 
@@ -12433,6 +12435,37 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## extras_scheduled_jobs_bulk_destroy
+
+> extras_scheduled_jobs_bulk_destroy(bulk_operation_request, format)
+
+
+Retrieve a list of scheduled jobs
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## extras_scheduled_jobs_deny_create
 
 > crate::models::ScheduledJob extras_scheduled_jobs_deny_create(id, format)
@@ -12460,6 +12493,37 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_scheduled_jobs_destroy
+
+> extras_scheduled_jobs_destroy(id, format)
+
+
+Retrieve a list of scheduled jobs
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this scheduled job. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -99,7 +99,6 @@ pub mod dcim_api;
 pub mod extras_api;
 pub mod graphql_api;
 pub mod ipam_api;
-pub mod metrics_api;
 pub mod status_api;
 pub mod swagger_api;
 pub mod swagger_json_api;

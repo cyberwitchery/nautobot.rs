@@ -13,7 +13,7 @@ set -euo pipefail
 NAUTOBOT_URL="${1:-${NAUTOBOT_URL:-http://localhost:8080}}"
 SCHEMA_FILE="scripts/openapi-schema.json"
 
-echo "Fetching OpenAPI schema from ${NAUTOBOT_URL}/api/docs/..."
+echo "Fetching OpenAPI schema from ${NAUTOBOT_URL}/api/swagger.json..."
 
 # Construct curl command with optional auth header
 CURL_CMD="curl -fsSL"
@@ -22,7 +22,7 @@ if [ -n "${NAUTOBOT_TOKEN:-}" ]; then
 fi
 
 # Fetch and pretty-print the schema
-eval "$CURL_CMD '${NAUTOBOT_URL}/api/docs/?format=openapi'" | \
+eval "$CURL_CMD '${NAUTOBOT_URL}/api/swagger.json'" | \
     jq '.' > "${SCHEMA_FILE}"
 
 echo "Schema saved to ${SCHEMA_FILE}"

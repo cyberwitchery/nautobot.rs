@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API Documentation",
-    "version": "2.4.20 (2.4)",
+    "version": "2.4.27 (2.4)",
     "description": "Source of truth and network automation platform",
     "license": {
       "name": "Apache v2 License"
@@ -51877,6 +51877,174 @@
           },
           {
             "in": "query",
+            "name": "duplex",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__ic",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__ie",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__iew",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__ire",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__isw",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__nic",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__nie",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__niew",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__nire",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__nisw",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__nre",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "duplex__re",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
             "name": "dynamic_groups",
             "schema": {
               "type": "array",
@@ -53028,6 +53196,85 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "speed",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "speed__gt",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "speed__gte",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "speed__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "speed__lt",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "speed__lte",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "speed__n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "explode": true,
+            "style": "form"
           },
           {
             "in": "query",
@@ -62085,6 +62332,103 @@
               "text/csv": {
                 "schema": {
                   "$ref": "#/components/schemas/Note"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/dcim/locations/{id}/stats/": {
+      "get": {
+        "operationId": "dcim_locations_stats_list",
+        "description": "Retrieve statistics for counts of related models associated to this Location and its descendants.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ]
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A UUID string identifying this location.",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depth",
+            "required": false,
+            "description": "Serializer Depth",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10,
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "exclude_m2m",
+            "required": false,
+            "description": "Exclude many-to-many fields from the response",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "tags": [
+          "dcim"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "tokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedStatsList"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedStatsList"
                 }
               }
             },
@@ -149784,6 +150128,60 @@
             "description": ""
           }
         }
+      },
+      "delete": {
+        "operationId": "extras_scheduled_jobs_bulk_destroy",
+        "description": "Retrieve a list of scheduled jobs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "extras"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "tokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BulkOperationRequest"
+                }
+              }
+            },
+            "text/csv": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BulkOperationRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        }
       }
     },
     "/extras/scheduled-jobs/{id}/": {
@@ -149861,6 +150259,49 @@
               }
             },
             "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "extras_scheduled_jobs_destroy",
+        "description": "Retrieve a list of scheduled jobs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ]
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A UUID string identifying this scheduled job.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "extras"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "tokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
           }
         }
       }
@@ -207445,29 +207886,6 @@
           }
         }
       }
-    },
-    "/metrics/": {
-      "get": {
-        "operationId": "metrics_retrieve",
-        "description": "Exports /metrics.\nThis overwrites the default django_prometheus view to inject metrics from Nautobot apps.\nNote that we cannot use `prometheus_django.ExportToDjangoView`, as that is a simple function, and we need access to\nthe `prometheus_registry` variable that is defined inside of it.",
-        "tags": [
-          "metrics"
-        ],
-        "security": [
-          {
-            "cookieAuth": []
-          },
-          {
-            "tokenAuth": []
-          },
-          {}
-        ],
-        "responses": {
-          "200": {
-            "description": "No response body"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -218064,6 +218482,13 @@
             "type": "string",
             "nullable": true
           },
+          "speed": {
+            "type": "integer",
+            "nullable": true
+          },
+          "duplex": {
+            "$ref": "#/components/schemas/DuplexEnum"
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -218568,6 +218993,22 @@
           "mgmt_only": {
             "type": "boolean",
             "title": "Management only"
+          },
+          "speed": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device_type": {
             "type": "object",
@@ -246419,6 +246860,14 @@
           "software_image_file"
         ]
       },
+      "DuplexEnum": {
+        "type": "string",
+        "enum": [
+          "auto",
+          "full",
+          "half"
+        ]
+      },
       "DynamicGroup": {
         "type": "object",
         "description": "Base class to use for serializers based on OrganizationalModel or PrimaryModel.\n\nCan also be used for models derived from BaseModel, so long as they support custom fields, notes, and relationships.",
@@ -248293,6 +248742,9 @@
                   "sc-apc",
                   "st",
                   "cs",
+                  "cs-pc",
+                  "cs-upc",
+                  "cs-apc",
                   "sn",
                   "sma-905",
                   "sma-906",
@@ -248345,6 +248797,9 @@
                   "SC/APC",
                   "ST",
                   "CS",
+                  "CS/PC",
+                  "CS/UPC",
+                  "CS/APC",
                   "SN",
                   "SMA 905",
                   "SMA 906",
@@ -248624,6 +249079,9 @@
                   "sc-apc",
                   "st",
                   "cs",
+                  "cs-pc",
+                  "cs-upc",
+                  "cs-apc",
                   "sn",
                   "sma-905",
                   "sma-906",
@@ -248676,6 +249134,9 @@
                   "SC/APC",
                   "ST",
                   "CS",
+                  "CS/PC",
+                  "CS/UPC",
+                  "CS/APC",
                   "SN",
                   "SMA 905",
                   "SMA 906",
@@ -251290,6 +251751,31 @@
             "type": "integer",
             "readOnly": true
           },
+          "speed": {
+            "type": "integer",
+            "nullable": true
+          },
+          "duplex": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "auto",
+                  "full",
+                  "half"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "enum": [
+                  "Auto",
+                  "Full",
+                  "Half"
+                ]
+              }
+            }
+          },
           "name": {
             "type": "string",
             "maxLength": 255
@@ -252538,6 +253024,22 @@
           "mgmt_only": {
             "type": "boolean",
             "title": "Management only"
+          },
+          "speed": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device_type": {
             "type": "object",
@@ -264075,6 +264577,9 @@
             "$ref": "#/components/schemas/NestedVirtualDeviceContext"
           },
           {
+            "$ref": "#/components/schemas/NestedDynamicGroup"
+          },
+          {
             "$ref": "#/components/schemas/NestedCircuitTermination"
           },
           {
@@ -264267,9 +264772,6 @@
             "$ref": "#/components/schemas/NestedSecretsGroupAssociation"
           },
           {
-            "$ref": "#/components/schemas/NestedDynamicGroup"
-          },
-          {
             "$ref": "#/components/schemas/NestedJobHook"
           },
           {
@@ -264348,6 +264850,7 @@
             "dcim.module": "#/components/schemas/NestedModule",
             "ipam.vrf": "#/components/schemas/NestedVRF",
             "dcim.virtualdevicecontext": "#/components/schemas/NestedVirtualDeviceContext",
+            "extras.dynamicgroup": "#/components/schemas/NestedDynamicGroup",
             "circuits.circuittermination": "#/components/schemas/NestedCircuitTermination",
             "circuits.circuittype": "#/components/schemas/NestedCircuitType",
             "circuits.provider": "#/components/schemas/NestedProvider",
@@ -264412,7 +264915,6 @@
             "extras.secret": "#/components/schemas/NestedSecret",
             "extras.secretsgroup": "#/components/schemas/NestedSecretsGroup",
             "extras.secretsgroupassociation": "#/components/schemas/NestedSecretsGroupAssociation",
-            "extras.dynamicgroup": "#/components/schemas/NestedDynamicGroup",
             "extras.jobhook": "#/components/schemas/NestedJobHook",
             "extras.jobbutton": "#/components/schemas/NestedJobButton",
             "extras.externalintegration": "#/components/schemas/NestedExternalIntegration",
@@ -268344,6 +268846,37 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StaticGroupAssociation"
+            }
+          }
+        }
+      },
+      "PaginatedStatsList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stats"
             }
           }
         }
@@ -279388,6 +279921,13 @@
             "type": "string",
             "nullable": true
           },
+          "speed": {
+            "type": "integer",
+            "nullable": true
+          },
+          "duplex": {
+            "$ref": "#/components/schemas/DuplexEnum"
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -279889,6 +280429,22 @@
           "mgmt_only": {
             "type": "boolean",
             "title": "Management only"
+          },
+          "speed": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device_type": {
             "type": "object",
@@ -316915,6 +317471,10 @@
             "type": "string",
             "nullable": true
           },
+          "speed": {
+            "type": "integer",
+            "nullable": true
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -316955,6 +317515,16 @@
             "type": "boolean",
             "title": "Management only",
             "description": "This interface is used only for out-of-band management"
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device": {
             "type": "object",
@@ -317426,6 +317996,22 @@
           "mgmt_only": {
             "type": "boolean",
             "title": "Management only"
+          },
+          "speed": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device_type": {
             "type": "object",
@@ -321789,6 +322375,9 @@
           "sc-apc",
           "st",
           "cs",
+          "cs-pc",
+          "cs-upc",
+          "cs-apc",
           "sn",
           "sma-905",
           "sma-906",
@@ -327941,6 +328530,9 @@
                   "sc-apc",
                   "st",
                   "cs",
+                  "cs-pc",
+                  "cs-upc",
+                  "cs-apc",
                   "sn",
                   "sma-905",
                   "sma-906",
@@ -327993,6 +328585,9 @@
                   "SC/APC",
                   "ST",
                   "CS",
+                  "CS/PC",
+                  "CS/UPC",
+                  "CS/APC",
                   "SN",
                   "SMA 905",
                   "SMA 906",
@@ -328246,6 +328841,9 @@
                   "sc-apc",
                   "st",
                   "cs",
+                  "cs-pc",
+                  "cs-upc",
+                  "cs-apc",
                   "sn",
                   "sma-905",
                   "sma-906",
@@ -328298,6 +328896,9 @@
                   "SC/APC",
                   "ST",
                   "CS",
+                  "CS/PC",
+                  "CS/UPC",
+                  "CS/APC",
                   "SN",
                   "SMA 905",
                   "SMA 906",
@@ -332210,6 +332811,32 @@
           "associated_object_id",
           "associated_object_type",
           "dynamic_group"
+        ]
+      },
+      "Stats": {
+        "type": "object",
+        "description": "Serializer for rendering linkable statistics, e.g. related object counts for a Location.",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "ui_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "api_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "api_url",
+          "count",
+          "title",
+          "ui_url"
         ]
       },
       "Status": {
@@ -343798,6 +344425,10 @@
             "type": "string",
             "nullable": true
           },
+          "speed": {
+            "type": "integer",
+            "nullable": true
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -343838,6 +344469,16 @@
             "type": "boolean",
             "title": "Management only",
             "description": "This interface is used only for out-of-band management"
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device": {
             "type": "object",
@@ -344314,6 +344955,22 @@
           "mgmt_only": {
             "type": "boolean",
             "title": "Management only"
+          },
+          "speed": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "duplex": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DuplexEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
           },
           "device_type": {
             "type": "object",

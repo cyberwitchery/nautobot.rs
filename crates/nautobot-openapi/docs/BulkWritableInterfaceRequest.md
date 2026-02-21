@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **r#type** | [**crate::models::InterfaceTypeChoices**](InterfaceTypeChoices.md) |  | 
 **mode** | Option<[**crate::models::InterfaceModeChoices**](InterfaceModeChoices.md)> |  | [optional]
 **mac_address** | Option<**String**> |  | [optional]
+**speed** | Option<**i32**> |  | [optional]
+**duplex** | Option<[**crate::models::DuplexEnum**](DuplexEnum.md)> |  | [optional]
 **name** | **String** |  | 
 **label** | Option<**String**> | Physical label | [optional]
 **description** | Option<**String**> |  | [optional]

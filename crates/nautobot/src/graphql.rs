@@ -159,10 +159,7 @@ mod tests {
                 .json_body(json!({ "data": { "devices": ["router-1", "router-2"] } }));
         });
 
-        let result: Devices = api
-            .query_typed("{ devices { name } }", None)
-            .await
-            .unwrap();
+        let result: Devices = api.query_typed("{ devices { name } }", None).await.unwrap();
         assert_eq!(
             result,
             Devices {

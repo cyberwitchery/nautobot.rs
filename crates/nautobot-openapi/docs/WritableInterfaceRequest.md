@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
 **mac_address** | Option<**String**> |  | [optional]
+**speed** | Option<**i32**> |  | [optional]
 **name** | **String** |  | 
 **label** | Option<**String**> | Physical label | [optional]
 **description** | Option<**String**> |  | [optional]
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **mode** | Option<[**crate::models::PatchedWritableInterfaceRequestMode**](PatchedWritableInterfaceRequest_mode.md)> |  | [optional]
 **r#type** | [**crate::models::InterfaceTypeChoices**](InterfaceTypeChoices.md) |  | 
 **mgmt_only** | Option<**bool**> | This interface is used only for out-of-band management | [optional]
+**duplex** | Option<[**crate::models::BulkWritableInterfaceTemplateRequestDuplex**](BulkWritableInterfaceTemplateRequest_duplex.md)> |  | [optional]
 **device** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
 **module** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
 **status** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 

@@ -261,6 +261,7 @@ Method | HTTP request | Description
 [**dcim_locations_notes_list**](DcimApi.md#dcim_locations_notes_list) | **GET** /dcim/locations/{id}/notes/ | 
 [**dcim_locations_partial_update**](DcimApi.md#dcim_locations_partial_update) | **PATCH** /dcim/locations/{id}/ | 
 [**dcim_locations_retrieve**](DcimApi.md#dcim_locations_retrieve) | **GET** /dcim/locations/{id}/ | 
+[**dcim_locations_stats_list**](DcimApi.md#dcim_locations_stats_list) | **GET** /dcim/locations/{id}/stats/ | 
 [**dcim_locations_update**](DcimApi.md#dcim_locations_update) | **PUT** /dcim/locations/{id}/ | 
 [**dcim_manufacturers_bulk_destroy**](DcimApi.md#dcim_manufacturers_bulk_destroy) | **DELETE** /dcim/manufacturers/ | 
 [**dcim_manufacturers_bulk_partial_update**](DcimApi.md#dcim_manufacturers_bulk_partial_update) | **PATCH** /dcim/manufacturers/ | 
@@ -9137,7 +9138,7 @@ Name | Type | Description  | Required | Notes
 
 ## dcim_interfaces_list
 
-> crate::models::PaginatedInterfaceList dcim_interfaces_list(bridge, bridge__isnull, bridge__n, bridged_interfaces, bridged_interfaces__isnull, bridged_interfaces__n, cable, cable__isnull, cable__n, child_interfaces, child_interfaces__isnull, child_interfaces__n, connected, contacts, contacts__isnull, contacts__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, device, device_id, device_with_common_vc, dynamic_groups, dynamic_groups__n, enabled, format, has_bridged_interfaces, has_cable, has_child_interfaces, has_ip_addresses, has_member_interfaces, has_tagged_vlans, has_virtual_device_contexts, id, id__n, interface_redundancy_groups, interface_redundancy_groups__isnull, interface_redundancy_groups__n, ip_addresses, kind, label, label__ic, label__ie, label__iew, label__ire, label__isw, label__n, label__nic, label__nie, label__niew, label__nire, label__nisw, label__nre, label__re, lag, lag__isnull, lag__n, limit, location, location__n, mac_address, mac_address__ic, mac_address__ie, mac_address__iew, mac_address__ire, mac_address__isw, mac_address__n, mac_address__nic, mac_address__nie, mac_address__niew, mac_address__nire, mac_address__nisw, mac_address__nre, mac_address__re, member_interfaces, member_interfaces__isnull, member_interfaces__n, mgmt_only, mode, mode__ic, mode__ie, mode__iew, mode__ire, mode__isw, mode__n, mode__nic, mode__nie, mode__niew, mode__nire, mode__nisw, mode__nre, mode__re, module, module__isnull, module__n, mtu, mtu__gt, mtu__gte, mtu__isnull, mtu__lt, mtu__lte, mtu__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, parent_interface, parent_interface__isnull, parent_interface__n, q, role, role__isnull, role__n, sort, status, status__n, tagged_vlans, tagged_vlans__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, untagged_vlan, untagged_vlan__isnull, untagged_vlan__n, virtual_device_contexts, virtual_device_contexts__isnull, virtual_device_contexts__n, vlan, vlan_id, depth, exclude_m2m)
+> crate::models::PaginatedInterfaceList dcim_interfaces_list(bridge, bridge__isnull, bridge__n, bridged_interfaces, bridged_interfaces__isnull, bridged_interfaces__n, cable, cable__isnull, cable__n, child_interfaces, child_interfaces__isnull, child_interfaces__n, connected, contacts, contacts__isnull, contacts__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, device, device_id, device_with_common_vc, duplex, duplex__ic, duplex__ie, duplex__iew, duplex__ire, duplex__isw, duplex__n, duplex__nic, duplex__nie, duplex__niew, duplex__nire, duplex__nisw, duplex__nre, duplex__re, dynamic_groups, dynamic_groups__n, enabled, format, has_bridged_interfaces, has_cable, has_child_interfaces, has_ip_addresses, has_member_interfaces, has_tagged_vlans, has_virtual_device_contexts, id, id__n, interface_redundancy_groups, interface_redundancy_groups__isnull, interface_redundancy_groups__n, ip_addresses, kind, label, label__ic, label__ie, label__iew, label__ire, label__isw, label__n, label__nic, label__nie, label__niew, label__nire, label__nisw, label__nre, label__re, lag, lag__isnull, lag__n, limit, location, location__n, mac_address, mac_address__ic, mac_address__ie, mac_address__iew, mac_address__ire, mac_address__isw, mac_address__n, mac_address__nic, mac_address__nie, mac_address__niew, mac_address__nire, mac_address__nisw, mac_address__nre, mac_address__re, member_interfaces, member_interfaces__isnull, member_interfaces__n, mgmt_only, mode, mode__ic, mode__ie, mode__iew, mode__ire, mode__isw, mode__n, mode__nic, mode__nie, mode__niew, mode__nire, mode__nisw, mode__nre, mode__re, module, module__isnull, module__n, mtu, mtu__gt, mtu__gte, mtu__isnull, mtu__lt, mtu__lte, mtu__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, parent_interface, parent_interface__isnull, parent_interface__n, q, role, role__isnull, role__n, sort, speed, speed__gt, speed__gte, speed__isnull, speed__lt, speed__lte, speed__n, status, status__n, tagged_vlans, tagged_vlans__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, untagged_vlan, untagged_vlan__isnull, untagged_vlan__n, virtual_device_contexts, virtual_device_contexts__isnull, virtual_device_contexts__n, vlan, vlan_id, depth, exclude_m2m)
 
 
 Retrieve a list of interface objects.
@@ -9180,6 +9181,20 @@ Name | Type | Description  | Required | Notes
 **device** | Option<[**Vec<String>**](String.md)> |  |  |
 **device_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Device (ID)  (deprecated, use \"device\" filter instead) |  |
 **device_with_common_vc** | Option<**uuid::Uuid**> | Virtual Chassis member Device (ID) |  |
+**duplex** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**duplex__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
 **dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **enabled** | Option<**bool**> |  |  |
@@ -9283,6 +9298,13 @@ Name | Type | Description  | Required | Notes
 **role__isnull** | Option<**bool**> | Role (name or ID) is null |  |
 **role__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**speed** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**speed__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**speed__gte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**speed__isnull** | Option<**bool**> |  |  |
+**speed__lt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**speed__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**speed__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **status** | Option<[**Vec<String>**](String.md)> |  |  |
 **status__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **tagged_vlans** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -10973,6 +10995,41 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Location**](Location.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## dcim_locations_stats_list
+
+> crate::models::PaginatedStatsList dcim_locations_stats_list(id, format, limit, offset, depth, exclude_m2m)
+
+
+Retrieve statistics for counts of related models associated to this Location and its descendants.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this location. | [required] |
+**format** | Option<**String**> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+
+### Return type
+
+[**crate::models::PaginatedStatsList**](PaginatedStatsList.md)
 
 ### Authorization
 
