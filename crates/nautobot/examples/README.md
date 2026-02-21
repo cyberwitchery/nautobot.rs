@@ -15,3 +15,7 @@ cargo run -p nautobot --example status
 ```bash
 cargo run -p nautobot --example raw_request
 ```
+
+```bash
+cargo run -p nautobot --example hooks
+```

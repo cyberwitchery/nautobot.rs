@@ -2,6 +2,18 @@
 
 ## [unreleased]
 
+### client
+- add `on_error` hook test exercising the transport-failure path in `execute_request`
+
+### ci
+- add github actions integration workflow with pinned nautobot 2.4.20 service container running smoke + golden tests
+
+### examples
+- add `examples/hooks.rs` demonstrating `HttpHooks` (header injection, response timing, error reporting)
+
+### docs
+- update `AGENTS.md` to document `config.rs` new fields and `hooks.rs`
+
 ## [0.3.0] - 2026-02-20
 
 ### release

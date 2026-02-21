@@ -14,7 +14,8 @@ guidance for automated agents working in this repo.
 - root `Cargo.toml`: workspace definition.
 - `crates/nautobot/src/`:
   - `client.rs`: http client + request handling.
-  - `config.rs`: base url, token, timeouts, retries.
+  - `config.rs`: base url, token, timeouts, retries, prebuilt http client, client-builder callback, http hooks.
+  - `hooks.rs`: `HttpHooks` trait for request/response lifecycle observation.
   - `error.rs`: error types.
   - `pagination.rs`: `Page<T>` + `Paginator<T>`.
   - `query.rs`: query builder.

@@ -1044,6 +1044,42 @@ mod tests {
         mock.assert();
     }
 
+    struct ErrorCaptureHook {
+        errors: Arc<Mutex<Vec<String>>>,
+    }
+
+    impl HttpHooks for ErrorCaptureHook {
+        fn on_error(
+            &self,
+            _method: &Method,
+            _path: &str,
+            error: &Error,
+            _duration: Duration,
+        ) {
+            self.errors.lock().unwrap().push(error.to_string());
+        }
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn error_hook_is_called_on_transport_failure() {
+        // Point at a port that refuses connections so execute_request returns Err.
+        let config = ClientConfig::new("http://127.0.0.1:1", "test-token")
+            .with_max_retries(0)
+            .with_timeout(Duration::from_millis(500));
+
+        let errors = Arc::new(Mutex::new(Vec::new()));
+        let hook = ErrorCaptureHook {
+            errors: errors.clone(),
+        };
+        let config = config.with_http_hooks(hook);
+        let client = Client::new(config).unwrap();
+        let _ = client.request_raw(Method::GET, "status/", None).await;
+
+        let captured = errors.lock().unwrap().clone();
+        assert_eq!(captured.len(), 1, "on_error should have been called once");
+    }
+
     #[cfg(feature = "tracing")]
     #[test]
     fn tracing_feature_client_creation() {
