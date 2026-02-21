@@ -103,7 +103,7 @@ jobs:
         env:
           NAUTOBOT_TOKEN: ci-superuser-api-token
         run: |
-          curl -sf "${NAUTOBOT_URL}/api/schema/?format=json" \
+          curl -sf "${NAUTOBOT_URL}/api/docs/?format=openapi" \
             -H "Authorization: Token ${NAUTOBOT_TOKEN}" \
             -o /tmp/live-schema.json
           oasdiff breaking scripts/openapi-schema.json /tmp/live-schema.json --fail-on ERR
