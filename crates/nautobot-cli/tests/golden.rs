@@ -20,14 +20,24 @@ fn env_var(key: &str) -> Option<String> {
     std::env::var(key).ok().filter(|v| !v.trim().is_empty())
 }
 
-fn cli_binary() -> PathBuf {
+fn workspace_root() -> PathBuf {
     let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    path.pop();
-    path.pop();
-    path.push("target");
-    path.push("debug");
-    path.push("nautobot-cli");
+    path.pop(); // nautobot-cli -> crates
+    path.pop(); // crates -> workspace root
     path
+}
+
+fn cli_binary() -> PathBuf {
+    let root = workspace_root();
+    // Respect CARGO_TARGET_DIR if set (e.g. in CI), resolving relative paths
+    // against the workspace root.
+    let target_dir = std::env::var("CARGO_TARGET_DIR")
+        .map(|d| {
+            let p = PathBuf::from(&d);
+            if p.is_absolute() { p } else { root.join(p) }
+        })
+        .unwrap_or_else(|_| root.join("target"));
+    target_dir.join("debug").join("nautobot-cli")
 }
 
 fn golden_dir() -> PathBuf {
