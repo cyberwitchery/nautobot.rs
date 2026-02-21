@@ -2,14 +2,23 @@
 
 ## [unreleased]
 
+## [0.3.1] - 2026-02-21
+
 ### cli
 - fix table output: render explicit `--columns` headers even when the result set is empty
 
 ### client
+- add `DcimApi::location_stats()` to retrieve statistics for a location and its descendants
 - add `on_error` hook test exercising the transport-failure path in `execute_request`
 
+### openapi
+- regenerate bindings from Nautobot 2.4.27; new models: `Stats`, `PaginatedStatsList`, `DuplexEnum`, `InterfaceDuplex`, `BulkWritableInterfaceTemplateRequestDuplex`; new endpoints: `dcim/locations/{id}/stats/`, scheduled-job delete operations
+
 ### ci
-- add github actions integration workflow with pinned nautobot 2.4.27 service container running smoke + golden tests
+- add GitHub Actions integration workflow with pinned Nautobot 2.4.27 service container running smoke + golden tests
+- add OpenAPI schema breaking-change detection via oasdiff in integration workflow
+- add weekly upstream drift detection (`upstream-check.yml`) with automatic issue creation on new upstream releases
+- add `docs/compat.md` compatibility matrix mapping client releases to tested Nautobot versions
 
 ### examples
 - add `examples/hooks.rs` demonstrating `HttpHooks` (header injection, response timing, error reporting)
@@ -69,7 +78,8 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.2.0
 [0.1.1]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.1.1
