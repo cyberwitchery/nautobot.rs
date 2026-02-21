@@ -6,7 +6,7 @@
 - add `on_error` hook test exercising the transport-failure path in `execute_request`
 
 ### ci
-- add github actions integration workflow with pinned nautobot 2.4.20 service container running smoke + golden tests
+- add github actions integration workflow with pinned nautobot 2.4.27 service container running smoke + golden tests
 
 ### examples
 - add `examples/hooks.rs` demonstrating `HttpHooks` (header injection, response timing, error reporting)

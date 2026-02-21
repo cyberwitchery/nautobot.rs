@@ -50,7 +50,7 @@ jobs:
           --health-timeout 5s
           --health-retries 10
       nautobot:
-        image: ghcr.io/nautobot/nautobot:2.4.20
+        image: ghcr.io/nautobot/nautobot:2.4.27
         env:
           NAUTOBOT_DB_HOST: postgres
           NAUTOBOT_DB_NAME: nautobot
@@ -58,6 +58,7 @@ jobs:
           NAUTOBOT_DB_PASSWORD: nautobot
           NAUTOBOT_REDIS_HOST: redis
           NAUTOBOT_SECRET_KEY: thisisaverylongfixedsecretkeyforciandtestingonly123
+          NAUTOBOT_CREATE_SUPERUSER: "true"
           NAUTOBOT_SUPERUSER_API_TOKEN: ci-superuser-api-token
           NAUTOBOT_ALLOWED_HOSTS: "*"
         ports:
