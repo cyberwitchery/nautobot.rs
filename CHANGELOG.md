@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### cli
+- fix table output: render explicit `--columns` headers even when the result set is empty
+
 ### client
 - add `on_error` hook test exercising the transport-failure path in `execute_request`
 
