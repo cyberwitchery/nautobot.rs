@@ -254,6 +254,115 @@ mod tests {
         assert!(page.is_last());
     }
 
+    #[test]
+    fn test_display_zero_results() {
+        let page: Page<String> = Page {
+            count: 50,
+            next: Some("https://example.com/next".to_string()),
+            previous: None,
+            results: vec![],
+        };
+
+        assert_eq!(format!("{page}"), "Page with 0 results (total: 50)");
+    }
+
+    #[test]
+    fn test_display_exact_format() {
+        let page: Page<i32> = Page {
+            count: 3,
+            next: None,
+            previous: None,
+            results: vec![1, 2, 3],
+        };
+
+        assert_eq!(format!("{page}"), "Page with 3 results (total: 3)");
+    }
+
+    #[test]
+    fn test_serde_round_trip() {
+        let page: Page<i32> = Page {
+            count: 42,
+            next: Some("https://example.com/api/things/?offset=10".to_string()),
+            previous: Some("https://example.com/api/things/?offset=0".to_string()),
+            results: vec![1, 2, 3],
+        };
+
+        let json = serde_json::to_string(&page).unwrap();
+        let deserialized: Page<i32> = serde_json::from_str(&json).unwrap();
+
+        assert_eq!(deserialized.count, 42);
+        assert_eq!(
+            deserialized.next.as_deref(),
+            Some("https://example.com/api/things/?offset=10")
+        );
+        assert_eq!(
+            deserialized.previous.as_deref(),
+            Some("https://example.com/api/things/?offset=0")
+        );
+        assert_eq!(deserialized.results, vec![1, 2, 3]);
+    }
+
+    #[test]
+    fn test_serde_round_trip_null_links() {
+        let page: Page<String> = Page {
+            count: 1,
+            next: None,
+            previous: None,
+            results: vec!["only-item".to_string()],
+        };
+
+        let json = serde_json::to_string(&page).unwrap();
+        let deserialized: Page<String> = serde_json::from_str(&json).unwrap();
+
+        assert_eq!(deserialized.count, 1);
+        assert!(deserialized.next.is_none());
+        assert!(deserialized.previous.is_none());
+        assert_eq!(deserialized.results, vec!["only-item"]);
+    }
+
+    #[test]
+    fn test_serde_deserialize_api_response() {
+        let json = r#"{
+            "count": 150,
+            "next": "https://nautobot.example.com/api/dcim/devices/?offset=50&limit=50",
+            "previous": null,
+            "results": [
+                {"id": "abc-123", "name": "switch-01"},
+                {"id": "def-456", "name": "switch-02"}
+            ]
+        }"#;
+
+        #[derive(Debug, Deserialize, PartialEq)]
+        struct Device {
+            id: String,
+            name: String,
+        }
+
+        let page: Page<Device> = serde_json::from_str(json).unwrap();
+        assert_eq!(page.count, 150);
+        assert!(page.has_next());
+        assert!(!page.has_previous());
+        assert_eq!(page.len(), 2);
+        assert_eq!(page.results[0].name, "switch-01");
+        assert_eq!(page.results[1].id, "def-456");
+    }
+
+    #[test]
+    fn test_serde_deserialize_empty_results() {
+        let json = r#"{
+            "count": 0,
+            "next": null,
+            "previous": null,
+            "results": []
+        }"#;
+
+        let page: Page<serde_json::Value> = serde_json::from_str(json).unwrap();
+        assert_eq!(page.count, 0);
+        assert!(page.is_empty());
+        assert!(page.is_last());
+        assert!(!page.has_previous());
+    }
+
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
     async fn paginator_fetches_multiple_pages() {
