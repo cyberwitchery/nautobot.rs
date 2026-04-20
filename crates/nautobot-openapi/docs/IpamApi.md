@@ -331,10 +331,10 @@ Name | Type | Description  | Required | Notes
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **interface** | Option<[**Vec<String>**](String.md)> |  |  |
-**interface__isnull** | Option<**bool**> | Interface (name or ID) is null |  |
+**interface__isnull** | Option<**bool**> |  |  |
 **interface__n** | Option<[**Vec<String>**](String.md)> |  |  |
-**ip_address** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | IP Address (ID) |  |
-**ip_address__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude IP Address (ID) |  |
+**ip_address** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**ip_address__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **is_default** | Option<**bool**> |  |  |
 **is_destination** | Option<**bool**> |  |  |
 **is_preferred** | Option<**bool**> |  |  |
@@ -348,10 +348,10 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **vm_interface** | Option<[**Vec<String>**](String.md)> |  |  |
-**vm_interface__isnull** | Option<**bool**> | VM Interface (name or ID) is null |  |
+**vm_interface__isnull** | Option<**bool**> |  |  |
 **vm_interface__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -483,7 +483,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this IP Address Assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -690,7 +690,7 @@ Name | Type | Description  | Required | Notes
 
 ## ipam_ip_addresses_list
 
-> crate::models::PaginatedIpAddressList ipam_ip_addresses_list(address, contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, device, device_id, dns_name, dns_name__ic, dns_name__ie, dns_name__iew, dns_name__ire, dns_name__isw, dns_name__n, dns_name__nic, dns_name__nie, dns_name__niew, dns_name__nire, dns_name__nisw, dns_name__nre, dns_name__re, dynamic_groups, dynamic_groups__n, format, has_interface_assignments, has_nat_inside, id, id__n, interfaces, interfaces__isnull, interfaces__n, ip_version, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, mask_length, mask_length__gt, mask_length__gte, mask_length__lt, mask_length__lte, mask_length__n, namespace, namespace__n, nat_inside, nat_inside__isnull, nat_inside__n, offset, parent, parent__isnull, parent__n, prefix, present_in_vrf, present_in_vrf_id, q, role, role__isnull, role__n, sort, status, status__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, virtual_machine, virtual_machine_id, vm_interfaces, vm_interfaces__isnull, vm_interfaces__n, vrfs, vrfs__isnull, vrfs__n, depth, exclude_m2m)
+> crate::models::PaginatedIpAddressList ipam_ip_addresses_list(address, contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, device, device_id, dns_name, dns_name__ic, dns_name__ie, dns_name__iew, dns_name__ire, dns_name__isw, dns_name__n, dns_name__nic, dns_name__nie, dns_name__niew, dns_name__nire, dns_name__nisw, dns_name__nre, dns_name__re, dynamic_groups, dynamic_groups__n, format, has_interface_assignments, has_nat_inside, id, id__n, interfaces, interfaces__isnull, interfaces__n, ip_version, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, mask_length, mask_length__gt, mask_length__gte, mask_length__lt, mask_length__lte, mask_length__n, namespace, namespace__n, nat_inside, nat_inside__isnull, nat_inside__n, offset, parent, parent__isnull, parent__n, prefix, prefix_exact, present_in_vrf, present_in_vrf_id, q, role, role__isnull, role__n, services, services__isnull, services__n, sort, status, status__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, virtual_machine, virtual_machine_id, vm_interfaces, vm_interfaces__isnull, vm_interfaces__n, vrfs, vrfs__isnull, vrfs__n, depth, exclude_m2m)
 
 
 Retrieve a list of IP address objects.
@@ -749,7 +749,7 @@ Name | Type | Description  | Required | Notes
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **interfaces** | Option<[**Vec<String>**](String.md)> |  |  |
-**interfaces__isnull** | Option<**bool**> | Interfaces (ID or name) is null |  |
+**interfaces__isnull** | Option<**bool**> |  |  |
 **interfaces__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **ip_version** | Option<**i32**> |  |  |
 **last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -776,12 +776,16 @@ Name | Type | Description  | Required | Notes
 **parent__isnull** | Option<**bool**> | Parent prefix is null |  |
 **parent__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Parent prefix |  |
 **prefix** | Option<[**Vec<String>**](String.md)> | Contained in prefix |  |
+**prefix_exact** | Option<[**Vec<String>**](String.md)> | Prefix (exact, strict) |  |
 **present_in_vrf** | Option<**String**> | VRF (RD) |  |
 **present_in_vrf_id** | Option<**uuid::Uuid**> | VRF (ID) |  |
 **q** | Option<**String**> | Search |  |
 **role** | Option<[**Vec<String>**](String.md)> |  |  |
 **role__isnull** | Option<**bool**> | Role (name or ID) is null |  |
 **role__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**services** | Option<[**Vec<String>**](String.md)> |  |  |
+**services__isnull** | Option<**bool**> | Services (name or ID) is null |  |
+**services__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **status** | Option<[**Vec<String>**](String.md)> |  |  |
 **status__n** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -817,13 +821,13 @@ Name | Type | Description  | Required | Notes
 **virtual_machine** | Option<[**Vec<String>**](String.md)> | Virtual machine (name) |  |
 **virtual_machine_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Virtual machine (ID) |  |
 **vm_interfaces** | Option<[**Vec<String>**](String.md)> |  |  |
-**vm_interfaces__isnull** | Option<**bool**> | VM interfaces (ID or name) is null |  |
+**vm_interfaces__isnull** | Option<**bool**> |  |  |
 **vm_interfaces__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrfs** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrfs__isnull** | Option<**bool**> | VRF (ID or RD) is null |  |
 **vrfs__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -890,7 +894,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -955,7 +959,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this IP address. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1162,7 +1166,7 @@ Name | Type | Description  | Required | Notes
 
 ## ipam_namespaces_list
 
-> crate::models::PaginatedNamespaceList ipam_namespaces_list(contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, location, location__isnull, location__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, depth, exclude_m2m)
+> crate::models::PaginatedNamespaceList ipam_namespaces_list(contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, location, location__isnull, location__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, depth, exclude_m2m)
 
 
 Retrieve a list of namespace objects.
@@ -1209,9 +1213,9 @@ Name | Type | Description  | Required | Notes
 **last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **limit** | Option<**i32**> | Number of results to return per page. |  |
-**location** | Option<**uuid::Uuid**> |  |  |
+**location** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **location__isnull** | Option<**bool**> |  |  |
-**location__n** | Option<**uuid::Uuid**> |  |  |
+**location__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **name** | Option<[**Vec<String>**](String.md)> |  |  |
 **name__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **name__ie** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1235,8 +1239,17 @@ Name | Type | Description  | Required | Notes
 **teams** | Option<[**Vec<String>**](String.md)> |  |  |
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**tenant** | Option<[**Vec<String>**](String.md)> |  |  |
+**tenant__isnull** | Option<**bool**> | Tenant (name or ID) is null |  |
+**tenant__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**tenant_group** | Option<[**Vec<String>**](String.md)> |  |  |
+**tenant_group__isnull** | Option<**bool**> | Tenant Group (name or ID) is null |  |
+**tenant_group__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**tenant_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
+**tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
+**tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1303,7 +1316,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1368,7 +1381,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this namespace. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1599,7 +1612,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1664,7 +1677,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this prefix location assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1771,7 +1784,7 @@ Name | Type | Description  | Required | Notes
 **range_start** | Option<**String**> | IP from which enumeration/allocation should start. |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1842,7 +1855,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2017,7 +2030,7 @@ Name | Type | Description  | Required | Notes
 
 ## ipam_prefixes_list
 
-> crate::models::PaginatedPrefixList ipam_prefixes_list(cloud_networks, cloud_networks__isnull, cloud_networks__n, contacts, contacts__isnull, contacts__n, contains, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, date_allocated, date_allocated__gt, date_allocated__gte, date_allocated__isnull, date_allocated__lt, date_allocated__lte, date_allocated__n, dynamic_groups, dynamic_groups__n, format, has_rir, id, id__n, ip_version, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, location, location__n, locations, locations__n, namespace, namespace__n, offset, parent, parent__isnull, parent__n, prefix, prefix_length, prefix_length__gt, prefix_length__gte, prefix_length__lt, prefix_length__lte, prefix_length__n, present_in_vrf, present_in_vrf_id, q, rir, rir__isnull, rir__n, role, role__isnull, role__n, sort, status, status__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, vlan_id, vlan_id__isnull, vlan_id__n, vlan_vid, vlan_vid__gt, vlan_vid__gte, vlan_vid__lt, vlan_vid__lte, vlan_vid__n, vrfs, vrfs__isnull, vrfs__n, within, within_include, depth, exclude_m2m)
+> crate::models::PaginatedPrefixList ipam_prefixes_list(ancestors, cloud_networks, cloud_networks__isnull, cloud_networks__n, contacts, contacts__isnull, contacts__n, contains, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, date_allocated, date_allocated__gt, date_allocated__gte, date_allocated__isnull, date_allocated__lt, date_allocated__lte, date_allocated__n, dynamic_groups, dynamic_groups__n, format, has_rir, id, id__n, ip_version, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, location, location__n, locations, locations__n, max_depth, namespace, namespace__n, offset, parent, parent__isnull, parent__n, prefix, prefix_and_descendants, prefix_exact, prefix_length, prefix_length__gt, prefix_length__gte, prefix_length__lt, prefix_length__lte, prefix_length__n, present_in_vrf, present_in_vrf_id, q, rir, rir__isnull, rir__n, role, role__isnull, role__n, sort, status, status__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, r#type, type__ic, type__ie, type__iew, type__ire, type__isw, type__n, type__nic, type__nie, type__niew, type__nire, type__nisw, type__nre, type__re, vlan_id, vlan_id__isnull, vlan_id__n, vlan_vid, vlan_vid__gt, vlan_vid__gte, vlan_vid__lt, vlan_vid__lte, vlan_vid__n, vpn_tunnel_endpoints, vpn_tunnel_endpoints__isnull, vpn_tunnel_endpoints__n, vpn_tunnel_endpoints_name_contains, vrfs, vrfs__isnull, vrfs__n, within, within_include, depth, exclude_m2m)
 
 
 Retrieve a list of prefix objects.
@@ -2027,8 +2040,9 @@ Retrieve a list of prefix objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**ancestors** | Option<[**Vec<String>**](String.md)> |  |  |
 **cloud_networks** | Option<[**Vec<String>**](String.md)> |  |  |
-**cloud_networks__isnull** | Option<**bool**> | Cloud Network (name or ID) is null |  |
+**cloud_networks__isnull** | Option<**bool**> |  |  |
 **cloud_networks__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
@@ -2067,6 +2081,7 @@ Name | Type | Description  | Required | Notes
 **location__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **locations** | Option<[**Vec<String>**](String.md)> |  |  |
 **locations__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**max_depth** | Option<**f32**> | Maximum nesting depth within parent Prefixes |  |
 **namespace** | Option<[**Vec<String>**](String.md)> |  |  |
 **namespace__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
@@ -2074,6 +2089,8 @@ Name | Type | Description  | Required | Notes
 **parent__isnull** | Option<**bool**> | Prefix (ID or prefix string) is null |  |
 **parent__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **prefix** | Option<[**Vec<String>**](String.md)> | Prefix |  |
+**prefix_and_descendants** | Option<[**Vec<String>**](String.md)> |  |  |
+**prefix_exact** | Option<[**Vec<String>**](String.md)> | Prefix (exact, strict) |  |
 **prefix_length** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **prefix_length__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **prefix_length__gte** | Option<[**Vec<i32>**](i32.md)> |  |  |
@@ -2084,7 +2101,7 @@ Name | Type | Description  | Required | Notes
 **present_in_vrf_id** | Option<**uuid::Uuid**> | Present in VRF |  |
 **q** | Option<**String**> | Search |  |
 **rir** | Option<[**Vec<String>**](String.md)> |  |  |
-**rir__isnull** | Option<**bool**> | RIR (name or ID) is null |  |
+**rir__isnull** | Option<**bool**> |  |  |
 **rir__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **role** | Option<[**Vec<String>**](String.md)> |  |  |
 **role__isnull** | Option<**bool**> | Role (name or ID) is null |  |
@@ -2121,22 +2138,26 @@ Name | Type | Description  | Required | Notes
 **type__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
 **type__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **type__re** | Option<[**Vec<String>**](String.md)> |  |  |
-**vlan_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | VLAN (ID) |  |
-**vlan_id__isnull** | Option<**bool**> | VLAN (ID) is null |  |
-**vlan_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude VLAN (ID) |  |
+**vlan_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**vlan_id__isnull** | Option<**bool**> |  |  |
+**vlan_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **vlan_vid** | Option<[**Vec<i32>**](i32.md)> | VLAN number (1-4095) |  |
 **vlan_vid__gt** | Option<[**Vec<i32>**](i32.md)> | VLAN number (1-4095) is greater than |  |
 **vlan_vid__gte** | Option<[**Vec<i32>**](i32.md)> | VLAN number (1-4095) is greater than or equal to |  |
 **vlan_vid__lt** | Option<[**Vec<i32>**](i32.md)> | VLAN number (1-4095) is less than |  |
 **vlan_vid__lte** | Option<[**Vec<i32>**](i32.md)> | VLAN number (1-4095) is less than or equal to |  |
 **vlan_vid__n** | Option<[**Vec<i32>**](i32.md)> | Exclude VLAN number (1-4095) |  |
+**vpn_tunnel_endpoints** | Option<[**Vec<String>**](String.md)> |  |  |
+**vpn_tunnel_endpoints__isnull** | Option<**bool**> | VPN Tunnel Endpoint ID is null |  |
+**vpn_tunnel_endpoints__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**vpn_tunnel_endpoints_name_contains** | Option<**String**> | VPN Tunnel Endpoint Name Contains |  |
 **vrfs** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrfs__isnull** | Option<**bool**> | Assigned VRF (ID or RD) is null |  |
 **vrfs__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **within** | Option<[**Vec<String>**](String.md)> | Within prefix |  |
 **within_include** | Option<[**Vec<String>**](String.md)> | Within and including prefix |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2203,7 +2224,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2268,7 +2289,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this prefix. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2544,7 +2565,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2611,7 +2632,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2676,7 +2697,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this RIR. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2955,7 +2976,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3022,7 +3043,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3087,7 +3108,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this route target. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3315,7 +3336,7 @@ Name | Type | Description  | Required | Notes
 **created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **device** | Option<[**Vec<String>**](String.md)> |  |  |
-**device__isnull** | Option<**bool**> | Device (ID or name) is null |  |
+**device__isnull** | Option<**bool**> |  |  |
 **device__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
 **dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -3369,10 +3390,10 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **virtual_machine** | Option<[**Vec<String>**](String.md)> |  |  |
-**virtual_machine__isnull** | Option<**bool**> | Virtual machine (ID or name) is null |  |
+**virtual_machine__isnull** | Option<**bool**> |  |  |
 **virtual_machine__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3439,7 +3460,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3504,7 +3525,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this service. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3607,7 +3628,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3856,7 +3877,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3923,7 +3944,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3988,7 +4009,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this VLAN group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4219,7 +4240,7 @@ Name | Type | Description  | Required | Notes
 **vlan** | Option<[**Vec<String>**](String.md)> |  |  |
 **vlan__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4284,7 +4305,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this vlan location assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4573,10 +4594,10 @@ Name | Type | Description  | Required | Notes
 **vid__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **vid__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **vlan_group** | Option<[**Vec<String>**](String.md)> |  |  |
-**vlan_group__isnull** | Option<**bool**> | VLAN Group (name or ID) is null |  |
+**vlan_group__isnull** | Option<**bool**> |  |  |
 **vlan_group__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4643,7 +4664,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4708,7 +4729,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this VLAN. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4927,7 +4948,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **created** | Option<[**Vec<String>**](String.md)> |  |  |
 **device** | Option<[**Vec<String>**](String.md)> |  |  |
-**device__isnull** | Option<**bool**> | Device (ID or name) is null |  |
+**device__isnull** | Option<**bool**> |  |  |
 **device__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **format** | Option<**String**> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
@@ -4967,15 +4988,15 @@ Name | Type | Description  | Required | Notes
 **rd__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **virtual_device_context** | Option<[**Vec<String>**](String.md)> |  |  |
-**virtual_device_context__isnull** | Option<**bool**> | Virtual Device Context (ID or name) is null |  |
+**virtual_device_context__isnull** | Option<**bool**> |  |  |
 **virtual_device_context__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **virtual_machine** | Option<[**Vec<String>**](String.md)> |  |  |
-**virtual_machine__isnull** | Option<**bool**> | Virtual Machine (ID or name) is null |  |
+**virtual_machine__isnull** | Option<**bool**> |  |  |
 **virtual_machine__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrf** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrf__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5040,7 +5061,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this VRF-device assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5271,7 +5292,7 @@ Name | Type | Description  | Required | Notes
 **vrf** | Option<[**Vec<String>**](String.md)> |  |  |
 **vrf__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5336,7 +5357,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this VRF-prefix assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5655,7 +5676,7 @@ Name | Type | Description  | Required | Notes
 **virtual_machines** | Option<[**Vec<String>**](String.md)> |  |  |
 **virtual_machines__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5722,7 +5743,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5787,7 +5808,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this VRF. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 

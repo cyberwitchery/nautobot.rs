@@ -19,8 +19,6 @@ Name | Type | Description | Notes
 **is_active** | Option<**bool**> | Designates whether this user should be treated as active. Unselect this instead of deleting accounts. | [optional]
 **date_joined** | Option<**String**> |  | [optional]
 **config_data** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**groups** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> | The groups this user belongs to. A user will get all permissions granted to each of their groups. | [optional]
-**default_saved_views** | Option<[**Vec<crate::models::UserSpecificDefaultSavedViews>**](User_specific_default_saved_views.md)> | User specific default saved views | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

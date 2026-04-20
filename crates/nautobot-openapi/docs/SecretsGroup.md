@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **natural_slug** | Option<**String**> |  | [optional][readonly]
 **name** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
-**secrets** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional][readonly]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]

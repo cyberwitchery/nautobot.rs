@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<[**crate::models::BulkWritableCableRequestStatusId**](BulkWritableCableRequest_status_id.md)> |  | [optional]
+**id** | Option<[**crate::models::ApprovalWorkflowApprovalWorkflowDefinitionId**](ApprovalWorkflow_approval_workflow_definition_id.md)> |  | [optional]
 **object_type** | Option<**String**> |  | [optional]
 **url** | Option<**String**> |  | [optional]
 

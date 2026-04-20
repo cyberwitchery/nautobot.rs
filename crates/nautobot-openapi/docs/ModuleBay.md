@@ -14,14 +14,14 @@ Name | Type | Description | Notes
 **position** | Option<**String**> | The position of the module bay within the parent device/module | [optional]
 **label** | Option<**String**> | Physical label | [optional]
 **description** | Option<**String**> |  | [optional]
-**parent_device** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**parent_module** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**parent_device** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**parent_module** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **module_family** | Option<[**crate::models::BulkWritableModuleBayRequestModuleFamily**](BulkWritableModuleBayRequest_module_family.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**tags** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
+**tags** | Option<[**Vec<crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage>**](ApprovalWorkflowStageResponse_approval_workflow_stage.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

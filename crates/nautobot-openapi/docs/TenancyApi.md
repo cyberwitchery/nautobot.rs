@@ -265,7 +265,7 @@ Name | Type | Description  | Required | Notes
 **tenants__isnull** | Option<**bool**> | Tenants (name or ID) is null |  |
 **tenants__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -332,7 +332,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -397,7 +397,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this tenant group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -740,7 +740,7 @@ Name | Type | Description  | Required | Notes
 **vrfs__isnull** | Option<**bool**> | VRFs (name or ID) is null |  |
 **vrfs__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -807,7 +807,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -872,7 +872,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this tenant. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 

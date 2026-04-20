@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **object_repr** | Option<**String**> |  | [optional][readonly]
 **object_data** | Option<[**serde_json::Value**](.md)> |  | [optional][readonly]
 **object_data_v2** | Option<[**serde_json::Value**](.md)> |  | [optional][readonly]
-**user** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**user** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

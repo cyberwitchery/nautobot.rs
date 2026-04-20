@@ -108,7 +108,6 @@ jobs:
             -o /tmp/live-schema.json
 
       - name: Check OpenAPI schema for breaking changes
-        continue-on-error: true
         run: |
           # Nautobot's schema contains semantically duplicate paths with different
           # parameter names (e.g. /foo/{id}/ and /foo/{name}/), which oasdiff

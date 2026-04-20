@@ -2,10 +2,14 @@
 
 ## [unreleased]
 
+### openapi
+- regenerate bindings from Nautobot 3.1.0 (new models: approval workflows, data validation, load balancers, VPN; removed: `BulkWritableCableRequestStatus`, `ScheduledJobApprovedByUser`)
+
 ### ci
 - bump integration CI from Nautobot 2.4.27 to 3.1.0 (closes #1)
+- update OpenAPI schema baseline to Nautobot 3.1.0
 - add live OpenAPI schema artifact upload to integration workflow
-- make oasdiff breaking-change check non-blocking during major version upgrades
+- re-enable oasdiff breaking-change check (baseline now matches CI version)
 
 ## [0.3.1] - 2026-02-21
 

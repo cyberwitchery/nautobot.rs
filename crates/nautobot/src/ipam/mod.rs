@@ -306,7 +306,7 @@ mod tests {
         let available_vlans = api.vlan_group_available_vlans("1", None).await.unwrap();
         assert!(available_vlans.results.is_empty());
 
-        let status = crate::models::BulkWritableCableRequestStatus::new();
+        let status = crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage::new();
         let ip_request = IpAllocationRequest::new(status.clone());
         let allocated_ips = api.allocate_prefix_ips("1", &[ip_request]).await.unwrap();
         assert!(allocated_ips.results.is_empty());

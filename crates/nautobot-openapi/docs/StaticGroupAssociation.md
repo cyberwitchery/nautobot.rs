@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **associated_object_type** | **String** |  | 
 **associated_object** | Option<[**crate::models::DynamicGroupAssociatedObject**](DynamicGroupAssociatedObject.md)> |  | [optional][readonly]
 **associated_object_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**dynamic_group** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
+**dynamic_group** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]

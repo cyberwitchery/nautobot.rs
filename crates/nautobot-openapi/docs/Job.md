@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **is_job_button_receiver** | Option<**bool**> | Whether this job is a job button receiver | [optional][readonly]
 **has_sensitive_variables** | Option<**bool**> | Whether this job contains sensitive variables | [optional]
 **is_singleton** | Option<**bool**> | Whether this job should fail to run if another instance of this job is already running | [optional]
-**approval_required** | Option<**bool**> | Whether the job requires approval from another user before running | [optional]
+**console_log_default** | Option<**bool**> | Whether the job defaults to running with console log argument set to true | [optional]
 **hidden** | Option<**bool**> | Whether the job defaults to not being shown in the UI | [optional]
 **dryrun_default** | Option<**bool**> | Whether the job defaults to running with dryrun argument set to true | [optional]
 **read_only** | Option<**bool**> | Set to true if the job does not make any changes to the environment | [optional][readonly]
@@ -31,8 +31,8 @@ Name | Type | Description | Notes
 **supports_dryrun** | Option<**bool**> | If supported, allows the job to bypass approval when running with dryrun argument set to true | [optional][readonly]
 **grouping_override** | Option<**bool**> | If set, the configured grouping will remain even if the underlying Job source code changes | [optional]
 **name_override** | Option<**bool**> | If set, the configured name will remain even if the underlying Job source code changes | [optional]
+**console_log_default_override** | Option<**bool**> | If set, the configured console log default will remain even if the underlying Job source code changes | [optional]
 **description_override** | Option<**bool**> | If set, the configured description will remain even if the underlying Job source code changes | [optional]
-**approval_required_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
 **dryrun_default_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
 **hidden_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
 **soft_time_limit_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
@@ -41,11 +41,10 @@ Name | Type | Description | Notes
 **job_queues_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
 **default_job_queue_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
 **is_singleton_override** | Option<**bool**> | If set, the configured value will remain even if the underlying Job source code changes | [optional]
-**default_job_queue** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
-**job_queues** | Option<[**Vec<crate::models::JobQueues>**](Job_Queues.md)> | The job queues that this job can be run on | [optional][readonly]
+**default_job_queue** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
-**tags** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
+**tags** | Option<[**Vec<crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage>**](ApprovalWorkflowStageResponse_approval_workflow_stage.md)> |  | [optional]
 **notes_url** | Option<**String**> |  | [optional][readonly]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 

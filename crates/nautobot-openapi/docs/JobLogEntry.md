@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **message** | Option<**String**> |  | [optional]
 **log_object** | Option<**String**> |  | [optional]
 **absolute_url** | Option<**String**> |  | [optional]
-**job_result** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
+**job_result** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

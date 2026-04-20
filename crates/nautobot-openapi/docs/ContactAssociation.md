@@ -11,10 +11,10 @@ Name | Type | Description | Notes
 **natural_slug** | Option<**String**> |  | [optional][readonly]
 **associated_object_type** | **String** |  | 
 **associated_object_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**contact** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**team** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**role** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
-**status** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
+**contact** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**team** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**role** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
+**status** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]

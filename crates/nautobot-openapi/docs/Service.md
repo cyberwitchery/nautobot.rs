@@ -15,10 +15,9 @@ Name | Type | Description | Notes
 **description** | Option<**String**> |  | [optional]
 **device** | Option<[**crate::models::BulkWritableServiceRequestDevice**](BulkWritableServiceRequest_device.md)> |  | [optional]
 **virtual_machine** | Option<[**crate::models::BulkWritableServiceRequestVirtualMachine**](BulkWritableServiceRequest_virtual_machine.md)> |  | [optional]
-**ip_addresses** | Option<[**Vec<crate::models::IpAddresses>**](IP_addresses.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
-**tags** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
+**tags** | Option<[**Vec<crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage>**](ApprovalWorkflowStageResponse_approval_workflow_stage.md)> |  | [optional]
 **notes_url** | Option<**String**> |  | [optional][readonly]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 

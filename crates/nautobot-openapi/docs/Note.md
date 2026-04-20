@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **assigned_object_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **user_name** | Option<**String**> |  | [optional][readonly]
 **note** | **String** |  | 
-**user** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**user** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 

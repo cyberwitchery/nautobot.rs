@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **natural_slug** | Option<**String**> |  | [optional][readonly]
 **name** | **String** |  | 
 **uploaded_at** | Option<**String**> |  | [optional][readonly]
-**job_result** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**job_result** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

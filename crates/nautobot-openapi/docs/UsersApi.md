@@ -58,7 +58,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -269,7 +269,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -334,7 +334,7 @@ Name | Type | Description  | Required | Notes
 **id** | **i32** | A unique integer value identifying this group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -596,7 +596,7 @@ Name | Type | Description  | Required | Notes
 **users** | Option<[**Vec<String>**](String.md)> |  |  |
 **users__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -661,7 +661,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this permission. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -928,7 +928,7 @@ Name | Type | Description  | Required | Notes
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **write_enabled** | Option<**bool**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -993,7 +993,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this token. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1239,8 +1239,8 @@ Name | Type | Description  | Required | Notes
 **first_name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **first_name__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **format** | Option<**String**> |  |  |
-**groups** | Option<[**Vec<String>**](String.md)> | Group (name) |  |
-**groups__n** | Option<[**Vec<String>**](String.md)> | Exclude Group (name) |  |
+**groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **groups_id** | Option<[**Vec<i32>**](i32.md)> | Group (ID) |  |
 **groups_id__n** | Option<[**Vec<i32>**](i32.md)> | Exclude Group (ID) |  |
 **has_object_changes** | Option<**bool**> | Has Changes |  |
@@ -1269,13 +1269,13 @@ Name | Type | Description  | Required | Notes
 **object_changes__isnull** | Option<**bool**> | Object Changes (ID) is null |  |
 **object_changes__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Object Changes (ID) |  |
 **object_permissions** | Option<[**Vec<String>**](String.md)> |  |  |
-**object_permissions__isnull** | Option<**bool**> | Object Permission (ID or name) is null |  |
+**object_permissions__isnull** | Option<**bool**> |  |  |
 **object_permissions__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **q** | Option<**String**> | Search |  |
-**rack_reservations_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Rack Reservation (ID) |  |
-**rack_reservations_id__isnull** | Option<**bool**> | Rack Reservation (ID) is null |  |
-**rack_reservations_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Rack Reservation (ID) |  |
+**rack_reservations_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**rack_reservations_id__isnull** | Option<**bool**> |  |  |
+**rack_reservations_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **username** | Option<[**Vec<String>**](String.md)> |  |  |
 **username__ic** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1292,7 +1292,7 @@ Name | Type | Description  | Required | Notes
 **username__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **username__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1357,7 +1357,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this user. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 

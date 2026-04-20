@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **is_active** | Option<**bool**> | Designates whether this user should be treated as active. Unselect this instead of deleting accounts. | [optional]
 **date_joined** | Option<**String**> |  | [optional]
 **config_data** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**groups** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> | The groups this user belongs to. A user will get all permissions granted to each of their groups. | [optional]
+**groups** | Option<[**Vec<crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage>**](ApprovalWorkflowStageResponse_approval_workflow_stage.md)> | The groups this user belongs to. A user will get all permissions granted to each of their groups. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

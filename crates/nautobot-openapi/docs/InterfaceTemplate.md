@@ -11,14 +11,15 @@ Name | Type | Description | Notes
 **natural_slug** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]
 **r#type** | [**crate::models::InterfaceType**](Interface_type.md) |  | 
+**port_type** | Option<[**crate::models::FrontPortType**](FrontPort_type.md)> |  | [optional]
 **name** | **String** |  | 
 **label** | Option<**String**> | Physical label | [optional]
 **description** | Option<**String**> |  | [optional]
 **mgmt_only** | Option<**bool**> |  | [optional]
 **speed** | Option<**i32**> |  | [optional]
 **duplex** | Option<[**crate::models::BulkWritableInterfaceTemplateRequestDuplex**](BulkWritableInterfaceTemplateRequest_duplex.md)> |  | [optional]
-**device_type** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**module_type** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**device_type** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**module_type** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **circuit_count** | Option<**i32**> |  | [optional][readonly]
 **device_count** | Option<**i32**> |  | [optional][readonly]
 **ipaddress_count** | Option<**i32**> |  | [optional][readonly]
+**namespace_count** | Option<**i32**> |  | [optional][readonly]
 **prefix_count** | Option<**i32**> |  | [optional][readonly]
 **rack_count** | Option<**i32**> |  | [optional][readonly]
 **virtualmachine_count** | Option<**i32**> |  | [optional][readonly]
@@ -21,10 +22,10 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
 **comments** | Option<**String**> |  | [optional]
-**tenant_group** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**tenant_group** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
-**tags** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
+**tags** | Option<[**Vec<crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage>**](ApprovalWorkflowStageResponse_approval_workflow_stage.md)> |  | [optional]
 **notes_url** | Option<**String**> |  | [optional][readonly]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 

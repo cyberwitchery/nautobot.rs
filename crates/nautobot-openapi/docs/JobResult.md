@@ -22,12 +22,16 @@ Name | Type | Description | Notes
 **celery_kwargs** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **traceback** | Option<**String**> |  | [optional]
 **meta** | Option<[**serde_json::Value**](.md)> |  | [optional][readonly]
-**job_model** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**user** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
-**scheduled_job** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**debug_log_count** | Option<**i32**> |  | [optional][readonly]
+**success_log_count** | Option<**i32**> |  | [optional][readonly]
+**info_log_count** | Option<**i32**> |  | [optional][readonly]
+**warning_log_count** | Option<**i32**> |  | [optional][readonly]
+**error_log_count** | Option<**i32**> |  | [optional][readonly]
+**job_model** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**user** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
+**scheduled_job** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **custom_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **computed_fields** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional][readonly]
-**files** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

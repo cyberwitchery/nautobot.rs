@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **validation_maximum** | Option<**i64**> | Maximum allowed value (for numeric fields) or length (for text fields). | [optional]
 **validation_regex** | Option<**String**> | Regular expression to enforce on text field values. Use ^ and $ to force matching of entire string. For example, <code>^[A-Z]{3}$</code> will limit values to exactly three uppercase letters. Regular expression on select and multi-select will be applied at <code>Custom Field Choices</code> definition. | [optional]
 **advanced_ui** | Option<**bool**> | Hide this field from the object's primary information tab. It will appear in the \"Advanced\" tab instead. | [optional]
+**scope_filter** | Option<[**serde_json::Value**](.md)> | A JSON-encoded dictionary of filter parameters defining possible objects that can use this custom field. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

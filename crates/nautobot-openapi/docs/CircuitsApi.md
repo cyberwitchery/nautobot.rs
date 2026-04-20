@@ -236,7 +236,7 @@ Name | Type | Description  | Required | Notes
 **circuit** | Option<[**Vec<String>**](String.md)> |  |  |
 **circuit__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **cloud_network** | Option<[**Vec<String>**](String.md)> |  |  |
-**cloud_network__isnull** | Option<**bool**> | Cloud Network (name or ID) is null |  |
+**cloud_network__isnull** | Option<**bool**> |  |  |
 **cloud_network__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **connected** | Option<**bool**> | Connected status (bool) |  |
 **contacts** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -289,7 +289,7 @@ Name | Type | Description  | Required | Notes
 **pp_info__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **pp_info__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **provider_network** | Option<[**Vec<String>**](String.md)> |  |  |
-**provider_network__isnull** | Option<**bool**> | Provider Network (name or ID) is null |  |
+**provider_network__isnull** | Option<**bool**> |  |  |
 **provider_network__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
@@ -335,7 +335,7 @@ Name | Type | Description  | Required | Notes
 **xconnect_id__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **xconnect_id__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -402,7 +402,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -467,7 +467,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this circuit termination. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -500,7 +500,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this circuit termination. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -775,7 +775,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -842,7 +842,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -907,7 +907,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this circuit type. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1138,12 +1138,12 @@ Name | Type | Description  | Required | Notes
 **cid__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
 **cid__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **cid__re** | Option<[**Vec<String>**](String.md)> |  |  |
-**circuit_termination_a** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Termination A (ID) |  |
-**circuit_termination_a__isnull** | Option<**bool**> | Termination A (ID) is null |  |
-**circuit_termination_a__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Termination A (ID) |  |
-**circuit_termination_z** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Termination Z (ID) |  |
-**circuit_termination_z__isnull** | Option<**bool**> | Termination Z (ID) is null |  |
-**circuit_termination_z__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Termination Z (ID) |  |
+**circuit_termination_a** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**circuit_termination_a__isnull** | Option<**bool**> |  |  |
+**circuit_termination_a__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**circuit_termination_z** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**circuit_termination_z__isnull** | Option<**bool**> |  |  |
+**circuit_termination_z__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **circuit_terminations** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **circuit_terminations__isnull** | Option<**bool**> |  |  |
 **circuit_terminations__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
@@ -1247,7 +1247,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1314,7 +1314,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1379,7 +1379,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this circuit. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1596,9 +1596,9 @@ Retrieve a list of provider network objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**circuit_terminations** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Circuit Terminations (ID) |  |
-**circuit_terminations__isnull** | Option<**bool**> | Circuit Terminations (ID) is null |  |
-**circuit_terminations__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Circuit Terminations (ID) |  |
+**circuit_terminations** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**circuit_terminations__isnull** | Option<**bool**> |  |  |
+**circuit_terminations__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **comments** | Option<[**Vec<String>**](String.md)> |  |  |
 **comments__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **comments__ie** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1677,7 +1677,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1744,7 +1744,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1809,7 +1809,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this provider network. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2150,7 +2150,7 @@ Name | Type | Description  | Required | Notes
 **portal_url__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **portal_url__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **provider_networks** | Option<[**Vec<String>**](String.md)> |  |  |
-**provider_networks__isnull** | Option<**bool**> | Provider networks (name or ID) is null |  |
+**provider_networks__isnull** | Option<**bool**> |  |  |
 **provider_networks__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
@@ -2161,7 +2161,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2228,7 +2228,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2293,7 +2293,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this provider. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 

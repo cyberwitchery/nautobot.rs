@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **tenant_count** | Option<**i32**> |  | [optional][readonly]
 **name** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
-**parent** | Option<[**crate::models::BulkWritableCircuitRequestTenant**](BulkWritableCircuitRequest_tenant.md)> |  | [optional]
+**parent** | Option<[**crate::models::ApprovalWorkflowUser**](ApprovalWorkflow_user.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 **notes_url** | Option<**String**> |  | [optional][readonly]

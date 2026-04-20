@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **natural_slug** | Option<**String**> |  | [optional][readonly]
 **value** | **String** |  | 
 **weight** | Option<**i32**> | Higher weights appear later in the list | [optional]
-**custom_field** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
+**custom_field** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 

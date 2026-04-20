@@ -15,8 +15,6 @@ Name | Type | Description | Notes
 **enabled** | Option<**bool**> |  | [optional]
 **actions** | Option<[**serde_json::Value**](.md)> | The list of actions granted by this permission | 
 **constraints** | Option<[**serde_json::Value**](.md)> | Queryset filter matching the applicable objects of the selected type(s) | [optional]
-**groups** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
-**users** | Option<[**Vec<crate::models::BulkWritableCableRequestStatus>**](BulkWritableCableRequest_status.md)> |  | [optional]
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 

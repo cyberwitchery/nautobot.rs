@@ -237,7 +237,7 @@ Name | Type | Description  | Required | Notes
 **radio_profile__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this controller managed device group radio profile assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -528,13 +528,13 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
-**vlan** | Option<**uuid::Uuid**> |  |  |
+**vlan** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **vlan__isnull** | Option<**bool**> |  |  |
-**vlan__n** | Option<**uuid::Uuid**> |  |  |
+**vlan__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **wireless_network** | Option<[**Vec<String>**](String.md)> |  |  |
 **wireless_network__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -599,7 +599,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this controller managed device group wireless network assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -806,7 +806,7 @@ Name | Type | Description  | Required | Notes
 
 ## wireless_radio_profiles_list
 
-> crate::models::PaginatedRadioProfileList wireless_radio_profiles_list(allowed_channel_list, channel_width, contacts, contacts__isnull, contacts__n, controller_managed_device_groups, controller_managed_device_groups__isnull, controller_managed_device_groups__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, dynamic_groups, dynamic_groups__n, format, frequency, frequency__ic, frequency__ie, frequency__iew, frequency__ire, frequency__isw, frequency__n, frequency__nic, frequency__nie, frequency__niew, frequency__nire, frequency__nisw, frequency__nre, frequency__re, has_controller_managed_device_groups, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, regulatory_domain, regulatory_domain__ic, regulatory_domain__ie, regulatory_domain__iew, regulatory_domain__ire, regulatory_domain__isw, regulatory_domain__n, regulatory_domain__nic, regulatory_domain__nie, regulatory_domain__niew, regulatory_domain__nire, regulatory_domain__nisw, regulatory_domain__nre, regulatory_domain__re, rx_power_min, rx_power_min__gt, rx_power_min__gte, rx_power_min__isnull, rx_power_min__lt, rx_power_min__lte, rx_power_min__n, sort, supported_data_rates, supported_data_rates__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tx_power_max, tx_power_max__gt, tx_power_max__gte, tx_power_max__isnull, tx_power_max__lt, tx_power_max__lte, tx_power_max__n, tx_power_min, tx_power_min__gt, tx_power_min__gte, tx_power_min__isnull, tx_power_min__lt, tx_power_min__lte, tx_power_min__n, depth, exclude_m2m)
+> crate::models::PaginatedRadioProfileList wireless_radio_profiles_list(allowed_channel_list, channel_width, contacts, contacts__isnull, contacts__n, controller_managed_device_groups, controller_managed_device_groups__devices, controller_managed_device_groups__devices__isnull, controller_managed_device_groups__devices__n, controller_managed_device_groups__isnull, controller_managed_device_groups__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, dynamic_groups, dynamic_groups__n, format, frequency, frequency__ic, frequency__ie, frequency__iew, frequency__ire, frequency__isw, frequency__n, frequency__nic, frequency__nie, frequency__niew, frequency__nire, frequency__nisw, frequency__nre, frequency__re, has_controller_managed_device_groups, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, regulatory_domain, regulatory_domain__ic, regulatory_domain__ie, regulatory_domain__iew, regulatory_domain__ire, regulatory_domain__isw, regulatory_domain__n, regulatory_domain__nic, regulatory_domain__nie, regulatory_domain__niew, regulatory_domain__nire, regulatory_domain__nisw, regulatory_domain__nre, regulatory_domain__re, rx_power_min, rx_power_min__gt, rx_power_min__gte, rx_power_min__isnull, rx_power_min__lt, rx_power_min__lte, rx_power_min__n, sort, supported_data_rates, supported_data_rates__n, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tx_power_max, tx_power_max__gt, tx_power_max__gte, tx_power_max__isnull, tx_power_max__lt, tx_power_max__lte, tx_power_max__n, tx_power_min, tx_power_min__gt, tx_power_min__gte, tx_power_min__isnull, tx_power_min__lt, tx_power_min__lte, tx_power_min__n, depth, exclude_m2m)
 
 
 Retrieve a list of radio profile objects.
@@ -822,7 +822,10 @@ Name | Type | Description  | Required | Notes
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
 **contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **controller_managed_device_groups** | Option<[**Vec<String>**](String.md)> |  |  |
-**controller_managed_device_groups__isnull** | Option<**bool**> | Controller Managed Device Groups (name or ID) is null |  |
+**controller_managed_device_groups__devices** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__devices__isnull** | Option<**bool**> |  |  |
+**controller_managed_device_groups__devices__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__isnull** | Option<**bool**> |  |  |
 **controller_managed_device_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **created** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -920,7 +923,7 @@ Name | Type | Description  | Required | Notes
 **tx_power_min__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **tx_power_min__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -987,7 +990,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1052,7 +1055,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this radio profile. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1303,7 +1306,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **q** | Option<**String**> | Search |  |
 **radio_profiles** | Option<[**Vec<String>**](String.md)> |  |  |
-**radio_profiles__isnull** | Option<**bool**> | Radio Profile (name or ID) is null |  |
+**radio_profiles__isnull** | Option<**bool**> |  |  |
 **radio_profiles__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **rate** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **rate__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
@@ -1333,7 +1336,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1400,7 +1403,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1465,7 +1468,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this supported data rate. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1672,7 +1675,7 @@ Name | Type | Description  | Required | Notes
 
 ## wireless_wireless_networks_list
 
-> crate::models::PaginatedWirelessNetworkList wireless_wireless_networks_list(authentication, authentication__ic, authentication__ie, authentication__iew, authentication__ire, authentication__isw, authentication__n, authentication__nic, authentication__nie, authentication__niew, authentication__nire, authentication__nisw, authentication__nre, authentication__re, contacts, contacts__isnull, contacts__n, controller_managed_device_groups, controller_managed_device_groups__isnull, controller_managed_device_groups__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, dynamic_groups, dynamic_groups__n, enabled, format, has_controller_managed_device_groups, hidden, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, mode, mode__ic, mode__ie, mode__iew, mode__ire, mode__isw, mode__n, mode__nic, mode__nie, mode__niew, mode__nire, mode__nisw, mode__nre, mode__re, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, secrets_group, secrets_group__isnull, secrets_group__n, sort, ssid, ssid__ic, ssid__ie, ssid__iew, ssid__ire, ssid__isw, ssid__n, ssid__nic, ssid__nie, ssid__niew, ssid__nire, ssid__nisw, ssid__nre, ssid__re, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, depth, exclude_m2m)
+> crate::models::PaginatedWirelessNetworkList wireless_wireless_networks_list(authentication, authentication__ic, authentication__ie, authentication__iew, authentication__ire, authentication__isw, authentication__n, authentication__nic, authentication__nie, authentication__niew, authentication__nire, authentication__nisw, authentication__nre, authentication__re, contacts, contacts__isnull, contacts__n, controller_managed_device_groups, controller_managed_device_groups__controller, controller_managed_device_groups__controller__n, controller_managed_device_groups__devices, controller_managed_device_groups__devices__isnull, controller_managed_device_groups__devices__n, controller_managed_device_groups__isnull, controller_managed_device_groups__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, dynamic_groups, dynamic_groups__n, enabled, format, has_controller_managed_device_groups, hidden, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, mode, mode__ic, mode__ie, mode__iew, mode__ire, mode__isw, mode__n, mode__nic, mode__nie, mode__niew, mode__nire, mode__nisw, mode__nre, mode__re, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, secrets_group, secrets_group__isnull, secrets_group__n, sort, ssid, ssid__ic, ssid__ie, ssid__iew, ssid__ire, ssid__isw, ssid__n, ssid__nic, ssid__nie, ssid__niew, ssid__nire, ssid__nisw, ssid__nre, ssid__re, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, depth, exclude_m2m)
 
 
 Retrieve a list of wireless network objects.
@@ -1700,7 +1703,12 @@ Name | Type | Description  | Required | Notes
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
 **contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **controller_managed_device_groups** | Option<[**Vec<String>**](String.md)> |  |  |
-**controller_managed_device_groups__isnull** | Option<**bool**> | Controller Managed Device Groups (name or ID) is null |  |
+**controller_managed_device_groups__controller** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__controller__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__devices** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__devices__isnull** | Option<**bool**> |  |  |
+**controller_managed_device_groups__devices__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**controller_managed_device_groups__isnull** | Option<**bool**> |  |  |
 **controller_managed_device_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **created** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1770,7 +1778,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **q** | Option<**String**> | Search |  |
 **secrets_group** | Option<[**Vec<String>**](String.md)> |  |  |
-**secrets_group__isnull** | Option<**bool**> | Secrets group (name or ID) is null |  |
+**secrets_group__isnull** | Option<**bool**> |  |  |
 **secrets_group__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **ssid** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1803,7 +1811,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1870,7 +1878,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1935,7 +1943,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this wireless network. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 

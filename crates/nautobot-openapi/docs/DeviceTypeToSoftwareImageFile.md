@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **display** | Option<**String**> | Human friendly display value | [optional][readonly]
 **url** | Option<**String**> |  | [optional][readonly]
 **natural_slug** | Option<**String**> |  | [optional][readonly]
-**device_type** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
-**software_image_file** | [**crate::models::BulkWritableCableRequestStatus**](BulkWritableCableRequest_status.md) |  | 
+**device_type** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
+**software_image_file** | [**crate::models::ApprovalWorkflowStageResponseApprovalWorkflowStage**](ApprovalWorkflowStageResponse_approval_workflow_stage.md) |  | 
 **created** | Option<**String**> |  | [optional][readonly]
 **last_updated** | Option<**String**> |  | [optional][readonly]
 

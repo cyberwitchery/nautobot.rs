@@ -4,6 +4,63 @@ All URIs are relative to */api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**extras_approval_workflow_definitions_bulk_destroy**](ExtrasApi.md#extras_approval_workflow_definitions_bulk_destroy) | **DELETE** /extras/approval-workflow-definitions/ | 
+[**extras_approval_workflow_definitions_bulk_partial_update**](ExtrasApi.md#extras_approval_workflow_definitions_bulk_partial_update) | **PATCH** /extras/approval-workflow-definitions/ | 
+[**extras_approval_workflow_definitions_bulk_update**](ExtrasApi.md#extras_approval_workflow_definitions_bulk_update) | **PUT** /extras/approval-workflow-definitions/ | 
+[**extras_approval_workflow_definitions_create**](ExtrasApi.md#extras_approval_workflow_definitions_create) | **POST** /extras/approval-workflow-definitions/ | 
+[**extras_approval_workflow_definitions_destroy**](ExtrasApi.md#extras_approval_workflow_definitions_destroy) | **DELETE** /extras/approval-workflow-definitions/{id}/ | 
+[**extras_approval_workflow_definitions_list**](ExtrasApi.md#extras_approval_workflow_definitions_list) | **GET** /extras/approval-workflow-definitions/ | 
+[**extras_approval_workflow_definitions_notes_create**](ExtrasApi.md#extras_approval_workflow_definitions_notes_create) | **POST** /extras/approval-workflow-definitions/{id}/notes/ | 
+[**extras_approval_workflow_definitions_notes_list**](ExtrasApi.md#extras_approval_workflow_definitions_notes_list) | **GET** /extras/approval-workflow-definitions/{id}/notes/ | 
+[**extras_approval_workflow_definitions_partial_update**](ExtrasApi.md#extras_approval_workflow_definitions_partial_update) | **PATCH** /extras/approval-workflow-definitions/{id}/ | 
+[**extras_approval_workflow_definitions_retrieve**](ExtrasApi.md#extras_approval_workflow_definitions_retrieve) | **GET** /extras/approval-workflow-definitions/{id}/ | 
+[**extras_approval_workflow_definitions_update**](ExtrasApi.md#extras_approval_workflow_definitions_update) | **PUT** /extras/approval-workflow-definitions/{id}/ | 
+[**extras_approval_workflow_stage_definitions_bulk_destroy**](ExtrasApi.md#extras_approval_workflow_stage_definitions_bulk_destroy) | **DELETE** /extras/approval-workflow-stage-definitions/ | 
+[**extras_approval_workflow_stage_definitions_bulk_partial_update**](ExtrasApi.md#extras_approval_workflow_stage_definitions_bulk_partial_update) | **PATCH** /extras/approval-workflow-stage-definitions/ | 
+[**extras_approval_workflow_stage_definitions_bulk_update**](ExtrasApi.md#extras_approval_workflow_stage_definitions_bulk_update) | **PUT** /extras/approval-workflow-stage-definitions/ | 
+[**extras_approval_workflow_stage_definitions_create**](ExtrasApi.md#extras_approval_workflow_stage_definitions_create) | **POST** /extras/approval-workflow-stage-definitions/ | 
+[**extras_approval_workflow_stage_definitions_destroy**](ExtrasApi.md#extras_approval_workflow_stage_definitions_destroy) | **DELETE** /extras/approval-workflow-stage-definitions/{id}/ | 
+[**extras_approval_workflow_stage_definitions_list**](ExtrasApi.md#extras_approval_workflow_stage_definitions_list) | **GET** /extras/approval-workflow-stage-definitions/ | 
+[**extras_approval_workflow_stage_definitions_notes_create**](ExtrasApi.md#extras_approval_workflow_stage_definitions_notes_create) | **POST** /extras/approval-workflow-stage-definitions/{id}/notes/ | 
+[**extras_approval_workflow_stage_definitions_notes_list**](ExtrasApi.md#extras_approval_workflow_stage_definitions_notes_list) | **GET** /extras/approval-workflow-stage-definitions/{id}/notes/ | 
+[**extras_approval_workflow_stage_definitions_partial_update**](ExtrasApi.md#extras_approval_workflow_stage_definitions_partial_update) | **PATCH** /extras/approval-workflow-stage-definitions/{id}/ | 
+[**extras_approval_workflow_stage_definitions_retrieve**](ExtrasApi.md#extras_approval_workflow_stage_definitions_retrieve) | **GET** /extras/approval-workflow-stage-definitions/{id}/ | 
+[**extras_approval_workflow_stage_definitions_update**](ExtrasApi.md#extras_approval_workflow_stage_definitions_update) | **PUT** /extras/approval-workflow-stage-definitions/{id}/ | 
+[**extras_approval_workflow_stage_responses_bulk_destroy**](ExtrasApi.md#extras_approval_workflow_stage_responses_bulk_destroy) | **DELETE** /extras/approval-workflow-stage-responses/ | 
+[**extras_approval_workflow_stage_responses_bulk_partial_update**](ExtrasApi.md#extras_approval_workflow_stage_responses_bulk_partial_update) | **PATCH** /extras/approval-workflow-stage-responses/ | 
+[**extras_approval_workflow_stage_responses_bulk_update**](ExtrasApi.md#extras_approval_workflow_stage_responses_bulk_update) | **PUT** /extras/approval-workflow-stage-responses/ | 
+[**extras_approval_workflow_stage_responses_create**](ExtrasApi.md#extras_approval_workflow_stage_responses_create) | **POST** /extras/approval-workflow-stage-responses/ | 
+[**extras_approval_workflow_stage_responses_destroy**](ExtrasApi.md#extras_approval_workflow_stage_responses_destroy) | **DELETE** /extras/approval-workflow-stage-responses/{id}/ | 
+[**extras_approval_workflow_stage_responses_list**](ExtrasApi.md#extras_approval_workflow_stage_responses_list) | **GET** /extras/approval-workflow-stage-responses/ | 
+[**extras_approval_workflow_stage_responses_partial_update**](ExtrasApi.md#extras_approval_workflow_stage_responses_partial_update) | **PATCH** /extras/approval-workflow-stage-responses/{id}/ | 
+[**extras_approval_workflow_stage_responses_retrieve**](ExtrasApi.md#extras_approval_workflow_stage_responses_retrieve) | **GET** /extras/approval-workflow-stage-responses/{id}/ | 
+[**extras_approval_workflow_stage_responses_update**](ExtrasApi.md#extras_approval_workflow_stage_responses_update) | **PUT** /extras/approval-workflow-stage-responses/{id}/ | 
+[**extras_approval_workflow_stages_approve_create**](ExtrasApi.md#extras_approval_workflow_stages_approve_create) | **POST** /extras/approval-workflow-stages/{id}/approve/ | 
+[**extras_approval_workflow_stages_bulk_destroy**](ExtrasApi.md#extras_approval_workflow_stages_bulk_destroy) | **DELETE** /extras/approval-workflow-stages/ | 
+[**extras_approval_workflow_stages_bulk_partial_update**](ExtrasApi.md#extras_approval_workflow_stages_bulk_partial_update) | **PATCH** /extras/approval-workflow-stages/ | 
+[**extras_approval_workflow_stages_bulk_update**](ExtrasApi.md#extras_approval_workflow_stages_bulk_update) | **PUT** /extras/approval-workflow-stages/ | 
+[**extras_approval_workflow_stages_comment_create**](ExtrasApi.md#extras_approval_workflow_stages_comment_create) | **POST** /extras/approval-workflow-stages/{id}/comment/ | 
+[**extras_approval_workflow_stages_create**](ExtrasApi.md#extras_approval_workflow_stages_create) | **POST** /extras/approval-workflow-stages/ | 
+[**extras_approval_workflow_stages_deny_create**](ExtrasApi.md#extras_approval_workflow_stages_deny_create) | **POST** /extras/approval-workflow-stages/{id}/deny/ | 
+[**extras_approval_workflow_stages_destroy**](ExtrasApi.md#extras_approval_workflow_stages_destroy) | **DELETE** /extras/approval-workflow-stages/{id}/ | 
+[**extras_approval_workflow_stages_list**](ExtrasApi.md#extras_approval_workflow_stages_list) | **GET** /extras/approval-workflow-stages/ | 
+[**extras_approval_workflow_stages_notes_create**](ExtrasApi.md#extras_approval_workflow_stages_notes_create) | **POST** /extras/approval-workflow-stages/{id}/notes/ | 
+[**extras_approval_workflow_stages_notes_list**](ExtrasApi.md#extras_approval_workflow_stages_notes_list) | **GET** /extras/approval-workflow-stages/{id}/notes/ | 
+[**extras_approval_workflow_stages_partial_update**](ExtrasApi.md#extras_approval_workflow_stages_partial_update) | **PATCH** /extras/approval-workflow-stages/{id}/ | 
+[**extras_approval_workflow_stages_retrieve**](ExtrasApi.md#extras_approval_workflow_stages_retrieve) | **GET** /extras/approval-workflow-stages/{id}/ | 
+[**extras_approval_workflow_stages_update**](ExtrasApi.md#extras_approval_workflow_stages_update) | **PUT** /extras/approval-workflow-stages/{id}/ | 
+[**extras_approval_workflows_bulk_destroy**](ExtrasApi.md#extras_approval_workflows_bulk_destroy) | **DELETE** /extras/approval-workflows/ | 
+[**extras_approval_workflows_bulk_partial_update**](ExtrasApi.md#extras_approval_workflows_bulk_partial_update) | **PATCH** /extras/approval-workflows/ | 
+[**extras_approval_workflows_bulk_update**](ExtrasApi.md#extras_approval_workflows_bulk_update) | **PUT** /extras/approval-workflows/ | 
+[**extras_approval_workflows_cancel_create**](ExtrasApi.md#extras_approval_workflows_cancel_create) | **POST** /extras/approval-workflows/{id}/cancel/ | 
+[**extras_approval_workflows_create**](ExtrasApi.md#extras_approval_workflows_create) | **POST** /extras/approval-workflows/ | 
+[**extras_approval_workflows_destroy**](ExtrasApi.md#extras_approval_workflows_destroy) | **DELETE** /extras/approval-workflows/{id}/ | 
+[**extras_approval_workflows_list**](ExtrasApi.md#extras_approval_workflows_list) | **GET** /extras/approval-workflows/ | 
+[**extras_approval_workflows_notes_create**](ExtrasApi.md#extras_approval_workflows_notes_create) | **POST** /extras/approval-workflows/{id}/notes/ | 
+[**extras_approval_workflows_notes_list**](ExtrasApi.md#extras_approval_workflows_notes_list) | **GET** /extras/approval-workflows/{id}/notes/ | 
+[**extras_approval_workflows_partial_update**](ExtrasApi.md#extras_approval_workflows_partial_update) | **PATCH** /extras/approval-workflows/{id}/ | 
+[**extras_approval_workflows_retrieve**](ExtrasApi.md#extras_approval_workflows_retrieve) | **GET** /extras/approval-workflows/{id}/ | 
+[**extras_approval_workflows_update**](ExtrasApi.md#extras_approval_workflows_update) | **PUT** /extras/approval-workflows/{id}/ | 
 [**extras_computed_fields_bulk_destroy**](ExtrasApi.md#extras_computed_fields_bulk_destroy) | **DELETE** /extras/computed-fields/ | 
 [**extras_computed_fields_bulk_partial_update**](ExtrasApi.md#extras_computed_fields_bulk_partial_update) | **PATCH** /extras/computed-fields/ | 
 [**extras_computed_fields_bulk_update**](ExtrasApi.md#extras_computed_fields_bulk_update) | **PUT** /extras/computed-fields/ | 
@@ -320,9 +377,7 @@ Method | HTTP request | Description
 [**extras_saved_views_partial_update**](ExtrasApi.md#extras_saved_views_partial_update) | **PATCH** /extras/saved-views/{id}/ | 
 [**extras_saved_views_retrieve**](ExtrasApi.md#extras_saved_views_retrieve) | **GET** /extras/saved-views/{id}/ | 
 [**extras_saved_views_update**](ExtrasApi.md#extras_saved_views_update) | **PUT** /extras/saved-views/{id}/ | 
-[**extras_scheduled_jobs_approve_create**](ExtrasApi.md#extras_scheduled_jobs_approve_create) | **POST** /extras/scheduled-jobs/{id}/approve/ | 
 [**extras_scheduled_jobs_bulk_destroy**](ExtrasApi.md#extras_scheduled_jobs_bulk_destroy) | **DELETE** /extras/scheduled-jobs/ | 
-[**extras_scheduled_jobs_deny_create**](ExtrasApi.md#extras_scheduled_jobs_deny_create) | **POST** /extras/scheduled-jobs/{id}/deny/ | 
 [**extras_scheduled_jobs_destroy**](ExtrasApi.md#extras_scheduled_jobs_destroy) | **DELETE** /extras/scheduled-jobs/{id}/ | 
 [**extras_scheduled_jobs_dry_run_create**](ExtrasApi.md#extras_scheduled_jobs_dry_run_create) | **POST** /extras/scheduled-jobs/{id}/dry-run/ | 
 [**extras_scheduled_jobs_list**](ExtrasApi.md#extras_scheduled_jobs_list) | **GET** /extras/scheduled-jobs/ | 
@@ -424,6 +479,2119 @@ Method | HTTP request | Description
 [**extras_webhooks_retrieve**](ExtrasApi.md#extras_webhooks_retrieve) | **GET** /extras/webhooks/{id}/ | 
 [**extras_webhooks_update**](ExtrasApi.md#extras_webhooks_update) | **PUT** /extras/webhooks/{id}/ | 
 
+
+
+## extras_approval_workflow_definitions_bulk_destroy
+
+> extras_approval_workflow_definitions_bulk_destroy(bulk_operation_request, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_bulk_partial_update
+
+> Vec<crate::models::ApprovalWorkflowDefinition> extras_approval_workflow_definitions_bulk_partial_update(patched_bulk_writable_approval_workflow_definition_request, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_bulk_writable_approval_workflow_definition_request** | [**Vec<crate::models::PatchedBulkWritableApprovalWorkflowDefinitionRequest>**](PatchedBulkWritableApprovalWorkflowDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowDefinition>**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_bulk_update
+
+> Vec<crate::models::ApprovalWorkflowDefinition> extras_approval_workflow_definitions_bulk_update(bulk_writable_approval_workflow_definition_request, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_writable_approval_workflow_definition_request** | [**Vec<crate::models::BulkWritableApprovalWorkflowDefinitionRequest>**](BulkWritableApprovalWorkflowDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowDefinition>**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_create
+
+> crate::models::ApprovalWorkflowDefinition extras_approval_workflow_definitions_create(approval_workflow_definition_request, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_definition_request** | [**ApprovalWorkflowDefinitionRequest**](ApprovalWorkflowDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowDefinition**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_destroy
+
+> extras_approval_workflow_definitions_destroy(id, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_list
+
+> crate::models::PaginatedApprovalWorkflowDefinitionList extras_approval_workflow_definitions_list(contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, model_constraints, model_content_type, model_content_type__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, weight, weight__gt, weight__gte, weight__lt, weight__lte, weight__n, depth, exclude_m2m)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**contacts** | Option<[**Vec<String>**](String.md)> |  |  |
+**contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
+**contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**created** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__isnull** | Option<**bool**> |  |  |
+**created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**format** | Option<**String**> |  |  |
+**id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
+**id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__isnull** | Option<**bool**> |  |  |
+**last_updated__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**model_constraints** | Option<[**Vec<String>**](String.md)> |  |  |
+**model_content_type** | Option<[**Vec<i32>**](i32.md)> | Object types allowed to be associated with this Approval Workflow Definition |  |
+**model_content_type__n** | Option<[**Vec<i32>**](i32.md)> | Exclude Object types allowed to be associated with this Approval Workflow Definition |  |
+**name** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**q** | Option<**String**> | Search |  |
+**sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**tags** | Option<[**Vec<String>**](String.md)> |  |  |
+**tags__isnull** | Option<**bool**> |  |  |
+**tags__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
+**teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**weight** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**weight__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**weight__gte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**weight__lt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedApprovalWorkflowDefinitionList**](PaginatedApprovalWorkflowDefinitionList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_notes_create
+
+> crate::models::Note extras_approval_workflow_definitions_notes_create(id, note_input_request, format)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**note_input_request** | [**NoteInputRequest**](NoteInputRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::Note**](Note.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_notes_list
+
+> crate::models::PaginatedNoteList extras_approval_workflow_definitions_notes_list(id, format, limit, offset, depth, exclude_m2m)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedNoteList**](PaginatedNoteList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_partial_update
+
+> crate::models::ApprovalWorkflowDefinition extras_approval_workflow_definitions_partial_update(id, format, patched_approval_workflow_definition_request)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**patched_approval_workflow_definition_request** | Option<[**PatchedApprovalWorkflowDefinitionRequest**](PatchedApprovalWorkflowDefinitionRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowDefinition**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_retrieve
+
+> crate::models::ApprovalWorkflowDefinition extras_approval_workflow_definitions_retrieve(id, format, depth, exclude_m2m)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowDefinition**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_definitions_update
+
+> crate::models::ApprovalWorkflowDefinition extras_approval_workflow_definitions_update(id, approval_workflow_definition_request, format)
+
+
+ApprovalWorkflowDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Definition. | [required] |
+**approval_workflow_definition_request** | [**ApprovalWorkflowDefinitionRequest**](ApprovalWorkflowDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowDefinition**](ApprovalWorkflowDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_bulk_destroy
+
+> extras_approval_workflow_stage_definitions_bulk_destroy(bulk_operation_request, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_bulk_partial_update
+
+> Vec<crate::models::ApprovalWorkflowStageDefinition> extras_approval_workflow_stage_definitions_bulk_partial_update(patched_bulk_writable_approval_workflow_stage_definition_request, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_bulk_writable_approval_workflow_stage_definition_request** | [**Vec<crate::models::PatchedBulkWritableApprovalWorkflowStageDefinitionRequest>**](PatchedBulkWritableApprovalWorkflowStageDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStageDefinition>**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_bulk_update
+
+> Vec<crate::models::ApprovalWorkflowStageDefinition> extras_approval_workflow_stage_definitions_bulk_update(bulk_writable_approval_workflow_stage_definition_request, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_writable_approval_workflow_stage_definition_request** | [**Vec<crate::models::BulkWritableApprovalWorkflowStageDefinitionRequest>**](BulkWritableApprovalWorkflowStageDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStageDefinition>**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_create
+
+> crate::models::ApprovalWorkflowStageDefinition extras_approval_workflow_stage_definitions_create(approval_workflow_stage_definition_request, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_stage_definition_request** | [**ApprovalWorkflowStageDefinitionRequest**](ApprovalWorkflowStageDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageDefinition**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_destroy
+
+> extras_approval_workflow_stage_definitions_destroy(id, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_list
+
+> crate::models::PaginatedApprovalWorkflowStageDefinitionList extras_approval_workflow_stage_definitions_list(approval_workflow, approval_workflow_definition, approval_workflow_definition__n, approver_group, approver_group__n, contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, denial_message, denial_message__ic, denial_message__ie, denial_message__iew, denial_message__ire, denial_message__isw, denial_message__n, denial_message__nic, denial_message__nie, denial_message__niew, denial_message__nire, denial_message__nisw, denial_message__nre, denial_message__re, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, min_approvers, min_approvers__gt, min_approvers__gte, min_approvers__lt, min_approvers__lte, min_approvers__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sequence, sequence__gt, sequence__gte, sequence__lt, sequence__lte, sequence__n, sort, teams, teams__isnull, teams__n, depth, exclude_m2m)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow** | Option<[**Vec<String>**](String.md)> |  |  |
+**approval_workflow_definition** | Option<[**Vec<String>**](String.md)> |  |  |
+**approval_workflow_definition__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**approver_group** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**approver_group__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**contacts** | Option<[**Vec<String>**](String.md)> |  |  |
+**contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
+**contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**created** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__isnull** | Option<**bool**> |  |  |
+**created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**denial_message__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**format** | Option<**String**> |  |  |
+**id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
+**id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__isnull** | Option<**bool**> |  |  |
+**last_updated__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**min_approvers** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**min_approvers__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**min_approvers__gte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**min_approvers__lt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**min_approvers__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**min_approvers__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**name** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**name__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**q** | Option<**String**> | Search |  |
+**sequence** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sequence__gt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sequence__gte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sequence__lt** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sequence__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sequence__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**teams** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
+**teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedApprovalWorkflowStageDefinitionList**](PaginatedApprovalWorkflowStageDefinitionList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_notes_create
+
+> crate::models::Note extras_approval_workflow_stage_definitions_notes_create(id, note_input_request, format)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**note_input_request** | [**NoteInputRequest**](NoteInputRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::Note**](Note.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_notes_list
+
+> crate::models::PaginatedNoteList extras_approval_workflow_stage_definitions_notes_list(id, format, limit, offset, depth, exclude_m2m)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedNoteList**](PaginatedNoteList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_partial_update
+
+> crate::models::ApprovalWorkflowStageDefinition extras_approval_workflow_stage_definitions_partial_update(id, format, patched_approval_workflow_stage_definition_request)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**patched_approval_workflow_stage_definition_request** | Option<[**PatchedApprovalWorkflowStageDefinitionRequest**](PatchedApprovalWorkflowStageDefinitionRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageDefinition**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_retrieve
+
+> crate::models::ApprovalWorkflowStageDefinition extras_approval_workflow_stage_definitions_retrieve(id, format, depth, exclude_m2m)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**format** | Option<**String**> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageDefinition**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_definitions_update
+
+> crate::models::ApprovalWorkflowStageDefinition extras_approval_workflow_stage_definitions_update(id, approval_workflow_stage_definition_request, format)
+
+
+ApprovalWorkflowStageDefinition viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Definition. | [required] |
+**approval_workflow_stage_definition_request** | [**ApprovalWorkflowStageDefinitionRequest**](ApprovalWorkflowStageDefinitionRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageDefinition**](ApprovalWorkflowStageDefinition.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_bulk_destroy
+
+> extras_approval_workflow_stage_responses_bulk_destroy(bulk_operation_request, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_bulk_partial_update
+
+> Vec<crate::models::ApprovalWorkflowStageResponse> extras_approval_workflow_stage_responses_bulk_partial_update(patched_bulk_writable_approval_workflow_stage_response_request, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_bulk_writable_approval_workflow_stage_response_request** | [**Vec<crate::models::PatchedBulkWritableApprovalWorkflowStageResponseRequest>**](PatchedBulkWritableApprovalWorkflowStageResponseRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStageResponse>**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_bulk_update
+
+> Vec<crate::models::ApprovalWorkflowStageResponse> extras_approval_workflow_stage_responses_bulk_update(bulk_writable_approval_workflow_stage_response_request, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_writable_approval_workflow_stage_response_request** | [**Vec<crate::models::BulkWritableApprovalWorkflowStageResponseRequest>**](BulkWritableApprovalWorkflowStageResponseRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStageResponse>**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_create
+
+> crate::models::ApprovalWorkflowStageResponse extras_approval_workflow_stage_responses_create(approval_workflow_stage_response_request, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_stage_response_request** | [**ApprovalWorkflowStageResponseRequest**](ApprovalWorkflowStageResponseRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageResponse**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_destroy
+
+> extras_approval_workflow_stage_responses_destroy(id, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Response. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_list
+
+> crate::models::PaginatedApprovalWorkflowStageResponseList extras_approval_workflow_stage_responses_list(approval_workflow_stage, approval_workflow_stage__n, comments, comments__ic, comments__ie, comments__iew, comments__ire, comments__isw, comments__n, comments__nic, comments__nie, comments__niew, comments__nire, comments__nisw, comments__nre, comments__re, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, offset, q, sort, state, state__ic, state__ie, state__iew, state__ire, state__isw, state__n, state__nic, state__nie, state__niew, state__nire, state__nisw, state__nre, state__re, user, user__n, depth, exclude_m2m)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_stage** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**approval_workflow_stage__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**comments** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**comments__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**format** | Option<**String**> |  |  |
+**id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
+**id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__isnull** | Option<**bool**> |  |  |
+**last_updated__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**q** | Option<**String**> | Search |  |
+**sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**state** | Option<[**Vec<String>**](String.md)> | User response to this approval workflow stage instance. Eligible values are: Pending, Comment, Approved, Denied.   |  |
+**state__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**user** | Option<[**Vec<String>**](String.md)> |  |  |
+**user__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedApprovalWorkflowStageResponseList**](PaginatedApprovalWorkflowStageResponseList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_partial_update
+
+> crate::models::ApprovalWorkflowStageResponse extras_approval_workflow_stage_responses_partial_update(id, format, patched_approval_workflow_stage_response_request)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Response. | [required] |
+**format** | Option<**String**> |  |  |
+**patched_approval_workflow_stage_response_request** | Option<[**PatchedApprovalWorkflowStageResponseRequest**](PatchedApprovalWorkflowStageResponseRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageResponse**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_retrieve
+
+> crate::models::ApprovalWorkflowStageResponse extras_approval_workflow_stage_responses_retrieve(id, format, depth, exclude_m2m)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Response. | [required] |
+**format** | Option<**String**> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageResponse**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stage_responses_update
+
+> crate::models::ApprovalWorkflowStageResponse extras_approval_workflow_stage_responses_update(id, approval_workflow_stage_response_request, format)
+
+
+ApprovalWorkflowStageResponse viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage Response. | [required] |
+**approval_workflow_stage_response_request** | [**ApprovalWorkflowStageResponseRequest**](ApprovalWorkflowStageResponseRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStageResponse**](ApprovalWorkflowStageResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_approve_create
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_approve_create(id, format)
+
+
+Approve the approval workflow stage.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_bulk_destroy
+
+> extras_approval_workflow_stages_bulk_destroy(bulk_operation_request, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_bulk_partial_update
+
+> Vec<crate::models::ApprovalWorkflowStage> extras_approval_workflow_stages_bulk_partial_update(patched_bulk_writable_approval_workflow_stage_request, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_bulk_writable_approval_workflow_stage_request** | [**Vec<crate::models::PatchedBulkWritableApprovalWorkflowStageRequest>**](PatchedBulkWritableApprovalWorkflowStageRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStage>**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_bulk_update
+
+> Vec<crate::models::ApprovalWorkflowStage> extras_approval_workflow_stages_bulk_update(bulk_writable_approval_workflow_stage_request, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_writable_approval_workflow_stage_request** | [**Vec<crate::models::BulkWritableApprovalWorkflowStageRequest>**](BulkWritableApprovalWorkflowStageRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflowStage>**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_comment_create
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_comment_create(id, format)
+
+
+Add a comment to the specific stage (without approving or denying).
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_create
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_create(approval_workflow_stage_request, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_stage_request** | [**ApprovalWorkflowStageRequest**](ApprovalWorkflowStageRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_deny_create
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_deny_create(id, format)
+
+
+Deny the approval workflow stage.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_destroy
+
+> extras_approval_workflow_stages_destroy(id, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_list
+
+> crate::models::PaginatedApprovalWorkflowStageList extras_approval_workflow_stages_list(approval_workflow, approval_workflow__n, approval_workflow_stage_definition, approval_workflow_stage_definition__isnull, approval_workflow_stage_definition__n, contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, decision_date, decision_date__gt, decision_date__gte, decision_date__isnull, decision_date__lt, decision_date__lte, decision_date__n, decision_date_day, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, offset, pending_my_approvals, q, sort, state, state__ic, state__ie, state__iew, state__ire, state__isw, state__n, state__nic, state__nie, state__niew, state__nire, state__nisw, state__nre, state__re, teams, teams__isnull, teams__n, depth, exclude_m2m)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**approval_workflow__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**approval_workflow_stage_definition** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**approval_workflow_stage_definition__isnull** | Option<**bool**> |  |  |
+**approval_workflow_stage_definition__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**contacts** | Option<[**Vec<String>**](String.md)> |  |  |
+**contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
+**contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**created** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__isnull** | Option<**bool**> |  |  |
+**created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__isnull** | Option<**bool**> |  |  |
+**decision_date__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date_day** | Option<**String**> |  |  |
+**dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**format** | Option<**String**> |  |  |
+**id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
+**id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__isnull** | Option<**bool**> |  |  |
+**last_updated__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**pending_my_approvals** | Option<**bool**> | Filter by user's pending approvals (false returns completed approvals) |  |
+**q** | Option<**String**> | Search |  |
+**sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**state** | Option<[**Vec<String>**](String.md)> | State of the approval workflow stage instance. Eligible values are: Pending, Approved, Denied.   |  |
+**state__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
+**teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedApprovalWorkflowStageList**](PaginatedApprovalWorkflowStageList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_notes_create
+
+> crate::models::Note extras_approval_workflow_stages_notes_create(id, note_input_request, format)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**note_input_request** | [**NoteInputRequest**](NoteInputRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::Note**](Note.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_notes_list
+
+> crate::models::PaginatedNoteList extras_approval_workflow_stages_notes_list(id, format, limit, offset, depth, exclude_m2m)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedNoteList**](PaginatedNoteList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_partial_update
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_partial_update(id, format, patched_approval_workflow_stage_request)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+**patched_approval_workflow_stage_request** | Option<[**PatchedApprovalWorkflowStageRequest**](PatchedApprovalWorkflowStageRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_retrieve
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_retrieve(id, format, depth, exclude_m2m)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**format** | Option<**String**> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflow_stages_update
+
+> crate::models::ApprovalWorkflowStage extras_approval_workflow_stages_update(id, approval_workflow_stage_request, format)
+
+
+ApprovalWorkflowStage viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow Stage. | [required] |
+**approval_workflow_stage_request** | [**ApprovalWorkflowStageRequest**](ApprovalWorkflowStageRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflowStage**](ApprovalWorkflowStage.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_bulk_destroy
+
+> extras_approval_workflows_bulk_destroy(bulk_operation_request, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_operation_request** | [**Vec<crate::models::BulkOperationRequest>**](BulkOperationRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_bulk_partial_update
+
+> Vec<crate::models::ApprovalWorkflow> extras_approval_workflows_bulk_partial_update(patched_bulk_writable_approval_workflow_request, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_bulk_writable_approval_workflow_request** | [**Vec<crate::models::PatchedBulkWritableApprovalWorkflowRequest>**](PatchedBulkWritableApprovalWorkflowRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflow>**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_bulk_update
+
+> Vec<crate::models::ApprovalWorkflow> extras_approval_workflows_bulk_update(bulk_writable_approval_workflow_request, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**bulk_writable_approval_workflow_request** | [**Vec<crate::models::BulkWritableApprovalWorkflowRequest>**](BulkWritableApprovalWorkflowRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**Vec<crate::models::ApprovalWorkflow>**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_cancel_create
+
+> crate::models::ApprovalWorkflow extras_approval_workflows_cancel_create(id, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflow**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_create
+
+> crate::models::ApprovalWorkflow extras_approval_workflows_create(approval_workflow_request, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_request** | [**ApprovalWorkflowRequest**](ApprovalWorkflowRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflow**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_destroy
+
+> extras_approval_workflows_destroy(id, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_list
+
+> crate::models::PaginatedApprovalWorkflowList extras_approval_workflows_list(approval_workflow_definition, approval_workflow_definition__isnull, approval_workflow_definition__n, contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, current_state, current_state__ic, current_state__ie, current_state__iew, current_state__ire, current_state__isw, current_state__n, current_state__nic, current_state__nie, current_state__niew, current_state__nire, current_state__nisw, current_state__nre, current_state__re, decision_date, decision_date__gt, decision_date__gte, decision_date__isnull, decision_date__lt, decision_date__lte, decision_date__n, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, object_under_review_content_type, object_under_review_content_type__n, object_under_review_object_id, object_under_review_object_id__n, offset, q, sort, teams, teams__isnull, teams__n, user, user__isnull, user__n, user_name, user_name__ic, user_name__ie, user_name__iew, user_name__ire, user_name__isw, user_name__n, user_name__nic, user_name__nie, user_name__niew, user_name__nire, user_name__nisw, user_name__nre, user_name__re, depth, exclude_m2m)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**approval_workflow_definition** | Option<[**Vec<String>**](String.md)> |  |  |
+**approval_workflow_definition__isnull** | Option<**bool**> |  |  |
+**approval_workflow_definition__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**contacts** | Option<[**Vec<String>**](String.md)> |  |  |
+**contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
+**contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**created** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__isnull** | Option<**bool**> |  |  |
+**created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**created__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state** | Option<[**Vec<String>**](String.md)> | Current state of the approval workflow. Eligible values are: Pending, Approved, Denied, Canceled.   |  |
+**current_state__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**current_state__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__isnull** | Option<**bool**> |  |  |
+**decision_date__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**decision_date__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**format** | Option<**String**> |  |  |
+**id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
+**id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**last_updated** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__gte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__isnull** | Option<**bool**> |  |  |
+**last_updated__lt** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__lte** | Option<[**Vec<String>**](String.md)> |  |  |
+**last_updated__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**object_under_review_content_type** | Option<[**Vec<i32>**](i32.md)> | Object types allowed to be associated with this Approval Workflow |  |
+**object_under_review_content_type__n** | Option<[**Vec<i32>**](i32.md)> | Exclude Object types allowed to be associated with this Approval Workflow |  |
+**object_under_review_object_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**object_under_review_object_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**q** | Option<**String**> | Search |  |
+**sort** | Option<**String**> | Which field to use when ordering the results. |  |
+**teams** | Option<[**Vec<String>**](String.md)> |  |  |
+**teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
+**teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**user** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**user__isnull** | Option<**bool**> |  |  |
+**user__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**user_name** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**user_name__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedApprovalWorkflowList**](PaginatedApprovalWorkflowList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_notes_create
+
+> crate::models::Note extras_approval_workflows_notes_create(id, note_input_request, format)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**note_input_request** | [**NoteInputRequest**](NoteInputRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::Note**](Note.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_notes_list
+
+> crate::models::PaginatedNoteList extras_approval_workflows_notes_list(id, format, limit, offset, depth, exclude_m2m)
+
+
+API methods for returning or creating notes on an object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**format** | Option<**String**> |  |  |
+**limit** | Option<**i32**> | Number of results to return per page. |  |
+**offset** | Option<**i32**> | The initial index from which to return the results. |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::PaginatedNoteList**](PaginatedNoteList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_partial_update
+
+> crate::models::ApprovalWorkflow extras_approval_workflows_partial_update(id, format, patched_approval_workflow_request)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**format** | Option<**String**> |  |  |
+**patched_approval_workflow_request** | Option<[**PatchedApprovalWorkflowRequest**](PatchedApprovalWorkflowRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflow**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_retrieve
+
+> crate::models::ApprovalWorkflow extras_approval_workflows_retrieve(id, format, depth, exclude_m2m)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**format** | Option<**String**> |  |  |
+**depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflow**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## extras_approval_workflows_update
+
+> crate::models::ApprovalWorkflow extras_approval_workflows_update(id, approval_workflow_request, format)
+
+
+ApprovalWorkflow viewset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** | A UUID string identifying this Approval Workflow. | [required] |
+**approval_workflow_request** | [**ApprovalWorkflowRequest**](ApprovalWorkflowRequest.md) |  | [required] |
+**format** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::ApprovalWorkflow**](ApprovalWorkflow.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv
+- **Accept**: application/json, text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## extras_computed_fields_bulk_destroy
@@ -673,7 +2841,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -740,7 +2908,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -805,7 +2973,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this computed field. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1069,7 +3237,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1136,7 +3304,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1201,7 +3369,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this config context schema. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1408,7 +3576,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_config_contexts_list
 
-> crate::models::PaginatedConfigContextList extras_config_contexts_list(cluster_group, cluster_group__n, cluster_group_id, cluster_group_id__n, cluster_id, cluster_id__n, contacts, contacts__isnull, contacts__n, device_redundancy_group, device_redundancy_group__n, device_type, device_type__n, device_type_id, device_type_id__n, format, id, id__n, is_active, limit, location, location__n, location_id, location_id__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, owner_content_type, owner_content_type__isnull, owner_content_type__n, owner_object_id, owner_object_id__isnull, owner_object_id__n, platform, platform__n, platform_id, platform_id__n, q, role, role__n, schema, schema__isnull, schema__n, sort, tag, tag__n, teams, teams__isnull, teams__n, tenant, tenant__n, tenant_group, tenant_group__n, tenant_group_id, tenant_group_id__n, tenant_id, tenant_id__n, depth, exclude_m2m)
+> crate::models::PaginatedConfigContextList extras_config_contexts_list(cluster_group, cluster_group__n, cluster_group_id, cluster_group_id__n, cluster_id, cluster_id__n, contacts, contacts__isnull, contacts__n, device_family, device_family__n, device_redundancy_group, device_redundancy_group__n, device_type, device_type__n, device_type_id, device_type_id__n, format, id, id__n, is_active, limit, location, location__n, location_id, location_id__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, owner_content_type, owner_content_type__isnull, owner_content_type__n, owner_object_id, owner_object_id__isnull, owner_object_id__n, platform, platform__n, platform_id, platform_id__n, q, role, role__n, schema, schema__isnull, schema__n, sort, tag, tag__n, teams, teams__isnull, teams__n, tenant, tenant__n, tenant_group, tenant_group__n, tenant_group_id, tenant_group_id__n, tenant_id, tenant_id__n, depth, exclude_m2m)
 
 
 Retrieve a list of config context objects.
@@ -1427,6 +3595,8 @@ Name | Type | Description  | Required | Notes
 **contacts** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
 **contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**device_family** | Option<[**Vec<String>**](String.md)> |  |  |
+**device_family__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **device_redundancy_group** | Option<[**Vec<String>**](String.md)> |  |  |
 **device_redundancy_group__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **device_type** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1474,8 +3644,8 @@ Name | Type | Description  | Required | Notes
 **schema__isnull** | Option<**bool**> | Schema (name or PK) is null |  |
 **schema__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
-**tag** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Tag (name) |  |
-**tag__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tag (name) |  |
+**tag** | Option<[**Vec<String>**](String.md)> |  |  |
+**tag__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **teams** | Option<[**Vec<String>**](String.md)> |  |  |
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -1488,7 +3658,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Tenant (ID) - Deprecated (use tenant filter) |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) - Deprecated (use tenant filter) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1555,7 +3725,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1620,7 +3790,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this config context. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1874,7 +4044,7 @@ Name | Type | Description  | Required | Notes
 **team__isnull** | Option<**bool**> | Team (name or ID) is null |  |
 **team__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -1941,7 +4111,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2006,7 +4176,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this contact association. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2324,7 +4494,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Team (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2391,7 +4561,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2456,7 +4626,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this contact. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2564,7 +4734,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2597,7 +4767,7 @@ Name | Type | Description  | Required | Notes
 **id** | **i32** | A unique integer value identifying this content type. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2812,7 +4982,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -2877,7 +5047,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this custom field choice. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3101,7 +5271,7 @@ Name | Type | Description  | Required | Notes
 **content_types__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **dynamic_groups** | Option<[**Vec<String>**](String.md)> |  |  |
 **dynamic_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
-**filter_logic** | Option<[**Vec<String>**](String.md)> | Loose matches any instance of a given string; Exact matches the entire field. |  |
+**filter_logic** | Option<[**Vec<String>**](String.md)> | Loose matches any instance of a given string; Exact matches the entire field.   |  |
 **filter_logic__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **filter_logic__ie** | Option<[**Vec<String>**](String.md)> |  |  |
 **filter_logic__iew** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -3161,7 +5331,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3228,7 +5398,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3293,7 +5463,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this custom field. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3510,7 +5680,7 @@ Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**button_class** | Option<[**Vec<String>**](String.md)> | The class of the first link in a group will be used for the dropdown button |  |
+**button_class** | Option<[**Vec<String>**](String.md)> | The class of the first link in a group will be used for the dropdown button   |  |
 **button_class__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **button_class__ie** | Option<[**Vec<String>**](String.md)> |  |  |
 **button_class__iew** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -3605,7 +5775,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3672,7 +5842,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3737,7 +5907,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this custom link. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -3988,7 +6158,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4053,7 +6223,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this dynamic group membership. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4260,7 +6430,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_dynamic_groups_list
 
-> crate::models::PaginatedDynamicGroupList extras_dynamic_groups_list(contacts, contacts__isnull, contacts__n, content_type, content_type__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, format, group_type, group_type__ic, group_type__ie, group_type__iew, group_type__ire, group_type__isw, group_type__n, group_type__nic, group_type__nie, group_type__niew, group_type__nire, group_type__nisw, group_type__nre, group_type__re, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, member_id, member_id__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, depth, exclude_m2m)
+> crate::models::PaginatedDynamicGroupList extras_dynamic_groups_list(ancestors, contacts, contacts__isnull, contacts__n, content_type, content_type__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, descendants, description, description__ic, description__ie, description__iew, description__ire, description__isw, description__n, description__nic, description__nie, description__niew, description__nire, description__nisw, description__nre, description__re, format, group_type, group_type__ic, group_type__ie, group_type__iew, group_type__ire, group_type__isw, group_type__n, group_type__nic, group_type__nie, group_type__niew, group_type__nire, group_type__nisw, group_type__nre, group_type__re, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, member_id, member_id__n, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, tenant, tenant__isnull, tenant__n, tenant_group, tenant_group__isnull, tenant_group__n, tenant_id, tenant_id__isnull, tenant_id__n, depth, exclude_m2m)
 
 
 Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
@@ -4270,6 +6440,7 @@ Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**ancestors** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
 **contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -4282,6 +6453,7 @@ Name | Type | Description  | Required | Notes
 **created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**descendants** | Option<[**Vec<String>**](String.md)> |  |  |
 **description** | Option<[**Vec<String>**](String.md)> |  |  |
 **description__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **description__ie** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -4356,7 +6528,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4389,7 +6561,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this dynamic group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4456,7 +6628,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4521,7 +6693,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this dynamic group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4776,7 +6948,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4843,7 +7015,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -4908,7 +7080,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this export template. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5227,7 +7399,7 @@ Name | Type | Description  | Required | Notes
 **timeout__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **verify_ssl** | Option<**bool**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5294,7 +7466,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5359,7 +7531,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this external integration. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5424,7 +7596,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this file proxy. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5488,7 +7660,7 @@ Name | Type | Description  | Required | Notes
 **uploaded_at__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **uploaded_at__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5521,7 +7693,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this file proxy. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5802,7 +7974,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5869,7 +8041,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -5934,7 +8106,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this Git repository. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6212,7 +8384,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6279,7 +8451,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6344,7 +8516,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this GraphQL query. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6595,8 +8767,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **content_type** | Option<**String**> |  |  |
 **content_type__n** | Option<**String**> |  |  |
-**content_type_id** | Option<**i32**> |  |  |
-**content_type_id__n** | Option<**i32**> |  |  |
+**content_type_id** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**content_type_id__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **format** | Option<**String**> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
@@ -6621,7 +8793,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6686,7 +8858,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this image attachment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -6987,7 +9159,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7054,7 +9226,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7119,7 +9291,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job button. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7374,7 +9546,7 @@ Name | Type | Description  | Required | Notes
 **type_delete** | Option<**bool**> |  |  |
 **type_update** | Option<**bool**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7441,7 +9613,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7506,7 +9678,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job hook. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7605,8 +9777,8 @@ Name | Type | Description  | Required | Notes
 **grouping__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
-**job_result** | Option<**uuid::Uuid**> |  |  |
-**job_result__n** | Option<**uuid::Uuid**> |  |  |
+**job_result** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
+**job_result__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **log_level** | Option<[**Vec<String>**](String.md)> |  |  |
 **log_level__ic** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -7654,7 +9826,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7687,7 +9859,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job log entry. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7884,7 +10056,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -7949,7 +10121,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job queue assignment. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8254,7 +10426,7 @@ Name | Type | Description  | Required | Notes
 **tenant_id__isnull** | Option<**bool**> | Tenant (ID) (deprecated, use \"tenant\" filter instead) is null |  |
 **tenant_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead) |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8321,7 +10493,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8386,7 +10558,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job queue. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8500,7 +10672,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_job_results_list
 
-> crate::models::PaginatedJobResultList extras_job_results_list(date_created, date_created__gt, date_created__gte, date_created__lt, date_created__lte, date_created__n, date_done, date_done__gt, date_done__gte, date_done__isnull, date_done__lt, date_done__lte, date_done__n, date_started, date_started__gt, date_started__gte, date_started__isnull, date_started__lt, date_started__lte, date_started__n, format, id, id__n, job_model, job_model__isnull, job_model__n, job_model_id, job_model_id__isnull, job_model_id__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, scheduled_job, scheduled_job__isnull, scheduled_job__n, sort, status, status__ic, status__ie, status__iew, status__ire, status__isw, status__n, status__nic, status__nie, status__niew, status__nire, status__nisw, status__nre, status__re, user, user__isnull, user__n, depth, exclude_m2m)
+> crate::models::PaginatedJobResultList extras_job_results_list(date_created, date_created__gt, date_created__gte, date_created__lt, date_created__lte, date_created__n, date_done, date_done__gt, date_done__gte, date_done__isnull, date_done__lt, date_done__lte, date_done__n, date_started, date_started__gt, date_started__gte, date_started__isnull, date_started__lt, date_started__lte, date_started__n, format, has_job_console_entries, id, id__n, job_model, job_model__isnull, job_model__n, job_model_id, job_model_id__isnull, job_model_id__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, scheduled_job, scheduled_job__isnull, scheduled_job__n, sort, status, status__ic, status__ie, status__iew, status__ire, status__isw, status__n, status__nic, status__nie, status__niew, status__nire, status__nisw, status__nre, status__re, user, user__isnull, user__n, depth, exclude_m2m)
 
 
 Retrieve a list of job results
@@ -8531,6 +10703,7 @@ Name | Type | Description  | Required | Notes
 **date_started__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **date_started__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **format** | Option<**String**> |  |  |
+**has_job_console_entries** | Option<**bool**> | Has Job Console Entries |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **job_model** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -8574,11 +10747,11 @@ Name | Type | Description  | Required | Notes
 **status__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
 **status__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **status__re** | Option<[**Vec<String>**](String.md)> |  |  |
-**user** | Option<**uuid::Uuid**> |  |  |
+**user** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **user__isnull** | Option<**bool**> |  |  |
-**user__n** | Option<**uuid::Uuid**> |  |  |
+**user__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8611,7 +10784,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job result. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8644,7 +10817,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this job result. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -8819,7 +10992,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_jobs_list
 
-> crate::models::PaginatedJobList extras_jobs_list(approval_required, approval_required_override, contacts, contacts__isnull, contacts__n, description_override, dryrun_default, dryrun_default_override, dynamic_groups, dynamic_groups__n, enabled, format, grouping, grouping__ic, grouping__ie, grouping__iew, grouping__ire, grouping__isw, grouping__n, grouping__nic, grouping__nie, grouping__niew, grouping__nire, grouping__nisw, grouping__nre, grouping__re, grouping_override, has_sensitive_variables, has_sensitive_variables_override, hidden, hidden_override, id, id__n, installed, is_job_button_receiver, is_job_hook_receiver, is_singleton, is_singleton_override, job_class_name, job_class_name__ic, job_class_name__ie, job_class_name__iew, job_class_name__ire, job_class_name__isw, job_class_name__n, job_class_name__nic, job_class_name__nie, job_class_name__niew, job_class_name__nire, job_class_name__nisw, job_class_name__nre, job_class_name__re, job_queues, job_queues__n, limit, module_name, module_name__ic, module_name__ie, module_name__iew, module_name__ire, module_name__isw, module_name__n, module_name__nic, module_name__nie, module_name__niew, module_name__nire, module_name__nisw, module_name__nre, module_name__re, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, name_override, offset, q, read_only, soft_time_limit, soft_time_limit__gt, soft_time_limit__gte, soft_time_limit__lt, soft_time_limit__lte, soft_time_limit__n, soft_time_limit_override, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, time_limit, time_limit__gt, time_limit__gte, time_limit__lt, time_limit__lte, time_limit__n, time_limit_override, depth, exclude_m2m)
+> crate::models::PaginatedJobList extras_jobs_list(console_log_default, console_log_default_override, contacts, contacts__isnull, contacts__n, description_override, dryrun_default, dryrun_default_override, dynamic_groups, dynamic_groups__n, enabled, format, grouping, grouping__ic, grouping__ie, grouping__iew, grouping__ire, grouping__isw, grouping__n, grouping__nic, grouping__nie, grouping__niew, grouping__nire, grouping__nisw, grouping__nre, grouping__re, grouping_override, has_sensitive_variables, has_sensitive_variables_override, hidden, hidden_override, id, id__n, installed, is_job_button_receiver, is_job_hook_receiver, is_singleton, is_singleton_override, job_class_name, job_class_name__ic, job_class_name__ie, job_class_name__iew, job_class_name__ire, job_class_name__isw, job_class_name__n, job_class_name__nic, job_class_name__nie, job_class_name__niew, job_class_name__nire, job_class_name__nisw, job_class_name__nre, job_class_name__re, job_queues, job_queues__n, limit, module_name, module_name__ic, module_name__ie, module_name__iew, module_name__ire, module_name__isw, module_name__n, module_name__nic, module_name__nie, module_name__niew, module_name__nire, module_name__nisw, module_name__nre, module_name__re, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, name_override, offset, q, read_only, soft_time_limit, soft_time_limit__gt, soft_time_limit__gte, soft_time_limit__lt, soft_time_limit__lte, soft_time_limit__n, soft_time_limit_override, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, time_limit, time_limit__gt, time_limit__gte, time_limit__lt, time_limit__lte, time_limit__n, time_limit_override, depth, exclude_m2m)
 
 
 Retrieve a list of job objects.
@@ -8829,8 +11002,8 @@ Retrieve a list of job objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**approval_required** | Option<**bool**> |  |  |
-**approval_required_override** | Option<**bool**> |  |  |
+**console_log_default** | Option<**bool**> |  |  |
+**console_log_default_override** | Option<**bool**> |  |  |
 **contacts** | Option<[**Vec<String>**](String.md)> |  |  |
 **contacts__isnull** | Option<**bool**> | Contacts (name or ID) is null |  |
 **contacts__n** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -8938,7 +11111,7 @@ Name | Type | Description  | Required | Notes
 **time_limit__n** | Option<[**Vec<f32>**](f32.md)> |  |  |
 **time_limit_override** | Option<**bool**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9037,7 +11210,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9072,7 +11245,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9169,7 +11342,7 @@ Name | Type | Description  | Required | Notes
 **id** | **String** | Unique object identifier, either a UUID primary key or a composite key. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9202,7 +11375,7 @@ Name | Type | Description  | Required | Notes
 **name** | **String** |  | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9366,7 +11539,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9402,7 +11575,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9631,7 +11804,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9696,7 +11869,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this metadata choice. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -9925,7 +12098,7 @@ Name | Type | Description  | Required | Notes
 **created__lt** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **created__n** | Option<[**Vec<String>**](String.md)> |  |  |
-**data_type** | Option<[**Vec<String>**](String.md)> | The type of data allowed for any Metadata of this type. |  |
+**data_type** | Option<[**Vec<String>**](String.md)> | The type of data allowed for any Metadata of this type.   |  |
 **data_type__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **data_type__ie** | Option<[**Vec<String>**](String.md)> |  |  |
 **data_type__iew** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -9990,7 +12163,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10057,7 +12230,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10122,7 +12295,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this metadata type. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10343,8 +12516,8 @@ Name | Type | Description  | Required | Notes
 **assigned_object_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **assigned_object_type** | Option<**String**> |  |  |
 **assigned_object_type__n** | Option<**String**> |  |  |
-**assigned_object_type_id** | Option<**i32**> |  |  |
-**assigned_object_type_id__n** | Option<**i32**> |  |  |
+**assigned_object_type_id** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**assigned_object_type_id__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **format** | Option<**String**> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
@@ -10384,7 +12557,7 @@ Name | Type | Description  | Required | Notes
 **user_name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **user_name__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10449,7 +12622,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this note. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10501,7 +12674,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_object_changes_list
 
-> crate::models::PaginatedObjectChangeList extras_object_changes_list(action, action__ic, action__ie, action__iew, action__ire, action__isw, action__n, action__nic, action__nie, action__niew, action__nire, action__nisw, action__nre, action__re, changed_object_id, changed_object_id__n, changed_object_type, changed_object_type__isnull, changed_object_type__n, changed_object_type_id, changed_object_type_id__isnull, changed_object_type_id__n, format, id, id__n, limit, object_repr, object_repr__ic, object_repr__ie, object_repr__iew, object_repr__ire, object_repr__isw, object_repr__n, object_repr__nic, object_repr__nie, object_repr__niew, object_repr__nire, object_repr__nisw, object_repr__nre, object_repr__re, offset, q, request_id, request_id__n, sort, time, time__gt, time__gte, time__lt, time__lte, time__n, user, user__isnull, user__n, user_id, user_id__isnull, user_id__n, user_name, user_name__ic, user_name__ie, user_name__iew, user_name__ire, user_name__isw, user_name__n, user_name__nic, user_name__nie, user_name__niew, user_name__nire, user_name__nisw, user_name__nre, user_name__re, depth, exclude_m2m)
+> crate::models::PaginatedObjectChangeList extras_object_changes_list(action, action__ic, action__ie, action__iew, action__ire, action__isw, action__n, action__nic, action__nie, action__niew, action__nire, action__nisw, action__nre, action__re, change_context, change_context__ic, change_context__ie, change_context__iew, change_context__ire, change_context__isw, change_context__n, change_context__nic, change_context__nie, change_context__niew, change_context__nire, change_context__nisw, change_context__nre, change_context__re, change_context_detail, change_context_detail__ic, change_context_detail__ie, change_context_detail__iew, change_context_detail__ire, change_context_detail__isw, change_context_detail__n, change_context_detail__nic, change_context_detail__nie, change_context_detail__niew, change_context_detail__nire, change_context_detail__nisw, change_context_detail__nre, change_context_detail__re, changed_object_id, changed_object_id__n, changed_object_type, changed_object_type__isnull, changed_object_type__n, changed_object_type_id, changed_object_type_id__isnull, changed_object_type_id__n, format, id, id__n, limit, object_repr, object_repr__ic, object_repr__ie, object_repr__iew, object_repr__ire, object_repr__isw, object_repr__n, object_repr__nic, object_repr__nie, object_repr__niew, object_repr__nire, object_repr__nisw, object_repr__nre, object_repr__re, offset, q, request_id, request_id__n, sort, time, time__gt, time__gte, time__lt, time__lte, time__n, user, user__isnull, user__n, user_id, user_id__isnull, user_id__n, user_name, user_name__ic, user_name__ie, user_name__iew, user_name__ire, user_name__isw, user_name__n, user_name__nic, user_name__nie, user_name__niew, user_name__nire, user_name__nisw, user_name__nre, user_name__re, depth, exclude_m2m)
 
 
 Retrieve a list of recent changes.
@@ -10525,14 +12698,42 @@ Name | Type | Description  | Required | Notes
 **action__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
 **action__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **action__re** | Option<[**Vec<String>**](String.md)> |  |  |
+**change_context** | Option<[**Vec<String>**](String.md)> | Change Context |  |
+**change_context__ic** | Option<[**Vec<String>**](String.md)> | Change Context contains |  |
+**change_context__ie** | Option<[**Vec<String>**](String.md)> | Change Context |  |
+**change_context__iew** | Option<[**Vec<String>**](String.md)> | Change Context ends with |  |
+**change_context__ire** | Option<[**Vec<String>**](String.md)> | Change Context matches regex |  |
+**change_context__isw** | Option<[**Vec<String>**](String.md)> | Change Context starts with |  |
+**change_context__n** | Option<[**Vec<String>**](String.md)> | Exclude Change Context |  |
+**change_context__nic** | Option<[**Vec<String>**](String.md)> | Exclude Change Context contains |  |
+**change_context__nie** | Option<[**Vec<String>**](String.md)> | Exclude Change Context |  |
+**change_context__niew** | Option<[**Vec<String>**](String.md)> | Exclude Change Context ends with |  |
+**change_context__nire** | Option<[**Vec<String>**](String.md)> | Exclude Change Context matches regex |  |
+**change_context__nisw** | Option<[**Vec<String>**](String.md)> | Exclude Change Context starts with |  |
+**change_context__nre** | Option<[**Vec<String>**](String.md)> | Exclude Change Context matches regex |  |
+**change_context__re** | Option<[**Vec<String>**](String.md)> | Change Context matches regex |  |
+**change_context_detail** | Option<[**Vec<String>**](String.md)> | Change Context Detail |  |
+**change_context_detail__ic** | Option<[**Vec<String>**](String.md)> | Change Context Detail contains |  |
+**change_context_detail__ie** | Option<[**Vec<String>**](String.md)> | Change Context Detail |  |
+**change_context_detail__iew** | Option<[**Vec<String>**](String.md)> | Change Context Detail ends with |  |
+**change_context_detail__ire** | Option<[**Vec<String>**](String.md)> | Change Context Detail matches regex |  |
+**change_context_detail__isw** | Option<[**Vec<String>**](String.md)> | Change Context Detail starts with |  |
+**change_context_detail__n** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail |  |
+**change_context_detail__nic** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail contains |  |
+**change_context_detail__nie** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail |  |
+**change_context_detail__niew** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail ends with |  |
+**change_context_detail__nire** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail matches regex |  |
+**change_context_detail__nisw** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail starts with |  |
+**change_context_detail__nre** | Option<[**Vec<String>**](String.md)> | Exclude Change Context Detail matches regex |  |
+**change_context_detail__re** | Option<[**Vec<String>**](String.md)> | Change Context Detail matches regex |  |
 **changed_object_id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **changed_object_id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
 **changed_object_type** | Option<**String**> |  |  |
 **changed_object_type__isnull** | Option<**bool**> |  |  |
 **changed_object_type__n** | Option<**String**> |  |  |
-**changed_object_type_id** | Option<**i32**> |  |  |
+**changed_object_type_id** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **changed_object_type_id__isnull** | Option<**bool**> |  |  |
-**changed_object_type_id__n** | Option<**i32**> |  |  |
+**changed_object_type_id__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **format** | Option<**String**> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
@@ -10583,7 +12784,7 @@ Name | Type | Description  | Required | Notes
 **user_name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **user_name__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10616,7 +12817,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this object change. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10838,7 +13039,7 @@ Name | Type | Description  | Required | Notes
 **team__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **value** | Option<[**serde_json::Value**](.md)> | Relevant data value to an object field or a set of object fields |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -10903,7 +13104,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this object metadata. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11139,7 +13340,7 @@ Name | Type | Description  | Required | Notes
 **source_type** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **source_type__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11204,7 +13405,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this relationship association. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11468,7 +13669,7 @@ Name | Type | Description  | Required | Notes
 **teams** | Option<[**Vec<String>**](String.md)> |  |  |
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
-**r#type** | Option<[**Vec<String>**](String.md)> | Cardinality of this relationship |  |
+**r#type** | Option<[**Vec<String>**](String.md)> | Cardinality of this relationship   |  |
 **type__ic** | Option<[**Vec<String>**](String.md)> |  |  |
 **type__ie** | Option<[**Vec<String>**](String.md)> |  |  |
 **type__iew** | Option<[**Vec<String>**](String.md)> |  |  |
@@ -11483,7 +13684,7 @@ Name | Type | Description  | Required | Notes
 **type__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **type__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11550,7 +13751,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11615,7 +13816,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this relationship. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11899,7 +14100,7 @@ Name | Type | Description  | Required | Notes
 **weight__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **weight__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -11966,7 +14167,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12031,7 +14232,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this role. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12288,7 +14489,7 @@ Name | Type | Description  | Required | Notes
 **view__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **view__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12353,7 +14554,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this saved view. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12403,38 +14604,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## extras_scheduled_jobs_approve_create
-
-> crate::models::ScheduledJob extras_scheduled_jobs_approve_create(id, force, format)
-
-
-Retrieve a list of scheduled jobs
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **uuid::Uuid** | A UUID string identifying this scheduled job. | [required] |
-**force** | Option<**bool**> | force execution even if start time has passed |  |
-**format** | Option<**String**> |  |  |
-
-### Return type
-
-[**crate::models::ScheduledJob**](ScheduledJob.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## extras_scheduled_jobs_bulk_destroy
 
 > extras_scheduled_jobs_bulk_destroy(bulk_operation_request, format)
@@ -12462,37 +14631,6 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json, text/csv
 - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## extras_scheduled_jobs_deny_create
-
-> crate::models::ScheduledJob extras_scheduled_jobs_deny_create(id, format)
-
-
-Retrieve a list of scheduled jobs
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **uuid::Uuid** | A UUID string identifying this scheduled job. | [required] |
-**format** | Option<**String**> |  |  |
-
-### Return type
-
-[**crate::models::ScheduledJob**](ScheduledJob.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -12561,7 +14699,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_scheduled_jobs_list
 
-> crate::models::PaginatedScheduledJobList extras_scheduled_jobs_list(format, id, id__n, job_model, job_model__isnull, job_model__n, job_model_id, job_model_id__isnull, job_model_id__n, last_run_at, last_run_at__gt, last_run_at__gte, last_run_at__isnull, last_run_at__lt, last_run_at__lte, last_run_at__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, start_time, start_time__gt, start_time__gte, start_time__lt, start_time__lte, start_time__n, time_zone, time_zone__ic, time_zone__ie, time_zone__iew, time_zone__ire, time_zone__isw, time_zone__n, time_zone__nic, time_zone__nie, time_zone__niew, time_zone__nire, time_zone__nisw, time_zone__nre, time_zone__re, total_run_count, total_run_count__gt, total_run_count__gte, total_run_count__lt, total_run_count__lte, total_run_count__n, depth, exclude_m2m)
+> crate::models::PaginatedScheduledJobList extras_scheduled_jobs_list(approval_state, approval_state__ic, approval_state__ie, approval_state__iew, approval_state__ire, approval_state__isw, approval_state__n, approval_state__nic, approval_state__nie, approval_state__niew, approval_state__nire, approval_state__nisw, approval_state__nre, approval_state__re, enabled, format, id, id__n, job_model, job_model__isnull, job_model__n, job_model_id, job_model_id__isnull, job_model_id__n, last_run_at, last_run_at__gt, last_run_at__gte, last_run_at__isnull, last_run_at__lt, last_run_at__lte, last_run_at__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, q, sort, start_time, start_time__gt, start_time__gte, start_time__lt, start_time__lte, start_time__n, state, state__ic, state__ie, state__iew, state__ire, state__isw, state__n, state__nic, state__nie, state__niew, state__nire, state__nisw, state__nre, state__re, time_zone, time_zone__ic, time_zone__ie, time_zone__iew, time_zone__ire, time_zone__isw, time_zone__n, time_zone__nic, time_zone__nie, time_zone__niew, time_zone__nire, time_zone__nisw, time_zone__nre, time_zone__re, total_run_count, total_run_count__gt, total_run_count__gte, total_run_count__lt, total_run_count__lte, total_run_count__n, depth, exclude_m2m)
 
 
 Retrieve a list of scheduled jobs
@@ -12571,6 +14709,21 @@ Retrieve a list of scheduled jobs
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**approval_state** | Option<[**Vec<String>**](String.md)> | Approval state |  |
+**approval_state__ic** | Option<[**Vec<String>**](String.md)> | Approval state contains |  |
+**approval_state__ie** | Option<[**Vec<String>**](String.md)> | Approval state |  |
+**approval_state__iew** | Option<[**Vec<String>**](String.md)> | Approval state ends with |  |
+**approval_state__ire** | Option<[**Vec<String>**](String.md)> | Approval state matches regex |  |
+**approval_state__isw** | Option<[**Vec<String>**](String.md)> | Approval state starts with |  |
+**approval_state__n** | Option<[**Vec<String>**](String.md)> | Exclude Approval state |  |
+**approval_state__nic** | Option<[**Vec<String>**](String.md)> | Exclude Approval state contains |  |
+**approval_state__nie** | Option<[**Vec<String>**](String.md)> | Exclude Approval state |  |
+**approval_state__niew** | Option<[**Vec<String>**](String.md)> | Exclude Approval state ends with |  |
+**approval_state__nire** | Option<[**Vec<String>**](String.md)> | Exclude Approval state matches regex |  |
+**approval_state__nisw** | Option<[**Vec<String>**](String.md)> | Exclude Approval state starts with |  |
+**approval_state__nre** | Option<[**Vec<String>**](String.md)> | Exclude Approval state matches regex |  |
+**approval_state__re** | Option<[**Vec<String>**](String.md)> | Approval state matches regex |  |
+**enabled** | Option<**bool**> |  |  |
 **format** | Option<**String**> |  |  |
 **id** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Unique object identifier, either a UUID primary key or a composite key. |  |
 **id__n** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  |  |
@@ -12611,6 +14764,20 @@ Name | Type | Description  | Required | Notes
 **start_time__lt** | Option<[**Vec<String>**](String.md)> |  |  |
 **start_time__lte** | Option<[**Vec<String>**](String.md)> |  |  |
 **start_time__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**state** | Option<[**Vec<String>**](String.md)> | Current state of the Scheduled Job |  |
+**state__ic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__iew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__ire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__isw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__n** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nic** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nie** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__niew** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nire** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nisw** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__nre** | Option<[**Vec<String>**](String.md)> |  |  |
+**state__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **time_zone** | Option<[**Vec<String>**](String.md)> | Time zone   |  |
 **time_zone__ic** | Option<[**Vec<String>**](String.md)> | Time zone |  |
 **time_zone__ie** | Option<[**Vec<String>**](String.md)> | Time zone |  |
@@ -12632,7 +14799,7 @@ Name | Type | Description  | Required | Notes
 **total_run_count__lte** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **total_run_count__n** | Option<[**Vec<i32>**](i32.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12665,7 +14832,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this scheduled job. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -12791,7 +14958,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this secret. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13080,7 +15247,7 @@ Name | Type | Description  | Required | Notes
 **secrets_group__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13145,7 +15312,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this secrets group association. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13408,7 +15575,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13475,7 +15642,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13540,7 +15707,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this secrets group. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13592,7 +15759,7 @@ Name | Type | Description  | Required | Notes
 
 ## extras_secrets_list
 
-> crate::models::PaginatedSecretList extras_secrets_list(contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, provider, provider__ic, provider__ie, provider__iew, provider__ire, provider__isw, provider__n, provider__nic, provider__nie, provider__niew, provider__nire, provider__nisw, provider__nre, provider__re, q, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, depth, exclude_m2m)
+> crate::models::PaginatedSecretList extras_secrets_list(contacts, contacts__isnull, contacts__n, created, created__gt, created__gte, created__isnull, created__lt, created__lte, created__n, dynamic_groups, dynamic_groups__n, format, id, id__n, last_updated, last_updated__gt, last_updated__gte, last_updated__isnull, last_updated__lt, last_updated__lte, last_updated__n, limit, name, name__ic, name__ie, name__iew, name__ire, name__isw, name__n, name__nic, name__nie, name__niew, name__nire, name__nisw, name__nre, name__re, offset, provider, provider__ic, provider__ie, provider__iew, provider__ire, provider__isw, provider__n, provider__nic, provider__nie, provider__niew, provider__nire, provider__nisw, provider__nre, provider__re, q, secrets_groups, secrets_groups__isnull, secrets_groups__n, sort, tags, tags__isnull, tags__n, teams, teams__isnull, teams__n, depth, exclude_m2m)
 
 
 Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
@@ -13655,6 +15822,9 @@ Name | Type | Description  | Required | Notes
 **provider__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **provider__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **q** | Option<**String**> | Search |  |
+**secrets_groups** | Option<[**Vec<String>**](String.md)> |  |  |
+**secrets_groups__isnull** | Option<**bool**> | Groups (ID or name) is null |  |
+**secrets_groups__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **tags** | Option<[**Vec<String>**](String.md)> |  |  |
 **tags__isnull** | Option<**bool**> |  |  |
@@ -13663,7 +15833,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13730,7 +15900,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -13795,7 +15965,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this secret. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14040,7 +16210,7 @@ Name | Type | Description  | Required | Notes
 **q** | Option<**String**> | Search |  |
 **sort** | Option<**String**> | Which field to use when ordering the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14107,7 +16277,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14172,7 +16342,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this static group association. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14449,7 +16619,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14516,7 +16686,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14581,7 +16751,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this status. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14858,7 +17028,7 @@ Name | Type | Description  | Required | Notes
 **teams__isnull** | Option<**bool**> | Teams (name or ID) is null |  |
 **teams__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14925,7 +17095,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -14990,7 +17160,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this tag. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -15307,7 +17477,7 @@ Name | Type | Description  | Required | Notes
 **tags__isnull** | Option<**bool**> |  |  |
 **tags__n** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -15374,7 +17544,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -15439,7 +17609,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this team. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -15683,7 +17853,7 @@ Name | Type | Description  | Required | Notes
 **view_name__nre** | Option<[**Vec<String>**](String.md)> |  |  |
 **view_name__re** | Option<[**Vec<String>**](String.md)> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -15748,7 +17918,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this user saved view association. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -16015,7 +18185,7 @@ Name | Type | Description  | Required | Notes
 **type_delete** | Option<**bool**> |  |  |
 **type_update** | Option<**bool**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -16082,7 +18252,7 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | Number of results to return per page. |  |
 **offset** | Option<**i32**> | The initial index from which to return the results. |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
@@ -16147,7 +18317,7 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | A UUID string identifying this webhook. | [required] |
 **format** | Option<**String**> |  |  |
 **depth** | Option<**i32**> | Serializer Depth |  |[default to 1]
-**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |[default to false]
+**exclude_m2m** | Option<**bool**> | Exclude many-to-many fields from the response |  |
 
 ### Return type
 
