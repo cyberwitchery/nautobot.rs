@@ -2,6 +2,11 @@
 
 ## [unreleased]
 
+### ci
+- bump integration CI from Nautobot 2.4.27 to 3.1.0 (closes #1)
+- add live OpenAPI schema artifact upload to integration workflow
+- make oasdiff breaking-change check non-blocking during major version upgrades
+
 ## [0.3.1] - 2026-02-21
 
 ### cli
