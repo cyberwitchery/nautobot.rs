@@ -95,10 +95,12 @@ pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String
 pub mod circuits_api;
 pub mod cloud_api;
 pub mod core_api;
+pub mod data_validation_api;
 pub mod dcim_api;
 pub mod extras_api;
 pub mod graphql_api;
 pub mod ipam_api;
+pub mod load_balancers_api;
 pub mod status_api;
 pub mod swagger_api;
 pub mod swagger_json_api;
@@ -107,6 +109,7 @@ pub mod tenancy_api;
 pub mod ui_api;
 pub mod users_api;
 pub mod virtualization_api;
+pub mod vpn_api;
 pub mod wireless_api;
 
 pub mod configuration;

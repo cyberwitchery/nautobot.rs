@@ -243,7 +243,7 @@ nautobot provides ergonomic helpers for special endpoints beyond basic CRUD:
 ```rust,no_run
 use nautobot::{Client, ClientConfig};
 use nautobot::ipam::{IpAllocationRequest, PrefixLengthRequest};
-use nautobot::models::BulkWritableCableRequestStatus;
+use nautobot::models::ApprovalWorkflowStageResponseApprovalWorkflowStage;
 
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
@@ -253,7 +253,7 @@ let available = client.ipam().prefix_available_ips("prefix-uuid", None).await?;
 println!("Available IPs: {}", available.count);
 
 // Allocate an IP from a prefix
-let status = BulkWritableCableRequestStatus::new();
+let status = ApprovalWorkflowStageResponseApprovalWorkflowStage::new();
 let request = IpAllocationRequest::new(status);
 let allocated = client.ipam().allocate_prefix_ips("prefix-uuid", &[request]).await?;
 # Ok(())

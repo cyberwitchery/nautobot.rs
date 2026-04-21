@@ -50,7 +50,7 @@ jobs:
           --health-timeout 5s
           --health-retries 10
       nautobot:
-        image: ghcr.io/nautobot/nautobot:2.4.27
+        image: ghcr.io/nautobot/nautobot:3.1.0
         env:
           NAUTOBOT_DB_HOST: postgres
           NAUTOBOT_DB_NAME: nautobot
@@ -99,7 +99,7 @@ jobs:
             --jq '.assets[] | select(.name | test("linux_amd64.tar.gz")) | .browser_download_url')
           curl -sSfL "$url" | tar -xz -C /usr/local/bin
 
-      - name: Check OpenAPI schema for breaking changes
+      - name: Fetch live OpenAPI schema
         env:
           NAUTOBOT_TOKEN: ci-superuser-api-token
         run: |
@@ -107,6 +107,8 @@ jobs:
             -H "Authorization: Token ${NAUTOBOT_TOKEN}" \
             -o /tmp/live-schema.json
 
+      - name: Check OpenAPI schema for breaking changes
+        run: |
           # Nautobot's schema contains semantically duplicate paths with different
           # parameter names (e.g. /foo/{id}/ and /foo/{name}/), which oasdiff
           # rejects. Deduplicate by keeping the first path for each normalised
@@ -135,6 +137,13 @@ jobs:
           PY
 
           oasdiff breaking /tmp/base-deduped.json /tmp/live-deduped.json --fail-on ERR
+
+      - name: Upload live schema
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-schema
+          path: /tmp/live-schema.json
 
       - name: Run client smoke tests
         env:
