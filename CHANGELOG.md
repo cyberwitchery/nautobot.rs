@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### workspace
+- bump MSRV from 1.85 to 1.91 (`floor_char_boundary` requires ≥1.82)
+
 ### cli
 - print a warning to stderr when the config file exists but cannot be parsed, instead of silently ignoring the error
 - fix `compact_json` panic on multi-byte UTF-8: use `floor_char_boundary` instead of raw byte offset for truncation
