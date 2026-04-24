@@ -944,7 +944,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
     // Load config file
-    let config_file = load_config().ok().flatten();
+    let config_file = match load_config() {
+        Ok(cf) => cf,
+        Err(e) => {
+            eprintln!("warning: {e}");
+            None
+        }
+    };
 
     // Handle config commands first (no API access needed)
     if let Commands::Config { action } = &cli.command {
