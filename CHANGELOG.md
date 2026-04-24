@@ -4,6 +4,7 @@
 
 ### cli
 - print a warning to stderr when the config file exists but cannot be parsed, instead of silently ignoring the error
+- fix `compact_json` panic on multi-byte UTF-8: use `floor_char_boundary` instead of raw byte offset for truncation
 
 ### openapi
 - regenerate bindings from Nautobot 3.1.0 (new models: approval workflows, data validation, load balancers, VPN; removed: `BulkWritableCableRequestStatus`, `ScheduledJobApprovedByUser`)
