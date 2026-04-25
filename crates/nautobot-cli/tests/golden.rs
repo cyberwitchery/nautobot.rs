@@ -70,15 +70,15 @@ fn normalize_output(output: &str) -> String {
         .lines()
         .map(|line| {
             // clap includes current env var values in help output, which varies in CI.
-            if let Some(prefix) = line.split("[env: NAUTOBOT_URL=").next() {
-                if line.contains("[env: NAUTOBOT_URL=") {
-                    return format!("{prefix}[env: NAUTOBOT_URL=]");
-                }
+            if let Some(prefix) = line.split("[env: NAUTOBOT_URL=").next()
+                && line.contains("[env: NAUTOBOT_URL=")
+            {
+                return format!("{prefix}[env: NAUTOBOT_URL=]");
             }
-            if let Some(prefix) = line.split("[env: NAUTOBOT_TOKEN=").next() {
-                if line.contains("[env: NAUTOBOT_TOKEN=") {
-                    return format!("{prefix}[env: NAUTOBOT_TOKEN=]");
-                }
+            if let Some(prefix) = line.split("[env: NAUTOBOT_TOKEN=").next()
+                && line.contains("[env: NAUTOBOT_TOKEN=")
+            {
+                return format!("{prefix}[env: NAUTOBOT_TOKEN=]");
             }
             line.to_string()
         })
