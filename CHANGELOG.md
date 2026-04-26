@@ -1,6 +1,6 @@
 # changelog
 
-## [unreleased]
+## [0.4.0] - 2026-04-26
 
 ### workspace
 - bump MSRV from 1.85 to 1.91 (`floor_char_boundary` requires ≥1.82)
@@ -96,7 +96,7 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
-[unreleased]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.1...HEAD
+[0.4.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/cyberwitchery/nautobot.rs/releases/tag/v0.2.0
