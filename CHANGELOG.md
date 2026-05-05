@@ -1,5 +1,10 @@
 # changelog
 
+## Unreleased
+
+### ci
+- bump integration CI from Nautobot 3.1.0 to 3.1.1 (closes #12)
+
 ## [0.4.0] - 2026-04-26
 
 ### workspace
