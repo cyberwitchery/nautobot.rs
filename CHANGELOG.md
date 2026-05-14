@@ -4,6 +4,7 @@
 
 ### ci
 - bump integration CI from Nautobot 3.1.0 to 3.1.1 (closes #12)
+- bump integration CI from Nautobot 3.1.1 to 3.1.2, update OpenAPI schema baseline (closes #14)
 
 ## [0.4.0] - 2026-04-26
 
