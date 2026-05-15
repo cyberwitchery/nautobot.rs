@@ -2,8 +2,12 @@
 
 ## Unreleased
 
+### openapi
+- regenerate bindings from Nautobot 3.1.2 (removes `image_height`/`image_width` from image-attachment request bodies, `current_head` from git-repository request bodies)
+
 ### ci
 - bump integration CI from Nautobot 3.1.0 to 3.1.1 (closes #12)
+- bump integration CI from Nautobot 3.1.1 to 3.1.2, update OpenAPI schema baseline (closes #14)
 
 ## [0.4.0] - 2026-04-26
 
