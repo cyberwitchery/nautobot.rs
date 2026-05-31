@@ -177,6 +177,7 @@ attrs = "\n".join([
     "#![allow(non_camel_case_types)]",
     "#![allow(non_upper_case_globals)]",
     "#![allow(clippy::all)]",
+    "#![allow(unexpected_cfgs)]",
     "",
 ])
 
@@ -184,6 +185,23 @@ if attrs not in content:
     content = attrs + content
     with open(path, "w", encoding="utf-8") as handle:
         handle.write(content)
+PY
+
+echo "Gating per-tag API modules behind cfg(not(docsrs))..."
+python3 - <<'PY' "${HOST_OUTPUT_DIR}/src/apis/mod.rs"
+import re
+import sys
+
+path = sys.argv[1]
+with open(path, "r", encoding="utf-8") as handle:
+    content = handle.read()
+
+pattern = re.compile(r"^pub mod ([a-z_]+_api);$", re.MULTILINE)
+replacement = r"#[cfg(not(docsrs))]\npub mod \1;"
+content = pattern.sub(replacement, content)
+
+with open(path, "w", encoding="utf-8") as handle:
+    handle.write(content)
 PY
 
 echo "Normalizing generated Cargo.toml dependencies..."
