@@ -92,24 +92,43 @@ pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String
     unimplemented!("Only objects are supported with style=deepObject")
 }
 
+#[cfg(not(docsrs))]
 pub mod circuits_api;
+#[cfg(not(docsrs))]
 pub mod cloud_api;
+#[cfg(not(docsrs))]
 pub mod core_api;
+#[cfg(not(docsrs))]
 pub mod data_validation_api;
+#[cfg(not(docsrs))]
 pub mod dcim_api;
+#[cfg(not(docsrs))]
 pub mod extras_api;
+#[cfg(not(docsrs))]
 pub mod graphql_api;
+#[cfg(not(docsrs))]
 pub mod ipam_api;
+#[cfg(not(docsrs))]
 pub mod load_balancers_api;
+#[cfg(not(docsrs))]
 pub mod status_api;
+#[cfg(not(docsrs))]
 pub mod swagger_api;
+#[cfg(not(docsrs))]
 pub mod swagger_json_api;
+#[cfg(not(docsrs))]
 pub mod swagger_yaml_api;
+#[cfg(not(docsrs))]
 pub mod tenancy_api;
+#[cfg(not(docsrs))]
 pub mod ui_api;
+#[cfg(not(docsrs))]
 pub mod users_api;
+#[cfg(not(docsrs))]
 pub mod virtualization_api;
+#[cfg(not(docsrs))]
 pub mod vpn_api;
+#[cfg(not(docsrs))]
 pub mod wireless_api;
 
 pub mod configuration;

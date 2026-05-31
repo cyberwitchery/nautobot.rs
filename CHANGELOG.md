@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## [0.4.1] - 2026-05-31
+
+### build
+- gate per-tag API modules (`dcim_api`, `ipam_api`, `vpn_api`, etc.) behind `#[cfg(not(docsrs))]` so docs.rs skips compiling them. The high-level `nautobot` client only uses `apis::configuration` (plus re-exports `apis`), so users on crates.io see no change; only `docs.rs/nautobot-openapi/` loses the per-tag pages. Mirrors the netbox.rs 0.5.3 fix.
+- added `crates/nautobot-openapi/build.rs` that translates docs.rs's `DOCS_RS=1` env into `cfg(docsrs)`.
+- `scripts/generate.sh` post-processing keeps the gates on subsequent regenerations.
+
 ### openapi
 - regenerate bindings from Nautobot 3.1.2 (removes `image_height`/`image_width` from image-attachment request bodies, `current_head` from git-repository request bodies)
 
