@@ -129,11 +129,14 @@ where
     /// **Warning**: This will fetch all pages, which could be slow and memory-intensive
     /// for large result sets.
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
-        let mut all_results = Vec::new();
-        let mut next_page = self.next_page().await?;
-        while let Some(page) = next_page {
+        let first_page = match self.next_page().await? {
+            Some(page) => page,
+            None => return Ok(Vec::new()),
+        };
+        let mut all_results = Vec::with_capacity(first_page.count);
+        all_results.extend(first_page.results);
+        while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);
-            next_page = self.next_page().await?;
         }
 
         Ok(all_results)
@@ -179,11 +182,14 @@ where
 
     /// collect all results up to the page limit
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
-        let mut all_results = Vec::new();
-        let mut next_page = self.next_page().await?;
-        while let Some(page) = next_page {
+        let first_page = match self.next_page().await? {
+            Some(page) => page,
+            None => return Ok(Vec::new()),
+        };
+        let mut all_results = Vec::with_capacity(first_page.count);
+        all_results.extend(first_page.results);
+        while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);
-            next_page = self.next_page().await?;
         }
 
         Ok(all_results)
@@ -519,5 +525,67 @@ mod tests {
         assert!(limited.next_page().await.unwrap().is_none());
         assert_eq!(second.hits(), 0);
         first.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn paginator_collect_all_empty() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = crate::Client::new(config).unwrap();
+
+        server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/dcim/devices/")
+                .query_param("offset", "0");
+            then.status(200).json_body(serde_json::json!({
+                "count": 0,
+                "next": null,
+                "previous": null,
+                "results": []
+            }));
+        });
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator.collect_all().await.unwrap();
+        assert!(results.is_empty());
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn limited_paginator_collect_all() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = crate::Client::new(config).unwrap();
+
+        server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/dcim/devices/")
+                .query_param("offset", "0");
+            then.status(200).json_body(serde_json::json!({
+                "count": 4,
+                "next": "dcim/devices/?offset=2",
+                "previous": null,
+                "results": [1, 2]
+            }));
+        });
+
+        server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/dcim/devices/")
+                .query_param("offset", "2");
+            then.status(200).json_body(serde_json::json!({
+                "count": 4,
+                "next": null,
+                "previous": "dcim/devices/?offset=0",
+                "results": [3, 4]
+            }));
+        });
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator.limit_pages(1).collect_all().await.unwrap();
+        assert_eq!(results, vec![1, 2]);
     }
 }
