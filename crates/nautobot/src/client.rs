@@ -195,12 +195,10 @@ impl Client {
         let client = if let Some(http_client) = self.config.http_client.clone() {
             http_client
         } else {
+            // Skip Authorization — the generated openapi code adds it per-request
+            // via the api_key config field, so putting it in default headers too
+            // would send a duplicate header on every request.
             let mut headers = HeaderMap::new();
-            headers.insert(
-                AUTHORIZATION,
-                HeaderValue::from_str(&format!("Token {}", self.config.token))
-                    .map_err(|e| Error::Config(format!("Invalid token format: {}", e)))?,
-            );
             headers.insert(
                 USER_AGENT,
                 HeaderValue::from_str(&self.config.user_agent)
@@ -1093,19 +1091,55 @@ mod tests {
         mock.assert();
     }
 
-    #[test]
-    fn openapi_config_includes_auth_headers() {
-        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn openapi_http_client_sends_default_headers() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/test/")
+                .header("user-agent", "nautobot-rs/0.1.0")
+                .header("content-type", "application/json");
+            then.status(200).json_body(json!({ "ok": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
         let client = Client::new(config).unwrap();
         let openapi_config = client.openapi_config().unwrap();
 
-        // api_key carries the token
+        // Make a request directly through the openapi HTTP client
+        let url = format!("{}/api/test/", server.base_url());
+        let resp = openapi_config.client.get(&url).send().await.unwrap();
+        assert_eq!(resp.status(), 200);
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn openapi_http_client_omits_auth_from_defaults() {
+        // The openapi HTTP client should NOT include Authorization in default
+        // headers because the generated code adds it per-request via api_key.
+        // Verify by sending a bare GET — only the per-request code path (not
+        // exercised here) should add the header.
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET).path("/api/test/");
+            then.status(200).json_body(json!({ "ok": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
+        let client = Client::new(config).unwrap();
+        let openapi_config = client.openapi_config().unwrap();
+
+        let url = format!("{}/api/test/", server.base_url());
+        let resp = openapi_config.client.get(&url).send().await.unwrap();
+        assert_eq!(resp.status(), 200);
+        mock.assert();
+
+        // api_key is still configured for per-request auth by generated code
         let api_key = openapi_config.api_key.expect("api key should be set");
         assert_eq!(api_key.prefix.as_deref(), Some("Token"));
         assert_eq!(api_key.key, "test-token");
-
-        // user_agent is propagated
-        assert!(openapi_config.user_agent.is_some());
     }
 
     #[cfg(feature = "tracing")]

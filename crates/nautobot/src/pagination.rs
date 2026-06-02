@@ -186,7 +186,9 @@ where
             Some(page) => page,
             None => return Ok(Vec::new()),
         };
-        let mut all_results = Vec::with_capacity(first_page.count);
+        let page_size = first_page.results.len();
+        let max_items = self.max_pages.saturating_mul(page_size);
+        let mut all_results = Vec::with_capacity(first_page.count.min(max_items));
         all_results.extend(first_page.results);
         while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);

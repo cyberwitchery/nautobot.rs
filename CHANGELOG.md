@@ -3,11 +3,12 @@
 ## Unreleased
 
 ### fixed
-- `openapi_config` now builds its HTTP client with the same default headers (`Authorization`, `User-Agent`, `Content-Type`) as the main client, instead of only forwarding `extra_headers`
+- `openapi_config` now builds its HTTP client with `User-Agent` and `Content-Type` default headers (previously only forwarded `extra_headers`). `Authorization` is omitted from default headers because the generated openapi code adds it per-request via `api_key`, avoiding a duplicate header.
+- `LimitedPaginator::collect_all` no longer over-allocates: capacity is capped at `max_pages * page_size` instead of the total `count` across all pages
 
 ### changed
 - extract `delete_inner` helper to deduplicate `delete`/`delete_with_body` (mirrors netbox.rs)
-- `Paginator::collect_all` and `LimitedPaginator::collect_all` pre-allocate the result `Vec` using `page.count` from the first page
+- `Paginator::collect_all` pre-allocates the result `Vec` using `page.count` from the first page
 
 ### openapi
 - update schema baseline and generated bindings from Nautobot 3.1.2 to 3.1.3 (no structural changes — only version string in comments and user-agent)
