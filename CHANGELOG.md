@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### ci
+- bump integration CI from Nautobot 3.1.2 to 3.1.3 (closes #18)
+
 ## [0.4.1] - 2026-05-31
 
 ### build
