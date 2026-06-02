@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### openapi
+- update schema baseline and generated bindings from Nautobot 3.1.2 to 3.1.3 (no structural changes — only version string in comments and user-agent)
+
 ### ci
 - bump integration CI from Nautobot 3.1.2 to 3.1.3 (closes #18)
 
