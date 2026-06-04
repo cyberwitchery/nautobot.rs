@@ -24,7 +24,11 @@ on:
     - cron: "0 6 * * 1"
 
 jobs:
-  smoke-and-golden:
+  # smoke and golden run as separate jobs so their ~4-minute builds run in
+  # parallel rather than stacked. On ubuntu-latest the two builds plus the
+  # ~4-minute Nautobot container init pushed a single combined job right up
+  # against the regular-runner time limit; splitting gives each its own budget.
+  smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -75,7 +79,7 @@ jobs:
       - name: Cache cargo
         uses: kunobi-ninja/kache-action@v1
         with:
-          cache-key-prefix: kache-smoke-and-golden
+          cache-key-prefix: kache-smoke
 
       - name: Wait for Nautobot readiness
         env:
@@ -155,6 +159,78 @@ jobs:
           NAUTOBOT_TOKEN: ci-superuser-api-token
           NAUTOBOT_INSECURE: "1"
         run: ./scripts/run_smoke.sh
+
+  golden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NAUTOBOT_URL: http://localhost:8000
+      SUPERUSER_API_TOKEN: ci-superuser-api-token
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: nautobot
+          POSTGRES_USER: nautobot
+          POSTGRES_PASSWORD: nautobot
+        options: >-
+          --health-cmd "pg_isready -U nautobot -d nautobot"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+      nautobot:
+        image: ghcr.io/nautobot/nautobot:3.1.2
+        env:
+          NAUTOBOT_DB_HOST: postgres
+          NAUTOBOT_DB_NAME: nautobot
+          NAUTOBOT_DB_USER: nautobot
+          NAUTOBOT_DB_PASSWORD: nautobot
+          NAUTOBOT_REDIS_HOST: redis
+          NAUTOBOT_SECRET_KEY: thisisaverylongfixedsecretkeyforciandtestingonly123
+          NAUTOBOT_CREATE_SUPERUSER: "true"
+          NAUTOBOT_SUPERUSER_API_TOKEN: ci-superuser-api-token
+          NAUTOBOT_SUPERUSER_PASSWORD: ci-superuser-password
+          NAUTOBOT_ALLOWED_HOSTS: "*"
+        ports:
+          - 8000:8080
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: kunobi-ninja/kache-action@v1
+        with:
+          cache-key-prefix: kache-golden
+
+      - name: Wait for Nautobot readiness
+        env:
+          NAUTOBOT_TOKEN: ci-superuser-api-token
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 180); do
+            if curl -fsS \
+              -H "Authorization: Token ${NAUTOBOT_TOKEN}" \
+              "${NAUTOBOT_URL}/api/status/" >/dev/null; then
+              echo "Nautobot is ready after ${i} checks"
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo "Nautobot failed readiness checks; dumping recent service logs"
+          docker logs "${{ job.services.nautobot.id }}" --tail 200 || true
+          exit 1
 
       - name: Run CLI golden tests
         env:
