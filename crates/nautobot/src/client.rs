@@ -1100,7 +1100,7 @@ mod tests {
                 .path("/api/test/")
                 .header(
                     "user-agent",
-                    &format!("nautobot-rs/{} (Rust)", env!("CARGO_PKG_VERSION")),
+                    format!("nautobot-rs/{} (Rust)", env!("CARGO_PKG_VERSION")),
                 )
                 .header("content-type", "application/json");
             then.status(200).json_body(json!({ "ok": true }));
