@@ -195,7 +195,17 @@ impl Client {
         let client = if let Some(http_client) = self.config.http_client.clone() {
             http_client
         } else {
-            let headers = self.config.extra_headers.clone();
+            // Skip Authorization — the generated openapi code adds it per-request
+            // via the api_key config field, so putting it in default headers too
+            // would send a duplicate header on every request.
+            let mut headers = HeaderMap::new();
+            headers.insert(
+                USER_AGENT,
+                HeaderValue::from_str(&self.config.user_agent)
+                    .map_err(|e| Error::Config(format!("Invalid user agent: {}", e)))?,
+            );
+            headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
+            headers.extend(self.config.extra_headers.clone());
             let builder = reqwest::Client::builder()
                 .default_headers(headers)
                 .timeout(self.config.timeout)
@@ -394,6 +404,21 @@ impl Client {
     /// make a delete request to the api
     pub async fn delete(&self, path: &str) -> Result<()> {
         let url = self.build_api_url(path)?;
+        self.delete_inner(path, self.http_client.delete(url)).await
+    }
+
+    /// make a delete request with a json body
+    pub async fn delete_with_body<B>(&self, path: &str, body: &B) -> Result<()>
+    where
+        B: Serialize + ?Sized,
+    {
+        let url = self.build_api_url(path)?;
+        self.delete_inner(path, self.http_client.delete(url).json(body))
+            .await
+    }
+
+    #[cfg_attr(not(feature = "tracing"), allow(unused_variables))]
+    async fn delete_inner(&self, path: &str, request: reqwest::RequestBuilder) -> Result<()> {
         #[cfg(feature = "tracing")]
         tracing::debug!(
             method = %Method::DELETE,
@@ -404,61 +429,7 @@ impl Client {
         );
         #[cfg(feature = "tracing")]
         let started = Instant::now();
-        let result = self
-            .execute_request(&Method::DELETE, path, self.http_client.delete(url))
-            .await;
-        #[cfg(feature = "tracing")]
-        if let Err(ref err) = result {
-            tracing::warn!(
-                method = %Method::DELETE,
-                path,
-                duration_ms = started.elapsed().as_millis() as u64,
-                error = %err,
-                "request send failed"
-            );
-        }
-        let response = result?;
-        #[cfg(feature = "tracing")]
-        tracing::debug!(
-            method = %Method::DELETE,
-            path,
-            status = response.status().as_u16(),
-            duration_ms = started.elapsed().as_millis() as u64,
-            "received response"
-        );
-
-        if response.status().is_success() || response.status() == StatusCode::NO_CONTENT {
-            Ok(())
-        } else {
-            let status = response.status();
-            let body = response.text().await.unwrap_or_default();
-            Err(Error::from_response(status, body))
-        }
-    }
-
-    /// make a delete request with a json body
-    pub async fn delete_with_body<B>(&self, path: &str, body: &B) -> Result<()>
-    where
-        B: Serialize + ?Sized,
-    {
-        let url = self.build_api_url(path)?;
-        #[cfg(feature = "tracing")]
-        tracing::debug!(
-            method = %Method::DELETE,
-            path,
-            timeout_ms = self.config.timeout.as_millis() as u64,
-            verify_ssl = self.config.verify_ssl,
-            "sending request with body"
-        );
-        #[cfg(feature = "tracing")]
-        let started = Instant::now();
-        let result = self
-            .execute_request(
-                &Method::DELETE,
-                path,
-                self.http_client.delete(url).json(body),
-            )
-            .await;
+        let result = self.execute_request(&Method::DELETE, path, request).await;
         #[cfg(feature = "tracing")]
         if let Err(ref err) = result {
             tracing::warn!(
@@ -1067,6 +1038,111 @@ mod tests {
 
         let captured = errors.lock().unwrap().clone();
         assert_eq!(captured.len(), 1, "on_error should have been called once");
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn delete_returns_ok_on_204() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(DELETE).path("/api/items/1/");
+            then.status(204);
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        client.delete("items/1/").await.unwrap();
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn delete_with_body_sends_json() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(DELETE)
+                .path("/api/items/")
+                .json_body(json!([{"id": 1}, {"id": 2}]));
+            then.status(204);
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        client
+            .delete_with_body("items/", &json!([{"id": 1}, {"id": 2}]))
+            .await
+            .unwrap();
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn delete_returns_error_on_404() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(DELETE).path("/api/items/999/");
+            then.status(404).body("not found");
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let err = client.delete("items/999/").await.unwrap_err();
+        assert!(matches!(err, Error::ApiError { status: 404, .. }));
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn openapi_http_client_sends_default_headers() {
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/test/")
+                .header(
+                    "user-agent",
+                    format!("nautobot-rs/{} (Rust)", env!("CARGO_PKG_VERSION")),
+                )
+                .header("content-type", "application/json");
+            then.status(200).json_body(json!({ "ok": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
+        let client = Client::new(config).unwrap();
+        let openapi_config = client.openapi_config().unwrap();
+
+        // Make a request directly through the openapi HTTP client
+        let url = format!("{}/api/test/", server.base_url());
+        let resp = openapi_config.client.get(&url).send().await.unwrap();
+        assert_eq!(resp.status(), 200);
+        mock.assert();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn openapi_http_client_omits_auth_from_defaults() {
+        // The openapi HTTP client should NOT include Authorization in default
+        // headers because the generated code adds it per-request via api_key.
+        // Verify by sending a bare GET — only the per-request code path (not
+        // exercised here) should add the header.
+        let server = MockServer::start();
+        let mock = server.mock(|when, then| {
+            when.method(GET).path("/api/test/");
+            then.status(200).json_body(json!({ "ok": true }));
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token");
+        let client = Client::new(config).unwrap();
+        let openapi_config = client.openapi_config().unwrap();
+
+        let url = format!("{}/api/test/", server.base_url());
+        let resp = openapi_config.client.get(&url).send().await.unwrap();
+        assert_eq!(resp.status(), 200);
+        mock.assert();
+
+        // api_key is still configured for per-request auth by generated code
+        let api_key = openapi_config.api_key.expect("api key should be set");
+        assert_eq!(api_key.prefix.as_deref(), Some("Token"));
+        assert_eq!(api_key.key, "test-token");
     }
 
     #[cfg(feature = "tracing")]
