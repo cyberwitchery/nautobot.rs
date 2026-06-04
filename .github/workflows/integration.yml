@@ -25,7 +25,7 @@ on:
 
 jobs:
   smoke-and-golden:
-    runs-on: big
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
       NAUTOBOT_URL: http://localhost:8000
