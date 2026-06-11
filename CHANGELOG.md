@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### fixed
+- `parse_deep_object` no longer panics on non-Object JSON values; arrays, strings, numbers, bools, and nulls are now handled at every nesting level
 - `openapi_config` now builds its HTTP client with `User-Agent` and `Content-Type` default headers (previously only forwarded `extra_headers`). `Authorization` is omitted from default headers because the generated openapi code adds it per-request via `api_key`, avoiding a duplicate header.
 - `LimitedPaginator::collect_all` no longer over-allocates: capacity is capped at `max_pages * page_size` instead of the total `count` across all pages
 
