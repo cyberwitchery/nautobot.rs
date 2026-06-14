@@ -62,7 +62,7 @@ impl Client {
         let http_client = if let Some(http_client) = config.http_client.clone() {
             http_client
         } else {
-            // Build default headers
+            // build default headers
             let mut headers = HeaderMap::new();
             headers.insert(
                 AUTHORIZATION,
@@ -77,7 +77,7 @@ impl Client {
             headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
             headers.extend(config.extra_headers.clone());
 
-            // Build HTTP client
+            // build HTTP client
             let builder = reqwest::Client::builder()
                 .default_headers(headers)
                 .timeout(config.timeout)
@@ -195,7 +195,7 @@ impl Client {
         let client = if let Some(http_client) = self.config.http_client.clone() {
             http_client
         } else {
-            // Skip Authorization — the generated openapi code adds it per-request
+            // skip Authorization — the generated openapi code adds it per-request
             // via the api_key config field, so putting it in default headers too
             // would send a duplicate header on every request.
             let mut headers = HeaderMap::new();
@@ -731,10 +731,10 @@ impl Client {
         let status = response.status();
 
         if status.is_success() {
-            // Successful response, deserialize JSON
+            // successful response, deserialize JSON
             response.json().await.map_err(Error::from)
         } else {
-            // Error response
+            // error response
             let body = response.text().await.unwrap_or_default();
             Err(Error::from_response(status, body))
         }
@@ -1023,7 +1023,7 @@ mod tests {
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
     async fn error_hook_is_called_on_transport_failure() {
-        // Point at a port that refuses connections so execute_request returns Err.
+        // point at a port that refuses connections so execute_request returns Err.
         let config = ClientConfig::new("http://127.0.0.1:1", "test-token")
             .with_max_retries(0)
             .with_timeout(Duration::from_millis(500));
@@ -1110,7 +1110,7 @@ mod tests {
         let client = Client::new(config).unwrap();
         let openapi_config = client.openapi_config().unwrap();
 
-        // Make a request directly through the openapi HTTP client
+        // make a request directly through the openapi HTTP client
         let url = format!("{}/api/test/", server.base_url());
         let resp = openapi_config.client.get(&url).send().await.unwrap();
         assert_eq!(resp.status(), 200);
@@ -1120,9 +1120,9 @@ mod tests {
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
     async fn openapi_http_client_omits_auth_from_defaults() {
-        // The openapi HTTP client should NOT include Authorization in default
+        // the openapi HTTP client should NOT include Authorization in default
         // headers because the generated code adds it per-request via api_key.
-        // Verify by sending a bare GET — only the per-request code path (not
+        // verify by sending a bare GET — only the per-request code path (not
         // exercised here) should add the header.
         let server = MockServer::start();
         let mock = server.mock(|when, then| {

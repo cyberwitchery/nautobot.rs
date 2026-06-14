@@ -1,8 +1,8 @@
-//! Configuration file support for nautobot-cli.
+//! configuration file support for nautobot-cli.
 //!
-//! Config file location: `~/.config/nautobot-cli/config.toml`
+//! config file location: `~/.config/nautobot-cli/config.toml`
 //!
-//! Example config:
+//! example config:
 //! ```toml
 //! [default]
 //! url = "https://nautobot.example.com"
@@ -20,30 +20,30 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::process::Command;
 
-/// A single profile configuration.
+/// a single profile configuration.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Profile {
     /// Nautobot instance URL.
     pub url: Option<String>,
-    /// Plain token (not recommended - use token_env or token_command).
+    /// plain token (not recommended - use token_env or token_command).
     pub token: Option<String>,
-    /// Environment variable containing the token.
+    /// environment variable containing the token.
     pub token_env: Option<String>,
-    /// Command to execute to get the token.
+    /// command to execute to get the token.
     pub token_command: Option<String>,
-    /// Request timeout in seconds.
+    /// request timeout in seconds.
     pub timeout: Option<u64>,
-    /// Maximum retry attempts.
+    /// maximum retry attempts.
     pub retries: Option<u32>,
-    /// Whether to verify SSL certificates.
+    /// whether to verify SSL certificates.
     pub ssl_verify: Option<bool>,
-    /// Default output format (json, yaml, table).
+    /// default output format (json, yaml, table).
     pub output: Option<String>,
 }
 
 impl Profile {
-    /// Resolve the token from the configured source.
-    /// Priority: token_command > token_env > token
+    /// resolve the token from the configured source.
+    /// priority: token_command > token_env > token
     pub fn resolve_token(&self) -> Result<Option<String>, ConfigError> {
         if let Some(cmd) = &self.token_command {
             return resolve_token_command(cmd).map(Some);
@@ -55,7 +55,7 @@ impl Profile {
     }
 }
 
-/// Configuration file containing multiple profiles.
+/// configuration file containing multiple profiles.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ConfigFile {
     #[serde(flatten)]
@@ -63,12 +63,12 @@ pub struct ConfigFile {
 }
 
 impl ConfigFile {
-    /// Get a profile by name.
+    /// get a profile by name.
     pub fn get_profile(&self, name: &str) -> Option<&Profile> {
         self.profiles.get(name)
     }
 
-    /// List all profile names.
+    /// list all profile names.
     pub fn profile_names(&self) -> Vec<&str> {
         self.profiles.keys().map(String::as_str).collect()
     }
@@ -111,12 +111,12 @@ impl From<toml::de::Error> for ConfigError {
     }
 }
 
-/// Get the default config file path.
+/// get the default config file path.
 pub fn config_path() -> Option<PathBuf> {
     dirs::config_dir().map(|p| p.join("nautobot-cli").join("config.toml"))
 }
 
-/// Load config file from the default location.
+/// load config file from the default location.
 pub fn load_config() -> Result<Option<ConfigFile>, ConfigError> {
     let Some(path) = config_path() else {
         return Ok(None);
@@ -129,7 +129,7 @@ pub fn load_config() -> Result<Option<ConfigFile>, ConfigError> {
     Ok(Some(config))
 }
 
-/// Execute a command and return its stdout as the token.
+/// execute a command and return its stdout as the token.
 fn resolve_token_command(command: &str) -> Result<String, ConfigError> {
     let output = if cfg!(target_os = "windows") {
         Command::new("cmd").args(["/C", command]).output()
@@ -152,7 +152,7 @@ fn resolve_token_command(command: &str) -> Result<String, ConfigError> {
     }
 }
 
-/// Validate a profile has all required fields for API access.
+/// validate a profile has all required fields for API access.
 pub fn validate_profile(profile: &Profile) -> Result<(), ConfigError> {
     if profile.url.is_none() {
         return Err(ConfigError::MissingField("url".to_string()));

@@ -1,6 +1,6 @@
-//! Local smoke tests against a live Nautobot instance.
+//! local smoke tests against a live Nautobot instance.
 //!
-//! Run manually with:
+//! run manually with:
 //! NAUTOBOT_TOKEN=... NAUTOBOT_URL=http://localhost:8000 cargo test -p nautobot --test smoke_local -- --ignored
 
 use nautobot::{Client, ClientConfig};

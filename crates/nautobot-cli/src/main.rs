@@ -727,27 +727,27 @@ struct Cli {
     #[arg(short, long, env = "NAUTOBOT_TOKEN")]
     token: Option<String>,
 
-    /// Config profile to use (default: "default")
+    /// config profile to use (default: "default")
     #[arg(short, long, default_value = "default")]
     profile: String,
 
-    /// Output format (json, yaml, table)
+    /// output format (json, yaml, table)
     #[arg(long, value_enum)]
     output: Option<OutputFormat>,
 
-    /// Select a field from the response (dot path)
+    /// select a field from the response (dot path)
     #[arg(long)]
     select: Option<String>,
 
-    /// Columns to show in table output (comma-separated)
+    /// columns to show in table output (comma-separated)
     #[arg(long, value_delimiter = ',')]
     columns: Option<Vec<String>>,
 
-    /// Maximum columns in table output (default: 6)
+    /// maximum columns in table output (default: 6)
     #[arg(long, default_value = "6")]
     max_columns: usize,
 
-    /// Print the request and skip write operations
+    /// print the request and skip write operations
     #[arg(long)]
     dry_run: bool,
 
@@ -757,26 +757,26 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum ConfigAction {
-    /// Show the resolved configuration for a profile
+    /// show the resolved configuration for a profile
     Show,
-    /// List all available profiles
+    /// list all available profiles
     List,
-    /// Validate a profile configuration
+    /// validate a profile configuration
     Validate,
-    /// Show the config file path
+    /// show the config file path
     Path,
 }
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Manage configuration profiles
+    /// manage configuration profiles
     Config {
         #[command(subcommand)]
         action: ConfigAction,
     },
-    /// List resources by group (or all resources)
+    /// list resources by group (or all resources)
     Resources {
-        /// Resource group name (dcim, ipam, circuits, cloud, tenancy, extras, users, virtualization, wireless)
+        /// resource group name (dcim, ipam, circuits, cloud, tenancy, extras, users, virtualization, wireless)
         group: Option<String>,
     },
     /// DCIM resources (devices, racks, interfaces, ...)
@@ -833,33 +833,33 @@ enum Commands {
         #[command(subcommand)]
         action: ResourceAction,
     },
-    /// Fetch current user config
+    /// fetch current user config
     UsersConfig,
     /// Fetch Nautobot status
     Status,
-    /// Fetch OpenAPI schema
+    /// fetch OpenAPI schema
     Schema {
         /// Schema format (json, yaml)
         #[arg(long)]
         format: Option<String>,
     },
-    /// Run a read-only graphql query
+    /// run a read-only graphql query
     Graphql {
         #[command(flatten)]
         input: GraphqlInput,
     },
-    /// Find a device connected to a peer device/interface
+    /// find a device connected to a peer device/interface
     ConnectedDevice {
-        /// Peer device name
+        /// peer device name
         #[arg(long)]
         peer_device: String,
-        /// Peer interface name
+        /// peer interface name
         #[arg(long)]
         peer_interface: String,
     },
-    /// Fetch Prometheus metrics
+    /// fetch Prometheus metrics
     Metrics,
-    /// Make a raw API request (covers all endpoints)
+    /// make a raw API request (covers all endpoints)
     Raw {
         /// HTTP method (GET, POST, PATCH, PUT, DELETE)
         #[arg(long)]
@@ -867,7 +867,7 @@ enum Commands {
         /// API path, e.g. "dcim/devices/"
         #[arg(long)]
         path: String,
-        /// Query string parameters (repeatable key=value)
+        /// query string parameters (repeatable key=value)
         #[arg(long = "query")]
         query: Vec<String>,
         #[command(flatten)]
@@ -877,32 +877,32 @@ enum Commands {
 
 #[derive(Subcommand)]
 enum ResourceAction {
-    /// List resources
+    /// list resources
     List {
-        /// Query string parameters (repeatable key=value)
+        /// query string parameters (repeatable key=value)
         #[arg(long = "query")]
         query: Vec<String>,
     },
-    /// Get a resource by id (UUID string)
+    /// get a resource by id (UUID string)
     Get { id: String },
-    /// Create a resource
+    /// create a resource
     Create {
         #[command(flatten)]
         input: JsonInput,
     },
-    /// Update a resource (PUT)
+    /// update a resource (PUT)
     Update {
         id: String,
         #[command(flatten)]
         input: JsonInput,
     },
-    /// Patch a resource
+    /// patch a resource
     Patch {
         id: String,
         #[command(flatten)]
         input: JsonInput,
     },
-    /// Delete a resource
+    /// delete a resource
     Delete { id: String },
 }
 
@@ -943,7 +943,7 @@ struct GraphqlInput {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
-    // Load config file
+    // load config file
     let config_file = match load_config() {
         Ok(cf) => cf,
         Err(e) => {
@@ -952,12 +952,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
-    // Handle config commands first (no API access needed)
+    // handle config commands first (no API access needed)
     if let Commands::Config { action } = &cli.command {
         return handle_config_command(action, &cli.profile, config_file.as_ref());
     }
 
-    // Resolve profile from config file
+    // resolve profile from config file
     let mut profile = Profile::default();
     if let Some(ref cf) = config_file {
         if let Some(p) = cf.get_profile(&cli.profile) {
@@ -978,7 +978,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         profile.output = cli.output.map(|o| format!("{:?}", o).to_lowercase());
     }
 
-    // Resolve URL and token
+    // resolve URL and token
     let url = profile
         .url
         .clone()
@@ -987,7 +987,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "token not specified (use --token, NAUTOBOT_TOKEN, token_env, or token_command in config)",
     )?;
 
-    // Build client config
+    // build client config
     let mut client_config = ClientConfig::new(&url, &token);
     if let Some(timeout) = profile.timeout {
         client_config = client_config.with_timeout(Duration::from_secs(timeout));
@@ -1002,7 +1002,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = Client::new(client_config)?;
     let api = NautobotApiClient { inner: client };
 
-    // Resolve output format
+    // resolve output format
     let output_format = cli.output.unwrap_or_else(|| {
         profile
             .output
@@ -1530,7 +1530,7 @@ fn table_from_items(
             }
         }
     } else if let Some(cols) = columns {
-        // Empty result set with explicit columns: render the headers anyway.
+        // empty result set with explicit columns: render the headers anyway.
         table.set_header(cols.iter().map(Cell::new));
     } else {
         table.set_header(vec![Cell::new("value")]);
@@ -2735,7 +2735,7 @@ mod tests {
             ]
         });
         let table = format_table(&value, None, 2);
-        // With max_columns=2, only 2 columns should be shown
+        // with max_columns=2, only 2 columns should be shown
         let header_line = table.lines().nth(1).unwrap_or("");
         let column_count = header_line.matches('|').count() - 1;
         assert!(

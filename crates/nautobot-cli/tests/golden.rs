@@ -1,13 +1,13 @@
-//! Golden output tests for CLI commands.
+//! golden output tests for CLI commands.
 //!
-//! These tests run CLI commands against a live Nautobot instance and compare
+//! these tests run CLI commands against a live Nautobot instance and compare
 //! output against stored golden files. Run with:
 //!
 //! ```bash
 //! NAUTOBOT_URL=http://localhost:8000 NAUTOBOT_TOKEN=... cargo test -p nautobot-cli --test golden -- --ignored
 //! ```
 //!
-//! To update golden files when output intentionally changes:
+//! to update golden files when output intentionally changes:
 //!
 //! ```bash
 //! UPDATE_GOLDEN=1 NAUTOBOT_URL=... NAUTOBOT_TOKEN=... cargo test -p nautobot-cli --test golden -- --ignored
@@ -29,7 +29,7 @@ fn workspace_root() -> PathBuf {
 
 fn cli_binary() -> PathBuf {
     let root = workspace_root();
-    // Respect CARGO_TARGET_DIR if set (e.g. in CI), resolving relative paths
+    // respect CARGO_TARGET_DIR if set (e.g. in CI), resolving relative paths
     // against the workspace root.
     let target_dir = std::env::var("CARGO_TARGET_DIR")
         .map(|d| {
@@ -64,7 +64,7 @@ fn run_cli(args: &[&str]) -> (String, String, i32) {
     (stdout, stderr, code)
 }
 
-/// Normalize output for comparison by removing dynamic fields.
+/// normalize output for comparison by removing dynamic fields.
 fn normalize_output(output: &str) -> String {
     let mut lines: Vec<String> = output
         .lines()
@@ -84,7 +84,7 @@ fn normalize_output(output: &str) -> String {
         })
         .collect();
 
-    // Remove trailing empty lines
+    // remove trailing empty lines
     while lines.last().is_some_and(|l| l.is_empty()) {
         lines.pop();
     }
@@ -92,7 +92,7 @@ fn normalize_output(output: &str) -> String {
     lines.join("\n")
 }
 
-/// Compare output against golden file, updating if UPDATE_GOLDEN=1.
+/// compare output against golden file, updating if UPDATE_GOLDEN=1.
 fn check_golden(name: &str, actual: &str) {
     let golden_path = golden_dir().join(format!("{}.txt", name));
     let normalized = normalize_output(actual);
@@ -166,7 +166,7 @@ fn golden_status_json() {
     let (stdout, stderr, code) = run_cli(&["--output", "json", "status"]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
-    // For status, we just check structure since values are dynamic
+    // for status, we just check structure since values are dynamic
     let json: serde_json::Value = serde_json::from_str(&stdout).expect("invalid JSON output");
     assert!(
         json.get("nautobot-version").is_some(),
@@ -199,7 +199,7 @@ fn golden_list_json_structure() {
     ]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
-    // Verify JSON structure (content varies by instance)
+    // verify JSON structure (content varies by instance)
     let json: serde_json::Value = serde_json::from_str(&stdout).expect("invalid JSON output");
     assert!(json.get("count").is_some(), "missing count field");
     assert!(json.get("results").is_some(), "missing results field");
@@ -234,7 +234,7 @@ fn golden_table_headers() {
     ]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
-    // Even with 0 results, table should show headers
+    // even with 0 results, table should show headers
     assert!(stdout.contains("id"), "missing id column header");
     assert!(stdout.contains("name"), "missing name column header");
 }

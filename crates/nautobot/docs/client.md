@@ -177,16 +177,16 @@ use nautobot::{Client, ClientConfig};
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
 
-// Get a device by UUID
+// get a device by UUID
 let device = client.dcim().devices().get("device-uuid-here").await?;
 println!("Device: {}", device.display.as_deref().unwrap_or("<unknown>"));
 
-// Create a tag (note: content_types is required in Nautobot)
+// create a tag (note: content_types is required in Nautobot)
 use nautobot::models::TagRequest;
 let tag = TagRequest::new(vec!["dcim.device".to_string()], "my-tag".to_string());
 let created = client.extras().tags().create(&tag).await?;
 
-// Delete by UUID (id is a UUID)
+// delete by UUID (id is a UUID)
 let tag_id = created.id.expect("tag should have id").to_string();
 client.extras().tags().delete(&tag_id).await?;
 # Ok(())
@@ -200,7 +200,7 @@ use nautobot::{Client, ClientConfig, Error};
 
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
-// Example of raw request error handling
+// example of raw request error handling
 match client.request_raw(reqwest::Method::GET, "invalid/", None).await {
     Ok(_) => println!("success"),
     Err(Error::ApiError { status, .. }) if status == 404 => {
@@ -227,7 +227,7 @@ use nautobot::{Client, ClientConfig};
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
 
-// Access raw JSON API
+// access raw JSON API
 let value = client.request_raw(reqwest::Method::GET, "dcim/devices/", None).await?;
 println!("{}", value);
 # Ok(())
@@ -248,11 +248,11 @@ use nautobot::models::ApprovalWorkflowStageResponseApprovalWorkflowStage;
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
 
-// List available IPs in a prefix
+// list available IPs in a prefix
 let available = client.ipam().prefix_available_ips("prefix-uuid", None).await?;
 println!("Available IPs: {}", available.count);
 
-// Allocate an IP from a prefix
+// allocate an IP from a prefix
 let status = ApprovalWorkflowStageResponseApprovalWorkflowStage::new();
 let request = IpAllocationRequest::new(status);
 let allocated = client.ipam().allocate_prefix_ips("prefix-uuid", &[request]).await?;
@@ -268,10 +268,10 @@ use nautobot::{Client, ClientConfig};
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
 
-// Trace an interface path
+// trace an interface path
 let trace = client.dcim().interface_trace("interface-uuid").await?;
 
-// Trace a power port
+// trace a power port
 let power_trace = client.dcim().power_port_trace("power-port-uuid").await?;
 # Ok(())
 # }
@@ -286,13 +286,13 @@ use nautobot::extras::JobInputRequest;
 # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 let client = Client::new(ClientConfig::new("https://nautobot.example.com", "token"))?;
 
-// Run a job by UUID
+// run a job by UUID
 let response = client.extras().job_run("job-uuid", &JobInputRequest::new()).await?;
 
-// Run a job by name
+// run a job by name
 let response = client.extras().job_run_by_name("my-job", &JobInputRequest::new()).await?;
 
-// Approve a scheduled job
+// approve a scheduled job
 let approved = client.extras().scheduled_job_approve("scheduled-job-uuid").await?;
 # Ok(())
 # }

@@ -1,6 +1,6 @@
 # changelog
 
-## Unreleased
+## unreleased
 
 ### fixed
 - `openapi_config` now builds its HTTP client with `User-Agent` and `Content-Type` default headers (previously only forwarded `extra_headers`). `Authorization` is omitted from default headers because the generated openapi code adds it per-request via `api_key`, avoiding a duplicate header.
