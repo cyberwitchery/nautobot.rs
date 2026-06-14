@@ -835,7 +835,7 @@ enum Commands {
     },
     /// fetch current user config
     UsersConfig,
-    /// Fetch Nautobot status
+    /// fetch Nautobot status
     Status,
     /// fetch OpenAPI schema
     Schema {
