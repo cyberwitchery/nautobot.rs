@@ -55,7 +55,7 @@ impl Error {
     pub fn from_response(status: reqwest::StatusCode, body: String) -> Self {
         // try to extract error message from JSON response
         let message = if let Ok(json) = serde_json::from_str::<serde_json::Value>(&body) {
-            // NetBox often returns errors in different formats:
+            // Nautobot often returns errors in different formats:
             // {"detail": "error message"}
             // {"field_name": ["error1", "error2"]}
             // {"non_field_errors": ["error"]}

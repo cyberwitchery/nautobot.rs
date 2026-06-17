@@ -1976,7 +1976,7 @@ mod tests {
     #[test]
     fn load_json_from_file() {
         let mut path = env::temp_dir();
-        path.push("netbox-cli-test.json");
+        path.push("nautobot-cli-test.json");
         fs::write(&path, r#"{"name":"carrier","slug":"carrier"}"#).unwrap();
 
         let input = JsonInput {
@@ -2044,7 +2044,7 @@ mod tests {
     #[test]
     fn load_graphql_query_reads_file() {
         let mut path = env::temp_dir();
-        path.push("netbox-cli-graphql.graphql");
+        path.push("nautobot-cli-graphql.graphql");
         fs::write(&path, "{ devices { name } }").unwrap();
 
         let input = GraphqlInput {
@@ -2147,7 +2147,7 @@ mod tests {
     }
 
     #[test]
-    fn format_netbox_error_includes_status_path_and_request_id() {
+    fn format_nautobot_error_includes_status_path_and_request_id() {
         let body = r#"{"request_id":"req-123","detail":"bad"}"#.to_string();
         let err = nautobot::Error::ApiError {
             status: 400,
