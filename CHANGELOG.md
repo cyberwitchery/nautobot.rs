@@ -1,22 +1,26 @@
 # changelog
 
-## unreleased
+## [0.4.2] - 2026-06-18
 
 ### fixed
 - cap retry backoff at 30 seconds via `RETRY_MAX_BACKOFF` (previously grew unbounded at high attempt counts)
 - `openapi_config` now builds its HTTP client with `User-Agent` and `Content-Type` default headers (previously only forwarded `extra_headers`). `Authorization` is omitted from default headers because the generated openapi code adds it per-request via `api_key`, avoiding a duplicate header.
 - `LimitedPaginator::collect_all` no longer over-allocates: capacity is capped at `max_pages * page_size` instead of the total `count` across all pages
+- replace leftover NetBox references with Nautobot in comments and strings
 
 ### changed
+- bump `reqwest` from 0.12 to 0.13 (the `rustls-tls` feature is renamed to `rustls`, and `RequestBuilder::query` now requires the `query` feature — both handled internally)
 - extract `delete_inner` helper to deduplicate `delete`/`delete_with_body` (mirrors netbox.rs)
 - `Paginator::collect_all` pre-allocates the result `Vec` using `page.count` from the first page
 
 ### openapi
-- update schema baseline and generated bindings from Nautobot 3.1.2 to 3.1.3 (no structural changes — only version string in comments and user-agent)
+- update schema baseline and generated bindings from Nautobot 3.1.2 to 3.1.4 (no structural changes — only version strings in comments and user-agent)
 
 ### ci
 - bump integration CI from Nautobot 3.1.2 to 3.1.3 (closes #18)
 - bump integration CI from Nautobot 3.1.3 to 3.1.4 (closes #30)
+- split integration into parallel smoke and golden jobs, and drop the 'big' runner across all workflows
+- add Dependabot version-update config (grouped weekly)
 
 ## [0.4.1] - 2026-05-31
 
@@ -128,6 +132,8 @@
 - cli with initial set of commands
 - openapi generation infrastructure
 
+[0.4.2]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/cyberwitchery/nautobot.rs/compare/v0.2.0...v0.3.0
