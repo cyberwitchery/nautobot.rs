@@ -759,6 +759,8 @@ mod tests {
     use super::*;
     use crate::HttpHooks;
     use httpmock::prelude::*;
+    // disambiguate from `httpmock::prelude::Method` (re-exported as of httpmock 0.8)
+    use reqwest::Method;
     use reqwest::header::{HeaderName, HeaderValue};
     use serde_json::json;
     use std::sync::{Arc, Mutex};
