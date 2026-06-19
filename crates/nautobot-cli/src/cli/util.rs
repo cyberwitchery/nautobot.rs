@@ -3,7 +3,6 @@ use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::fmt;
 use std::fs;
-use std::path::PathBuf;
 
 use crate::{ApiClient, GraphqlInput, JsonInput, JsonInputOptional};
 
@@ -123,7 +122,9 @@ pub fn load_graphql_query(input: &GraphqlInput) -> Result<String, Box<dyn std::e
     Err("Provide --query or --query-file".into())
 }
 
-pub fn load_graphql_vars(input: &GraphqlInput) -> Result<Option<Value>, Box<dyn std::error::Error>> {
+pub fn load_graphql_vars(
+    input: &GraphqlInput,
+) -> Result<Option<Value>, Box<dyn std::error::Error>> {
     match &input.vars {
         Some(vars) => Ok(Some(serde_json::from_str(vars)?)),
         None => Ok(None),

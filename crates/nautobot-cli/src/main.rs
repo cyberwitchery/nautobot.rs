@@ -3,16 +3,16 @@
 mod cli;
 mod config;
 
-use clap::{Args, Parser, Subcommand, ValueEnum};
+use clap::{Args, Parser, Subcommand};
 use cli::{
-    OutputConfig, OutputFormat, append_query, build_schema_path, handle_config_command,
-    handle_resource_group, load_graphql_query, load_graphql_vars, load_json_optional,
-    normalize_api_path, print_dry_run, print_output, request_raw_with_context, wrap_request_error,
     CIRCUITS_RESOURCES, CLOUD_RESOURCES, DCIM_RESOURCES, EXTRAS_RESOURCES, IPAM_RESOURCES,
-    TENANCY_RESOURCES, USERS_RESOURCES, VIRTUALIZATION_RESOURCES, WIRELESS_RESOURCES,
-    print_resources,
+    OutputConfig, OutputFormat, TENANCY_RESOURCES, USERS_RESOURCES, VIRTUALIZATION_RESOURCES,
+    WIRELESS_RESOURCES, append_query, build_schema_path, handle_config_command,
+    handle_resource_group, load_graphql_query, load_graphql_vars, load_json_optional,
+    normalize_api_path, print_dry_run, print_output, print_resources, request_raw_with_context,
+    wrap_request_error,
 };
-use config::{ConfigFile, Profile, config_path, load_config, validate_profile};
+use config::{Profile, load_config};
 use nautobot::{Client, ClientConfig};
 use reqwest::Method;
 use serde_json::Value;
@@ -548,9 +548,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 mod tests {
     use super::*;
     use cli::{
-        dry_run_payload, format_output, format_table, handle_resource_action, load_json,
-        parse_query_pairs, select_value, RequestError, find_resource_path, resource_path_with_id,
-        DCIM_RESOURCES,
+        DCIM_RESOURCES, RequestError, dry_run_payload, find_resource_path, format_output,
+        format_table, handle_resource_action, load_json, parse_query_pairs, resource_path_with_id,
+        select_value,
     };
     use serde_json::json;
     use std::env;

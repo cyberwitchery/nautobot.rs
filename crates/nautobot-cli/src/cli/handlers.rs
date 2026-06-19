@@ -1,14 +1,12 @@
 use reqwest::Method;
 use serde_json::Value;
 
-use crate::config::{ConfigFile, Profile, config_path, validate_profile};
-use crate::{ApiClient, ConfigAction, JsonInput, ResourceAction};
+use crate::config::{ConfigFile, config_path, validate_profile};
+use crate::{ApiClient, ConfigAction, ResourceAction};
 
 use super::output::{OutputConfig, print_dry_run, print_output};
 use super::resources::{ResourceEntry, find_resource_path, resource_path_with_id};
-use super::util::{
-    append_query, load_json, normalize_api_path, request_raw_with_context, wrap_request_error,
-};
+use super::util::{append_query, load_json, normalize_api_path, request_raw_with_context};
 
 pub fn handle_config_command(
     action: &ConfigAction,
