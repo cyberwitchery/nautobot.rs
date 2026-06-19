@@ -1,5 +1,10 @@
 # changelog
 
+## Unreleased
+
+### changed
+- extract CLI subcommand handlers from monolithic `main.rs` into `cli/` module directory (`handlers.rs`, `resources.rs`, `output.rs`, `util.rs`)
+
 ## [0.4.2] - 2026-06-18
 
 ### fixed
