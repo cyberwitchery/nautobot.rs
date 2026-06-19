@@ -22,7 +22,10 @@ pub struct OutputConfig {
     pub dry_run: bool,
 }
 
-pub fn print_output(value: &Value, output: &OutputConfig) -> Result<(), Box<dyn std::error::Error>> {
+pub fn print_output(
+    value: &Value,
+    output: &OutputConfig,
+) -> Result<(), Box<dyn std::error::Error>> {
     let formatted = format_output(value, output)?;
     println!("{formatted}");
     Ok(())
