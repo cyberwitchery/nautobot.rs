@@ -105,7 +105,8 @@ impl ClientConfig {
     ///
     /// default: 3
     ///
-    /// retries apply to get requests for transient network errors and 429/5xx responses.
+    /// retries apply to get requests and graphql queries for transient network
+    /// errors and 429/5xx responses.
     pub fn with_max_retries(mut self, max_retries: u32) -> Self {
         self.max_retries = max_retries;
         self
