@@ -4,6 +4,8 @@
 
 ### fixed
 - graphql queries now go through the shared `retry_loop`/`execute_request` path, gaining retry-on-429, exponential backoff, hook callbacks, and tracing (previously called `http_client().post().send()` directly)
+- `MetricsApi::metrics()` and `CoreApi::swagger_yaml()` now go through `retry_loop`/`execute_request` (previously called `http_client().get().send()` directly, bypassing retries, hooks, and tracing)
+- `delete` and `delete_with_body` now go through `retry_loop` (previously `delete_inner` called `execute_request` but skipped the retry loop)
 
 ### changed
 - extract CLI subcommand handlers from monolithic `main.rs` into `cli/` module directory (`handlers.rs`, `resources.rs`, `output.rs`, `util.rs`)
