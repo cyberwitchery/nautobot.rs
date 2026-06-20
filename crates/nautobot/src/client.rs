@@ -258,7 +258,7 @@ impl Client {
         T: DeserializeOwned,
         Q: Serialize,
     {
-        self.retry_loop(Method::GET, path, |attempt| async move {
+        self.retry_loop(Method::GET, path, false, |attempt| async move {
             #[cfg(not(feature = "tracing"))]
             let _ = attempt;
             let mut url = self.build_api_url(path)?;
@@ -317,7 +317,7 @@ impl Client {
         path: &str,
         body: Option<&Value>,
     ) -> Result<Value> {
-        self.retry_loop(method.clone(), path, move |attempt| {
+        self.retry_loop(method.clone(), path, false, move |attempt| {
             #[cfg(not(feature = "tracing"))]
             let _ = attempt;
             let method = method.clone();
@@ -481,7 +481,7 @@ impl Client {
         T: DeserializeOwned,
         B: Serialize + ?Sized,
     {
-        self.retry_loop(method.clone(), path, move |attempt| {
+        self.retry_loop(method.clone(), path, false, move |attempt| {
             let method = method.clone();
             async move { self.request_once(method, path, body, attempt).await }
         })
@@ -545,7 +545,13 @@ impl Client {
     }
 
     #[cfg_attr(not(feature = "tracing"), allow(unused_variables))]
-    async fn retry_loop<T, F, Fut>(&self, method: Method, path: &str, mut operation: F) -> Result<T>
+    pub(crate) async fn retry_loop<T, F, Fut>(
+        &self,
+        method: Method,
+        path: &str,
+        idempotent: bool,
+        mut operation: F,
+    ) -> Result<T>
     where
         F: FnMut(u32) -> Fut,
         Fut: std::future::Future<Output = Result<T>>,
@@ -559,8 +565,13 @@ impl Client {
                     #[cfg(feature = "tracing")]
                     Self::trace_error(&method, path, attempts, &err);
 
-                    let should_retry =
-                        Self::should_retry(&err, &method, attempts, self.config.max_retries);
+                    let should_retry = Self::should_retry(
+                        &err,
+                        &method,
+                        attempts,
+                        self.config.max_retries,
+                        idempotent,
+                    );
                     if !should_retry {
                         #[cfg(feature = "tracing")]
                         tracing::debug!(
@@ -588,11 +599,17 @@ impl Client {
         }
     }
 
-    fn should_retry(err: &Error, method: &Method, attempts: u32, max_retries: u32) -> bool {
+    fn should_retry(
+        err: &Error,
+        method: &Method,
+        attempts: u32,
+        max_retries: u32,
+        idempotent: bool,
+    ) -> bool {
         if attempts >= max_retries {
             return false;
         }
-        if method != Method::GET {
+        if !idempotent && method != Method::GET {
             return false;
         }
         match err {
@@ -644,7 +661,7 @@ impl Client {
         }
     }
 
-    async fn execute_request(
+    pub(crate) async fn execute_request(
         &self,
         method: &Method,
         path: &str,
@@ -805,9 +822,20 @@ mod tests {
             message: "server".to_string(),
             body: "".to_string(),
         };
-        assert!(Client::should_retry(&err, &Method::GET, 0, 3));
-        assert!(!Client::should_retry(&err, &Method::POST, 0, 3));
-        assert!(!Client::should_retry(&err, &Method::GET, 3, 3));
+        assert!(Client::should_retry(&err, &Method::GET, 0, 3, false));
+        assert!(!Client::should_retry(&err, &Method::POST, 0, 3, false));
+        assert!(!Client::should_retry(&err, &Method::GET, 3, 3, false));
+    }
+
+    #[test]
+    fn test_should_retry_idempotent_allows_post() {
+        let err = Error::ApiError {
+            status: 500,
+            message: "server".to_string(),
+            body: "".to_string(),
+        };
+        assert!(Client::should_retry(&err, &Method::POST, 0, 3, true));
+        assert!(!Client::should_retry(&err, &Method::POST, 3, 3, true));
     }
 
     #[test]
@@ -827,9 +855,9 @@ mod tests {
             message: "missing".to_string(),
             body: "".to_string(),
         };
-        assert!(Client::should_retry(&err_429, &Method::GET, 0, 1));
-        assert!(Client::should_retry(&err_500, &Method::GET, 0, 1));
-        assert!(!Client::should_retry(&err_404, &Method::GET, 0, 1));
+        assert!(Client::should_retry(&err_429, &Method::GET, 0, 1, false));
+        assert!(Client::should_retry(&err_500, &Method::GET, 0, 1, false));
+        assert!(!Client::should_retry(&err_404, &Method::GET, 0, 1, false));
     }
 
     #[test]

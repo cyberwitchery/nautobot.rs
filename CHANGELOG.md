@@ -2,8 +2,12 @@
 
 ## Unreleased
 
+### fixed
+- graphql queries now go through the shared `retry_loop`/`execute_request` path, gaining retry-on-429, exponential backoff, hook callbacks, and tracing (previously called `http_client().post().send()` directly)
+
 ### changed
 - extract CLI subcommand handlers from monolithic `main.rs` into `cli/` module directory (`handlers.rs`, `resources.rs`, `output.rs`, `util.rs`)
+- `Client::retry_loop` and `Client::should_retry` accept an `idempotent` flag to allow retrying non-GET requests (used by graphql)
 
 ## [0.4.2] - 2026-06-18
 
