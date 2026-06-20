@@ -12,7 +12,6 @@ mod resource;
 pub mod hooks;
 pub use hooks::HttpHooks;
 
-// api endpoint modules
 /// circuits and provider resources.
 pub mod circuits;
 /// cloud endpoints.
@@ -55,5 +54,4 @@ pub mod openapi {
     pub use nautobot_openapi::models;
 }
 
-// re-export the generated models for convenience
 pub use nautobot_openapi::models;

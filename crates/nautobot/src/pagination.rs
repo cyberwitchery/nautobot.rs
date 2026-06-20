@@ -100,7 +100,6 @@ impl<T> Paginator<T>
 where
     T: serde::de::DeserializeOwned,
 {
-    /// create a new paginator starting from a given url
     /// create a new paginator starting from a given url.
     pub fn new(client: crate::Client, initial_path: String) -> Self {
         Self {
