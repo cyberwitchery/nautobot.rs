@@ -125,9 +125,11 @@ fn graphql_error_message(value: &Value) -> Option<String> {
 mod tests {
     use super::*;
     use crate::{ClientConfig, HttpHooks};
+    use httpmock::prelude::HttpMockRequest;
     use httpmock::{Method::POST, MockServer};
     use reqwest::StatusCode;
     use serde_json::json;
+    use std::sync::atomic::{AtomicUsize, Ordering};
     use std::sync::{Arc, Mutex};
     use std::time::Duration;
 
@@ -207,8 +209,12 @@ mod tests {
         let client = Client::new(config).unwrap();
         let api = GraphqlApi::new(client);
 
+        let call_count = Arc::new(AtomicUsize::new(0));
+        let counter = call_count.clone();
         let fail = server.mock(|when, then| {
-            when.method(POST).path("/graphql/");
+            when.method(POST)
+                .path("/graphql/")
+                .is_true(move |_: &HttpMockRequest| counter.fetch_add(1, Ordering::SeqCst) == 0);
             then.status(429).body("rate limited");
         });
         let succeed = server.mock(|when, then| {
@@ -219,8 +225,8 @@ mod tests {
 
         let data = api.query("{ devices { name } }", None).await.unwrap();
         assert_eq!(data["devices"], json!([]));
-        fail.assert_hits(1);
-        succeed.assert_hits(1);
+        fail.assert_calls(1);
+        succeed.assert_calls(1);
     }
 
     #[cfg_attr(miri, ignore)]
@@ -231,8 +237,12 @@ mod tests {
         let client = Client::new(config).unwrap();
         let api = GraphqlApi::new(client);
 
+        let call_count = Arc::new(AtomicUsize::new(0));
+        let counter = call_count.clone();
         let fail = server.mock(|when, then| {
-            when.method(POST).path("/graphql/");
+            when.method(POST)
+                .path("/graphql/")
+                .is_true(move |_: &HttpMockRequest| counter.fetch_add(1, Ordering::SeqCst) == 0);
             then.status(500).body("internal error");
         });
         let succeed = server.mock(|when, then| {
@@ -243,8 +253,8 @@ mod tests {
 
         let data = api.query("{ sites { name } }", None).await.unwrap();
         assert_eq!(data["sites"], json!([]));
-        fail.assert_hits(1);
-        succeed.assert_hits(1);
+        fail.assert_calls(1);
+        succeed.assert_calls(1);
     }
 
     #[cfg_attr(miri, ignore)]
@@ -262,7 +272,7 @@ mod tests {
 
         let err = api.query("{ devices { name } }", None).await.unwrap_err();
         assert!(matches!(err, Error::ApiError { status: 429, .. }));
-        mock.assert_hits(1);
+        mock.assert_calls(1);
     }
 
     struct StatusCapture {
