@@ -406,8 +406,11 @@ impl Client {
 
     /// make a delete request to the api
     pub async fn delete(&self, path: &str) -> Result<()> {
-        let url = self.build_api_url(path)?;
-        self.delete_inner(path, self.http_client.delete(url)).await
+        self.retry_loop(Method::DELETE, path, false, |_attempt| async move {
+            let url = self.build_api_url(path)?;
+            self.delete_inner(path, self.http_client.delete(url)).await
+        })
+        .await
     }
 
     /// make a delete request with a json body
@@ -415,9 +418,12 @@ impl Client {
     where
         B: Serialize + ?Sized,
     {
-        let url = self.build_api_url(path)?;
-        self.delete_inner(path, self.http_client.delete(url).json(body))
-            .await
+        self.retry_loop(Method::DELETE, path, false, |_attempt| async move {
+            let url = self.build_api_url(path)?;
+            self.delete_inner(path, self.http_client.delete(url).json(body))
+                .await
+        })
+        .await
     }
 
     #[cfg_attr(not(feature = "tracing"), allow(unused_variables))]
