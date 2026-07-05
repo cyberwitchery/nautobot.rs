@@ -1,6 +1,6 @@
 # changelog
 
-## Unreleased
+## [0.4.3] - 2026-07-05
 
 ### fixed
 - graphql queries now go through the shared `retry_loop`/`execute_request` path, gaining retry-on-429, exponential backoff, hook callbacks, and tracing (previously called `http_client().post().send()` directly)
