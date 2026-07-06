@@ -54,7 +54,7 @@ jobs:
           --health-timeout 5s
           --health-retries 10
       nautobot:
-        image: ghcr.io/nautobot/nautobot:3.1.4
+        image: ghcr.io/nautobot/nautobot:3.1.6
         env:
           NAUTOBOT_DB_HOST: postgres
           NAUTOBOT_DB_NAME: nautobot
@@ -186,7 +186,7 @@ jobs:
           --health-timeout 5s
           --health-retries 10
       nautobot:
-        image: ghcr.io/nautobot/nautobot:3.1.4
+        image: ghcr.io/nautobot/nautobot:3.1.6
         env:
           NAUTOBOT_DB_HOST: postgres
           NAUTOBOT_DB_NAME: nautobot
