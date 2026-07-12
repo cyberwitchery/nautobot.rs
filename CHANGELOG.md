@@ -6,6 +6,7 @@
 - regenerate the `nautobot-openapi` bindings against nautobot 3.1.6; ci integration pin and the compat table updated to 3.1.6
 
 ### fixed
+- `DELETE` requests now retry on transient errors (429 rate-limited, 500+ server errors) with exponential backoff, like the other methods (previously the `should_retry` guard rejected them, so the surrounding `retry_loop` never actually retried a delete)
 - `generate.sh` normalizes the generated crate's reqwest to the workspace `0.13` (`rustls`/`query`) instead of a stale `0.12`/`rustls-tls`, which was pulling a duplicate reqwest into the dependency graph and breaking the build on regen
 
 ## [0.4.3] - 2026-07-05
