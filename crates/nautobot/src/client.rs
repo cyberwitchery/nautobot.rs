@@ -615,7 +615,7 @@ impl Client {
         if attempts >= max_retries {
             return false;
         }
-        if !idempotent && method != Method::GET {
+        if !idempotent && method != Method::GET && method != Method::DELETE {
             return false;
         }
         match err {
@@ -831,6 +831,8 @@ mod tests {
         assert!(Client::should_retry(&err, &Method::GET, 0, 3, false));
         assert!(!Client::should_retry(&err, &Method::POST, 0, 3, false));
         assert!(!Client::should_retry(&err, &Method::GET, 3, 3, false));
+        assert!(Client::should_retry(&err, &Method::DELETE, 0, 3, false));
+        assert!(!Client::should_retry(&err, &Method::DELETE, 3, 3, false));
     }
 
     #[test]
