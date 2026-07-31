@@ -13,7 +13,7 @@ add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-nautobot = "0.3"
+nautobot = "0.4"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
@@ -21,7 +21,7 @@ optional tracing instrumentation:
 
 ```toml
 [dependencies]
-nautobot = { version = "0.3", features = ["tracing"] }
+nautobot = { version = "0.4", features = ["tracing"] }
 ```
 
 ## usage

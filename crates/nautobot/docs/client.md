@@ -6,7 +6,7 @@ this crate provides a typed, ergonomic client for the nautobot rest api.
 
 ```toml
 [dependencies]
-nautobot = "0.3"
+nautobot = "0.4"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
@@ -14,7 +14,7 @@ optional tracing instrumentation:
 
 ```toml
 [dependencies]
-nautobot = { version = "0.3", features = ["tracing"] }
+nautobot = { version = "0.4", features = ["tracing"] }
 tokio = { version = "1.0", features = ["full"] }
 tracing-subscriber = "0.3"
 ```

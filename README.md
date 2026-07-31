@@ -14,7 +14,7 @@ add to `Cargo.toml`:
 
 ```toml
 [dependencies]
-nautobot = "0.3"
+nautobot = "0.4"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
