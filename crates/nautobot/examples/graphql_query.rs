@@ -13,15 +13,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let client = Client::new(config)?;
 
-    // simple GraphQL query for sites
+    // simple GraphQL query for locations
     let query = r#"
     {
-        sites {
+        locations {
             name
-            slug
-            status {
-                name
-            }
         }
     }
     "#;
