@@ -27,7 +27,7 @@ use std::time::Duration;
 use std::time::Instant;
 use tokio::time::sleep;
 
-/// hard ceiling for any single retry delay (prevents unbounded growth)
+/// hard ceiling for any single retry delay
 const RETRY_MAX_BACKOFF: Duration = Duration::from_secs(30);
 
 /// the main nautobot api client
@@ -41,7 +41,6 @@ const RETRY_MAX_BACKOFF: Duration = Duration::from_secs(30);
 /// let config = ClientConfig::new("https://nautobot.example.com", "your-api-token");
 /// let client = Client::new(config)?;
 ///
-/// // Use the client to access different api modules
 /// // let devices = client.dcim().devices().list().await?;
 /// # Ok(())
 /// # }
@@ -65,7 +64,6 @@ impl Client {
         let http_client = if let Some(http_client) = config.http_client.clone() {
             http_client
         } else {
-            // build default headers
             let mut headers = HeaderMap::new();
             headers.insert(
                 AUTHORIZATION,
@@ -80,7 +78,6 @@ impl Client {
             headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
             headers.extend(config.extra_headers.clone());
 
-            // build HTTP client
             let builder = reqwest::Client::builder()
                 .default_headers(headers)
                 .timeout(config.timeout)
@@ -758,10 +755,8 @@ impl Client {
         let status = response.status();
 
         if status.is_success() {
-            // successful response, deserialize JSON
             response.json().await.map_err(Error::from)
         } else {
-            // error response
             let body = response.text().await.unwrap_or_default();
             Err(Error::from_response(status, body))
         }
@@ -1173,10 +1168,8 @@ mod tests {
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
     async fn openapi_http_client_omits_auth_from_defaults() {
-        // the openapi HTTP client should NOT include Authorization in default
-        // headers because the generated code adds it per-request via api_key.
-        // verify by sending a bare GET — only the per-request code path (not
-        // exercised here) should add the header.
+        // asserts the openapi HTTP client keeps Authorization out of default
+        // headers while api_key still carries the token.
         let server = MockServer::start();
         let mock = server.mock(|when, then| {
             when.method(GET).path("/api/test/");
@@ -1192,7 +1185,6 @@ mod tests {
         assert_eq!(resp.status(), 200);
         mock.assert();
 
-        // api_key is still configured for per-request auth by generated code
         let api_key = openapi_config.api_key.expect("api key should be set");
         assert_eq!(api_key.prefix.as_deref(), Some("Token"));
         assert_eq!(api_key.key, "test-token");

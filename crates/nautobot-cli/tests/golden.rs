@@ -1,7 +1,8 @@
 //! golden output tests for CLI commands.
 //!
-//! these tests run CLI commands against a live Nautobot instance and compare
-//! output against stored golden files. Run with:
+//! `golden_help_output` needs no instance and runs in the normal test pass.
+//! the #[ignore]d tests run CLI commands against a live Nautobot instance and
+//! compare output against stored golden files. run manually with:
 //!
 //! ```bash
 //! NAUTOBOT_URL=http://localhost:8000 NAUTOBOT_TOKEN=... cargo test -p nautobot-cli --test golden -- --ignored
@@ -84,7 +85,6 @@ fn normalize_output(output: &str) -> String {
         })
         .collect();
 
-    // remove trailing empty lines
     while lines.last().is_some_and(|l| l.is_empty()) {
         lines.pop();
     }
@@ -166,7 +166,7 @@ fn golden_status_json() {
     let (stdout, stderr, code) = run_cli(&["--output", "json", "status"]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
-    // for status, we just check structure since values are dynamic
+    // check structure only; values are dynamic
     let json: serde_json::Value = serde_json::from_str(&stdout).expect("invalid JSON output");
     assert!(
         json.get("nautobot-version").is_some(),
@@ -199,7 +199,7 @@ fn golden_list_json_structure() {
     ]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
-    // verify JSON structure (content varies by instance)
+    // check structure only; values are dynamic
     let json: serde_json::Value = serde_json::from_str(&stdout).expect("invalid JSON output");
     assert!(json.get("count").is_some(), "missing count field");
     assert!(json.get("results").is_some(), "missing results field");

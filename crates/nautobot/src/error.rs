@@ -53,7 +53,6 @@ pub enum Error {
 impl Error {
     /// create a new api error from response
     pub fn from_response(status: reqwest::StatusCode, body: String) -> Self {
-        // try to extract error message from JSON response
         let message = if let Ok(json) = serde_json::from_str::<serde_json::Value>(&body) {
             // Nautobot often returns errors in different formats:
             // {"detail": "error message"}
@@ -62,7 +61,6 @@ impl Error {
             if let Some(detail) = json.get("detail").and_then(|v| v.as_str()) {
                 detail.to_string()
             } else if let Some(obj) = json.as_object() {
-                // collect all field errors
                 let errors: Vec<String> = obj
                     .iter()
                     .map(|(key, value)| {
@@ -82,7 +80,6 @@ impl Error {
                 body.chars().take(200).collect()
             }
         } else {
-            // not JSON, truncate plain text
             body.chars().take(200).collect()
         };
 

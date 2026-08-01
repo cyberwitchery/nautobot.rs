@@ -125,7 +125,7 @@ where
 
     /// collect all results from all pages into a single vector
     ///
-    /// **Warning**: This will fetch all pages, which could be slow and memory-intensive
+    /// **warning**: this will fetch all pages, which could be slow and memory-intensive
     /// for large result sets.
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
         let first_page = match self.next_page().await? {

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Generate Rust bindings from Nautobot OpenAPI schema using openapi-generator
+# generate Rust bindings from Nautobot OpenAPI schema using openapi-generator
 #
-# Prerequisites:
+# prerequisites:
 #   - openapi-generator-cli (via npm or docker)
 #   - jq for JSON processing
 #
-# Usage:
+# usage:
 #   ./scripts/generate.sh
 
 set -euo pipefail
@@ -77,24 +77,22 @@ def drop_integer_enums(obj: dict) -> None:
     obj.pop("x-spec-enum-id", None)
 
 def simplify_oneof_strings(obj: dict) -> None:
-    """Simplify oneOf containing only string types to a plain string."""
+    """simplify oneOf containing only string types to a plain string."""
     one_of = obj.get("oneOf")
     if not isinstance(one_of, list):
         return
-    # Check if all variants are strings (possibly with different formats)
     if all(isinstance(v, dict) and v.get("type") == "string" for v in one_of):
         obj.pop("oneOf", None)
         obj["type"] = "string"
 
 def flatten_nested_arrays(obj: dict) -> None:
-    """Flatten nested array types (array of arrays) to single-level arrays."""
+    """flatten nested array types (array of arrays) to single-level arrays."""
     if obj.get("type") != "array":
         return
     items = obj.get("items")
     if not isinstance(items, dict):
         return
     if items.get("type") == "array":
-        # Replace nested array with the inner items type
         inner_items = items.get("items", {})
         obj["items"] = inner_items
 
@@ -123,7 +121,7 @@ PY
 
 SCHEMA_FILE="${NORMALIZED_SCHEMA_FILE}"
 
-# Prefer Docker for a pinned, reproducible generator version.
+# prefer Docker for a pinned, reproducible generator version.
 if command -v docker &> /dev/null; then
     echo "Using Docker image for openapi-generator (${OPENAPI_GENERATOR_IMAGE})..."
     GENERATOR_CMD="docker run --rm -v ${PWD}:/local ${OPENAPI_GENERATOR_IMAGE} generate"
@@ -153,14 +151,13 @@ fi
 CARGO_TOML_BACKUP="$(mktemp)"
 cp "${HOST_OUTPUT_DIR}/Cargo.toml" "${CARGO_TOML_BACKUP}"
 
-# Generate the code
 $GENERATOR_CMD \
     -i "$SCHEMA_FILE" \
     -g "$GENERATOR" \
     -o "$OUTPUT_DIR" \
     --additional-properties=packageName=nautobot-openapi,packageVersion="${PACKAGE_VERSION}"
 
-# Restore Cargo.toml — the generator overwrites [package] with junk metadata
+# restore Cargo.toml
 cp "${CARGO_TOML_BACKUP}" "${HOST_OUTPUT_DIR}/Cargo.toml"
 rm "${CARGO_TOML_BACKUP}"
 

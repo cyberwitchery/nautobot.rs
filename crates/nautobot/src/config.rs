@@ -66,10 +66,9 @@ impl ClientConfig {
     pub fn new(base_url: impl AsRef<str>, token: impl Into<String>) -> Self {
         let base_url_str = base_url.as_ref();
 
-        // normalize base URL: ensure it doesn't end with a slash
         let normalized = base_url_str.trim_end_matches('/');
 
-        // parse URL, this will be validated when building the client
+        // parse failures are deferred to validate() via base_url_valid
         let (base_url, base_url_valid) = match Url::parse(normalized)
             .or_else(|_| Url::parse(&format!("https://{}", normalized)))
         {
@@ -105,8 +104,9 @@ impl ClientConfig {
     ///
     /// default: 3
     ///
-    /// retries apply to get requests and graphql queries for transient network
-    /// errors and 429/5xx responses.
+    /// retries apply to idempotent requests (GET and DELETE, plus graphql
+    /// queries and metrics/schema fetches) for transient network errors and
+    /// 429/5xx responses.
     pub fn with_max_retries(mut self, max_retries: u32) -> Self {
         self.max_retries = max_retries;
         self
@@ -181,7 +181,6 @@ impl ClientConfig {
             )));
         }
 
-        // validate base URL
         if self.base_url.scheme() != "http" && self.base_url.scheme() != "https" {
             return Err(Error::Config(format!(
                 "Invalid URL scheme: {}. Must be http or https",
@@ -189,7 +188,6 @@ impl ClientConfig {
             )));
         }
 
-        // validate token
         if self.token.is_empty() {
             return Err(Error::Config("API token cannot be empty".to_string()));
         }
@@ -247,7 +245,6 @@ mod tests {
     #[test]
     fn test_normalize_url_with_trailing_slash() {
         let config = ClientConfig::new("https://nautobot.example.com/", "token");
-        // both should normalize to the same thing
         let config2 = ClientConfig::new("https://nautobot.example.com", "token");
         assert_eq!(
             config.base_url.as_str().trim_end_matches('/'),
@@ -259,14 +256,12 @@ mod tests {
     fn test_build_url() {
         let config = ClientConfig::new("https://nautobot.example.com", "token");
 
-        // test with leading slash
         let url = config.build_url("/dcim/devices/").unwrap();
         assert_eq!(
             url.as_str(),
             "https://nautobot.example.com/api/dcim/devices/"
         );
 
-        // test without leading slash
         let url = config.build_url("dcim/devices/").unwrap();
         assert_eq!(
             url.as_str(),

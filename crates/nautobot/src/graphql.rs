@@ -43,8 +43,7 @@ impl GraphqlApi {
     /// run a read-only graphql query.
     ///
     /// returns the `data` field when present, otherwise the raw response json.
-    /// requests go through the shared retry loop and execute_request path, so
-    /// they get retry-on-429, exponential backoff, hook callbacks, and tracing.
+    /// retries, backoff, hooks, and tracing apply as for other requests.
     pub async fn query(&self, query: &str, variables: Option<Value>) -> Result<Value> {
         let graphql_path = "graphql/";
         let body = GraphqlRequest { query, variables };

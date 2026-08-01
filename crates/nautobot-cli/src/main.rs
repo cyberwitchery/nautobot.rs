@@ -219,7 +219,7 @@ enum Commands {
     Status,
     /// fetch OpenAPI schema
     Schema {
-        /// Schema format (json, yaml)
+        /// schema format (json, yaml)
         #[arg(long)]
         format: Option<String>,
     },
@@ -1470,7 +1470,6 @@ mod tests {
             ]
         });
         let table = format_table(&value, None, 2);
-        // with max_columns=2, only 2 columns should be shown
         let header_line = table.lines().nth(1).unwrap_or("");
         let column_count = header_line.matches('|').count() - 1;
         assert!(
