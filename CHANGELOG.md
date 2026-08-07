@@ -1,9 +1,9 @@
 # changelog
 
-## Unreleased
+## [0.5.0] - 2026-08-07
 
 ### changed
-- regenerate the `nautobot-openapi` bindings against nautobot 3.1.6; ci integration pin and the compat table updated to 3.1.6
+- **breaking:** regenerate the `nautobot-openapi` bindings against nautobot 3.1.6; ci integration pin and the compat table updated to 3.1.6. two public items moved with the schema: the `128gfc-sfp28` interface-type variant is renamed `Variant128gfcQsfp28` (was `Variant128gfcSfp28`), and `protocol` on the interface-redundancy-group request models is now `Option<_>` rather than required, so a `match` on the first or a struct literal for the second needs updating
 
 ### fixed
 - `DELETE` requests now retry on transient errors (429 rate-limited, 500+ server errors) with exponential backoff, like the other methods (previously the `should_retry` guard rejected them, so the surrounding `retry_loop` never actually retried a delete)
