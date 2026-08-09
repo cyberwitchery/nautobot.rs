@@ -97,7 +97,7 @@ impl ApiClient for NautobotApiClient {
 
 #[derive(Parser)]
 #[command(name = "nautobot-cli")]
-#[command(about = "CLI tool for testing Nautobot API client", long_about = None)]
+#[command(about = "cli client for the nautobot api", long_about = None)]
 struct Cli {
     /// Nautobot instance URL (overrides config file)
     #[arg(short, long, env = "NAUTOBOT_URL")]
