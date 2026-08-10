@@ -1,5 +1,10 @@
 # changelog
 
+## Unreleased
+
+### changed
+- `nautobot-cli --help` now describes the binary as `cli client for the nautobot api` instead of `CLI tool for testing Nautobot API client` (closes #42)
+
 ## [0.5.0] - 2026-08-07
 
 ### changed
