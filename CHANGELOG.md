@@ -5,6 +5,17 @@
 ### changed
 - `nautobot-cli --help` now describes the binary as `cli client for the nautobot api` instead of `CLI tool for testing Nautobot API client` (closes #42)
 
+### openapi
+- regenerate bindings from Nautobot 3.2.2 (new endpoints: ip-address-ranges, cable-types, cables-to-cable-terminations, job-result cancellation; removed: approval-workflow-stage-responses)
+- cable writes reshaped upstream: `WritableCableRequest::new` takes only `status`, the four termination fields are now optional, and `cable_type`/`terminations` are new
+- renames to expect at the call site: interface `mode` is `Model8021QMode`, computed-field writes use `WritableComputedFieldRequest`, and the shared `status`/`namespace` types are `BulkWritableCableRequestStatus`/`BulkWritableIpAddressRangeRequestNamespace`
+
+### ci
+- bump integration CI from Nautobot 3.1.6 to 3.2.2 (closes #40)
+
+### docs
+- `docs/compat.md` covers every tagged release; 0.5.0 was missing and the pre-0.3.1 releases now have their own row
+
 ## [0.5.0] - 2026-08-07
 
 ### changed
