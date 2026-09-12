@@ -1,5 +1,18 @@
 # changelog
 
+## [unreleased]
+
+### ci
+- bump integration CI from Nautobot 3.2.2 to 3.2.4 (closes #48)
+
+### openapi
+- regenerate bindings from Nautobot 3.2.4; saved views gain a set-default endpoint (`extras_saved_views_set_default_create` and `extras_saved_views_set_default_destroy`)
+- **breaking:** saved-view `owner` is no longer a required request field. `SavedView::new`, `SavedViewRequest::new` and `BulkWritableSavedViewRequest::new` drop the parameter, `SavedView::owner` becomes `Option<Box<SavedViewOwner>>` (was `Box<BulkWritableSavedViewRequestOwner>`), and the two request models drop the field entirely
+- **breaking:** `dcim_cables_to_cable_terminations_list`, `load_balancers_load_balancer_pool_member_certificate_profile_assignments_list` and `load_balancers_virtual_server_certificate_profile_assignments_list` gain a `q` search filter. it is a positional parameter, so existing callers pass `None`
+
+### docs
+- `docs/compat.md` gains the 0.6.0 row the release did not add, and the `main` row moves to 3.2.4
+
 ## [0.6.0] - 2026-09-06
 
 ### changed

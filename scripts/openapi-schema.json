@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API Documentation",
-    "version": "3.2.2 (3.2)",
+    "version": "3.2.4 (3.2)",
     "description": "Source of truth and network automation platform",
     "license": {
       "name": "Apache v2 License"
@@ -29000,6 +29000,14 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search"
           },
           {
             "name": "sort",
@@ -168365,6 +168373,106 @@
         }
       }
     },
+    "/extras/saved-views/{id}/set-default/": {
+      "post": {
+        "operationId": "extras_saved_views_set_default_create",
+        "description": "Set (POST) or clear (DELETE) this saved view as the requesting user's default for its list view.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ]
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A UUID string identifying this saved view.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "extras"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "tokenAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSavedViewAssociation"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSavedViewAssociation"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "extras_saved_views_set_default_destroy",
+        "description": "Set (POST) or clear (DELETE) this saved view as the requesting user's default for its list view.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json"
+              ]
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A UUID string identifying this saved view.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "extras"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "tokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/extras/scheduled-jobs/": {
       "get": {
         "operationId": "extras_scheduled_jobs_list",
@@ -180158,6 +180266,14 @@
           },
           {
             "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search"
+          },
+          {
+            "in": "query",
             "name": "saved_view",
             "schema": {
               "type": "array",
@@ -180414,6 +180530,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180474,6 +180591,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "201": {
             "content": {
@@ -180540,6 +180658,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180612,6 +180731,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180663,6 +180783,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "204": {
             "description": "No response body"
@@ -180750,6 +180871,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180820,6 +180942,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180889,6 +181012,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "200": {
             "content": {
@@ -180944,6 +181068,7 @@
             "tokenAuth": []
           }
         ],
+        "deprecated": true,
         "responses": {
           "204": {
             "description": "No response body"
@@ -208455,6 +208580,14 @@
             }
           },
           {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search"
+          },
+          {
             "name": "sort",
             "required": false,
             "in": "query",
@@ -212291,6 +212424,14 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search"
           },
           {
             "name": "sort",
@@ -281287,38 +281428,11 @@
           },
           "is_shared": {
             "type": "boolean"
-          },
-          "owner": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  {
-                    "type": "integer"
-                  }
-                ]
-              },
-              "object_type": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9_]+\\.[a-z][a-z0-9_]+$",
-                "example": "app_label.modelname"
-              },
-              "url": {
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "description": "The user that created this view"
           }
         },
         "required": [
           "id",
           "name",
-          "owner",
           "view"
         ]
       },
@@ -315480,13 +315594,13 @@
           "RUNNING",
           "NOT RUNNING",
           "UNKNOWN",
-          "FAILURE",
-          "RECEIVED",
           "RETRY",
+          "RECEIVED",
+          "STARTED",
           "PENDING",
-          "REVOKED",
           "SUCCESS",
-          "STARTED"
+          "REVOKED",
+          "FAILURE"
         ],
         "type": "string"
       },
@@ -357627,32 +357741,6 @@
           },
           "is_shared": {
             "type": "boolean"
-          },
-          "owner": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  {
-                    "type": "integer"
-                  }
-                ]
-              },
-              "object_type": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9_]+\\.[a-z][a-z0-9_]+$",
-                "example": "app_label.modelname"
-              },
-              "url": {
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "description": "The user that created this view"
           }
         },
         "required": [
@@ -383289,32 +383377,6 @@
           },
           "is_shared": {
             "type": "boolean"
-          },
-          "owner": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  {
-                    "type": "integer"
-                  }
-                ]
-              },
-              "object_type": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9_]+\\.[a-z][a-z0-9_]+$",
-                "example": "app_label.modelname"
-              },
-              "url": {
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "description": "The user that created this view"
           }
         }
       },
@@ -408974,6 +409036,7 @@
                 "format": "uri"
               }
             },
+            "readOnly": true,
             "description": "The user that created this view"
           },
           "created": {
@@ -409029,37 +409092,10 @@
           },
           "is_shared": {
             "type": "boolean"
-          },
-          "owner": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  {
-                    "type": "integer"
-                  }
-                ]
-              },
-              "object_type": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9_]+\\.[a-z][a-z0-9_]+$",
-                "example": "app_label.modelname"
-              },
-              "url": {
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "description": "The user that created this view"
           }
         },
         "required": [
           "name",
-          "owner",
           "view"
         ]
       },

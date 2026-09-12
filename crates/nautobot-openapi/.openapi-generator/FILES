@@ -200,7 +200,6 @@ src/models/bulk_writable_rir_request.rs
 src/models/bulk_writable_role_request.rs
 src/models/bulk_writable_route_target_request.rs
 src/models/bulk_writable_saved_view_request.rs
-src/models/bulk_writable_saved_view_request_owner.rs
 src/models/bulk_writable_secret_request.rs
 src/models/bulk_writable_secrets_group_association_request.rs
 src/models/bulk_writable_secrets_group_request.rs
@@ -1207,6 +1206,7 @@ src/models/role_request.rs
 src/models/route_target.rs
 src/models/route_target_request.rs
 src/models/saved_view.rs
+src/models/saved_view_owner.rs
 src/models/saved_view_request.rs
 src/models/scheduled_job.rs
 src/models/scheduled_job_state.rs
