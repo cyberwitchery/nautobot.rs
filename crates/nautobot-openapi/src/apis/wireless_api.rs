@@ -13,6 +13,830 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_controller_managed_device_group_radio_profile_assignment_request: Vec<
+        crate::models::PatchedBulkWritableControllerManagedDeviceGroupRadioProfileAssignmentRequest,
+    >,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkUpdateParams {
+    pub bulk_writable_controller_managed_device_group_radio_profile_assignment_request:
+        Vec<crate::models::BulkWritableControllerManagedDeviceGroupRadioProfileAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsCreateParams {
+    pub controller_managed_device_group_radio_profile_assignment_request:
+        crate::models::ControllerManagedDeviceGroupRadioProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsDestroyParams {
+    /// A UUID string identifying this controller managed device group radio profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsListParams {
+    pub controller_managed_device_group: Option<Vec<String>>,
+    pub controller_managed_device_group__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub radio_profile: Option<Vec<String>>,
+    pub radio_profile__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this controller managed device group radio profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_controller_managed_device_group_radio_profile_assignment_request:
+        Option<crate::models::PatchedControllerManagedDeviceGroupRadioProfileAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsRetrieveParams {
+    /// A UUID string identifying this controller managed device group radio profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_radio_profile_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupRadioProfileAssignmentsUpdateParams {
+    /// A UUID string identifying this controller managed device group radio profile assignment.
+    pub id: String,
+    pub controller_managed_device_group_radio_profile_assignment_request:
+        crate::models::ControllerManagedDeviceGroupRadioProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_controller_managed_device_group_wireless_network_assignment_request: Vec<crate::models::PatchedBulkWritableControllerManagedDeviceGroupWirelessNetworkAssignmentRequest>,
+    pub format: Option<String>
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkUpdateParams {
+    pub bulk_writable_controller_managed_device_group_wireless_network_assignment_request: Vec<
+        crate::models::BulkWritableControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
+    >,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsCreateParams {
+    pub controller_managed_device_group_wireless_network_assignment_request:
+        crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsDestroyParams {
+    /// A UUID string identifying this controller managed device group wireless network assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsListParams {
+    pub controller_managed_device_group: Option<Vec<String>>,
+    pub controller_managed_device_group__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vlan: Option<Vec<uuid::Uuid>>,
+    pub vlan__isnull: Option<bool>,
+    pub vlan__n: Option<Vec<uuid::Uuid>>,
+    pub wireless_network: Option<Vec<String>>,
+    pub wireless_network__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this controller managed device group wireless network assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_controller_managed_device_group_wireless_network_assignment_request:
+        Option<crate::models::PatchedControllerManagedDeviceGroupWirelessNetworkAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsRetrieveParams {
+    /// A UUID string identifying this controller managed device group wireless network assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_controller_managed_device_group_wireless_network_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsUpdateParams {
+    /// A UUID string identifying this controller managed device group wireless network assignment.
+    pub id: String,
+    pub controller_managed_device_group_wireless_network_assignment_request:
+        crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesBulkPartialUpdateParams {
+    pub patched_bulk_writable_radio_profile_request:
+        Vec<crate::models::PatchedBulkWritableRadioProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesBulkUpdateParams {
+    pub bulk_writable_radio_profile_request: Vec<crate::models::BulkWritableRadioProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesCreateParams {
+    pub radio_profile_request: crate::models::RadioProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesDestroyParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesListParams {
+    pub allowed_channel_list: Option<Vec<String>>,
+    pub channel_width: Option<f32>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub controller_managed_device_groups: Option<Vec<String>>,
+    pub controller_managed_device_groups__devices: Option<Vec<String>>,
+    pub controller_managed_device_groups__devices__isnull: Option<bool>,
+    pub controller_managed_device_groups__devices__n: Option<Vec<String>>,
+    pub controller_managed_device_groups__isnull: Option<bool>,
+    pub controller_managed_device_groups__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub frequency: Option<Vec<String>>,
+    pub frequency__ic: Option<Vec<String>>,
+    pub frequency__ie: Option<Vec<String>>,
+    pub frequency__iew: Option<Vec<String>>,
+    pub frequency__ire: Option<Vec<String>>,
+    pub frequency__isw: Option<Vec<String>>,
+    pub frequency__n: Option<Vec<String>>,
+    pub frequency__nic: Option<Vec<String>>,
+    pub frequency__nie: Option<Vec<String>>,
+    pub frequency__niew: Option<Vec<String>>,
+    pub frequency__nire: Option<Vec<String>>,
+    pub frequency__nisw: Option<Vec<String>>,
+    pub frequency__nre: Option<Vec<String>>,
+    pub frequency__re: Option<Vec<String>>,
+    /// Has controller managed device groups
+    pub has_controller_managed_device_groups: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub regulatory_domain: Option<Vec<String>>,
+    pub regulatory_domain__ic: Option<Vec<String>>,
+    pub regulatory_domain__ie: Option<Vec<String>>,
+    pub regulatory_domain__iew: Option<Vec<String>>,
+    pub regulatory_domain__ire: Option<Vec<String>>,
+    pub regulatory_domain__isw: Option<Vec<String>>,
+    pub regulatory_domain__n: Option<Vec<String>>,
+    pub regulatory_domain__nic: Option<Vec<String>>,
+    pub regulatory_domain__nie: Option<Vec<String>>,
+    pub regulatory_domain__niew: Option<Vec<String>>,
+    pub regulatory_domain__nire: Option<Vec<String>>,
+    pub regulatory_domain__nisw: Option<Vec<String>>,
+    pub regulatory_domain__nre: Option<Vec<String>>,
+    pub regulatory_domain__re: Option<Vec<String>>,
+    pub rx_power_min: Option<Vec<i32>>,
+    pub rx_power_min__gt: Option<Vec<i32>>,
+    pub rx_power_min__gte: Option<Vec<i32>>,
+    pub rx_power_min__isnull: Option<bool>,
+    pub rx_power_min__lt: Option<Vec<i32>>,
+    pub rx_power_min__lte: Option<Vec<i32>>,
+    pub rx_power_min__n: Option<Vec<i32>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub supported_data_rates: Option<Vec<uuid::Uuid>>,
+    pub supported_data_rates__n: Option<Vec<uuid::Uuid>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tx_power_max: Option<Vec<i32>>,
+    pub tx_power_max__gt: Option<Vec<i32>>,
+    pub tx_power_max__gte: Option<Vec<i32>>,
+    pub tx_power_max__isnull: Option<bool>,
+    pub tx_power_max__lt: Option<Vec<i32>>,
+    pub tx_power_max__lte: Option<Vec<i32>>,
+    pub tx_power_max__n: Option<Vec<i32>>,
+    pub tx_power_min: Option<Vec<i32>>,
+    pub tx_power_min__gt: Option<Vec<i32>>,
+    pub tx_power_min__gte: Option<Vec<i32>>,
+    pub tx_power_min__isnull: Option<bool>,
+    pub tx_power_min__lt: Option<Vec<i32>>,
+    pub tx_power_min__lte: Option<Vec<i32>>,
+    pub tx_power_min__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesNotesCreateParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesNotesListParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesPartialUpdateParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_radio_profile_request: Option<crate::models::PatchedRadioProfileRequest>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesRetrieveParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_radio_profiles_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessRadioProfilesUpdateParams {
+    /// A UUID string identifying this radio profile.
+    pub id: String,
+    pub radio_profile_request: crate::models::RadioProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesBulkPartialUpdateParams {
+    pub patched_bulk_writable_supported_data_rate_request:
+        Vec<crate::models::PatchedBulkWritableSupportedDataRateRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesBulkUpdateParams {
+    pub bulk_writable_supported_data_rate_request:
+        Vec<crate::models::BulkWritableSupportedDataRateRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesCreateParams {
+    pub supported_data_rate_request: crate::models::SupportedDataRateRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesDestroyParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has radio profiles
+    pub has_radio_profiles: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub mcs_index: Option<Vec<i32>>,
+    pub mcs_index__gt: Option<Vec<i32>>,
+    pub mcs_index__gte: Option<Vec<i32>>,
+    pub mcs_index__isnull: Option<bool>,
+    pub mcs_index__lt: Option<Vec<i32>>,
+    pub mcs_index__lte: Option<Vec<i32>>,
+    pub mcs_index__n: Option<Vec<i32>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub radio_profiles: Option<Vec<String>>,
+    pub radio_profiles__isnull: Option<bool>,
+    pub radio_profiles__n: Option<Vec<String>>,
+    pub rate: Option<Vec<i32>>,
+    pub rate__gt: Option<Vec<i32>>,
+    pub rate__gte: Option<Vec<i32>>,
+    pub rate__lt: Option<Vec<i32>>,
+    pub rate__lte: Option<Vec<i32>>,
+    pub rate__n: Option<Vec<i32>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub standard: Option<Vec<String>>,
+    pub standard__ic: Option<Vec<String>>,
+    pub standard__ie: Option<Vec<String>>,
+    pub standard__iew: Option<Vec<String>>,
+    pub standard__ire: Option<Vec<String>>,
+    pub standard__isw: Option<Vec<String>>,
+    pub standard__n: Option<Vec<String>>,
+    pub standard__nic: Option<Vec<String>>,
+    pub standard__nie: Option<Vec<String>>,
+    pub standard__niew: Option<Vec<String>>,
+    pub standard__nire: Option<Vec<String>>,
+    pub standard__nisw: Option<Vec<String>>,
+    pub standard__nre: Option<Vec<String>>,
+    pub standard__re: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesNotesCreateParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesNotesListParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesPartialUpdateParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_supported_data_rate_request: Option<crate::models::PatchedSupportedDataRateRequest>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesRetrieveParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_supported_data_rates_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessSupportedDataRatesUpdateParams {
+    /// A UUID string identifying this supported data rate.
+    pub id: String,
+    pub supported_data_rate_request: crate::models::SupportedDataRateRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksBulkPartialUpdateParams {
+    pub patched_bulk_writable_wireless_network_request:
+        Vec<crate::models::PatchedBulkWritableWirelessNetworkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksBulkUpdateParams {
+    pub bulk_writable_wireless_network_request:
+        Vec<crate::models::BulkWritableWirelessNetworkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksCreateParams {
+    pub wireless_network_request: crate::models::WirelessNetworkRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksDestroyParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksListParams {
+    pub authentication: Option<Vec<String>>,
+    pub authentication__ic: Option<Vec<String>>,
+    pub authentication__ie: Option<Vec<String>>,
+    pub authentication__iew: Option<Vec<String>>,
+    pub authentication__ire: Option<Vec<String>>,
+    pub authentication__isw: Option<Vec<String>>,
+    pub authentication__n: Option<Vec<String>>,
+    pub authentication__nic: Option<Vec<String>>,
+    pub authentication__nie: Option<Vec<String>>,
+    pub authentication__niew: Option<Vec<String>>,
+    pub authentication__nire: Option<Vec<String>>,
+    pub authentication__nisw: Option<Vec<String>>,
+    pub authentication__nre: Option<Vec<String>>,
+    pub authentication__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub controller_managed_device_groups: Option<Vec<String>>,
+    pub controller_managed_device_groups__controller: Option<Vec<String>>,
+    pub controller_managed_device_groups__controller__n: Option<Vec<String>>,
+    pub controller_managed_device_groups__devices: Option<Vec<String>>,
+    pub controller_managed_device_groups__devices__isnull: Option<bool>,
+    pub controller_managed_device_groups__devices__n: Option<Vec<String>>,
+    pub controller_managed_device_groups__isnull: Option<bool>,
+    pub controller_managed_device_groups__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    /// Has controller managed device groups
+    pub has_controller_managed_device_groups: Option<bool>,
+    pub hidden: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub mode: Option<Vec<String>>,
+    pub mode__ic: Option<Vec<String>>,
+    pub mode__ie: Option<Vec<String>>,
+    pub mode__iew: Option<Vec<String>>,
+    pub mode__ire: Option<Vec<String>>,
+    pub mode__isw: Option<Vec<String>>,
+    pub mode__n: Option<Vec<String>>,
+    pub mode__nic: Option<Vec<String>>,
+    pub mode__nie: Option<Vec<String>>,
+    pub mode__niew: Option<Vec<String>>,
+    pub mode__nire: Option<Vec<String>>,
+    pub mode__nisw: Option<Vec<String>>,
+    pub mode__nre: Option<Vec<String>>,
+    pub mode__re: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub secrets_group: Option<Vec<String>>,
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub ssid: Option<Vec<String>>,
+    pub ssid__ic: Option<Vec<String>>,
+    pub ssid__ie: Option<Vec<String>>,
+    pub ssid__iew: Option<Vec<String>>,
+    pub ssid__ire: Option<Vec<String>>,
+    pub ssid__isw: Option<Vec<String>>,
+    pub ssid__n: Option<Vec<String>>,
+    pub ssid__nic: Option<Vec<String>>,
+    pub ssid__nie: Option<Vec<String>>,
+    pub ssid__niew: Option<Vec<String>>,
+    pub ssid__nire: Option<Vec<String>>,
+    pub ssid__nisw: Option<Vec<String>>,
+    pub ssid__nre: Option<Vec<String>>,
+    pub ssid__re: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksNotesCreateParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksNotesListParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksPartialUpdateParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_wireless_network_request: Option<crate::models::PatchedWirelessNetworkRequest>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksRetrieveParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`wireless_wireless_networks_update`]
+#[derive(Clone, Debug, Default)]
+pub struct WirelessWirelessNetworksUpdateParams {
+    /// A UUID string identifying this wireless network.
+    pub id: String,
+    pub wireless_network_request: crate::models::WirelessNetworkRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`wireless_controller_managed_device_group_radio_profile_assignments_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -373,11 +1197,14 @@ pub enum WirelessWirelessNetworksUpdateError {
 /// Destroy a list of controller managed device group radio profile assignment objects.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkDestroyError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -430,15 +1257,18 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Partial update a list of controller managed device group radio profile assignment objects.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_controller_managed_device_group_radio_profile_assignment_request: Vec<
-        crate::models::PatchedBulkWritableControllerManagedDeviceGroupRadioProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ControllerManagedDeviceGroupRadioProfileAssignment>,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_controller_managed_device_group_radio_profile_assignment_request =
+        params
+            .patched_bulk_writable_controller_managed_device_group_radio_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -493,15 +1323,17 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Update a list of controller managed device group radio profile assignment objects.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_controller_managed_device_group_radio_profile_assignment_request: Vec<
-        crate::models::BulkWritableControllerManagedDeviceGroupRadioProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::ControllerManagedDeviceGroupRadioProfileAssignment>,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_controller_managed_device_group_radio_profile_assignment_request =
+        params.bulk_writable_controller_managed_device_group_radio_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -555,13 +1387,17 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Create one or more controller managed device group radio profile assignment objects.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_create(
     configuration: &configuration::Configuration,
-    controller_managed_device_group_radio_profile_assignment_request: crate::models::ControllerManagedDeviceGroupRadioProfileAssignmentRequest,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsCreateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupRadioProfileAssignment,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let controller_managed_device_group_radio_profile_assignment_request =
+        params.controller_managed_device_group_radio_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -615,10 +1451,13 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Destroy a controller managed device group radio profile assignment object.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsDestroyParams,
 ) -> Result<(), Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -671,24 +1510,27 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Retrieve a list of controller managed device group radio profile assignment objects.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_list(
     configuration: &configuration::Configuration,
-    controller_managed_device_group: Option<Vec<String>>,
-    controller_managed_device_group__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    radio_profile: Option<Vec<String>>,
-    radio_profile__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedControllerManagedDeviceGroupRadioProfileAssignmentList,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let controller_managed_device_group = params.controller_managed_device_group;
+    let controller_managed_device_group__n = params.controller_managed_device_group__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let radio_profile = params.radio_profile;
+    let radio_profile__n = params.radio_profile__n;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -882,16 +1724,18 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Partial update a controller managed device group radio profile assignment object.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_controller_managed_device_group_radio_profile_assignment_request: Option<
-        crate::models::PatchedControllerManagedDeviceGroupRadioProfileAssignmentRequest,
-    >,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupRadioProfileAssignment,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_controller_managed_device_group_radio_profile_assignment_request =
+        params.patched_controller_managed_device_group_radio_profile_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -946,15 +1790,18 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Retrieve a controller managed device group radio profile assignment object.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupRadioProfileAssignment,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1015,14 +1862,18 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Update a controller managed device group radio profile assignment object.
 pub async fn wireless_controller_managed_device_group_radio_profile_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    controller_managed_device_group_radio_profile_assignment_request: crate::models::ControllerManagedDeviceGroupRadioProfileAssignmentRequest,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupRadioProfileAssignmentsUpdateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupRadioProfileAssignment,
     Error<WirelessControllerManagedDeviceGroupRadioProfileAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let controller_managed_device_group_radio_profile_assignment_request =
+        params.controller_managed_device_group_radio_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1077,11 +1928,14 @@ pub async fn wireless_controller_managed_device_group_radio_profile_assignments_
 /// Destroy a list of controller managed device group wireless network assignment objects.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkDestroyError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1134,13 +1988,16 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Partial update a list of controller managed device group wireless network assignment objects.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_controller_managed_device_group_wireless_network_assignment_request: Vec<crate::models::PatchedBulkWritableControllerManagedDeviceGroupWirelessNetworkAssignmentRequest>,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment>,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_controller_managed_device_group_wireless_network_assignment_request = params.patched_bulk_writable_controller_managed_device_group_wireless_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1195,15 +2052,17 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Update a list of controller managed device group wireless network assignment objects.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_controller_managed_device_group_wireless_network_assignment_request: Vec<
-        crate::models::BulkWritableControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment>,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_controller_managed_device_group_wireless_network_assignment_request =
+        params.bulk_writable_controller_managed_device_group_wireless_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1257,13 +2116,17 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Create one or more controller managed device group wireless network assignment objects.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_create(
     configuration: &configuration::Configuration,
-    controller_managed_device_group_wireless_network_assignment_request: crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsCreateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let controller_managed_device_group_wireless_network_assignment_request =
+        params.controller_managed_device_group_wireless_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1317,10 +2180,13 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Destroy a controller managed device group wireless network assignment object.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsDestroyParams,
 ) -> Result<(), Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1373,27 +2239,30 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Retrieve a list of controller managed device group wireless network assignment objects.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_list(
     configuration: &configuration::Configuration,
-    controller_managed_device_group: Option<Vec<String>>,
-    controller_managed_device_group__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vlan: Option<Vec<uuid::Uuid>>,
-    vlan__isnull: Option<bool>,
-    vlan__n: Option<Vec<uuid::Uuid>>,
-    wireless_network: Option<Vec<String>>,
-    wireless_network__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedControllerManagedDeviceGroupWirelessNetworkAssignmentList,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let controller_managed_device_group = params.controller_managed_device_group;
+    let controller_managed_device_group__n = params.controller_managed_device_group__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let vlan = params.vlan;
+    let vlan__isnull = params.vlan__isnull;
+    let vlan__n = params.vlan__n;
+    let wireless_network = params.wireless_network;
+    let wireless_network__n = params.wireless_network__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1629,16 +2498,18 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Partial update a controller managed device group wireless network assignment object.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_controller_managed_device_group_wireless_network_assignment_request: Option<
-        crate::models::PatchedControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
-    >,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_controller_managed_device_group_wireless_network_assignment_request =
+        params.patched_controller_managed_device_group_wireless_network_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1693,15 +2564,18 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Retrieve a controller managed device group wireless network assignment object.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1762,14 +2636,18 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Update a controller managed device group wireless network assignment object.
 pub async fn wireless_controller_managed_device_group_wireless_network_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    controller_managed_device_group_wireless_network_assignment_request: crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignmentRequest,
-    format: Option<&str>,
+    params: WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsUpdateParams,
 ) -> Result<
     crate::models::ControllerManagedDeviceGroupWirelessNetworkAssignment,
     Error<WirelessControllerManagedDeviceGroupWirelessNetworkAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let controller_managed_device_group_wireless_network_assignment_request =
+        params.controller_managed_device_group_wireless_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1824,10 +2702,13 @@ pub async fn wireless_controller_managed_device_group_wireless_network_assignmen
 /// Destroy a list of radio profile objects.
 pub async fn wireless_radio_profiles_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: WirelessRadioProfilesBulkDestroyParams,
 ) -> Result<(), Error<WirelessRadioProfilesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1879,12 +2760,14 @@ pub async fn wireless_radio_profiles_bulk_destroy(
 /// Partial update a list of radio profile objects.
 pub async fn wireless_radio_profiles_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_radio_profile_request: Vec<
-        crate::models::PatchedBulkWritableRadioProfileRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessRadioProfilesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::RadioProfile>, Error<WirelessRadioProfilesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_radio_profile_request =
+        params.patched_bulk_writable_radio_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1937,10 +2820,13 @@ pub async fn wireless_radio_profiles_bulk_partial_update(
 /// Update a list of radio profile objects.
 pub async fn wireless_radio_profiles_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_radio_profile_request: Vec<crate::models::BulkWritableRadioProfileRequest>,
-    format: Option<&str>,
+    params: WirelessRadioProfilesBulkUpdateParams,
 ) -> Result<Vec<crate::models::RadioProfile>, Error<WirelessRadioProfilesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_radio_profile_request = params.bulk_writable_radio_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1992,10 +2878,13 @@ pub async fn wireless_radio_profiles_bulk_update(
 /// Create one or more radio profile objects.
 pub async fn wireless_radio_profiles_create(
     configuration: &configuration::Configuration,
-    radio_profile_request: crate::models::RadioProfileRequest,
-    format: Option<&str>,
+    params: WirelessRadioProfilesCreateParams,
 ) -> Result<crate::models::RadioProfile, Error<WirelessRadioProfilesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let radio_profile_request = params.radio_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2047,10 +2936,13 @@ pub async fn wireless_radio_profiles_create(
 /// Destroy a radio profile object.
 pub async fn wireless_radio_profiles_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: WirelessRadioProfilesDestroyParams,
 ) -> Result<(), Error<WirelessRadioProfilesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2102,116 +2994,122 @@ pub async fn wireless_radio_profiles_destroy(
 /// Retrieve a list of radio profile objects.
 pub async fn wireless_radio_profiles_list(
     configuration: &configuration::Configuration,
-    allowed_channel_list: Option<Vec<String>>,
-    channel_width: Option<f32>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    controller_managed_device_groups: Option<Vec<String>>,
-    controller_managed_device_groups__devices: Option<Vec<String>>,
-    controller_managed_device_groups__devices__isnull: Option<bool>,
-    controller_managed_device_groups__devices__n: Option<Vec<String>>,
-    controller_managed_device_groups__isnull: Option<bool>,
-    controller_managed_device_groups__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    frequency: Option<Vec<String>>,
-    frequency__ic: Option<Vec<String>>,
-    frequency__ie: Option<Vec<String>>,
-    frequency__iew: Option<Vec<String>>,
-    frequency__ire: Option<Vec<String>>,
-    frequency__isw: Option<Vec<String>>,
-    frequency__n: Option<Vec<String>>,
-    frequency__nic: Option<Vec<String>>,
-    frequency__nie: Option<Vec<String>>,
-    frequency__niew: Option<Vec<String>>,
-    frequency__nire: Option<Vec<String>>,
-    frequency__nisw: Option<Vec<String>>,
-    frequency__nre: Option<Vec<String>>,
-    frequency__re: Option<Vec<String>>,
-    has_controller_managed_device_groups: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    regulatory_domain: Option<Vec<String>>,
-    regulatory_domain__ic: Option<Vec<String>>,
-    regulatory_domain__ie: Option<Vec<String>>,
-    regulatory_domain__iew: Option<Vec<String>>,
-    regulatory_domain__ire: Option<Vec<String>>,
-    regulatory_domain__isw: Option<Vec<String>>,
-    regulatory_domain__n: Option<Vec<String>>,
-    regulatory_domain__nic: Option<Vec<String>>,
-    regulatory_domain__nie: Option<Vec<String>>,
-    regulatory_domain__niew: Option<Vec<String>>,
-    regulatory_domain__nire: Option<Vec<String>>,
-    regulatory_domain__nisw: Option<Vec<String>>,
-    regulatory_domain__nre: Option<Vec<String>>,
-    regulatory_domain__re: Option<Vec<String>>,
-    rx_power_min: Option<Vec<i32>>,
-    rx_power_min__gt: Option<Vec<i32>>,
-    rx_power_min__gte: Option<Vec<i32>>,
-    rx_power_min__isnull: Option<bool>,
-    rx_power_min__lt: Option<Vec<i32>>,
-    rx_power_min__lte: Option<Vec<i32>>,
-    rx_power_min__n: Option<Vec<i32>>,
-    sort: Option<&str>,
-    supported_data_rates: Option<Vec<uuid::Uuid>>,
-    supported_data_rates__n: Option<Vec<uuid::Uuid>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tx_power_max: Option<Vec<i32>>,
-    tx_power_max__gt: Option<Vec<i32>>,
-    tx_power_max__gte: Option<Vec<i32>>,
-    tx_power_max__isnull: Option<bool>,
-    tx_power_max__lt: Option<Vec<i32>>,
-    tx_power_max__lte: Option<Vec<i32>>,
-    tx_power_max__n: Option<Vec<i32>>,
-    tx_power_min: Option<Vec<i32>>,
-    tx_power_min__gt: Option<Vec<i32>>,
-    tx_power_min__gte: Option<Vec<i32>>,
-    tx_power_min__isnull: Option<bool>,
-    tx_power_min__lt: Option<Vec<i32>>,
-    tx_power_min__lte: Option<Vec<i32>>,
-    tx_power_min__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessRadioProfilesListParams,
 ) -> Result<crate::models::PaginatedRadioProfileList, Error<WirelessRadioProfilesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let allowed_channel_list = params.allowed_channel_list;
+    let channel_width = params.channel_width;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let controller_managed_device_groups = params.controller_managed_device_groups;
+    let controller_managed_device_groups__devices =
+        params.controller_managed_device_groups__devices;
+    let controller_managed_device_groups__devices__isnull =
+        params.controller_managed_device_groups__devices__isnull;
+    let controller_managed_device_groups__devices__n =
+        params.controller_managed_device_groups__devices__n;
+    let controller_managed_device_groups__isnull = params.controller_managed_device_groups__isnull;
+    let controller_managed_device_groups__n = params.controller_managed_device_groups__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let frequency = params.frequency;
+    let frequency__ic = params.frequency__ic;
+    let frequency__ie = params.frequency__ie;
+    let frequency__iew = params.frequency__iew;
+    let frequency__ire = params.frequency__ire;
+    let frequency__isw = params.frequency__isw;
+    let frequency__n = params.frequency__n;
+    let frequency__nic = params.frequency__nic;
+    let frequency__nie = params.frequency__nie;
+    let frequency__niew = params.frequency__niew;
+    let frequency__nire = params.frequency__nire;
+    let frequency__nisw = params.frequency__nisw;
+    let frequency__nre = params.frequency__nre;
+    let frequency__re = params.frequency__re;
+    let has_controller_managed_device_groups = params.has_controller_managed_device_groups;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let regulatory_domain = params.regulatory_domain;
+    let regulatory_domain__ic = params.regulatory_domain__ic;
+    let regulatory_domain__ie = params.regulatory_domain__ie;
+    let regulatory_domain__iew = params.regulatory_domain__iew;
+    let regulatory_domain__ire = params.regulatory_domain__ire;
+    let regulatory_domain__isw = params.regulatory_domain__isw;
+    let regulatory_domain__n = params.regulatory_domain__n;
+    let regulatory_domain__nic = params.regulatory_domain__nic;
+    let regulatory_domain__nie = params.regulatory_domain__nie;
+    let regulatory_domain__niew = params.regulatory_domain__niew;
+    let regulatory_domain__nire = params.regulatory_domain__nire;
+    let regulatory_domain__nisw = params.regulatory_domain__nisw;
+    let regulatory_domain__nre = params.regulatory_domain__nre;
+    let regulatory_domain__re = params.regulatory_domain__re;
+    let rx_power_min = params.rx_power_min;
+    let rx_power_min__gt = params.rx_power_min__gt;
+    let rx_power_min__gte = params.rx_power_min__gte;
+    let rx_power_min__isnull = params.rx_power_min__isnull;
+    let rx_power_min__lt = params.rx_power_min__lt;
+    let rx_power_min__lte = params.rx_power_min__lte;
+    let rx_power_min__n = params.rx_power_min__n;
+    let sort = params.sort;
+    let supported_data_rates = params.supported_data_rates;
+    let supported_data_rates__n = params.supported_data_rates__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tx_power_max = params.tx_power_max;
+    let tx_power_max__gt = params.tx_power_max__gt;
+    let tx_power_max__gte = params.tx_power_max__gte;
+    let tx_power_max__isnull = params.tx_power_max__isnull;
+    let tx_power_max__lt = params.tx_power_max__lt;
+    let tx_power_max__lte = params.tx_power_max__lte;
+    let tx_power_max__n = params.tx_power_max__n;
+    let tx_power_min = params.tx_power_min;
+    let tx_power_min__gt = params.tx_power_min__gt;
+    let tx_power_min__gte = params.tx_power_min__gte;
+    let tx_power_min__isnull = params.tx_power_min__isnull;
+    let tx_power_min__lt = params.tx_power_min__lt;
+    let tx_power_min__lte = params.tx_power_min__lte;
+    let tx_power_min__n = params.tx_power_min__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4045,11 +4943,14 @@ pub async fn wireless_radio_profiles_list(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_radio_profiles_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: WirelessRadioProfilesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<WirelessRadioProfilesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4102,14 +5003,17 @@ pub async fn wireless_radio_profiles_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_radio_profiles_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessRadioProfilesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<WirelessRadioProfilesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4177,11 +5081,14 @@ pub async fn wireless_radio_profiles_notes_list(
 /// Partial update a radio profile object.
 pub async fn wireless_radio_profiles_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_radio_profile_request: Option<crate::models::PatchedRadioProfileRequest>,
+    params: WirelessRadioProfilesPartialUpdateParams,
 ) -> Result<crate::models::RadioProfile, Error<WirelessRadioProfilesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_radio_profile_request = params.patched_radio_profile_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4234,12 +5141,15 @@ pub async fn wireless_radio_profiles_partial_update(
 /// Retrieve a radio profile object.
 pub async fn wireless_radio_profiles_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessRadioProfilesRetrieveParams,
 ) -> Result<crate::models::RadioProfile, Error<WirelessRadioProfilesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4299,11 +5209,14 @@ pub async fn wireless_radio_profiles_retrieve(
 /// Update a radio profile object.
 pub async fn wireless_radio_profiles_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    radio_profile_request: crate::models::RadioProfileRequest,
-    format: Option<&str>,
+    params: WirelessRadioProfilesUpdateParams,
 ) -> Result<crate::models::RadioProfile, Error<WirelessRadioProfilesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let radio_profile_request = params.radio_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4356,10 +5269,13 @@ pub async fn wireless_radio_profiles_update(
 /// Destroy a list of supported data rate objects.
 pub async fn wireless_supported_data_rates_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesBulkDestroyParams,
 ) -> Result<(), Error<WirelessSupportedDataRatesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4411,15 +5327,17 @@ pub async fn wireless_supported_data_rates_bulk_destroy(
 /// Partial update a list of supported data rate objects.
 pub async fn wireless_supported_data_rates_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_supported_data_rate_request: Vec<
-        crate::models::PatchedBulkWritableSupportedDataRateRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::SupportedDataRate>,
     Error<WirelessSupportedDataRatesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_supported_data_rate_request =
+        params.patched_bulk_writable_supported_data_rate_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4472,13 +5390,15 @@ pub async fn wireless_supported_data_rates_bulk_partial_update(
 /// Update a list of supported data rate objects.
 pub async fn wireless_supported_data_rates_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_supported_data_rate_request: Vec<
-        crate::models::BulkWritableSupportedDataRateRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesBulkUpdateParams,
 ) -> Result<Vec<crate::models::SupportedDataRate>, Error<WirelessSupportedDataRatesBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_supported_data_rate_request =
+        params.bulk_writable_supported_data_rate_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4530,10 +5450,13 @@ pub async fn wireless_supported_data_rates_bulk_update(
 /// Create one or more supported data rate objects.
 pub async fn wireless_supported_data_rates_create(
     configuration: &configuration::Configuration,
-    supported_data_rate_request: crate::models::SupportedDataRateRequest,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesCreateParams,
 ) -> Result<crate::models::SupportedDataRate, Error<WirelessSupportedDataRatesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let supported_data_rate_request = params.supported_data_rate_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4585,10 +5508,13 @@ pub async fn wireless_supported_data_rates_create(
 /// Destroy a supported data rate object.
 pub async fn wireless_supported_data_rates_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesDestroyParams,
 ) -> Result<(), Error<WirelessSupportedDataRatesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4640,74 +5566,77 @@ pub async fn wireless_supported_data_rates_destroy(
 /// Retrieve a list of supported data rate objects.
 pub async fn wireless_supported_data_rates_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    has_radio_profiles: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    mcs_index: Option<Vec<i32>>,
-    mcs_index__gt: Option<Vec<i32>>,
-    mcs_index__gte: Option<Vec<i32>>,
-    mcs_index__isnull: Option<bool>,
-    mcs_index__lt: Option<Vec<i32>>,
-    mcs_index__lte: Option<Vec<i32>>,
-    mcs_index__n: Option<Vec<i32>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    radio_profiles: Option<Vec<String>>,
-    radio_profiles__isnull: Option<bool>,
-    radio_profiles__n: Option<Vec<String>>,
-    rate: Option<Vec<i32>>,
-    rate__gt: Option<Vec<i32>>,
-    rate__gte: Option<Vec<i32>>,
-    rate__lt: Option<Vec<i32>>,
-    rate__lte: Option<Vec<i32>>,
-    rate__n: Option<Vec<i32>>,
-    sort: Option<&str>,
-    standard: Option<Vec<String>>,
-    standard__ic: Option<Vec<String>>,
-    standard__ie: Option<Vec<String>>,
-    standard__iew: Option<Vec<String>>,
-    standard__ire: Option<Vec<String>>,
-    standard__isw: Option<Vec<String>>,
-    standard__n: Option<Vec<String>>,
-    standard__nic: Option<Vec<String>>,
-    standard__nie: Option<Vec<String>>,
-    standard__niew: Option<Vec<String>>,
-    standard__nire: Option<Vec<String>>,
-    standard__nisw: Option<Vec<String>>,
-    standard__nre: Option<Vec<String>>,
-    standard__re: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessSupportedDataRatesListParams,
 ) -> Result<crate::models::PaginatedSupportedDataRateList, Error<WirelessSupportedDataRatesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let has_radio_profiles = params.has_radio_profiles;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let mcs_index = params.mcs_index;
+    let mcs_index__gt = params.mcs_index__gt;
+    let mcs_index__gte = params.mcs_index__gte;
+    let mcs_index__isnull = params.mcs_index__isnull;
+    let mcs_index__lt = params.mcs_index__lt;
+    let mcs_index__lte = params.mcs_index__lte;
+    let mcs_index__n = params.mcs_index__n;
+    let offset = params.offset;
+    let q = params.q;
+    let radio_profiles = params.radio_profiles;
+    let radio_profiles__isnull = params.radio_profiles__isnull;
+    let radio_profiles__n = params.radio_profiles__n;
+    let rate = params.rate;
+    let rate__gt = params.rate__gt;
+    let rate__gte = params.rate__gte;
+    let rate__lt = params.rate__lt;
+    let rate__lte = params.rate__lte;
+    let rate__n = params.rate__n;
+    let sort = params.sort;
+    let standard = params.standard;
+    let standard__ic = params.standard__ic;
+    let standard__ie = params.standard__ie;
+    let standard__iew = params.standard__iew;
+    let standard__ire = params.standard__ire;
+    let standard__isw = params.standard__isw;
+    let standard__n = params.standard__n;
+    let standard__nic = params.standard__nic;
+    let standard__nie = params.standard__nie;
+    let standard__niew = params.standard__niew;
+    let standard__nire = params.standard__nire;
+    let standard__nisw = params.standard__nisw;
+    let standard__nre = params.standard__nre;
+    let standard__re = params.standard__re;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5763,11 +6692,14 @@ pub async fn wireless_supported_data_rates_list(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_supported_data_rates_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<WirelessSupportedDataRatesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5820,14 +6752,17 @@ pub async fn wireless_supported_data_rates_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_supported_data_rates_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessSupportedDataRatesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<WirelessSupportedDataRatesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5895,11 +6830,14 @@ pub async fn wireless_supported_data_rates_notes_list(
 /// Partial update a supported data rate object.
 pub async fn wireless_supported_data_rates_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_supported_data_rate_request: Option<crate::models::PatchedSupportedDataRateRequest>,
+    params: WirelessSupportedDataRatesPartialUpdateParams,
 ) -> Result<crate::models::SupportedDataRate, Error<WirelessSupportedDataRatesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_supported_data_rate_request = params.patched_supported_data_rate_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5952,12 +6890,15 @@ pub async fn wireless_supported_data_rates_partial_update(
 /// Retrieve a supported data rate object.
 pub async fn wireless_supported_data_rates_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessSupportedDataRatesRetrieveParams,
 ) -> Result<crate::models::SupportedDataRate, Error<WirelessSupportedDataRatesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6017,11 +6958,14 @@ pub async fn wireless_supported_data_rates_retrieve(
 /// Update a supported data rate object.
 pub async fn wireless_supported_data_rates_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    supported_data_rate_request: crate::models::SupportedDataRateRequest,
-    format: Option<&str>,
+    params: WirelessSupportedDataRatesUpdateParams,
 ) -> Result<crate::models::SupportedDataRate, Error<WirelessSupportedDataRatesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let supported_data_rate_request = params.supported_data_rate_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6074,10 +7018,13 @@ pub async fn wireless_supported_data_rates_update(
 /// Destroy a list of wireless network objects.
 pub async fn wireless_wireless_networks_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksBulkDestroyParams,
 ) -> Result<(), Error<WirelessWirelessNetworksBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6129,15 +7076,17 @@ pub async fn wireless_wireless_networks_bulk_destroy(
 /// Partial update a list of wireless network objects.
 pub async fn wireless_wireless_networks_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_wireless_network_request: Vec<
-        crate::models::PatchedBulkWritableWirelessNetworkRequest,
-    >,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::WirelessNetwork>,
     Error<WirelessWirelessNetworksBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_wireless_network_request =
+        params.patched_bulk_writable_wireless_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6190,10 +7139,13 @@ pub async fn wireless_wireless_networks_bulk_partial_update(
 /// Update a list of wireless network objects.
 pub async fn wireless_wireless_networks_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_wireless_network_request: Vec<crate::models::BulkWritableWirelessNetworkRequest>,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksBulkUpdateParams,
 ) -> Result<Vec<crate::models::WirelessNetwork>, Error<WirelessWirelessNetworksBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_wireless_network_request = params.bulk_writable_wireless_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6245,10 +7197,13 @@ pub async fn wireless_wireless_networks_bulk_update(
 /// Create one or more wireless network objects.
 pub async fn wireless_wireless_networks_create(
     configuration: &configuration::Configuration,
-    wireless_network_request: crate::models::WirelessNetworkRequest,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksCreateParams,
 ) -> Result<crate::models::WirelessNetwork, Error<WirelessWirelessNetworksCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let wireless_network_request = params.wireless_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6300,10 +7255,13 @@ pub async fn wireless_wireless_networks_create(
 /// Destroy a wireless network object.
 pub async fn wireless_wireless_networks_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksDestroyParams,
 ) -> Result<(), Error<WirelessWirelessNetworksDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6355,135 +7313,143 @@ pub async fn wireless_wireless_networks_destroy(
 /// Retrieve a list of wireless network objects.
 pub async fn wireless_wireless_networks_list(
     configuration: &configuration::Configuration,
-    authentication: Option<Vec<String>>,
-    authentication__ic: Option<Vec<String>>,
-    authentication__ie: Option<Vec<String>>,
-    authentication__iew: Option<Vec<String>>,
-    authentication__ire: Option<Vec<String>>,
-    authentication__isw: Option<Vec<String>>,
-    authentication__n: Option<Vec<String>>,
-    authentication__nic: Option<Vec<String>>,
-    authentication__nie: Option<Vec<String>>,
-    authentication__niew: Option<Vec<String>>,
-    authentication__nire: Option<Vec<String>>,
-    authentication__nisw: Option<Vec<String>>,
-    authentication__nre: Option<Vec<String>>,
-    authentication__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    controller_managed_device_groups: Option<Vec<String>>,
-    controller_managed_device_groups__controller: Option<Vec<String>>,
-    controller_managed_device_groups__controller__n: Option<Vec<String>>,
-    controller_managed_device_groups__devices: Option<Vec<String>>,
-    controller_managed_device_groups__devices__isnull: Option<bool>,
-    controller_managed_device_groups__devices__n: Option<Vec<String>>,
-    controller_managed_device_groups__isnull: Option<bool>,
-    controller_managed_device_groups__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    has_controller_managed_device_groups: Option<bool>,
-    hidden: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    mode: Option<Vec<String>>,
-    mode__ic: Option<Vec<String>>,
-    mode__ie: Option<Vec<String>>,
-    mode__iew: Option<Vec<String>>,
-    mode__ire: Option<Vec<String>>,
-    mode__isw: Option<Vec<String>>,
-    mode__n: Option<Vec<String>>,
-    mode__nic: Option<Vec<String>>,
-    mode__nie: Option<Vec<String>>,
-    mode__niew: Option<Vec<String>>,
-    mode__nire: Option<Vec<String>>,
-    mode__nisw: Option<Vec<String>>,
-    mode__nre: Option<Vec<String>>,
-    mode__re: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    secrets_group: Option<Vec<String>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    ssid: Option<Vec<String>>,
-    ssid__ic: Option<Vec<String>>,
-    ssid__ie: Option<Vec<String>>,
-    ssid__iew: Option<Vec<String>>,
-    ssid__ire: Option<Vec<String>>,
-    ssid__isw: Option<Vec<String>>,
-    ssid__n: Option<Vec<String>>,
-    ssid__nic: Option<Vec<String>>,
-    ssid__nie: Option<Vec<String>>,
-    ssid__niew: Option<Vec<String>>,
-    ssid__nire: Option<Vec<String>>,
-    ssid__nisw: Option<Vec<String>>,
-    ssid__nre: Option<Vec<String>>,
-    ssid__re: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessWirelessNetworksListParams,
 ) -> Result<crate::models::PaginatedWirelessNetworkList, Error<WirelessWirelessNetworksListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let authentication = params.authentication;
+    let authentication__ic = params.authentication__ic;
+    let authentication__ie = params.authentication__ie;
+    let authentication__iew = params.authentication__iew;
+    let authentication__ire = params.authentication__ire;
+    let authentication__isw = params.authentication__isw;
+    let authentication__n = params.authentication__n;
+    let authentication__nic = params.authentication__nic;
+    let authentication__nie = params.authentication__nie;
+    let authentication__niew = params.authentication__niew;
+    let authentication__nire = params.authentication__nire;
+    let authentication__nisw = params.authentication__nisw;
+    let authentication__nre = params.authentication__nre;
+    let authentication__re = params.authentication__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let controller_managed_device_groups = params.controller_managed_device_groups;
+    let controller_managed_device_groups__controller =
+        params.controller_managed_device_groups__controller;
+    let controller_managed_device_groups__controller__n =
+        params.controller_managed_device_groups__controller__n;
+    let controller_managed_device_groups__devices =
+        params.controller_managed_device_groups__devices;
+    let controller_managed_device_groups__devices__isnull =
+        params.controller_managed_device_groups__devices__isnull;
+    let controller_managed_device_groups__devices__n =
+        params.controller_managed_device_groups__devices__n;
+    let controller_managed_device_groups__isnull = params.controller_managed_device_groups__isnull;
+    let controller_managed_device_groups__n = params.controller_managed_device_groups__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let has_controller_managed_device_groups = params.has_controller_managed_device_groups;
+    let hidden = params.hidden;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let mode = params.mode;
+    let mode__ic = params.mode__ic;
+    let mode__ie = params.mode__ie;
+    let mode__iew = params.mode__iew;
+    let mode__ire = params.mode__ire;
+    let mode__isw = params.mode__isw;
+    let mode__n = params.mode__n;
+    let mode__nic = params.mode__nic;
+    let mode__nie = params.mode__nie;
+    let mode__niew = params.mode__niew;
+    let mode__nire = params.mode__nire;
+    let mode__nisw = params.mode__nisw;
+    let mode__nre = params.mode__nre;
+    let mode__re = params.mode__re;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let ssid = params.ssid;
+    let ssid__ic = params.ssid__ic;
+    let ssid__ie = params.ssid__ie;
+    let ssid__iew = params.ssid__iew;
+    let ssid__ire = params.ssid__ire;
+    let ssid__isw = params.ssid__isw;
+    let ssid__n = params.ssid__n;
+    let ssid__nic = params.ssid__nic;
+    let ssid__nie = params.ssid__nie;
+    let ssid__niew = params.ssid__niew;
+    let ssid__nire = params.ssid__nire;
+    let ssid__nisw = params.ssid__nisw;
+    let ssid__nre = params.ssid__nre;
+    let ssid__re = params.ssid__re;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8658,11 +9624,14 @@ pub async fn wireless_wireless_networks_list(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_wireless_networks_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksNotesCreateParams,
 ) -> Result<crate::models::Note, Error<WirelessWirelessNetworksNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8715,14 +9684,17 @@ pub async fn wireless_wireless_networks_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn wireless_wireless_networks_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessWirelessNetworksNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<WirelessWirelessNetworksNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8790,11 +9762,14 @@ pub async fn wireless_wireless_networks_notes_list(
 /// Partial update a wireless network object.
 pub async fn wireless_wireless_networks_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_wireless_network_request: Option<crate::models::PatchedWirelessNetworkRequest>,
+    params: WirelessWirelessNetworksPartialUpdateParams,
 ) -> Result<crate::models::WirelessNetwork, Error<WirelessWirelessNetworksPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_wireless_network_request = params.patched_wireless_network_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8847,12 +9822,15 @@ pub async fn wireless_wireless_networks_partial_update(
 /// Retrieve a wireless network object.
 pub async fn wireless_wireless_networks_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: WirelessWirelessNetworksRetrieveParams,
 ) -> Result<crate::models::WirelessNetwork, Error<WirelessWirelessNetworksRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8912,11 +9890,14 @@ pub async fn wireless_wireless_networks_retrieve(
 /// Update a wireless network object.
 pub async fn wireless_wireless_networks_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    wireless_network_request: crate::models::WirelessNetworkRequest,
-    format: Option<&str>,
+    params: WirelessWirelessNetworksUpdateParams,
 ) -> Result<crate::models::WirelessNetwork, Error<WirelessWirelessNetworksUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let wireless_network_request = params.wireless_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

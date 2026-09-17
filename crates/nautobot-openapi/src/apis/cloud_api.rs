@@ -13,6 +13,912 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`cloud_cloud_accounts_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_account_request:
+        Vec<crate::models::PatchedBulkWritableCloudAccountRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsBulkUpdateParams {
+    pub bulk_writable_cloud_account_request: Vec<crate::models::BulkWritableCloudAccountRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsCreateParams {
+    pub cloud_account_request: crate::models::CloudAccountRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsDestroyParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsListParams {
+    pub account_number: Option<Vec<String>>,
+    pub account_number__ic: Option<Vec<String>>,
+    pub account_number__ie: Option<Vec<String>>,
+    pub account_number__iew: Option<Vec<String>>,
+    pub account_number__ire: Option<Vec<String>>,
+    pub account_number__isw: Option<Vec<String>>,
+    pub account_number__n: Option<Vec<String>>,
+    pub account_number__nic: Option<Vec<String>>,
+    pub account_number__nie: Option<Vec<String>>,
+    pub account_number__niew: Option<Vec<String>>,
+    pub account_number__nire: Option<Vec<String>>,
+    pub account_number__nisw: Option<Vec<String>>,
+    pub account_number__nre: Option<Vec<String>>,
+    pub account_number__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub provider: Option<Vec<String>>,
+    pub provider__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub secrets_group: Option<Vec<String>>,
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsNotesCreateParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsNotesListParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsPartialUpdateParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_account_request: Option<crate::models::PatchedCloudAccountRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsRetrieveParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_accounts_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudAccountsUpdateParams {
+    /// A UUID string identifying this cloud account.
+    pub id: String,
+    pub cloud_account_request: crate::models::CloudAccountRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_network_prefix_assignment_request:
+        Vec<crate::models::PatchedBulkWritableCloudNetworkPrefixAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsBulkUpdateParams {
+    pub bulk_writable_cloud_network_prefix_assignment_request:
+        Vec<crate::models::BulkWritableCloudNetworkPrefixAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsCreateParams {
+    pub cloud_network_prefix_assignment_request: crate::models::CloudNetworkPrefixAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsDestroyParams {
+    /// A UUID string identifying this cloud network prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsListParams {
+    pub cloud_network: Option<Vec<String>>,
+    pub cloud_network__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub prefix: Option<Vec<String>>,
+    pub prefix__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this cloud network prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_network_prefix_assignment_request:
+        Option<crate::models::PatchedCloudNetworkPrefixAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsRetrieveParams {
+    /// A UUID string identifying this cloud network prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_network_prefix_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworkPrefixAssignmentsUpdateParams {
+    /// A UUID string identifying this cloud network prefix assignment.
+    pub id: String,
+    pub cloud_network_prefix_assignment_request: crate::models::CloudNetworkPrefixAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_network_request:
+        Vec<crate::models::PatchedBulkWritableCloudNetworkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksBulkUpdateParams {
+    pub bulk_writable_cloud_network_request: Vec<crate::models::BulkWritableCloudNetworkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksCreateParams {
+    pub cloud_network_request: crate::models::CloudNetworkRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksDestroyParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksListParams {
+    pub cloud_account: Option<Vec<String>>,
+    pub cloud_account__n: Option<Vec<String>>,
+    pub cloud_resource_type: Option<Vec<String>>,
+    pub cloud_resource_type__n: Option<Vec<String>>,
+    pub cloud_services: Option<Vec<String>>,
+    pub cloud_services__isnull: Option<bool>,
+    pub cloud_services__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub parent: Option<Vec<String>>,
+    /// Parent cloud network (name or ID) is null
+    pub parent__isnull: Option<bool>,
+    pub parent__n: Option<Vec<String>>,
+    pub prefixes: Option<Vec<String>>,
+    pub prefixes__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksNotesCreateParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksNotesListParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksPartialUpdateParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_network_request: Option<crate::models::PatchedCloudNetworkRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksRetrieveParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_networks_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudNetworksUpdateParams {
+    /// A UUID string identifying this cloud network.
+    pub id: String,
+    pub cloud_network_request: crate::models::CloudNetworkRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_resource_type_request:
+        Vec<crate::models::PatchedBulkWritableCloudResourceTypeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesBulkUpdateParams {
+    pub bulk_writable_cloud_resource_type_request:
+        Vec<crate::models::BulkWritableCloudResourceTypeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesCreateParams {
+    pub cloud_resource_type_request: crate::models::CloudResourceTypeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesDestroyParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub provider: Option<Vec<String>>,
+    pub provider__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesNotesCreateParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesNotesListParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesPartialUpdateParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_resource_type_request: Option<crate::models::PatchedCloudResourceTypeRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesRetrieveParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_resource_types_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudResourceTypesUpdateParams {
+    /// A UUID string identifying this cloud resource type.
+    pub id: String,
+    pub cloud_resource_type_request: crate::models::CloudResourceTypeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_service_network_assignment_request:
+        Vec<crate::models::PatchedBulkWritableCloudServiceNetworkAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsBulkUpdateParams {
+    pub bulk_writable_cloud_service_network_assignment_request:
+        Vec<crate::models::BulkWritableCloudServiceNetworkAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsCreateParams {
+    pub cloud_service_network_assignment_request:
+        crate::models::CloudServiceNetworkAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsDestroyParams {
+    /// A UUID string identifying this cloud service network assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsListParams {
+    pub cloud_network: Option<Vec<String>>,
+    pub cloud_network__n: Option<Vec<String>>,
+    pub cloud_service: Option<Vec<String>>,
+    pub cloud_service__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this cloud service network assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_service_network_assignment_request:
+        Option<crate::models::PatchedCloudServiceNetworkAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsRetrieveParams {
+    /// A UUID string identifying this cloud service network assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_service_network_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServiceNetworkAssignmentsUpdateParams {
+    /// A UUID string identifying this cloud service network assignment.
+    pub id: String,
+    pub cloud_service_network_assignment_request:
+        crate::models::CloudServiceNetworkAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesBulkPartialUpdateParams {
+    pub patched_bulk_writable_cloud_service_request:
+        Vec<crate::models::PatchedBulkWritableCloudServiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesBulkUpdateParams {
+    pub bulk_writable_cloud_service_request: Vec<crate::models::BulkWritableCloudServiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesCreateParams {
+    pub cloud_service_request: crate::models::CloudServiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesDestroyParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesListParams {
+    pub cloud_account: Option<Vec<String>>,
+    pub cloud_account__isnull: Option<bool>,
+    pub cloud_account__n: Option<Vec<String>>,
+    pub cloud_networks: Option<Vec<String>>,
+    pub cloud_networks__n: Option<Vec<String>>,
+    pub cloud_resource_type: Option<Vec<String>>,
+    pub cloud_resource_type__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesNotesCreateParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesNotesListParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesPartialUpdateParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_cloud_service_request: Option<crate::models::PatchedCloudServiceRequest>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesRetrieveParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`cloud_cloud_services_update`]
+#[derive(Clone, Debug, Default)]
+pub struct CloudCloudServicesUpdateParams {
+    /// A UUID string identifying this cloud service.
+    pub id: String,
+    pub cloud_service_request: crate::models::CloudServiceRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`cloud_cloud_accounts_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -450,10 +1356,13 @@ pub enum CloudCloudServicesUpdateError {
 /// Destroy a list of cloud account objects.
 pub async fn cloud_cloud_accounts_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudAccountsBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudAccountsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -505,12 +1414,14 @@ pub async fn cloud_cloud_accounts_bulk_destroy(
 /// Partial update a list of cloud account objects.
 pub async fn cloud_cloud_accounts_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_account_request: Vec<
-        crate::models::PatchedBulkWritableCloudAccountRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudAccountsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::CloudAccount>, Error<CloudCloudAccountsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_account_request =
+        params.patched_bulk_writable_cloud_account_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -563,10 +1474,13 @@ pub async fn cloud_cloud_accounts_bulk_partial_update(
 /// Update a list of cloud account objects.
 pub async fn cloud_cloud_accounts_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_account_request: Vec<crate::models::BulkWritableCloudAccountRequest>,
-    format: Option<&str>,
+    params: CloudCloudAccountsBulkUpdateParams,
 ) -> Result<Vec<crate::models::CloudAccount>, Error<CloudCloudAccountsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_account_request = params.bulk_writable_cloud_account_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -618,10 +1532,13 @@ pub async fn cloud_cloud_accounts_bulk_update(
 /// Create one or more cloud account objects.
 pub async fn cloud_cloud_accounts_create(
     configuration: &configuration::Configuration,
-    cloud_account_request: crate::models::CloudAccountRequest,
-    format: Option<&str>,
+    params: CloudCloudAccountsCreateParams,
 ) -> Result<crate::models::CloudAccount, Error<CloudCloudAccountsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_account_request = params.cloud_account_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -673,10 +1590,13 @@ pub async fn cloud_cloud_accounts_create(
 /// Destroy a cloud account object.
 pub async fn cloud_cloud_accounts_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudAccountsDestroyParams,
 ) -> Result<(), Error<CloudCloudAccountsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -728,89 +1648,92 @@ pub async fn cloud_cloud_accounts_destroy(
 /// Retrieve a list of cloud account objects.
 pub async fn cloud_cloud_accounts_list(
     configuration: &configuration::Configuration,
-    account_number: Option<Vec<String>>,
-    account_number__ic: Option<Vec<String>>,
-    account_number__ie: Option<Vec<String>>,
-    account_number__iew: Option<Vec<String>>,
-    account_number__ire: Option<Vec<String>>,
-    account_number__isw: Option<Vec<String>>,
-    account_number__n: Option<Vec<String>>,
-    account_number__nic: Option<Vec<String>>,
-    account_number__nie: Option<Vec<String>>,
-    account_number__niew: Option<Vec<String>>,
-    account_number__nire: Option<Vec<String>>,
-    account_number__nisw: Option<Vec<String>>,
-    account_number__nre: Option<Vec<String>>,
-    account_number__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    provider: Option<Vec<String>>,
-    provider__n: Option<Vec<String>>,
-    q: Option<&str>,
-    secrets_group: Option<Vec<String>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudAccountsListParams,
 ) -> Result<crate::models::PaginatedCloudAccountList, Error<CloudCloudAccountsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let account_number = params.account_number;
+    let account_number__ic = params.account_number__ic;
+    let account_number__ie = params.account_number__ie;
+    let account_number__iew = params.account_number__iew;
+    let account_number__ire = params.account_number__ire;
+    let account_number__isw = params.account_number__isw;
+    let account_number__n = params.account_number__n;
+    let account_number__nic = params.account_number__nic;
+    let account_number__nie = params.account_number__nie;
+    let account_number__niew = params.account_number__niew;
+    let account_number__nire = params.account_number__nire;
+    let account_number__nisw = params.account_number__nisw;
+    let account_number__nre = params.account_number__nre;
+    let account_number__re = params.account_number__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let provider = params.provider;
+    let provider__n = params.provider__n;
+    let q = params.q;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2200,11 +3123,14 @@ pub async fn cloud_cloud_accounts_list(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_accounts_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: CloudCloudAccountsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<CloudCloudAccountsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2257,14 +3183,17 @@ pub async fn cloud_cloud_accounts_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_accounts_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudAccountsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<CloudCloudAccountsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2332,11 +3261,14 @@ pub async fn cloud_cloud_accounts_notes_list(
 /// Partial update a cloud account object.
 pub async fn cloud_cloud_accounts_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_account_request: Option<crate::models::PatchedCloudAccountRequest>,
+    params: CloudCloudAccountsPartialUpdateParams,
 ) -> Result<crate::models::CloudAccount, Error<CloudCloudAccountsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_account_request = params.patched_cloud_account_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2389,12 +3321,15 @@ pub async fn cloud_cloud_accounts_partial_update(
 /// Retrieve a cloud account object.
 pub async fn cloud_cloud_accounts_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudAccountsRetrieveParams,
 ) -> Result<crate::models::CloudAccount, Error<CloudCloudAccountsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2454,11 +3389,14 @@ pub async fn cloud_cloud_accounts_retrieve(
 /// Update a cloud account object.
 pub async fn cloud_cloud_accounts_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_account_request: crate::models::CloudAccountRequest,
-    format: Option<&str>,
+    params: CloudCloudAccountsUpdateParams,
 ) -> Result<crate::models::CloudAccount, Error<CloudCloudAccountsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_account_request = params.cloud_account_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2511,10 +3449,13 @@ pub async fn cloud_cloud_accounts_update(
 /// Destroy a list of cloud network prefix assignment objects.
 pub async fn cloud_cloud_network_prefix_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudNetworkPrefixAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2566,15 +3507,17 @@ pub async fn cloud_cloud_network_prefix_assignments_bulk_destroy(
 /// Partial update a list of cloud network prefix assignment objects.
 pub async fn cloud_cloud_network_prefix_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_network_prefix_assignment_request: Vec<
-        crate::models::PatchedBulkWritableCloudNetworkPrefixAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::CloudNetworkPrefixAssignment>,
     Error<CloudCloudNetworkPrefixAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_network_prefix_assignment_request =
+        params.patched_bulk_writable_cloud_network_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2627,15 +3570,17 @@ pub async fn cloud_cloud_network_prefix_assignments_bulk_partial_update(
 /// Update a list of cloud network prefix assignment objects.
 pub async fn cloud_cloud_network_prefix_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_network_prefix_assignment_request: Vec<
-        crate::models::BulkWritableCloudNetworkPrefixAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::CloudNetworkPrefixAssignment>,
     Error<CloudCloudNetworkPrefixAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_network_prefix_assignment_request =
+        params.bulk_writable_cloud_network_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2688,13 +3633,16 @@ pub async fn cloud_cloud_network_prefix_assignments_bulk_update(
 /// Create one or more cloud network prefix assignment objects.
 pub async fn cloud_cloud_network_prefix_assignments_create(
     configuration: &configuration::Configuration,
-    cloud_network_prefix_assignment_request: crate::models::CloudNetworkPrefixAssignmentRequest,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsCreateParams,
 ) -> Result<
     crate::models::CloudNetworkPrefixAssignment,
     Error<CloudCloudNetworkPrefixAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_network_prefix_assignment_request = params.cloud_network_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2746,10 +3694,13 @@ pub async fn cloud_cloud_network_prefix_assignments_create(
 /// Destroy a cloud network prefix assignment object.
 pub async fn cloud_cloud_network_prefix_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsDestroyParams,
 ) -> Result<(), Error<CloudCloudNetworkPrefixAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2801,24 +3752,27 @@ pub async fn cloud_cloud_network_prefix_assignments_destroy(
 /// Retrieve a list of cloud network prefix assignment objects.
 pub async fn cloud_cloud_network_prefix_assignments_list(
     configuration: &configuration::Configuration,
-    cloud_network: Option<Vec<String>>,
-    cloud_network__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    prefix: Option<Vec<String>>,
-    prefix__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudNetworkPrefixAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedCloudNetworkPrefixAssignmentList,
     Error<CloudCloudNetworkPrefixAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_network = params.cloud_network;
+    let cloud_network__n = params.cloud_network__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let prefix = params.prefix;
+    let prefix__n = params.prefix__n;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3006,16 +3960,18 @@ pub async fn cloud_cloud_network_prefix_assignments_list(
 /// Partial update a cloud network prefix assignment object.
 pub async fn cloud_cloud_network_prefix_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_network_prefix_assignment_request: Option<
-        crate::models::PatchedCloudNetworkPrefixAssignmentRequest,
-    >,
+    params: CloudCloudNetworkPrefixAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::CloudNetworkPrefixAssignment,
     Error<CloudCloudNetworkPrefixAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_network_prefix_assignment_request =
+        params.patched_cloud_network_prefix_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3069,15 +4025,18 @@ pub async fn cloud_cloud_network_prefix_assignments_partial_update(
 /// Retrieve a cloud network prefix assignment object.
 pub async fn cloud_cloud_network_prefix_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudNetworkPrefixAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::CloudNetworkPrefixAssignment,
     Error<CloudCloudNetworkPrefixAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3137,14 +4096,17 @@ pub async fn cloud_cloud_network_prefix_assignments_retrieve(
 /// Update a cloud network prefix assignment object.
 pub async fn cloud_cloud_network_prefix_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_network_prefix_assignment_request: crate::models::CloudNetworkPrefixAssignmentRequest,
-    format: Option<&str>,
+    params: CloudCloudNetworkPrefixAssignmentsUpdateParams,
 ) -> Result<
     crate::models::CloudNetworkPrefixAssignment,
     Error<CloudCloudNetworkPrefixAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_network_prefix_assignment_request = params.cloud_network_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3197,10 +4159,13 @@ pub async fn cloud_cloud_network_prefix_assignments_update(
 /// Destroy a list of cloud network objects.
 pub async fn cloud_cloud_networks_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudNetworksBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudNetworksBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3252,12 +4217,14 @@ pub async fn cloud_cloud_networks_bulk_destroy(
 /// Partial update a list of cloud network objects.
 pub async fn cloud_cloud_networks_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_network_request: Vec<
-        crate::models::PatchedBulkWritableCloudNetworkRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudNetworksBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::CloudNetwork>, Error<CloudCloudNetworksBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_network_request =
+        params.patched_bulk_writable_cloud_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3310,10 +4277,13 @@ pub async fn cloud_cloud_networks_bulk_partial_update(
 /// Update a list of cloud network objects.
 pub async fn cloud_cloud_networks_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_network_request: Vec<crate::models::BulkWritableCloudNetworkRequest>,
-    format: Option<&str>,
+    params: CloudCloudNetworksBulkUpdateParams,
 ) -> Result<Vec<crate::models::CloudNetwork>, Error<CloudCloudNetworksBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_network_request = params.bulk_writable_cloud_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3365,10 +4335,13 @@ pub async fn cloud_cloud_networks_bulk_update(
 /// Create one or more cloud network objects.
 pub async fn cloud_cloud_networks_create(
     configuration: &configuration::Configuration,
-    cloud_network_request: crate::models::CloudNetworkRequest,
-    format: Option<&str>,
+    params: CloudCloudNetworksCreateParams,
 ) -> Result<crate::models::CloudNetwork, Error<CloudCloudNetworksCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_network_request = params.cloud_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3420,10 +4393,13 @@ pub async fn cloud_cloud_networks_create(
 /// Destroy a cloud network object.
 pub async fn cloud_cloud_networks_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudNetworksDestroyParams,
 ) -> Result<(), Error<CloudCloudNetworksDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3475,82 +4451,85 @@ pub async fn cloud_cloud_networks_destroy(
 /// Retrieve a list of cloud network objects.
 pub async fn cloud_cloud_networks_list(
     configuration: &configuration::Configuration,
-    cloud_account: Option<Vec<String>>,
-    cloud_account__n: Option<Vec<String>>,
-    cloud_resource_type: Option<Vec<String>>,
-    cloud_resource_type__n: Option<Vec<String>>,
-    cloud_services: Option<Vec<String>>,
-    cloud_services__isnull: Option<bool>,
-    cloud_services__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    parent: Option<Vec<String>>,
-    parent__isnull: Option<bool>,
-    parent__n: Option<Vec<String>>,
-    prefixes: Option<Vec<String>>,
-    prefixes__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudNetworksListParams,
 ) -> Result<crate::models::PaginatedCloudNetworkList, Error<CloudCloudNetworksListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_account = params.cloud_account;
+    let cloud_account__n = params.cloud_account__n;
+    let cloud_resource_type = params.cloud_resource_type;
+    let cloud_resource_type__n = params.cloud_resource_type__n;
+    let cloud_services = params.cloud_services;
+    let cloud_services__isnull = params.cloud_services__isnull;
+    let cloud_services__n = params.cloud_services__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let parent = params.parent;
+    let parent__isnull = params.parent__isnull;
+    let parent__n = params.parent__n;
+    let prefixes = params.prefixes;
+    let prefixes__n = params.prefixes__n;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4792,11 +5771,14 @@ pub async fn cloud_cloud_networks_list(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_networks_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: CloudCloudNetworksNotesCreateParams,
 ) -> Result<crate::models::Note, Error<CloudCloudNetworksNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4849,14 +5831,17 @@ pub async fn cloud_cloud_networks_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_networks_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudNetworksNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<CloudCloudNetworksNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4924,11 +5909,14 @@ pub async fn cloud_cloud_networks_notes_list(
 /// Partial update a cloud network object.
 pub async fn cloud_cloud_networks_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_network_request: Option<crate::models::PatchedCloudNetworkRequest>,
+    params: CloudCloudNetworksPartialUpdateParams,
 ) -> Result<crate::models::CloudNetwork, Error<CloudCloudNetworksPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_network_request = params.patched_cloud_network_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4981,12 +5969,15 @@ pub async fn cloud_cloud_networks_partial_update(
 /// Retrieve a cloud network object.
 pub async fn cloud_cloud_networks_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudNetworksRetrieveParams,
 ) -> Result<crate::models::CloudNetwork, Error<CloudCloudNetworksRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5046,11 +6037,14 @@ pub async fn cloud_cloud_networks_retrieve(
 /// Update a cloud network object.
 pub async fn cloud_cloud_networks_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_network_request: crate::models::CloudNetworkRequest,
-    format: Option<&str>,
+    params: CloudCloudNetworksUpdateParams,
 ) -> Result<crate::models::CloudNetwork, Error<CloudCloudNetworksUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_network_request = params.cloud_network_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5103,10 +6097,13 @@ pub async fn cloud_cloud_networks_update(
 /// Destroy a list of cloud resource type objects.
 pub async fn cloud_cloud_resource_types_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudResourceTypesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5158,15 +6155,17 @@ pub async fn cloud_cloud_resource_types_bulk_destroy(
 /// Partial update a list of cloud resource type objects.
 pub async fn cloud_cloud_resource_types_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_resource_type_request: Vec<
-        crate::models::PatchedBulkWritableCloudResourceTypeRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::CloudResourceType>,
     Error<CloudCloudResourceTypesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_resource_type_request =
+        params.patched_bulk_writable_cloud_resource_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5219,12 +6218,14 @@ pub async fn cloud_cloud_resource_types_bulk_partial_update(
 /// Update a list of cloud resource type objects.
 pub async fn cloud_cloud_resource_types_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_resource_type_request: Vec<
-        crate::models::BulkWritableCloudResourceTypeRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesBulkUpdateParams,
 ) -> Result<Vec<crate::models::CloudResourceType>, Error<CloudCloudResourceTypesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_resource_type_request =
+        params.bulk_writable_cloud_resource_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5276,10 +6277,13 @@ pub async fn cloud_cloud_resource_types_bulk_update(
 /// Create one or more cloud resource type objects.
 pub async fn cloud_cloud_resource_types_create(
     configuration: &configuration::Configuration,
-    cloud_resource_type_request: crate::models::CloudResourceTypeRequest,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesCreateParams,
 ) -> Result<crate::models::CloudResourceType, Error<CloudCloudResourceTypesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_resource_type_request = params.cloud_resource_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5331,10 +6335,13 @@ pub async fn cloud_cloud_resource_types_create(
 /// Destroy a cloud resource type object.
 pub async fn cloud_cloud_resource_types_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesDestroyParams,
 ) -> Result<(), Error<CloudCloudResourceTypesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5386,75 +6393,78 @@ pub async fn cloud_cloud_resource_types_destroy(
 /// Retrieve a list of cloud resource type objects.
 pub async fn cloud_cloud_resource_types_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    provider: Option<Vec<String>>,
-    provider__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudResourceTypesListParams,
 ) -> Result<crate::models::PaginatedCloudResourceTypeList, Error<CloudCloudResourceTypesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let provider = params.provider;
+    let provider__n = params.provider__n;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6574,11 +7584,14 @@ pub async fn cloud_cloud_resource_types_list(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_resource_types_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<CloudCloudResourceTypesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6631,14 +7644,17 @@ pub async fn cloud_cloud_resource_types_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_resource_types_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudResourceTypesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<CloudCloudResourceTypesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6706,11 +7722,14 @@ pub async fn cloud_cloud_resource_types_notes_list(
 /// Partial update a cloud resource type object.
 pub async fn cloud_cloud_resource_types_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_resource_type_request: Option<crate::models::PatchedCloudResourceTypeRequest>,
+    params: CloudCloudResourceTypesPartialUpdateParams,
 ) -> Result<crate::models::CloudResourceType, Error<CloudCloudResourceTypesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_resource_type_request = params.patched_cloud_resource_type_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6763,12 +7782,15 @@ pub async fn cloud_cloud_resource_types_partial_update(
 /// Retrieve a cloud resource type object.
 pub async fn cloud_cloud_resource_types_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudResourceTypesRetrieveParams,
 ) -> Result<crate::models::CloudResourceType, Error<CloudCloudResourceTypesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6828,11 +7850,14 @@ pub async fn cloud_cloud_resource_types_retrieve(
 /// Update a cloud resource type object.
 pub async fn cloud_cloud_resource_types_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_resource_type_request: crate::models::CloudResourceTypeRequest,
-    format: Option<&str>,
+    params: CloudCloudResourceTypesUpdateParams,
 ) -> Result<crate::models::CloudResourceType, Error<CloudCloudResourceTypesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_resource_type_request = params.cloud_resource_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6885,10 +7910,13 @@ pub async fn cloud_cloud_resource_types_update(
 /// Destroy a list of cloud service network assignment objects.
 pub async fn cloud_cloud_service_network_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudServiceNetworkAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6940,15 +7968,17 @@ pub async fn cloud_cloud_service_network_assignments_bulk_destroy(
 /// Partial update a list of cloud service network assignment objects.
 pub async fn cloud_cloud_service_network_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_service_network_assignment_request: Vec<
-        crate::models::PatchedBulkWritableCloudServiceNetworkAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::CloudServiceNetworkAssignment>,
     Error<CloudCloudServiceNetworkAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_service_network_assignment_request =
+        params.patched_bulk_writable_cloud_service_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7001,15 +8031,17 @@ pub async fn cloud_cloud_service_network_assignments_bulk_partial_update(
 /// Update a list of cloud service network assignment objects.
 pub async fn cloud_cloud_service_network_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_service_network_assignment_request: Vec<
-        crate::models::BulkWritableCloudServiceNetworkAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::CloudServiceNetworkAssignment>,
     Error<CloudCloudServiceNetworkAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_service_network_assignment_request =
+        params.bulk_writable_cloud_service_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7062,13 +8094,16 @@ pub async fn cloud_cloud_service_network_assignments_bulk_update(
 /// Create one or more cloud service network assignment objects.
 pub async fn cloud_cloud_service_network_assignments_create(
     configuration: &configuration::Configuration,
-    cloud_service_network_assignment_request: crate::models::CloudServiceNetworkAssignmentRequest,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsCreateParams,
 ) -> Result<
     crate::models::CloudServiceNetworkAssignment,
     Error<CloudCloudServiceNetworkAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_service_network_assignment_request = params.cloud_service_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7120,10 +8155,13 @@ pub async fn cloud_cloud_service_network_assignments_create(
 /// Destroy a cloud service network assignment object.
 pub async fn cloud_cloud_service_network_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsDestroyParams,
 ) -> Result<(), Error<CloudCloudServiceNetworkAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7175,24 +8213,27 @@ pub async fn cloud_cloud_service_network_assignments_destroy(
 /// Retrieve a list of cloud service network assignment objects.
 pub async fn cloud_cloud_service_network_assignments_list(
     configuration: &configuration::Configuration,
-    cloud_network: Option<Vec<String>>,
-    cloud_network__n: Option<Vec<String>>,
-    cloud_service: Option<Vec<String>>,
-    cloud_service__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudServiceNetworkAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedCloudServiceNetworkAssignmentList,
     Error<CloudCloudServiceNetworkAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_network = params.cloud_network;
+    let cloud_network__n = params.cloud_network__n;
+    let cloud_service = params.cloud_service;
+    let cloud_service__n = params.cloud_service__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7380,16 +8421,18 @@ pub async fn cloud_cloud_service_network_assignments_list(
 /// Partial update a cloud service network assignment object.
 pub async fn cloud_cloud_service_network_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_service_network_assignment_request: Option<
-        crate::models::PatchedCloudServiceNetworkAssignmentRequest,
-    >,
+    params: CloudCloudServiceNetworkAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::CloudServiceNetworkAssignment,
     Error<CloudCloudServiceNetworkAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_service_network_assignment_request =
+        params.patched_cloud_service_network_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7443,15 +8486,18 @@ pub async fn cloud_cloud_service_network_assignments_partial_update(
 /// Retrieve a cloud service network assignment object.
 pub async fn cloud_cloud_service_network_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudServiceNetworkAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::CloudServiceNetworkAssignment,
     Error<CloudCloudServiceNetworkAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7511,14 +8557,17 @@ pub async fn cloud_cloud_service_network_assignments_retrieve(
 /// Update a cloud service network assignment object.
 pub async fn cloud_cloud_service_network_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_service_network_assignment_request: crate::models::CloudServiceNetworkAssignmentRequest,
-    format: Option<&str>,
+    params: CloudCloudServiceNetworkAssignmentsUpdateParams,
 ) -> Result<
     crate::models::CloudServiceNetworkAssignment,
     Error<CloudCloudServiceNetworkAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_service_network_assignment_request = params.cloud_service_network_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7571,10 +8620,13 @@ pub async fn cloud_cloud_service_network_assignments_update(
 /// Destroy a list of cloud service objects.
 pub async fn cloud_cloud_services_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: CloudCloudServicesBulkDestroyParams,
 ) -> Result<(), Error<CloudCloudServicesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7626,12 +8678,14 @@ pub async fn cloud_cloud_services_bulk_destroy(
 /// Partial update a list of cloud service objects.
 pub async fn cloud_cloud_services_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_cloud_service_request: Vec<
-        crate::models::PatchedBulkWritableCloudServiceRequest,
-    >,
-    format: Option<&str>,
+    params: CloudCloudServicesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::CloudService>, Error<CloudCloudServicesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_cloud_service_request =
+        params.patched_bulk_writable_cloud_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7684,10 +8738,13 @@ pub async fn cloud_cloud_services_bulk_partial_update(
 /// Update a list of cloud service objects.
 pub async fn cloud_cloud_services_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_cloud_service_request: Vec<crate::models::BulkWritableCloudServiceRequest>,
-    format: Option<&str>,
+    params: CloudCloudServicesBulkUpdateParams,
 ) -> Result<Vec<crate::models::CloudService>, Error<CloudCloudServicesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_cloud_service_request = params.bulk_writable_cloud_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7739,10 +8796,13 @@ pub async fn cloud_cloud_services_bulk_update(
 /// Create one or more cloud service objects.
 pub async fn cloud_cloud_services_create(
     configuration: &configuration::Configuration,
-    cloud_service_request: crate::models::CloudServiceRequest,
-    format: Option<&str>,
+    params: CloudCloudServicesCreateParams,
 ) -> Result<crate::models::CloudService, Error<CloudCloudServicesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_service_request = params.cloud_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7794,10 +8854,13 @@ pub async fn cloud_cloud_services_create(
 /// Destroy a cloud service object.
 pub async fn cloud_cloud_services_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: CloudCloudServicesDestroyParams,
 ) -> Result<(), Error<CloudCloudServicesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7849,77 +8912,80 @@ pub async fn cloud_cloud_services_destroy(
 /// Retrieve a list of cloud service objects.
 pub async fn cloud_cloud_services_list(
     configuration: &configuration::Configuration,
-    cloud_account: Option<Vec<String>>,
-    cloud_account__isnull: Option<bool>,
-    cloud_account__n: Option<Vec<String>>,
-    cloud_networks: Option<Vec<String>>,
-    cloud_networks__n: Option<Vec<String>>,
-    cloud_resource_type: Option<Vec<String>>,
-    cloud_resource_type__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudServicesListParams,
 ) -> Result<crate::models::PaginatedCloudServiceList, Error<CloudCloudServicesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cloud_account = params.cloud_account;
+    let cloud_account__isnull = params.cloud_account__isnull;
+    let cloud_account__n = params.cloud_account__n;
+    let cloud_networks = params.cloud_networks;
+    let cloud_networks__n = params.cloud_networks__n;
+    let cloud_resource_type = params.cloud_resource_type;
+    let cloud_resource_type__n = params.cloud_resource_type__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9081,11 +10147,14 @@ pub async fn cloud_cloud_services_list(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_services_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: CloudCloudServicesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<CloudCloudServicesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9138,14 +10207,17 @@ pub async fn cloud_cloud_services_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn cloud_cloud_services_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudServicesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<CloudCloudServicesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9213,11 +10285,14 @@ pub async fn cloud_cloud_services_notes_list(
 /// Partial update a cloud service object.
 pub async fn cloud_cloud_services_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_cloud_service_request: Option<crate::models::PatchedCloudServiceRequest>,
+    params: CloudCloudServicesPartialUpdateParams,
 ) -> Result<crate::models::CloudService, Error<CloudCloudServicesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_cloud_service_request = params.patched_cloud_service_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9270,12 +10345,15 @@ pub async fn cloud_cloud_services_partial_update(
 /// Retrieve a cloud service object.
 pub async fn cloud_cloud_services_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: CloudCloudServicesRetrieveParams,
 ) -> Result<crate::models::CloudService, Error<CloudCloudServicesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9335,11 +10413,14 @@ pub async fn cloud_cloud_services_retrieve(
 /// Update a cloud service object.
 pub async fn cloud_cloud_services_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    cloud_service_request: crate::models::CloudServiceRequest,
-    format: Option<&str>,
+    params: CloudCloudServicesUpdateParams,
 ) -> Result<crate::models::CloudService, Error<CloudCloudServicesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let cloud_service_request = params.cloud_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

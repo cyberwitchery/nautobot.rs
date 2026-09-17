@@ -2,7 +2,11 @@
 
 ## [unreleased]
 
+### openapi
+- **breaking:** generated api functions take one params struct instead of positional parameters: `dcim_devices_list(&config, DcimDevicesListParams { asset_tag: Some(vec![..]), ..Default::default() })`. all 1675 parameterised functions are affected. the structs derive `Default`, so a caller that spreads it keeps compiling when upstream adds a filter (closes #53)
+
 ### scripts
+- `generate.sh` passes `useSingleRequestParameter=true` to the generator
 - `release_local.sh` refuses to start when `docs/compat.md` has no row for the version being released or has lost its `main` row, the guard netbox.rs added after 0.7.0 shipped without a row. nautobot.rs 0.6.0 shipped without one for want of the same check
 - `generate.sh` deletes the generator's `.travis.yml` and `git_push.sh` after generating, instead of leaving them for the next regen to re-add
 

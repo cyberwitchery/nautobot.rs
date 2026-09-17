@@ -13,6 +13,1297 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesBulkPartialUpdateParams {
+    pub patched_bulk_writable_certificate_profile_request:
+        Vec<crate::models::PatchedBulkWritableCertificateProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesBulkUpdateParams {
+    pub bulk_writable_certificate_profile_request:
+        Vec<crate::models::BulkWritableCertificateProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesCreateParams {
+    pub certificate_profile_request: crate::models::CertificateProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesDestroyParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesListParams {
+    pub certificate_file_path: Option<Vec<String>>,
+    pub certificate_file_path__ic: Option<Vec<String>>,
+    pub certificate_file_path__ie: Option<Vec<String>>,
+    pub certificate_file_path__iew: Option<Vec<String>>,
+    pub certificate_file_path__ire: Option<Vec<String>>,
+    pub certificate_file_path__isw: Option<Vec<String>>,
+    pub certificate_file_path__n: Option<Vec<String>>,
+    pub certificate_file_path__nic: Option<Vec<String>>,
+    pub certificate_file_path__nie: Option<Vec<String>>,
+    pub certificate_file_path__niew: Option<Vec<String>>,
+    pub certificate_file_path__nire: Option<Vec<String>>,
+    pub certificate_file_path__nisw: Option<Vec<String>>,
+    pub certificate_file_path__nre: Option<Vec<String>>,
+    pub certificate_file_path__re: Option<Vec<String>>,
+    pub certificate_type: Option<Vec<String>>,
+    pub certificate_type__ic: Option<Vec<String>>,
+    pub certificate_type__ie: Option<Vec<String>>,
+    pub certificate_type__iew: Option<Vec<String>>,
+    pub certificate_type__ire: Option<Vec<String>>,
+    pub certificate_type__isw: Option<Vec<String>>,
+    pub certificate_type__n: Option<Vec<String>>,
+    pub certificate_type__nic: Option<Vec<String>>,
+    pub certificate_type__nie: Option<Vec<String>>,
+    pub certificate_type__niew: Option<Vec<String>>,
+    pub certificate_type__nire: Option<Vec<String>>,
+    pub certificate_type__nisw: Option<Vec<String>>,
+    pub certificate_type__nre: Option<Vec<String>>,
+    pub certificate_type__re: Option<Vec<String>>,
+    pub chain_file_path: Option<Vec<String>>,
+    pub chain_file_path__ic: Option<Vec<String>>,
+    pub chain_file_path__ie: Option<Vec<String>>,
+    pub chain_file_path__iew: Option<Vec<String>>,
+    pub chain_file_path__ire: Option<Vec<String>>,
+    pub chain_file_path__isw: Option<Vec<String>>,
+    pub chain_file_path__n: Option<Vec<String>>,
+    pub chain_file_path__nic: Option<Vec<String>>,
+    pub chain_file_path__nie: Option<Vec<String>>,
+    pub chain_file_path__niew: Option<Vec<String>>,
+    pub chain_file_path__nire: Option<Vec<String>>,
+    pub chain_file_path__nisw: Option<Vec<String>>,
+    pub chain_file_path__nre: Option<Vec<String>>,
+    pub chain_file_path__re: Option<Vec<String>>,
+    pub cipher: Option<Vec<String>>,
+    pub cipher__ic: Option<Vec<String>>,
+    pub cipher__ie: Option<Vec<String>>,
+    pub cipher__iew: Option<Vec<String>>,
+    pub cipher__ire: Option<Vec<String>>,
+    pub cipher__isw: Option<Vec<String>>,
+    pub cipher__n: Option<Vec<String>>,
+    pub cipher__nic: Option<Vec<String>>,
+    pub cipher__nie: Option<Vec<String>>,
+    pub cipher__niew: Option<Vec<String>>,
+    pub cipher__nire: Option<Vec<String>>,
+    pub cipher__nisw: Option<Vec<String>>,
+    pub cipher__nre: Option<Vec<String>>,
+    pub cipher__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub expiration_date: Option<Vec<String>>,
+    pub expiration_date__gt: Option<Vec<String>>,
+    pub expiration_date__gte: Option<Vec<String>>,
+    pub expiration_date__isnull: Option<bool>,
+    pub expiration_date__lt: Option<Vec<String>>,
+    pub expiration_date__lte: Option<Vec<String>>,
+    pub expiration_date__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub key_file_path: Option<Vec<String>>,
+    pub key_file_path__ic: Option<Vec<String>>,
+    pub key_file_path__ie: Option<Vec<String>>,
+    pub key_file_path__iew: Option<Vec<String>>,
+    pub key_file_path__ire: Option<Vec<String>>,
+    pub key_file_path__isw: Option<Vec<String>>,
+    pub key_file_path__n: Option<Vec<String>>,
+    pub key_file_path__nic: Option<Vec<String>>,
+    pub key_file_path__nie: Option<Vec<String>>,
+    pub key_file_path__niew: Option<Vec<String>>,
+    pub key_file_path__nire: Option<Vec<String>>,
+    pub key_file_path__nisw: Option<Vec<String>>,
+    pub key_file_path__nre: Option<Vec<String>>,
+    pub key_file_path__re: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub load_balancer_pool_members: Option<Vec<String>>,
+    /// Load Balancer Pool Members (ID or host string) is null
+    pub load_balancer_pool_members__isnull: Option<bool>,
+    pub load_balancer_pool_members__n: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub virtual_servers: Option<Vec<String>>,
+    /// Virtual Servers is null
+    pub virtual_servers__isnull: Option<bool>,
+    pub virtual_servers__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesNotesCreateParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesNotesListParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesPartialUpdateParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_certificate_profile_request:
+        Option<crate::models::PatchedCertificateProfileRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesRetrieveParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_certificate_profiles_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersCertificateProfilesUpdateParams {
+    /// A UUID string identifying this Certificate Profile.
+    pub id: String,
+    pub certificate_profile_request: crate::models::CertificateProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsBulkPartialUpdateParams {
+    pub patched_bulk_writable_health_check_monitor_request:
+        Vec<crate::models::PatchedBulkWritableHealthCheckMonitorRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsBulkUpdateParams {
+    pub bulk_writable_health_check_monitor_request:
+        Vec<crate::models::BulkWritableHealthCheckMonitorRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsCreateParams {
+    pub health_check_monitor_request: crate::models::HealthCheckMonitorRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsDestroyParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub health_check_type: Option<Vec<String>>,
+    pub health_check_type__ic: Option<Vec<String>>,
+    pub health_check_type__ie: Option<Vec<String>>,
+    pub health_check_type__iew: Option<Vec<String>>,
+    pub health_check_type__ire: Option<Vec<String>>,
+    pub health_check_type__isw: Option<Vec<String>>,
+    pub health_check_type__n: Option<Vec<String>>,
+    pub health_check_type__nic: Option<Vec<String>>,
+    pub health_check_type__nie: Option<Vec<String>>,
+    pub health_check_type__niew: Option<Vec<String>>,
+    pub health_check_type__nire: Option<Vec<String>>,
+    pub health_check_type__nisw: Option<Vec<String>>,
+    pub health_check_type__nre: Option<Vec<String>>,
+    pub health_check_type__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub interval: Option<Vec<i32>>,
+    pub interval__gt: Option<Vec<i32>>,
+    pub interval__gte: Option<Vec<i32>>,
+    pub interval__isnull: Option<bool>,
+    pub interval__lt: Option<Vec<i32>>,
+    pub interval__lte: Option<Vec<i32>>,
+    pub interval__n: Option<Vec<i32>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub port: Option<Vec<i32>>,
+    pub port__gt: Option<Vec<i32>>,
+    pub port__gte: Option<Vec<i32>>,
+    pub port__isnull: Option<bool>,
+    pub port__lt: Option<Vec<i32>>,
+    pub port__lte: Option<Vec<i32>>,
+    pub port__n: Option<Vec<i32>>,
+    /// Search
+    pub q: Option<String>,
+    pub retry: Option<Vec<i32>>,
+    pub retry__gt: Option<Vec<i32>>,
+    pub retry__gte: Option<Vec<i32>>,
+    pub retry__isnull: Option<bool>,
+    pub retry__lt: Option<Vec<i32>>,
+    pub retry__lte: Option<Vec<i32>>,
+    pub retry__n: Option<Vec<i32>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub timeout: Option<Vec<i32>>,
+    pub timeout__gt: Option<Vec<i32>>,
+    pub timeout__gte: Option<Vec<i32>>,
+    pub timeout__isnull: Option<bool>,
+    pub timeout__lt: Option<Vec<i32>>,
+    pub timeout__lte: Option<Vec<i32>>,
+    pub timeout__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsNotesCreateParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsNotesListParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsPartialUpdateParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_health_check_monitor_request:
+        Option<crate::models::PatchedHealthCheckMonitorRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsRetrieveParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_health_check_monitors_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersHealthCheckMonitorsUpdateParams {
+    /// A UUID string identifying this Health Check Monitor.
+    pub id: String,
+    pub health_check_monitor_request: crate::models::HealthCheckMonitorRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request: Vec<
+        crate::models::PatchedBulkWritableLoadBalancerPoolMemberCertificateProfileAssignmentRequest,
+    >,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkUpdateParams {
+    pub bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request:
+        Vec<crate::models::BulkWritableLoadBalancerPoolMemberCertificateProfileAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsCreateParams {
+    pub load_balancer_pool_member_certificate_profile_assignment_request:
+        crate::models::LoadBalancerPoolMemberCertificateProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsDestroyParams {
+    /// A UUID string identifying this load balancer pool member certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsListParams {
+    pub certificate_profile: Option<Vec<String>>,
+    pub certificate_profile__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub load_balancer_pool_member: Option<Vec<String>>,
+    pub load_balancer_pool_member__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this load balancer pool member certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_load_balancer_pool_member_certificate_profile_assignment_request:
+        Option<crate::models::PatchedLoadBalancerPoolMemberCertificateProfileAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsRetrieveParams {
+    /// A UUID string identifying this load balancer pool member certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_member_certificate_profile_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsUpdateParams {
+    /// A UUID string identifying this load balancer pool member certificate profile assignment.
+    pub id: String,
+    pub load_balancer_pool_member_certificate_profile_assignment_request:
+        crate::models::LoadBalancerPoolMemberCertificateProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersBulkPartialUpdateParams {
+    pub patched_bulk_writable_load_balancer_pool_member_request:
+        Vec<crate::models::PatchedBulkWritableLoadBalancerPoolMemberRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersBulkUpdateParams {
+    pub bulk_writable_load_balancer_pool_member_request:
+        Vec<crate::models::BulkWritableLoadBalancerPoolMemberRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersCreateParams {
+    pub load_balancer_pool_member_request: crate::models::LoadBalancerPoolMemberRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersDestroyParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersListParams {
+    pub certificate_profiles: Option<Vec<String>>,
+    pub certificate_profiles__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub health_check_monitor: Option<Vec<String>>,
+    /// Health Check Monitor (name or ID) is null
+    pub health_check_monitor__isnull: Option<bool>,
+    pub health_check_monitor__n: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// IP Address (ID)
+    pub ip_address: Option<Vec<uuid::Uuid>>,
+    /// Exclude IP Address (ID)
+    pub ip_address__n: Option<Vec<uuid::Uuid>>,
+    pub label: Option<Vec<String>>,
+    pub label__ic: Option<Vec<String>>,
+    pub label__ie: Option<Vec<String>>,
+    pub label__iew: Option<Vec<String>>,
+    pub label__ire: Option<Vec<String>>,
+    pub label__isw: Option<Vec<String>>,
+    pub label__n: Option<Vec<String>>,
+    pub label__nic: Option<Vec<String>>,
+    pub label__nie: Option<Vec<String>>,
+    pub label__niew: Option<Vec<String>>,
+    pub label__nire: Option<Vec<String>>,
+    pub label__nisw: Option<Vec<String>>,
+    pub label__nre: Option<Vec<String>>,
+    pub label__re: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub load_balancer_pool: Option<Vec<String>>,
+    pub load_balancer_pool__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub port: Option<Vec<i32>>,
+    pub port__gt: Option<Vec<i32>>,
+    pub port__gte: Option<Vec<i32>>,
+    pub port__lt: Option<Vec<i32>>,
+    pub port__lte: Option<Vec<i32>>,
+    pub port__n: Option<Vec<i32>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub ssl_offload: Option<bool>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<uuid::Uuid>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersNotesCreateParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersNotesListParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersPartialUpdateParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_load_balancer_pool_member_request:
+        Option<crate::models::PatchedLoadBalancerPoolMemberRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersRetrieveParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pool_members_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolMembersUpdateParams {
+    /// A UUID string identifying this Load Balancer Pool Member.
+    pub id: String,
+    pub load_balancer_pool_member_request: crate::models::LoadBalancerPoolMemberRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsBulkPartialUpdateParams {
+    pub patched_bulk_writable_load_balancer_pool_request:
+        Vec<crate::models::PatchedBulkWritableLoadBalancerPoolRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsBulkUpdateParams {
+    pub bulk_writable_load_balancer_pool_request:
+        Vec<crate::models::BulkWritableLoadBalancerPoolRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsCreateParams {
+    pub load_balancer_pool_request: crate::models::LoadBalancerPoolRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsDestroyParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub health_check_monitor: Option<Vec<String>>,
+    /// Health Check Monitor (name or ID) is null
+    pub health_check_monitor__isnull: Option<bool>,
+    pub health_check_monitor__n: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub load_balancing_algorithm: Option<Vec<String>>,
+    pub load_balancing_algorithm__ic: Option<Vec<String>>,
+    pub load_balancing_algorithm__ie: Option<Vec<String>>,
+    pub load_balancing_algorithm__iew: Option<Vec<String>>,
+    pub load_balancing_algorithm__ire: Option<Vec<String>>,
+    pub load_balancing_algorithm__isw: Option<Vec<String>>,
+    pub load_balancing_algorithm__n: Option<Vec<String>>,
+    pub load_balancing_algorithm__nic: Option<Vec<String>>,
+    pub load_balancing_algorithm__nie: Option<Vec<String>>,
+    pub load_balancing_algorithm__niew: Option<Vec<String>>,
+    pub load_balancing_algorithm__nire: Option<Vec<String>>,
+    pub load_balancing_algorithm__nisw: Option<Vec<String>>,
+    pub load_balancing_algorithm__nre: Option<Vec<String>>,
+    pub load_balancing_algorithm__re: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsNotesCreateParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsNotesListParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsPartialUpdateParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_load_balancer_pool_request: Option<crate::models::PatchedLoadBalancerPoolRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsRetrieveParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_load_balancer_pools_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersLoadBalancerPoolsUpdateParams {
+    /// A UUID string identifying this Load Balancer Pool.
+    pub id: String,
+    pub load_balancer_pool_request: crate::models::LoadBalancerPoolRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_virtual_server_certificate_profile_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVirtualServerCertificateProfileAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsBulkUpdateParams {
+    pub bulk_writable_virtual_server_certificate_profile_assignment_request:
+        Vec<crate::models::BulkWritableVirtualServerCertificateProfileAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsCreateParams {
+    pub virtual_server_certificate_profile_assignment_request:
+        crate::models::VirtualServerCertificateProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsDestroyParams {
+    /// A UUID string identifying this virtual server certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsListParams {
+    pub certificate_profile: Option<Vec<String>>,
+    pub certificate_profile__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub virtual_server: Option<Vec<String>>,
+    pub virtual_server__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this virtual server certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_virtual_server_certificate_profile_assignment_request:
+        Option<crate::models::PatchedVirtualServerCertificateProfileAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsRetrieveParams {
+    /// A UUID string identifying this virtual server certificate profile assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_server_certificate_profile_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServerCertificateProfileAssignmentsUpdateParams {
+    /// A UUID string identifying this virtual server certificate profile assignment.
+    pub id: String,
+    pub virtual_server_certificate_profile_assignment_request:
+        crate::models::VirtualServerCertificateProfileAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersBulkPartialUpdateParams {
+    pub patched_bulk_writable_virtual_server_request:
+        Vec<crate::models::PatchedBulkWritableVirtualServerRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersBulkUpdateParams {
+    pub bulk_writable_virtual_server_request: Vec<crate::models::BulkWritableVirtualServerRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersCreateParams {
+    pub virtual_server_request: crate::models::VirtualServerRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersDestroyParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersListParams {
+    pub certificate_profiles: Option<Vec<String>>,
+    pub certificate_profiles__n: Option<Vec<String>>,
+    pub cloud_service: Option<Vec<String>>,
+    /// Cloud Service (name or ID) is null
+    pub cloud_service__isnull: Option<bool>,
+    pub cloud_service__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub device: Option<Vec<String>>,
+    /// Device (name or ID) is null
+    pub device__isnull: Option<bool>,
+    pub device__n: Option<Vec<String>>,
+    pub device_redundancy_group: Option<Vec<String>>,
+    /// Device Redundancy Group (name or ID) is null
+    pub device_redundancy_group__isnull: Option<bool>,
+    pub device_redundancy_group__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    pub health_check_monitor: Option<Vec<String>>,
+    /// Health Check Monitor (name or ID) is null
+    pub health_check_monitor__isnull: Option<bool>,
+    pub health_check_monitor__n: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub load_balancer_pool: Option<Vec<String>>,
+    /// Load Balancer Pool (name or ID) is null
+    pub load_balancer_pool__isnull: Option<bool>,
+    pub load_balancer_pool__n: Option<Vec<String>>,
+    pub load_balancer_type: Option<Vec<String>>,
+    pub load_balancer_type__ic: Option<Vec<String>>,
+    pub load_balancer_type__ie: Option<Vec<String>>,
+    pub load_balancer_type__iew: Option<Vec<String>>,
+    pub load_balancer_type__ire: Option<Vec<String>>,
+    pub load_balancer_type__isw: Option<Vec<String>>,
+    pub load_balancer_type__n: Option<Vec<String>>,
+    pub load_balancer_type__nic: Option<Vec<String>>,
+    pub load_balancer_type__nie: Option<Vec<String>>,
+    pub load_balancer_type__niew: Option<Vec<String>>,
+    pub load_balancer_type__nire: Option<Vec<String>>,
+    pub load_balancer_type__nisw: Option<Vec<String>>,
+    pub load_balancer_type__nre: Option<Vec<String>>,
+    pub load_balancer_type__re: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub port: Option<Vec<i32>>,
+    pub port__gt: Option<Vec<i32>>,
+    pub port__gte: Option<Vec<i32>>,
+    pub port__isnull: Option<bool>,
+    pub port__lt: Option<Vec<i32>>,
+    pub port__lte: Option<Vec<i32>>,
+    pub port__n: Option<Vec<i32>>,
+    pub protocol: Option<Vec<String>>,
+    pub protocol__ic: Option<Vec<String>>,
+    pub protocol__ie: Option<Vec<String>>,
+    pub protocol__iew: Option<Vec<String>>,
+    pub protocol__ire: Option<Vec<String>>,
+    pub protocol__isw: Option<Vec<String>>,
+    pub protocol__n: Option<Vec<String>>,
+    pub protocol__nic: Option<Vec<String>>,
+    pub protocol__nie: Option<Vec<String>>,
+    pub protocol__niew: Option<Vec<String>>,
+    pub protocol__nire: Option<Vec<String>>,
+    pub protocol__nisw: Option<Vec<String>>,
+    pub protocol__nre: Option<Vec<String>>,
+    pub protocol__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub source_nat_pool: Option<Vec<String>>,
+    /// Source NAT Pool (ID or network string) is null
+    pub source_nat_pool__isnull: Option<bool>,
+    pub source_nat_pool__n: Option<Vec<String>>,
+    pub source_nat_type: Option<Vec<String>>,
+    pub source_nat_type__ic: Option<Vec<String>>,
+    pub source_nat_type__ie: Option<Vec<String>>,
+    pub source_nat_type__iew: Option<Vec<String>>,
+    pub source_nat_type__ire: Option<Vec<String>>,
+    pub source_nat_type__isw: Option<Vec<String>>,
+    pub source_nat_type__n: Option<Vec<String>>,
+    pub source_nat_type__nic: Option<Vec<String>>,
+    pub source_nat_type__nie: Option<Vec<String>>,
+    pub source_nat_type__niew: Option<Vec<String>>,
+    pub source_nat_type__nire: Option<Vec<String>>,
+    pub source_nat_type__nisw: Option<Vec<String>>,
+    pub source_nat_type__nre: Option<Vec<String>>,
+    pub source_nat_type__re: Option<Vec<String>>,
+    pub ssl_offload: Option<bool>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// VIP (ID)
+    pub vip: Option<Vec<uuid::Uuid>>,
+    /// Exclude VIP (ID)
+    pub vip__n: Option<Vec<uuid::Uuid>>,
+    pub virtual_chassis: Option<Vec<String>>,
+    /// Virtual Chassis (name or ID) is null
+    pub virtual_chassis__isnull: Option<bool>,
+    pub virtual_chassis__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersNotesCreateParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersNotesListParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersPartialUpdateParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_virtual_server_request: Option<crate::models::PatchedVirtualServerRequest>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersRetrieveParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`load_balancers_virtual_servers_update`]
+#[derive(Clone, Debug, Default)]
+pub struct LoadBalancersVirtualServersUpdateParams {
+    /// A UUID string identifying this Virtual Server.
+    pub id: String,
+    pub virtual_server_request: crate::models::VirtualServerRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`load_balancers_certificate_profiles_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -527,10 +1818,13 @@ pub enum LoadBalancersVirtualServersUpdateError {
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersCertificateProfilesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -582,15 +1876,17 @@ pub async fn load_balancers_certificate_profiles_bulk_destroy(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_certificate_profile_request: Vec<
-        crate::models::PatchedBulkWritableCertificateProfileRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::CertificateProfile>,
     Error<LoadBalancersCertificateProfilesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_certificate_profile_request =
+        params.patched_bulk_writable_certificate_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -643,15 +1939,17 @@ pub async fn load_balancers_certificate_profiles_bulk_partial_update(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_certificate_profile_request: Vec<
-        crate::models::BulkWritableCertificateProfileRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::CertificateProfile>,
     Error<LoadBalancersCertificateProfilesBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_certificate_profile_request =
+        params.bulk_writable_certificate_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -703,10 +2001,13 @@ pub async fn load_balancers_certificate_profiles_bulk_update(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_create(
     configuration: &configuration::Configuration,
-    certificate_profile_request: crate::models::CertificateProfileRequest,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesCreateParams,
 ) -> Result<crate::models::CertificateProfile, Error<LoadBalancersCertificateProfilesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_profile_request = params.certificate_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -758,10 +2059,13 @@ pub async fn load_balancers_certificate_profiles_create(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesDestroyParams,
 ) -> Result<(), Error<LoadBalancersCertificateProfilesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -813,151 +2117,154 @@ pub async fn load_balancers_certificate_profiles_destroy(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_list(
     configuration: &configuration::Configuration,
-    certificate_file_path: Option<Vec<String>>,
-    certificate_file_path__ic: Option<Vec<String>>,
-    certificate_file_path__ie: Option<Vec<String>>,
-    certificate_file_path__iew: Option<Vec<String>>,
-    certificate_file_path__ire: Option<Vec<String>>,
-    certificate_file_path__isw: Option<Vec<String>>,
-    certificate_file_path__n: Option<Vec<String>>,
-    certificate_file_path__nic: Option<Vec<String>>,
-    certificate_file_path__nie: Option<Vec<String>>,
-    certificate_file_path__niew: Option<Vec<String>>,
-    certificate_file_path__nire: Option<Vec<String>>,
-    certificate_file_path__nisw: Option<Vec<String>>,
-    certificate_file_path__nre: Option<Vec<String>>,
-    certificate_file_path__re: Option<Vec<String>>,
-    certificate_type: Option<Vec<String>>,
-    certificate_type__ic: Option<Vec<String>>,
-    certificate_type__ie: Option<Vec<String>>,
-    certificate_type__iew: Option<Vec<String>>,
-    certificate_type__ire: Option<Vec<String>>,
-    certificate_type__isw: Option<Vec<String>>,
-    certificate_type__n: Option<Vec<String>>,
-    certificate_type__nic: Option<Vec<String>>,
-    certificate_type__nie: Option<Vec<String>>,
-    certificate_type__niew: Option<Vec<String>>,
-    certificate_type__nire: Option<Vec<String>>,
-    certificate_type__nisw: Option<Vec<String>>,
-    certificate_type__nre: Option<Vec<String>>,
-    certificate_type__re: Option<Vec<String>>,
-    chain_file_path: Option<Vec<String>>,
-    chain_file_path__ic: Option<Vec<String>>,
-    chain_file_path__ie: Option<Vec<String>>,
-    chain_file_path__iew: Option<Vec<String>>,
-    chain_file_path__ire: Option<Vec<String>>,
-    chain_file_path__isw: Option<Vec<String>>,
-    chain_file_path__n: Option<Vec<String>>,
-    chain_file_path__nic: Option<Vec<String>>,
-    chain_file_path__nie: Option<Vec<String>>,
-    chain_file_path__niew: Option<Vec<String>>,
-    chain_file_path__nire: Option<Vec<String>>,
-    chain_file_path__nisw: Option<Vec<String>>,
-    chain_file_path__nre: Option<Vec<String>>,
-    chain_file_path__re: Option<Vec<String>>,
-    cipher: Option<Vec<String>>,
-    cipher__ic: Option<Vec<String>>,
-    cipher__ie: Option<Vec<String>>,
-    cipher__iew: Option<Vec<String>>,
-    cipher__ire: Option<Vec<String>>,
-    cipher__isw: Option<Vec<String>>,
-    cipher__n: Option<Vec<String>>,
-    cipher__nic: Option<Vec<String>>,
-    cipher__nie: Option<Vec<String>>,
-    cipher__niew: Option<Vec<String>>,
-    cipher__nire: Option<Vec<String>>,
-    cipher__nisw: Option<Vec<String>>,
-    cipher__nre: Option<Vec<String>>,
-    cipher__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    expiration_date: Option<Vec<String>>,
-    expiration_date__gt: Option<Vec<String>>,
-    expiration_date__gte: Option<Vec<String>>,
-    expiration_date__isnull: Option<bool>,
-    expiration_date__lt: Option<Vec<String>>,
-    expiration_date__lte: Option<Vec<String>>,
-    expiration_date__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    key_file_path: Option<Vec<String>>,
-    key_file_path__ic: Option<Vec<String>>,
-    key_file_path__ie: Option<Vec<String>>,
-    key_file_path__iew: Option<Vec<String>>,
-    key_file_path__ire: Option<Vec<String>>,
-    key_file_path__isw: Option<Vec<String>>,
-    key_file_path__n: Option<Vec<String>>,
-    key_file_path__nic: Option<Vec<String>>,
-    key_file_path__nie: Option<Vec<String>>,
-    key_file_path__niew: Option<Vec<String>>,
-    key_file_path__nire: Option<Vec<String>>,
-    key_file_path__nisw: Option<Vec<String>>,
-    key_file_path__nre: Option<Vec<String>>,
-    key_file_path__re: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    load_balancer_pool_members: Option<Vec<String>>,
-    load_balancer_pool_members__isnull: Option<bool>,
-    load_balancer_pool_members__n: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    virtual_servers: Option<Vec<String>>,
-    virtual_servers__isnull: Option<bool>,
-    virtual_servers__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersCertificateProfilesListParams,
 ) -> Result<
     crate::models::PaginatedCertificateProfileList,
     Error<LoadBalancersCertificateProfilesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_file_path = params.certificate_file_path;
+    let certificate_file_path__ic = params.certificate_file_path__ic;
+    let certificate_file_path__ie = params.certificate_file_path__ie;
+    let certificate_file_path__iew = params.certificate_file_path__iew;
+    let certificate_file_path__ire = params.certificate_file_path__ire;
+    let certificate_file_path__isw = params.certificate_file_path__isw;
+    let certificate_file_path__n = params.certificate_file_path__n;
+    let certificate_file_path__nic = params.certificate_file_path__nic;
+    let certificate_file_path__nie = params.certificate_file_path__nie;
+    let certificate_file_path__niew = params.certificate_file_path__niew;
+    let certificate_file_path__nire = params.certificate_file_path__nire;
+    let certificate_file_path__nisw = params.certificate_file_path__nisw;
+    let certificate_file_path__nre = params.certificate_file_path__nre;
+    let certificate_file_path__re = params.certificate_file_path__re;
+    let certificate_type = params.certificate_type;
+    let certificate_type__ic = params.certificate_type__ic;
+    let certificate_type__ie = params.certificate_type__ie;
+    let certificate_type__iew = params.certificate_type__iew;
+    let certificate_type__ire = params.certificate_type__ire;
+    let certificate_type__isw = params.certificate_type__isw;
+    let certificate_type__n = params.certificate_type__n;
+    let certificate_type__nic = params.certificate_type__nic;
+    let certificate_type__nie = params.certificate_type__nie;
+    let certificate_type__niew = params.certificate_type__niew;
+    let certificate_type__nire = params.certificate_type__nire;
+    let certificate_type__nisw = params.certificate_type__nisw;
+    let certificate_type__nre = params.certificate_type__nre;
+    let certificate_type__re = params.certificate_type__re;
+    let chain_file_path = params.chain_file_path;
+    let chain_file_path__ic = params.chain_file_path__ic;
+    let chain_file_path__ie = params.chain_file_path__ie;
+    let chain_file_path__iew = params.chain_file_path__iew;
+    let chain_file_path__ire = params.chain_file_path__ire;
+    let chain_file_path__isw = params.chain_file_path__isw;
+    let chain_file_path__n = params.chain_file_path__n;
+    let chain_file_path__nic = params.chain_file_path__nic;
+    let chain_file_path__nie = params.chain_file_path__nie;
+    let chain_file_path__niew = params.chain_file_path__niew;
+    let chain_file_path__nire = params.chain_file_path__nire;
+    let chain_file_path__nisw = params.chain_file_path__nisw;
+    let chain_file_path__nre = params.chain_file_path__nre;
+    let chain_file_path__re = params.chain_file_path__re;
+    let cipher = params.cipher;
+    let cipher__ic = params.cipher__ic;
+    let cipher__ie = params.cipher__ie;
+    let cipher__iew = params.cipher__iew;
+    let cipher__ire = params.cipher__ire;
+    let cipher__isw = params.cipher__isw;
+    let cipher__n = params.cipher__n;
+    let cipher__nic = params.cipher__nic;
+    let cipher__nie = params.cipher__nie;
+    let cipher__niew = params.cipher__niew;
+    let cipher__nire = params.cipher__nire;
+    let cipher__nisw = params.cipher__nisw;
+    let cipher__nre = params.cipher__nre;
+    let cipher__re = params.cipher__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let expiration_date = params.expiration_date;
+    let expiration_date__gt = params.expiration_date__gt;
+    let expiration_date__gte = params.expiration_date__gte;
+    let expiration_date__isnull = params.expiration_date__isnull;
+    let expiration_date__lt = params.expiration_date__lt;
+    let expiration_date__lte = params.expiration_date__lte;
+    let expiration_date__n = params.expiration_date__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let key_file_path = params.key_file_path;
+    let key_file_path__ic = params.key_file_path__ic;
+    let key_file_path__ie = params.key_file_path__ie;
+    let key_file_path__iew = params.key_file_path__iew;
+    let key_file_path__ire = params.key_file_path__ire;
+    let key_file_path__isw = params.key_file_path__isw;
+    let key_file_path__n = params.key_file_path__n;
+    let key_file_path__nic = params.key_file_path__nic;
+    let key_file_path__nie = params.key_file_path__nie;
+    let key_file_path__niew = params.key_file_path__niew;
+    let key_file_path__nire = params.key_file_path__nire;
+    let key_file_path__nisw = params.key_file_path__nisw;
+    let key_file_path__nre = params.key_file_path__nre;
+    let key_file_path__re = params.key_file_path__re;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let load_balancer_pool_members = params.load_balancer_pool_members;
+    let load_balancer_pool_members__isnull = params.load_balancer_pool_members__isnull;
+    let load_balancer_pool_members__n = params.load_balancer_pool_members__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let virtual_servers = params.virtual_servers;
+    let virtual_servers__isnull = params.virtual_servers__isnull;
+    let virtual_servers__n = params.virtual_servers__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3395,11 +4702,14 @@ pub async fn load_balancers_certificate_profiles_list(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_certificate_profiles_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<LoadBalancersCertificateProfilesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3452,15 +4762,18 @@ pub async fn load_balancers_certificate_profiles_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_certificate_profiles_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersCertificateProfilesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<LoadBalancersCertificateProfilesNotesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3528,14 +4841,17 @@ pub async fn load_balancers_certificate_profiles_notes_list(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_certificate_profile_request: Option<crate::models::PatchedCertificateProfileRequest>,
+    params: LoadBalancersCertificateProfilesPartialUpdateParams,
 ) -> Result<
     crate::models::CertificateProfile,
     Error<LoadBalancersCertificateProfilesPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_certificate_profile_request = params.patched_certificate_profile_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3588,13 +4904,16 @@ pub async fn load_balancers_certificate_profiles_partial_update(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersCertificateProfilesRetrieveParams,
 ) -> Result<crate::models::CertificateProfile, Error<LoadBalancersCertificateProfilesRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3654,11 +4973,14 @@ pub async fn load_balancers_certificate_profiles_retrieve(
 /// CertificateProfile viewset.
 pub async fn load_balancers_certificate_profiles_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    certificate_profile_request: crate::models::CertificateProfileRequest,
-    format: Option<&str>,
+    params: LoadBalancersCertificateProfilesUpdateParams,
 ) -> Result<crate::models::CertificateProfile, Error<LoadBalancersCertificateProfilesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let certificate_profile_request = params.certificate_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3711,10 +5033,13 @@ pub async fn load_balancers_certificate_profiles_update(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersHealthCheckMonitorsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3766,15 +5091,17 @@ pub async fn load_balancers_health_check_monitors_bulk_destroy(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_health_check_monitor_request: Vec<
-        crate::models::PatchedBulkWritableHealthCheckMonitorRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::HealthCheckMonitor>,
     Error<LoadBalancersHealthCheckMonitorsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_health_check_monitor_request =
+        params.patched_bulk_writable_health_check_monitor_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3827,15 +5154,17 @@ pub async fn load_balancers_health_check_monitors_bulk_partial_update(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_health_check_monitor_request: Vec<
-        crate::models::BulkWritableHealthCheckMonitorRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::HealthCheckMonitor>,
     Error<LoadBalancersHealthCheckMonitorsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_health_check_monitor_request =
+        params.bulk_writable_health_check_monitor_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3887,10 +5216,13 @@ pub async fn load_balancers_health_check_monitors_bulk_update(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_create(
     configuration: &configuration::Configuration,
-    health_check_monitor_request: crate::models::HealthCheckMonitorRequest,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsCreateParams,
 ) -> Result<crate::models::HealthCheckMonitor, Error<LoadBalancersHealthCheckMonitorsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let health_check_monitor_request = params.health_check_monitor_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3942,10 +5274,13 @@ pub async fn load_balancers_health_check_monitors_create(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsDestroyParams,
 ) -> Result<(), Error<LoadBalancersHealthCheckMonitorsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3997,110 +5332,113 @@ pub async fn load_balancers_health_check_monitors_destroy(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    health_check_type: Option<Vec<String>>,
-    health_check_type__ic: Option<Vec<String>>,
-    health_check_type__ie: Option<Vec<String>>,
-    health_check_type__iew: Option<Vec<String>>,
-    health_check_type__ire: Option<Vec<String>>,
-    health_check_type__isw: Option<Vec<String>>,
-    health_check_type__n: Option<Vec<String>>,
-    health_check_type__nic: Option<Vec<String>>,
-    health_check_type__nie: Option<Vec<String>>,
-    health_check_type__niew: Option<Vec<String>>,
-    health_check_type__nire: Option<Vec<String>>,
-    health_check_type__nisw: Option<Vec<String>>,
-    health_check_type__nre: Option<Vec<String>>,
-    health_check_type__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    interval: Option<Vec<i32>>,
-    interval__gt: Option<Vec<i32>>,
-    interval__gte: Option<Vec<i32>>,
-    interval__isnull: Option<bool>,
-    interval__lt: Option<Vec<i32>>,
-    interval__lte: Option<Vec<i32>>,
-    interval__n: Option<Vec<i32>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    port: Option<Vec<i32>>,
-    port__gt: Option<Vec<i32>>,
-    port__gte: Option<Vec<i32>>,
-    port__isnull: Option<bool>,
-    port__lt: Option<Vec<i32>>,
-    port__lte: Option<Vec<i32>>,
-    port__n: Option<Vec<i32>>,
-    q: Option<&str>,
-    retry: Option<Vec<i32>>,
-    retry__gt: Option<Vec<i32>>,
-    retry__gte: Option<Vec<i32>>,
-    retry__isnull: Option<bool>,
-    retry__lt: Option<Vec<i32>>,
-    retry__lte: Option<Vec<i32>>,
-    retry__n: Option<Vec<i32>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    timeout: Option<Vec<i32>>,
-    timeout__gt: Option<Vec<i32>>,
-    timeout__gte: Option<Vec<i32>>,
-    timeout__isnull: Option<bool>,
-    timeout__lt: Option<Vec<i32>>,
-    timeout__lte: Option<Vec<i32>>,
-    timeout__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersHealthCheckMonitorsListParams,
 ) -> Result<
     crate::models::PaginatedHealthCheckMonitorList,
     Error<LoadBalancersHealthCheckMonitorsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let health_check_type = params.health_check_type;
+    let health_check_type__ic = params.health_check_type__ic;
+    let health_check_type__ie = params.health_check_type__ie;
+    let health_check_type__iew = params.health_check_type__iew;
+    let health_check_type__ire = params.health_check_type__ire;
+    let health_check_type__isw = params.health_check_type__isw;
+    let health_check_type__n = params.health_check_type__n;
+    let health_check_type__nic = params.health_check_type__nic;
+    let health_check_type__nie = params.health_check_type__nie;
+    let health_check_type__niew = params.health_check_type__niew;
+    let health_check_type__nire = params.health_check_type__nire;
+    let health_check_type__nisw = params.health_check_type__nisw;
+    let health_check_type__nre = params.health_check_type__nre;
+    let health_check_type__re = params.health_check_type__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let interval = params.interval;
+    let interval__gt = params.interval__gt;
+    let interval__gte = params.interval__gte;
+    let interval__isnull = params.interval__isnull;
+    let interval__lt = params.interval__lt;
+    let interval__lte = params.interval__lte;
+    let interval__n = params.interval__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let port = params.port;
+    let port__gt = params.port__gt;
+    let port__gte = params.port__gte;
+    let port__isnull = params.port__isnull;
+    let port__lt = params.port__lt;
+    let port__lte = params.port__lte;
+    let port__n = params.port__n;
+    let q = params.q;
+    let retry = params.retry;
+    let retry__gt = params.retry__gt;
+    let retry__gte = params.retry__gte;
+    let retry__isnull = params.retry__isnull;
+    let retry__lt = params.retry__lt;
+    let retry__lte = params.retry__lte;
+    let retry__n = params.retry__n;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let timeout = params.timeout;
+    let timeout__gt = params.timeout__gt;
+    let timeout__gte = params.timeout__gte;
+    let timeout__isnull = params.timeout__isnull;
+    let timeout__lt = params.timeout__lt;
+    let timeout__lte = params.timeout__lte;
+    let timeout__n = params.timeout__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5742,11 +7080,14 @@ pub async fn load_balancers_health_check_monitors_list(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_health_check_monitors_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<LoadBalancersHealthCheckMonitorsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5799,15 +7140,18 @@ pub async fn load_balancers_health_check_monitors_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_health_check_monitors_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersHealthCheckMonitorsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<LoadBalancersHealthCheckMonitorsNotesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5875,14 +7219,17 @@ pub async fn load_balancers_health_check_monitors_notes_list(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_health_check_monitor_request: Option<crate::models::PatchedHealthCheckMonitorRequest>,
+    params: LoadBalancersHealthCheckMonitorsPartialUpdateParams,
 ) -> Result<
     crate::models::HealthCheckMonitor,
     Error<LoadBalancersHealthCheckMonitorsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_health_check_monitor_request = params.patched_health_check_monitor_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5935,13 +7282,16 @@ pub async fn load_balancers_health_check_monitors_partial_update(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersHealthCheckMonitorsRetrieveParams,
 ) -> Result<crate::models::HealthCheckMonitor, Error<LoadBalancersHealthCheckMonitorsRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6001,11 +7351,14 @@ pub async fn load_balancers_health_check_monitors_retrieve(
 /// HealthCheckMonitor viewset.
 pub async fn load_balancers_health_check_monitors_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    health_check_monitor_request: crate::models::HealthCheckMonitorRequest,
-    format: Option<&str>,
+    params: LoadBalancersHealthCheckMonitorsUpdateParams,
 ) -> Result<crate::models::HealthCheckMonitor, Error<LoadBalancersHealthCheckMonitorsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let health_check_monitor_request = params.health_check_monitor_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6058,13 +7411,16 @@ pub async fn load_balancers_health_check_monitors_update(
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkDestroyParams,
 ) -> Result<
     (),
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkDestroyError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6117,15 +7473,18 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request: Vec<
-        crate::models::PatchedBulkWritableLoadBalancerPoolMemberCertificateProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPoolMemberCertificateProfileAssignment>,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request =
+        params
+            .patched_bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6180,15 +7539,17 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request: Vec<
-        crate::models::BulkWritableLoadBalancerPoolMemberCertificateProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPoolMemberCertificateProfileAssignment>,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request =
+        params.bulk_writable_load_balancer_pool_member_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6242,13 +7603,17 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_create(
     configuration: &configuration::Configuration,
-    load_balancer_pool_member_certificate_profile_assignment_request: crate::models::LoadBalancerPoolMemberCertificateProfileAssignmentRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsCreateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMemberCertificateProfileAssignment,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let load_balancer_pool_member_certificate_profile_assignment_request =
+        params.load_balancer_pool_member_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6302,11 +7667,14 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsDestroyParams,
 ) -> Result<(), Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsDestroyError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6359,24 +7727,27 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_list(
     configuration: &configuration::Configuration,
-    certificate_profile: Option<Vec<String>>,
-    certificate_profile__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    load_balancer_pool_member: Option<Vec<String>>,
-    load_balancer_pool_member__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedLoadBalancerPoolMemberCertificateProfileAssignmentList,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_profile = params.certificate_profile;
+    let certificate_profile__n = params.certificate_profile__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let load_balancer_pool_member = params.load_balancer_pool_member;
+    let load_balancer_pool_member__n = params.load_balancer_pool_member__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6565,16 +7936,18 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_load_balancer_pool_member_certificate_profile_assignment_request: Option<
-        crate::models::PatchedLoadBalancerPoolMemberCertificateProfileAssignmentRequest,
-    >,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMemberCertificateProfileAssignment,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_load_balancer_pool_member_certificate_profile_assignment_request =
+        params.patched_load_balancer_pool_member_certificate_profile_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6629,15 +8002,18 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMemberCertificateProfileAssignment,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6698,14 +8074,18 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMemberCertificateProfileAssignment viewset.
 pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    load_balancer_pool_member_certificate_profile_assignment_request: crate::models::LoadBalancerPoolMemberCertificateProfileAssignmentRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsUpdateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMemberCertificateProfileAssignment,
     Error<LoadBalancersLoadBalancerPoolMemberCertificateProfileAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let load_balancer_pool_member_certificate_profile_assignment_request =
+        params.load_balancer_pool_member_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6760,10 +8140,13 @@ pub async fn load_balancers_load_balancer_pool_member_certificate_profile_assign
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersLoadBalancerPoolMembersBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6815,15 +8198,17 @@ pub async fn load_balancers_load_balancer_pool_members_bulk_destroy(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_load_balancer_pool_member_request: Vec<
-        crate::models::PatchedBulkWritableLoadBalancerPoolMemberRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPoolMember>,
     Error<LoadBalancersLoadBalancerPoolMembersBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_load_balancer_pool_member_request =
+        params.patched_bulk_writable_load_balancer_pool_member_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6876,15 +8261,17 @@ pub async fn load_balancers_load_balancer_pool_members_bulk_partial_update(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_load_balancer_pool_member_request: Vec<
-        crate::models::BulkWritableLoadBalancerPoolMemberRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPoolMember>,
     Error<LoadBalancersLoadBalancerPoolMembersBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_load_balancer_pool_member_request =
+        params.bulk_writable_load_balancer_pool_member_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6937,13 +8324,16 @@ pub async fn load_balancers_load_balancer_pool_members_bulk_update(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_create(
     configuration: &configuration::Configuration,
-    load_balancer_pool_member_request: crate::models::LoadBalancerPoolMemberRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersCreateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMember,
     Error<LoadBalancersLoadBalancerPoolMembersCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let load_balancer_pool_member_request = params.load_balancer_pool_member_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6995,10 +8385,13 @@ pub async fn load_balancers_load_balancer_pool_members_create(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersDestroyParams,
 ) -> Result<(), Error<LoadBalancersLoadBalancerPoolMembersDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7050,86 +8443,89 @@ pub async fn load_balancers_load_balancer_pool_members_destroy(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_list(
     configuration: &configuration::Configuration,
-    certificate_profiles: Option<Vec<String>>,
-    certificate_profiles__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    health_check_monitor: Option<Vec<String>>,
-    health_check_monitor__isnull: Option<bool>,
-    health_check_monitor__n: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    ip_address: Option<Vec<uuid::Uuid>>,
-    ip_address__n: Option<Vec<uuid::Uuid>>,
-    label: Option<Vec<String>>,
-    label__ic: Option<Vec<String>>,
-    label__ie: Option<Vec<String>>,
-    label__iew: Option<Vec<String>>,
-    label__ire: Option<Vec<String>>,
-    label__isw: Option<Vec<String>>,
-    label__n: Option<Vec<String>>,
-    label__nic: Option<Vec<String>>,
-    label__nie: Option<Vec<String>>,
-    label__niew: Option<Vec<String>>,
-    label__nire: Option<Vec<String>>,
-    label__nisw: Option<Vec<String>>,
-    label__nre: Option<Vec<String>>,
-    label__re: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    load_balancer_pool: Option<Vec<String>>,
-    load_balancer_pool__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    port: Option<Vec<i32>>,
-    port__gt: Option<Vec<i32>>,
-    port__gte: Option<Vec<i32>>,
-    port__lt: Option<Vec<i32>>,
-    port__lte: Option<Vec<i32>>,
-    port__n: Option<Vec<i32>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    ssl_offload: Option<bool>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<uuid::Uuid>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolMembersListParams,
 ) -> Result<
     crate::models::PaginatedLoadBalancerPoolMemberList,
     Error<LoadBalancersLoadBalancerPoolMembersListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_profiles = params.certificate_profiles;
+    let certificate_profiles__n = params.certificate_profiles__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let health_check_monitor = params.health_check_monitor;
+    let health_check_monitor__isnull = params.health_check_monitor__isnull;
+    let health_check_monitor__n = params.health_check_monitor__n;
+    let id = params.id;
+    let id__n = params.id__n;
+    let ip_address = params.ip_address;
+    let ip_address__n = params.ip_address__n;
+    let label = params.label;
+    let label__ic = params.label__ic;
+    let label__ie = params.label__ie;
+    let label__iew = params.label__iew;
+    let label__ire = params.label__ire;
+    let label__isw = params.label__isw;
+    let label__n = params.label__n;
+    let label__nic = params.label__nic;
+    let label__nie = params.label__nie;
+    let label__niew = params.label__niew;
+    let label__nire = params.label__nire;
+    let label__nisw = params.label__nisw;
+    let label__nre = params.label__nre;
+    let label__re = params.label__re;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let load_balancer_pool = params.load_balancer_pool;
+    let load_balancer_pool__n = params.load_balancer_pool__n;
+    let offset = params.offset;
+    let port = params.port;
+    let port__gt = params.port__gt;
+    let port__gte = params.port__gte;
+    let port__lt = params.port__lt;
+    let port__lte = params.port__lte;
+    let port__n = params.port__n;
+    let q = params.q;
+    let sort = params.sort;
+    let ssl_offload = params.ssl_offload;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8345,11 +9741,14 @@ pub async fn load_balancers_load_balancer_pool_members_list(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_load_balancer_pool_members_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersNotesCreateParams,
 ) -> Result<crate::models::Note, Error<LoadBalancersLoadBalancerPoolMembersNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8402,17 +9801,20 @@ pub async fn load_balancers_load_balancer_pool_members_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_load_balancer_pool_members_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolMembersNotesListParams,
 ) -> Result<
     crate::models::PaginatedNoteList,
     Error<LoadBalancersLoadBalancerPoolMembersNotesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8480,16 +9882,18 @@ pub async fn load_balancers_load_balancer_pool_members_notes_list(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_load_balancer_pool_member_request: Option<
-        crate::models::PatchedLoadBalancerPoolMemberRequest,
-    >,
+    params: LoadBalancersLoadBalancerPoolMembersPartialUpdateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMember,
     Error<LoadBalancersLoadBalancerPoolMembersPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_load_balancer_pool_member_request =
+        params.patched_load_balancer_pool_member_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8542,15 +9946,18 @@ pub async fn load_balancers_load_balancer_pool_members_partial_update(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolMembersRetrieveParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMember,
     Error<LoadBalancersLoadBalancerPoolMembersRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8610,14 +10017,17 @@ pub async fn load_balancers_load_balancer_pool_members_retrieve(
 /// LoadBalancerPoolMember viewset.
 pub async fn load_balancers_load_balancer_pool_members_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    load_balancer_pool_member_request: crate::models::LoadBalancerPoolMemberRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolMembersUpdateParams,
 ) -> Result<
     crate::models::LoadBalancerPoolMember,
     Error<LoadBalancersLoadBalancerPoolMembersUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let load_balancer_pool_member_request = params.load_balancer_pool_member_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8670,10 +10080,13 @@ pub async fn load_balancers_load_balancer_pool_members_update(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersLoadBalancerPoolsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8725,15 +10138,17 @@ pub async fn load_balancers_load_balancer_pools_bulk_destroy(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_load_balancer_pool_request: Vec<
-        crate::models::PatchedBulkWritableLoadBalancerPoolRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPool>,
     Error<LoadBalancersLoadBalancerPoolsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_load_balancer_pool_request =
+        params.patched_bulk_writable_load_balancer_pool_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8786,15 +10201,16 @@ pub async fn load_balancers_load_balancer_pools_bulk_partial_update(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_load_balancer_pool_request: Vec<
-        crate::models::BulkWritableLoadBalancerPoolRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::LoadBalancerPool>,
     Error<LoadBalancersLoadBalancerPoolsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_load_balancer_pool_request = params.bulk_writable_load_balancer_pool_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8846,10 +10262,13 @@ pub async fn load_balancers_load_balancer_pools_bulk_update(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_create(
     configuration: &configuration::Configuration,
-    load_balancer_pool_request: crate::models::LoadBalancerPoolRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsCreateParams,
 ) -> Result<crate::models::LoadBalancerPool, Error<LoadBalancersLoadBalancerPoolsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let load_balancer_pool_request = params.load_balancer_pool_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8901,10 +10320,13 @@ pub async fn load_balancers_load_balancer_pools_create(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsDestroyParams,
 ) -> Result<(), Error<LoadBalancersLoadBalancerPoolsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8956,85 +10378,88 @@ pub async fn load_balancers_load_balancer_pools_destroy(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    health_check_monitor: Option<Vec<String>>,
-    health_check_monitor__isnull: Option<bool>,
-    health_check_monitor__n: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    load_balancing_algorithm: Option<Vec<String>>,
-    load_balancing_algorithm__ic: Option<Vec<String>>,
-    load_balancing_algorithm__ie: Option<Vec<String>>,
-    load_balancing_algorithm__iew: Option<Vec<String>>,
-    load_balancing_algorithm__ire: Option<Vec<String>>,
-    load_balancing_algorithm__isw: Option<Vec<String>>,
-    load_balancing_algorithm__n: Option<Vec<String>>,
-    load_balancing_algorithm__nic: Option<Vec<String>>,
-    load_balancing_algorithm__nie: Option<Vec<String>>,
-    load_balancing_algorithm__niew: Option<Vec<String>>,
-    load_balancing_algorithm__nire: Option<Vec<String>>,
-    load_balancing_algorithm__nisw: Option<Vec<String>>,
-    load_balancing_algorithm__nre: Option<Vec<String>>,
-    load_balancing_algorithm__re: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolsListParams,
 ) -> Result<
     crate::models::PaginatedLoadBalancerPoolList,
     Error<LoadBalancersLoadBalancerPoolsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let health_check_monitor = params.health_check_monitor;
+    let health_check_monitor__isnull = params.health_check_monitor__isnull;
+    let health_check_monitor__n = params.health_check_monitor__n;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let load_balancing_algorithm = params.load_balancing_algorithm;
+    let load_balancing_algorithm__ic = params.load_balancing_algorithm__ic;
+    let load_balancing_algorithm__ie = params.load_balancing_algorithm__ie;
+    let load_balancing_algorithm__iew = params.load_balancing_algorithm__iew;
+    let load_balancing_algorithm__ire = params.load_balancing_algorithm__ire;
+    let load_balancing_algorithm__isw = params.load_balancing_algorithm__isw;
+    let load_balancing_algorithm__n = params.load_balancing_algorithm__n;
+    let load_balancing_algorithm__nic = params.load_balancing_algorithm__nic;
+    let load_balancing_algorithm__nie = params.load_balancing_algorithm__nie;
+    let load_balancing_algorithm__niew = params.load_balancing_algorithm__niew;
+    let load_balancing_algorithm__nire = params.load_balancing_algorithm__nire;
+    let load_balancing_algorithm__nisw = params.load_balancing_algorithm__nisw;
+    let load_balancing_algorithm__nre = params.load_balancing_algorithm__nre;
+    let load_balancing_algorithm__re = params.load_balancing_algorithm__re;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10246,11 +11671,14 @@ pub async fn load_balancers_load_balancer_pools_list(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_load_balancer_pools_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<LoadBalancersLoadBalancerPoolsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10303,14 +11731,17 @@ pub async fn load_balancers_load_balancer_pools_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_load_balancer_pools_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<LoadBalancersLoadBalancerPoolsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10378,12 +11809,15 @@ pub async fn load_balancers_load_balancer_pools_notes_list(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_load_balancer_pool_request: Option<crate::models::PatchedLoadBalancerPoolRequest>,
+    params: LoadBalancersLoadBalancerPoolsPartialUpdateParams,
 ) -> Result<crate::models::LoadBalancerPool, Error<LoadBalancersLoadBalancerPoolsPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_load_balancer_pool_request = params.patched_load_balancer_pool_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10436,12 +11870,15 @@ pub async fn load_balancers_load_balancer_pools_partial_update(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersLoadBalancerPoolsRetrieveParams,
 ) -> Result<crate::models::LoadBalancerPool, Error<LoadBalancersLoadBalancerPoolsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10501,11 +11938,14 @@ pub async fn load_balancers_load_balancer_pools_retrieve(
 /// LoadBalancerPool viewset.
 pub async fn load_balancers_load_balancer_pools_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    load_balancer_pool_request: crate::models::LoadBalancerPoolRequest,
-    format: Option<&str>,
+    params: LoadBalancersLoadBalancerPoolsUpdateParams,
 ) -> Result<crate::models::LoadBalancerPool, Error<LoadBalancersLoadBalancerPoolsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let load_balancer_pool_request = params.load_balancer_pool_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10558,10 +11998,13 @@ pub async fn load_balancers_load_balancer_pools_update(
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersVirtualServerCertificateProfileAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10614,15 +12057,17 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_virtual_server_certificate_profile_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVirtualServerCertificateProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VirtualServerCertificateProfileAssignment>,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_virtual_server_certificate_profile_assignment_request =
+        params.patched_bulk_writable_virtual_server_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10676,15 +12121,17 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_virtual_server_certificate_profile_assignment_request: Vec<
-        crate::models::BulkWritableVirtualServerCertificateProfileAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::VirtualServerCertificateProfileAssignment>,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_virtual_server_certificate_profile_assignment_request =
+        params.bulk_writable_virtual_server_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10738,13 +12185,17 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_bulk_
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_create(
     configuration: &configuration::Configuration,
-    virtual_server_certificate_profile_assignment_request: crate::models::VirtualServerCertificateProfileAssignmentRequest,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsCreateParams,
 ) -> Result<
     crate::models::VirtualServerCertificateProfileAssignment,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let virtual_server_certificate_profile_assignment_request =
+        params.virtual_server_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10798,10 +12249,13 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_creat
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsDestroyParams,
 ) -> Result<(), Error<LoadBalancersVirtualServerCertificateProfileAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10854,24 +12308,27 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_destr
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_list(
     configuration: &configuration::Configuration,
-    certificate_profile: Option<Vec<String>>,
-    certificate_profile__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    virtual_server: Option<Vec<String>>,
-    virtual_server__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedVirtualServerCertificateProfileAssignmentList,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_profile = params.certificate_profile;
+    let certificate_profile__n = params.certificate_profile__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let virtual_server = params.virtual_server;
+    let virtual_server__n = params.virtual_server__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11060,16 +12517,18 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_list(
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_virtual_server_certificate_profile_assignment_request: Option<
-        crate::models::PatchedVirtualServerCertificateProfileAssignmentRequest,
-    >,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::VirtualServerCertificateProfileAssignment,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_virtual_server_certificate_profile_assignment_request =
+        params.patched_virtual_server_certificate_profile_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11124,15 +12583,18 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_parti
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::VirtualServerCertificateProfileAssignment,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11193,14 +12655,18 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_retri
 /// VirtualServerCertificateProfileAssignment viewset.
 pub async fn load_balancers_virtual_server_certificate_profile_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    virtual_server_certificate_profile_assignment_request: crate::models::VirtualServerCertificateProfileAssignmentRequest,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServerCertificateProfileAssignmentsUpdateParams,
 ) -> Result<
     crate::models::VirtualServerCertificateProfileAssignment,
     Error<LoadBalancersVirtualServerCertificateProfileAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let virtual_server_certificate_profile_assignment_request =
+        params.virtual_server_certificate_profile_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11255,10 +12721,13 @@ pub async fn load_balancers_virtual_server_certificate_profile_assignments_updat
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersBulkDestroyParams,
 ) -> Result<(), Error<LoadBalancersVirtualServersBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11310,15 +12779,17 @@ pub async fn load_balancers_virtual_servers_bulk_destroy(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_virtual_server_request: Vec<
-        crate::models::PatchedBulkWritableVirtualServerRequest,
-    >,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VirtualServer>,
     Error<LoadBalancersVirtualServersBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_virtual_server_request =
+        params.patched_bulk_writable_virtual_server_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11371,10 +12842,13 @@ pub async fn load_balancers_virtual_servers_bulk_partial_update(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_virtual_server_request: Vec<crate::models::BulkWritableVirtualServerRequest>,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersBulkUpdateParams,
 ) -> Result<Vec<crate::models::VirtualServer>, Error<LoadBalancersVirtualServersBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_virtual_server_request = params.bulk_writable_virtual_server_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11426,10 +12900,13 @@ pub async fn load_balancers_virtual_servers_bulk_update(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_create(
     configuration: &configuration::Configuration,
-    virtual_server_request: crate::models::VirtualServerRequest,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersCreateParams,
 ) -> Result<crate::models::VirtualServer, Error<LoadBalancersVirtualServersCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let virtual_server_request = params.virtual_server_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11481,10 +12958,13 @@ pub async fn load_balancers_virtual_servers_create(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersDestroyParams,
 ) -> Result<(), Error<LoadBalancersVirtualServersDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11536,142 +13016,145 @@ pub async fn load_balancers_virtual_servers_destroy(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_list(
     configuration: &configuration::Configuration,
-    certificate_profiles: Option<Vec<String>>,
-    certificate_profiles__n: Option<Vec<String>>,
-    cloud_service: Option<Vec<String>>,
-    cloud_service__isnull: Option<bool>,
-    cloud_service__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device__isnull: Option<bool>,
-    device__n: Option<Vec<String>>,
-    device_redundancy_group: Option<Vec<String>>,
-    device_redundancy_group__isnull: Option<bool>,
-    device_redundancy_group__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    health_check_monitor: Option<Vec<String>>,
-    health_check_monitor__isnull: Option<bool>,
-    health_check_monitor__n: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    load_balancer_pool: Option<Vec<String>>,
-    load_balancer_pool__isnull: Option<bool>,
-    load_balancer_pool__n: Option<Vec<String>>,
-    load_balancer_type: Option<Vec<String>>,
-    load_balancer_type__ic: Option<Vec<String>>,
-    load_balancer_type__ie: Option<Vec<String>>,
-    load_balancer_type__iew: Option<Vec<String>>,
-    load_balancer_type__ire: Option<Vec<String>>,
-    load_balancer_type__isw: Option<Vec<String>>,
-    load_balancer_type__n: Option<Vec<String>>,
-    load_balancer_type__nic: Option<Vec<String>>,
-    load_balancer_type__nie: Option<Vec<String>>,
-    load_balancer_type__niew: Option<Vec<String>>,
-    load_balancer_type__nire: Option<Vec<String>>,
-    load_balancer_type__nisw: Option<Vec<String>>,
-    load_balancer_type__nre: Option<Vec<String>>,
-    load_balancer_type__re: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    port: Option<Vec<i32>>,
-    port__gt: Option<Vec<i32>>,
-    port__gte: Option<Vec<i32>>,
-    port__isnull: Option<bool>,
-    port__lt: Option<Vec<i32>>,
-    port__lte: Option<Vec<i32>>,
-    port__n: Option<Vec<i32>>,
-    protocol: Option<Vec<String>>,
-    protocol__ic: Option<Vec<String>>,
-    protocol__ie: Option<Vec<String>>,
-    protocol__iew: Option<Vec<String>>,
-    protocol__ire: Option<Vec<String>>,
-    protocol__isw: Option<Vec<String>>,
-    protocol__n: Option<Vec<String>>,
-    protocol__nic: Option<Vec<String>>,
-    protocol__nie: Option<Vec<String>>,
-    protocol__niew: Option<Vec<String>>,
-    protocol__nire: Option<Vec<String>>,
-    protocol__nisw: Option<Vec<String>>,
-    protocol__nre: Option<Vec<String>>,
-    protocol__re: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    source_nat_pool: Option<Vec<String>>,
-    source_nat_pool__isnull: Option<bool>,
-    source_nat_pool__n: Option<Vec<String>>,
-    source_nat_type: Option<Vec<String>>,
-    source_nat_type__ic: Option<Vec<String>>,
-    source_nat_type__ie: Option<Vec<String>>,
-    source_nat_type__iew: Option<Vec<String>>,
-    source_nat_type__ire: Option<Vec<String>>,
-    source_nat_type__isw: Option<Vec<String>>,
-    source_nat_type__n: Option<Vec<String>>,
-    source_nat_type__nic: Option<Vec<String>>,
-    source_nat_type__nie: Option<Vec<String>>,
-    source_nat_type__niew: Option<Vec<String>>,
-    source_nat_type__nire: Option<Vec<String>>,
-    source_nat_type__nisw: Option<Vec<String>>,
-    source_nat_type__nre: Option<Vec<String>>,
-    source_nat_type__re: Option<Vec<String>>,
-    ssl_offload: Option<bool>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vip: Option<Vec<uuid::Uuid>>,
-    vip__n: Option<Vec<uuid::Uuid>>,
-    virtual_chassis: Option<Vec<String>>,
-    virtual_chassis__isnull: Option<bool>,
-    virtual_chassis__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersVirtualServersListParams,
 ) -> Result<crate::models::PaginatedVirtualServerList, Error<LoadBalancersVirtualServersListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let certificate_profiles = params.certificate_profiles;
+    let certificate_profiles__n = params.certificate_profiles__n;
+    let cloud_service = params.cloud_service;
+    let cloud_service__isnull = params.cloud_service__isnull;
+    let cloud_service__n = params.cloud_service__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let device = params.device;
+    let device__isnull = params.device__isnull;
+    let device__n = params.device__n;
+    let device_redundancy_group = params.device_redundancy_group;
+    let device_redundancy_group__isnull = params.device_redundancy_group__isnull;
+    let device_redundancy_group__n = params.device_redundancy_group__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let health_check_monitor = params.health_check_monitor;
+    let health_check_monitor__isnull = params.health_check_monitor__isnull;
+    let health_check_monitor__n = params.health_check_monitor__n;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let load_balancer_pool = params.load_balancer_pool;
+    let load_balancer_pool__isnull = params.load_balancer_pool__isnull;
+    let load_balancer_pool__n = params.load_balancer_pool__n;
+    let load_balancer_type = params.load_balancer_type;
+    let load_balancer_type__ic = params.load_balancer_type__ic;
+    let load_balancer_type__ie = params.load_balancer_type__ie;
+    let load_balancer_type__iew = params.load_balancer_type__iew;
+    let load_balancer_type__ire = params.load_balancer_type__ire;
+    let load_balancer_type__isw = params.load_balancer_type__isw;
+    let load_balancer_type__n = params.load_balancer_type__n;
+    let load_balancer_type__nic = params.load_balancer_type__nic;
+    let load_balancer_type__nie = params.load_balancer_type__nie;
+    let load_balancer_type__niew = params.load_balancer_type__niew;
+    let load_balancer_type__nire = params.load_balancer_type__nire;
+    let load_balancer_type__nisw = params.load_balancer_type__nisw;
+    let load_balancer_type__nre = params.load_balancer_type__nre;
+    let load_balancer_type__re = params.load_balancer_type__re;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let port = params.port;
+    let port__gt = params.port__gt;
+    let port__gte = params.port__gte;
+    let port__isnull = params.port__isnull;
+    let port__lt = params.port__lt;
+    let port__lte = params.port__lte;
+    let port__n = params.port__n;
+    let protocol = params.protocol;
+    let protocol__ic = params.protocol__ic;
+    let protocol__ie = params.protocol__ie;
+    let protocol__iew = params.protocol__iew;
+    let protocol__ire = params.protocol__ire;
+    let protocol__isw = params.protocol__isw;
+    let protocol__n = params.protocol__n;
+    let protocol__nic = params.protocol__nic;
+    let protocol__nie = params.protocol__nie;
+    let protocol__niew = params.protocol__niew;
+    let protocol__nire = params.protocol__nire;
+    let protocol__nisw = params.protocol__nisw;
+    let protocol__nre = params.protocol__nre;
+    let protocol__re = params.protocol__re;
+    let q = params.q;
+    let sort = params.sort;
+    let source_nat_pool = params.source_nat_pool;
+    let source_nat_pool__isnull = params.source_nat_pool__isnull;
+    let source_nat_pool__n = params.source_nat_pool__n;
+    let source_nat_type = params.source_nat_type;
+    let source_nat_type__ic = params.source_nat_type__ic;
+    let source_nat_type__ie = params.source_nat_type__ie;
+    let source_nat_type__iew = params.source_nat_type__iew;
+    let source_nat_type__ire = params.source_nat_type__ire;
+    let source_nat_type__isw = params.source_nat_type__isw;
+    let source_nat_type__n = params.source_nat_type__n;
+    let source_nat_type__nic = params.source_nat_type__nic;
+    let source_nat_type__nie = params.source_nat_type__nie;
+    let source_nat_type__niew = params.source_nat_type__niew;
+    let source_nat_type__nire = params.source_nat_type__nire;
+    let source_nat_type__nisw = params.source_nat_type__nisw;
+    let source_nat_type__nre = params.source_nat_type__nre;
+    let source_nat_type__re = params.source_nat_type__re;
+    let ssl_offload = params.ssl_offload;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vip = params.vip;
+    let vip__n = params.vip__n;
+    let virtual_chassis = params.virtual_chassis;
+    let virtual_chassis__isnull = params.virtual_chassis__isnull;
+    let virtual_chassis__n = params.virtual_chassis__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13871,11 +15354,14 @@ pub async fn load_balancers_virtual_servers_list(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_virtual_servers_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersNotesCreateParams,
 ) -> Result<crate::models::Note, Error<LoadBalancersVirtualServersNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13928,14 +15414,17 @@ pub async fn load_balancers_virtual_servers_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn load_balancers_virtual_servers_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersVirtualServersNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<LoadBalancersVirtualServersNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14003,11 +15492,14 @@ pub async fn load_balancers_virtual_servers_notes_list(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_virtual_server_request: Option<crate::models::PatchedVirtualServerRequest>,
+    params: LoadBalancersVirtualServersPartialUpdateParams,
 ) -> Result<crate::models::VirtualServer, Error<LoadBalancersVirtualServersPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_virtual_server_request = params.patched_virtual_server_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14060,12 +15552,15 @@ pub async fn load_balancers_virtual_servers_partial_update(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: LoadBalancersVirtualServersRetrieveParams,
 ) -> Result<crate::models::VirtualServer, Error<LoadBalancersVirtualServersRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14125,11 +15620,14 @@ pub async fn load_balancers_virtual_servers_retrieve(
 /// VirtualServer viewset.
 pub async fn load_balancers_virtual_servers_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    virtual_server_request: crate::models::VirtualServerRequest,
-    format: Option<&str>,
+    params: LoadBalancersVirtualServersUpdateParams,
 ) -> Result<crate::models::VirtualServer, Error<LoadBalancersVirtualServersUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let virtual_server_request = params.virtual_server_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

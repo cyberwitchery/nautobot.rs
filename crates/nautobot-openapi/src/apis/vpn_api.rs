@@ -13,6 +13,1703 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_phase1_policy_request:
+        Vec<crate::models::PatchedBulkWritableVpnPhase1PolicyRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesBulkUpdateParams {
+    pub bulk_writable_vpn_phase1_policy_request:
+        Vec<crate::models::BulkWritableVpnPhase1PolicyRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesCreateParams {
+    pub vpn_phase1_policy_request: crate::models::VpnPhase1PolicyRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesDestroyParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesListParams {
+    pub aggressive_mode: Option<bool>,
+    /// PSK, RSA, ECDSA, Certificate  
+    pub authentication_method: Option<Vec<String>>,
+    pub authentication_method__ic: Option<Vec<String>>,
+    pub authentication_method__ie: Option<Vec<String>>,
+    pub authentication_method__iew: Option<Vec<String>>,
+    pub authentication_method__ire: Option<Vec<String>>,
+    pub authentication_method__isw: Option<Vec<String>>,
+    pub authentication_method__n: Option<Vec<String>>,
+    pub authentication_method__nic: Option<Vec<String>>,
+    pub authentication_method__nie: Option<Vec<String>>,
+    pub authentication_method__niew: Option<Vec<String>>,
+    pub authentication_method__nire: Option<Vec<String>>,
+    pub authentication_method__nisw: Option<Vec<String>>,
+    pub authentication_method__nre: Option<Vec<String>>,
+    pub authentication_method__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dh_group: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub encryption_algorithm: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub ike_version: Option<Vec<String>>,
+    pub ike_version__ic: Option<Vec<String>>,
+    pub ike_version__ie: Option<Vec<String>>,
+    pub ike_version__iew: Option<Vec<String>>,
+    pub ike_version__ire: Option<Vec<String>>,
+    pub ike_version__isw: Option<Vec<String>>,
+    pub ike_version__n: Option<Vec<String>>,
+    pub ike_version__nic: Option<Vec<String>>,
+    pub ike_version__nie: Option<Vec<String>>,
+    pub ike_version__niew: Option<Vec<String>>,
+    pub ike_version__nire: Option<Vec<String>>,
+    pub ike_version__nisw: Option<Vec<String>>,
+    pub ike_version__nre: Option<Vec<String>>,
+    pub ike_version__re: Option<Vec<String>>,
+    pub integrity_algorithm: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    pub lifetime_kb: Option<Vec<i32>>,
+    pub lifetime_kb__gt: Option<Vec<i32>>,
+    pub lifetime_kb__gte: Option<Vec<i32>>,
+    pub lifetime_kb__isnull: Option<bool>,
+    pub lifetime_kb__lt: Option<Vec<i32>>,
+    pub lifetime_kb__lte: Option<Vec<i32>>,
+    pub lifetime_kb__n: Option<Vec<i32>>,
+    pub lifetime_seconds: Option<Vec<i32>>,
+    pub lifetime_seconds__gt: Option<Vec<i32>>,
+    pub lifetime_seconds__gte: Option<Vec<i32>>,
+    pub lifetime_seconds__isnull: Option<bool>,
+    pub lifetime_seconds__lt: Option<Vec<i32>>,
+    pub lifetime_seconds__lte: Option<Vec<i32>>,
+    pub lifetime_seconds__n: Option<Vec<i32>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub vpn_profiles: Option<Vec<String>>,
+    /// VPN Profiles (name or ID) is null
+    pub vpn_profiles__isnull: Option<bool>,
+    pub vpn_profiles__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesNotesCreateParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesNotesListParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesPartialUpdateParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_phase1_policy_request: Option<crate::models::PatchedVpnPhase1PolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesRetrieveParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase1_policies_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase1PoliciesUpdateParams {
+    /// A UUID string identifying this VPN Phase 1 Policy.
+    pub id: String,
+    pub vpn_phase1_policy_request: crate::models::VpnPhase1PolicyRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_phase2_policy_request:
+        Vec<crate::models::PatchedBulkWritableVpnPhase2PolicyRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesBulkUpdateParams {
+    pub bulk_writable_vpn_phase2_policy_request:
+        Vec<crate::models::BulkWritableVpnPhase2PolicyRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesCreateParams {
+    pub vpn_phase2_policy_request: crate::models::VpnPhase2PolicyRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesDestroyParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub encryption_algorithm: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub integrity_algorithm: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    pub lifetime: Option<Vec<i32>>,
+    pub lifetime__gt: Option<Vec<i32>>,
+    pub lifetime__gte: Option<Vec<i32>>,
+    pub lifetime__isnull: Option<bool>,
+    pub lifetime__lt: Option<Vec<i32>>,
+    pub lifetime__lte: Option<Vec<i32>>,
+    pub lifetime__n: Option<Vec<i32>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub pfs_group: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub vpn_profiles: Option<Vec<String>>,
+    /// VPN Profiles (name or ID) is null
+    pub vpn_profiles__isnull: Option<bool>,
+    pub vpn_profiles__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesNotesCreateParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesNotesListParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesPartialUpdateParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_phase2_policy_request: Option<crate::models::PatchedVpnPhase2PolicyRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesRetrieveParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_phase2_policies_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnPhase2PoliciesUpdateParams {
+    /// A UUID string identifying this VPN Phase 2 Policy.
+    pub id: String,
+    pub vpn_phase2_policy_request: crate::models::VpnPhase2PolicyRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_profile_phase1_policy_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVpnProfilePhase1PolicyAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsBulkUpdateParams {
+    pub bulk_writable_vpn_profile_phase1_policy_assignment_request:
+        Vec<crate::models::BulkWritableVpnProfilePhase1PolicyAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsCreateParams {
+    pub vpn_profile_phase1_policy_assignment_request:
+        crate::models::VpnProfilePhase1PolicyAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsDestroyParams {
+    /// A UUID string identifying this vpn profile phase1 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vpn_phase1_policy: Option<Vec<String>>,
+    pub vpn_phase1_policy__n: Option<Vec<String>>,
+    pub vpn_profile: Option<Vec<String>>,
+    pub vpn_profile__n: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this vpn profile phase1 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_profile_phase1_policy_assignment_request:
+        Option<crate::models::PatchedVpnProfilePhase1PolicyAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsRetrieveParams {
+    /// A UUID string identifying this vpn profile phase1 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase1_policy_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase1PolicyAssignmentsUpdateParams {
+    /// A UUID string identifying this vpn profile phase1 policy assignment.
+    pub id: String,
+    pub vpn_profile_phase1_policy_assignment_request:
+        crate::models::VpnProfilePhase1PolicyAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_profile_phase2_policy_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVpnProfilePhase2PolicyAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsBulkUpdateParams {
+    pub bulk_writable_vpn_profile_phase2_policy_assignment_request:
+        Vec<crate::models::BulkWritableVpnProfilePhase2PolicyAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsCreateParams {
+    pub vpn_profile_phase2_policy_assignment_request:
+        crate::models::VpnProfilePhase2PolicyAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsDestroyParams {
+    /// A UUID string identifying this vpn profile phase2 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vpn_phase2_policy: Option<Vec<String>>,
+    pub vpn_phase2_policy__n: Option<Vec<String>>,
+    pub vpn_profile: Option<Vec<String>>,
+    pub vpn_profile__n: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this vpn profile phase2 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_profile_phase2_policy_assignment_request:
+        Option<crate::models::PatchedVpnProfilePhase2PolicyAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsRetrieveParams {
+    /// A UUID string identifying this vpn profile phase2 policy assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profile_phase2_policy_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilePhase2PolicyAssignmentsUpdateParams {
+    /// A UUID string identifying this vpn profile phase2 policy assignment.
+    pub id: String,
+    pub vpn_profile_phase2_policy_assignment_request:
+        crate::models::VpnProfilePhase2PolicyAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_profile_request:
+        Vec<crate::models::PatchedBulkWritableVpnProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesBulkUpdateParams {
+    pub bulk_writable_vpn_profile_request: Vec<crate::models::BulkWritableVpnProfileRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesCreateParams {
+    pub vpn_profile_request: crate::models::VpnProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesDestroyParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub extra_options: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub keepalive_enabled: Option<bool>,
+    pub keepalive_interval: Option<Vec<i32>>,
+    pub keepalive_interval__gt: Option<Vec<i32>>,
+    pub keepalive_interval__gte: Option<Vec<i32>>,
+    pub keepalive_interval__isnull: Option<bool>,
+    pub keepalive_interval__lt: Option<Vec<i32>>,
+    pub keepalive_interval__lte: Option<Vec<i32>>,
+    pub keepalive_interval__n: Option<Vec<i32>>,
+    pub keepalive_retries: Option<Vec<i32>>,
+    pub keepalive_retries__gt: Option<Vec<i32>>,
+    pub keepalive_retries__gte: Option<Vec<i32>>,
+    pub keepalive_retries__isnull: Option<bool>,
+    pub keepalive_retries__lt: Option<Vec<i32>>,
+    pub keepalive_retries__lte: Option<Vec<i32>>,
+    pub keepalive_retries__n: Option<Vec<i32>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub nat_traversal: Option<bool>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<uuid::Uuid>>,
+    pub secrets_group: Option<Vec<uuid::Uuid>>,
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub vpn_phase1_policies: Option<Vec<String>>,
+    pub vpn_phase1_policies__n: Option<Vec<String>>,
+    pub vpn_phase2_policies: Option<Vec<String>>,
+    pub vpn_phase2_policies__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesNotesCreateParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesNotesListParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesPartialUpdateParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_profile_request: Option<crate::models::PatchedVpnProfileRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesRetrieveParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_profiles_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnProfilesUpdateParams {
+    /// A UUID string identifying this VPN Profile.
+    pub id: String,
+    pub vpn_profile_request: crate::models::VpnProfileRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_termination_request:
+        Vec<crate::models::PatchedBulkWritableVpnTerminationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsBulkUpdateParams {
+    pub bulk_writable_vpn_termination_request:
+        Vec<crate::models::BulkWritableVpnTerminationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsCreateParams {
+    pub vpn_termination_request: crate::models::VpnTerminationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsDestroyParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub interface: Option<Vec<String>>,
+    /// Interface (name or ID) is null
+    pub interface__isnull: Option<bool>,
+    pub interface__n: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub vlan: Option<Vec<String>>,
+    /// VLAN (VID or ID) is null
+    pub vlan__isnull: Option<bool>,
+    pub vlan__n: Option<Vec<String>>,
+    pub vm_interface: Option<Vec<String>>,
+    /// VM Interface (name or ID) is null
+    pub vm_interface__isnull: Option<bool>,
+    pub vm_interface__n: Option<Vec<String>>,
+    pub vpn: Option<Vec<String>>,
+    pub vpn__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsNotesCreateParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsNotesListParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsPartialUpdateParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_termination_request: Option<crate::models::PatchedVpnTerminationRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsRetrieveParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_terminations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTerminationsUpdateParams {
+    /// A UUID string identifying this VPN Termination.
+    pub id: String,
+    pub vpn_termination_request: crate::models::VpnTerminationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_tunnel_endpoint_request:
+        Vec<crate::models::PatchedBulkWritableVpnTunnelEndpointRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsBulkUpdateParams {
+    pub bulk_writable_vpn_tunnel_endpoint_request:
+        Vec<crate::models::BulkWritableVpnTunnelEndpointRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsCreateParams {
+    pub format: Option<String>,
+    pub vpn_tunnel_endpoint_request: Option<crate::models::VpnTunnelEndpointRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsDestroyParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub device: Option<Vec<String>>,
+    /// Device (ID or name) is null
+    pub device__isnull: Option<bool>,
+    pub device__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub endpoint_a_vpn_tunnels: Option<Vec<String>>,
+    /// Endpoint A is null
+    pub endpoint_a_vpn_tunnels__isnull: Option<bool>,
+    pub endpoint_a_vpn_tunnels__n: Option<Vec<String>>,
+    pub endpoint_z_vpn_tunnels: Option<Vec<String>>,
+    /// Endpoint Z is null
+    pub endpoint_z_vpn_tunnels__isnull: Option<bool>,
+    pub endpoint_z_vpn_tunnels__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub protected_prefixes: Option<Vec<uuid::Uuid>>,
+    pub protected_prefixes__n: Option<Vec<uuid::Uuid>>,
+    pub protected_prefixes_dg: Option<Vec<uuid::Uuid>>,
+    pub protected_prefixes_dg__n: Option<Vec<uuid::Uuid>>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub source_fqdn: Option<Vec<String>>,
+    pub source_fqdn__ic: Option<Vec<String>>,
+    pub source_fqdn__ie: Option<Vec<String>>,
+    pub source_fqdn__iew: Option<Vec<String>>,
+    pub source_fqdn__ire: Option<Vec<String>>,
+    pub source_fqdn__isw: Option<Vec<String>>,
+    pub source_fqdn__n: Option<Vec<String>>,
+    pub source_fqdn__nic: Option<Vec<String>>,
+    pub source_fqdn__nie: Option<Vec<String>>,
+    pub source_fqdn__niew: Option<Vec<String>>,
+    pub source_fqdn__nire: Option<Vec<String>>,
+    pub source_fqdn__nisw: Option<Vec<String>>,
+    pub source_fqdn__nre: Option<Vec<String>>,
+    pub source_fqdn__re: Option<Vec<String>>,
+    pub source_interface: Option<Vec<String>>,
+    /// Source Interface (ID or name) is null
+    pub source_interface__isnull: Option<bool>,
+    pub source_interface__n: Option<Vec<String>>,
+    pub source_ipaddress: Option<Vec<String>>,
+    /// Source IPAddress (ID or name) is null
+    pub source_ipaddress__isnull: Option<bool>,
+    pub source_ipaddress__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub tunnel_interface: Option<Vec<String>>,
+    /// Tunnel Interface (ID or name) is null
+    pub tunnel_interface__isnull: Option<bool>,
+    pub tunnel_interface__n: Option<Vec<String>>,
+    pub vpn_profile: Option<Vec<uuid::Uuid>>,
+    pub vpn_profile__isnull: Option<bool>,
+    pub vpn_profile__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsNotesCreateParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsNotesListParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsPartialUpdateParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_tunnel_endpoint_request: Option<crate::models::PatchedVpnTunnelEndpointRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsRetrieveParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnel_endpoints_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelEndpointsUpdateParams {
+    /// A UUID string identifying this VPN Tunnel Endpoint.
+    pub id: String,
+    pub format: Option<String>,
+    pub vpn_tunnel_endpoint_request: Option<crate::models::VpnTunnelEndpointRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_tunnel_request:
+        Vec<crate::models::PatchedBulkWritableVpnTunnelRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsBulkUpdateParams {
+    pub bulk_writable_vpn_tunnel_request: Vec<crate::models::BulkWritableVpnTunnelRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsCreateParams {
+    pub vpn_tunnel_request: crate::models::VpnTunnelRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsDestroyParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub encapsulation: Option<Vec<String>>,
+    pub encapsulation__ic: Option<Vec<String>>,
+    pub encapsulation__ie: Option<Vec<String>>,
+    pub encapsulation__iew: Option<Vec<String>>,
+    pub encapsulation__ire: Option<Vec<String>>,
+    pub encapsulation__isw: Option<Vec<String>>,
+    pub encapsulation__n: Option<Vec<String>>,
+    pub encapsulation__nic: Option<Vec<String>>,
+    pub encapsulation__nie: Option<Vec<String>>,
+    pub encapsulation__niew: Option<Vec<String>>,
+    pub encapsulation__nire: Option<Vec<String>>,
+    pub encapsulation__nisw: Option<Vec<String>>,
+    pub encapsulation__nre: Option<Vec<String>>,
+    pub encapsulation__re: Option<Vec<String>>,
+    pub endpoint_a: Option<Vec<uuid::Uuid>>,
+    pub endpoint_a__isnull: Option<bool>,
+    pub endpoint_a__n: Option<Vec<uuid::Uuid>>,
+    pub endpoint_z: Option<Vec<uuid::Uuid>>,
+    pub endpoint_z__isnull: Option<bool>,
+    pub endpoint_z__n: Option<Vec<uuid::Uuid>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<uuid::Uuid>>,
+    pub secrets_group: Option<Vec<uuid::Uuid>>,
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<uuid::Uuid>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub tunnel_id: Option<Vec<String>>,
+    pub tunnel_id__ic: Option<Vec<String>>,
+    pub tunnel_id__ie: Option<Vec<String>>,
+    pub tunnel_id__iew: Option<Vec<String>>,
+    pub tunnel_id__ire: Option<Vec<String>>,
+    pub tunnel_id__isw: Option<Vec<String>>,
+    pub tunnel_id__n: Option<Vec<String>>,
+    pub tunnel_id__nic: Option<Vec<String>>,
+    pub tunnel_id__nie: Option<Vec<String>>,
+    pub tunnel_id__niew: Option<Vec<String>>,
+    pub tunnel_id__nire: Option<Vec<String>>,
+    pub tunnel_id__nisw: Option<Vec<String>>,
+    pub tunnel_id__nre: Option<Vec<String>>,
+    pub tunnel_id__re: Option<Vec<String>>,
+    pub vpn: Option<Vec<String>>,
+    /// VPN (name or ID) is null
+    pub vpn__isnull: Option<bool>,
+    pub vpn__n: Option<Vec<String>>,
+    pub vpn_profile: Option<Vec<String>>,
+    /// VPN Profile (name or ID) is null
+    pub vpn_profile__isnull: Option<bool>,
+    pub vpn_profile__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsNotesCreateParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsNotesListParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsPartialUpdateParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_tunnel_request: Option<crate::models::PatchedVpnTunnelRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsRetrieveParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpn_tunnels_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnTunnelsUpdateParams {
+    /// A UUID string identifying this VPN Tunnel.
+    pub id: String,
+    pub vpn_tunnel_request: crate::models::VpnTunnelRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vpn_request: Vec<crate::models::PatchedBulkWritableVpnRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsBulkUpdateParams {
+    pub bulk_writable_vpn_request: Vec<crate::models::BulkWritableVpnRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsCreateParams {
+    pub vpn_request: crate::models::VpnRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsDestroyParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub extra_attributes: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// Name
+    pub name: Option<Vec<String>>,
+    /// Name
+    pub name__ic: Option<Vec<String>>,
+    /// Name
+    pub name__ie: Option<Vec<String>>,
+    /// Name
+    pub name__iew: Option<Vec<String>>,
+    /// Name
+    pub name__ire: Option<Vec<String>>,
+    /// Name
+    pub name__isw: Option<Vec<String>>,
+    /// Name
+    pub name__n: Option<Vec<String>>,
+    /// Name
+    pub name__nic: Option<Vec<String>>,
+    /// Name
+    pub name__nie: Option<Vec<String>>,
+    /// Name
+    pub name__niew: Option<Vec<String>>,
+    /// Name
+    pub name__nire: Option<Vec<String>>,
+    /// Name
+    pub name__nisw: Option<Vec<String>>,
+    /// Name
+    pub name__nre: Option<Vec<String>>,
+    /// Name
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<uuid::Uuid>>,
+    /// Optional classification of this VPN service, for example IPSec or VXLAN-EVPN.  
+    pub service_type: Option<Vec<String>>,
+    pub service_type__ic: Option<Vec<String>>,
+    pub service_type__ie: Option<Vec<String>>,
+    pub service_type__iew: Option<Vec<String>>,
+    pub service_type__ire: Option<Vec<String>>,
+    pub service_type__isw: Option<Vec<String>>,
+    pub service_type__n: Option<Vec<String>>,
+    pub service_type__nic: Option<Vec<String>>,
+    pub service_type__nie: Option<Vec<String>>,
+    pub service_type__niew: Option<Vec<String>>,
+    pub service_type__nire: Option<Vec<String>>,
+    pub service_type__nisw: Option<Vec<String>>,
+    pub service_type__nre: Option<Vec<String>>,
+    pub service_type__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__isnull: Option<bool>,
+    pub status__n: Option<Vec<uuid::Uuid>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// VPN ID
+    pub vpn_id: Option<Vec<String>>,
+    /// VPN ID contains
+    pub vpn_id__ic: Option<Vec<String>>,
+    /// VPN ID
+    pub vpn_id__ie: Option<Vec<String>>,
+    /// VPN ID ends with
+    pub vpn_id__iew: Option<Vec<String>>,
+    /// VPN ID matches regex
+    pub vpn_id__ire: Option<Vec<String>>,
+    /// VPN ID starts with
+    pub vpn_id__isw: Option<Vec<String>>,
+    /// Exclude VPN ID
+    pub vpn_id__n: Option<Vec<String>>,
+    /// Exclude VPN ID contains
+    pub vpn_id__nic: Option<Vec<String>>,
+    /// Exclude VPN ID
+    pub vpn_id__nie: Option<Vec<String>>,
+    /// Exclude VPN ID ends with
+    pub vpn_id__niew: Option<Vec<String>>,
+    /// Exclude VPN ID matches regex
+    pub vpn_id__nire: Option<Vec<String>>,
+    /// Exclude VPN ID starts with
+    pub vpn_id__nisw: Option<Vec<String>>,
+    /// Exclude VPN ID matches regex
+    pub vpn_id__nre: Option<Vec<String>>,
+    /// VPN ID matches regex
+    pub vpn_id__re: Option<Vec<String>>,
+    pub vpn_profile: Option<Vec<String>>,
+    /// VPN Profile (name or ID) is null
+    pub vpn_profile__isnull: Option<bool>,
+    pub vpn_profile__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsNotesCreateParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsNotesListParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsPartialUpdateParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vpn_request: Option<crate::models::PatchedVpnRequest>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsRetrieveParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`vpn_vpns_update`]
+#[derive(Clone, Debug, Default)]
+pub struct VpnVpnsUpdateParams {
+    /// A UUID string identifying this VPN.
+    pub id: String,
+    pub vpn_request: crate::models::VpnRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`vpn_vpn_phase1_policies_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -681,10 +2378,13 @@ pub enum VpnVpnsUpdateError {
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnPhase1PoliciesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -736,13 +2436,15 @@ pub async fn vpn_vpn_phase1_policies_bulk_destroy(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_phase1_policy_request: Vec<
-        crate::models::PatchedBulkWritableVpnPhase1PolicyRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnPhase1Policy>, Error<VpnVpnPhase1PoliciesBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_phase1_policy_request =
+        params.patched_bulk_writable_vpn_phase1_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -795,10 +2497,13 @@ pub async fn vpn_vpn_phase1_policies_bulk_partial_update(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_phase1_policy_request: Vec<crate::models::BulkWritableVpnPhase1PolicyRequest>,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnPhase1Policy>, Error<VpnVpnPhase1PoliciesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_phase1_policy_request = params.bulk_writable_vpn_phase1_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -850,10 +2555,13 @@ pub async fn vpn_vpn_phase1_policies_bulk_update(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_create(
     configuration: &configuration::Configuration,
-    vpn_phase1_policy_request: crate::models::VpnPhase1PolicyRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesCreateParams,
 ) -> Result<crate::models::VpnPhase1Policy, Error<VpnVpnPhase1PoliciesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_phase1_policy_request = params.vpn_phase1_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -905,10 +2613,13 @@ pub async fn vpn_vpn_phase1_policies_create(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesDestroyParams,
 ) -> Result<(), Error<VpnVpnPhase1PoliciesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -960,128 +2671,131 @@ pub async fn vpn_vpn_phase1_policies_destroy(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_list(
     configuration: &configuration::Configuration,
-    aggressive_mode: Option<bool>,
-    authentication_method: Option<Vec<String>>,
-    authentication_method__ic: Option<Vec<String>>,
-    authentication_method__ie: Option<Vec<String>>,
-    authentication_method__iew: Option<Vec<String>>,
-    authentication_method__ire: Option<Vec<String>>,
-    authentication_method__isw: Option<Vec<String>>,
-    authentication_method__n: Option<Vec<String>>,
-    authentication_method__nic: Option<Vec<String>>,
-    authentication_method__nie: Option<Vec<String>>,
-    authentication_method__niew: Option<Vec<String>>,
-    authentication_method__nire: Option<Vec<String>>,
-    authentication_method__nisw: Option<Vec<String>>,
-    authentication_method__nre: Option<Vec<String>>,
-    authentication_method__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dh_group: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    encryption_algorithm: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    ike_version: Option<Vec<String>>,
-    ike_version__ic: Option<Vec<String>>,
-    ike_version__ie: Option<Vec<String>>,
-    ike_version__iew: Option<Vec<String>>,
-    ike_version__ire: Option<Vec<String>>,
-    ike_version__isw: Option<Vec<String>>,
-    ike_version__n: Option<Vec<String>>,
-    ike_version__nic: Option<Vec<String>>,
-    ike_version__nie: Option<Vec<String>>,
-    ike_version__niew: Option<Vec<String>>,
-    ike_version__nire: Option<Vec<String>>,
-    ike_version__nisw: Option<Vec<String>>,
-    ike_version__nre: Option<Vec<String>>,
-    ike_version__re: Option<Vec<String>>,
-    integrity_algorithm: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    lifetime_kb: Option<Vec<i32>>,
-    lifetime_kb__gt: Option<Vec<i32>>,
-    lifetime_kb__gte: Option<Vec<i32>>,
-    lifetime_kb__isnull: Option<bool>,
-    lifetime_kb__lt: Option<Vec<i32>>,
-    lifetime_kb__lte: Option<Vec<i32>>,
-    lifetime_kb__n: Option<Vec<i32>>,
-    lifetime_seconds: Option<Vec<i32>>,
-    lifetime_seconds__gt: Option<Vec<i32>>,
-    lifetime_seconds__gte: Option<Vec<i32>>,
-    lifetime_seconds__isnull: Option<bool>,
-    lifetime_seconds__lt: Option<Vec<i32>>,
-    lifetime_seconds__lte: Option<Vec<i32>>,
-    lifetime_seconds__n: Option<Vec<i32>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vpn_profiles: Option<Vec<String>>,
-    vpn_profiles__isnull: Option<bool>,
-    vpn_profiles__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase1PoliciesListParams,
 ) -> Result<crate::models::PaginatedVpnPhase1PolicyList, Error<VpnVpnPhase1PoliciesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let aggressive_mode = params.aggressive_mode;
+    let authentication_method = params.authentication_method;
+    let authentication_method__ic = params.authentication_method__ic;
+    let authentication_method__ie = params.authentication_method__ie;
+    let authentication_method__iew = params.authentication_method__iew;
+    let authentication_method__ire = params.authentication_method__ire;
+    let authentication_method__isw = params.authentication_method__isw;
+    let authentication_method__n = params.authentication_method__n;
+    let authentication_method__nic = params.authentication_method__nic;
+    let authentication_method__nie = params.authentication_method__nie;
+    let authentication_method__niew = params.authentication_method__niew;
+    let authentication_method__nire = params.authentication_method__nire;
+    let authentication_method__nisw = params.authentication_method__nisw;
+    let authentication_method__nre = params.authentication_method__nre;
+    let authentication_method__re = params.authentication_method__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dh_group = params.dh_group;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let encryption_algorithm = params.encryption_algorithm;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let ike_version = params.ike_version;
+    let ike_version__ic = params.ike_version__ic;
+    let ike_version__ie = params.ike_version__ie;
+    let ike_version__iew = params.ike_version__iew;
+    let ike_version__ire = params.ike_version__ire;
+    let ike_version__isw = params.ike_version__isw;
+    let ike_version__n = params.ike_version__n;
+    let ike_version__nic = params.ike_version__nic;
+    let ike_version__nie = params.ike_version__nie;
+    let ike_version__niew = params.ike_version__niew;
+    let ike_version__nire = params.ike_version__nire;
+    let ike_version__nisw = params.ike_version__nisw;
+    let ike_version__nre = params.ike_version__nre;
+    let ike_version__re = params.ike_version__re;
+    let integrity_algorithm = params.integrity_algorithm;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let lifetime_kb = params.lifetime_kb;
+    let lifetime_kb__gt = params.lifetime_kb__gt;
+    let lifetime_kb__gte = params.lifetime_kb__gte;
+    let lifetime_kb__isnull = params.lifetime_kb__isnull;
+    let lifetime_kb__lt = params.lifetime_kb__lt;
+    let lifetime_kb__lte = params.lifetime_kb__lte;
+    let lifetime_kb__n = params.lifetime_kb__n;
+    let lifetime_seconds = params.lifetime_seconds;
+    let lifetime_seconds__gt = params.lifetime_seconds__gt;
+    let lifetime_seconds__gte = params.lifetime_seconds__gte;
+    let lifetime_seconds__isnull = params.lifetime_seconds__isnull;
+    let lifetime_seconds__lt = params.lifetime_seconds__lt;
+    let lifetime_seconds__lte = params.lifetime_seconds__lte;
+    let lifetime_seconds__n = params.lifetime_seconds__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vpn_profiles = params.vpn_profiles;
+    let vpn_profiles__isnull = params.vpn_profiles__isnull;
+    let vpn_profiles__n = params.vpn_profiles__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3122,11 +4836,14 @@ pub async fn vpn_vpn_phase1_policies_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_phase1_policies_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnPhase1PoliciesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3179,14 +4896,17 @@ pub async fn vpn_vpn_phase1_policies_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_phase1_policies_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase1PoliciesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnPhase1PoliciesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3254,11 +4974,14 @@ pub async fn vpn_vpn_phase1_policies_notes_list(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_phase1_policy_request: Option<crate::models::PatchedVpnPhase1PolicyRequest>,
+    params: VpnVpnPhase1PoliciesPartialUpdateParams,
 ) -> Result<crate::models::VpnPhase1Policy, Error<VpnVpnPhase1PoliciesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_phase1_policy_request = params.patched_vpn_phase1_policy_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3311,12 +5034,15 @@ pub async fn vpn_vpn_phase1_policies_partial_update(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase1PoliciesRetrieveParams,
 ) -> Result<crate::models::VpnPhase1Policy, Error<VpnVpnPhase1PoliciesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3376,11 +5102,14 @@ pub async fn vpn_vpn_phase1_policies_retrieve(
 /// VPNPhase1Policy viewset.
 pub async fn vpn_vpn_phase1_policies_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_phase1_policy_request: crate::models::VpnPhase1PolicyRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase1PoliciesUpdateParams,
 ) -> Result<crate::models::VpnPhase1Policy, Error<VpnVpnPhase1PoliciesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_phase1_policy_request = params.vpn_phase1_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3433,10 +5162,13 @@ pub async fn vpn_vpn_phase1_policies_update(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnPhase2PoliciesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3488,13 +5220,15 @@ pub async fn vpn_vpn_phase2_policies_bulk_destroy(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_phase2_policy_request: Vec<
-        crate::models::PatchedBulkWritableVpnPhase2PolicyRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnPhase2Policy>, Error<VpnVpnPhase2PoliciesBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_phase2_policy_request =
+        params.patched_bulk_writable_vpn_phase2_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3547,10 +5281,13 @@ pub async fn vpn_vpn_phase2_policies_bulk_partial_update(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_phase2_policy_request: Vec<crate::models::BulkWritableVpnPhase2PolicyRequest>,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnPhase2Policy>, Error<VpnVpnPhase2PoliciesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_phase2_policy_request = params.bulk_writable_vpn_phase2_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3602,10 +5339,13 @@ pub async fn vpn_vpn_phase2_policies_bulk_update(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_create(
     configuration: &configuration::Configuration,
-    vpn_phase2_policy_request: crate::models::VpnPhase2PolicyRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesCreateParams,
 ) -> Result<crate::models::VpnPhase2Policy, Error<VpnVpnPhase2PoliciesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_phase2_policy_request = params.vpn_phase2_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3657,10 +5397,13 @@ pub async fn vpn_vpn_phase2_policies_create(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesDestroyParams,
 ) -> Result<(), Error<VpnVpnPhase2PoliciesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3712,92 +5455,95 @@ pub async fn vpn_vpn_phase2_policies_destroy(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    encryption_algorithm: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    integrity_algorithm: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    lifetime: Option<Vec<i32>>,
-    lifetime__gt: Option<Vec<i32>>,
-    lifetime__gte: Option<Vec<i32>>,
-    lifetime__isnull: Option<bool>,
-    lifetime__lt: Option<Vec<i32>>,
-    lifetime__lte: Option<Vec<i32>>,
-    lifetime__n: Option<Vec<i32>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    pfs_group: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vpn_profiles: Option<Vec<String>>,
-    vpn_profiles__isnull: Option<bool>,
-    vpn_profiles__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase2PoliciesListParams,
 ) -> Result<crate::models::PaginatedVpnPhase2PolicyList, Error<VpnVpnPhase2PoliciesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let encryption_algorithm = params.encryption_algorithm;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let integrity_algorithm = params.integrity_algorithm;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let lifetime = params.lifetime;
+    let lifetime__gt = params.lifetime__gt;
+    let lifetime__gte = params.lifetime__gte;
+    let lifetime__isnull = params.lifetime__isnull;
+    let lifetime__lt = params.lifetime__lt;
+    let lifetime__lte = params.lifetime__lte;
+    let lifetime__n = params.lifetime__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let pfs_group = params.pfs_group;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vpn_profiles = params.vpn_profiles;
+    let vpn_profiles__isnull = params.vpn_profiles__isnull;
+    let vpn_profiles__n = params.vpn_profiles__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5184,11 +6930,14 @@ pub async fn vpn_vpn_phase2_policies_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_phase2_policies_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnPhase2PoliciesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5241,14 +6990,17 @@ pub async fn vpn_vpn_phase2_policies_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_phase2_policies_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase2PoliciesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnPhase2PoliciesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5316,11 +7068,14 @@ pub async fn vpn_vpn_phase2_policies_notes_list(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_phase2_policy_request: Option<crate::models::PatchedVpnPhase2PolicyRequest>,
+    params: VpnVpnPhase2PoliciesPartialUpdateParams,
 ) -> Result<crate::models::VpnPhase2Policy, Error<VpnVpnPhase2PoliciesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_phase2_policy_request = params.patched_vpn_phase2_policy_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5373,12 +7128,15 @@ pub async fn vpn_vpn_phase2_policies_partial_update(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnPhase2PoliciesRetrieveParams,
 ) -> Result<crate::models::VpnPhase2Policy, Error<VpnVpnPhase2PoliciesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5438,11 +7196,14 @@ pub async fn vpn_vpn_phase2_policies_retrieve(
 /// VPNPhase2Policy viewset.
 pub async fn vpn_vpn_phase2_policies_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_phase2_policy_request: crate::models::VpnPhase2PolicyRequest,
-    format: Option<&str>,
+    params: VpnVpnPhase2PoliciesUpdateParams,
 ) -> Result<crate::models::VpnPhase2Policy, Error<VpnVpnPhase2PoliciesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_phase2_policy_request = params.vpn_phase2_policy_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5495,10 +7256,13 @@ pub async fn vpn_vpn_phase2_policies_update(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilePhase1PolicyAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5550,15 +7314,17 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_destroy(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_profile_phase1_policy_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVpnProfilePhase1PolicyAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VpnProfilePhase1PolicyAssignment>,
     Error<VpnVpnProfilePhase1PolicyAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_profile_phase1_policy_assignment_request =
+        params.patched_bulk_writable_vpn_profile_phase1_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5611,15 +7377,17 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_partial_update(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_profile_phase1_policy_assignment_request: Vec<
-        crate::models::BulkWritableVpnProfilePhase1PolicyAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::VpnProfilePhase1PolicyAssignment>,
     Error<VpnVpnProfilePhase1PolicyAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_profile_phase1_policy_assignment_request =
+        params.bulk_writable_vpn_profile_phase1_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5672,13 +7440,17 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_bulk_update(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_create(
     configuration: &configuration::Configuration,
-    vpn_profile_phase1_policy_assignment_request: crate::models::VpnProfilePhase1PolicyAssignmentRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsCreateParams,
 ) -> Result<
     crate::models::VpnProfilePhase1PolicyAssignment,
     Error<VpnVpnProfilePhase1PolicyAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_profile_phase1_policy_assignment_request =
+        params.vpn_profile_phase1_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5731,10 +7503,13 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_create(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilePhase1PolicyAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5786,30 +7561,33 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_destroy(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vpn_phase1_policy: Option<Vec<String>>,
-    vpn_phase1_policy__n: Option<Vec<String>>,
-    vpn_profile: Option<Vec<String>>,
-    vpn_profile__n: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedVpnProfilePhase1PolicyAssignmentList,
     Error<VpnVpnProfilePhase1PolicyAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let vpn_phase1_policy = params.vpn_phase1_policy;
+    let vpn_phase1_policy__n = params.vpn_phase1_policy__n;
+    let vpn_profile = params.vpn_profile;
+    let vpn_profile__n = params.vpn_profile__n;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6111,16 +7889,18 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_list(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_profile_phase1_policy_assignment_request: Option<
-        crate::models::PatchedVpnProfilePhase1PolicyAssignmentRequest,
-    >,
+    params: VpnVpnProfilePhase1PolicyAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::VpnProfilePhase1PolicyAssignment,
     Error<VpnVpnProfilePhase1PolicyAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_profile_phase1_policy_assignment_request =
+        params.patched_vpn_profile_phase1_policy_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6174,15 +7954,18 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_partial_update(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::VpnProfilePhase1PolicyAssignment,
     Error<VpnVpnProfilePhase1PolicyAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6242,14 +8025,18 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_retrieve(
 /// VPNProfilePhase1PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase1_policy_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_profile_phase1_policy_assignment_request: crate::models::VpnProfilePhase1PolicyAssignmentRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase1PolicyAssignmentsUpdateParams,
 ) -> Result<
     crate::models::VpnProfilePhase1PolicyAssignment,
     Error<VpnVpnProfilePhase1PolicyAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_profile_phase1_policy_assignment_request =
+        params.vpn_profile_phase1_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6303,10 +8090,13 @@ pub async fn vpn_vpn_profile_phase1_policy_assignments_update(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilePhase2PolicyAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6358,15 +8148,17 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_destroy(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_profile_phase2_policy_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVpnProfilePhase2PolicyAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VpnProfilePhase2PolicyAssignment>,
     Error<VpnVpnProfilePhase2PolicyAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_profile_phase2_policy_assignment_request =
+        params.patched_bulk_writable_vpn_profile_phase2_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6419,15 +8211,17 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_partial_update(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_profile_phase2_policy_assignment_request: Vec<
-        crate::models::BulkWritableVpnProfilePhase2PolicyAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::VpnProfilePhase2PolicyAssignment>,
     Error<VpnVpnProfilePhase2PolicyAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_profile_phase2_policy_assignment_request =
+        params.bulk_writable_vpn_profile_phase2_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6480,13 +8274,17 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_bulk_update(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_create(
     configuration: &configuration::Configuration,
-    vpn_profile_phase2_policy_assignment_request: crate::models::VpnProfilePhase2PolicyAssignmentRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsCreateParams,
 ) -> Result<
     crate::models::VpnProfilePhase2PolicyAssignment,
     Error<VpnVpnProfilePhase2PolicyAssignmentsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_profile_phase2_policy_assignment_request =
+        params.vpn_profile_phase2_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6539,10 +8337,13 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_create(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilePhase2PolicyAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6594,30 +8395,33 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_destroy(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vpn_phase2_policy: Option<Vec<String>>,
-    vpn_phase2_policy__n: Option<Vec<String>>,
-    vpn_profile: Option<Vec<String>>,
-    vpn_profile__n: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedVpnProfilePhase2PolicyAssignmentList,
     Error<VpnVpnProfilePhase2PolicyAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let vpn_phase2_policy = params.vpn_phase2_policy;
+    let vpn_phase2_policy__n = params.vpn_phase2_policy__n;
+    let vpn_profile = params.vpn_profile;
+    let vpn_profile__n = params.vpn_profile__n;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6919,16 +8723,18 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_list(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_profile_phase2_policy_assignment_request: Option<
-        crate::models::PatchedVpnProfilePhase2PolicyAssignmentRequest,
-    >,
+    params: VpnVpnProfilePhase2PolicyAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::VpnProfilePhase2PolicyAssignment,
     Error<VpnVpnProfilePhase2PolicyAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_profile_phase2_policy_assignment_request =
+        params.patched_vpn_profile_phase2_policy_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6982,15 +8788,18 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_partial_update(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::VpnProfilePhase2PolicyAssignment,
     Error<VpnVpnProfilePhase2PolicyAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7050,14 +8859,18 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_retrieve(
 /// VPNProfilePhase2PolicyAssignment viewset.
 pub async fn vpn_vpn_profile_phase2_policy_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_profile_phase2_policy_assignment_request: crate::models::VpnProfilePhase2PolicyAssignmentRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilePhase2PolicyAssignmentsUpdateParams,
 ) -> Result<
     crate::models::VpnProfilePhase2PolicyAssignment,
     Error<VpnVpnProfilePhase2PolicyAssignmentsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_profile_phase2_policy_assignment_request =
+        params.vpn_profile_phase2_policy_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7111,10 +8924,13 @@ pub async fn vpn_vpn_profile_phase2_policy_assignments_update(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnProfilesBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7163,12 +8979,14 @@ pub async fn vpn_vpn_profiles_bulk_destroy(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_profile_request: Vec<
-        crate::models::PatchedBulkWritableVpnProfileRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnProfilesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnProfile>, Error<VpnVpnProfilesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_profile_request =
+        params.patched_bulk_writable_vpn_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7217,10 +9035,13 @@ pub async fn vpn_vpn_profiles_bulk_partial_update(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_profile_request: Vec<crate::models::BulkWritableVpnProfileRequest>,
-    format: Option<&str>,
+    params: VpnVpnProfilesBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnProfile>, Error<VpnVpnProfilesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_profile_request = params.bulk_writable_vpn_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7269,10 +9090,13 @@ pub async fn vpn_vpn_profiles_bulk_update(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_create(
     configuration: &configuration::Configuration,
-    vpn_profile_request: crate::models::VpnProfileRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilesCreateParams,
 ) -> Result<crate::models::VpnProfile, Error<VpnVpnProfilesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_profile_request = params.vpn_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7321,10 +9145,13 @@ pub async fn vpn_vpn_profiles_create(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnProfilesDestroyParams,
 ) -> Result<(), Error<VpnVpnProfilesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7376,106 +9203,109 @@ pub async fn vpn_vpn_profiles_destroy(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    extra_options: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    keepalive_enabled: Option<bool>,
-    keepalive_interval: Option<Vec<i32>>,
-    keepalive_interval__gt: Option<Vec<i32>>,
-    keepalive_interval__gte: Option<Vec<i32>>,
-    keepalive_interval__isnull: Option<bool>,
-    keepalive_interval__lt: Option<Vec<i32>>,
-    keepalive_interval__lte: Option<Vec<i32>>,
-    keepalive_interval__n: Option<Vec<i32>>,
-    keepalive_retries: Option<Vec<i32>>,
-    keepalive_retries__gt: Option<Vec<i32>>,
-    keepalive_retries__gte: Option<Vec<i32>>,
-    keepalive_retries__isnull: Option<bool>,
-    keepalive_retries__lt: Option<Vec<i32>>,
-    keepalive_retries__lte: Option<Vec<i32>>,
-    keepalive_retries__n: Option<Vec<i32>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    nat_traversal: Option<bool>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<uuid::Uuid>>,
-    secrets_group: Option<Vec<uuid::Uuid>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<uuid::Uuid>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vpn_phase1_policies: Option<Vec<String>>,
-    vpn_phase1_policies__n: Option<Vec<String>>,
-    vpn_phase2_policies: Option<Vec<String>>,
-    vpn_phase2_policies__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilesListParams,
 ) -> Result<crate::models::PaginatedVpnProfileList, Error<VpnVpnProfilesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let extra_options = params.extra_options;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let keepalive_enabled = params.keepalive_enabled;
+    let keepalive_interval = params.keepalive_interval;
+    let keepalive_interval__gt = params.keepalive_interval__gt;
+    let keepalive_interval__gte = params.keepalive_interval__gte;
+    let keepalive_interval__isnull = params.keepalive_interval__isnull;
+    let keepalive_interval__lt = params.keepalive_interval__lt;
+    let keepalive_interval__lte = params.keepalive_interval__lte;
+    let keepalive_interval__n = params.keepalive_interval__n;
+    let keepalive_retries = params.keepalive_retries;
+    let keepalive_retries__gt = params.keepalive_retries__gt;
+    let keepalive_retries__gte = params.keepalive_retries__gte;
+    let keepalive_retries__isnull = params.keepalive_retries__isnull;
+    let keepalive_retries__lt = params.keepalive_retries__lt;
+    let keepalive_retries__lte = params.keepalive_retries__lte;
+    let keepalive_retries__n = params.keepalive_retries__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let nat_traversal = params.nat_traversal;
+    let offset = params.offset;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vpn_phase1_policies = params.vpn_phase1_policies;
+    let vpn_phase1_policies__n = params.vpn_phase1_policies__n;
+    let vpn_phase2_policies = params.vpn_phase2_policies;
+    let vpn_phase2_policies__n = params.vpn_phase2_policies__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9065,11 +10895,14 @@ pub async fn vpn_vpn_profiles_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_profiles_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnProfilesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9122,14 +10955,17 @@ pub async fn vpn_vpn_profiles_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_profiles_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnProfilesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9197,11 +11033,14 @@ pub async fn vpn_vpn_profiles_notes_list(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_profile_request: Option<crate::models::PatchedVpnProfileRequest>,
+    params: VpnVpnProfilesPartialUpdateParams,
 ) -> Result<crate::models::VpnProfile, Error<VpnVpnProfilesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_profile_request = params.patched_vpn_profile_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9254,12 +11093,15 @@ pub async fn vpn_vpn_profiles_partial_update(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnProfilesRetrieveParams,
 ) -> Result<crate::models::VpnProfile, Error<VpnVpnProfilesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9319,11 +11161,14 @@ pub async fn vpn_vpn_profiles_retrieve(
 /// VPNProfile viewset.
 pub async fn vpn_vpn_profiles_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_profile_request: crate::models::VpnProfileRequest,
-    format: Option<&str>,
+    params: VpnVpnProfilesUpdateParams,
 ) -> Result<crate::models::VpnProfile, Error<VpnVpnProfilesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_profile_request = params.vpn_profile_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9376,10 +11221,13 @@ pub async fn vpn_vpn_profiles_update(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnTerminationsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnTerminationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9431,12 +11279,14 @@ pub async fn vpn_vpn_terminations_bulk_destroy(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_termination_request: Vec<
-        crate::models::PatchedBulkWritableVpnTerminationRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnTerminationsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnTermination>, Error<VpnVpnTerminationsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_termination_request =
+        params.patched_bulk_writable_vpn_termination_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9489,10 +11339,13 @@ pub async fn vpn_vpn_terminations_bulk_partial_update(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_termination_request: Vec<crate::models::BulkWritableVpnTerminationRequest>,
-    format: Option<&str>,
+    params: VpnVpnTerminationsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnTermination>, Error<VpnVpnTerminationsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_termination_request = params.bulk_writable_vpn_termination_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9544,10 +11397,13 @@ pub async fn vpn_vpn_terminations_bulk_update(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_create(
     configuration: &configuration::Configuration,
-    vpn_termination_request: crate::models::VpnTerminationRequest,
-    format: Option<&str>,
+    params: VpnVpnTerminationsCreateParams,
 ) -> Result<crate::models::VpnTermination, Error<VpnVpnTerminationsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_termination_request = params.vpn_termination_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9599,10 +11455,13 @@ pub async fn vpn_vpn_terminations_create(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnTerminationsDestroyParams,
 ) -> Result<(), Error<VpnVpnTerminationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9654,53 +11513,56 @@ pub async fn vpn_vpn_terminations_destroy(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    interface: Option<Vec<String>>,
-    interface__isnull: Option<bool>,
-    interface__n: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    vlan: Option<Vec<String>>,
-    vlan__isnull: Option<bool>,
-    vlan__n: Option<Vec<String>>,
-    vm_interface: Option<Vec<String>>,
-    vm_interface__isnull: Option<bool>,
-    vm_interface__n: Option<Vec<String>>,
-    vpn: Option<Vec<String>>,
-    vpn__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTerminationsListParams,
 ) -> Result<crate::models::PaginatedVpnTerminationList, Error<VpnVpnTerminationsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let interface = params.interface;
+    let interface__isnull = params.interface__isnull;
+    let interface__n = params.interface__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let vlan = params.vlan;
+    let vlan__isnull = params.vlan__isnull;
+    let vlan__n = params.vlan__n;
+    let vm_interface = params.vm_interface;
+    let vm_interface__isnull = params.vm_interface__isnull;
+    let vm_interface__n = params.vm_interface__n;
+    let vpn = params.vpn;
+    let vpn__n = params.vpn__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10376,11 +12238,14 @@ pub async fn vpn_vpn_terminations_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_terminations_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnTerminationsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnTerminationsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10433,14 +12298,17 @@ pub async fn vpn_vpn_terminations_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_terminations_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTerminationsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnTerminationsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10508,11 +12376,14 @@ pub async fn vpn_vpn_terminations_notes_list(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_termination_request: Option<crate::models::PatchedVpnTerminationRequest>,
+    params: VpnVpnTerminationsPartialUpdateParams,
 ) -> Result<crate::models::VpnTermination, Error<VpnVpnTerminationsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_termination_request = params.patched_vpn_termination_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10565,12 +12436,15 @@ pub async fn vpn_vpn_terminations_partial_update(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTerminationsRetrieveParams,
 ) -> Result<crate::models::VpnTermination, Error<VpnVpnTerminationsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10630,11 +12504,14 @@ pub async fn vpn_vpn_terminations_retrieve(
 /// VPNTermination viewset.
 pub async fn vpn_vpn_terminations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_termination_request: crate::models::VpnTerminationRequest,
-    format: Option<&str>,
+    params: VpnVpnTerminationsUpdateParams,
 ) -> Result<crate::models::VpnTermination, Error<VpnVpnTerminationsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_termination_request = params.vpn_termination_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10687,10 +12564,13 @@ pub async fn vpn_vpn_terminations_update(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnTunnelEndpointsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnTunnelEndpointsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10742,13 +12622,15 @@ pub async fn vpn_vpn_tunnel_endpoints_bulk_destroy(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_tunnel_endpoint_request: Vec<
-        crate::models::PatchedBulkWritableVpnTunnelEndpointRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnTunnelEndpointsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnTunnelEndpoint>, Error<VpnVpnTunnelEndpointsBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_tunnel_endpoint_request =
+        params.patched_bulk_writable_vpn_tunnel_endpoint_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10801,12 +12683,14 @@ pub async fn vpn_vpn_tunnel_endpoints_bulk_partial_update(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_tunnel_endpoint_request: Vec<
-        crate::models::BulkWritableVpnTunnelEndpointRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnTunnelEndpointsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnTunnelEndpoint>, Error<VpnVpnTunnelEndpointsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_tunnel_endpoint_request =
+        params.bulk_writable_vpn_tunnel_endpoint_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10858,10 +12742,13 @@ pub async fn vpn_vpn_tunnel_endpoints_bulk_update(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_create(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    vpn_tunnel_endpoint_request: Option<crate::models::VpnTunnelEndpointRequest>,
+    params: VpnVpnTunnelEndpointsCreateParams,
 ) -> Result<crate::models::VpnTunnelEndpoint, Error<VpnVpnTunnelEndpointsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let vpn_tunnel_endpoint_request = params.vpn_tunnel_endpoint_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10913,10 +12800,13 @@ pub async fn vpn_vpn_tunnel_endpoints_create(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnTunnelEndpointsDestroyParams,
 ) -> Result<(), Error<VpnVpnTunnelEndpointsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10968,107 +12858,110 @@ pub async fn vpn_vpn_tunnel_endpoints_destroy(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device__isnull: Option<bool>,
-    device__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    endpoint_a_vpn_tunnels: Option<Vec<String>>,
-    endpoint_a_vpn_tunnels__isnull: Option<bool>,
-    endpoint_a_vpn_tunnels__n: Option<Vec<String>>,
-    endpoint_z_vpn_tunnels: Option<Vec<String>>,
-    endpoint_z_vpn_tunnels__isnull: Option<bool>,
-    endpoint_z_vpn_tunnels__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    protected_prefixes: Option<Vec<uuid::Uuid>>,
-    protected_prefixes__n: Option<Vec<uuid::Uuid>>,
-    protected_prefixes_dg: Option<Vec<uuid::Uuid>>,
-    protected_prefixes_dg__n: Option<Vec<uuid::Uuid>>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<uuid::Uuid>>,
-    sort: Option<&str>,
-    source_fqdn: Option<Vec<String>>,
-    source_fqdn__ic: Option<Vec<String>>,
-    source_fqdn__ie: Option<Vec<String>>,
-    source_fqdn__iew: Option<Vec<String>>,
-    source_fqdn__ire: Option<Vec<String>>,
-    source_fqdn__isw: Option<Vec<String>>,
-    source_fqdn__n: Option<Vec<String>>,
-    source_fqdn__nic: Option<Vec<String>>,
-    source_fqdn__nie: Option<Vec<String>>,
-    source_fqdn__niew: Option<Vec<String>>,
-    source_fqdn__nire: Option<Vec<String>>,
-    source_fqdn__nisw: Option<Vec<String>>,
-    source_fqdn__nre: Option<Vec<String>>,
-    source_fqdn__re: Option<Vec<String>>,
-    source_interface: Option<Vec<String>>,
-    source_interface__isnull: Option<bool>,
-    source_interface__n: Option<Vec<String>>,
-    source_ipaddress: Option<Vec<String>>,
-    source_ipaddress__isnull: Option<bool>,
-    source_ipaddress__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    tunnel_interface: Option<Vec<String>>,
-    tunnel_interface__isnull: Option<bool>,
-    tunnel_interface__n: Option<Vec<String>>,
-    vpn_profile: Option<Vec<uuid::Uuid>>,
-    vpn_profile__isnull: Option<bool>,
-    vpn_profile__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelEndpointsListParams,
 ) -> Result<crate::models::PaginatedVpnTunnelEndpointList, Error<VpnVpnTunnelEndpointsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let device = params.device;
+    let device__isnull = params.device__isnull;
+    let device__n = params.device__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let endpoint_a_vpn_tunnels = params.endpoint_a_vpn_tunnels;
+    let endpoint_a_vpn_tunnels__isnull = params.endpoint_a_vpn_tunnels__isnull;
+    let endpoint_a_vpn_tunnels__n = params.endpoint_a_vpn_tunnels__n;
+    let endpoint_z_vpn_tunnels = params.endpoint_z_vpn_tunnels;
+    let endpoint_z_vpn_tunnels__isnull = params.endpoint_z_vpn_tunnels__isnull;
+    let endpoint_z_vpn_tunnels__n = params.endpoint_z_vpn_tunnels__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let protected_prefixes = params.protected_prefixes;
+    let protected_prefixes__n = params.protected_prefixes__n;
+    let protected_prefixes_dg = params.protected_prefixes_dg;
+    let protected_prefixes_dg__n = params.protected_prefixes_dg__n;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let sort = params.sort;
+    let source_fqdn = params.source_fqdn;
+    let source_fqdn__ic = params.source_fqdn__ic;
+    let source_fqdn__ie = params.source_fqdn__ie;
+    let source_fqdn__iew = params.source_fqdn__iew;
+    let source_fqdn__ire = params.source_fqdn__ire;
+    let source_fqdn__isw = params.source_fqdn__isw;
+    let source_fqdn__n = params.source_fqdn__n;
+    let source_fqdn__nic = params.source_fqdn__nic;
+    let source_fqdn__nie = params.source_fqdn__nie;
+    let source_fqdn__niew = params.source_fqdn__niew;
+    let source_fqdn__nire = params.source_fqdn__nire;
+    let source_fqdn__nisw = params.source_fqdn__nisw;
+    let source_fqdn__nre = params.source_fqdn__nre;
+    let source_fqdn__re = params.source_fqdn__re;
+    let source_interface = params.source_interface;
+    let source_interface__isnull = params.source_interface__isnull;
+    let source_interface__n = params.source_interface__n;
+    let source_ipaddress = params.source_ipaddress;
+    let source_ipaddress__isnull = params.source_ipaddress__isnull;
+    let source_ipaddress__n = params.source_ipaddress__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let tunnel_interface = params.tunnel_interface;
+    let tunnel_interface__isnull = params.tunnel_interface__isnull;
+    let tunnel_interface__n = params.tunnel_interface__n;
+    let vpn_profile = params.vpn_profile;
+    let vpn_profile__isnull = params.vpn_profile__isnull;
+    let vpn_profile__n = params.vpn_profile__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12650,11 +14543,14 @@ pub async fn vpn_vpn_tunnel_endpoints_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_tunnel_endpoints_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnTunnelEndpointsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnTunnelEndpointsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12707,14 +14603,17 @@ pub async fn vpn_vpn_tunnel_endpoints_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_tunnel_endpoints_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelEndpointsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnTunnelEndpointsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12782,11 +14681,14 @@ pub async fn vpn_vpn_tunnel_endpoints_notes_list(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_tunnel_endpoint_request: Option<crate::models::PatchedVpnTunnelEndpointRequest>,
+    params: VpnVpnTunnelEndpointsPartialUpdateParams,
 ) -> Result<crate::models::VpnTunnelEndpoint, Error<VpnVpnTunnelEndpointsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_tunnel_endpoint_request = params.patched_vpn_tunnel_endpoint_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12839,12 +14741,15 @@ pub async fn vpn_vpn_tunnel_endpoints_partial_update(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelEndpointsRetrieveParams,
 ) -> Result<crate::models::VpnTunnelEndpoint, Error<VpnVpnTunnelEndpointsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12904,11 +14809,14 @@ pub async fn vpn_vpn_tunnel_endpoints_retrieve(
 /// VPNTunnelEndpoint viewset.
 pub async fn vpn_vpn_tunnel_endpoints_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    vpn_tunnel_endpoint_request: Option<crate::models::VpnTunnelEndpointRequest>,
+    params: VpnVpnTunnelEndpointsUpdateParams,
 ) -> Result<crate::models::VpnTunnelEndpoint, Error<VpnVpnTunnelEndpointsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let vpn_tunnel_endpoint_request = params.vpn_tunnel_endpoint_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12961,10 +14869,13 @@ pub async fn vpn_vpn_tunnel_endpoints_update(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnTunnelsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnTunnelsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13013,12 +14924,13 @@ pub async fn vpn_vpn_tunnels_bulk_destroy(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_tunnel_request: Vec<
-        crate::models::PatchedBulkWritableVpnTunnelRequest,
-    >,
-    format: Option<&str>,
+    params: VpnVpnTunnelsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VpnTunnel>, Error<VpnVpnTunnelsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_tunnel_request = params.patched_bulk_writable_vpn_tunnel_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13067,10 +14979,13 @@ pub async fn vpn_vpn_tunnels_bulk_partial_update(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_tunnel_request: Vec<crate::models::BulkWritableVpnTunnelRequest>,
-    format: Option<&str>,
+    params: VpnVpnTunnelsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VpnTunnel>, Error<VpnVpnTunnelsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_tunnel_request = params.bulk_writable_vpn_tunnel_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13119,10 +15034,13 @@ pub async fn vpn_vpn_tunnels_bulk_update(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_create(
     configuration: &configuration::Configuration,
-    vpn_tunnel_request: crate::models::VpnTunnelRequest,
-    format: Option<&str>,
+    params: VpnVpnTunnelsCreateParams,
 ) -> Result<crate::models::VpnTunnel, Error<VpnVpnTunnelsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_tunnel_request = params.vpn_tunnel_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13171,10 +15089,13 @@ pub async fn vpn_vpn_tunnels_create(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnTunnelsDestroyParams,
 ) -> Result<(), Error<VpnVpnTunnelsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13226,127 +15147,130 @@ pub async fn vpn_vpn_tunnels_destroy(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    encapsulation: Option<Vec<String>>,
-    encapsulation__ic: Option<Vec<String>>,
-    encapsulation__ie: Option<Vec<String>>,
-    encapsulation__iew: Option<Vec<String>>,
-    encapsulation__ire: Option<Vec<String>>,
-    encapsulation__isw: Option<Vec<String>>,
-    encapsulation__n: Option<Vec<String>>,
-    encapsulation__nic: Option<Vec<String>>,
-    encapsulation__nie: Option<Vec<String>>,
-    encapsulation__niew: Option<Vec<String>>,
-    encapsulation__nire: Option<Vec<String>>,
-    encapsulation__nisw: Option<Vec<String>>,
-    encapsulation__nre: Option<Vec<String>>,
-    encapsulation__re: Option<Vec<String>>,
-    endpoint_a: Option<Vec<uuid::Uuid>>,
-    endpoint_a__isnull: Option<bool>,
-    endpoint_a__n: Option<Vec<uuid::Uuid>>,
-    endpoint_z: Option<Vec<uuid::Uuid>>,
-    endpoint_z__isnull: Option<bool>,
-    endpoint_z__n: Option<Vec<uuid::Uuid>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<uuid::Uuid>>,
-    secrets_group: Option<Vec<uuid::Uuid>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<uuid::Uuid>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<uuid::Uuid>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    tunnel_id: Option<Vec<String>>,
-    tunnel_id__ic: Option<Vec<String>>,
-    tunnel_id__ie: Option<Vec<String>>,
-    tunnel_id__iew: Option<Vec<String>>,
-    tunnel_id__ire: Option<Vec<String>>,
-    tunnel_id__isw: Option<Vec<String>>,
-    tunnel_id__n: Option<Vec<String>>,
-    tunnel_id__nic: Option<Vec<String>>,
-    tunnel_id__nie: Option<Vec<String>>,
-    tunnel_id__niew: Option<Vec<String>>,
-    tunnel_id__nire: Option<Vec<String>>,
-    tunnel_id__nisw: Option<Vec<String>>,
-    tunnel_id__nre: Option<Vec<String>>,
-    tunnel_id__re: Option<Vec<String>>,
-    vpn: Option<Vec<String>>,
-    vpn__isnull: Option<bool>,
-    vpn__n: Option<Vec<String>>,
-    vpn_profile: Option<Vec<String>>,
-    vpn_profile__isnull: Option<bool>,
-    vpn_profile__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelsListParams,
 ) -> Result<crate::models::PaginatedVpnTunnelList, Error<VpnVpnTunnelsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let encapsulation = params.encapsulation;
+    let encapsulation__ic = params.encapsulation__ic;
+    let encapsulation__ie = params.encapsulation__ie;
+    let encapsulation__iew = params.encapsulation__iew;
+    let encapsulation__ire = params.encapsulation__ire;
+    let encapsulation__isw = params.encapsulation__isw;
+    let encapsulation__n = params.encapsulation__n;
+    let encapsulation__nic = params.encapsulation__nic;
+    let encapsulation__nie = params.encapsulation__nie;
+    let encapsulation__niew = params.encapsulation__niew;
+    let encapsulation__nire = params.encapsulation__nire;
+    let encapsulation__nisw = params.encapsulation__nisw;
+    let encapsulation__nre = params.encapsulation__nre;
+    let encapsulation__re = params.encapsulation__re;
+    let endpoint_a = params.endpoint_a;
+    let endpoint_a__isnull = params.endpoint_a__isnull;
+    let endpoint_a__n = params.endpoint_a__n;
+    let endpoint_z = params.endpoint_z;
+    let endpoint_z__isnull = params.endpoint_z__isnull;
+    let endpoint_z__n = params.endpoint_z__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let tunnel_id = params.tunnel_id;
+    let tunnel_id__ic = params.tunnel_id__ic;
+    let tunnel_id__ie = params.tunnel_id__ie;
+    let tunnel_id__iew = params.tunnel_id__iew;
+    let tunnel_id__ire = params.tunnel_id__ire;
+    let tunnel_id__isw = params.tunnel_id__isw;
+    let tunnel_id__n = params.tunnel_id__n;
+    let tunnel_id__nic = params.tunnel_id__nic;
+    let tunnel_id__nie = params.tunnel_id__nie;
+    let tunnel_id__niew = params.tunnel_id__niew;
+    let tunnel_id__nire = params.tunnel_id__nire;
+    let tunnel_id__nisw = params.tunnel_id__nisw;
+    let tunnel_id__nre = params.tunnel_id__nre;
+    let tunnel_id__re = params.tunnel_id__re;
+    let vpn = params.vpn;
+    let vpn__isnull = params.vpn__isnull;
+    let vpn__n = params.vpn__n;
+    let vpn_profile = params.vpn_profile;
+    let vpn_profile__isnull = params.vpn_profile__isnull;
+    let vpn_profile__n = params.vpn_profile__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15335,11 +17259,14 @@ pub async fn vpn_vpn_tunnels_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_tunnels_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnTunnelsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnTunnelsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15392,14 +17319,17 @@ pub async fn vpn_vpn_tunnels_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpn_tunnels_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnTunnelsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15467,11 +17397,14 @@ pub async fn vpn_vpn_tunnels_notes_list(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_tunnel_request: Option<crate::models::PatchedVpnTunnelRequest>,
+    params: VpnVpnTunnelsPartialUpdateParams,
 ) -> Result<crate::models::VpnTunnel, Error<VpnVpnTunnelsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_tunnel_request = params.patched_vpn_tunnel_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15524,12 +17457,15 @@ pub async fn vpn_vpn_tunnels_partial_update(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnTunnelsRetrieveParams,
 ) -> Result<crate::models::VpnTunnel, Error<VpnVpnTunnelsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15589,11 +17525,14 @@ pub async fn vpn_vpn_tunnels_retrieve(
 /// VPNTunnel viewset.
 pub async fn vpn_vpn_tunnels_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_tunnel_request: crate::models::VpnTunnelRequest,
-    format: Option<&str>,
+    params: VpnVpnTunnelsUpdateParams,
 ) -> Result<crate::models::VpnTunnel, Error<VpnVpnTunnelsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_tunnel_request = params.vpn_tunnel_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15646,10 +17585,13 @@ pub async fn vpn_vpn_tunnels_update(
 /// VPN viewset.
 pub async fn vpn_vpns_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: VpnVpnsBulkDestroyParams,
 ) -> Result<(), Error<VpnVpnsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15698,10 +17640,13 @@ pub async fn vpn_vpns_bulk_destroy(
 /// VPN viewset.
 pub async fn vpn_vpns_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vpn_request: Vec<crate::models::PatchedBulkWritableVpnRequest>,
-    format: Option<&str>,
+    params: VpnVpnsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Vpn>, Error<VpnVpnsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vpn_request = params.patched_bulk_writable_vpn_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15750,10 +17695,13 @@ pub async fn vpn_vpns_bulk_partial_update(
 /// VPN viewset.
 pub async fn vpn_vpns_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vpn_request: Vec<crate::models::BulkWritableVpnRequest>,
-    format: Option<&str>,
+    params: VpnVpnsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Vpn>, Error<VpnVpnsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vpn_request = params.bulk_writable_vpn_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15802,10 +17750,13 @@ pub async fn vpn_vpns_bulk_update(
 /// VPN viewset.
 pub async fn vpn_vpns_create(
     configuration: &configuration::Configuration,
-    vpn_request: crate::models::VpnRequest,
-    format: Option<&str>,
+    params: VpnVpnsCreateParams,
 ) -> Result<crate::models::Vpn, Error<VpnVpnsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vpn_request = params.vpn_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15854,10 +17805,13 @@ pub async fn vpn_vpns_create(
 /// VPN viewset.
 pub async fn vpn_vpns_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: VpnVpnsDestroyParams,
 ) -> Result<(), Error<VpnVpnsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15909,117 +17863,120 @@ pub async fn vpn_vpns_destroy(
 /// VPN viewset.
 pub async fn vpn_vpns_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    extra_attributes: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<uuid::Uuid>>,
-    service_type: Option<Vec<String>>,
-    service_type__ic: Option<Vec<String>>,
-    service_type__ie: Option<Vec<String>>,
-    service_type__iew: Option<Vec<String>>,
-    service_type__ire: Option<Vec<String>>,
-    service_type__isw: Option<Vec<String>>,
-    service_type__n: Option<Vec<String>>,
-    service_type__nic: Option<Vec<String>>,
-    service_type__nie: Option<Vec<String>>,
-    service_type__niew: Option<Vec<String>>,
-    service_type__nire: Option<Vec<String>>,
-    service_type__nisw: Option<Vec<String>>,
-    service_type__nre: Option<Vec<String>>,
-    service_type__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__isnull: Option<bool>,
-    status__n: Option<Vec<uuid::Uuid>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vpn_id: Option<Vec<String>>,
-    vpn_id__ic: Option<Vec<String>>,
-    vpn_id__ie: Option<Vec<String>>,
-    vpn_id__iew: Option<Vec<String>>,
-    vpn_id__ire: Option<Vec<String>>,
-    vpn_id__isw: Option<Vec<String>>,
-    vpn_id__n: Option<Vec<String>>,
-    vpn_id__nic: Option<Vec<String>>,
-    vpn_id__nie: Option<Vec<String>>,
-    vpn_id__niew: Option<Vec<String>>,
-    vpn_id__nire: Option<Vec<String>>,
-    vpn_id__nisw: Option<Vec<String>>,
-    vpn_id__nre: Option<Vec<String>>,
-    vpn_id__re: Option<Vec<String>>,
-    vpn_profile: Option<Vec<String>>,
-    vpn_profile__isnull: Option<bool>,
-    vpn_profile__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnsListParams,
 ) -> Result<crate::models::PaginatedVpnList, Error<VpnVpnsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let extra_attributes = params.extra_attributes;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let service_type = params.service_type;
+    let service_type__ic = params.service_type__ic;
+    let service_type__ie = params.service_type__ie;
+    let service_type__iew = params.service_type__iew;
+    let service_type__ire = params.service_type__ire;
+    let service_type__isw = params.service_type__isw;
+    let service_type__n = params.service_type__n;
+    let service_type__nic = params.service_type__nic;
+    let service_type__nie = params.service_type__nie;
+    let service_type__niew = params.service_type__niew;
+    let service_type__nire = params.service_type__nire;
+    let service_type__nisw = params.service_type__nisw;
+    let service_type__nre = params.service_type__nre;
+    let service_type__re = params.service_type__re;
+    let sort = params.sort;
+    let status = params.status;
+    let status__isnull = params.status__isnull;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vpn_id = params.vpn_id;
+    let vpn_id__ic = params.vpn_id__ic;
+    let vpn_id__ie = params.vpn_id__ie;
+    let vpn_id__iew = params.vpn_id__iew;
+    let vpn_id__ire = params.vpn_id__ire;
+    let vpn_id__isw = params.vpn_id__isw;
+    let vpn_id__n = params.vpn_id__n;
+    let vpn_id__nic = params.vpn_id__nic;
+    let vpn_id__nie = params.vpn_id__nie;
+    let vpn_id__niew = params.vpn_id__niew;
+    let vpn_id__nire = params.vpn_id__nire;
+    let vpn_id__nisw = params.vpn_id__nisw;
+    let vpn_id__nre = params.vpn_id__nre;
+    let vpn_id__re = params.vpn_id__re;
+    let vpn_profile = params.vpn_profile;
+    let vpn_profile__isnull = params.vpn_profile__isnull;
+    let vpn_profile__n = params.vpn_profile__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17863,11 +19820,14 @@ pub async fn vpn_vpns_list(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpns_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: VpnVpnsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<VpnVpnsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17920,14 +19880,17 @@ pub async fn vpn_vpns_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn vpn_vpns_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<VpnVpnsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17995,11 +19958,14 @@ pub async fn vpn_vpns_notes_list(
 /// VPN viewset.
 pub async fn vpn_vpns_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vpn_request: Option<crate::models::PatchedVpnRequest>,
+    params: VpnVpnsPartialUpdateParams,
 ) -> Result<crate::models::Vpn, Error<VpnVpnsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vpn_request = params.patched_vpn_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18052,12 +20018,15 @@ pub async fn vpn_vpns_partial_update(
 /// VPN viewset.
 pub async fn vpn_vpns_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: VpnVpnsRetrieveParams,
 ) -> Result<crate::models::Vpn, Error<VpnVpnsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18117,11 +20086,14 @@ pub async fn vpn_vpns_retrieve(
 /// VPN viewset.
 pub async fn vpn_vpns_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vpn_request: crate::models::VpnRequest,
-    format: Option<&str>,
+    params: VpnVpnsUpdateParams,
 ) -> Result<crate::models::Vpn, Error<VpnVpnsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vpn_request = params.vpn_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

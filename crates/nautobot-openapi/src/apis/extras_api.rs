@@ -13,6 +13,7538 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsBulkPartialUpdateParams {
+    pub patched_bulk_writable_approval_workflow_definition_request:
+        Vec<crate::models::PatchedBulkWritableApprovalWorkflowDefinitionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsBulkUpdateParams {
+    pub bulk_writable_approval_workflow_definition_request:
+        Vec<crate::models::BulkWritableApprovalWorkflowDefinitionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsCreateParams {
+    pub approval_workflow_definition_request: crate::models::ApprovalWorkflowDefinitionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsDestroyParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub model_constraints: Option<Vec<String>>,
+    /// Object types allowed to be associated with this Approval Workflow Definition
+    pub model_content_type: Option<Vec<i32>>,
+    /// Exclude Object types allowed to be associated with this Approval Workflow Definition
+    pub model_content_type__n: Option<Vec<i32>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsNotesCreateParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsNotesListParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsPartialUpdateParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_approval_workflow_definition_request:
+        Option<crate::models::PatchedApprovalWorkflowDefinitionRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsRetrieveParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_definitions_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowDefinitionsUpdateParams {
+    /// A UUID string identifying this Approval Workflow Definition.
+    pub id: String,
+    pub approval_workflow_definition_request: crate::models::ApprovalWorkflowDefinitionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsBulkPartialUpdateParams {
+    pub patched_bulk_writable_approval_workflow_stage_definition_request:
+        Vec<crate::models::PatchedBulkWritableApprovalWorkflowStageDefinitionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsBulkUpdateParams {
+    pub bulk_writable_approval_workflow_stage_definition_request:
+        Vec<crate::models::BulkWritableApprovalWorkflowStageDefinitionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsCreateParams {
+    pub approval_workflow_stage_definition_request:
+        crate::models::ApprovalWorkflowStageDefinitionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsDestroyParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsListParams {
+    pub approval_workflow: Option<Vec<String>>,
+    pub approval_workflow_definition: Option<Vec<String>>,
+    pub approval_workflow_definition__n: Option<Vec<String>>,
+    pub approver_group: Option<Vec<i32>>,
+    pub approver_group__n: Option<Vec<i32>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub denial_message: Option<Vec<String>>,
+    pub denial_message__ic: Option<Vec<String>>,
+    pub denial_message__ie: Option<Vec<String>>,
+    pub denial_message__iew: Option<Vec<String>>,
+    pub denial_message__ire: Option<Vec<String>>,
+    pub denial_message__isw: Option<Vec<String>>,
+    pub denial_message__n: Option<Vec<String>>,
+    pub denial_message__nic: Option<Vec<String>>,
+    pub denial_message__nie: Option<Vec<String>>,
+    pub denial_message__niew: Option<Vec<String>>,
+    pub denial_message__nire: Option<Vec<String>>,
+    pub denial_message__nisw: Option<Vec<String>>,
+    pub denial_message__nre: Option<Vec<String>>,
+    pub denial_message__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub min_approvers: Option<Vec<i32>>,
+    pub min_approvers__gt: Option<Vec<i32>>,
+    pub min_approvers__gte: Option<Vec<i32>>,
+    pub min_approvers__lt: Option<Vec<i32>>,
+    pub min_approvers__lte: Option<Vec<i32>>,
+    pub min_approvers__n: Option<Vec<i32>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub sequence: Option<Vec<i32>>,
+    pub sequence__gt: Option<Vec<i32>>,
+    pub sequence__gte: Option<Vec<i32>>,
+    pub sequence__lt: Option<Vec<i32>>,
+    pub sequence__lte: Option<Vec<i32>>,
+    pub sequence__n: Option<Vec<i32>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsNotesCreateParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsNotesListParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsPartialUpdateParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_approval_workflow_stage_definition_request:
+        Option<crate::models::PatchedApprovalWorkflowStageDefinitionRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsRetrieveParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stage_definitions_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStageDefinitionsUpdateParams {
+    /// A UUID string identifying this Approval Workflow Stage Definition.
+    pub id: String,
+    pub approval_workflow_stage_definition_request:
+        crate::models::ApprovalWorkflowStageDefinitionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_approve_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesApproveCreateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesBulkPartialUpdateParams {
+    pub patched_bulk_writable_approval_workflow_stage_request:
+        Vec<crate::models::PatchedBulkWritableApprovalWorkflowStageRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesBulkUpdateParams {
+    pub bulk_writable_approval_workflow_stage_request:
+        Vec<crate::models::BulkWritableApprovalWorkflowStageRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_comment_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesCommentCreateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesCreateParams {
+    pub approval_workflow_stage_request: crate::models::ApprovalWorkflowStageRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_deny_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesDenyCreateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesDestroyParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesListParams {
+    pub approval_workflow: Option<Vec<uuid::Uuid>>,
+    pub approval_workflow__n: Option<Vec<uuid::Uuid>>,
+    pub approval_workflow_stage_definition: Option<Vec<uuid::Uuid>>,
+    pub approval_workflow_stage_definition__isnull: Option<bool>,
+    pub approval_workflow_stage_definition__n: Option<Vec<uuid::Uuid>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub decision_date: Option<Vec<String>>,
+    pub decision_date__gt: Option<Vec<String>>,
+    pub decision_date__gte: Option<Vec<String>>,
+    pub decision_date__isnull: Option<bool>,
+    pub decision_date__lt: Option<Vec<String>>,
+    pub decision_date__lte: Option<Vec<String>>,
+    pub decision_date__n: Option<Vec<String>>,
+    pub decision_date_day: Option<String>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Filter by user's pending approvals (false returns completed approvals)
+    pub pending_my_approvals: Option<bool>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// State of the approval workflow stage instance. Eligible values are: Pending, Approved, Denied.  
+    pub state: Option<Vec<String>>,
+    pub state__ic: Option<Vec<String>>,
+    pub state__ie: Option<Vec<String>>,
+    pub state__iew: Option<Vec<String>>,
+    pub state__ire: Option<Vec<String>>,
+    pub state__isw: Option<Vec<String>>,
+    pub state__n: Option<Vec<String>>,
+    pub state__nic: Option<Vec<String>>,
+    pub state__nie: Option<Vec<String>>,
+    pub state__niew: Option<Vec<String>>,
+    pub state__nire: Option<Vec<String>>,
+    pub state__nisw: Option<Vec<String>>,
+    pub state__nre: Option<Vec<String>>,
+    pub state__re: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesNotesCreateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesNotesListParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesPartialUpdateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_approval_workflow_stage_request:
+        Option<crate::models::PatchedApprovalWorkflowStageRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesRetrieveParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflow_stages_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowStagesUpdateParams {
+    /// A UUID string identifying this Approval Workflow Stage.
+    pub id: String,
+    pub approval_workflow_stage_request: crate::models::ApprovalWorkflowStageRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsBulkPartialUpdateParams {
+    pub patched_bulk_writable_approval_workflow_request:
+        Vec<crate::models::PatchedBulkWritableApprovalWorkflowRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsBulkUpdateParams {
+    pub bulk_writable_approval_workflow_request:
+        Vec<crate::models::BulkWritableApprovalWorkflowRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_cancel_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsCancelCreateParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsCreateParams {
+    pub approval_workflow_request: crate::models::ApprovalWorkflowRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsDestroyParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsListParams {
+    pub approval_workflow_definition: Option<Vec<String>>,
+    pub approval_workflow_definition__isnull: Option<bool>,
+    pub approval_workflow_definition__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    /// Current state of the approval workflow. Eligible values are: Pending, Approved, Denied, Canceled.  
+    pub current_state: Option<Vec<String>>,
+    pub current_state__ic: Option<Vec<String>>,
+    pub current_state__ie: Option<Vec<String>>,
+    pub current_state__iew: Option<Vec<String>>,
+    pub current_state__ire: Option<Vec<String>>,
+    pub current_state__isw: Option<Vec<String>>,
+    pub current_state__n: Option<Vec<String>>,
+    pub current_state__nic: Option<Vec<String>>,
+    pub current_state__nie: Option<Vec<String>>,
+    pub current_state__niew: Option<Vec<String>>,
+    pub current_state__nire: Option<Vec<String>>,
+    pub current_state__nisw: Option<Vec<String>>,
+    pub current_state__nre: Option<Vec<String>>,
+    pub current_state__re: Option<Vec<String>>,
+    pub decision_date: Option<Vec<String>>,
+    pub decision_date__gt: Option<Vec<String>>,
+    pub decision_date__gte: Option<Vec<String>>,
+    pub decision_date__isnull: Option<bool>,
+    pub decision_date__lt: Option<Vec<String>>,
+    pub decision_date__lte: Option<Vec<String>>,
+    pub decision_date__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// Object types allowed to be associated with this Approval Workflow
+    pub object_under_review_content_type: Option<Vec<i32>>,
+    /// Exclude Object types allowed to be associated with this Approval Workflow
+    pub object_under_review_content_type__n: Option<Vec<i32>>,
+    pub object_under_review_object_id: Option<Vec<uuid::Uuid>>,
+    pub object_under_review_object_id__n: Option<Vec<uuid::Uuid>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub user: Option<Vec<uuid::Uuid>>,
+    pub user__isnull: Option<bool>,
+    pub user__n: Option<Vec<uuid::Uuid>>,
+    pub user_name: Option<Vec<String>>,
+    pub user_name__ic: Option<Vec<String>>,
+    pub user_name__ie: Option<Vec<String>>,
+    pub user_name__iew: Option<Vec<String>>,
+    pub user_name__ire: Option<Vec<String>>,
+    pub user_name__isw: Option<Vec<String>>,
+    pub user_name__n: Option<Vec<String>>,
+    pub user_name__nic: Option<Vec<String>>,
+    pub user_name__nie: Option<Vec<String>>,
+    pub user_name__niew: Option<Vec<String>>,
+    pub user_name__nire: Option<Vec<String>>,
+    pub user_name__nisw: Option<Vec<String>>,
+    pub user_name__nre: Option<Vec<String>>,
+    pub user_name__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsNotesCreateParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsNotesListParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsPartialUpdateParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_approval_workflow_request: Option<crate::models::PatchedApprovalWorkflowRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsRetrieveParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_approval_workflows_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasApprovalWorkflowsUpdateParams {
+    /// A UUID string identifying this Approval Workflow.
+    pub id: String,
+    pub approval_workflow_request: crate::models::ApprovalWorkflowRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsBulkPartialUpdateParams {
+    pub patched_bulk_writable_computed_field_request:
+        Vec<crate::models::PatchedBulkWritableComputedFieldRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsBulkUpdateParams {
+    pub bulk_writable_computed_field_request: Vec<crate::models::BulkWritableComputedFieldRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsCreateParams {
+    pub writable_computed_field_request: crate::models::WritableComputedFieldRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsDestroyParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<String>,
+    pub content_type__n: Option<String>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub fallback_value: Option<Vec<String>>,
+    pub fallback_value__ic: Option<Vec<String>>,
+    pub fallback_value__ie: Option<Vec<String>>,
+    pub fallback_value__iew: Option<Vec<String>>,
+    pub fallback_value__ire: Option<Vec<String>>,
+    pub fallback_value__isw: Option<Vec<String>>,
+    pub fallback_value__n: Option<Vec<String>>,
+    pub fallback_value__nic: Option<Vec<String>>,
+    pub fallback_value__nie: Option<Vec<String>>,
+    pub fallback_value__niew: Option<Vec<String>>,
+    pub fallback_value__nire: Option<Vec<String>>,
+    pub fallback_value__nisw: Option<Vec<String>>,
+    pub fallback_value__nre: Option<Vec<String>>,
+    pub fallback_value__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub grouping: Option<Vec<String>>,
+    pub grouping__ic: Option<Vec<String>>,
+    pub grouping__ie: Option<Vec<String>>,
+    pub grouping__iew: Option<Vec<String>>,
+    pub grouping__ire: Option<Vec<String>>,
+    pub grouping__isw: Option<Vec<String>>,
+    pub grouping__n: Option<Vec<String>>,
+    pub grouping__nic: Option<Vec<String>>,
+    pub grouping__nie: Option<Vec<String>>,
+    pub grouping__niew: Option<Vec<String>>,
+    pub grouping__nire: Option<Vec<String>>,
+    pub grouping__nisw: Option<Vec<String>>,
+    pub grouping__nre: Option<Vec<String>>,
+    pub grouping__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub key: Option<Vec<String>>,
+    pub key__ic: Option<Vec<String>>,
+    pub key__ie: Option<Vec<String>>,
+    pub key__iew: Option<Vec<String>>,
+    pub key__ire: Option<Vec<String>>,
+    pub key__isw: Option<Vec<String>>,
+    pub key__n: Option<Vec<String>>,
+    pub key__nic: Option<Vec<String>>,
+    pub key__nie: Option<Vec<String>>,
+    pub key__niew: Option<Vec<String>>,
+    pub key__nire: Option<Vec<String>>,
+    pub key__nisw: Option<Vec<String>>,
+    pub key__nre: Option<Vec<String>>,
+    pub key__re: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub template: Option<Vec<String>>,
+    pub template__ic: Option<Vec<String>>,
+    pub template__ie: Option<Vec<String>>,
+    pub template__iew: Option<Vec<String>>,
+    pub template__ire: Option<Vec<String>>,
+    pub template__isw: Option<Vec<String>>,
+    pub template__n: Option<Vec<String>>,
+    pub template__nic: Option<Vec<String>>,
+    pub template__nie: Option<Vec<String>>,
+    pub template__niew: Option<Vec<String>>,
+    pub template__nire: Option<Vec<String>>,
+    pub template__nisw: Option<Vec<String>>,
+    pub template__nre: Option<Vec<String>>,
+    pub template__re: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsNotesCreateParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsNotesListParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsPartialUpdateParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_writable_computed_field_request:
+        Option<crate::models::PatchedWritableComputedFieldRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsRetrieveParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_computed_fields_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasComputedFieldsUpdateParams {
+    /// A UUID string identifying this computed field.
+    pub id: String,
+    pub writable_computed_field_request: crate::models::WritableComputedFieldRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasBulkPartialUpdateParams {
+    pub patched_bulk_writable_config_context_schema_request:
+        Vec<crate::models::PatchedBulkWritableConfigContextSchemaRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasBulkUpdateParams {
+    pub bulk_writable_config_context_schema_request:
+        Vec<crate::models::BulkWritableConfigContextSchemaRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasCreateParams {
+    pub config_context_schema_request: crate::models::ConfigContextSchemaRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasDestroyParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub owner_content_type: Option<String>,
+    pub owner_content_type__isnull: Option<bool>,
+    pub owner_content_type__n: Option<String>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasNotesCreateParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasNotesListParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasPartialUpdateParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_config_context_schema_request:
+        Option<crate::models::PatchedConfigContextSchemaRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasRetrieveParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_context_schemas_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextSchemasUpdateParams {
+    /// A UUID string identifying this config context schema.
+    pub id: String,
+    pub config_context_schema_request: crate::models::ConfigContextSchemaRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsBulkPartialUpdateParams {
+    pub patched_bulk_writable_config_context_request:
+        Vec<crate::models::PatchedBulkWritableConfigContextRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsBulkUpdateParams {
+    pub bulk_writable_config_context_request: Vec<crate::models::BulkWritableConfigContextRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsCreateParams {
+    pub config_context_request: crate::models::ConfigContextRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsDestroyParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsListParams {
+    pub cluster_group: Option<Vec<String>>,
+    pub cluster_group__n: Option<Vec<String>>,
+    /// Cluster group (ID) - Deprecated (use cluster_group filter)
+    pub cluster_group_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Cluster group (ID) - Deprecated (use cluster_group filter)
+    pub cluster_group_id__n: Option<Vec<uuid::Uuid>>,
+    /// Cluster (ID)
+    pub cluster_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Cluster (ID)
+    pub cluster_id__n: Option<Vec<uuid::Uuid>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub device_family: Option<Vec<String>>,
+    pub device_family__n: Option<Vec<String>>,
+    pub device_redundancy_group: Option<Vec<String>>,
+    pub device_redundancy_group__n: Option<Vec<String>>,
+    pub device_type: Option<Vec<String>>,
+    pub device_type__n: Option<Vec<String>>,
+    /// Device Type (ID) - Deprecated (use device_type filter)
+    pub device_type_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Device Type (ID) - Deprecated (use device_type filter)
+    pub device_type_id__n: Option<Vec<uuid::Uuid>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub is_active: Option<bool>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    pub location__n: Option<Vec<String>>,
+    /// Location (ID) - Deprecated (use location filter)
+    pub location_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Location (ID) - Deprecated (use location filter)
+    pub location_id__n: Option<Vec<uuid::Uuid>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub owner_content_type: Option<String>,
+    pub owner_content_type__isnull: Option<bool>,
+    pub owner_content_type__n: Option<String>,
+    pub owner_object_id: Option<Vec<uuid::Uuid>>,
+    pub owner_object_id__isnull: Option<bool>,
+    pub owner_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub platform: Option<Vec<String>>,
+    pub platform__n: Option<Vec<String>>,
+    /// Platform (ID) - Deprecated (use platform filter)
+    pub platform_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Platform (ID) - Deprecated (use platform filter)
+    pub platform_id__n: Option<Vec<uuid::Uuid>>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__n: Option<Vec<String>>,
+    pub schema: Option<Vec<String>>,
+    /// Schema (name or PK) is null
+    pub schema__isnull: Option<bool>,
+    pub schema__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tag: Option<Vec<String>>,
+    pub tag__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant group (ID) - Deprecated (use tenant_group filter)
+    pub tenant_group_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Tenant group (ID) - Deprecated (use tenant_group filter)
+    pub tenant_group_id__n: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) - Deprecated (use tenant filter)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Tenant (ID) - Deprecated (use tenant filter)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsNotesCreateParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsNotesListParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsPartialUpdateParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_config_context_request: Option<crate::models::PatchedConfigContextRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsRetrieveParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_config_contexts_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasConfigContextsUpdateParams {
+    /// A UUID string identifying this config context.
+    pub id: String,
+    pub config_context_request: crate::models::ConfigContextRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_contact_association_request:
+        Vec<crate::models::PatchedBulkWritableContactAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsBulkUpdateParams {
+    pub bulk_writable_contact_association_request:
+        Vec<crate::models::BulkWritableContactAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsCreateParams {
+    pub contact_association_request: crate::models::ContactAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsDestroyParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsListParams {
+    pub associated_object_id: Option<Vec<uuid::Uuid>>,
+    pub associated_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub associated_object_type: Option<String>,
+    pub associated_object_type__isnull: Option<bool>,
+    pub associated_object_type__n: Option<String>,
+    pub contact: Option<Vec<String>>,
+    /// Contact (name or ID) is null
+    pub contact__isnull: Option<bool>,
+    pub contact__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    pub role__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub team: Option<Vec<String>>,
+    /// Team (name or ID) is null
+    pub team__isnull: Option<bool>,
+    pub team__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsNotesCreateParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsNotesListParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsPartialUpdateParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_contact_association_request:
+        Option<crate::models::PatchedContactAssociationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsRetrieveParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contact_associations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactAssociationsUpdateParams {
+    /// A UUID string identifying this contact association.
+    pub id: String,
+    pub contact_association_request: crate::models::ContactAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsBulkPartialUpdateParams {
+    pub patched_bulk_writable_contact_request:
+        Vec<crate::models::PatchedBulkWritableContactRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsBulkUpdateParams {
+    pub bulk_writable_contact_request: Vec<crate::models::BulkWritableContactRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsCreateParams {
+    pub contact_request: crate::models::ContactRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsDestroyParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsListParams {
+    pub address: Option<Vec<String>>,
+    pub address__ic: Option<Vec<String>>,
+    pub address__ie: Option<Vec<String>>,
+    pub address__iew: Option<Vec<String>>,
+    pub address__ire: Option<Vec<String>>,
+    pub address__isw: Option<Vec<String>>,
+    pub address__n: Option<Vec<String>>,
+    pub address__nic: Option<Vec<String>>,
+    pub address__nie: Option<Vec<String>>,
+    pub address__niew: Option<Vec<String>>,
+    pub address__nire: Option<Vec<String>>,
+    pub address__nisw: Option<Vec<String>>,
+    pub address__nre: Option<Vec<String>>,
+    pub address__re: Option<Vec<String>>,
+    pub comments: Option<Vec<String>>,
+    pub comments__ic: Option<Vec<String>>,
+    pub comments__ie: Option<Vec<String>>,
+    pub comments__iew: Option<Vec<String>>,
+    pub comments__ire: Option<Vec<String>>,
+    pub comments__isw: Option<Vec<String>>,
+    pub comments__n: Option<Vec<String>>,
+    pub comments__nic: Option<Vec<String>>,
+    pub comments__nie: Option<Vec<String>>,
+    pub comments__niew: Option<Vec<String>>,
+    pub comments__nire: Option<Vec<String>>,
+    pub comments__nisw: Option<Vec<String>>,
+    pub comments__nre: Option<Vec<String>>,
+    pub comments__re: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub email: Option<Vec<String>>,
+    pub email__ic: Option<Vec<String>>,
+    pub email__ie: Option<Vec<String>>,
+    pub email__iew: Option<Vec<String>>,
+    pub email__ire: Option<Vec<String>>,
+    pub email__isw: Option<Vec<String>>,
+    pub email__n: Option<Vec<String>>,
+    pub email__nic: Option<Vec<String>>,
+    pub email__nie: Option<Vec<String>>,
+    pub email__niew: Option<Vec<String>>,
+    pub email__nire: Option<Vec<String>>,
+    pub email__nisw: Option<Vec<String>>,
+    pub email__nre: Option<Vec<String>>,
+    pub email__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub phone: Option<Vec<String>>,
+    pub phone__ic: Option<Vec<String>>,
+    pub phone__ie: Option<Vec<String>>,
+    pub phone__iew: Option<Vec<String>>,
+    pub phone__ire: Option<Vec<String>>,
+    pub phone__isw: Option<Vec<String>>,
+    pub phone__n: Option<Vec<String>>,
+    pub phone__nic: Option<Vec<String>>,
+    pub phone__nie: Option<Vec<String>>,
+    pub phone__niew: Option<Vec<String>>,
+    pub phone__nire: Option<Vec<String>>,
+    pub phone__nisw: Option<Vec<String>>,
+    pub phone__nre: Option<Vec<String>>,
+    pub phone__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub similar_to_location_data: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Team (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsNotesCreateParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsNotesListParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsPartialUpdateParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_contact_request: Option<crate::models::PatchedContactRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsRetrieveParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_contacts_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContactsUpdateParams {
+    /// A UUID string identifying this contact.
+    pub id: String,
+    pub contact_request: crate::models::ContactRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_content_types_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContentTypesListParams {
+    pub app_label: Option<Vec<String>>,
+    pub app_label__ic: Option<Vec<String>>,
+    pub app_label__ie: Option<Vec<String>>,
+    pub app_label__iew: Option<Vec<String>>,
+    pub app_label__ire: Option<Vec<String>>,
+    pub app_label__isw: Option<Vec<String>>,
+    pub app_label__n: Option<Vec<String>>,
+    pub app_label__nic: Option<Vec<String>>,
+    pub app_label__nie: Option<Vec<String>>,
+    pub app_label__niew: Option<Vec<String>>,
+    pub app_label__nire: Option<Vec<String>>,
+    pub app_label__nisw: Option<Vec<String>>,
+    pub app_label__nre: Option<Vec<String>>,
+    pub app_label__re: Option<Vec<String>>,
+    /// User can add objects of this type
+    pub can_add: Option<bool>,
+    /// User can change objects of this type
+    pub can_change: Option<bool>,
+    /// User can delete objects of this type
+    pub can_delete: Option<bool>,
+    /// User can view objects of this type
+    pub can_view: Option<bool>,
+    /// Objects of this type support the named feature
+    pub feature: Option<String>,
+    pub format: Option<String>,
+    /// A REST API serializer exists for this type
+    pub has_serializer: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<i32>>,
+    pub id__gt: Option<Vec<i32>>,
+    pub id__gte: Option<Vec<i32>>,
+    pub id__lt: Option<Vec<i32>>,
+    pub id__lte: Option<Vec<i32>>,
+    pub id__n: Option<Vec<i32>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub model: Option<Vec<String>>,
+    pub model__ic: Option<Vec<String>>,
+    pub model__ie: Option<Vec<String>>,
+    pub model__iew: Option<Vec<String>>,
+    pub model__ire: Option<Vec<String>>,
+    pub model__isw: Option<Vec<String>>,
+    pub model__n: Option<Vec<String>>,
+    pub model__nic: Option<Vec<String>>,
+    pub model__nie: Option<Vec<String>>,
+    pub model__niew: Option<Vec<String>>,
+    pub model__nire: Option<Vec<String>>,
+    pub model__nisw: Option<Vec<String>>,
+    pub model__nre: Option<Vec<String>>,
+    pub model__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_content_types_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasContentTypesRetrieveParams {
+    /// A unique integer value identifying this content type.
+    pub id: i32,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesBulkPartialUpdateParams {
+    pub patched_bulk_writable_custom_field_choice_request:
+        Vec<crate::models::PatchedBulkWritableCustomFieldChoiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesBulkUpdateParams {
+    pub bulk_writable_custom_field_choice_request:
+        Vec<crate::models::BulkWritableCustomFieldChoiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesCreateParams {
+    pub custom_field_choice_request: crate::models::CustomFieldChoiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesDestroyParams {
+    /// A UUID string identifying this custom field choice.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesListParams {
+    pub custom_field: Option<Vec<String>>,
+    pub custom_field__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub value: Option<Vec<String>>,
+    pub value__ic: Option<Vec<String>>,
+    pub value__ie: Option<Vec<String>>,
+    pub value__iew: Option<Vec<String>>,
+    pub value__ire: Option<Vec<String>>,
+    pub value__isw: Option<Vec<String>>,
+    pub value__n: Option<Vec<String>>,
+    pub value__nic: Option<Vec<String>>,
+    pub value__nie: Option<Vec<String>>,
+    pub value__niew: Option<Vec<String>>,
+    pub value__nire: Option<Vec<String>>,
+    pub value__nisw: Option<Vec<String>>,
+    pub value__nre: Option<Vec<String>>,
+    pub value__re: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesPartialUpdateParams {
+    /// A UUID string identifying this custom field choice.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_custom_field_choice_request: Option<crate::models::PatchedCustomFieldChoiceRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesRetrieveParams {
+    /// A UUID string identifying this custom field choice.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_field_choices_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldChoicesUpdateParams {
+    /// A UUID string identifying this custom field choice.
+    pub id: String,
+    pub custom_field_choice_request: crate::models::CustomFieldChoiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsBulkPartialUpdateParams {
+    pub patched_bulk_writable_custom_field_request:
+        Vec<crate::models::PatchedBulkWritableCustomFieldRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsBulkUpdateParams {
+    pub bulk_writable_custom_field_request: Vec<crate::models::BulkWritableCustomFieldRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsCreateParams {
+    pub writable_custom_field_request: crate::models::WritableCustomFieldRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsDestroyParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    /// Loose matches any instance of a given string; Exact matches the entire field.  
+    pub filter_logic: Option<Vec<String>>,
+    pub filter_logic__ic: Option<Vec<String>>,
+    pub filter_logic__ie: Option<Vec<String>>,
+    pub filter_logic__iew: Option<Vec<String>>,
+    pub filter_logic__ire: Option<Vec<String>>,
+    pub filter_logic__isw: Option<Vec<String>>,
+    pub filter_logic__n: Option<Vec<String>>,
+    pub filter_logic__nic: Option<Vec<String>>,
+    pub filter_logic__nie: Option<Vec<String>>,
+    pub filter_logic__niew: Option<Vec<String>>,
+    pub filter_logic__nire: Option<Vec<String>>,
+    pub filter_logic__nisw: Option<Vec<String>>,
+    pub filter_logic__nre: Option<Vec<String>>,
+    pub filter_logic__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub grouping: Option<Vec<String>>,
+    pub grouping__ic: Option<Vec<String>>,
+    pub grouping__ie: Option<Vec<String>>,
+    pub grouping__iew: Option<Vec<String>>,
+    pub grouping__ire: Option<Vec<String>>,
+    pub grouping__isw: Option<Vec<String>>,
+    pub grouping__n: Option<Vec<String>>,
+    pub grouping__nic: Option<Vec<String>>,
+    pub grouping__nie: Option<Vec<String>>,
+    pub grouping__niew: Option<Vec<String>>,
+    pub grouping__nire: Option<Vec<String>>,
+    pub grouping__nisw: Option<Vec<String>>,
+    pub grouping__nre: Option<Vec<String>>,
+    pub grouping__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub label: Option<Vec<String>>,
+    pub label__ic: Option<Vec<String>>,
+    pub label__ie: Option<Vec<String>>,
+    pub label__iew: Option<Vec<String>>,
+    pub label__ire: Option<Vec<String>>,
+    pub label__isw: Option<Vec<String>>,
+    pub label__n: Option<Vec<String>>,
+    pub label__nic: Option<Vec<String>>,
+    pub label__nie: Option<Vec<String>>,
+    pub label__niew: Option<Vec<String>>,
+    pub label__nire: Option<Vec<String>>,
+    pub label__nisw: Option<Vec<String>>,
+    pub label__nre: Option<Vec<String>>,
+    pub label__re: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub required: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsNotesCreateParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsNotesListParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsPartialUpdateParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_writable_custom_field_request:
+        Option<crate::models::PatchedWritableCustomFieldRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsRetrieveParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_fields_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomFieldsUpdateParams {
+    /// A UUID string identifying this custom field.
+    pub id: String,
+    pub writable_custom_field_request: crate::models::WritableCustomFieldRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksBulkPartialUpdateParams {
+    pub patched_bulk_writable_custom_link_request:
+        Vec<crate::models::PatchedBulkWritableCustomLinkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksBulkUpdateParams {
+    pub bulk_writable_custom_link_request: Vec<crate::models::BulkWritableCustomLinkRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksCreateParams {
+    pub custom_link_request: crate::models::CustomLinkRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksDestroyParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksListParams {
+    /// The class of the first link in a group will be used for the dropdown button  
+    pub button_class: Option<Vec<String>>,
+    pub button_class__ic: Option<Vec<String>>,
+    pub button_class__ie: Option<Vec<String>>,
+    pub button_class__iew: Option<Vec<String>>,
+    pub button_class__ire: Option<Vec<String>>,
+    pub button_class__isw: Option<Vec<String>>,
+    pub button_class__n: Option<Vec<String>>,
+    pub button_class__nic: Option<Vec<String>>,
+    pub button_class__nie: Option<Vec<String>>,
+    pub button_class__niew: Option<Vec<String>>,
+    pub button_class__nire: Option<Vec<String>>,
+    pub button_class__nisw: Option<Vec<String>>,
+    pub button_class__nre: Option<Vec<String>>,
+    pub button_class__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<String>,
+    pub content_type__n: Option<String>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub group_name: Option<Vec<String>>,
+    pub group_name__ic: Option<Vec<String>>,
+    pub group_name__ie: Option<Vec<String>>,
+    pub group_name__iew: Option<Vec<String>>,
+    pub group_name__ire: Option<Vec<String>>,
+    pub group_name__isw: Option<Vec<String>>,
+    pub group_name__n: Option<Vec<String>>,
+    pub group_name__nic: Option<Vec<String>>,
+    pub group_name__nie: Option<Vec<String>>,
+    pub group_name__niew: Option<Vec<String>>,
+    pub group_name__nire: Option<Vec<String>>,
+    pub group_name__nisw: Option<Vec<String>>,
+    pub group_name__nre: Option<Vec<String>>,
+    pub group_name__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub new_window: Option<bool>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub target_url: Option<Vec<String>>,
+    pub target_url__ic: Option<Vec<String>>,
+    pub target_url__ie: Option<Vec<String>>,
+    pub target_url__iew: Option<Vec<String>>,
+    pub target_url__ire: Option<Vec<String>>,
+    pub target_url__isw: Option<Vec<String>>,
+    pub target_url__n: Option<Vec<String>>,
+    pub target_url__nic: Option<Vec<String>>,
+    pub target_url__nie: Option<Vec<String>>,
+    pub target_url__niew: Option<Vec<String>>,
+    pub target_url__nire: Option<Vec<String>>,
+    pub target_url__nisw: Option<Vec<String>>,
+    pub target_url__nre: Option<Vec<String>>,
+    pub target_url__re: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub text: Option<Vec<String>>,
+    pub text__ic: Option<Vec<String>>,
+    pub text__ie: Option<Vec<String>>,
+    pub text__iew: Option<Vec<String>>,
+    pub text__ire: Option<Vec<String>>,
+    pub text__isw: Option<Vec<String>>,
+    pub text__n: Option<Vec<String>>,
+    pub text__nic: Option<Vec<String>>,
+    pub text__nie: Option<Vec<String>>,
+    pub text__niew: Option<Vec<String>>,
+    pub text__nire: Option<Vec<String>>,
+    pub text__nisw: Option<Vec<String>>,
+    pub text__nre: Option<Vec<String>>,
+    pub text__re: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksNotesCreateParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksNotesListParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksPartialUpdateParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_custom_link_request: Option<crate::models::PatchedCustomLinkRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksRetrieveParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_custom_links_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasCustomLinksUpdateParams {
+    /// A UUID string identifying this custom link.
+    pub id: String,
+    pub custom_link_request: crate::models::CustomLinkRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsBulkPartialUpdateParams {
+    pub patched_bulk_writable_dynamic_group_membership_request:
+        Vec<crate::models::PatchedBulkWritableDynamicGroupMembershipRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsBulkUpdateParams {
+    pub bulk_writable_dynamic_group_membership_request:
+        Vec<crate::models::BulkWritableDynamicGroupMembershipRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsCreateParams {
+    pub dynamic_group_membership_request: crate::models::DynamicGroupMembershipRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsDestroyParams {
+    /// A UUID string identifying this dynamic group membership.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub group: Option<Vec<String>>,
+    pub group__n: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub operator: Option<Vec<String>>,
+    pub operator__ic: Option<Vec<String>>,
+    pub operator__ie: Option<Vec<String>>,
+    pub operator__iew: Option<Vec<String>>,
+    pub operator__ire: Option<Vec<String>>,
+    pub operator__isw: Option<Vec<String>>,
+    pub operator__n: Option<Vec<String>>,
+    pub operator__nic: Option<Vec<String>>,
+    pub operator__nie: Option<Vec<String>>,
+    pub operator__niew: Option<Vec<String>>,
+    pub operator__nire: Option<Vec<String>>,
+    pub operator__nisw: Option<Vec<String>>,
+    pub operator__nre: Option<Vec<String>>,
+    pub operator__re: Option<Vec<String>>,
+    pub parent_group: Option<Vec<String>>,
+    pub parent_group__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsPartialUpdateParams {
+    /// A UUID string identifying this dynamic group membership.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_dynamic_group_membership_request:
+        Option<crate::models::PatchedDynamicGroupMembershipRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsRetrieveParams {
+    /// A UUID string identifying this dynamic group membership.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_group_memberships_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupMembershipsUpdateParams {
+    /// A UUID string identifying this dynamic group membership.
+    pub id: String,
+    pub dynamic_group_membership_request: crate::models::DynamicGroupMembershipRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsBulkPartialUpdateParams {
+    pub patched_bulk_writable_dynamic_group_request:
+        Vec<crate::models::PatchedBulkWritableDynamicGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsBulkUpdateParams {
+    pub bulk_writable_dynamic_group_request: Vec<crate::models::BulkWritableDynamicGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsCreateParams {
+    pub dynamic_group_request: crate::models::DynamicGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsDestroyParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsListParams {
+    pub ancestors: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<Vec<i32>>,
+    pub content_type__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub descendants: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub group_type: Option<Vec<String>>,
+    pub group_type__ic: Option<Vec<String>>,
+    pub group_type__ie: Option<Vec<String>>,
+    pub group_type__iew: Option<Vec<String>>,
+    pub group_type__ire: Option<Vec<String>>,
+    pub group_type__isw: Option<Vec<String>>,
+    pub group_type__n: Option<Vec<String>>,
+    pub group_type__nic: Option<Vec<String>>,
+    pub group_type__nie: Option<Vec<String>>,
+    pub group_type__niew: Option<Vec<String>>,
+    pub group_type__nire: Option<Vec<String>>,
+    pub group_type__nisw: Option<Vec<String>>,
+    pub group_type__nre: Option<Vec<String>>,
+    pub group_type__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// Group member ID
+    pub member_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Group member ID
+    pub member_id__n: Option<Vec<uuid::Uuid>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_members_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsMembersRetrieveParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsNotesCreateParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsNotesListParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsPartialUpdateParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_dynamic_group_request: Option<crate::models::PatchedDynamicGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsRetrieveParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_dynamic_groups_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasDynamicGroupsUpdateParams {
+    /// A UUID string identifying this dynamic group.
+    pub id: String,
+    pub dynamic_group_request: crate::models::DynamicGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesBulkPartialUpdateParams {
+    pub patched_bulk_writable_export_template_request:
+        Vec<crate::models::PatchedBulkWritableExportTemplateRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesBulkUpdateParams {
+    pub bulk_writable_export_template_request:
+        Vec<crate::models::BulkWritableExportTemplateRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesCreateParams {
+    pub export_template_request: crate::models::ExportTemplateRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesDestroyParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<String>,
+    pub content_type__n: Option<String>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub owner_content_type: Option<String>,
+    pub owner_content_type__isnull: Option<bool>,
+    pub owner_content_type__n: Option<String>,
+    pub owner_object_id: Option<Vec<uuid::Uuid>>,
+    pub owner_object_id__isnull: Option<bool>,
+    pub owner_object_id__n: Option<Vec<uuid::Uuid>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesNotesCreateParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesNotesListParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesPartialUpdateParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_export_template_request: Option<crate::models::PatchedExportTemplateRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesRetrieveParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_export_templates_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExportTemplatesUpdateParams {
+    /// A UUID string identifying this export template.
+    pub id: String,
+    pub export_template_request: crate::models::ExportTemplateRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_external_integration_request:
+        Vec<crate::models::PatchedBulkWritableExternalIntegrationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsBulkUpdateParams {
+    pub bulk_writable_external_integration_request:
+        Vec<crate::models::BulkWritableExternalIntegrationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsCreateParams {
+    pub external_integration_request: crate::models::ExternalIntegrationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsDestroyParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsListParams {
+    pub ca_file_path: Option<Vec<String>>,
+    pub ca_file_path__ic: Option<Vec<String>>,
+    pub ca_file_path__ie: Option<Vec<String>>,
+    pub ca_file_path__iew: Option<Vec<String>>,
+    pub ca_file_path__ire: Option<Vec<String>>,
+    pub ca_file_path__isw: Option<Vec<String>>,
+    pub ca_file_path__n: Option<Vec<String>>,
+    pub ca_file_path__nic: Option<Vec<String>>,
+    pub ca_file_path__nie: Option<Vec<String>>,
+    pub ca_file_path__niew: Option<Vec<String>>,
+    pub ca_file_path__nire: Option<Vec<String>>,
+    pub ca_file_path__nisw: Option<Vec<String>>,
+    pub ca_file_path__nre: Option<Vec<String>>,
+    pub ca_file_path__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub extra_config: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has secrets group
+    pub has_secrets_group: Option<bool>,
+    pub headers: Option<Vec<String>>,
+    pub http_method: Option<Vec<String>>,
+    pub http_method__ic: Option<Vec<String>>,
+    pub http_method__ie: Option<Vec<String>>,
+    pub http_method__iew: Option<Vec<String>>,
+    pub http_method__ire: Option<Vec<String>>,
+    pub http_method__isw: Option<Vec<String>>,
+    pub http_method__n: Option<Vec<String>>,
+    pub http_method__nic: Option<Vec<String>>,
+    pub http_method__nie: Option<Vec<String>>,
+    pub http_method__niew: Option<Vec<String>>,
+    pub http_method__nire: Option<Vec<String>>,
+    pub http_method__nisw: Option<Vec<String>>,
+    pub http_method__nre: Option<Vec<String>>,
+    pub http_method__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub remote_url: Option<Vec<String>>,
+    pub remote_url__ic: Option<Vec<String>>,
+    pub remote_url__ie: Option<Vec<String>>,
+    pub remote_url__iew: Option<Vec<String>>,
+    pub remote_url__ire: Option<Vec<String>>,
+    pub remote_url__isw: Option<Vec<String>>,
+    pub remote_url__n: Option<Vec<String>>,
+    pub remote_url__nic: Option<Vec<String>>,
+    pub remote_url__nie: Option<Vec<String>>,
+    pub remote_url__niew: Option<Vec<String>>,
+    pub remote_url__nire: Option<Vec<String>>,
+    pub remote_url__nisw: Option<Vec<String>>,
+    pub remote_url__nre: Option<Vec<String>>,
+    pub remote_url__re: Option<Vec<String>>,
+    pub secrets_group: Option<Vec<String>>,
+    /// Secrets group (ID or name) is null
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub timeout: Option<Vec<i32>>,
+    pub timeout__gt: Option<Vec<i32>>,
+    pub timeout__gte: Option<Vec<i32>>,
+    pub timeout__lt: Option<Vec<i32>>,
+    pub timeout__lte: Option<Vec<i32>>,
+    pub timeout__n: Option<Vec<i32>>,
+    pub verify_ssl: Option<bool>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsNotesCreateParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsNotesListParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsPartialUpdateParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_external_integration_request:
+        Option<crate::models::PatchedExternalIntegrationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsRetrieveParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_external_integrations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasExternalIntegrationsUpdateParams {
+    /// A UUID string identifying this external integration.
+    pub id: String,
+    pub external_integration_request: crate::models::ExternalIntegrationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_file_proxies_download_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasFileProxiesDownloadRetrieveParams {
+    /// A UUID string identifying this file proxy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_file_proxies_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasFileProxiesListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job: Option<Vec<String>>,
+    /// Job (name or ID) is null
+    pub job__isnull: Option<bool>,
+    pub job__n: Option<Vec<String>>,
+    /// Job Result (ID)
+    pub job_result_id: Option<Vec<uuid::Uuid>>,
+    /// Job Result (ID) is null
+    pub job_result_id__isnull: Option<bool>,
+    /// Exclude Job Result (ID)
+    pub job_result_id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub uploaded_at: Option<Vec<String>>,
+    pub uploaded_at__gt: Option<Vec<String>>,
+    pub uploaded_at__gte: Option<Vec<String>>,
+    pub uploaded_at__lt: Option<Vec<String>>,
+    pub uploaded_at__lte: Option<Vec<String>>,
+    pub uploaded_at__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_file_proxies_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasFileProxiesRetrieveParams {
+    /// A UUID string identifying this file proxy.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesBulkPartialUpdateParams {
+    pub patched_bulk_writable_git_repository_request:
+        Vec<crate::models::PatchedBulkWritableGitRepositoryRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesBulkUpdateParams {
+    pub bulk_writable_git_repository_request: Vec<crate::models::BulkWritableGitRepositoryRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesCreateParams {
+    pub git_repository_request: crate::models::GitRepositoryRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesDestroyParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesListParams {
+    pub branch: Option<Vec<String>>,
+    pub branch__ic: Option<Vec<String>>,
+    pub branch__ie: Option<Vec<String>>,
+    pub branch__iew: Option<Vec<String>>,
+    pub branch__ire: Option<Vec<String>>,
+    pub branch__isw: Option<Vec<String>>,
+    pub branch__n: Option<Vec<String>>,
+    pub branch__nic: Option<Vec<String>>,
+    pub branch__nie: Option<Vec<String>>,
+    pub branch__niew: Option<Vec<String>>,
+    pub branch__nire: Option<Vec<String>>,
+    pub branch__nisw: Option<Vec<String>>,
+    pub branch__nre: Option<Vec<String>>,
+    pub branch__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub provided_contents: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub remote_url: Option<Vec<String>>,
+    pub remote_url__ic: Option<Vec<String>>,
+    pub remote_url__ie: Option<Vec<String>>,
+    pub remote_url__iew: Option<Vec<String>>,
+    pub remote_url__ire: Option<Vec<String>>,
+    pub remote_url__isw: Option<Vec<String>>,
+    pub remote_url__n: Option<Vec<String>>,
+    pub remote_url__nic: Option<Vec<String>>,
+    pub remote_url__nie: Option<Vec<String>>,
+    pub remote_url__niew: Option<Vec<String>>,
+    pub remote_url__nire: Option<Vec<String>>,
+    pub remote_url__nisw: Option<Vec<String>>,
+    pub remote_url__nre: Option<Vec<String>>,
+    pub remote_url__re: Option<Vec<String>>,
+    pub secrets_group: Option<Vec<String>>,
+    /// Secrets group (ID or name) is null
+    pub secrets_group__isnull: Option<bool>,
+    pub secrets_group__n: Option<Vec<String>>,
+    /// Secrets group (ID) - Deprecated (use secrets_group filter)
+    pub secrets_group_id: Option<Vec<uuid::Uuid>>,
+    /// Secrets group (ID) - Deprecated (use secrets_group filter) is null
+    pub secrets_group_id__isnull: Option<bool>,
+    /// Exclude Secrets group (ID) - Deprecated (use secrets_group filter)
+    pub secrets_group_id__n: Option<Vec<uuid::Uuid>>,
+    pub slug: Option<Vec<String>>,
+    pub slug__ic: Option<Vec<String>>,
+    pub slug__ie: Option<Vec<String>>,
+    pub slug__iew: Option<Vec<String>>,
+    pub slug__ire: Option<Vec<String>>,
+    pub slug__isw: Option<Vec<String>>,
+    pub slug__n: Option<Vec<String>>,
+    pub slug__nic: Option<Vec<String>>,
+    pub slug__nie: Option<Vec<String>>,
+    pub slug__niew: Option<Vec<String>>,
+    pub slug__nire: Option<Vec<String>>,
+    pub slug__nisw: Option<Vec<String>>,
+    pub slug__nre: Option<Vec<String>>,
+    pub slug__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesNotesCreateParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesNotesListParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesPartialUpdateParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_git_repository_request: Option<crate::models::PatchedGitRepositoryRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesRetrieveParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_sync_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesSyncCreateParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_git_repositories_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGitRepositoriesUpdateParams {
+    /// A UUID string identifying this Git repository.
+    pub id: String,
+    pub git_repository_request: crate::models::GitRepositoryRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesBulkPartialUpdateParams {
+    pub patched_bulk_writable_graph_ql_query_request:
+        Vec<crate::models::PatchedBulkWritableGraphQlQueryRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesBulkUpdateParams {
+    pub bulk_writable_graph_ql_query_request: Vec<crate::models::BulkWritableGraphQlQueryRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesCreateParams {
+    pub graph_ql_query_request: crate::models::GraphQlQueryRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesDestroyParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesNotesCreateParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesNotesListParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesPartialUpdateParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_graph_ql_query_request: Option<crate::models::PatchedGraphQlQueryRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesRetrieveParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_run_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesRunCreateParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub format: Option<String>,
+    pub graph_ql_query_input_request: Option<crate::models::GraphQlQueryInputRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_graphql_queries_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasGraphqlQueriesUpdateParams {
+    /// A UUID string identifying this GraphQL query.
+    pub id: String,
+    pub graph_ql_query_request: crate::models::GraphQlQueryRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_image_attachment_request:
+        Vec<crate::models::PatchedBulkWritableImageAttachmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsBulkUpdateParams {
+    pub bulk_writable_image_attachment_request:
+        Vec<crate::models::BulkWritableImageAttachmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsCreateParams {
+    pub image_attachment_request: crate::models::ImageAttachmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsDestroyParams {
+    /// A UUID string identifying this image attachment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsListParams {
+    pub content_type: Option<String>,
+    pub content_type__n: Option<String>,
+    pub content_type_id: Option<Vec<i32>>,
+    pub content_type_id__n: Option<Vec<i32>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub object_id: Option<Vec<uuid::Uuid>>,
+    pub object_id__n: Option<Vec<uuid::Uuid>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsPartialUpdateParams {
+    /// A UUID string identifying this image attachment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_image_attachment_request: Option<crate::models::PatchedImageAttachmentRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsRetrieveParams {
+    /// A UUID string identifying this image attachment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_image_attachments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasImageAttachmentsUpdateParams {
+    /// A UUID string identifying this image attachment.
+    pub id: String,
+    pub image_attachment_request: crate::models::ImageAttachmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsBulkPartialUpdateParams {
+    pub patched_bulk_writable_job_button_request:
+        Vec<crate::models::PatchedBulkWritableJobButtonRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsBulkUpdateParams {
+    pub bulk_writable_job_button_request: Vec<crate::models::BulkWritableJobButtonRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsCreateParams {
+    pub job_button_request: crate::models::JobButtonRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsDestroyParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsListParams {
+    pub button_class: Option<Vec<String>>,
+    pub button_class__ic: Option<Vec<String>>,
+    pub button_class__ie: Option<Vec<String>>,
+    pub button_class__iew: Option<Vec<String>>,
+    pub button_class__ire: Option<Vec<String>>,
+    pub button_class__isw: Option<Vec<String>>,
+    pub button_class__n: Option<Vec<String>>,
+    pub button_class__nic: Option<Vec<String>>,
+    pub button_class__nie: Option<Vec<String>>,
+    pub button_class__niew: Option<Vec<String>>,
+    pub button_class__nire: Option<Vec<String>>,
+    pub button_class__nisw: Option<Vec<String>>,
+    pub button_class__nre: Option<Vec<String>>,
+    pub button_class__re: Option<Vec<String>>,
+    pub confirmation: Option<bool>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<String>,
+    pub content_types__n: Option<String>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    pub group_name: Option<Vec<String>>,
+    pub group_name__ic: Option<Vec<String>>,
+    pub group_name__ie: Option<Vec<String>>,
+    pub group_name__iew: Option<Vec<String>>,
+    pub group_name__ire: Option<Vec<String>>,
+    pub group_name__isw: Option<Vec<String>>,
+    pub group_name__n: Option<Vec<String>>,
+    pub group_name__nic: Option<Vec<String>>,
+    pub group_name__nie: Option<Vec<String>>,
+    pub group_name__niew: Option<Vec<String>>,
+    pub group_name__nire: Option<Vec<String>>,
+    pub group_name__nisw: Option<Vec<String>>,
+    pub group_name__nre: Option<Vec<String>>,
+    pub group_name__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job: Option<Vec<String>>,
+    pub job__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub text: Option<Vec<String>>,
+    pub text__ic: Option<Vec<String>>,
+    pub text__ie: Option<Vec<String>>,
+    pub text__iew: Option<Vec<String>>,
+    pub text__ire: Option<Vec<String>>,
+    pub text__isw: Option<Vec<String>>,
+    pub text__n: Option<Vec<String>>,
+    pub text__nic: Option<Vec<String>>,
+    pub text__nie: Option<Vec<String>>,
+    pub text__niew: Option<Vec<String>>,
+    pub text__nire: Option<Vec<String>>,
+    pub text__nisw: Option<Vec<String>>,
+    pub text__nre: Option<Vec<String>>,
+    pub text__re: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsNotesCreateParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsNotesListParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsPartialUpdateParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_job_button_request: Option<crate::models::PatchedJobButtonRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsRetrieveParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_buttons_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobButtonsUpdateParams {
+    /// A UUID string identifying this job button.
+    pub id: String,
+    pub job_button_request: crate::models::JobButtonRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksBulkPartialUpdateParams {
+    pub patched_bulk_writable_job_hook_request:
+        Vec<crate::models::PatchedBulkWritableJobHookRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksBulkUpdateParams {
+    pub bulk_writable_job_hook_request: Vec<crate::models::BulkWritableJobHookRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksCreateParams {
+    pub job_hook_request: crate::models::JobHookRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksDestroyParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job: Option<Vec<String>>,
+    pub job__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub type_create: Option<bool>,
+    pub type_delete: Option<bool>,
+    pub type_update: Option<bool>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksNotesCreateParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksNotesListParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksPartialUpdateParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_job_hook_request: Option<crate::models::PatchedJobHookRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksRetrieveParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_hooks_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobHooksUpdateParams {
+    /// A UUID string identifying this job hook.
+    pub id: String,
+    pub job_hook_request: crate::models::JobHookRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_logs_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobLogsListParams {
+    pub absolute_url: Option<Vec<String>>,
+    pub absolute_url__ic: Option<Vec<String>>,
+    pub absolute_url__ie: Option<Vec<String>>,
+    pub absolute_url__iew: Option<Vec<String>>,
+    pub absolute_url__ire: Option<Vec<String>>,
+    pub absolute_url__isw: Option<Vec<String>>,
+    pub absolute_url__n: Option<Vec<String>>,
+    pub absolute_url__nic: Option<Vec<String>>,
+    pub absolute_url__nie: Option<Vec<String>>,
+    pub absolute_url__niew: Option<Vec<String>>,
+    pub absolute_url__nire: Option<Vec<String>>,
+    pub absolute_url__nisw: Option<Vec<String>>,
+    pub absolute_url__nre: Option<Vec<String>>,
+    pub absolute_url__re: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub grouping: Option<Vec<String>>,
+    pub grouping__ic: Option<Vec<String>>,
+    pub grouping__ie: Option<Vec<String>>,
+    pub grouping__iew: Option<Vec<String>>,
+    pub grouping__ire: Option<Vec<String>>,
+    pub grouping__isw: Option<Vec<String>>,
+    pub grouping__n: Option<Vec<String>>,
+    pub grouping__nic: Option<Vec<String>>,
+    pub grouping__nie: Option<Vec<String>>,
+    pub grouping__niew: Option<Vec<String>>,
+    pub grouping__nire: Option<Vec<String>>,
+    pub grouping__nisw: Option<Vec<String>>,
+    pub grouping__nre: Option<Vec<String>>,
+    pub grouping__re: Option<Vec<String>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job_result: Option<Vec<uuid::Uuid>>,
+    pub job_result__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub log_level: Option<Vec<String>>,
+    pub log_level__ic: Option<Vec<String>>,
+    pub log_level__ie: Option<Vec<String>>,
+    pub log_level__iew: Option<Vec<String>>,
+    pub log_level__ire: Option<Vec<String>>,
+    pub log_level__isw: Option<Vec<String>>,
+    pub log_level__n: Option<Vec<String>>,
+    pub log_level__nic: Option<Vec<String>>,
+    pub log_level__nie: Option<Vec<String>>,
+    pub log_level__niew: Option<Vec<String>>,
+    pub log_level__nire: Option<Vec<String>>,
+    pub log_level__nisw: Option<Vec<String>>,
+    pub log_level__nre: Option<Vec<String>>,
+    pub log_level__re: Option<Vec<String>>,
+    pub log_object: Option<Vec<String>>,
+    pub log_object__ic: Option<Vec<String>>,
+    pub log_object__ie: Option<Vec<String>>,
+    pub log_object__iew: Option<Vec<String>>,
+    pub log_object__ire: Option<Vec<String>>,
+    pub log_object__isw: Option<Vec<String>>,
+    pub log_object__n: Option<Vec<String>>,
+    pub log_object__nic: Option<Vec<String>>,
+    pub log_object__nie: Option<Vec<String>>,
+    pub log_object__niew: Option<Vec<String>>,
+    pub log_object__nire: Option<Vec<String>>,
+    pub log_object__nisw: Option<Vec<String>>,
+    pub log_object__nre: Option<Vec<String>>,
+    pub log_object__re: Option<Vec<String>>,
+    pub message: Option<Vec<String>>,
+    pub message__ic: Option<Vec<String>>,
+    pub message__ie: Option<Vec<String>>,
+    pub message__iew: Option<Vec<String>>,
+    pub message__ire: Option<Vec<String>>,
+    pub message__isw: Option<Vec<String>>,
+    pub message__n: Option<Vec<String>>,
+    pub message__nic: Option<Vec<String>>,
+    pub message__nie: Option<Vec<String>>,
+    pub message__niew: Option<Vec<String>>,
+    pub message__nire: Option<Vec<String>>,
+    pub message__nisw: Option<Vec<String>>,
+    pub message__nre: Option<Vec<String>>,
+    pub message__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_logs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobLogsRetrieveParams {
+    /// A UUID string identifying this job log entry.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_job_queue_assignment_request:
+        Vec<crate::models::PatchedBulkWritableJobQueueAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsBulkUpdateParams {
+    pub bulk_writable_job_queue_assignment_request:
+        Vec<crate::models::BulkWritableJobQueueAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsCreateParams {
+    pub job_queue_assignment_request: crate::models::JobQueueAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsDestroyParams {
+    /// A UUID string identifying this job queue assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job: Option<Vec<String>>,
+    pub job__n: Option<Vec<String>>,
+    pub job_queue: Option<Vec<String>>,
+    pub job_queue__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this job queue assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_job_queue_assignment_request:
+        Option<crate::models::PatchedJobQueueAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsRetrieveParams {
+    /// A UUID string identifying this job queue assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queue_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueueAssignmentsUpdateParams {
+    /// A UUID string identifying this job queue assignment.
+    pub id: String,
+    pub job_queue_assignment_request: crate::models::JobQueueAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesBulkPartialUpdateParams {
+    pub patched_bulk_writable_job_queue_request:
+        Vec<crate::models::PatchedBulkWritableJobQueueRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesBulkUpdateParams {
+    pub bulk_writable_job_queue_request: Vec<crate::models::BulkWritableJobQueueRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesCreateParams {
+    pub job_queue_request: crate::models::JobQueueRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesDestroyParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has jobs
+    pub has_jobs: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub jobs: Option<Vec<String>>,
+    /// Job (name or ID) is null
+    pub jobs__isnull: Option<bool>,
+    pub jobs__n: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub queue_type: Option<Vec<String>>,
+    pub queue_type__ic: Option<Vec<String>>,
+    pub queue_type__ie: Option<Vec<String>>,
+    pub queue_type__iew: Option<Vec<String>>,
+    pub queue_type__ire: Option<Vec<String>>,
+    pub queue_type__isw: Option<Vec<String>>,
+    pub queue_type__n: Option<Vec<String>>,
+    pub queue_type__nic: Option<Vec<String>>,
+    pub queue_type__nie: Option<Vec<String>>,
+    pub queue_type__niew: Option<Vec<String>>,
+    pub queue_type__nire: Option<Vec<String>>,
+    pub queue_type__nisw: Option<Vec<String>>,
+    pub queue_type__nre: Option<Vec<String>>,
+    pub queue_type__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesNotesCreateParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesNotesListParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesPartialUpdateParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_job_queue_request: Option<crate::models::PatchedJobQueueRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesRetrieveParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_queues_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobQueuesUpdateParams {
+    /// A UUID string identifying this job queue.
+    pub id: String,
+    pub job_queue_request: crate::models::JobQueueRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_cancel_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsCancelCreateParams {
+    /// A UUID string identifying this job result.
+    pub id: String,
+    pub job_result_request: crate::models::JobResultRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_cancel_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsCancelRetrieveParams {
+    /// A UUID string identifying this job result.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsDestroyParams {
+    /// A UUID string identifying this job result.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsListParams {
+    /// Cancel type of the Job being canceled  
+    pub cancel_type: Option<Vec<String>>,
+    pub cancel_type__ic: Option<Vec<String>>,
+    pub cancel_type__ie: Option<Vec<String>>,
+    pub cancel_type__iew: Option<Vec<String>>,
+    pub cancel_type__ire: Option<Vec<String>>,
+    pub cancel_type__isw: Option<Vec<String>>,
+    pub cancel_type__n: Option<Vec<String>>,
+    pub cancel_type__nic: Option<Vec<String>>,
+    pub cancel_type__nie: Option<Vec<String>>,
+    pub cancel_type__niew: Option<Vec<String>>,
+    pub cancel_type__nire: Option<Vec<String>>,
+    pub cancel_type__nisw: Option<Vec<String>>,
+    pub cancel_type__nre: Option<Vec<String>>,
+    pub cancel_type__re: Option<Vec<String>>,
+    pub canceled_by: Option<Vec<uuid::Uuid>>,
+    pub canceled_by__isnull: Option<bool>,
+    pub canceled_by__n: Option<Vec<uuid::Uuid>>,
+    pub date_canceled: Option<Vec<String>>,
+    pub date_canceled__gt: Option<Vec<String>>,
+    pub date_canceled__gte: Option<Vec<String>>,
+    pub date_canceled__isnull: Option<bool>,
+    pub date_canceled__lt: Option<Vec<String>>,
+    pub date_canceled__lte: Option<Vec<String>>,
+    pub date_canceled__n: Option<Vec<String>>,
+    pub date_created: Option<Vec<String>>,
+    pub date_created__gt: Option<Vec<String>>,
+    pub date_created__gte: Option<Vec<String>>,
+    pub date_created__lt: Option<Vec<String>>,
+    pub date_created__lte: Option<Vec<String>>,
+    pub date_created__n: Option<Vec<String>>,
+    pub date_done: Option<Vec<String>>,
+    pub date_done__gt: Option<Vec<String>>,
+    pub date_done__gte: Option<Vec<String>>,
+    pub date_done__isnull: Option<bool>,
+    pub date_done__lt: Option<Vec<String>>,
+    pub date_done__lte: Option<Vec<String>>,
+    pub date_done__n: Option<Vec<String>>,
+    pub date_started: Option<Vec<String>>,
+    pub date_started__gt: Option<Vec<String>>,
+    pub date_started__gte: Option<Vec<String>>,
+    pub date_started__isnull: Option<bool>,
+    pub date_started__lt: Option<Vec<String>>,
+    pub date_started__lte: Option<Vec<String>>,
+    pub date_started__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has Job Console Entries
+    pub has_job_console_entries: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job_model: Option<Vec<String>>,
+    /// Job (name or ID) is null
+    pub job_model__isnull: Option<bool>,
+    pub job_model__n: Option<Vec<String>>,
+    /// Job (ID) - Deprecated (use job_model filter)
+    pub job_model_id: Option<Vec<uuid::Uuid>>,
+    /// Job (ID) - Deprecated (use job_model filter) is null
+    pub job_model_id__isnull: Option<bool>,
+    /// Exclude Job (ID) - Deprecated (use job_model filter)
+    pub job_model_id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub scheduled_job: Option<Vec<String>>,
+    /// Scheduled Job (name or ID) is null
+    pub scheduled_job__isnull: Option<bool>,
+    pub scheduled_job__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Current state of the Job being run
+    pub status: Option<Vec<String>>,
+    pub status__ic: Option<Vec<String>>,
+    pub status__ie: Option<Vec<String>>,
+    pub status__iew: Option<Vec<String>>,
+    pub status__ire: Option<Vec<String>>,
+    pub status__isw: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub status__nic: Option<Vec<String>>,
+    pub status__nie: Option<Vec<String>>,
+    pub status__niew: Option<Vec<String>>,
+    pub status__nire: Option<Vec<String>>,
+    pub status__nisw: Option<Vec<String>>,
+    pub status__nre: Option<Vec<String>>,
+    pub status__re: Option<Vec<String>>,
+    pub user: Option<Vec<uuid::Uuid>>,
+    pub user__isnull: Option<bool>,
+    pub user__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_logs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsLogsRetrieveParams {
+    /// A UUID string identifying this job result.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_job_results_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobResultsRetrieveParams {
+    /// A UUID string identifying this job result.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsBulkPartialUpdateParams {
+    pub patched_bulk_writable_job_request: Vec<crate::models::PatchedBulkWritableJobRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsBulkUpdateParams {
+    pub bulk_writable_job_request: Vec<crate::models::BulkWritableJobRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsDestroyParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_destroy_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsDestroyByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsListParams {
+    pub console_log_default: Option<bool>,
+    pub console_log_default_override: Option<bool>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub description_override: Option<bool>,
+    pub dryrun_default: Option<bool>,
+    pub dryrun_default_override: Option<bool>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    pub grouping: Option<Vec<String>>,
+    pub grouping__ic: Option<Vec<String>>,
+    pub grouping__ie: Option<Vec<String>>,
+    pub grouping__iew: Option<Vec<String>>,
+    pub grouping__ire: Option<Vec<String>>,
+    pub grouping__isw: Option<Vec<String>>,
+    pub grouping__n: Option<Vec<String>>,
+    pub grouping__nic: Option<Vec<String>>,
+    pub grouping__nie: Option<Vec<String>>,
+    pub grouping__niew: Option<Vec<String>>,
+    pub grouping__nire: Option<Vec<String>>,
+    pub grouping__nisw: Option<Vec<String>>,
+    pub grouping__nre: Option<Vec<String>>,
+    pub grouping__re: Option<Vec<String>>,
+    pub grouping_override: Option<bool>,
+    pub has_sensitive_variables: Option<bool>,
+    pub has_sensitive_variables_override: Option<bool>,
+    pub hidden: Option<bool>,
+    pub hidden_override: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub installed: Option<bool>,
+    pub is_job_button_receiver: Option<bool>,
+    pub is_job_hook_receiver: Option<bool>,
+    pub is_singleton: Option<bool>,
+    pub is_singleton_override: Option<bool>,
+    pub job_class_name: Option<Vec<String>>,
+    pub job_class_name__ic: Option<Vec<String>>,
+    pub job_class_name__ie: Option<Vec<String>>,
+    pub job_class_name__iew: Option<Vec<String>>,
+    pub job_class_name__ire: Option<Vec<String>>,
+    pub job_class_name__isw: Option<Vec<String>>,
+    pub job_class_name__n: Option<Vec<String>>,
+    pub job_class_name__nic: Option<Vec<String>>,
+    pub job_class_name__nie: Option<Vec<String>>,
+    pub job_class_name__niew: Option<Vec<String>>,
+    pub job_class_name__nire: Option<Vec<String>>,
+    pub job_class_name__nisw: Option<Vec<String>>,
+    pub job_class_name__nre: Option<Vec<String>>,
+    pub job_class_name__re: Option<Vec<String>>,
+    pub job_queues: Option<Vec<String>>,
+    pub job_queues__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub module_name: Option<Vec<String>>,
+    pub module_name__ic: Option<Vec<String>>,
+    pub module_name__ie: Option<Vec<String>>,
+    pub module_name__iew: Option<Vec<String>>,
+    pub module_name__ire: Option<Vec<String>>,
+    pub module_name__isw: Option<Vec<String>>,
+    pub module_name__n: Option<Vec<String>>,
+    pub module_name__nic: Option<Vec<String>>,
+    pub module_name__nie: Option<Vec<String>>,
+    pub module_name__niew: Option<Vec<String>>,
+    pub module_name__nire: Option<Vec<String>>,
+    pub module_name__nisw: Option<Vec<String>>,
+    pub module_name__nre: Option<Vec<String>>,
+    pub module_name__re: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub name_override: Option<bool>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub read_only: Option<bool>,
+    pub soft_time_limit: Option<Vec<f32>>,
+    pub soft_time_limit__gt: Option<Vec<f32>>,
+    pub soft_time_limit__gte: Option<Vec<f32>>,
+    pub soft_time_limit__lt: Option<Vec<f32>>,
+    pub soft_time_limit__lte: Option<Vec<f32>>,
+    pub soft_time_limit__n: Option<Vec<f32>>,
+    pub soft_time_limit_override: Option<bool>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub time_limit: Option<Vec<f32>>,
+    pub time_limit__gt: Option<Vec<f32>>,
+    pub time_limit__gte: Option<Vec<f32>>,
+    pub time_limit__lt: Option<Vec<f32>>,
+    pub time_limit__lte: Option<Vec<f32>>,
+    pub time_limit__n: Option<Vec<f32>>,
+    pub time_limit_override: Option<bool>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsNotesCreateParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_notes_create_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsNotesCreateByNameParams {
+    pub name: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsNotesListParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_notes_list_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsNotesListByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsPartialUpdateParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_job_request: Option<crate::models::PatchedJobRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_partial_update_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsPartialUpdateByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+    pub patched_job_request: Option<crate::models::PatchedJobRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsRetrieveParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_retrieve_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsRetrieveByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_run_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsRunCreateParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+    pub job_input_request: Option<crate::models::JobInputRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_run_create_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsRunCreateByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+    pub job_input_request: Option<crate::models::JobInputRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsUpdateParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub job_request: crate::models::JobRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_update_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsUpdateByNameParams {
+    pub name: String,
+    pub job_request: crate::models::JobRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_variables_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsVariablesListParams {
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_jobs_variables_list_by_name`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasJobsVariablesListByNameParams {
+    pub name: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesBulkPartialUpdateParams {
+    pub patched_bulk_writable_metadata_choice_request:
+        Vec<crate::models::PatchedBulkWritableMetadataChoiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesBulkUpdateParams {
+    pub bulk_writable_metadata_choice_request:
+        Vec<crate::models::BulkWritableMetadataChoiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesCreateParams {
+    pub metadata_choice_request: crate::models::MetadataChoiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesDestroyParams {
+    /// A UUID string identifying this metadata choice.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesListParams {
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub metadata_type: Option<Vec<String>>,
+    pub metadata_type__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub value: Option<Vec<String>>,
+    pub value__ic: Option<Vec<String>>,
+    pub value__ie: Option<Vec<String>>,
+    pub value__iew: Option<Vec<String>>,
+    pub value__ire: Option<Vec<String>>,
+    pub value__isw: Option<Vec<String>>,
+    pub value__n: Option<Vec<String>>,
+    pub value__nic: Option<Vec<String>>,
+    pub value__nie: Option<Vec<String>>,
+    pub value__niew: Option<Vec<String>>,
+    pub value__nire: Option<Vec<String>>,
+    pub value__nisw: Option<Vec<String>>,
+    pub value__nre: Option<Vec<String>>,
+    pub value__re: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesPartialUpdateParams {
+    /// A UUID string identifying this metadata choice.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_metadata_choice_request: Option<crate::models::PatchedMetadataChoiceRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesRetrieveParams {
+    /// A UUID string identifying this metadata choice.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_choices_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataChoicesUpdateParams {
+    /// A UUID string identifying this metadata choice.
+    pub id: String,
+    pub metadata_choice_request: crate::models::MetadataChoiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesBulkPartialUpdateParams {
+    pub patched_bulk_writable_metadata_type_request:
+        Vec<crate::models::PatchedBulkWritableMetadataTypeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesBulkUpdateParams {
+    pub bulk_writable_metadata_type_request: Vec<crate::models::BulkWritableMetadataTypeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesCreateParams {
+    pub metadata_type_request: crate::models::MetadataTypeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesDestroyParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type_id: Option<i32>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    /// The type of data allowed for any Metadata of this type.  
+    pub data_type: Option<Vec<String>>,
+    pub data_type__ic: Option<Vec<String>>,
+    pub data_type__ie: Option<Vec<String>>,
+    pub data_type__iew: Option<Vec<String>>,
+    pub data_type__ire: Option<Vec<String>>,
+    pub data_type__isw: Option<Vec<String>>,
+    pub data_type__n: Option<Vec<String>>,
+    pub data_type__nic: Option<Vec<String>>,
+    pub data_type__nie: Option<Vec<String>>,
+    pub data_type__niew: Option<Vec<String>>,
+    pub data_type__nire: Option<Vec<String>>,
+    pub data_type__nisw: Option<Vec<String>>,
+    pub data_type__nre: Option<Vec<String>>,
+    pub data_type__re: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesNotesCreateParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesNotesListParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesPartialUpdateParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_metadata_type_request: Option<crate::models::PatchedMetadataTypeRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesRetrieveParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_metadata_types_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasMetadataTypesUpdateParams {
+    /// A UUID string identifying this metadata type.
+    pub id: String,
+    pub metadata_type_request: crate::models::MetadataTypeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesBulkPartialUpdateParams {
+    pub patched_bulk_writable_note_request: Vec<crate::models::PatchedBulkWritableNoteRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesBulkUpdateParams {
+    pub bulk_writable_note_request: Vec<crate::models::BulkWritableNoteRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesCreateParams {
+    pub note_request: crate::models::NoteRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesDestroyParams {
+    /// A UUID string identifying this note.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesListParams {
+    pub assigned_object_id: Option<Vec<uuid::Uuid>>,
+    pub assigned_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub assigned_object_type: Option<String>,
+    pub assigned_object_type__n: Option<String>,
+    pub assigned_object_type_id: Option<Vec<i32>>,
+    pub assigned_object_type_id__n: Option<Vec<i32>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub note: Option<Vec<String>>,
+    pub note__ic: Option<Vec<String>>,
+    pub note__ie: Option<Vec<String>>,
+    pub note__iew: Option<Vec<String>>,
+    pub note__ire: Option<Vec<String>>,
+    pub note__isw: Option<Vec<String>>,
+    pub note__n: Option<Vec<String>>,
+    pub note__nic: Option<Vec<String>>,
+    pub note__nie: Option<Vec<String>>,
+    pub note__niew: Option<Vec<String>>,
+    pub note__nire: Option<Vec<String>>,
+    pub note__nisw: Option<Vec<String>>,
+    pub note__nre: Option<Vec<String>>,
+    pub note__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub user: Option<Vec<String>>,
+    /// User (username or ID) is null
+    pub user__isnull: Option<bool>,
+    pub user__n: Option<Vec<String>>,
+    pub user_name: Option<Vec<String>>,
+    pub user_name__ic: Option<Vec<String>>,
+    pub user_name__ie: Option<Vec<String>>,
+    pub user_name__iew: Option<Vec<String>>,
+    pub user_name__ire: Option<Vec<String>>,
+    pub user_name__isw: Option<Vec<String>>,
+    pub user_name__n: Option<Vec<String>>,
+    pub user_name__nic: Option<Vec<String>>,
+    pub user_name__nie: Option<Vec<String>>,
+    pub user_name__niew: Option<Vec<String>>,
+    pub user_name__nire: Option<Vec<String>>,
+    pub user_name__nisw: Option<Vec<String>>,
+    pub user_name__nre: Option<Vec<String>>,
+    pub user_name__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesPartialUpdateParams {
+    /// A UUID string identifying this note.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_note_request: Option<crate::models::PatchedNoteRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesRetrieveParams {
+    /// A UUID string identifying this note.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_notes_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasNotesUpdateParams {
+    /// A UUID string identifying this note.
+    pub id: String,
+    pub note_request: crate::models::NoteRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_changes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectChangesListParams {
+    pub action: Option<Vec<String>>,
+    pub action__ic: Option<Vec<String>>,
+    pub action__ie: Option<Vec<String>>,
+    pub action__iew: Option<Vec<String>>,
+    pub action__ire: Option<Vec<String>>,
+    pub action__isw: Option<Vec<String>>,
+    pub action__n: Option<Vec<String>>,
+    pub action__nic: Option<Vec<String>>,
+    pub action__nie: Option<Vec<String>>,
+    pub action__niew: Option<Vec<String>>,
+    pub action__nire: Option<Vec<String>>,
+    pub action__nisw: Option<Vec<String>>,
+    pub action__nre: Option<Vec<String>>,
+    pub action__re: Option<Vec<String>>,
+    /// Change Context
+    pub change_context: Option<Vec<String>>,
+    /// Change Context contains
+    pub change_context__ic: Option<Vec<String>>,
+    /// Change Context
+    pub change_context__ie: Option<Vec<String>>,
+    /// Change Context ends with
+    pub change_context__iew: Option<Vec<String>>,
+    /// Change Context matches regex
+    pub change_context__ire: Option<Vec<String>>,
+    /// Change Context starts with
+    pub change_context__isw: Option<Vec<String>>,
+    /// Exclude Change Context
+    pub change_context__n: Option<Vec<String>>,
+    /// Exclude Change Context contains
+    pub change_context__nic: Option<Vec<String>>,
+    /// Exclude Change Context
+    pub change_context__nie: Option<Vec<String>>,
+    /// Exclude Change Context ends with
+    pub change_context__niew: Option<Vec<String>>,
+    /// Exclude Change Context matches regex
+    pub change_context__nire: Option<Vec<String>>,
+    /// Exclude Change Context starts with
+    pub change_context__nisw: Option<Vec<String>>,
+    /// Exclude Change Context matches regex
+    pub change_context__nre: Option<Vec<String>>,
+    /// Change Context matches regex
+    pub change_context__re: Option<Vec<String>>,
+    /// Change Context Detail
+    pub change_context_detail: Option<Vec<String>>,
+    /// Change Context Detail contains
+    pub change_context_detail__ic: Option<Vec<String>>,
+    /// Change Context Detail
+    pub change_context_detail__ie: Option<Vec<String>>,
+    /// Change Context Detail ends with
+    pub change_context_detail__iew: Option<Vec<String>>,
+    /// Change Context Detail matches regex
+    pub change_context_detail__ire: Option<Vec<String>>,
+    /// Change Context Detail starts with
+    pub change_context_detail__isw: Option<Vec<String>>,
+    /// Exclude Change Context Detail
+    pub change_context_detail__n: Option<Vec<String>>,
+    /// Exclude Change Context Detail contains
+    pub change_context_detail__nic: Option<Vec<String>>,
+    /// Exclude Change Context Detail
+    pub change_context_detail__nie: Option<Vec<String>>,
+    /// Exclude Change Context Detail ends with
+    pub change_context_detail__niew: Option<Vec<String>>,
+    /// Exclude Change Context Detail matches regex
+    pub change_context_detail__nire: Option<Vec<String>>,
+    /// Exclude Change Context Detail starts with
+    pub change_context_detail__nisw: Option<Vec<String>>,
+    /// Exclude Change Context Detail matches regex
+    pub change_context_detail__nre: Option<Vec<String>>,
+    /// Change Context Detail matches regex
+    pub change_context_detail__re: Option<Vec<String>>,
+    pub changed_object_id: Option<Vec<uuid::Uuid>>,
+    pub changed_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub changed_object_type: Option<String>,
+    pub changed_object_type__isnull: Option<bool>,
+    pub changed_object_type__n: Option<String>,
+    pub changed_object_type_id: Option<Vec<i32>>,
+    pub changed_object_type_id__isnull: Option<bool>,
+    pub changed_object_type_id__n: Option<Vec<i32>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub object_repr: Option<Vec<String>>,
+    pub object_repr__ic: Option<Vec<String>>,
+    pub object_repr__ie: Option<Vec<String>>,
+    pub object_repr__iew: Option<Vec<String>>,
+    pub object_repr__ire: Option<Vec<String>>,
+    pub object_repr__isw: Option<Vec<String>>,
+    pub object_repr__n: Option<Vec<String>>,
+    pub object_repr__nic: Option<Vec<String>>,
+    pub object_repr__nie: Option<Vec<String>>,
+    pub object_repr__niew: Option<Vec<String>>,
+    pub object_repr__nire: Option<Vec<String>>,
+    pub object_repr__nisw: Option<Vec<String>>,
+    pub object_repr__nre: Option<Vec<String>>,
+    pub object_repr__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub request_id: Option<Vec<uuid::Uuid>>,
+    pub request_id__n: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub time: Option<Vec<String>>,
+    pub time__gt: Option<Vec<String>>,
+    pub time__gte: Option<Vec<String>>,
+    pub time__lt: Option<Vec<String>>,
+    pub time__lte: Option<Vec<String>>,
+    pub time__n: Option<Vec<String>>,
+    pub user: Option<Vec<String>>,
+    /// User name (ID or username) is null
+    pub user__isnull: Option<bool>,
+    pub user__n: Option<Vec<String>>,
+    /// User (ID) - Deprecated (use user filter)
+    pub user_id: Option<Vec<uuid::Uuid>>,
+    /// User (ID) - Deprecated (use user filter) is null
+    pub user_id__isnull: Option<bool>,
+    /// Exclude User (ID) - Deprecated (use user filter)
+    pub user_id__n: Option<Vec<uuid::Uuid>>,
+    pub user_name: Option<Vec<String>>,
+    pub user_name__ic: Option<Vec<String>>,
+    pub user_name__ie: Option<Vec<String>>,
+    pub user_name__iew: Option<Vec<String>>,
+    pub user_name__ire: Option<Vec<String>>,
+    pub user_name__isw: Option<Vec<String>>,
+    pub user_name__n: Option<Vec<String>>,
+    pub user_name__nic: Option<Vec<String>>,
+    pub user_name__nie: Option<Vec<String>>,
+    pub user_name__niew: Option<Vec<String>>,
+    pub user_name__nire: Option<Vec<String>>,
+    pub user_name__nisw: Option<Vec<String>>,
+    pub user_name__nre: Option<Vec<String>>,
+    pub user_name__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_object_changes_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectChangesRetrieveParams {
+    /// A UUID string identifying this object change.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataBulkPartialUpdateParams {
+    pub patched_bulk_writable_object_metadata_request:
+        Vec<crate::models::PatchedBulkWritableObjectMetadataRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataBulkUpdateParams {
+    pub bulk_writable_object_metadata_request:
+        Vec<crate::models::BulkWritableObjectMetadataRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataCreateParams {
+    pub object_metadata_request: crate::models::ObjectMetadataRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataDestroyParams {
+    /// A UUID string identifying this object metadata.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataListParams {
+    pub assigned_object_id: Option<Vec<uuid::Uuid>>,
+    pub assigned_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub assigned_object_type: Option<Vec<i32>>,
+    pub assigned_object_type__n: Option<Vec<i32>>,
+    pub contact: Option<Vec<String>>,
+    /// Contact (name or ID) is null
+    pub contact__isnull: Option<bool>,
+    pub contact__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub metadata_type: Option<Vec<String>>,
+    pub metadata_type__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub scoped_fields: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub team: Option<Vec<String>>,
+    /// Team (name or ID) is null
+    pub team__isnull: Option<bool>,
+    pub team__n: Option<Vec<String>>,
+    /// Relevant data value to an object field or a set of object fields
+    pub value: Option<serde_json::Value>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataPartialUpdateParams {
+    /// A UUID string identifying this object metadata.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_object_metadata_request: Option<crate::models::PatchedObjectMetadataRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataRetrieveParams {
+    /// A UUID string identifying this object metadata.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_object_metadata_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasObjectMetadataUpdateParams {
+    /// A UUID string identifying this object metadata.
+    pub id: String,
+    pub object_metadata_request: crate::models::ObjectMetadataRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_relationship_association_request:
+        Vec<crate::models::PatchedBulkWritableRelationshipAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsBulkUpdateParams {
+    pub bulk_writable_relationship_association_request:
+        Vec<crate::models::BulkWritableRelationshipAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsCreateParams {
+    pub relationship_association_request: crate::models::RelationshipAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsDestroyParams {
+    /// A UUID string identifying this relationship association.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsListParams {
+    pub destination_id: Option<Vec<uuid::Uuid>>,
+    pub destination_id__n: Option<Vec<uuid::Uuid>>,
+    pub destination_type: Option<Vec<i32>>,
+    pub destination_type__n: Option<Vec<i32>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub peer_id: Option<Vec<uuid::Uuid>>,
+    /// Search
+    pub q: Option<String>,
+    /// Relationship (key)
+    pub relationship: Option<Vec<String>>,
+    /// Exclude Relationship (key)
+    pub relationship__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub source_id: Option<Vec<uuid::Uuid>>,
+    pub source_id__n: Option<Vec<uuid::Uuid>>,
+    pub source_type: Option<Vec<i32>>,
+    pub source_type__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsPartialUpdateParams {
+    /// A UUID string identifying this relationship association.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_relationship_association_request:
+        Option<crate::models::PatchedRelationshipAssociationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsRetrieveParams {
+    /// A UUID string identifying this relationship association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_relationship_associations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipAssociationsUpdateParams {
+    /// A UUID string identifying this relationship association.
+    pub id: String,
+    pub relationship_association_request: crate::models::RelationshipAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsBulkPartialUpdateParams {
+    pub patched_bulk_writable_relationship_request:
+        Vec<crate::models::PatchedBulkWritableRelationshipRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsBulkUpdateParams {
+    pub bulk_writable_relationship_request: Vec<crate::models::BulkWritableRelationshipRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsCreateParams {
+    pub relationship_request: crate::models::RelationshipRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsDestroyParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub destination_type: Option<Vec<i32>>,
+    pub destination_type__n: Option<Vec<i32>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub key: Option<Vec<String>>,
+    pub key__ic: Option<Vec<String>>,
+    pub key__ie: Option<Vec<String>>,
+    pub key__iew: Option<Vec<String>>,
+    pub key__ire: Option<Vec<String>>,
+    pub key__isw: Option<Vec<String>>,
+    pub key__n: Option<Vec<String>>,
+    pub key__nic: Option<Vec<String>>,
+    pub key__nie: Option<Vec<String>>,
+    pub key__niew: Option<Vec<String>>,
+    pub key__nire: Option<Vec<String>>,
+    pub key__nisw: Option<Vec<String>>,
+    pub key__nre: Option<Vec<String>>,
+    pub key__re: Option<Vec<String>>,
+    pub label: Option<Vec<String>>,
+    pub label__ic: Option<Vec<String>>,
+    pub label__ie: Option<Vec<String>>,
+    pub label__iew: Option<Vec<String>>,
+    pub label__ire: Option<Vec<String>>,
+    pub label__isw: Option<Vec<String>>,
+    pub label__n: Option<Vec<String>>,
+    pub label__nic: Option<Vec<String>>,
+    pub label__nie: Option<Vec<String>>,
+    pub label__niew: Option<Vec<String>>,
+    pub label__nire: Option<Vec<String>>,
+    pub label__nisw: Option<Vec<String>>,
+    pub label__nre: Option<Vec<String>>,
+    pub label__re: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub source_type: Option<Vec<i32>>,
+    pub source_type__n: Option<Vec<i32>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Cardinality of this relationship  
+    pub r#type: Option<Vec<String>>,
+    pub type__ic: Option<Vec<String>>,
+    pub type__ie: Option<Vec<String>>,
+    pub type__iew: Option<Vec<String>>,
+    pub type__ire: Option<Vec<String>>,
+    pub type__isw: Option<Vec<String>>,
+    pub type__n: Option<Vec<String>>,
+    pub type__nic: Option<Vec<String>>,
+    pub type__nie: Option<Vec<String>>,
+    pub type__niew: Option<Vec<String>>,
+    pub type__nire: Option<Vec<String>>,
+    pub type__nisw: Option<Vec<String>>,
+    pub type__nre: Option<Vec<String>>,
+    pub type__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsNotesCreateParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsNotesListParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsPartialUpdateParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_relationship_request: Option<crate::models::PatchedRelationshipRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsRetrieveParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_relationships_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRelationshipsUpdateParams {
+    /// A UUID string identifying this relationship.
+    pub id: String,
+    pub relationship_request: crate::models::RelationshipRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesBulkPartialUpdateParams {
+    pub patched_bulk_writable_role_request: Vec<crate::models::PatchedBulkWritableRoleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesBulkUpdateParams {
+    pub bulk_writable_role_request: Vec<crate::models::BulkWritableRoleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesCreateParams {
+    pub role_request: crate::models::RoleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesDestroyParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesListParams {
+    pub color: Option<Vec<String>>,
+    pub color__ic: Option<Vec<String>>,
+    pub color__ie: Option<Vec<String>>,
+    pub color__iew: Option<Vec<String>>,
+    pub color__ire: Option<Vec<String>>,
+    pub color__isw: Option<Vec<String>>,
+    pub color__n: Option<Vec<String>>,
+    pub color__nic: Option<Vec<String>>,
+    pub color__nie: Option<Vec<String>>,
+    pub color__niew: Option<Vec<String>>,
+    pub color__nire: Option<Vec<String>>,
+    pub color__nisw: Option<Vec<String>>,
+    pub color__nre: Option<Vec<String>>,
+    pub color__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub weight: Option<Vec<i32>>,
+    pub weight__gt: Option<Vec<i32>>,
+    pub weight__gte: Option<Vec<i32>>,
+    pub weight__isnull: Option<bool>,
+    pub weight__lt: Option<Vec<i32>>,
+    pub weight__lte: Option<Vec<i32>>,
+    pub weight__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesNotesCreateParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesNotesListParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesPartialUpdateParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_role_request: Option<crate::models::PatchedRoleRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesRetrieveParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_roles_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasRolesUpdateParams {
+    /// A UUID string identifying this role.
+    pub id: String,
+    pub role_request: crate::models::RoleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsBulkPartialUpdateParams {
+    pub patched_bulk_writable_saved_view_request:
+        Vec<crate::models::PatchedBulkWritableSavedViewRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsBulkUpdateParams {
+    pub bulk_writable_saved_view_request: Vec<crate::models::BulkWritableSavedViewRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsCreateParams {
+    pub saved_view_request: crate::models::SavedViewRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsDestroyParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub is_global_default: Option<bool>,
+    pub is_shared: Option<bool>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub owner: Option<Vec<String>>,
+    pub owner__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub view: Option<Vec<String>>,
+    pub view__ic: Option<Vec<String>>,
+    pub view__ie: Option<Vec<String>>,
+    pub view__iew: Option<Vec<String>>,
+    pub view__ire: Option<Vec<String>>,
+    pub view__isw: Option<Vec<String>>,
+    pub view__n: Option<Vec<String>>,
+    pub view__nic: Option<Vec<String>>,
+    pub view__nie: Option<Vec<String>>,
+    pub view__niew: Option<Vec<String>>,
+    pub view__nire: Option<Vec<String>>,
+    pub view__nisw: Option<Vec<String>>,
+    pub view__nre: Option<Vec<String>>,
+    pub view__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsPartialUpdateParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_saved_view_request: Option<crate::models::PatchedSavedViewRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsRetrieveParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_set_default_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsSetDefaultCreateParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_set_default_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsSetDefaultDestroyParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_saved_views_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSavedViewsUpdateParams {
+    /// A UUID string identifying this saved view.
+    pub id: String,
+    pub saved_view_request: crate::models::SavedViewRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_scheduled_jobs_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasScheduledJobsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_scheduled_jobs_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasScheduledJobsDestroyParams {
+    /// A UUID string identifying this scheduled job.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_scheduled_jobs_dry_run_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasScheduledJobsDryRunCreateParams {
+    /// A UUID string identifying this scheduled job.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_scheduled_jobs_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasScheduledJobsListParams {
+    /// Approval state
+    pub approval_state: Option<Vec<String>>,
+    /// Approval state contains
+    pub approval_state__ic: Option<Vec<String>>,
+    /// Approval state
+    pub approval_state__ie: Option<Vec<String>>,
+    /// Approval state ends with
+    pub approval_state__iew: Option<Vec<String>>,
+    /// Approval state matches regex
+    pub approval_state__ire: Option<Vec<String>>,
+    /// Approval state starts with
+    pub approval_state__isw: Option<Vec<String>>,
+    /// Exclude Approval state
+    pub approval_state__n: Option<Vec<String>>,
+    /// Exclude Approval state contains
+    pub approval_state__nic: Option<Vec<String>>,
+    /// Exclude Approval state
+    pub approval_state__nie: Option<Vec<String>>,
+    /// Exclude Approval state ends with
+    pub approval_state__niew: Option<Vec<String>>,
+    /// Exclude Approval state matches regex
+    pub approval_state__nire: Option<Vec<String>>,
+    /// Exclude Approval state starts with
+    pub approval_state__nisw: Option<Vec<String>>,
+    /// Exclude Approval state matches regex
+    pub approval_state__nre: Option<Vec<String>>,
+    /// Approval state matches regex
+    pub approval_state__re: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub job_model: Option<Vec<String>>,
+    /// Job (name or ID) is null
+    pub job_model__isnull: Option<bool>,
+    pub job_model__n: Option<Vec<String>>,
+    /// Job (ID) - Deprecated (use job_model filter)
+    pub job_model_id: Option<Vec<uuid::Uuid>>,
+    /// Job (ID) - Deprecated (use job_model filter) is null
+    pub job_model_id__isnull: Option<bool>,
+    /// Exclude Job (ID) - Deprecated (use job_model filter)
+    pub job_model_id__n: Option<Vec<uuid::Uuid>>,
+    pub last_run_at: Option<Vec<String>>,
+    pub last_run_at__gt: Option<Vec<String>>,
+    pub last_run_at__gte: Option<Vec<String>>,
+    pub last_run_at__isnull: Option<bool>,
+    pub last_run_at__lt: Option<Vec<String>>,
+    pub last_run_at__lte: Option<Vec<String>>,
+    pub last_run_at__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub start_time: Option<Vec<String>>,
+    pub start_time__gt: Option<Vec<String>>,
+    pub start_time__gte: Option<Vec<String>>,
+    pub start_time__lt: Option<Vec<String>>,
+    pub start_time__lte: Option<Vec<String>>,
+    pub start_time__n: Option<Vec<String>>,
+    /// Current state of the Scheduled Job
+    pub state: Option<Vec<String>>,
+    pub state__ic: Option<Vec<String>>,
+    pub state__ie: Option<Vec<String>>,
+    pub state__iew: Option<Vec<String>>,
+    pub state__ire: Option<Vec<String>>,
+    pub state__isw: Option<Vec<String>>,
+    pub state__n: Option<Vec<String>>,
+    pub state__nic: Option<Vec<String>>,
+    pub state__nie: Option<Vec<String>>,
+    pub state__niew: Option<Vec<String>>,
+    pub state__nire: Option<Vec<String>>,
+    pub state__nisw: Option<Vec<String>>,
+    pub state__nre: Option<Vec<String>>,
+    pub state__re: Option<Vec<String>>,
+    /// Time zone  
+    pub time_zone: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__ic: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__ie: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__iew: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__ire: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__isw: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__n: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__nic: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__nie: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__niew: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__nire: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__nisw: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__nre: Option<Vec<String>>,
+    /// Time zone
+    pub time_zone__re: Option<Vec<String>>,
+    pub total_run_count: Option<Vec<i32>>,
+    pub total_run_count__gt: Option<Vec<i32>>,
+    pub total_run_count__gte: Option<Vec<i32>>,
+    pub total_run_count__lt: Option<Vec<i32>>,
+    pub total_run_count__lte: Option<Vec<i32>>,
+    pub total_run_count__n: Option<Vec<i32>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_scheduled_jobs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasScheduledJobsRetrieveParams {
+    /// A UUID string identifying this scheduled job.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsBulkPartialUpdateParams {
+    pub patched_bulk_writable_secret_request: Vec<crate::models::PatchedBulkWritableSecretRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsBulkUpdateParams {
+    pub bulk_writable_secret_request: Vec<crate::models::BulkWritableSecretRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_check_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsCheckRetrieveParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsCreateParams {
+    pub secret_request: crate::models::SecretRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsDestroyParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_secrets_group_association_request:
+        Vec<crate::models::PatchedBulkWritableSecretsGroupAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsBulkUpdateParams {
+    pub bulk_writable_secrets_group_association_request:
+        Vec<crate::models::BulkWritableSecretsGroupAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsCreateParams {
+    pub secrets_group_association_request: crate::models::SecretsGroupAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsDestroyParams {
+    /// A UUID string identifying this secrets group association.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsListParams {
+    pub access_type: Option<Vec<String>>,
+    pub access_type__ic: Option<Vec<String>>,
+    pub access_type__ie: Option<Vec<String>>,
+    pub access_type__iew: Option<Vec<String>>,
+    pub access_type__ire: Option<Vec<String>>,
+    pub access_type__isw: Option<Vec<String>>,
+    pub access_type__n: Option<Vec<String>>,
+    pub access_type__nic: Option<Vec<String>>,
+    pub access_type__nie: Option<Vec<String>>,
+    pub access_type__niew: Option<Vec<String>>,
+    pub access_type__nire: Option<Vec<String>>,
+    pub access_type__nisw: Option<Vec<String>>,
+    pub access_type__nre: Option<Vec<String>>,
+    pub access_type__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub secret: Option<Vec<String>>,
+    pub secret__n: Option<Vec<String>>,
+    /// Secret (ID) - Deprecated (use secret filter)
+    pub secret_id: Option<Vec<uuid::Uuid>>,
+    /// Exclude Secret (ID) - Deprecated (use secret filter)
+    pub secret_id__n: Option<Vec<uuid::Uuid>>,
+    pub secret_type: Option<Vec<String>>,
+    pub secret_type__ic: Option<Vec<String>>,
+    pub secret_type__ie: Option<Vec<String>>,
+    pub secret_type__iew: Option<Vec<String>>,
+    pub secret_type__ire: Option<Vec<String>>,
+    pub secret_type__isw: Option<Vec<String>>,
+    pub secret_type__n: Option<Vec<String>>,
+    pub secret_type__nic: Option<Vec<String>>,
+    pub secret_type__nie: Option<Vec<String>>,
+    pub secret_type__niew: Option<Vec<String>>,
+    pub secret_type__nire: Option<Vec<String>>,
+    pub secret_type__nisw: Option<Vec<String>>,
+    pub secret_type__nre: Option<Vec<String>>,
+    pub secret_type__re: Option<Vec<String>>,
+    pub secrets_group: Option<Vec<String>>,
+    pub secrets_group__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsPartialUpdateParams {
+    /// A UUID string identifying this secrets group association.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_secrets_group_association_request:
+        Option<crate::models::PatchedSecretsGroupAssociationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsRetrieveParams {
+    /// A UUID string identifying this secrets group association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_associations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsAssociationsUpdateParams {
+    /// A UUID string identifying this secrets group association.
+    pub id: String,
+    pub secrets_group_association_request: crate::models::SecretsGroupAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsBulkPartialUpdateParams {
+    pub patched_bulk_writable_secrets_group_request:
+        Vec<crate::models::PatchedBulkWritableSecretsGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsBulkUpdateParams {
+    pub bulk_writable_secrets_group_request: Vec<crate::models::BulkWritableSecretsGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsCreateParams {
+    pub secrets_group_request: crate::models::SecretsGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsDestroyParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub secrets: Option<Vec<String>>,
+    pub secrets__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsNotesCreateParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsNotesListParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsPartialUpdateParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_secrets_group_request: Option<crate::models::PatchedSecretsGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsRetrieveParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_groups_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsGroupsUpdateParams {
+    /// A UUID string identifying this secrets group.
+    pub id: String,
+    pub secrets_group_request: crate::models::SecretsGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub provider: Option<Vec<String>>,
+    pub provider__ic: Option<Vec<String>>,
+    pub provider__ie: Option<Vec<String>>,
+    pub provider__iew: Option<Vec<String>>,
+    pub provider__ire: Option<Vec<String>>,
+    pub provider__isw: Option<Vec<String>>,
+    pub provider__n: Option<Vec<String>>,
+    pub provider__nic: Option<Vec<String>>,
+    pub provider__nie: Option<Vec<String>>,
+    pub provider__niew: Option<Vec<String>>,
+    pub provider__nire: Option<Vec<String>>,
+    pub provider__nisw: Option<Vec<String>>,
+    pub provider__nre: Option<Vec<String>>,
+    pub provider__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub secrets_groups: Option<Vec<String>>,
+    /// Groups (ID or name) is null
+    pub secrets_groups__isnull: Option<bool>,
+    pub secrets_groups__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsNotesCreateParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsNotesListParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsPartialUpdateParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_secret_request: Option<crate::models::PatchedSecretRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsRetrieveParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_secrets_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasSecretsUpdateParams {
+    /// A UUID string identifying this secret.
+    pub id: String,
+    pub secret_request: crate::models::SecretRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_static_group_association_request:
+        Vec<crate::models::PatchedBulkWritableStaticGroupAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsBulkUpdateParams {
+    pub bulk_writable_static_group_association_request:
+        Vec<crate::models::BulkWritableStaticGroupAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsCreateParams {
+    pub static_group_association_request: crate::models::StaticGroupAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsDestroyParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsListParams {
+    pub associated_object_id: Option<Vec<uuid::Uuid>>,
+    pub associated_object_id__n: Option<Vec<uuid::Uuid>>,
+    pub associated_object_type: Option<Vec<i32>>,
+    pub associated_object_type__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_group: Option<Vec<String>>,
+    pub dynamic_group__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsNotesCreateParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsNotesListParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsPartialUpdateParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_static_group_association_request:
+        Option<crate::models::PatchedStaticGroupAssociationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsRetrieveParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_static_group_associations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStaticGroupAssociationsUpdateParams {
+    /// A UUID string identifying this static group association.
+    pub id: String,
+    pub static_group_association_request: crate::models::StaticGroupAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesBulkPartialUpdateParams {
+    pub patched_bulk_writable_status_request: Vec<crate::models::PatchedBulkWritableStatusRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesBulkUpdateParams {
+    pub bulk_writable_status_request: Vec<crate::models::BulkWritableStatusRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesCreateParams {
+    pub status_request: crate::models::StatusRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesDestroyParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesListParams {
+    pub color: Option<Vec<String>>,
+    pub color__ic: Option<Vec<String>>,
+    pub color__ie: Option<Vec<String>>,
+    pub color__iew: Option<Vec<String>>,
+    pub color__ire: Option<Vec<String>>,
+    pub color__isw: Option<Vec<String>>,
+    pub color__n: Option<Vec<String>>,
+    pub color__nic: Option<Vec<String>>,
+    pub color__nie: Option<Vec<String>>,
+    pub color__niew: Option<Vec<String>>,
+    pub color__nire: Option<Vec<String>>,
+    pub color__nisw: Option<Vec<String>>,
+    pub color__nre: Option<Vec<String>>,
+    pub color__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesNotesCreateParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesNotesListParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesPartialUpdateParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_status_request: Option<crate::models::PatchedStatusRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesRetrieveParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_statuses_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasStatusesUpdateParams {
+    /// A UUID string identifying this status.
+    pub id: String,
+    pub status_request: crate::models::StatusRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsBulkPartialUpdateParams {
+    pub patched_bulk_writable_tag_request: Vec<crate::models::PatchedBulkWritableTagRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsBulkUpdateParams {
+    pub bulk_writable_tag_request: Vec<crate::models::BulkWritableTagRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsCreateParams {
+    pub tag_request: crate::models::TagRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsDestroyParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsListParams {
+    pub color: Option<Vec<String>>,
+    pub color__ic: Option<Vec<String>>,
+    pub color__ie: Option<Vec<String>>,
+    pub color__iew: Option<Vec<String>>,
+    pub color__ire: Option<Vec<String>>,
+    pub color__isw: Option<Vec<String>>,
+    pub color__n: Option<Vec<String>>,
+    pub color__nic: Option<Vec<String>>,
+    pub color__nie: Option<Vec<String>>,
+    pub color__niew: Option<Vec<String>>,
+    pub color__nire: Option<Vec<String>>,
+    pub color__nisw: Option<Vec<String>>,
+    pub color__nre: Option<Vec<String>>,
+    pub color__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsNotesCreateParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsNotesListParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsPartialUpdateParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_tag_request: Option<crate::models::PatchedTagRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsRetrieveParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_tags_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTagsUpdateParams {
+    /// A UUID string identifying this tag.
+    pub id: String,
+    pub tag_request: crate::models::TagRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsBulkPartialUpdateParams {
+    pub patched_bulk_writable_team_request: Vec<crate::models::PatchedBulkWritableTeamRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsBulkUpdateParams {
+    pub bulk_writable_team_request: Vec<crate::models::BulkWritableTeamRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsCreateParams {
+    pub team_request: crate::models::TeamRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsDestroyParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsListParams {
+    pub address: Option<Vec<String>>,
+    pub address__ic: Option<Vec<String>>,
+    pub address__ie: Option<Vec<String>>,
+    pub address__iew: Option<Vec<String>>,
+    pub address__ire: Option<Vec<String>>,
+    pub address__isw: Option<Vec<String>>,
+    pub address__n: Option<Vec<String>>,
+    pub address__nic: Option<Vec<String>>,
+    pub address__nie: Option<Vec<String>>,
+    pub address__niew: Option<Vec<String>>,
+    pub address__nire: Option<Vec<String>>,
+    pub address__nisw: Option<Vec<String>>,
+    pub address__nre: Option<Vec<String>>,
+    pub address__re: Option<Vec<String>>,
+    pub comments: Option<Vec<String>>,
+    pub comments__ic: Option<Vec<String>>,
+    pub comments__ie: Option<Vec<String>>,
+    pub comments__iew: Option<Vec<String>>,
+    pub comments__ire: Option<Vec<String>>,
+    pub comments__isw: Option<Vec<String>>,
+    pub comments__n: Option<Vec<String>>,
+    pub comments__nic: Option<Vec<String>>,
+    pub comments__nie: Option<Vec<String>>,
+    pub comments__niew: Option<Vec<String>>,
+    pub comments__nire: Option<Vec<String>>,
+    pub comments__nisw: Option<Vec<String>>,
+    pub comments__nre: Option<Vec<String>>,
+    pub comments__re: Option<Vec<String>>,
+    pub contacts: Option<Vec<uuid::Uuid>>,
+    pub contacts__n: Option<Vec<uuid::Uuid>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub email: Option<Vec<String>>,
+    pub email__ic: Option<Vec<String>>,
+    pub email__ie: Option<Vec<String>>,
+    pub email__iew: Option<Vec<String>>,
+    pub email__ire: Option<Vec<String>>,
+    pub email__isw: Option<Vec<String>>,
+    pub email__n: Option<Vec<String>>,
+    pub email__nic: Option<Vec<String>>,
+    pub email__nie: Option<Vec<String>>,
+    pub email__niew: Option<Vec<String>>,
+    pub email__nire: Option<Vec<String>>,
+    pub email__nisw: Option<Vec<String>>,
+    pub email__nre: Option<Vec<String>>,
+    pub email__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub phone: Option<Vec<String>>,
+    pub phone__ic: Option<Vec<String>>,
+    pub phone__ie: Option<Vec<String>>,
+    pub phone__iew: Option<Vec<String>>,
+    pub phone__ire: Option<Vec<String>>,
+    pub phone__isw: Option<Vec<String>>,
+    pub phone__n: Option<Vec<String>>,
+    pub phone__nic: Option<Vec<String>>,
+    pub phone__nie: Option<Vec<String>>,
+    pub phone__niew: Option<Vec<String>>,
+    pub phone__nire: Option<Vec<String>>,
+    pub phone__nisw: Option<Vec<String>>,
+    pub phone__nre: Option<Vec<String>>,
+    pub phone__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub similar_to_location_data: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsNotesCreateParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsNotesListParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsPartialUpdateParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_team_request: Option<crate::models::PatchedTeamRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsRetrieveParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_teams_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasTeamsUpdateParams {
+    /// A UUID string identifying this team.
+    pub id: String,
+    pub team_request: crate::models::TeamRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsBulkPartialUpdateParams {
+    pub patched_bulk_writable_user_saved_view_association_request:
+        Vec<crate::models::PatchedBulkWritableUserSavedViewAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsBulkUpdateParams {
+    pub bulk_writable_user_saved_view_association_request:
+        Vec<crate::models::BulkWritableUserSavedViewAssociationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsCreateParams {
+    pub user_saved_view_association_request: crate::models::UserSavedViewAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsDestroyParams {
+    /// A UUID string identifying this user saved view association.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub saved_view: Option<Vec<String>>,
+    pub saved_view__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub user: Option<Vec<String>>,
+    pub user__n: Option<Vec<String>>,
+    pub view_name: Option<Vec<String>>,
+    pub view_name__ic: Option<Vec<String>>,
+    pub view_name__ie: Option<Vec<String>>,
+    pub view_name__iew: Option<Vec<String>>,
+    pub view_name__ire: Option<Vec<String>>,
+    pub view_name__isw: Option<Vec<String>>,
+    pub view_name__n: Option<Vec<String>>,
+    pub view_name__nic: Option<Vec<String>>,
+    pub view_name__nie: Option<Vec<String>>,
+    pub view_name__niew: Option<Vec<String>>,
+    pub view_name__nire: Option<Vec<String>>,
+    pub view_name__nisw: Option<Vec<String>>,
+    pub view_name__nre: Option<Vec<String>>,
+    pub view_name__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsPartialUpdateParams {
+    /// A UUID string identifying this user saved view association.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_user_saved_view_association_request:
+        Option<crate::models::PatchedUserSavedViewAssociationRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsRetrieveParams {
+    /// A UUID string identifying this user saved view association.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_user_saved_view_associations_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasUserSavedViewAssociationsUpdateParams {
+    /// A UUID string identifying this user saved view association.
+    pub id: String,
+    pub user_saved_view_association_request: crate::models::UserSavedViewAssociationRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksBulkPartialUpdateParams {
+    pub patched_bulk_writable_webhook_request:
+        Vec<crate::models::PatchedBulkWritableWebhookRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksBulkUpdateParams {
+    pub bulk_writable_webhook_request: Vec<crate::models::BulkWritableWebhookRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksCreateParams {
+    pub webhook_request: crate::models::WebhookRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksDestroyParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_types: Option<Vec<i32>>,
+    pub content_types__n: Option<Vec<i32>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub payload_url: Option<Vec<String>>,
+    pub payload_url__ic: Option<Vec<String>>,
+    pub payload_url__ie: Option<Vec<String>>,
+    pub payload_url__iew: Option<Vec<String>>,
+    pub payload_url__ire: Option<Vec<String>>,
+    pub payload_url__isw: Option<Vec<String>>,
+    pub payload_url__n: Option<Vec<String>>,
+    pub payload_url__nic: Option<Vec<String>>,
+    pub payload_url__nie: Option<Vec<String>>,
+    pub payload_url__niew: Option<Vec<String>>,
+    pub payload_url__nire: Option<Vec<String>>,
+    pub payload_url__nisw: Option<Vec<String>>,
+    pub payload_url__nre: Option<Vec<String>>,
+    pub payload_url__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub type_create: Option<bool>,
+    pub type_delete: Option<bool>,
+    pub type_update: Option<bool>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksNotesCreateParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksNotesListParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksPartialUpdateParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_webhook_request: Option<crate::models::PatchedWebhookRequest>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksRetrieveParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`extras_webhooks_update`]
+#[derive(Clone, Debug, Default)]
+pub struct ExtrasWebhooksUpdateParams {
+    /// A UUID string identifying this webhook.
+    pub id: String,
+    pub webhook_request: crate::models::WebhookRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`extras_approval_workflow_definitions_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -3299,10 +10831,13 @@ pub enum ExtrasWebhooksUpdateError {
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowDefinitionsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3354,15 +10889,17 @@ pub async fn extras_approval_workflow_definitions_bulk_destroy(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_approval_workflow_definition_request: Vec<
-        crate::models::PatchedBulkWritableApprovalWorkflowDefinitionRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowDefinition>,
     Error<ExtrasApprovalWorkflowDefinitionsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_approval_workflow_definition_request =
+        params.patched_bulk_writable_approval_workflow_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3415,15 +10952,17 @@ pub async fn extras_approval_workflow_definitions_bulk_partial_update(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_approval_workflow_definition_request: Vec<
-        crate::models::BulkWritableApprovalWorkflowDefinitionRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowDefinition>,
     Error<ExtrasApprovalWorkflowDefinitionsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_approval_workflow_definition_request =
+        params.bulk_writable_approval_workflow_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3476,13 +11015,16 @@ pub async fn extras_approval_workflow_definitions_bulk_update(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_create(
     configuration: &configuration::Configuration,
-    approval_workflow_definition_request: crate::models::ApprovalWorkflowDefinitionRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsCreateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowDefinition,
     Error<ExtrasApprovalWorkflowDefinitionsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow_definition_request = params.approval_workflow_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3534,10 +11076,13 @@ pub async fn extras_approval_workflow_definitions_create(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowDefinitionsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3589,68 +11134,71 @@ pub async fn extras_approval_workflow_definitions_destroy(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    model_constraints: Option<Vec<String>>,
-    model_content_type: Option<Vec<i32>>,
-    model_content_type__n: Option<Vec<i32>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowDefinitionsListParams,
 ) -> Result<
     crate::models::PaginatedApprovalWorkflowDefinitionList,
     Error<ExtrasApprovalWorkflowDefinitionsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let model_constraints = params.model_constraints;
+    let model_content_type = params.model_content_type;
+    let model_content_type__n = params.model_content_type__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4599,11 +12147,14 @@ pub async fn extras_approval_workflow_definitions_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_definitions_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasApprovalWorkflowDefinitionsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4656,15 +12207,18 @@ pub async fn extras_approval_workflow_definitions_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_definitions_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowDefinitionsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasApprovalWorkflowDefinitionsNotesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4732,16 +12286,18 @@ pub async fn extras_approval_workflow_definitions_notes_list(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_approval_workflow_definition_request: Option<
-        crate::models::PatchedApprovalWorkflowDefinitionRequest,
-    >,
+    params: ExtrasApprovalWorkflowDefinitionsPartialUpdateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowDefinition,
     Error<ExtrasApprovalWorkflowDefinitionsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_approval_workflow_definition_request =
+        params.patched_approval_workflow_definition_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4795,15 +12351,18 @@ pub async fn extras_approval_workflow_definitions_partial_update(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowDefinitionsRetrieveParams,
 ) -> Result<
     crate::models::ApprovalWorkflowDefinition,
     Error<ExtrasApprovalWorkflowDefinitionsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4863,14 +12422,17 @@ pub async fn extras_approval_workflow_definitions_retrieve(
 /// ApprovalWorkflowDefinition viewset.
 pub async fn extras_approval_workflow_definitions_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    approval_workflow_definition_request: crate::models::ApprovalWorkflowDefinitionRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowDefinitionsUpdateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowDefinition,
     Error<ExtrasApprovalWorkflowDefinitionsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let approval_workflow_definition_request = params.approval_workflow_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4923,10 +12485,13 @@ pub async fn extras_approval_workflow_definitions_update(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowStageDefinitionsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4978,15 +12543,17 @@ pub async fn extras_approval_workflow_stage_definitions_bulk_destroy(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_approval_workflow_stage_definition_request: Vec<
-        crate::models::PatchedBulkWritableApprovalWorkflowStageDefinitionRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowStageDefinition>,
     Error<ExtrasApprovalWorkflowStageDefinitionsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_approval_workflow_stage_definition_request =
+        params.patched_bulk_writable_approval_workflow_stage_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5039,15 +12606,17 @@ pub async fn extras_approval_workflow_stage_definitions_bulk_partial_update(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_approval_workflow_stage_definition_request: Vec<
-        crate::models::BulkWritableApprovalWorkflowStageDefinitionRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowStageDefinition>,
     Error<ExtrasApprovalWorkflowStageDefinitionsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_approval_workflow_stage_definition_request =
+        params.bulk_writable_approval_workflow_stage_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5100,13 +12669,17 @@ pub async fn extras_approval_workflow_stage_definitions_bulk_update(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_create(
     configuration: &configuration::Configuration,
-    approval_workflow_stage_definition_request: crate::models::ApprovalWorkflowStageDefinitionRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsCreateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStageDefinition,
     Error<ExtrasApprovalWorkflowStageDefinitionsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow_stage_definition_request =
+        params.approval_workflow_stage_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5158,10 +12731,13 @@ pub async fn extras_approval_workflow_stage_definitions_create(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowStageDefinitionsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5213,87 +12789,90 @@ pub async fn extras_approval_workflow_stage_definitions_destroy(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_list(
     configuration: &configuration::Configuration,
-    approval_workflow: Option<Vec<String>>,
-    approval_workflow_definition: Option<Vec<String>>,
-    approval_workflow_definition__n: Option<Vec<String>>,
-    approver_group: Option<Vec<i32>>,
-    approver_group__n: Option<Vec<i32>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    denial_message: Option<Vec<String>>,
-    denial_message__ic: Option<Vec<String>>,
-    denial_message__ie: Option<Vec<String>>,
-    denial_message__iew: Option<Vec<String>>,
-    denial_message__ire: Option<Vec<String>>,
-    denial_message__isw: Option<Vec<String>>,
-    denial_message__n: Option<Vec<String>>,
-    denial_message__nic: Option<Vec<String>>,
-    denial_message__nie: Option<Vec<String>>,
-    denial_message__niew: Option<Vec<String>>,
-    denial_message__nire: Option<Vec<String>>,
-    denial_message__nisw: Option<Vec<String>>,
-    denial_message__nre: Option<Vec<String>>,
-    denial_message__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    min_approvers: Option<Vec<i32>>,
-    min_approvers__gt: Option<Vec<i32>>,
-    min_approvers__gte: Option<Vec<i32>>,
-    min_approvers__lt: Option<Vec<i32>>,
-    min_approvers__lte: Option<Vec<i32>>,
-    min_approvers__n: Option<Vec<i32>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sequence: Option<Vec<i32>>,
-    sequence__gt: Option<Vec<i32>>,
-    sequence__gte: Option<Vec<i32>>,
-    sequence__lt: Option<Vec<i32>>,
-    sequence__lte: Option<Vec<i32>>,
-    sequence__n: Option<Vec<i32>>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStageDefinitionsListParams,
 ) -> Result<
     crate::models::PaginatedApprovalWorkflowStageDefinitionList,
     Error<ExtrasApprovalWorkflowStageDefinitionsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow = params.approval_workflow;
+    let approval_workflow_definition = params.approval_workflow_definition;
+    let approval_workflow_definition__n = params.approval_workflow_definition__n;
+    let approver_group = params.approver_group;
+    let approver_group__n = params.approver_group__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let denial_message = params.denial_message;
+    let denial_message__ic = params.denial_message__ic;
+    let denial_message__ie = params.denial_message__ie;
+    let denial_message__iew = params.denial_message__iew;
+    let denial_message__ire = params.denial_message__ire;
+    let denial_message__isw = params.denial_message__isw;
+    let denial_message__n = params.denial_message__n;
+    let denial_message__nic = params.denial_message__nic;
+    let denial_message__nie = params.denial_message__nie;
+    let denial_message__niew = params.denial_message__niew;
+    let denial_message__nire = params.denial_message__nire;
+    let denial_message__nisw = params.denial_message__nisw;
+    let denial_message__nre = params.denial_message__nre;
+    let denial_message__re = params.denial_message__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let min_approvers = params.min_approvers;
+    let min_approvers__gt = params.min_approvers__gt;
+    let min_approvers__gte = params.min_approvers__gte;
+    let min_approvers__lt = params.min_approvers__lt;
+    let min_approvers__lte = params.min_approvers__lte;
+    let min_approvers__n = params.min_approvers__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sequence = params.sequence;
+    let sequence__gt = params.sequence__gt;
+    let sequence__gte = params.sequence__gte;
+    let sequence__lt = params.sequence__lt;
+    let sequence__lte = params.sequence__lte;
+    let sequence__n = params.sequence__n;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6618,11 +14197,14 @@ pub async fn extras_approval_workflow_stage_definitions_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_stage_definitions_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasApprovalWorkflowStageDefinitionsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6675,17 +14257,20 @@ pub async fn extras_approval_workflow_stage_definitions_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_stage_definitions_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStageDefinitionsNotesListParams,
 ) -> Result<
     crate::models::PaginatedNoteList,
     Error<ExtrasApprovalWorkflowStageDefinitionsNotesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6753,16 +14338,18 @@ pub async fn extras_approval_workflow_stage_definitions_notes_list(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_approval_workflow_stage_definition_request: Option<
-        crate::models::PatchedApprovalWorkflowStageDefinitionRequest,
-    >,
+    params: ExtrasApprovalWorkflowStageDefinitionsPartialUpdateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStageDefinition,
     Error<ExtrasApprovalWorkflowStageDefinitionsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_approval_workflow_stage_definition_request =
+        params.patched_approval_workflow_stage_definition_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6816,15 +14403,18 @@ pub async fn extras_approval_workflow_stage_definitions_partial_update(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStageDefinitionsRetrieveParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStageDefinition,
     Error<ExtrasApprovalWorkflowStageDefinitionsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6884,14 +14474,18 @@ pub async fn extras_approval_workflow_stage_definitions_retrieve(
 /// ApprovalWorkflowStageDefinition viewset.
 pub async fn extras_approval_workflow_stage_definitions_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    approval_workflow_stage_definition_request: crate::models::ApprovalWorkflowStageDefinitionRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStageDefinitionsUpdateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStageDefinition,
     Error<ExtrasApprovalWorkflowStageDefinitionsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let approval_workflow_stage_definition_request =
+        params.approval_workflow_stage_definition_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6944,13 +14538,16 @@ pub async fn extras_approval_workflow_stage_definitions_update(
 /// Approve the approval workflow stage.
 pub async fn extras_approval_workflow_stages_approve_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesApproveCreateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStage,
     Error<ExtrasApprovalWorkflowStagesApproveCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7002,10 +14599,13 @@ pub async fn extras_approval_workflow_stages_approve_create(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowStagesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7057,15 +14657,17 @@ pub async fn extras_approval_workflow_stages_bulk_destroy(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_approval_workflow_stage_request: Vec<
-        crate::models::PatchedBulkWritableApprovalWorkflowStageRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowStage>,
     Error<ExtrasApprovalWorkflowStagesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_approval_workflow_stage_request =
+        params.patched_bulk_writable_approval_workflow_stage_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7118,15 +14720,17 @@ pub async fn extras_approval_workflow_stages_bulk_partial_update(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_approval_workflow_stage_request: Vec<
-        crate::models::BulkWritableApprovalWorkflowStageRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflowStage>,
     Error<ExtrasApprovalWorkflowStagesBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_approval_workflow_stage_request =
+        params.bulk_writable_approval_workflow_stage_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7179,13 +14783,16 @@ pub async fn extras_approval_workflow_stages_bulk_update(
 /// Add a comment to the specific stage (without approving or denying).
 pub async fn extras_approval_workflow_stages_comment_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesCommentCreateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStage,
     Error<ExtrasApprovalWorkflowStagesCommentCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7237,10 +14844,13 @@ pub async fn extras_approval_workflow_stages_comment_create(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_create(
     configuration: &configuration::Configuration,
-    approval_workflow_stage_request: crate::models::ApprovalWorkflowStageRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesCreateParams,
 ) -> Result<crate::models::ApprovalWorkflowStage, Error<ExtrasApprovalWorkflowStagesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow_stage_request = params.approval_workflow_stage_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7292,11 +14902,14 @@ pub async fn extras_approval_workflow_stages_create(
 /// Deny the approval workflow stage.
 pub async fn extras_approval_workflow_stages_deny_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesDenyCreateParams,
 ) -> Result<crate::models::ApprovalWorkflowStage, Error<ExtrasApprovalWorkflowStagesDenyCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7348,10 +14961,13 @@ pub async fn extras_approval_workflow_stages_deny_create(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowStagesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7403,70 +15019,74 @@ pub async fn extras_approval_workflow_stages_destroy(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_list(
     configuration: &configuration::Configuration,
-    approval_workflow: Option<Vec<uuid::Uuid>>,
-    approval_workflow__n: Option<Vec<uuid::Uuid>>,
-    approval_workflow_stage_definition: Option<Vec<uuid::Uuid>>,
-    approval_workflow_stage_definition__isnull: Option<bool>,
-    approval_workflow_stage_definition__n: Option<Vec<uuid::Uuid>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    decision_date: Option<Vec<String>>,
-    decision_date__gt: Option<Vec<String>>,
-    decision_date__gte: Option<Vec<String>>,
-    decision_date__isnull: Option<bool>,
-    decision_date__lt: Option<Vec<String>>,
-    decision_date__lte: Option<Vec<String>>,
-    decision_date__n: Option<Vec<String>>,
-    decision_date_day: Option<String>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    pending_my_approvals: Option<bool>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    state: Option<Vec<String>>,
-    state__ic: Option<Vec<String>>,
-    state__ie: Option<Vec<String>>,
-    state__iew: Option<Vec<String>>,
-    state__ire: Option<Vec<String>>,
-    state__isw: Option<Vec<String>>,
-    state__n: Option<Vec<String>>,
-    state__nic: Option<Vec<String>>,
-    state__nie: Option<Vec<String>>,
-    state__niew: Option<Vec<String>>,
-    state__nire: Option<Vec<String>>,
-    state__nisw: Option<Vec<String>>,
-    state__nre: Option<Vec<String>>,
-    state__re: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStagesListParams,
 ) -> Result<
     crate::models::PaginatedApprovalWorkflowStageList,
     Error<ExtrasApprovalWorkflowStagesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow = params.approval_workflow;
+    let approval_workflow__n = params.approval_workflow__n;
+    let approval_workflow_stage_definition = params.approval_workflow_stage_definition;
+    let approval_workflow_stage_definition__isnull =
+        params.approval_workflow_stage_definition__isnull;
+    let approval_workflow_stage_definition__n = params.approval_workflow_stage_definition__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let decision_date = params.decision_date;
+    let decision_date__gt = params.decision_date__gt;
+    let decision_date__gte = params.decision_date__gte;
+    let decision_date__isnull = params.decision_date__isnull;
+    let decision_date__lt = params.decision_date__lt;
+    let decision_date__lte = params.decision_date__lte;
+    let decision_date__n = params.decision_date__n;
+    let decision_date_day = params.decision_date_day;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let pending_my_approvals = params.pending_my_approvals;
+    let q = params.q;
+    let sort = params.sort;
+    let state = params.state;
+    let state__ic = params.state__ic;
+    let state__ie = params.state__ie;
+    let state__iew = params.state__iew;
+    let state__ire = params.state__ire;
+    let state__isw = params.state__isw;
+    let state__n = params.state__n;
+    let state__nic = params.state__nic;
+    let state__nie = params.state__nie;
+    let state__niew = params.state__niew;
+    let state__nire = params.state__nire;
+    let state__nisw = params.state__nisw;
+    let state__nre = params.state__nre;
+    let state__re = params.state__re;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8420,11 +16040,14 @@ pub async fn extras_approval_workflow_stages_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_stages_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasApprovalWorkflowStagesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8477,14 +16100,17 @@ pub async fn extras_approval_workflow_stages_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflow_stages_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStagesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasApprovalWorkflowStagesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8552,16 +16178,17 @@ pub async fn extras_approval_workflow_stages_notes_list(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_approval_workflow_stage_request: Option<
-        crate::models::PatchedApprovalWorkflowStageRequest,
-    >,
+    params: ExtrasApprovalWorkflowStagesPartialUpdateParams,
 ) -> Result<
     crate::models::ApprovalWorkflowStage,
     Error<ExtrasApprovalWorkflowStagesPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_approval_workflow_stage_request = params.patched_approval_workflow_stage_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8614,13 +16241,16 @@ pub async fn extras_approval_workflow_stages_partial_update(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowStagesRetrieveParams,
 ) -> Result<crate::models::ApprovalWorkflowStage, Error<ExtrasApprovalWorkflowStagesRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8680,11 +16310,14 @@ pub async fn extras_approval_workflow_stages_retrieve(
 /// ApprovalWorkflowStage viewset.
 pub async fn extras_approval_workflow_stages_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    approval_workflow_stage_request: crate::models::ApprovalWorkflowStageRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowStagesUpdateParams,
 ) -> Result<crate::models::ApprovalWorkflowStage, Error<ExtrasApprovalWorkflowStagesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let approval_workflow_stage_request = params.approval_workflow_stage_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8737,10 +16370,13 @@ pub async fn extras_approval_workflow_stages_update(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8792,15 +16428,17 @@ pub async fn extras_approval_workflows_bulk_destroy(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_approval_workflow_request: Vec<
-        crate::models::PatchedBulkWritableApprovalWorkflowRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ApprovalWorkflow>,
     Error<ExtrasApprovalWorkflowsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_approval_workflow_request =
+        params.patched_bulk_writable_approval_workflow_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8853,12 +16491,13 @@ pub async fn extras_approval_workflows_bulk_partial_update(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_approval_workflow_request: Vec<
-        crate::models::BulkWritableApprovalWorkflowRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ApprovalWorkflow>, Error<ExtrasApprovalWorkflowsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_approval_workflow_request = params.bulk_writable_approval_workflow_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8910,10 +16549,13 @@ pub async fn extras_approval_workflows_bulk_update(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_cancel_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsCancelCreateParams,
 ) -> Result<crate::models::ApprovalWorkflow, Error<ExtrasApprovalWorkflowsCancelCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8965,10 +16607,13 @@ pub async fn extras_approval_workflows_cancel_create(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_create(
     configuration: &configuration::Configuration,
-    approval_workflow_request: crate::models::ApprovalWorkflowRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsCreateParams,
 ) -> Result<crate::models::ApprovalWorkflow, Error<ExtrasApprovalWorkflowsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow_request = params.approval_workflow_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9020,10 +16665,13 @@ pub async fn extras_approval_workflows_create(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsDestroyParams,
 ) -> Result<(), Error<ExtrasApprovalWorkflowsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9075,84 +16723,87 @@ pub async fn extras_approval_workflows_destroy(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_list(
     configuration: &configuration::Configuration,
-    approval_workflow_definition: Option<Vec<String>>,
-    approval_workflow_definition__isnull: Option<bool>,
-    approval_workflow_definition__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    current_state: Option<Vec<String>>,
-    current_state__ic: Option<Vec<String>>,
-    current_state__ie: Option<Vec<String>>,
-    current_state__iew: Option<Vec<String>>,
-    current_state__ire: Option<Vec<String>>,
-    current_state__isw: Option<Vec<String>>,
-    current_state__n: Option<Vec<String>>,
-    current_state__nic: Option<Vec<String>>,
-    current_state__nie: Option<Vec<String>>,
-    current_state__niew: Option<Vec<String>>,
-    current_state__nire: Option<Vec<String>>,
-    current_state__nisw: Option<Vec<String>>,
-    current_state__nre: Option<Vec<String>>,
-    current_state__re: Option<Vec<String>>,
-    decision_date: Option<Vec<String>>,
-    decision_date__gt: Option<Vec<String>>,
-    decision_date__gte: Option<Vec<String>>,
-    decision_date__isnull: Option<bool>,
-    decision_date__lt: Option<Vec<String>>,
-    decision_date__lte: Option<Vec<String>>,
-    decision_date__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    object_under_review_content_type: Option<Vec<i32>>,
-    object_under_review_content_type__n: Option<Vec<i32>>,
-    object_under_review_object_id: Option<Vec<uuid::Uuid>>,
-    object_under_review_object_id__n: Option<Vec<uuid::Uuid>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    user: Option<Vec<uuid::Uuid>>,
-    user__isnull: Option<bool>,
-    user__n: Option<Vec<uuid::Uuid>>,
-    user_name: Option<Vec<String>>,
-    user_name__ic: Option<Vec<String>>,
-    user_name__ie: Option<Vec<String>>,
-    user_name__iew: Option<Vec<String>>,
-    user_name__ire: Option<Vec<String>>,
-    user_name__isw: Option<Vec<String>>,
-    user_name__n: Option<Vec<String>>,
-    user_name__nic: Option<Vec<String>>,
-    user_name__nie: Option<Vec<String>>,
-    user_name__niew: Option<Vec<String>>,
-    user_name__nire: Option<Vec<String>>,
-    user_name__nisw: Option<Vec<String>>,
-    user_name__nre: Option<Vec<String>>,
-    user_name__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowsListParams,
 ) -> Result<crate::models::PaginatedApprovalWorkflowList, Error<ExtrasApprovalWorkflowsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_workflow_definition = params.approval_workflow_definition;
+    let approval_workflow_definition__isnull = params.approval_workflow_definition__isnull;
+    let approval_workflow_definition__n = params.approval_workflow_definition__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let current_state = params.current_state;
+    let current_state__ic = params.current_state__ic;
+    let current_state__ie = params.current_state__ie;
+    let current_state__iew = params.current_state__iew;
+    let current_state__ire = params.current_state__ire;
+    let current_state__isw = params.current_state__isw;
+    let current_state__n = params.current_state__n;
+    let current_state__nic = params.current_state__nic;
+    let current_state__nie = params.current_state__nie;
+    let current_state__niew = params.current_state__niew;
+    let current_state__nire = params.current_state__nire;
+    let current_state__nisw = params.current_state__nisw;
+    let current_state__nre = params.current_state__nre;
+    let current_state__re = params.current_state__re;
+    let decision_date = params.decision_date;
+    let decision_date__gt = params.decision_date__gt;
+    let decision_date__gte = params.decision_date__gte;
+    let decision_date__isnull = params.decision_date__isnull;
+    let decision_date__lt = params.decision_date__lt;
+    let decision_date__lte = params.decision_date__lte;
+    let decision_date__n = params.decision_date__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let object_under_review_content_type = params.object_under_review_content_type;
+    let object_under_review_content_type__n = params.object_under_review_content_type__n;
+    let object_under_review_object_id = params.object_under_review_object_id;
+    let object_under_review_object_id__n = params.object_under_review_object_id__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let user = params.user;
+    let user__isnull = params.user__isnull;
+    let user__n = params.user__n;
+    let user_name = params.user_name;
+    let user_name__ic = params.user_name__ic;
+    let user_name__ie = params.user_name__ie;
+    let user_name__iew = params.user_name__iew;
+    let user_name__ire = params.user_name__ire;
+    let user_name__isw = params.user_name__isw;
+    let user_name__n = params.user_name__n;
+    let user_name__nic = params.user_name__nic;
+    let user_name__nie = params.user_name__nie;
+    let user_name__niew = params.user_name__niew;
+    let user_name__nire = params.user_name__nire;
+    let user_name__nisw = params.user_name__nisw;
+    let user_name__nre = params.user_name__nre;
+    let user_name__re = params.user_name__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10439,11 +18090,14 @@ pub async fn extras_approval_workflows_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflows_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasApprovalWorkflowsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10496,14 +18150,17 @@ pub async fn extras_approval_workflows_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_approval_workflows_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasApprovalWorkflowsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10571,11 +18228,14 @@ pub async fn extras_approval_workflows_notes_list(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_approval_workflow_request: Option<crate::models::PatchedApprovalWorkflowRequest>,
+    params: ExtrasApprovalWorkflowsPartialUpdateParams,
 ) -> Result<crate::models::ApprovalWorkflow, Error<ExtrasApprovalWorkflowsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_approval_workflow_request = params.patched_approval_workflow_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10628,12 +18288,15 @@ pub async fn extras_approval_workflows_partial_update(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasApprovalWorkflowsRetrieveParams,
 ) -> Result<crate::models::ApprovalWorkflow, Error<ExtrasApprovalWorkflowsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10693,11 +18356,14 @@ pub async fn extras_approval_workflows_retrieve(
 /// ApprovalWorkflow viewset.
 pub async fn extras_approval_workflows_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    approval_workflow_request: crate::models::ApprovalWorkflowRequest,
-    format: Option<&str>,
+    params: ExtrasApprovalWorkflowsUpdateParams,
 ) -> Result<crate::models::ApprovalWorkflow, Error<ExtrasApprovalWorkflowsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let approval_workflow_request = params.approval_workflow_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10750,10 +18416,13 @@ pub async fn extras_approval_workflows_update(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasComputedFieldsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10805,12 +18474,14 @@ pub async fn extras_computed_fields_bulk_destroy(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_computed_field_request: Vec<
-        crate::models::PatchedBulkWritableComputedFieldRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ComputedField>, Error<ExtrasComputedFieldsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_computed_field_request =
+        params.patched_bulk_writable_computed_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10863,10 +18534,13 @@ pub async fn extras_computed_fields_bulk_partial_update(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_computed_field_request: Vec<crate::models::BulkWritableComputedFieldRequest>,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ComputedField>, Error<ExtrasComputedFieldsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_computed_field_request = params.bulk_writable_computed_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10918,10 +18592,13 @@ pub async fn extras_computed_fields_bulk_update(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_create(
     configuration: &configuration::Configuration,
-    writable_computed_field_request: crate::models::WritableComputedFieldRequest,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsCreateParams,
 ) -> Result<crate::models::ComputedField, Error<ExtrasComputedFieldsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let writable_computed_field_request = params.writable_computed_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -10973,10 +18650,13 @@ pub async fn extras_computed_fields_create(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsDestroyParams,
 ) -> Result<(), Error<ExtrasComputedFieldsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11028,89 +18708,92 @@ pub async fn extras_computed_fields_destroy(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<&str>,
-    content_type__n: Option<&str>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    fallback_value: Option<Vec<String>>,
-    fallback_value__ic: Option<Vec<String>>,
-    fallback_value__ie: Option<Vec<String>>,
-    fallback_value__iew: Option<Vec<String>>,
-    fallback_value__ire: Option<Vec<String>>,
-    fallback_value__isw: Option<Vec<String>>,
-    fallback_value__n: Option<Vec<String>>,
-    fallback_value__nic: Option<Vec<String>>,
-    fallback_value__nie: Option<Vec<String>>,
-    fallback_value__niew: Option<Vec<String>>,
-    fallback_value__nire: Option<Vec<String>>,
-    fallback_value__nisw: Option<Vec<String>>,
-    fallback_value__nre: Option<Vec<String>>,
-    fallback_value__re: Option<Vec<String>>,
-    format: Option<&str>,
-    grouping: Option<Vec<String>>,
-    grouping__ic: Option<Vec<String>>,
-    grouping__ie: Option<Vec<String>>,
-    grouping__iew: Option<Vec<String>>,
-    grouping__ire: Option<Vec<String>>,
-    grouping__isw: Option<Vec<String>>,
-    grouping__n: Option<Vec<String>>,
-    grouping__nic: Option<Vec<String>>,
-    grouping__nie: Option<Vec<String>>,
-    grouping__niew: Option<Vec<String>>,
-    grouping__nire: Option<Vec<String>>,
-    grouping__nisw: Option<Vec<String>>,
-    grouping__nre: Option<Vec<String>>,
-    grouping__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    key: Option<Vec<String>>,
-    key__ic: Option<Vec<String>>,
-    key__ie: Option<Vec<String>>,
-    key__iew: Option<Vec<String>>,
-    key__ire: Option<Vec<String>>,
-    key__isw: Option<Vec<String>>,
-    key__n: Option<Vec<String>>,
-    key__nic: Option<Vec<String>>,
-    key__nie: Option<Vec<String>>,
-    key__niew: Option<Vec<String>>,
-    key__nire: Option<Vec<String>>,
-    key__nisw: Option<Vec<String>>,
-    key__nre: Option<Vec<String>>,
-    key__re: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    template: Option<Vec<String>>,
-    template__ic: Option<Vec<String>>,
-    template__ie: Option<Vec<String>>,
-    template__iew: Option<Vec<String>>,
-    template__ire: Option<Vec<String>>,
-    template__isw: Option<Vec<String>>,
-    template__n: Option<Vec<String>>,
-    template__nic: Option<Vec<String>>,
-    template__nie: Option<Vec<String>>,
-    template__niew: Option<Vec<String>>,
-    template__nire: Option<Vec<String>>,
-    template__nisw: Option<Vec<String>>,
-    template__nre: Option<Vec<String>>,
-    template__re: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasComputedFieldsListParams,
 ) -> Result<crate::models::PaginatedComputedFieldList, Error<ExtrasComputedFieldsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let fallback_value = params.fallback_value;
+    let fallback_value__ic = params.fallback_value__ic;
+    let fallback_value__ie = params.fallback_value__ie;
+    let fallback_value__iew = params.fallback_value__iew;
+    let fallback_value__ire = params.fallback_value__ire;
+    let fallback_value__isw = params.fallback_value__isw;
+    let fallback_value__n = params.fallback_value__n;
+    let fallback_value__nic = params.fallback_value__nic;
+    let fallback_value__nie = params.fallback_value__nie;
+    let fallback_value__niew = params.fallback_value__niew;
+    let fallback_value__nire = params.fallback_value__nire;
+    let fallback_value__nisw = params.fallback_value__nisw;
+    let fallback_value__nre = params.fallback_value__nre;
+    let fallback_value__re = params.fallback_value__re;
+    let format = params.format;
+    let grouping = params.grouping;
+    let grouping__ic = params.grouping__ic;
+    let grouping__ie = params.grouping__ie;
+    let grouping__iew = params.grouping__iew;
+    let grouping__ire = params.grouping__ire;
+    let grouping__isw = params.grouping__isw;
+    let grouping__n = params.grouping__n;
+    let grouping__nic = params.grouping__nic;
+    let grouping__nie = params.grouping__nie;
+    let grouping__niew = params.grouping__niew;
+    let grouping__nire = params.grouping__nire;
+    let grouping__nisw = params.grouping__nisw;
+    let grouping__nre = params.grouping__nre;
+    let grouping__re = params.grouping__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let key = params.key;
+    let key__ic = params.key__ic;
+    let key__ie = params.key__ie;
+    let key__iew = params.key__iew;
+    let key__ire = params.key__ire;
+    let key__isw = params.key__isw;
+    let key__n = params.key__n;
+    let key__nic = params.key__nic;
+    let key__nie = params.key__nie;
+    let key__niew = params.key__niew;
+    let key__nire = params.key__nire;
+    let key__nisw = params.key__nisw;
+    let key__nre = params.key__nre;
+    let key__re = params.key__re;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let template = params.template;
+    let template__ic = params.template__ic;
+    let template__ie = params.template__ie;
+    let template__iew = params.template__iew;
+    let template__ire = params.template__ire;
+    let template__isw = params.template__isw;
+    let template__n = params.template__n;
+    let template__nic = params.template__nic;
+    let template__nie = params.template__nie;
+    let template__niew = params.template__niew;
+    let template__nire = params.template__nire;
+    let template__nisw = params.template__nisw;
+    let template__nre = params.template__nre;
+    let template__re = params.template__re;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12530,11 +20213,14 @@ pub async fn extras_computed_fields_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_computed_fields_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasComputedFieldsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12587,14 +20273,17 @@ pub async fn extras_computed_fields_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_computed_fields_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasComputedFieldsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasComputedFieldsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12662,13 +20351,14 @@ pub async fn extras_computed_fields_notes_list(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_writable_computed_field_request: Option<
-        crate::models::PatchedWritableComputedFieldRequest,
-    >,
+    params: ExtrasComputedFieldsPartialUpdateParams,
 ) -> Result<crate::models::ComputedField, Error<ExtrasComputedFieldsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_writable_computed_field_request = params.patched_writable_computed_field_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12721,12 +20411,15 @@ pub async fn extras_computed_fields_partial_update(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasComputedFieldsRetrieveParams,
 ) -> Result<crate::models::ComputedField, Error<ExtrasComputedFieldsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12786,11 +20479,14 @@ pub async fn extras_computed_fields_retrieve(
 /// Manage Computed Fields through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_computed_fields_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    writable_computed_field_request: crate::models::WritableComputedFieldRequest,
-    format: Option<&str>,
+    params: ExtrasComputedFieldsUpdateParams,
 ) -> Result<crate::models::ComputedField, Error<ExtrasComputedFieldsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let writable_computed_field_request = params.writable_computed_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12843,10 +20539,13 @@ pub async fn extras_computed_fields_update(
 /// Destroy a list of config context schema objects.
 pub async fn extras_config_context_schemas_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasBulkDestroyParams,
 ) -> Result<(), Error<ExtrasConfigContextSchemasBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12898,15 +20597,17 @@ pub async fn extras_config_context_schemas_bulk_destroy(
 /// Partial update a list of config context schema objects.
 pub async fn extras_config_context_schemas_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_config_context_schema_request: Vec<
-        crate::models::PatchedBulkWritableConfigContextSchemaRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ConfigContextSchema>,
     Error<ExtrasConfigContextSchemasBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_config_context_schema_request =
+        params.patched_bulk_writable_config_context_schema_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12959,13 +20660,15 @@ pub async fn extras_config_context_schemas_bulk_partial_update(
 /// Update a list of config context schema objects.
 pub async fn extras_config_context_schemas_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_config_context_schema_request: Vec<
-        crate::models::BulkWritableConfigContextSchemaRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasBulkUpdateParams,
 ) -> Result<Vec<crate::models::ConfigContextSchema>, Error<ExtrasConfigContextSchemasBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_config_context_schema_request =
+        params.bulk_writable_config_context_schema_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13018,10 +20721,13 @@ pub async fn extras_config_context_schemas_bulk_update(
 /// Create one or more config context schema objects.
 pub async fn extras_config_context_schemas_create(
     configuration: &configuration::Configuration,
-    config_context_schema_request: crate::models::ConfigContextSchemaRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasCreateParams,
 ) -> Result<crate::models::ConfigContextSchema, Error<ExtrasConfigContextSchemasCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let config_context_schema_request = params.config_context_schema_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13073,10 +20779,13 @@ pub async fn extras_config_context_schemas_create(
 /// Destroy a config context schema object.
 pub async fn extras_config_context_schemas_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasDestroyParams,
 ) -> Result<(), Error<ExtrasConfigContextSchemasDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13128,59 +20837,62 @@ pub async fn extras_config_context_schemas_destroy(
 /// Retrieve a list of config context schema objects.
 pub async fn extras_config_context_schemas_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    owner_content_type: Option<&str>,
-    owner_content_type__isnull: Option<bool>,
-    owner_content_type__n: Option<&str>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextSchemasListParams,
 ) -> Result<
     crate::models::PaginatedConfigContextSchemaList,
     Error<ExtrasConfigContextSchemasListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let owner_content_type = params.owner_content_type;
+    let owner_content_type__isnull = params.owner_content_type__isnull;
+    let owner_content_type__n = params.owner_content_type__n;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13958,11 +21670,14 @@ pub async fn extras_config_context_schemas_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_config_context_schemas_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasConfigContextSchemasNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14015,14 +21730,17 @@ pub async fn extras_config_context_schemas_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_config_context_schemas_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextSchemasNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasConfigContextSchemasNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14090,12 +21808,15 @@ pub async fn extras_config_context_schemas_notes_list(
 /// Partial update a config context schema object.
 pub async fn extras_config_context_schemas_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_config_context_schema_request: Option<crate::models::PatchedConfigContextSchemaRequest>,
+    params: ExtrasConfigContextSchemasPartialUpdateParams,
 ) -> Result<crate::models::ConfigContextSchema, Error<ExtrasConfigContextSchemasPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_config_context_schema_request = params.patched_config_context_schema_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14148,12 +21869,15 @@ pub async fn extras_config_context_schemas_partial_update(
 /// Retrieve a config context schema object.
 pub async fn extras_config_context_schemas_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextSchemasRetrieveParams,
 ) -> Result<crate::models::ConfigContextSchema, Error<ExtrasConfigContextSchemasRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14213,11 +21937,14 @@ pub async fn extras_config_context_schemas_retrieve(
 /// Update a config context schema object.
 pub async fn extras_config_context_schemas_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    config_context_schema_request: crate::models::ConfigContextSchemaRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextSchemasUpdateParams,
 ) -> Result<crate::models::ConfigContextSchema, Error<ExtrasConfigContextSchemasUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let config_context_schema_request = params.config_context_schema_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14270,10 +21997,13 @@ pub async fn extras_config_context_schemas_update(
 /// Destroy a list of config context objects.
 pub async fn extras_config_contexts_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasConfigContextsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasConfigContextsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14325,12 +22055,14 @@ pub async fn extras_config_contexts_bulk_destroy(
 /// Partial update a list of config context objects.
 pub async fn extras_config_contexts_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_config_context_request: Vec<
-        crate::models::PatchedBulkWritableConfigContextRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasConfigContextsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ConfigContext>, Error<ExtrasConfigContextsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_config_context_request =
+        params.patched_bulk_writable_config_context_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14383,10 +22115,13 @@ pub async fn extras_config_contexts_bulk_partial_update(
 /// Update a list of config context objects.
 pub async fn extras_config_contexts_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_config_context_request: Vec<crate::models::BulkWritableConfigContextRequest>,
-    format: Option<&str>,
+    params: ExtrasConfigContextsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ConfigContext>, Error<ExtrasConfigContextsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_config_context_request = params.bulk_writable_config_context_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14438,10 +22173,13 @@ pub async fn extras_config_contexts_bulk_update(
 /// Create one or more config context objects.
 pub async fn extras_config_contexts_create(
     configuration: &configuration::Configuration,
-    config_context_request: crate::models::ConfigContextRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextsCreateParams,
 ) -> Result<crate::models::ConfigContext, Error<ExtrasConfigContextsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let config_context_request = params.config_context_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14493,10 +22231,13 @@ pub async fn extras_config_contexts_create(
 /// Destroy a config context object.
 pub async fn extras_config_contexts_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasConfigContextsDestroyParams,
 ) -> Result<(), Error<ExtrasConfigContextsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14548,81 +22289,84 @@ pub async fn extras_config_contexts_destroy(
 /// Retrieve a list of config context objects.
 pub async fn extras_config_contexts_list(
     configuration: &configuration::Configuration,
-    cluster_group: Option<Vec<String>>,
-    cluster_group__n: Option<Vec<String>>,
-    cluster_group_id: Option<Vec<uuid::Uuid>>,
-    cluster_group_id__n: Option<Vec<uuid::Uuid>>,
-    cluster_id: Option<Vec<uuid::Uuid>>,
-    cluster_id__n: Option<Vec<uuid::Uuid>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    device_family: Option<Vec<String>>,
-    device_family__n: Option<Vec<String>>,
-    device_redundancy_group: Option<Vec<String>>,
-    device_redundancy_group__n: Option<Vec<String>>,
-    device_type: Option<Vec<String>>,
-    device_type__n: Option<Vec<String>>,
-    device_type_id: Option<Vec<uuid::Uuid>>,
-    device_type_id__n: Option<Vec<uuid::Uuid>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    is_active: Option<bool>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__n: Option<Vec<String>>,
-    location_id: Option<Vec<uuid::Uuid>>,
-    location_id__n: Option<Vec<uuid::Uuid>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    owner_content_type: Option<&str>,
-    owner_content_type__isnull: Option<bool>,
-    owner_content_type__n: Option<&str>,
-    owner_object_id: Option<Vec<uuid::Uuid>>,
-    owner_object_id__isnull: Option<bool>,
-    owner_object_id__n: Option<Vec<uuid::Uuid>>,
-    platform: Option<Vec<String>>,
-    platform__n: Option<Vec<String>>,
-    platform_id: Option<Vec<uuid::Uuid>>,
-    platform_id__n: Option<Vec<uuid::Uuid>>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__n: Option<Vec<String>>,
-    schema: Option<Vec<String>>,
-    schema__isnull: Option<bool>,
-    schema__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    tag: Option<Vec<String>>,
-    tag__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_group_id: Option<Vec<uuid::Uuid>>,
-    tenant_group_id__n: Option<Vec<uuid::Uuid>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextsListParams,
 ) -> Result<crate::models::PaginatedConfigContextList, Error<ExtrasConfigContextsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cluster_group = params.cluster_group;
+    let cluster_group__n = params.cluster_group__n;
+    let cluster_group_id = params.cluster_group_id;
+    let cluster_group_id__n = params.cluster_group_id__n;
+    let cluster_id = params.cluster_id;
+    let cluster_id__n = params.cluster_id__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let device_family = params.device_family;
+    let device_family__n = params.device_family__n;
+    let device_redundancy_group = params.device_redundancy_group;
+    let device_redundancy_group__n = params.device_redundancy_group__n;
+    let device_type = params.device_type;
+    let device_type__n = params.device_type__n;
+    let device_type_id = params.device_type_id;
+    let device_type_id__n = params.device_type_id__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let is_active = params.is_active;
+    let limit = params.limit;
+    let location = params.location;
+    let location__n = params.location__n;
+    let location_id = params.location_id;
+    let location_id__n = params.location_id__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let owner_content_type = params.owner_content_type;
+    let owner_content_type__isnull = params.owner_content_type__isnull;
+    let owner_content_type__n = params.owner_content_type__n;
+    let owner_object_id = params.owner_object_id;
+    let owner_object_id__isnull = params.owner_object_id__isnull;
+    let owner_object_id__n = params.owner_object_id__n;
+    let platform = params.platform;
+    let platform__n = params.platform__n;
+    let platform_id = params.platform_id;
+    let platform_id__n = params.platform_id__n;
+    let q = params.q;
+    let role = params.role;
+    let role__n = params.role__n;
+    let schema = params.schema;
+    let schema__isnull = params.schema__isnull;
+    let schema__n = params.schema__n;
+    let sort = params.sort;
+    let tag = params.tag;
+    let tag__n = params.tag__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_group_id = params.tenant_group_id;
+    let tenant_group_id__n = params.tenant_group_id__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15830,11 +23574,14 @@ pub async fn extras_config_contexts_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_config_contexts_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasConfigContextsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15887,14 +23634,17 @@ pub async fn extras_config_contexts_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_config_contexts_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasConfigContextsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15962,11 +23712,14 @@ pub async fn extras_config_contexts_notes_list(
 /// Partial update a config context object.
 pub async fn extras_config_contexts_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_config_context_request: Option<crate::models::PatchedConfigContextRequest>,
+    params: ExtrasConfigContextsPartialUpdateParams,
 ) -> Result<crate::models::ConfigContext, Error<ExtrasConfigContextsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_config_context_request = params.patched_config_context_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16019,12 +23772,15 @@ pub async fn extras_config_contexts_partial_update(
 /// Retrieve a config context object.
 pub async fn extras_config_contexts_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasConfigContextsRetrieveParams,
 ) -> Result<crate::models::ConfigContext, Error<ExtrasConfigContextsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16084,11 +23840,14 @@ pub async fn extras_config_contexts_retrieve(
 /// Update a config context object.
 pub async fn extras_config_contexts_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    config_context_request: crate::models::ConfigContextRequest,
-    format: Option<&str>,
+    params: ExtrasConfigContextsUpdateParams,
 ) -> Result<crate::models::ConfigContext, Error<ExtrasConfigContextsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let config_context_request = params.config_context_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16141,10 +23900,13 @@ pub async fn extras_config_contexts_update(
 /// Destroy a list of contact association objects.
 pub async fn extras_contact_associations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasContactAssociationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16196,15 +23958,17 @@ pub async fn extras_contact_associations_bulk_destroy(
 /// Partial update a list of contact association objects.
 pub async fn extras_contact_associations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_contact_association_request: Vec<
-        crate::models::PatchedBulkWritableContactAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ContactAssociation>,
     Error<ExtrasContactAssociationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_contact_association_request =
+        params.patched_bulk_writable_contact_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16257,13 +24021,15 @@ pub async fn extras_contact_associations_bulk_partial_update(
 /// Update a list of contact association objects.
 pub async fn extras_contact_associations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_contact_association_request: Vec<
-        crate::models::BulkWritableContactAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ContactAssociation>, Error<ExtrasContactAssociationsBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_contact_association_request =
+        params.bulk_writable_contact_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16315,10 +24081,13 @@ pub async fn extras_contact_associations_bulk_update(
 /// Create one or more contact association objects.
 pub async fn extras_contact_associations_create(
     configuration: &configuration::Configuration,
-    contact_association_request: crate::models::ContactAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsCreateParams,
 ) -> Result<crate::models::ContactAssociation, Error<ExtrasContactAssociationsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contact_association_request = params.contact_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16370,10 +24139,13 @@ pub async fn extras_contact_associations_create(
 /// Destroy a contact association object.
 pub async fn extras_contact_associations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsDestroyParams,
 ) -> Result<(), Error<ExtrasContactAssociationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16425,47 +24197,50 @@ pub async fn extras_contact_associations_destroy(
 /// Retrieve a list of contact association objects.
 pub async fn extras_contact_associations_list(
     configuration: &configuration::Configuration,
-    associated_object_id: Option<Vec<uuid::Uuid>>,
-    associated_object_id__n: Option<Vec<uuid::Uuid>>,
-    associated_object_type: Option<&str>,
-    associated_object_type__isnull: Option<bool>,
-    associated_object_type__n: Option<&str>,
-    contact: Option<Vec<String>>,
-    contact__isnull: Option<bool>,
-    contact__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    team: Option<Vec<String>>,
-    team__isnull: Option<bool>,
-    team__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactAssociationsListParams,
 ) -> Result<crate::models::PaginatedContactAssociationList, Error<ExtrasContactAssociationsListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let associated_object_id = params.associated_object_id;
+    let associated_object_id__n = params.associated_object_id__n;
+    let associated_object_type = params.associated_object_type;
+    let associated_object_type__isnull = params.associated_object_type__isnull;
+    let associated_object_type__n = params.associated_object_type__n;
+    let contact = params.contact;
+    let contact__isnull = params.contact__isnull;
+    let contact__n = params.contact__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let role = params.role;
+    let role__n = params.role__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__n = params.status__n;
+    let team = params.team;
+    let team__isnull = params.team__isnull;
+    let team__n = params.team__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17023,11 +24798,14 @@ pub async fn extras_contact_associations_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_contact_associations_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasContactAssociationsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17080,14 +24858,17 @@ pub async fn extras_contact_associations_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_contact_associations_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactAssociationsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasContactAssociationsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17155,11 +24936,14 @@ pub async fn extras_contact_associations_notes_list(
 /// Partial update a contact association object.
 pub async fn extras_contact_associations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_contact_association_request: Option<crate::models::PatchedContactAssociationRequest>,
+    params: ExtrasContactAssociationsPartialUpdateParams,
 ) -> Result<crate::models::ContactAssociation, Error<ExtrasContactAssociationsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_contact_association_request = params.patched_contact_association_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17212,12 +24996,15 @@ pub async fn extras_contact_associations_partial_update(
 /// Retrieve a contact association object.
 pub async fn extras_contact_associations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactAssociationsRetrieveParams,
 ) -> Result<crate::models::ContactAssociation, Error<ExtrasContactAssociationsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17277,11 +25064,14 @@ pub async fn extras_contact_associations_retrieve(
 /// Update a contact association object.
 pub async fn extras_contact_associations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    contact_association_request: crate::models::ContactAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasContactAssociationsUpdateParams,
 ) -> Result<crate::models::ContactAssociation, Error<ExtrasContactAssociationsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let contact_association_request = params.contact_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17334,10 +25124,13 @@ pub async fn extras_contact_associations_update(
 /// Destroy a list of contact objects.
 pub async fn extras_contacts_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasContactsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasContactsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17386,10 +25179,13 @@ pub async fn extras_contacts_bulk_destroy(
 /// Partial update a list of contact objects.
 pub async fn extras_contacts_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_contact_request: Vec<crate::models::PatchedBulkWritableContactRequest>,
-    format: Option<&str>,
+    params: ExtrasContactsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Contact>, Error<ExtrasContactsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_contact_request = params.patched_bulk_writable_contact_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17438,10 +25234,13 @@ pub async fn extras_contacts_bulk_partial_update(
 /// Update a list of contact objects.
 pub async fn extras_contacts_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_contact_request: Vec<crate::models::BulkWritableContactRequest>,
-    format: Option<&str>,
+    params: ExtrasContactsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Contact>, Error<ExtrasContactsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_contact_request = params.bulk_writable_contact_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17490,10 +25289,13 @@ pub async fn extras_contacts_bulk_update(
 /// Create one or more contact objects.
 pub async fn extras_contacts_create(
     configuration: &configuration::Configuration,
-    contact_request: crate::models::ContactRequest,
-    format: Option<&str>,
+    params: ExtrasContactsCreateParams,
 ) -> Result<crate::models::Contact, Error<ExtrasContactsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contact_request = params.contact_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17542,10 +25344,13 @@ pub async fn extras_contacts_create(
 /// Destroy a contact object.
 pub async fn extras_contacts_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasContactsDestroyParams,
 ) -> Result<(), Error<ExtrasContactsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17597,110 +25402,113 @@ pub async fn extras_contacts_destroy(
 /// Retrieve a list of contact objects.
 pub async fn extras_contacts_list(
     configuration: &configuration::Configuration,
-    address: Option<Vec<String>>,
-    address__ic: Option<Vec<String>>,
-    address__ie: Option<Vec<String>>,
-    address__iew: Option<Vec<String>>,
-    address__ire: Option<Vec<String>>,
-    address__isw: Option<Vec<String>>,
-    address__n: Option<Vec<String>>,
-    address__nic: Option<Vec<String>>,
-    address__nie: Option<Vec<String>>,
-    address__niew: Option<Vec<String>>,
-    address__nire: Option<Vec<String>>,
-    address__nisw: Option<Vec<String>>,
-    address__nre: Option<Vec<String>>,
-    address__re: Option<Vec<String>>,
-    comments: Option<Vec<String>>,
-    comments__ic: Option<Vec<String>>,
-    comments__ie: Option<Vec<String>>,
-    comments__iew: Option<Vec<String>>,
-    comments__ire: Option<Vec<String>>,
-    comments__isw: Option<Vec<String>>,
-    comments__n: Option<Vec<String>>,
-    comments__nic: Option<Vec<String>>,
-    comments__nie: Option<Vec<String>>,
-    comments__niew: Option<Vec<String>>,
-    comments__nire: Option<Vec<String>>,
-    comments__nisw: Option<Vec<String>>,
-    comments__nre: Option<Vec<String>>,
-    comments__re: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    email: Option<Vec<String>>,
-    email__ic: Option<Vec<String>>,
-    email__ie: Option<Vec<String>>,
-    email__iew: Option<Vec<String>>,
-    email__ire: Option<Vec<String>>,
-    email__isw: Option<Vec<String>>,
-    email__n: Option<Vec<String>>,
-    email__nic: Option<Vec<String>>,
-    email__nie: Option<Vec<String>>,
-    email__niew: Option<Vec<String>>,
-    email__nire: Option<Vec<String>>,
-    email__nisw: Option<Vec<String>>,
-    email__nre: Option<Vec<String>>,
-    email__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    phone: Option<Vec<String>>,
-    phone__ic: Option<Vec<String>>,
-    phone__ie: Option<Vec<String>>,
-    phone__iew: Option<Vec<String>>,
-    phone__ire: Option<Vec<String>>,
-    phone__isw: Option<Vec<String>>,
-    phone__n: Option<Vec<String>>,
-    phone__nic: Option<Vec<String>>,
-    phone__nie: Option<Vec<String>>,
-    phone__niew: Option<Vec<String>>,
-    phone__nire: Option<Vec<String>>,
-    phone__nisw: Option<Vec<String>>,
-    phone__nre: Option<Vec<String>>,
-    phone__re: Option<Vec<String>>,
-    q: Option<&str>,
-    similar_to_location_data: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactsListParams,
 ) -> Result<crate::models::PaginatedContactList, Error<ExtrasContactsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let address = params.address;
+    let address__ic = params.address__ic;
+    let address__ie = params.address__ie;
+    let address__iew = params.address__iew;
+    let address__ire = params.address__ire;
+    let address__isw = params.address__isw;
+    let address__n = params.address__n;
+    let address__nic = params.address__nic;
+    let address__nie = params.address__nie;
+    let address__niew = params.address__niew;
+    let address__nire = params.address__nire;
+    let address__nisw = params.address__nisw;
+    let address__nre = params.address__nre;
+    let address__re = params.address__re;
+    let comments = params.comments;
+    let comments__ic = params.comments__ic;
+    let comments__ie = params.comments__ie;
+    let comments__iew = params.comments__iew;
+    let comments__ire = params.comments__ire;
+    let comments__isw = params.comments__isw;
+    let comments__n = params.comments__n;
+    let comments__nic = params.comments__nic;
+    let comments__nie = params.comments__nie;
+    let comments__niew = params.comments__niew;
+    let comments__nire = params.comments__nire;
+    let comments__nisw = params.comments__nisw;
+    let comments__nre = params.comments__nre;
+    let comments__re = params.comments__re;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let email = params.email;
+    let email__ic = params.email__ic;
+    let email__ie = params.email__ie;
+    let email__iew = params.email__iew;
+    let email__ire = params.email__ire;
+    let email__isw = params.email__isw;
+    let email__n = params.email__n;
+    let email__nic = params.email__nic;
+    let email__nie = params.email__nie;
+    let email__niew = params.email__niew;
+    let email__nire = params.email__nire;
+    let email__nisw = params.email__nisw;
+    let email__nre = params.email__nre;
+    let email__re = params.email__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let phone = params.phone;
+    let phone__ic = params.phone__ic;
+    let phone__ie = params.phone__ie;
+    let phone__iew = params.phone__iew;
+    let phone__ire = params.phone__ire;
+    let phone__isw = params.phone__isw;
+    let phone__n = params.phone__n;
+    let phone__nic = params.phone__nic;
+    let phone__nie = params.phone__nie;
+    let phone__niew = params.phone__niew;
+    let phone__nire = params.phone__nire;
+    let phone__nisw = params.phone__nisw;
+    let phone__nre = params.phone__nre;
+    let phone__re = params.phone__re;
+    let q = params.q;
+    let similar_to_location_data = params.similar_to_location_data;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19516,11 +27324,14 @@ pub async fn extras_contacts_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_contacts_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasContactsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasContactsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19573,14 +27384,17 @@ pub async fn extras_contacts_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_contacts_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasContactsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19648,11 +27462,14 @@ pub async fn extras_contacts_notes_list(
 /// Partial update a contact object.
 pub async fn extras_contacts_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_contact_request: Option<crate::models::PatchedContactRequest>,
+    params: ExtrasContactsPartialUpdateParams,
 ) -> Result<crate::models::Contact, Error<ExtrasContactsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_contact_request = params.patched_contact_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19705,12 +27522,15 @@ pub async fn extras_contacts_partial_update(
 /// Retrieve a contact object.
 pub async fn extras_contacts_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContactsRetrieveParams,
 ) -> Result<crate::models::Contact, Error<ExtrasContactsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19770,11 +27590,14 @@ pub async fn extras_contacts_retrieve(
 /// Update a contact object.
 pub async fn extras_contacts_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    contact_request: crate::models::ContactRequest,
-    format: Option<&str>,
+    params: ExtrasContactsUpdateParams,
 ) -> Result<crate::models::Contact, Error<ExtrasContactsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let contact_request = params.contact_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19827,55 +27650,58 @@ pub async fn extras_contacts_update(
 /// Read-only list of ContentTypes. Limit results to ContentTypes pertinent to Nautobot objects.
 pub async fn extras_content_types_list(
     configuration: &configuration::Configuration,
-    app_label: Option<Vec<String>>,
-    app_label__ic: Option<Vec<String>>,
-    app_label__ie: Option<Vec<String>>,
-    app_label__iew: Option<Vec<String>>,
-    app_label__ire: Option<Vec<String>>,
-    app_label__isw: Option<Vec<String>>,
-    app_label__n: Option<Vec<String>>,
-    app_label__nic: Option<Vec<String>>,
-    app_label__nie: Option<Vec<String>>,
-    app_label__niew: Option<Vec<String>>,
-    app_label__nire: Option<Vec<String>>,
-    app_label__nisw: Option<Vec<String>>,
-    app_label__nre: Option<Vec<String>>,
-    app_label__re: Option<Vec<String>>,
-    can_add: Option<bool>,
-    can_change: Option<bool>,
-    can_delete: Option<bool>,
-    can_view: Option<bool>,
-    feature: Option<&str>,
-    format: Option<&str>,
-    has_serializer: Option<bool>,
-    id: Option<Vec<i32>>,
-    id__gt: Option<Vec<i32>>,
-    id__gte: Option<Vec<i32>>,
-    id__lt: Option<Vec<i32>>,
-    id__lte: Option<Vec<i32>>,
-    id__n: Option<Vec<i32>>,
-    limit: Option<i32>,
-    model: Option<Vec<String>>,
-    model__ic: Option<Vec<String>>,
-    model__ie: Option<Vec<String>>,
-    model__iew: Option<Vec<String>>,
-    model__ire: Option<Vec<String>>,
-    model__isw: Option<Vec<String>>,
-    model__n: Option<Vec<String>>,
-    model__nic: Option<Vec<String>>,
-    model__nie: Option<Vec<String>>,
-    model__niew: Option<Vec<String>>,
-    model__nire: Option<Vec<String>>,
-    model__nisw: Option<Vec<String>>,
-    model__nre: Option<Vec<String>>,
-    model__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContentTypesListParams,
 ) -> Result<crate::models::PaginatedContentTypeList, Error<ExtrasContentTypesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let app_label = params.app_label;
+    let app_label__ic = params.app_label__ic;
+    let app_label__ie = params.app_label__ie;
+    let app_label__iew = params.app_label__iew;
+    let app_label__ire = params.app_label__ire;
+    let app_label__isw = params.app_label__isw;
+    let app_label__n = params.app_label__n;
+    let app_label__nic = params.app_label__nic;
+    let app_label__nie = params.app_label__nie;
+    let app_label__niew = params.app_label__niew;
+    let app_label__nire = params.app_label__nire;
+    let app_label__nisw = params.app_label__nisw;
+    let app_label__nre = params.app_label__nre;
+    let app_label__re = params.app_label__re;
+    let can_add = params.can_add;
+    let can_change = params.can_change;
+    let can_delete = params.can_delete;
+    let can_view = params.can_view;
+    let feature = params.feature;
+    let format = params.format;
+    let has_serializer = params.has_serializer;
+    let id = params.id;
+    let id__gt = params.id__gt;
+    let id__gte = params.id__gte;
+    let id__lt = params.id__lt;
+    let id__lte = params.id__lte;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let model = params.model;
+    let model__ic = params.model__ic;
+    let model__ie = params.model__ie;
+    let model__iew = params.model__iew;
+    let model__ire = params.model__ire;
+    let model__isw = params.model__isw;
+    let model__n = params.model__n;
+    let model__nic = params.model__nic;
+    let model__nie = params.model__nie;
+    let model__niew = params.model__niew;
+    let model__nire = params.model__nire;
+    let model__nisw = params.model__nisw;
+    let model__nre = params.model__nre;
+    let model__re = params.model__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20619,12 +28445,15 @@ pub async fn extras_content_types_list(
 /// Read-only list of ContentTypes. Limit results to ContentTypes pertinent to Nautobot objects.
 pub async fn extras_content_types_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasContentTypesRetrieveParams,
 ) -> Result<crate::models::ContentType, Error<ExtrasContentTypesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20684,10 +28513,13 @@ pub async fn extras_content_types_retrieve(
 /// Destroy a list of custom field choice objects.
 pub async fn extras_custom_field_choices_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasCustomFieldChoicesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20739,15 +28571,17 @@ pub async fn extras_custom_field_choices_bulk_destroy(
 /// Partial update a list of custom field choice objects.
 pub async fn extras_custom_field_choices_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_custom_field_choice_request: Vec<
-        crate::models::PatchedBulkWritableCustomFieldChoiceRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::CustomFieldChoice>,
     Error<ExtrasCustomFieldChoicesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_custom_field_choice_request =
+        params.patched_bulk_writable_custom_field_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20800,12 +28634,14 @@ pub async fn extras_custom_field_choices_bulk_partial_update(
 /// Update a list of custom field choice objects.
 pub async fn extras_custom_field_choices_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_custom_field_choice_request: Vec<
-        crate::models::BulkWritableCustomFieldChoiceRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesBulkUpdateParams,
 ) -> Result<Vec<crate::models::CustomFieldChoice>, Error<ExtrasCustomFieldChoicesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_custom_field_choice_request =
+        params.bulk_writable_custom_field_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20857,10 +28693,13 @@ pub async fn extras_custom_field_choices_bulk_update(
 /// Create one or more custom field choice objects.
 pub async fn extras_custom_field_choices_create(
     configuration: &configuration::Configuration,
-    custom_field_choice_request: crate::models::CustomFieldChoiceRequest,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesCreateParams,
 ) -> Result<crate::models::CustomFieldChoice, Error<ExtrasCustomFieldChoicesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let custom_field_choice_request = params.custom_field_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20912,10 +28751,13 @@ pub async fn extras_custom_field_choices_create(
 /// Destroy a custom field choice object.
 pub async fn extras_custom_field_choices_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesDestroyParams,
 ) -> Result<(), Error<ExtrasCustomFieldChoicesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20967,40 +28809,43 @@ pub async fn extras_custom_field_choices_destroy(
 /// Retrieve a list of custom field choice objects.
 pub async fn extras_custom_field_choices_list(
     configuration: &configuration::Configuration,
-    custom_field: Option<Vec<String>>,
-    custom_field__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    value: Option<Vec<String>>,
-    value__ic: Option<Vec<String>>,
-    value__ie: Option<Vec<String>>,
-    value__iew: Option<Vec<String>>,
-    value__ire: Option<Vec<String>>,
-    value__isw: Option<Vec<String>>,
-    value__n: Option<Vec<String>>,
-    value__nic: Option<Vec<String>>,
-    value__nie: Option<Vec<String>>,
-    value__niew: Option<Vec<String>>,
-    value__nire: Option<Vec<String>>,
-    value__nisw: Option<Vec<String>>,
-    value__nre: Option<Vec<String>>,
-    value__re: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomFieldChoicesListParams,
 ) -> Result<crate::models::PaginatedCustomFieldChoiceList, Error<ExtrasCustomFieldChoicesListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let custom_field = params.custom_field;
+    let custom_field__n = params.custom_field__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let value = params.value;
+    let value__ic = params.value__ic;
+    let value__ie = params.value__ie;
+    let value__iew = params.value__iew;
+    let value__ire = params.value__ire;
+    let value__isw = params.value__isw;
+    let value__n = params.value__n;
+    let value__nic = params.value__nic;
+    let value__nie = params.value__nie;
+    let value__niew = params.value__niew;
+    let value__nire = params.value__nire;
+    let value__nisw = params.value__nisw;
+    let value__nre = params.value__nre;
+    let value__re = params.value__re;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21530,11 +29375,14 @@ pub async fn extras_custom_field_choices_list(
 /// Partial update a custom field choice object.
 pub async fn extras_custom_field_choices_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_custom_field_choice_request: Option<crate::models::PatchedCustomFieldChoiceRequest>,
+    params: ExtrasCustomFieldChoicesPartialUpdateParams,
 ) -> Result<crate::models::CustomFieldChoice, Error<ExtrasCustomFieldChoicesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_custom_field_choice_request = params.patched_custom_field_choice_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21587,12 +29435,15 @@ pub async fn extras_custom_field_choices_partial_update(
 /// Retrieve a custom field choice object.
 pub async fn extras_custom_field_choices_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomFieldChoicesRetrieveParams,
 ) -> Result<crate::models::CustomFieldChoice, Error<ExtrasCustomFieldChoicesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21652,11 +29503,14 @@ pub async fn extras_custom_field_choices_retrieve(
 /// Update a custom field choice object.
 pub async fn extras_custom_field_choices_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    custom_field_choice_request: crate::models::CustomFieldChoiceRequest,
-    format: Option<&str>,
+    params: ExtrasCustomFieldChoicesUpdateParams,
 ) -> Result<crate::models::CustomFieldChoice, Error<ExtrasCustomFieldChoicesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let custom_field_choice_request = params.custom_field_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21709,10 +29563,13 @@ pub async fn extras_custom_field_choices_update(
 /// Destroy a list of custom field objects.
 pub async fn extras_custom_fields_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasCustomFieldsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21764,12 +29621,14 @@ pub async fn extras_custom_fields_bulk_destroy(
 /// Partial update a list of custom field objects.
 pub async fn extras_custom_fields_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_custom_field_request: Vec<
-        crate::models::PatchedBulkWritableCustomFieldRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::CustomField>, Error<ExtrasCustomFieldsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_custom_field_request =
+        params.patched_bulk_writable_custom_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21821,10 +29680,13 @@ pub async fn extras_custom_fields_bulk_partial_update(
 /// Update a list of custom field objects.
 pub async fn extras_custom_fields_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_custom_field_request: Vec<crate::models::BulkWritableCustomFieldRequest>,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsBulkUpdateParams,
 ) -> Result<Vec<crate::models::CustomField>, Error<ExtrasCustomFieldsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_custom_field_request = params.bulk_writable_custom_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21876,10 +29738,13 @@ pub async fn extras_custom_fields_bulk_update(
 /// Create one or more custom field objects.
 pub async fn extras_custom_fields_create(
     configuration: &configuration::Configuration,
-    writable_custom_field_request: crate::models::WritableCustomFieldRequest,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsCreateParams,
 ) -> Result<crate::models::CustomField, Error<ExtrasCustomFieldsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let writable_custom_field_request = params.writable_custom_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21931,10 +29796,13 @@ pub async fn extras_custom_fields_create(
 /// Destroy a custom field object.
 pub async fn extras_custom_fields_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsDestroyParams,
 ) -> Result<(), Error<ExtrasCustomFieldsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21986,76 +29854,79 @@ pub async fn extras_custom_fields_destroy(
 /// Retrieve a list of custom field objects.
 pub async fn extras_custom_fields_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    filter_logic: Option<Vec<String>>,
-    filter_logic__ic: Option<Vec<String>>,
-    filter_logic__ie: Option<Vec<String>>,
-    filter_logic__iew: Option<Vec<String>>,
-    filter_logic__ire: Option<Vec<String>>,
-    filter_logic__isw: Option<Vec<String>>,
-    filter_logic__n: Option<Vec<String>>,
-    filter_logic__nic: Option<Vec<String>>,
-    filter_logic__nie: Option<Vec<String>>,
-    filter_logic__niew: Option<Vec<String>>,
-    filter_logic__nire: Option<Vec<String>>,
-    filter_logic__nisw: Option<Vec<String>>,
-    filter_logic__nre: Option<Vec<String>>,
-    filter_logic__re: Option<Vec<String>>,
-    format: Option<&str>,
-    grouping: Option<Vec<String>>,
-    grouping__ic: Option<Vec<String>>,
-    grouping__ie: Option<Vec<String>>,
-    grouping__iew: Option<Vec<String>>,
-    grouping__ire: Option<Vec<String>>,
-    grouping__isw: Option<Vec<String>>,
-    grouping__n: Option<Vec<String>>,
-    grouping__nic: Option<Vec<String>>,
-    grouping__nie: Option<Vec<String>>,
-    grouping__niew: Option<Vec<String>>,
-    grouping__nire: Option<Vec<String>>,
-    grouping__nisw: Option<Vec<String>>,
-    grouping__nre: Option<Vec<String>>,
-    grouping__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    label: Option<Vec<String>>,
-    label__ic: Option<Vec<String>>,
-    label__ie: Option<Vec<String>>,
-    label__iew: Option<Vec<String>>,
-    label__ire: Option<Vec<String>>,
-    label__isw: Option<Vec<String>>,
-    label__n: Option<Vec<String>>,
-    label__nic: Option<Vec<String>>,
-    label__nie: Option<Vec<String>>,
-    label__niew: Option<Vec<String>>,
-    label__nire: Option<Vec<String>>,
-    label__nisw: Option<Vec<String>>,
-    label__nre: Option<Vec<String>>,
-    label__re: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    required: Option<bool>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomFieldsListParams,
 ) -> Result<crate::models::PaginatedCustomFieldList, Error<ExtrasCustomFieldsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let filter_logic = params.filter_logic;
+    let filter_logic__ic = params.filter_logic__ic;
+    let filter_logic__ie = params.filter_logic__ie;
+    let filter_logic__iew = params.filter_logic__iew;
+    let filter_logic__ire = params.filter_logic__ire;
+    let filter_logic__isw = params.filter_logic__isw;
+    let filter_logic__n = params.filter_logic__n;
+    let filter_logic__nic = params.filter_logic__nic;
+    let filter_logic__nie = params.filter_logic__nie;
+    let filter_logic__niew = params.filter_logic__niew;
+    let filter_logic__nire = params.filter_logic__nire;
+    let filter_logic__nisw = params.filter_logic__nisw;
+    let filter_logic__nre = params.filter_logic__nre;
+    let filter_logic__re = params.filter_logic__re;
+    let format = params.format;
+    let grouping = params.grouping;
+    let grouping__ic = params.grouping__ic;
+    let grouping__ie = params.grouping__ie;
+    let grouping__iew = params.grouping__iew;
+    let grouping__ire = params.grouping__ire;
+    let grouping__isw = params.grouping__isw;
+    let grouping__n = params.grouping__n;
+    let grouping__nic = params.grouping__nic;
+    let grouping__nie = params.grouping__nie;
+    let grouping__niew = params.grouping__niew;
+    let grouping__nire = params.grouping__nire;
+    let grouping__nisw = params.grouping__nisw;
+    let grouping__nre = params.grouping__nre;
+    let grouping__re = params.grouping__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let label = params.label;
+    let label__ic = params.label__ic;
+    let label__ie = params.label__ie;
+    let label__iew = params.label__iew;
+    let label__ire = params.label__ire;
+    let label__isw = params.label__isw;
+    let label__n = params.label__n;
+    let label__nic = params.label__nic;
+    let label__nie = params.label__nie;
+    let label__niew = params.label__niew;
+    let label__nire = params.label__nire;
+    let label__nisw = params.label__nisw;
+    let label__nre = params.label__nre;
+    let label__re = params.label__re;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let required = params.required;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23243,11 +31114,14 @@ pub async fn extras_custom_fields_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_custom_fields_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasCustomFieldsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23300,14 +31174,17 @@ pub async fn extras_custom_fields_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_custom_fields_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomFieldsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasCustomFieldsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23375,11 +31252,14 @@ pub async fn extras_custom_fields_notes_list(
 /// Partial update a custom field object.
 pub async fn extras_custom_fields_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_writable_custom_field_request: Option<crate::models::PatchedWritableCustomFieldRequest>,
+    params: ExtrasCustomFieldsPartialUpdateParams,
 ) -> Result<crate::models::CustomField, Error<ExtrasCustomFieldsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_writable_custom_field_request = params.patched_writable_custom_field_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23432,12 +31312,15 @@ pub async fn extras_custom_fields_partial_update(
 /// Retrieve a custom field object.
 pub async fn extras_custom_fields_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomFieldsRetrieveParams,
 ) -> Result<crate::models::CustomField, Error<ExtrasCustomFieldsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23497,11 +31380,14 @@ pub async fn extras_custom_fields_retrieve(
 /// Update a custom field object.
 pub async fn extras_custom_fields_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    writable_custom_field_request: crate::models::WritableCustomFieldRequest,
-    format: Option<&str>,
+    params: ExtrasCustomFieldsUpdateParams,
 ) -> Result<crate::models::CustomField, Error<ExtrasCustomFieldsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let writable_custom_field_request = params.writable_custom_field_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23554,10 +31440,13 @@ pub async fn extras_custom_fields_update(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasCustomLinksBulkDestroyParams,
 ) -> Result<(), Error<ExtrasCustomLinksBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23606,12 +31495,14 @@ pub async fn extras_custom_links_bulk_destroy(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_custom_link_request: Vec<
-        crate::models::PatchedBulkWritableCustomLinkRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasCustomLinksBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::CustomLink>, Error<ExtrasCustomLinksBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_custom_link_request =
+        params.patched_bulk_writable_custom_link_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23660,10 +31551,13 @@ pub async fn extras_custom_links_bulk_partial_update(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_custom_link_request: Vec<crate::models::BulkWritableCustomLinkRequest>,
-    format: Option<&str>,
+    params: ExtrasCustomLinksBulkUpdateParams,
 ) -> Result<Vec<crate::models::CustomLink>, Error<ExtrasCustomLinksBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_custom_link_request = params.bulk_writable_custom_link_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23712,10 +31606,13 @@ pub async fn extras_custom_links_bulk_update(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_create(
     configuration: &configuration::Configuration,
-    custom_link_request: crate::models::CustomLinkRequest,
-    format: Option<&str>,
+    params: ExtrasCustomLinksCreateParams,
 ) -> Result<crate::models::CustomLink, Error<ExtrasCustomLinksCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let custom_link_request = params.custom_link_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23764,10 +31661,13 @@ pub async fn extras_custom_links_create(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasCustomLinksDestroyParams,
 ) -> Result<(), Error<ExtrasCustomLinksDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23819,104 +31719,107 @@ pub async fn extras_custom_links_destroy(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_list(
     configuration: &configuration::Configuration,
-    button_class: Option<Vec<String>>,
-    button_class__ic: Option<Vec<String>>,
-    button_class__ie: Option<Vec<String>>,
-    button_class__iew: Option<Vec<String>>,
-    button_class__ire: Option<Vec<String>>,
-    button_class__isw: Option<Vec<String>>,
-    button_class__n: Option<Vec<String>>,
-    button_class__nic: Option<Vec<String>>,
-    button_class__nie: Option<Vec<String>>,
-    button_class__niew: Option<Vec<String>>,
-    button_class__nire: Option<Vec<String>>,
-    button_class__nisw: Option<Vec<String>>,
-    button_class__nre: Option<Vec<String>>,
-    button_class__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<&str>,
-    content_type__n: Option<&str>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    group_name: Option<Vec<String>>,
-    group_name__ic: Option<Vec<String>>,
-    group_name__ie: Option<Vec<String>>,
-    group_name__iew: Option<Vec<String>>,
-    group_name__ire: Option<Vec<String>>,
-    group_name__isw: Option<Vec<String>>,
-    group_name__n: Option<Vec<String>>,
-    group_name__nic: Option<Vec<String>>,
-    group_name__nie: Option<Vec<String>>,
-    group_name__niew: Option<Vec<String>>,
-    group_name__nire: Option<Vec<String>>,
-    group_name__nisw: Option<Vec<String>>,
-    group_name__nre: Option<Vec<String>>,
-    group_name__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    new_window: Option<bool>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    target_url: Option<Vec<String>>,
-    target_url__ic: Option<Vec<String>>,
-    target_url__ie: Option<Vec<String>>,
-    target_url__iew: Option<Vec<String>>,
-    target_url__ire: Option<Vec<String>>,
-    target_url__isw: Option<Vec<String>>,
-    target_url__n: Option<Vec<String>>,
-    target_url__nic: Option<Vec<String>>,
-    target_url__nie: Option<Vec<String>>,
-    target_url__niew: Option<Vec<String>>,
-    target_url__nire: Option<Vec<String>>,
-    target_url__nisw: Option<Vec<String>>,
-    target_url__nre: Option<Vec<String>>,
-    target_url__re: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    text: Option<Vec<String>>,
-    text__ic: Option<Vec<String>>,
-    text__ie: Option<Vec<String>>,
-    text__iew: Option<Vec<String>>,
-    text__ire: Option<Vec<String>>,
-    text__isw: Option<Vec<String>>,
-    text__n: Option<Vec<String>>,
-    text__nic: Option<Vec<String>>,
-    text__nie: Option<Vec<String>>,
-    text__niew: Option<Vec<String>>,
-    text__nire: Option<Vec<String>>,
-    text__nisw: Option<Vec<String>>,
-    text__nre: Option<Vec<String>>,
-    text__re: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomLinksListParams,
 ) -> Result<crate::models::PaginatedCustomLinkList, Error<ExtrasCustomLinksListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let button_class = params.button_class;
+    let button_class__ic = params.button_class__ic;
+    let button_class__ie = params.button_class__ie;
+    let button_class__iew = params.button_class__iew;
+    let button_class__ire = params.button_class__ire;
+    let button_class__isw = params.button_class__isw;
+    let button_class__n = params.button_class__n;
+    let button_class__nic = params.button_class__nic;
+    let button_class__nie = params.button_class__nie;
+    let button_class__niew = params.button_class__niew;
+    let button_class__nire = params.button_class__nire;
+    let button_class__nisw = params.button_class__nisw;
+    let button_class__nre = params.button_class__nre;
+    let button_class__re = params.button_class__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let group_name = params.group_name;
+    let group_name__ic = params.group_name__ic;
+    let group_name__ie = params.group_name__ie;
+    let group_name__iew = params.group_name__iew;
+    let group_name__ire = params.group_name__ire;
+    let group_name__isw = params.group_name__isw;
+    let group_name__n = params.group_name__n;
+    let group_name__nic = params.group_name__nic;
+    let group_name__nie = params.group_name__nie;
+    let group_name__niew = params.group_name__niew;
+    let group_name__nire = params.group_name__nire;
+    let group_name__nisw = params.group_name__nisw;
+    let group_name__nre = params.group_name__nre;
+    let group_name__re = params.group_name__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let new_window = params.new_window;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let target_url = params.target_url;
+    let target_url__ic = params.target_url__ic;
+    let target_url__ie = params.target_url__ie;
+    let target_url__iew = params.target_url__iew;
+    let target_url__ire = params.target_url__ire;
+    let target_url__isw = params.target_url__isw;
+    let target_url__n = params.target_url__n;
+    let target_url__nic = params.target_url__nic;
+    let target_url__nie = params.target_url__nie;
+    let target_url__niew = params.target_url__niew;
+    let target_url__nire = params.target_url__nire;
+    let target_url__nisw = params.target_url__nisw;
+    let target_url__nre = params.target_url__nre;
+    let target_url__re = params.target_url__re;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let text = params.text;
+    let text__ic = params.text__ic;
+    let text__ie = params.text__ie;
+    let text__iew = params.text__iew;
+    let text__ire = params.text__ire;
+    let text__isw = params.text__isw;
+    let text__n = params.text__n;
+    let text__nic = params.text__nic;
+    let text__nie = params.text__nie;
+    let text__niew = params.text__niew;
+    let text__nire = params.text__nire;
+    let text__nisw = params.text__nisw;
+    let text__nre = params.text__nre;
+    let text__re = params.text__re;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25603,11 +33506,14 @@ pub async fn extras_custom_links_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_custom_links_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasCustomLinksNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasCustomLinksNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25660,14 +33566,17 @@ pub async fn extras_custom_links_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_custom_links_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomLinksNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasCustomLinksNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25735,11 +33644,14 @@ pub async fn extras_custom_links_notes_list(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_custom_link_request: Option<crate::models::PatchedCustomLinkRequest>,
+    params: ExtrasCustomLinksPartialUpdateParams,
 ) -> Result<crate::models::CustomLink, Error<ExtrasCustomLinksPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_custom_link_request = params.patched_custom_link_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25792,12 +33704,15 @@ pub async fn extras_custom_links_partial_update(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasCustomLinksRetrieveParams,
 ) -> Result<crate::models::CustomLink, Error<ExtrasCustomLinksRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25857,11 +33772,14 @@ pub async fn extras_custom_links_retrieve(
 /// Manage Custom Links through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_custom_links_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    custom_link_request: crate::models::CustomLinkRequest,
-    format: Option<&str>,
+    params: ExtrasCustomLinksUpdateParams,
 ) -> Result<crate::models::CustomLink, Error<ExtrasCustomLinksUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let custom_link_request = params.custom_link_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25914,10 +33832,13 @@ pub async fn extras_custom_links_update(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasDynamicGroupMembershipsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25969,15 +33890,17 @@ pub async fn extras_dynamic_group_memberships_bulk_destroy(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_dynamic_group_membership_request: Vec<
-        crate::models::PatchedBulkWritableDynamicGroupMembershipRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::DynamicGroupMembership>,
     Error<ExtrasDynamicGroupMembershipsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_dynamic_group_membership_request =
+        params.patched_bulk_writable_dynamic_group_membership_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26030,15 +33953,17 @@ pub async fn extras_dynamic_group_memberships_bulk_partial_update(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_dynamic_group_membership_request: Vec<
-        crate::models::BulkWritableDynamicGroupMembershipRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::DynamicGroupMembership>,
     Error<ExtrasDynamicGroupMembershipsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_dynamic_group_membership_request =
+        params.bulk_writable_dynamic_group_membership_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26091,11 +34016,14 @@ pub async fn extras_dynamic_group_memberships_bulk_update(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_create(
     configuration: &configuration::Configuration,
-    dynamic_group_membership_request: crate::models::DynamicGroupMembershipRequest,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsCreateParams,
 ) -> Result<crate::models::DynamicGroupMembership, Error<ExtrasDynamicGroupMembershipsCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let dynamic_group_membership_request = params.dynamic_group_membership_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26147,10 +34075,13 @@ pub async fn extras_dynamic_group_memberships_create(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsDestroyParams,
 ) -> Result<(), Error<ExtrasDynamicGroupMembershipsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26202,46 +34133,49 @@ pub async fn extras_dynamic_group_memberships_destroy(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    group: Option<Vec<String>>,
-    group__n: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    operator: Option<Vec<String>>,
-    operator__ic: Option<Vec<String>>,
-    operator__ie: Option<Vec<String>>,
-    operator__iew: Option<Vec<String>>,
-    operator__ire: Option<Vec<String>>,
-    operator__isw: Option<Vec<String>>,
-    operator__n: Option<Vec<String>>,
-    operator__nic: Option<Vec<String>>,
-    operator__nie: Option<Vec<String>>,
-    operator__niew: Option<Vec<String>>,
-    operator__nire: Option<Vec<String>>,
-    operator__nisw: Option<Vec<String>>,
-    operator__nre: Option<Vec<String>>,
-    operator__re: Option<Vec<String>>,
-    parent_group: Option<Vec<String>>,
-    parent_group__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupMembershipsListParams,
 ) -> Result<
     crate::models::PaginatedDynamicGroupMembershipList,
     Error<ExtrasDynamicGroupMembershipsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let group = params.group;
+    let group__n = params.group__n;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let offset = params.offset;
+    let operator = params.operator;
+    let operator__ic = params.operator__ic;
+    let operator__ie = params.operator__ie;
+    let operator__iew = params.operator__iew;
+    let operator__ire = params.operator__ire;
+    let operator__isw = params.operator__isw;
+    let operator__n = params.operator__n;
+    let operator__nic = params.operator__nic;
+    let operator__nie = params.operator__nie;
+    let operator__niew = params.operator__niew;
+    let operator__nire = params.operator__nire;
+    let operator__nisw = params.operator__nisw;
+    let operator__nre = params.operator__nre;
+    let operator__re = params.operator__re;
+    let parent_group = params.parent_group;
+    let parent_group__n = params.parent_group__n;
+    let q = params.q;
+    let sort = params.sort;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26847,16 +34781,17 @@ pub async fn extras_dynamic_group_memberships_list(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_dynamic_group_membership_request: Option<
-        crate::models::PatchedDynamicGroupMembershipRequest,
-    >,
+    params: ExtrasDynamicGroupMembershipsPartialUpdateParams,
 ) -> Result<
     crate::models::DynamicGroupMembership,
     Error<ExtrasDynamicGroupMembershipsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_dynamic_group_membership_request = params.patched_dynamic_group_membership_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26909,13 +34844,16 @@ pub async fn extras_dynamic_group_memberships_partial_update(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupMembershipsRetrieveParams,
 ) -> Result<crate::models::DynamicGroupMembership, Error<ExtrasDynamicGroupMembershipsRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26975,12 +34913,15 @@ pub async fn extras_dynamic_group_memberships_retrieve(
 /// Manage Dynamic Group Memberships through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_group_memberships_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    dynamic_group_membership_request: crate::models::DynamicGroupMembershipRequest,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupMembershipsUpdateParams,
 ) -> Result<crate::models::DynamicGroupMembership, Error<ExtrasDynamicGroupMembershipsUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let dynamic_group_membership_request = params.dynamic_group_membership_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27033,10 +34974,13 @@ pub async fn extras_dynamic_group_memberships_update(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasDynamicGroupsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27088,12 +35032,14 @@ pub async fn extras_dynamic_groups_bulk_destroy(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_dynamic_group_request: Vec<
-        crate::models::PatchedBulkWritableDynamicGroupRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::DynamicGroup>, Error<ExtrasDynamicGroupsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_dynamic_group_request =
+        params.patched_bulk_writable_dynamic_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27146,10 +35092,13 @@ pub async fn extras_dynamic_groups_bulk_partial_update(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_dynamic_group_request: Vec<crate::models::BulkWritableDynamicGroupRequest>,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsBulkUpdateParams,
 ) -> Result<Vec<crate::models::DynamicGroup>, Error<ExtrasDynamicGroupsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_dynamic_group_request = params.bulk_writable_dynamic_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27201,10 +35150,13 @@ pub async fn extras_dynamic_groups_bulk_update(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_create(
     configuration: &configuration::Configuration,
-    dynamic_group_request: crate::models::DynamicGroupRequest,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsCreateParams,
 ) -> Result<crate::models::DynamicGroup, Error<ExtrasDynamicGroupsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let dynamic_group_request = params.dynamic_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27256,10 +35208,13 @@ pub async fn extras_dynamic_groups_create(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsDestroyParams,
 ) -> Result<(), Error<ExtrasDynamicGroupsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -27311,97 +35266,100 @@ pub async fn extras_dynamic_groups_destroy(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_list(
     configuration: &configuration::Configuration,
-    ancestors: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<Vec<i32>>,
-    content_type__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    descendants: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    format: Option<&str>,
-    group_type: Option<Vec<String>>,
-    group_type__ic: Option<Vec<String>>,
-    group_type__ie: Option<Vec<String>>,
-    group_type__iew: Option<Vec<String>>,
-    group_type__ire: Option<Vec<String>>,
-    group_type__isw: Option<Vec<String>>,
-    group_type__n: Option<Vec<String>>,
-    group_type__nic: Option<Vec<String>>,
-    group_type__nie: Option<Vec<String>>,
-    group_type__niew: Option<Vec<String>>,
-    group_type__nire: Option<Vec<String>>,
-    group_type__nisw: Option<Vec<String>>,
-    group_type__nre: Option<Vec<String>>,
-    group_type__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    member_id: Option<Vec<uuid::Uuid>>,
-    member_id__n: Option<Vec<uuid::Uuid>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupsListParams,
 ) -> Result<crate::models::PaginatedDynamicGroupList, Error<ExtrasDynamicGroupsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ancestors = params.ancestors;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let descendants = params.descendants;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let format = params.format;
+    let group_type = params.group_type;
+    let group_type__ic = params.group_type__ic;
+    let group_type__ie = params.group_type__ie;
+    let group_type__iew = params.group_type__iew;
+    let group_type__ire = params.group_type__ire;
+    let group_type__isw = params.group_type__isw;
+    let group_type__n = params.group_type__n;
+    let group_type__nic = params.group_type__nic;
+    let group_type__nie = params.group_type__nie;
+    let group_type__niew = params.group_type__niew;
+    let group_type__nire = params.group_type__nire;
+    let group_type__nisw = params.group_type__nisw;
+    let group_type__nre = params.group_type__nre;
+    let group_type__re = params.group_type__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let member_id = params.member_id;
+    let member_id__n = params.member_id__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -28913,12 +36871,15 @@ pub async fn extras_dynamic_groups_list(
 /// List the member objects of this dynamic group.
 pub async fn extras_dynamic_groups_members_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupsMembersRetrieveParams,
 ) -> Result<crate::models::DynamicGroup, Error<ExtrasDynamicGroupsMembersRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -28978,11 +36939,14 @@ pub async fn extras_dynamic_groups_members_retrieve(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_dynamic_groups_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasDynamicGroupsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29035,14 +36999,17 @@ pub async fn extras_dynamic_groups_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_dynamic_groups_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasDynamicGroupsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29110,11 +37077,14 @@ pub async fn extras_dynamic_groups_notes_list(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_dynamic_group_request: Option<crate::models::PatchedDynamicGroupRequest>,
+    params: ExtrasDynamicGroupsPartialUpdateParams,
 ) -> Result<crate::models::DynamicGroup, Error<ExtrasDynamicGroupsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_dynamic_group_request = params.patched_dynamic_group_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29167,12 +37137,15 @@ pub async fn extras_dynamic_groups_partial_update(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasDynamicGroupsRetrieveParams,
 ) -> Result<crate::models::DynamicGroup, Error<ExtrasDynamicGroupsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29232,11 +37205,14 @@ pub async fn extras_dynamic_groups_retrieve(
 /// Manage Dynamic Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_dynamic_groups_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    dynamic_group_request: crate::models::DynamicGroupRequest,
-    format: Option<&str>,
+    params: ExtrasDynamicGroupsUpdateParams,
 ) -> Result<crate::models::DynamicGroup, Error<ExtrasDynamicGroupsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let dynamic_group_request = params.dynamic_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29289,10 +37265,13 @@ pub async fn extras_dynamic_groups_update(
 /// Destroy a list of export template objects.
 pub async fn extras_export_templates_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasExportTemplatesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29344,13 +37323,15 @@ pub async fn extras_export_templates_bulk_destroy(
 /// Partial update a list of export template objects.
 pub async fn extras_export_templates_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_export_template_request: Vec<
-        crate::models::PatchedBulkWritableExportTemplateRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ExportTemplate>, Error<ExtrasExportTemplatesBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_export_template_request =
+        params.patched_bulk_writable_export_template_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29403,10 +37384,13 @@ pub async fn extras_export_templates_bulk_partial_update(
 /// Update a list of export template objects.
 pub async fn extras_export_templates_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_export_template_request: Vec<crate::models::BulkWritableExportTemplateRequest>,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesBulkUpdateParams,
 ) -> Result<Vec<crate::models::ExportTemplate>, Error<ExtrasExportTemplatesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_export_template_request = params.bulk_writable_export_template_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29458,10 +37442,13 @@ pub async fn extras_export_templates_bulk_update(
 /// Create one or more export template objects.
 pub async fn extras_export_templates_create(
     configuration: &configuration::Configuration,
-    export_template_request: crate::models::ExportTemplateRequest,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesCreateParams,
 ) -> Result<crate::models::ExportTemplate, Error<ExtrasExportTemplatesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let export_template_request = params.export_template_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29513,10 +37500,13 @@ pub async fn extras_export_templates_create(
 /// Destroy a export template object.
 pub async fn extras_export_templates_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesDestroyParams,
 ) -> Result<(), Error<ExtrasExportTemplatesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -29568,47 +37558,50 @@ pub async fn extras_export_templates_destroy(
 /// Retrieve a list of export template objects.
 pub async fn extras_export_templates_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<&str>,
-    content_type__n: Option<&str>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    owner_content_type: Option<&str>,
-    owner_content_type__isnull: Option<bool>,
-    owner_content_type__n: Option<&str>,
-    owner_object_id: Option<Vec<uuid::Uuid>>,
-    owner_object_id__isnull: Option<bool>,
-    owner_object_id__n: Option<Vec<uuid::Uuid>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExportTemplatesListParams,
 ) -> Result<crate::models::PaginatedExportTemplateList, Error<ExtrasExportTemplatesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let owner_content_type = params.owner_content_type;
+    let owner_content_type__isnull = params.owner_content_type__isnull;
+    let owner_content_type__n = params.owner_content_type__n;
+    let owner_object_id = params.owner_object_id;
+    let owner_object_id__isnull = params.owner_object_id__isnull;
+    let owner_object_id__n = params.owner_object_id__n;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30170,11 +38163,14 @@ pub async fn extras_export_templates_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_export_templates_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasExportTemplatesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30227,14 +38223,17 @@ pub async fn extras_export_templates_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_export_templates_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExportTemplatesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasExportTemplatesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30302,11 +38301,14 @@ pub async fn extras_export_templates_notes_list(
 /// Partial update a export template object.
 pub async fn extras_export_templates_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_export_template_request: Option<crate::models::PatchedExportTemplateRequest>,
+    params: ExtrasExportTemplatesPartialUpdateParams,
 ) -> Result<crate::models::ExportTemplate, Error<ExtrasExportTemplatesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_export_template_request = params.patched_export_template_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30359,12 +38361,15 @@ pub async fn extras_export_templates_partial_update(
 /// Retrieve a export template object.
 pub async fn extras_export_templates_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExportTemplatesRetrieveParams,
 ) -> Result<crate::models::ExportTemplate, Error<ExtrasExportTemplatesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30424,11 +38429,14 @@ pub async fn extras_export_templates_retrieve(
 /// Update a export template object.
 pub async fn extras_export_templates_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    export_template_request: crate::models::ExportTemplateRequest,
-    format: Option<&str>,
+    params: ExtrasExportTemplatesUpdateParams,
 ) -> Result<crate::models::ExportTemplate, Error<ExtrasExportTemplatesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let export_template_request = params.export_template_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30481,10 +38489,13 @@ pub async fn extras_export_templates_update(
 /// Destroy a list of external integration objects.
 pub async fn extras_external_integrations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasExternalIntegrationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30536,15 +38547,17 @@ pub async fn extras_external_integrations_bulk_destroy(
 /// Partial update a list of external integration objects.
 pub async fn extras_external_integrations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_external_integration_request: Vec<
-        crate::models::PatchedBulkWritableExternalIntegrationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::ExternalIntegration>,
     Error<ExtrasExternalIntegrationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_external_integration_request =
+        params.patched_bulk_writable_external_integration_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30597,13 +38610,15 @@ pub async fn extras_external_integrations_bulk_partial_update(
 /// Update a list of external integration objects.
 pub async fn extras_external_integrations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_external_integration_request: Vec<
-        crate::models::BulkWritableExternalIntegrationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ExternalIntegration>, Error<ExtrasExternalIntegrationsBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_external_integration_request =
+        params.bulk_writable_external_integration_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30655,10 +38670,13 @@ pub async fn extras_external_integrations_bulk_update(
 /// Create one or more external integration objects.
 pub async fn extras_external_integrations_create(
     configuration: &configuration::Configuration,
-    external_integration_request: crate::models::ExternalIntegrationRequest,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsCreateParams,
 ) -> Result<crate::models::ExternalIntegration, Error<ExtrasExternalIntegrationsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let external_integration_request = params.external_integration_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30710,10 +38728,13 @@ pub async fn extras_external_integrations_create(
 /// Destroy a external integration object.
 pub async fn extras_external_integrations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsDestroyParams,
 ) -> Result<(), Error<ExtrasExternalIntegrationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -30765,114 +38786,117 @@ pub async fn extras_external_integrations_destroy(
 /// Retrieve a list of external integration objects.
 pub async fn extras_external_integrations_list(
     configuration: &configuration::Configuration,
-    ca_file_path: Option<Vec<String>>,
-    ca_file_path__ic: Option<Vec<String>>,
-    ca_file_path__ie: Option<Vec<String>>,
-    ca_file_path__iew: Option<Vec<String>>,
-    ca_file_path__ire: Option<Vec<String>>,
-    ca_file_path__isw: Option<Vec<String>>,
-    ca_file_path__n: Option<Vec<String>>,
-    ca_file_path__nic: Option<Vec<String>>,
-    ca_file_path__nie: Option<Vec<String>>,
-    ca_file_path__niew: Option<Vec<String>>,
-    ca_file_path__nire: Option<Vec<String>>,
-    ca_file_path__nisw: Option<Vec<String>>,
-    ca_file_path__nre: Option<Vec<String>>,
-    ca_file_path__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    extra_config: Option<Vec<String>>,
-    format: Option<&str>,
-    has_secrets_group: Option<bool>,
-    headers: Option<Vec<String>>,
-    http_method: Option<Vec<String>>,
-    http_method__ic: Option<Vec<String>>,
-    http_method__ie: Option<Vec<String>>,
-    http_method__iew: Option<Vec<String>>,
-    http_method__ire: Option<Vec<String>>,
-    http_method__isw: Option<Vec<String>>,
-    http_method__n: Option<Vec<String>>,
-    http_method__nic: Option<Vec<String>>,
-    http_method__nie: Option<Vec<String>>,
-    http_method__niew: Option<Vec<String>>,
-    http_method__nire: Option<Vec<String>>,
-    http_method__nisw: Option<Vec<String>>,
-    http_method__nre: Option<Vec<String>>,
-    http_method__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    remote_url: Option<Vec<String>>,
-    remote_url__ic: Option<Vec<String>>,
-    remote_url__ie: Option<Vec<String>>,
-    remote_url__iew: Option<Vec<String>>,
-    remote_url__ire: Option<Vec<String>>,
-    remote_url__isw: Option<Vec<String>>,
-    remote_url__n: Option<Vec<String>>,
-    remote_url__nic: Option<Vec<String>>,
-    remote_url__nie: Option<Vec<String>>,
-    remote_url__niew: Option<Vec<String>>,
-    remote_url__nire: Option<Vec<String>>,
-    remote_url__nisw: Option<Vec<String>>,
-    remote_url__nre: Option<Vec<String>>,
-    remote_url__re: Option<Vec<String>>,
-    secrets_group: Option<Vec<String>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    timeout: Option<Vec<i32>>,
-    timeout__gt: Option<Vec<i32>>,
-    timeout__gte: Option<Vec<i32>>,
-    timeout__lt: Option<Vec<i32>>,
-    timeout__lte: Option<Vec<i32>>,
-    timeout__n: Option<Vec<i32>>,
-    verify_ssl: Option<bool>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExternalIntegrationsListParams,
 ) -> Result<
     crate::models::PaginatedExternalIntegrationList,
     Error<ExtrasExternalIntegrationsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ca_file_path = params.ca_file_path;
+    let ca_file_path__ic = params.ca_file_path__ic;
+    let ca_file_path__ie = params.ca_file_path__ie;
+    let ca_file_path__iew = params.ca_file_path__iew;
+    let ca_file_path__ire = params.ca_file_path__ire;
+    let ca_file_path__isw = params.ca_file_path__isw;
+    let ca_file_path__n = params.ca_file_path__n;
+    let ca_file_path__nic = params.ca_file_path__nic;
+    let ca_file_path__nie = params.ca_file_path__nie;
+    let ca_file_path__niew = params.ca_file_path__niew;
+    let ca_file_path__nire = params.ca_file_path__nire;
+    let ca_file_path__nisw = params.ca_file_path__nisw;
+    let ca_file_path__nre = params.ca_file_path__nre;
+    let ca_file_path__re = params.ca_file_path__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let extra_config = params.extra_config;
+    let format = params.format;
+    let has_secrets_group = params.has_secrets_group;
+    let headers = params.headers;
+    let http_method = params.http_method;
+    let http_method__ic = params.http_method__ic;
+    let http_method__ie = params.http_method__ie;
+    let http_method__iew = params.http_method__iew;
+    let http_method__ire = params.http_method__ire;
+    let http_method__isw = params.http_method__isw;
+    let http_method__n = params.http_method__n;
+    let http_method__nic = params.http_method__nic;
+    let http_method__nie = params.http_method__nie;
+    let http_method__niew = params.http_method__niew;
+    let http_method__nire = params.http_method__nire;
+    let http_method__nisw = params.http_method__nisw;
+    let http_method__nre = params.http_method__nre;
+    let http_method__re = params.http_method__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let remote_url = params.remote_url;
+    let remote_url__ic = params.remote_url__ic;
+    let remote_url__ie = params.remote_url__ie;
+    let remote_url__iew = params.remote_url__iew;
+    let remote_url__ire = params.remote_url__ire;
+    let remote_url__isw = params.remote_url__isw;
+    let remote_url__n = params.remote_url__n;
+    let remote_url__nic = params.remote_url__nic;
+    let remote_url__nie = params.remote_url__nie;
+    let remote_url__niew = params.remote_url__niew;
+    let remote_url__nire = params.remote_url__nire;
+    let remote_url__nisw = params.remote_url__nisw;
+    let remote_url__nre = params.remote_url__nre;
+    let remote_url__re = params.remote_url__re;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let timeout = params.timeout;
+    let timeout__gt = params.timeout__gt;
+    let timeout__gte = params.timeout__gte;
+    let timeout__lt = params.timeout__lt;
+    let timeout__lte = params.timeout__lte;
+    let timeout__n = params.timeout__n;
+    let verify_ssl = params.verify_ssl;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32650,11 +40674,14 @@ pub async fn extras_external_integrations_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_external_integrations_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasExternalIntegrationsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32707,14 +40734,17 @@ pub async fn extras_external_integrations_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_external_integrations_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExternalIntegrationsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasExternalIntegrationsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32782,12 +40812,15 @@ pub async fn extras_external_integrations_notes_list(
 /// Partial update a external integration object.
 pub async fn extras_external_integrations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_external_integration_request: Option<crate::models::PatchedExternalIntegrationRequest>,
+    params: ExtrasExternalIntegrationsPartialUpdateParams,
 ) -> Result<crate::models::ExternalIntegration, Error<ExtrasExternalIntegrationsPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_external_integration_request = params.patched_external_integration_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32840,12 +40873,15 @@ pub async fn extras_external_integrations_partial_update(
 /// Retrieve a external integration object.
 pub async fn extras_external_integrations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasExternalIntegrationsRetrieveParams,
 ) -> Result<crate::models::ExternalIntegration, Error<ExtrasExternalIntegrationsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32905,11 +40941,14 @@ pub async fn extras_external_integrations_retrieve(
 /// Update a external integration object.
 pub async fn extras_external_integrations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    external_integration_request: crate::models::ExternalIntegrationRequest,
-    format: Option<&str>,
+    params: ExtrasExternalIntegrationsUpdateParams,
 ) -> Result<crate::models::ExternalIntegration, Error<ExtrasExternalIntegrationsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let external_integration_request = params.external_integration_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -32962,12 +41001,15 @@ pub async fn extras_external_integrations_update(
 /// Download the specified FileProxy.
 pub async fn extras_file_proxies_download_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasFileProxiesDownloadRetrieveParams,
 ) -> Result<std::path::PathBuf, Error<ExtrasFileProxiesDownloadRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33027,43 +41069,46 @@ pub async fn extras_file_proxies_download_retrieve(
 /// Retrieve a list of file proxy objects.
 pub async fn extras_file_proxies_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job: Option<Vec<String>>,
-    job__isnull: Option<bool>,
-    job__n: Option<Vec<String>>,
-    job_result_id: Option<Vec<uuid::Uuid>>,
-    job_result_id__isnull: Option<bool>,
-    job_result_id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    uploaded_at: Option<Vec<String>>,
-    uploaded_at__gt: Option<Vec<String>>,
-    uploaded_at__gte: Option<Vec<String>>,
-    uploaded_at__lt: Option<Vec<String>>,
-    uploaded_at__lte: Option<Vec<String>>,
-    uploaded_at__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasFileProxiesListParams,
 ) -> Result<crate::models::PaginatedFileProxyList, Error<ExtrasFileProxiesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job = params.job;
+    let job__isnull = params.job__isnull;
+    let job__n = params.job__n;
+    let job_result_id = params.job_result_id;
+    let job_result_id__isnull = params.job_result_id__isnull;
+    let job_result_id__n = params.job_result_id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let uploaded_at = params.uploaded_at;
+    let uploaded_at__gt = params.uploaded_at__gt;
+    let uploaded_at__gte = params.uploaded_at__gte;
+    let uploaded_at__lt = params.uploaded_at__lt;
+    let uploaded_at__lte = params.uploaded_at__lte;
+    let uploaded_at__n = params.uploaded_at__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33636,12 +41681,15 @@ pub async fn extras_file_proxies_list(
 /// Retrieve a file proxy object.
 pub async fn extras_file_proxies_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasFileProxiesRetrieveParams,
 ) -> Result<crate::models::FileProxy, Error<ExtrasFileProxiesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33701,10 +41749,13 @@ pub async fn extras_file_proxies_retrieve(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasGitRepositoriesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33756,12 +41807,14 @@ pub async fn extras_git_repositories_bulk_destroy(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_git_repository_request: Vec<
-        crate::models::PatchedBulkWritableGitRepositoryRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::GitRepository>, Error<ExtrasGitRepositoriesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_git_repository_request =
+        params.patched_bulk_writable_git_repository_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33814,10 +41867,13 @@ pub async fn extras_git_repositories_bulk_partial_update(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_git_repository_request: Vec<crate::models::BulkWritableGitRepositoryRequest>,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesBulkUpdateParams,
 ) -> Result<Vec<crate::models::GitRepository>, Error<ExtrasGitRepositoriesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_git_repository_request = params.bulk_writable_git_repository_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33869,10 +41925,13 @@ pub async fn extras_git_repositories_bulk_update(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_create(
     configuration: &configuration::Configuration,
-    git_repository_request: crate::models::GitRepositoryRequest,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesCreateParams,
 ) -> Result<crate::models::GitRepository, Error<ExtrasGitRepositoriesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let git_repository_request = params.git_repository_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33924,10 +41983,13 @@ pub async fn extras_git_repositories_create(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesDestroyParams,
 ) -> Result<(), Error<ExtrasGitRepositoriesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -33979,105 +42041,108 @@ pub async fn extras_git_repositories_destroy(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_list(
     configuration: &configuration::Configuration,
-    branch: Option<Vec<String>>,
-    branch__ic: Option<Vec<String>>,
-    branch__ie: Option<Vec<String>>,
-    branch__iew: Option<Vec<String>>,
-    branch__ire: Option<Vec<String>>,
-    branch__isw: Option<Vec<String>>,
-    branch__n: Option<Vec<String>>,
-    branch__nic: Option<Vec<String>>,
-    branch__nie: Option<Vec<String>>,
-    branch__niew: Option<Vec<String>>,
-    branch__nire: Option<Vec<String>>,
-    branch__nisw: Option<Vec<String>>,
-    branch__nre: Option<Vec<String>>,
-    branch__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    provided_contents: Option<Vec<String>>,
-    q: Option<&str>,
-    remote_url: Option<Vec<String>>,
-    remote_url__ic: Option<Vec<String>>,
-    remote_url__ie: Option<Vec<String>>,
-    remote_url__iew: Option<Vec<String>>,
-    remote_url__ire: Option<Vec<String>>,
-    remote_url__isw: Option<Vec<String>>,
-    remote_url__n: Option<Vec<String>>,
-    remote_url__nic: Option<Vec<String>>,
-    remote_url__nie: Option<Vec<String>>,
-    remote_url__niew: Option<Vec<String>>,
-    remote_url__nire: Option<Vec<String>>,
-    remote_url__nisw: Option<Vec<String>>,
-    remote_url__nre: Option<Vec<String>>,
-    remote_url__re: Option<Vec<String>>,
-    secrets_group: Option<Vec<String>>,
-    secrets_group__isnull: Option<bool>,
-    secrets_group__n: Option<Vec<String>>,
-    secrets_group_id: Option<Vec<uuid::Uuid>>,
-    secrets_group_id__isnull: Option<bool>,
-    secrets_group_id__n: Option<Vec<uuid::Uuid>>,
-    slug: Option<Vec<String>>,
-    slug__ic: Option<Vec<String>>,
-    slug__ie: Option<Vec<String>>,
-    slug__iew: Option<Vec<String>>,
-    slug__ire: Option<Vec<String>>,
-    slug__isw: Option<Vec<String>>,
-    slug__n: Option<Vec<String>>,
-    slug__nic: Option<Vec<String>>,
-    slug__nie: Option<Vec<String>>,
-    slug__niew: Option<Vec<String>>,
-    slug__nire: Option<Vec<String>>,
-    slug__nisw: Option<Vec<String>>,
-    slug__nre: Option<Vec<String>>,
-    slug__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGitRepositoriesListParams,
 ) -> Result<crate::models::PaginatedGitRepositoryList, Error<ExtrasGitRepositoriesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let branch = params.branch;
+    let branch__ic = params.branch__ic;
+    let branch__ie = params.branch__ie;
+    let branch__iew = params.branch__iew;
+    let branch__ire = params.branch__ire;
+    let branch__isw = params.branch__isw;
+    let branch__n = params.branch__n;
+    let branch__nic = params.branch__nic;
+    let branch__nie = params.branch__nie;
+    let branch__niew = params.branch__niew;
+    let branch__nire = params.branch__nire;
+    let branch__nisw = params.branch__nisw;
+    let branch__nre = params.branch__nre;
+    let branch__re = params.branch__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let provided_contents = params.provided_contents;
+    let q = params.q;
+    let remote_url = params.remote_url;
+    let remote_url__ic = params.remote_url__ic;
+    let remote_url__ie = params.remote_url__ie;
+    let remote_url__iew = params.remote_url__iew;
+    let remote_url__ire = params.remote_url__ire;
+    let remote_url__isw = params.remote_url__isw;
+    let remote_url__n = params.remote_url__n;
+    let remote_url__nic = params.remote_url__nic;
+    let remote_url__nie = params.remote_url__nie;
+    let remote_url__niew = params.remote_url__niew;
+    let remote_url__nire = params.remote_url__nire;
+    let remote_url__nisw = params.remote_url__nisw;
+    let remote_url__nre = params.remote_url__nre;
+    let remote_url__re = params.remote_url__re;
+    let secrets_group = params.secrets_group;
+    let secrets_group__isnull = params.secrets_group__isnull;
+    let secrets_group__n = params.secrets_group__n;
+    let secrets_group_id = params.secrets_group_id;
+    let secrets_group_id__isnull = params.secrets_group_id__isnull;
+    let secrets_group_id__n = params.secrets_group_id__n;
+    let slug = params.slug;
+    let slug__ic = params.slug__ic;
+    let slug__ie = params.slug__ie;
+    let slug__iew = params.slug__iew;
+    let slug__ire = params.slug__ire;
+    let slug__isw = params.slug__isw;
+    let slug__n = params.slug__n;
+    let slug__nic = params.slug__nic;
+    let slug__nie = params.slug__nie;
+    let slug__niew = params.slug__niew;
+    let slug__nire = params.slug__nire;
+    let slug__nisw = params.slug__nisw;
+    let slug__nre = params.slug__nre;
+    let slug__re = params.slug__re;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -35756,11 +43821,14 @@ pub async fn extras_git_repositories_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_git_repositories_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasGitRepositoriesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -35813,14 +43881,17 @@ pub async fn extras_git_repositories_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_git_repositories_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGitRepositoriesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasGitRepositoriesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -35888,11 +43959,14 @@ pub async fn extras_git_repositories_notes_list(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_git_repository_request: Option<crate::models::PatchedGitRepositoryRequest>,
+    params: ExtrasGitRepositoriesPartialUpdateParams,
 ) -> Result<crate::models::GitRepository, Error<ExtrasGitRepositoriesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_git_repository_request = params.patched_git_repository_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -35945,12 +44019,15 @@ pub async fn extras_git_repositories_partial_update(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGitRepositoriesRetrieveParams,
 ) -> Result<crate::models::GitRepository, Error<ExtrasGitRepositoriesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36010,10 +44087,13 @@ pub async fn extras_git_repositories_retrieve(
 /// Enqueue pull git repository and refresh data.
 pub async fn extras_git_repositories_sync_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesSyncCreateParams,
 ) -> Result<crate::models::GitRepositorySyncResponse, Error<ExtrasGitRepositoriesSyncCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36065,11 +44145,14 @@ pub async fn extras_git_repositories_sync_create(
 /// Manage the use of Git repositories as external data sources.
 pub async fn extras_git_repositories_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    git_repository_request: crate::models::GitRepositoryRequest,
-    format: Option<&str>,
+    params: ExtrasGitRepositoriesUpdateParams,
 ) -> Result<crate::models::GitRepository, Error<ExtrasGitRepositoriesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let git_repository_request = params.git_repository_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36122,10 +44205,13 @@ pub async fn extras_git_repositories_update(
 /// Destroy a list of GraphQL query objects.
 pub async fn extras_graphql_queries_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasGraphqlQueriesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36177,12 +44263,14 @@ pub async fn extras_graphql_queries_bulk_destroy(
 /// Partial update a list of GraphQL query objects.
 pub async fn extras_graphql_queries_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_graph_ql_query_request: Vec<
-        crate::models::PatchedBulkWritableGraphQlQueryRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::GraphQlQuery>, Error<ExtrasGraphqlQueriesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_graph_ql_query_request =
+        params.patched_bulk_writable_graph_ql_query_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36235,10 +44323,13 @@ pub async fn extras_graphql_queries_bulk_partial_update(
 /// Update a list of GraphQL query objects.
 pub async fn extras_graphql_queries_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_graph_ql_query_request: Vec<crate::models::BulkWritableGraphQlQueryRequest>,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesBulkUpdateParams,
 ) -> Result<Vec<crate::models::GraphQlQuery>, Error<ExtrasGraphqlQueriesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_graph_ql_query_request = params.bulk_writable_graph_ql_query_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36290,10 +44381,13 @@ pub async fn extras_graphql_queries_bulk_update(
 /// Create one or more GraphQL query objects.
 pub async fn extras_graphql_queries_create(
     configuration: &configuration::Configuration,
-    graph_ql_query_request: crate::models::GraphQlQueryRequest,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesCreateParams,
 ) -> Result<crate::models::GraphQlQuery, Error<ExtrasGraphqlQueriesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let graph_ql_query_request = params.graph_ql_query_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36345,10 +44439,13 @@ pub async fn extras_graphql_queries_create(
 /// Destroy a GraphQL query object.
 pub async fn extras_graphql_queries_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesDestroyParams,
 ) -> Result<(), Error<ExtrasGraphqlQueriesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36400,39 +44497,42 @@ pub async fn extras_graphql_queries_destroy(
 /// Retrieve a list of GraphQL query objects.
 pub async fn extras_graphql_queries_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGraphqlQueriesListParams,
 ) -> Result<crate::models::PaginatedGraphQlQueryList, Error<ExtrasGraphqlQueriesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36932,11 +45032,14 @@ pub async fn extras_graphql_queries_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_graphql_queries_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasGraphqlQueriesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -36989,14 +45092,17 @@ pub async fn extras_graphql_queries_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_graphql_queries_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGraphqlQueriesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasGraphqlQueriesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37064,11 +45170,14 @@ pub async fn extras_graphql_queries_notes_list(
 /// Partial update a GraphQL query object.
 pub async fn extras_graphql_queries_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_graph_ql_query_request: Option<crate::models::PatchedGraphQlQueryRequest>,
+    params: ExtrasGraphqlQueriesPartialUpdateParams,
 ) -> Result<crate::models::GraphQlQuery, Error<ExtrasGraphqlQueriesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_graph_ql_query_request = params.patched_graph_ql_query_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37121,12 +45230,15 @@ pub async fn extras_graphql_queries_partial_update(
 /// Retrieve a GraphQL query object.
 pub async fn extras_graphql_queries_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasGraphqlQueriesRetrieveParams,
 ) -> Result<crate::models::GraphQlQuery, Error<ExtrasGraphqlQueriesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37186,11 +45298,14 @@ pub async fn extras_graphql_queries_retrieve(
 /// Create one or more GraphQL query objects.
 pub async fn extras_graphql_queries_run_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    graph_ql_query_input_request: Option<crate::models::GraphQlQueryInputRequest>,
+    params: ExtrasGraphqlQueriesRunCreateParams,
 ) -> Result<crate::models::GraphQlQueryOutput, Error<ExtrasGraphqlQueriesRunCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let graph_ql_query_input_request = params.graph_ql_query_input_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37243,11 +45358,14 @@ pub async fn extras_graphql_queries_run_create(
 /// Update a GraphQL query object.
 pub async fn extras_graphql_queries_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    graph_ql_query_request: crate::models::GraphQlQueryRequest,
-    format: Option<&str>,
+    params: ExtrasGraphqlQueriesUpdateParams,
 ) -> Result<crate::models::GraphQlQuery, Error<ExtrasGraphqlQueriesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let graph_ql_query_request = params.graph_ql_query_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37300,10 +45418,13 @@ pub async fn extras_graphql_queries_update(
 /// Destroy a list of image attachment objects.
 pub async fn extras_image_attachments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasImageAttachmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37355,13 +45476,15 @@ pub async fn extras_image_attachments_bulk_destroy(
 /// Partial update a list of image attachment objects.
 pub async fn extras_image_attachments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_image_attachment_request: Vec<
-        crate::models::PatchedBulkWritableImageAttachmentRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ImageAttachment>, Error<ExtrasImageAttachmentsBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_image_attachment_request =
+        params.patched_bulk_writable_image_attachment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37414,10 +45537,13 @@ pub async fn extras_image_attachments_bulk_partial_update(
 /// Update a list of image attachment objects.
 pub async fn extras_image_attachments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_image_attachment_request: Vec<crate::models::BulkWritableImageAttachmentRequest>,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ImageAttachment>, Error<ExtrasImageAttachmentsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_image_attachment_request = params.bulk_writable_image_attachment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37469,10 +45595,13 @@ pub async fn extras_image_attachments_bulk_update(
 /// Create one or more image attachment objects.
 pub async fn extras_image_attachments_create(
     configuration: &configuration::Configuration,
-    image_attachment_request: crate::models::ImageAttachmentRequest,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsCreateParams,
 ) -> Result<crate::models::ImageAttachment, Error<ExtrasImageAttachmentsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let image_attachment_request = params.image_attachment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37524,10 +45653,13 @@ pub async fn extras_image_attachments_create(
 /// Destroy a image attachment object.
 pub async fn extras_image_attachments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsDestroyParams,
 ) -> Result<(), Error<ExtrasImageAttachmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -37579,37 +45711,40 @@ pub async fn extras_image_attachments_destroy(
 /// Retrieve a list of image attachment objects.
 pub async fn extras_image_attachments_list(
     configuration: &configuration::Configuration,
-    content_type: Option<&str>,
-    content_type__n: Option<&str>,
-    content_type_id: Option<Vec<i32>>,
-    content_type_id__n: Option<Vec<i32>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    object_id: Option<Vec<uuid::Uuid>>,
-    object_id__n: Option<Vec<uuid::Uuid>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasImageAttachmentsListParams,
 ) -> Result<crate::models::PaginatedImageAttachmentList, Error<ExtrasImageAttachmentsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let content_type_id = params.content_type_id;
+    let content_type_id__n = params.content_type_id__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let object_id = params.object_id;
+    let object_id__n = params.object_id__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38071,11 +46206,14 @@ pub async fn extras_image_attachments_list(
 /// Partial update a image attachment object.
 pub async fn extras_image_attachments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_image_attachment_request: Option<crate::models::PatchedImageAttachmentRequest>,
+    params: ExtrasImageAttachmentsPartialUpdateParams,
 ) -> Result<crate::models::ImageAttachment, Error<ExtrasImageAttachmentsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_image_attachment_request = params.patched_image_attachment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38128,12 +46266,15 @@ pub async fn extras_image_attachments_partial_update(
 /// Retrieve a image attachment object.
 pub async fn extras_image_attachments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasImageAttachmentsRetrieveParams,
 ) -> Result<crate::models::ImageAttachment, Error<ExtrasImageAttachmentsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38193,11 +46334,14 @@ pub async fn extras_image_attachments_retrieve(
 /// Update a image attachment object.
 pub async fn extras_image_attachments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    image_attachment_request: crate::models::ImageAttachmentRequest,
-    format: Option<&str>,
+    params: ExtrasImageAttachmentsUpdateParams,
 ) -> Result<crate::models::ImageAttachment, Error<ExtrasImageAttachmentsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let image_attachment_request = params.image_attachment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38250,10 +46394,13 @@ pub async fn extras_image_attachments_update(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobButtonsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobButtonsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38302,12 +46449,13 @@ pub async fn extras_job_buttons_bulk_destroy(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_job_button_request: Vec<
-        crate::models::PatchedBulkWritableJobButtonRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasJobButtonsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::JobButton>, Error<ExtrasJobButtonsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_job_button_request = params.patched_bulk_writable_job_button_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38356,10 +46504,13 @@ pub async fn extras_job_buttons_bulk_partial_update(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_job_button_request: Vec<crate::models::BulkWritableJobButtonRequest>,
-    format: Option<&str>,
+    params: ExtrasJobButtonsBulkUpdateParams,
 ) -> Result<Vec<crate::models::JobButton>, Error<ExtrasJobButtonsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_job_button_request = params.bulk_writable_job_button_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38408,10 +46559,13 @@ pub async fn extras_job_buttons_bulk_update(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_create(
     configuration: &configuration::Configuration,
-    job_button_request: crate::models::JobButtonRequest,
-    format: Option<&str>,
+    params: ExtrasJobButtonsCreateParams,
 ) -> Result<crate::models::JobButton, Error<ExtrasJobButtonsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let job_button_request = params.job_button_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38460,10 +46614,13 @@ pub async fn extras_job_buttons_create(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobButtonsDestroyParams,
 ) -> Result<(), Error<ExtrasJobButtonsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -38515,93 +46672,96 @@ pub async fn extras_job_buttons_destroy(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_list(
     configuration: &configuration::Configuration,
-    button_class: Option<Vec<String>>,
-    button_class__ic: Option<Vec<String>>,
-    button_class__ie: Option<Vec<String>>,
-    button_class__iew: Option<Vec<String>>,
-    button_class__ire: Option<Vec<String>>,
-    button_class__isw: Option<Vec<String>>,
-    button_class__n: Option<Vec<String>>,
-    button_class__nic: Option<Vec<String>>,
-    button_class__nie: Option<Vec<String>>,
-    button_class__niew: Option<Vec<String>>,
-    button_class__nire: Option<Vec<String>>,
-    button_class__nisw: Option<Vec<String>>,
-    button_class__nre: Option<Vec<String>>,
-    button_class__re: Option<Vec<String>>,
-    confirmation: Option<bool>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<&str>,
-    content_types__n: Option<&str>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    group_name: Option<Vec<String>>,
-    group_name__ic: Option<Vec<String>>,
-    group_name__ie: Option<Vec<String>>,
-    group_name__iew: Option<Vec<String>>,
-    group_name__ire: Option<Vec<String>>,
-    group_name__isw: Option<Vec<String>>,
-    group_name__n: Option<Vec<String>>,
-    group_name__nic: Option<Vec<String>>,
-    group_name__nie: Option<Vec<String>>,
-    group_name__niew: Option<Vec<String>>,
-    group_name__nire: Option<Vec<String>>,
-    group_name__nisw: Option<Vec<String>>,
-    group_name__nre: Option<Vec<String>>,
-    group_name__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job: Option<Vec<String>>,
-    job__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    text: Option<Vec<String>>,
-    text__ic: Option<Vec<String>>,
-    text__ie: Option<Vec<String>>,
-    text__iew: Option<Vec<String>>,
-    text__ire: Option<Vec<String>>,
-    text__isw: Option<Vec<String>>,
-    text__n: Option<Vec<String>>,
-    text__nic: Option<Vec<String>>,
-    text__nie: Option<Vec<String>>,
-    text__niew: Option<Vec<String>>,
-    text__nire: Option<Vec<String>>,
-    text__nisw: Option<Vec<String>>,
-    text__nre: Option<Vec<String>>,
-    text__re: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobButtonsListParams,
 ) -> Result<crate::models::PaginatedJobButtonList, Error<ExtrasJobButtonsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let button_class = params.button_class;
+    let button_class__ic = params.button_class__ic;
+    let button_class__ie = params.button_class__ie;
+    let button_class__iew = params.button_class__iew;
+    let button_class__ire = params.button_class__ire;
+    let button_class__isw = params.button_class__isw;
+    let button_class__n = params.button_class__n;
+    let button_class__nic = params.button_class__nic;
+    let button_class__nie = params.button_class__nie;
+    let button_class__niew = params.button_class__niew;
+    let button_class__nire = params.button_class__nire;
+    let button_class__nisw = params.button_class__nisw;
+    let button_class__nre = params.button_class__nre;
+    let button_class__re = params.button_class__re;
+    let confirmation = params.confirmation;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let group_name = params.group_name;
+    let group_name__ic = params.group_name__ic;
+    let group_name__ie = params.group_name__ie;
+    let group_name__iew = params.group_name__iew;
+    let group_name__ire = params.group_name__ire;
+    let group_name__isw = params.group_name__isw;
+    let group_name__n = params.group_name__n;
+    let group_name__nic = params.group_name__nic;
+    let group_name__nie = params.group_name__nie;
+    let group_name__niew = params.group_name__niew;
+    let group_name__nire = params.group_name__nire;
+    let group_name__nisw = params.group_name__nisw;
+    let group_name__nre = params.group_name__nre;
+    let group_name__re = params.group_name__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job = params.job;
+    let job__n = params.job__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let text = params.text;
+    let text__ic = params.text__ic;
+    let text__ie = params.text__ie;
+    let text__iew = params.text__iew;
+    let text__ire = params.text__ire;
+    let text__isw = params.text__isw;
+    let text__n = params.text__n;
+    let text__nic = params.text__nic;
+    let text__nie = params.text__nie;
+    let text__niew = params.text__niew;
+    let text__nire = params.text__nire;
+    let text__nisw = params.text__nisw;
+    let text__nre = params.text__nre;
+    let text__re = params.text__re;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40064,11 +48224,14 @@ pub async fn extras_job_buttons_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_buttons_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasJobButtonsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasJobButtonsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40121,14 +48284,17 @@ pub async fn extras_job_buttons_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_buttons_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobButtonsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasJobButtonsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40196,11 +48362,14 @@ pub async fn extras_job_buttons_notes_list(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_job_button_request: Option<crate::models::PatchedJobButtonRequest>,
+    params: ExtrasJobButtonsPartialUpdateParams,
 ) -> Result<crate::models::JobButton, Error<ExtrasJobButtonsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_job_button_request = params.patched_job_button_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40253,12 +48422,15 @@ pub async fn extras_job_buttons_partial_update(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobButtonsRetrieveParams,
 ) -> Result<crate::models::JobButton, Error<ExtrasJobButtonsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40318,11 +48490,14 @@ pub async fn extras_job_buttons_retrieve(
 /// Manage Job Buttons through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_buttons_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_button_request: crate::models::JobButtonRequest,
-    format: Option<&str>,
+    params: ExtrasJobButtonsUpdateParams,
 ) -> Result<crate::models::JobButton, Error<ExtrasJobButtonsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_button_request = params.job_button_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40375,10 +48550,13 @@ pub async fn extras_job_buttons_update(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobHooksBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobHooksBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40427,10 +48605,13 @@ pub async fn extras_job_hooks_bulk_destroy(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_job_hook_request: Vec<crate::models::PatchedBulkWritableJobHookRequest>,
-    format: Option<&str>,
+    params: ExtrasJobHooksBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::JobHook>, Error<ExtrasJobHooksBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_job_hook_request = params.patched_bulk_writable_job_hook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40479,10 +48660,13 @@ pub async fn extras_job_hooks_bulk_partial_update(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_job_hook_request: Vec<crate::models::BulkWritableJobHookRequest>,
-    format: Option<&str>,
+    params: ExtrasJobHooksBulkUpdateParams,
 ) -> Result<Vec<crate::models::JobHook>, Error<ExtrasJobHooksBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_job_hook_request = params.bulk_writable_job_hook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40531,10 +48715,13 @@ pub async fn extras_job_hooks_bulk_update(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_create(
     configuration: &configuration::Configuration,
-    job_hook_request: crate::models::JobHookRequest,
-    format: Option<&str>,
+    params: ExtrasJobHooksCreateParams,
 ) -> Result<crate::models::JobHook, Error<ExtrasJobHooksCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let job_hook_request = params.job_hook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40583,10 +48770,13 @@ pub async fn extras_job_hooks_create(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobHooksDestroyParams,
 ) -> Result<(), Error<ExtrasJobHooksDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -40638,47 +48828,50 @@ pub async fn extras_job_hooks_destroy(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job: Option<Vec<String>>,
-    job__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    type_create: Option<bool>,
-    type_delete: Option<bool>,
-    type_update: Option<bool>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobHooksListParams,
 ) -> Result<crate::models::PaginatedJobHookList, Error<ExtrasJobHooksListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job = params.job;
+    let job__n = params.job__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let type_create = params.type_create;
+    let type_delete = params.type_delete;
+    let type_update = params.type_update;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41267,11 +49460,14 @@ pub async fn extras_job_hooks_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_hooks_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasJobHooksNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasJobHooksNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41324,14 +49520,17 @@ pub async fn extras_job_hooks_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_hooks_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobHooksNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasJobHooksNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41399,11 +49598,14 @@ pub async fn extras_job_hooks_notes_list(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_job_hook_request: Option<crate::models::PatchedJobHookRequest>,
+    params: ExtrasJobHooksPartialUpdateParams,
 ) -> Result<crate::models::JobHook, Error<ExtrasJobHooksPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_job_hook_request = params.patched_job_hook_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41456,12 +49658,15 @@ pub async fn extras_job_hooks_partial_update(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobHooksRetrieveParams,
 ) -> Result<crate::models::JobHook, Error<ExtrasJobHooksRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41521,11 +49726,14 @@ pub async fn extras_job_hooks_retrieve(
 /// Manage job hooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_hooks_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_hook_request: crate::models::JobHookRequest,
-    format: Option<&str>,
+    params: ExtrasJobHooksUpdateParams,
 ) -> Result<crate::models::JobHook, Error<ExtrasJobHooksUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_hook_request = params.job_hook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -41578,95 +49786,98 @@ pub async fn extras_job_hooks_update(
 /// Retrieve a list of job log entries.
 pub async fn extras_job_logs_list(
     configuration: &configuration::Configuration,
-    absolute_url: Option<Vec<String>>,
-    absolute_url__ic: Option<Vec<String>>,
-    absolute_url__ie: Option<Vec<String>>,
-    absolute_url__iew: Option<Vec<String>>,
-    absolute_url__ire: Option<Vec<String>>,
-    absolute_url__isw: Option<Vec<String>>,
-    absolute_url__n: Option<Vec<String>>,
-    absolute_url__nic: Option<Vec<String>>,
-    absolute_url__nie: Option<Vec<String>>,
-    absolute_url__niew: Option<Vec<String>>,
-    absolute_url__nire: Option<Vec<String>>,
-    absolute_url__nisw: Option<Vec<String>>,
-    absolute_url__nre: Option<Vec<String>>,
-    absolute_url__re: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    format: Option<&str>,
-    grouping: Option<Vec<String>>,
-    grouping__ic: Option<Vec<String>>,
-    grouping__ie: Option<Vec<String>>,
-    grouping__iew: Option<Vec<String>>,
-    grouping__ire: Option<Vec<String>>,
-    grouping__isw: Option<Vec<String>>,
-    grouping__n: Option<Vec<String>>,
-    grouping__nic: Option<Vec<String>>,
-    grouping__nie: Option<Vec<String>>,
-    grouping__niew: Option<Vec<String>>,
-    grouping__nire: Option<Vec<String>>,
-    grouping__nisw: Option<Vec<String>>,
-    grouping__nre: Option<Vec<String>>,
-    grouping__re: Option<Vec<String>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job_result: Option<Vec<uuid::Uuid>>,
-    job_result__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    log_level: Option<Vec<String>>,
-    log_level__ic: Option<Vec<String>>,
-    log_level__ie: Option<Vec<String>>,
-    log_level__iew: Option<Vec<String>>,
-    log_level__ire: Option<Vec<String>>,
-    log_level__isw: Option<Vec<String>>,
-    log_level__n: Option<Vec<String>>,
-    log_level__nic: Option<Vec<String>>,
-    log_level__nie: Option<Vec<String>>,
-    log_level__niew: Option<Vec<String>>,
-    log_level__nire: Option<Vec<String>>,
-    log_level__nisw: Option<Vec<String>>,
-    log_level__nre: Option<Vec<String>>,
-    log_level__re: Option<Vec<String>>,
-    log_object: Option<Vec<String>>,
-    log_object__ic: Option<Vec<String>>,
-    log_object__ie: Option<Vec<String>>,
-    log_object__iew: Option<Vec<String>>,
-    log_object__ire: Option<Vec<String>>,
-    log_object__isw: Option<Vec<String>>,
-    log_object__n: Option<Vec<String>>,
-    log_object__nic: Option<Vec<String>>,
-    log_object__nie: Option<Vec<String>>,
-    log_object__niew: Option<Vec<String>>,
-    log_object__nire: Option<Vec<String>>,
-    log_object__nisw: Option<Vec<String>>,
-    log_object__nre: Option<Vec<String>>,
-    log_object__re: Option<Vec<String>>,
-    message: Option<Vec<String>>,
-    message__ic: Option<Vec<String>>,
-    message__ie: Option<Vec<String>>,
-    message__iew: Option<Vec<String>>,
-    message__ire: Option<Vec<String>>,
-    message__isw: Option<Vec<String>>,
-    message__n: Option<Vec<String>>,
-    message__nic: Option<Vec<String>>,
-    message__nie: Option<Vec<String>>,
-    message__niew: Option<Vec<String>>,
-    message__nire: Option<Vec<String>>,
-    message__nisw: Option<Vec<String>>,
-    message__nre: Option<Vec<String>>,
-    message__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobLogsListParams,
 ) -> Result<crate::models::PaginatedJobLogEntryList, Error<ExtrasJobLogsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let absolute_url = params.absolute_url;
+    let absolute_url__ic = params.absolute_url__ic;
+    let absolute_url__ie = params.absolute_url__ie;
+    let absolute_url__iew = params.absolute_url__iew;
+    let absolute_url__ire = params.absolute_url__ire;
+    let absolute_url__isw = params.absolute_url__isw;
+    let absolute_url__n = params.absolute_url__n;
+    let absolute_url__nic = params.absolute_url__nic;
+    let absolute_url__nie = params.absolute_url__nie;
+    let absolute_url__niew = params.absolute_url__niew;
+    let absolute_url__nire = params.absolute_url__nire;
+    let absolute_url__nisw = params.absolute_url__nisw;
+    let absolute_url__nre = params.absolute_url__nre;
+    let absolute_url__re = params.absolute_url__re;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let format = params.format;
+    let grouping = params.grouping;
+    let grouping__ic = params.grouping__ic;
+    let grouping__ie = params.grouping__ie;
+    let grouping__iew = params.grouping__iew;
+    let grouping__ire = params.grouping__ire;
+    let grouping__isw = params.grouping__isw;
+    let grouping__n = params.grouping__n;
+    let grouping__nic = params.grouping__nic;
+    let grouping__nie = params.grouping__nie;
+    let grouping__niew = params.grouping__niew;
+    let grouping__nire = params.grouping__nire;
+    let grouping__nisw = params.grouping__nisw;
+    let grouping__nre = params.grouping__nre;
+    let grouping__re = params.grouping__re;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job_result = params.job_result;
+    let job_result__n = params.job_result__n;
+    let limit = params.limit;
+    let log_level = params.log_level;
+    let log_level__ic = params.log_level__ic;
+    let log_level__ie = params.log_level__ie;
+    let log_level__iew = params.log_level__iew;
+    let log_level__ire = params.log_level__ire;
+    let log_level__isw = params.log_level__isw;
+    let log_level__n = params.log_level__n;
+    let log_level__nic = params.log_level__nic;
+    let log_level__nie = params.log_level__nie;
+    let log_level__niew = params.log_level__niew;
+    let log_level__nire = params.log_level__nire;
+    let log_level__nisw = params.log_level__nisw;
+    let log_level__nre = params.log_level__nre;
+    let log_level__re = params.log_level__re;
+    let log_object = params.log_object;
+    let log_object__ic = params.log_object__ic;
+    let log_object__ie = params.log_object__ie;
+    let log_object__iew = params.log_object__iew;
+    let log_object__ire = params.log_object__ire;
+    let log_object__isw = params.log_object__isw;
+    let log_object__n = params.log_object__n;
+    let log_object__nic = params.log_object__nic;
+    let log_object__nie = params.log_object__nie;
+    let log_object__niew = params.log_object__niew;
+    let log_object__nire = params.log_object__nire;
+    let log_object__nisw = params.log_object__nisw;
+    let log_object__nre = params.log_object__nre;
+    let log_object__re = params.log_object__re;
+    let message = params.message;
+    let message__ic = params.message__ic;
+    let message__ie = params.message__ie;
+    let message__iew = params.message__iew;
+    let message__ire = params.message__ire;
+    let message__isw = params.message__isw;
+    let message__n = params.message__n;
+    let message__nic = params.message__nic;
+    let message__nie = params.message__nie;
+    let message__niew = params.message__niew;
+    let message__nire = params.message__nire;
+    let message__nisw = params.message__nisw;
+    let message__nre = params.message__nre;
+    let message__re = params.message__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43257,12 +51468,15 @@ pub async fn extras_job_logs_list(
 /// Retrieve a list of job log entries.
 pub async fn extras_job_logs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobLogsRetrieveParams,
 ) -> Result<crate::models::JobLogEntry, Error<ExtrasJobLogsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43322,10 +51536,13 @@ pub async fn extras_job_logs_retrieve(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobQueueAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43377,15 +51594,17 @@ pub async fn extras_job_queue_assignments_bulk_destroy(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_job_queue_assignment_request: Vec<
-        crate::models::PatchedBulkWritableJobQueueAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::JobQueueAssignment>,
     Error<ExtrasJobQueueAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_job_queue_assignment_request =
+        params.patched_bulk_writable_job_queue_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43438,13 +51657,15 @@ pub async fn extras_job_queue_assignments_bulk_partial_update(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_job_queue_assignment_request: Vec<
-        crate::models::BulkWritableJobQueueAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsBulkUpdateParams,
 ) -> Result<Vec<crate::models::JobQueueAssignment>, Error<ExtrasJobQueueAssignmentsBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_job_queue_assignment_request =
+        params.bulk_writable_job_queue_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43496,10 +51717,13 @@ pub async fn extras_job_queue_assignments_bulk_update(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_create(
     configuration: &configuration::Configuration,
-    job_queue_assignment_request: crate::models::JobQueueAssignmentRequest,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsCreateParams,
 ) -> Result<crate::models::JobQueueAssignment, Error<ExtrasJobQueueAssignmentsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let job_queue_assignment_request = params.job_queue_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43551,10 +51775,13 @@ pub async fn extras_job_queue_assignments_create(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsDestroyParams,
 ) -> Result<(), Error<ExtrasJobQueueAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43606,22 +51833,25 @@ pub async fn extras_job_queue_assignments_destroy(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job: Option<Vec<String>>,
-    job__n: Option<Vec<String>>,
-    job_queue: Option<Vec<String>>,
-    job_queue__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobQueueAssignmentsListParams,
 ) -> Result<crate::models::PaginatedJobQueueAssignmentList, Error<ExtrasJobQueueAssignmentsListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job = params.job;
+    let job__n = params.job__n;
+    let job_queue = params.job_queue;
+    let job_queue__n = params.job_queue__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43809,11 +52039,14 @@ pub async fn extras_job_queue_assignments_list(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_job_queue_assignment_request: Option<crate::models::PatchedJobQueueAssignmentRequest>,
+    params: ExtrasJobQueueAssignmentsPartialUpdateParams,
 ) -> Result<crate::models::JobQueueAssignment, Error<ExtrasJobQueueAssignmentsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_job_queue_assignment_request = params.patched_job_queue_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43866,12 +52099,15 @@ pub async fn extras_job_queue_assignments_partial_update(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobQueueAssignmentsRetrieveParams,
 ) -> Result<crate::models::JobQueueAssignment, Error<ExtrasJobQueueAssignmentsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43931,11 +52167,14 @@ pub async fn extras_job_queue_assignments_retrieve(
 /// Manage job queue assignments through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queue_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_queue_assignment_request: crate::models::JobQueueAssignmentRequest,
-    format: Option<&str>,
+    params: ExtrasJobQueueAssignmentsUpdateParams,
 ) -> Result<crate::models::JobQueueAssignment, Error<ExtrasJobQueueAssignmentsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_queue_assignment_request = params.job_queue_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -43988,10 +52227,13 @@ pub async fn extras_job_queue_assignments_update(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobQueuesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobQueuesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -44040,10 +52282,13 @@ pub async fn extras_job_queues_bulk_destroy(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_job_queue_request: Vec<crate::models::PatchedBulkWritableJobQueueRequest>,
-    format: Option<&str>,
+    params: ExtrasJobQueuesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::JobQueue>, Error<ExtrasJobQueuesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_job_queue_request = params.patched_bulk_writable_job_queue_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -44092,10 +52337,13 @@ pub async fn extras_job_queues_bulk_partial_update(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_job_queue_request: Vec<crate::models::BulkWritableJobQueueRequest>,
-    format: Option<&str>,
+    params: ExtrasJobQueuesBulkUpdateParams,
 ) -> Result<Vec<crate::models::JobQueue>, Error<ExtrasJobQueuesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_job_queue_request = params.bulk_writable_job_queue_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -44144,10 +52392,13 @@ pub async fn extras_job_queues_bulk_update(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_create(
     configuration: &configuration::Configuration,
-    job_queue_request: crate::models::JobQueueRequest,
-    format: Option<&str>,
+    params: ExtrasJobQueuesCreateParams,
 ) -> Result<crate::models::JobQueue, Error<ExtrasJobQueuesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let job_queue_request = params.job_queue_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -44196,10 +52447,13 @@ pub async fn extras_job_queues_create(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobQueuesDestroyParams,
 ) -> Result<(), Error<ExtrasJobQueuesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -44251,97 +52505,100 @@ pub async fn extras_job_queues_destroy(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    has_jobs: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    jobs: Option<Vec<String>>,
-    jobs__isnull: Option<bool>,
-    jobs__n: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    queue_type: Option<Vec<String>>,
-    queue_type__ic: Option<Vec<String>>,
-    queue_type__ie: Option<Vec<String>>,
-    queue_type__iew: Option<Vec<String>>,
-    queue_type__ire: Option<Vec<String>>,
-    queue_type__isw: Option<Vec<String>>,
-    queue_type__n: Option<Vec<String>>,
-    queue_type__nic: Option<Vec<String>>,
-    queue_type__nie: Option<Vec<String>>,
-    queue_type__niew: Option<Vec<String>>,
-    queue_type__nire: Option<Vec<String>>,
-    queue_type__nisw: Option<Vec<String>>,
-    queue_type__nre: Option<Vec<String>>,
-    queue_type__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobQueuesListParams,
 ) -> Result<crate::models::PaginatedJobQueueList, Error<ExtrasJobQueuesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let has_jobs = params.has_jobs;
+    let id = params.id;
+    let id__n = params.id__n;
+    let jobs = params.jobs;
+    let jobs__isnull = params.jobs__isnull;
+    let jobs__n = params.jobs__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let queue_type = params.queue_type;
+    let queue_type__ic = params.queue_type__ic;
+    let queue_type__ie = params.queue_type__ie;
+    let queue_type__iew = params.queue_type__iew;
+    let queue_type__ire = params.queue_type__ire;
+    let queue_type__isw = params.queue_type__isw;
+    let queue_type__n = params.queue_type__n;
+    let queue_type__nic = params.queue_type__nic;
+    let queue_type__nie = params.queue_type__nie;
+    let queue_type__niew = params.queue_type__niew;
+    let queue_type__nire = params.queue_type__nire;
+    let queue_type__nisw = params.queue_type__nisw;
+    let queue_type__nre = params.queue_type__nre;
+    let queue_type__re = params.queue_type__re;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -45820,11 +54077,14 @@ pub async fn extras_job_queues_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_queues_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasJobQueuesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasJobQueuesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -45877,14 +54137,17 @@ pub async fn extras_job_queues_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_job_queues_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobQueuesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasJobQueuesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -45952,11 +54215,14 @@ pub async fn extras_job_queues_notes_list(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_job_queue_request: Option<crate::models::PatchedJobQueueRequest>,
+    params: ExtrasJobQueuesPartialUpdateParams,
 ) -> Result<crate::models::JobQueue, Error<ExtrasJobQueuesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_job_queue_request = params.patched_job_queue_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46009,12 +54275,15 @@ pub async fn extras_job_queues_partial_update(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobQueuesRetrieveParams,
 ) -> Result<crate::models::JobQueue, Error<ExtrasJobQueuesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46074,11 +54343,14 @@ pub async fn extras_job_queues_retrieve(
 /// Manage job queues through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_job_queues_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_queue_request: crate::models::JobQueueRequest,
-    format: Option<&str>,
+    params: ExtrasJobQueuesUpdateParams,
 ) -> Result<crate::models::JobQueue, Error<ExtrasJobQueuesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_queue_request = params.job_queue_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46131,10 +54403,13 @@ pub async fn extras_job_queues_update(
 /// Retrieve a list of job results
 pub async fn extras_job_results_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobResultsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobResultsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46183,11 +54458,14 @@ pub async fn extras_job_results_bulk_destroy(
 /// Cancel a running or pending Job, or reap it if its worker is gone.
 pub async fn extras_job_results_cancel_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_result_request: crate::models::JobResultRequest,
-    format: Option<&str>,
+    params: ExtrasJobResultsCancelCreateParams,
 ) -> Result<crate::models::JobResult, Error<ExtrasJobResultsCancelCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_result_request = params.job_result_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46240,12 +54518,15 @@ pub async fn extras_job_results_cancel_create(
 /// Cancel a running or pending Job, or reap it if its worker is gone.
 pub async fn extras_job_results_cancel_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobResultsCancelRetrieveParams,
 ) -> Result<crate::models::JobResultCancelPreview, Error<ExtrasJobResultsCancelRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46305,10 +54586,13 @@ pub async fn extras_job_results_cancel_retrieve(
 /// Retrieve a list of job results
 pub async fn extras_job_results_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobResultsDestroyParams,
 ) -> Result<(), Error<ExtrasJobResultsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -46360,102 +54644,105 @@ pub async fn extras_job_results_destroy(
 /// Retrieve a list of job results
 pub async fn extras_job_results_list(
     configuration: &configuration::Configuration,
-    cancel_type: Option<Vec<String>>,
-    cancel_type__ic: Option<Vec<String>>,
-    cancel_type__ie: Option<Vec<String>>,
-    cancel_type__iew: Option<Vec<String>>,
-    cancel_type__ire: Option<Vec<String>>,
-    cancel_type__isw: Option<Vec<String>>,
-    cancel_type__n: Option<Vec<String>>,
-    cancel_type__nic: Option<Vec<String>>,
-    cancel_type__nie: Option<Vec<String>>,
-    cancel_type__niew: Option<Vec<String>>,
-    cancel_type__nire: Option<Vec<String>>,
-    cancel_type__nisw: Option<Vec<String>>,
-    cancel_type__nre: Option<Vec<String>>,
-    cancel_type__re: Option<Vec<String>>,
-    canceled_by: Option<Vec<uuid::Uuid>>,
-    canceled_by__isnull: Option<bool>,
-    canceled_by__n: Option<Vec<uuid::Uuid>>,
-    date_canceled: Option<Vec<String>>,
-    date_canceled__gt: Option<Vec<String>>,
-    date_canceled__gte: Option<Vec<String>>,
-    date_canceled__isnull: Option<bool>,
-    date_canceled__lt: Option<Vec<String>>,
-    date_canceled__lte: Option<Vec<String>>,
-    date_canceled__n: Option<Vec<String>>,
-    date_created: Option<Vec<String>>,
-    date_created__gt: Option<Vec<String>>,
-    date_created__gte: Option<Vec<String>>,
-    date_created__lt: Option<Vec<String>>,
-    date_created__lte: Option<Vec<String>>,
-    date_created__n: Option<Vec<String>>,
-    date_done: Option<Vec<String>>,
-    date_done__gt: Option<Vec<String>>,
-    date_done__gte: Option<Vec<String>>,
-    date_done__isnull: Option<bool>,
-    date_done__lt: Option<Vec<String>>,
-    date_done__lte: Option<Vec<String>>,
-    date_done__n: Option<Vec<String>>,
-    date_started: Option<Vec<String>>,
-    date_started__gt: Option<Vec<String>>,
-    date_started__gte: Option<Vec<String>>,
-    date_started__isnull: Option<bool>,
-    date_started__lt: Option<Vec<String>>,
-    date_started__lte: Option<Vec<String>>,
-    date_started__n: Option<Vec<String>>,
-    format: Option<&str>,
-    has_job_console_entries: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job_model: Option<Vec<String>>,
-    job_model__isnull: Option<bool>,
-    job_model__n: Option<Vec<String>>,
-    job_model_id: Option<Vec<uuid::Uuid>>,
-    job_model_id__isnull: Option<bool>,
-    job_model_id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    scheduled_job: Option<Vec<String>>,
-    scheduled_job__isnull: Option<bool>,
-    scheduled_job__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__ic: Option<Vec<String>>,
-    status__ie: Option<Vec<String>>,
-    status__iew: Option<Vec<String>>,
-    status__ire: Option<Vec<String>>,
-    status__isw: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    status__nic: Option<Vec<String>>,
-    status__nie: Option<Vec<String>>,
-    status__niew: Option<Vec<String>>,
-    status__nire: Option<Vec<String>>,
-    status__nisw: Option<Vec<String>>,
-    status__nre: Option<Vec<String>>,
-    status__re: Option<Vec<String>>,
-    user: Option<Vec<uuid::Uuid>>,
-    user__isnull: Option<bool>,
-    user__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobResultsListParams,
 ) -> Result<crate::models::PaginatedJobResultList, Error<ExtrasJobResultsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let cancel_type = params.cancel_type;
+    let cancel_type__ic = params.cancel_type__ic;
+    let cancel_type__ie = params.cancel_type__ie;
+    let cancel_type__iew = params.cancel_type__iew;
+    let cancel_type__ire = params.cancel_type__ire;
+    let cancel_type__isw = params.cancel_type__isw;
+    let cancel_type__n = params.cancel_type__n;
+    let cancel_type__nic = params.cancel_type__nic;
+    let cancel_type__nie = params.cancel_type__nie;
+    let cancel_type__niew = params.cancel_type__niew;
+    let cancel_type__nire = params.cancel_type__nire;
+    let cancel_type__nisw = params.cancel_type__nisw;
+    let cancel_type__nre = params.cancel_type__nre;
+    let cancel_type__re = params.cancel_type__re;
+    let canceled_by = params.canceled_by;
+    let canceled_by__isnull = params.canceled_by__isnull;
+    let canceled_by__n = params.canceled_by__n;
+    let date_canceled = params.date_canceled;
+    let date_canceled__gt = params.date_canceled__gt;
+    let date_canceled__gte = params.date_canceled__gte;
+    let date_canceled__isnull = params.date_canceled__isnull;
+    let date_canceled__lt = params.date_canceled__lt;
+    let date_canceled__lte = params.date_canceled__lte;
+    let date_canceled__n = params.date_canceled__n;
+    let date_created = params.date_created;
+    let date_created__gt = params.date_created__gt;
+    let date_created__gte = params.date_created__gte;
+    let date_created__lt = params.date_created__lt;
+    let date_created__lte = params.date_created__lte;
+    let date_created__n = params.date_created__n;
+    let date_done = params.date_done;
+    let date_done__gt = params.date_done__gt;
+    let date_done__gte = params.date_done__gte;
+    let date_done__isnull = params.date_done__isnull;
+    let date_done__lt = params.date_done__lt;
+    let date_done__lte = params.date_done__lte;
+    let date_done__n = params.date_done__n;
+    let date_started = params.date_started;
+    let date_started__gt = params.date_started__gt;
+    let date_started__gte = params.date_started__gte;
+    let date_started__isnull = params.date_started__isnull;
+    let date_started__lt = params.date_started__lt;
+    let date_started__lte = params.date_started__lte;
+    let date_started__n = params.date_started__n;
+    let format = params.format;
+    let has_job_console_entries = params.has_job_console_entries;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job_model = params.job_model;
+    let job_model__isnull = params.job_model__isnull;
+    let job_model__n = params.job_model__n;
+    let job_model_id = params.job_model_id;
+    let job_model_id__isnull = params.job_model_id__isnull;
+    let job_model_id__n = params.job_model_id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let scheduled_job = params.scheduled_job;
+    let scheduled_job__isnull = params.scheduled_job__isnull;
+    let scheduled_job__n = params.scheduled_job__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__ic = params.status__ic;
+    let status__ie = params.status__ie;
+    let status__iew = params.status__iew;
+    let status__ire = params.status__ire;
+    let status__isw = params.status__isw;
+    let status__n = params.status__n;
+    let status__nic = params.status__nic;
+    let status__nie = params.status__nie;
+    let status__niew = params.status__niew;
+    let status__nire = params.status__nire;
+    let status__nisw = params.status__nisw;
+    let status__nre = params.status__nre;
+    let status__re = params.status__re;
+    let user = params.user;
+    let user__isnull = params.user__isnull;
+    let user__n = params.user__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48044,12 +56331,15 @@ pub async fn extras_job_results_list(
 /// Retrieve a list of job results
 pub async fn extras_job_results_logs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobResultsLogsRetrieveParams,
 ) -> Result<crate::models::JobResult, Error<ExtrasJobResultsLogsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48109,12 +56399,15 @@ pub async fn extras_job_results_logs_retrieve(
 /// Retrieve a list of job results
 pub async fn extras_job_results_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobResultsRetrieveParams,
 ) -> Result<crate::models::JobResult, Error<ExtrasJobResultsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48174,10 +56467,13 @@ pub async fn extras_job_results_retrieve(
 /// Destroy a list of job objects.
 pub async fn extras_jobs_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasJobsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasJobsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48226,10 +56522,13 @@ pub async fn extras_jobs_bulk_destroy(
 /// Partial update a list of job objects.
 pub async fn extras_jobs_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_job_request: Vec<crate::models::PatchedBulkWritableJobRequest>,
-    format: Option<&str>,
+    params: ExtrasJobsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Job>, Error<ExtrasJobsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_job_request = params.patched_bulk_writable_job_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48278,10 +56577,13 @@ pub async fn extras_jobs_bulk_partial_update(
 /// Update a list of job objects.
 pub async fn extras_jobs_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_job_request: Vec<crate::models::BulkWritableJobRequest>,
-    format: Option<&str>,
+    params: ExtrasJobsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Job>, Error<ExtrasJobsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_job_request = params.bulk_writable_job_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48330,10 +56632,13 @@ pub async fn extras_jobs_bulk_update(
 /// Destroy a job object.
 pub async fn extras_jobs_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasJobsDestroyParams,
 ) -> Result<(), Error<ExtrasJobsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48385,10 +56690,13 @@ pub async fn extras_jobs_destroy(
 /// Destroy a list of job objects.
 pub async fn extras_jobs_destroy_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
+    params: ExtrasJobsDestroyByNameParams,
 ) -> Result<(), Error<ExtrasJobsDestroyByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -48440,118 +56748,121 @@ pub async fn extras_jobs_destroy_by_name(
 /// Retrieve a list of job objects.
 pub async fn extras_jobs_list(
     configuration: &configuration::Configuration,
-    console_log_default: Option<bool>,
-    console_log_default_override: Option<bool>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    description_override: Option<bool>,
-    dryrun_default: Option<bool>,
-    dryrun_default_override: Option<bool>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    grouping: Option<Vec<String>>,
-    grouping__ic: Option<Vec<String>>,
-    grouping__ie: Option<Vec<String>>,
-    grouping__iew: Option<Vec<String>>,
-    grouping__ire: Option<Vec<String>>,
-    grouping__isw: Option<Vec<String>>,
-    grouping__n: Option<Vec<String>>,
-    grouping__nic: Option<Vec<String>>,
-    grouping__nie: Option<Vec<String>>,
-    grouping__niew: Option<Vec<String>>,
-    grouping__nire: Option<Vec<String>>,
-    grouping__nisw: Option<Vec<String>>,
-    grouping__nre: Option<Vec<String>>,
-    grouping__re: Option<Vec<String>>,
-    grouping_override: Option<bool>,
-    has_sensitive_variables: Option<bool>,
-    has_sensitive_variables_override: Option<bool>,
-    hidden: Option<bool>,
-    hidden_override: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    installed: Option<bool>,
-    is_job_button_receiver: Option<bool>,
-    is_job_hook_receiver: Option<bool>,
-    is_singleton: Option<bool>,
-    is_singleton_override: Option<bool>,
-    job_class_name: Option<Vec<String>>,
-    job_class_name__ic: Option<Vec<String>>,
-    job_class_name__ie: Option<Vec<String>>,
-    job_class_name__iew: Option<Vec<String>>,
-    job_class_name__ire: Option<Vec<String>>,
-    job_class_name__isw: Option<Vec<String>>,
-    job_class_name__n: Option<Vec<String>>,
-    job_class_name__nic: Option<Vec<String>>,
-    job_class_name__nie: Option<Vec<String>>,
-    job_class_name__niew: Option<Vec<String>>,
-    job_class_name__nire: Option<Vec<String>>,
-    job_class_name__nisw: Option<Vec<String>>,
-    job_class_name__nre: Option<Vec<String>>,
-    job_class_name__re: Option<Vec<String>>,
-    job_queues: Option<Vec<String>>,
-    job_queues__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    module_name: Option<Vec<String>>,
-    module_name__ic: Option<Vec<String>>,
-    module_name__ie: Option<Vec<String>>,
-    module_name__iew: Option<Vec<String>>,
-    module_name__ire: Option<Vec<String>>,
-    module_name__isw: Option<Vec<String>>,
-    module_name__n: Option<Vec<String>>,
-    module_name__nic: Option<Vec<String>>,
-    module_name__nie: Option<Vec<String>>,
-    module_name__niew: Option<Vec<String>>,
-    module_name__nire: Option<Vec<String>>,
-    module_name__nisw: Option<Vec<String>>,
-    module_name__nre: Option<Vec<String>>,
-    module_name__re: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    name_override: Option<bool>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    read_only: Option<bool>,
-    soft_time_limit: Option<Vec<f32>>,
-    soft_time_limit__gt: Option<Vec<f32>>,
-    soft_time_limit__gte: Option<Vec<f32>>,
-    soft_time_limit__lt: Option<Vec<f32>>,
-    soft_time_limit__lte: Option<Vec<f32>>,
-    soft_time_limit__n: Option<Vec<f32>>,
-    soft_time_limit_override: Option<bool>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    time_limit: Option<Vec<f32>>,
-    time_limit__gt: Option<Vec<f32>>,
-    time_limit__gte: Option<Vec<f32>>,
-    time_limit__lt: Option<Vec<f32>>,
-    time_limit__lte: Option<Vec<f32>>,
-    time_limit__n: Option<Vec<f32>>,
-    time_limit_override: Option<bool>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsListParams,
 ) -> Result<crate::models::PaginatedJobList, Error<ExtrasJobsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let console_log_default = params.console_log_default;
+    let console_log_default_override = params.console_log_default_override;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let description_override = params.description_override;
+    let dryrun_default = params.dryrun_default;
+    let dryrun_default_override = params.dryrun_default_override;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let grouping = params.grouping;
+    let grouping__ic = params.grouping__ic;
+    let grouping__ie = params.grouping__ie;
+    let grouping__iew = params.grouping__iew;
+    let grouping__ire = params.grouping__ire;
+    let grouping__isw = params.grouping__isw;
+    let grouping__n = params.grouping__n;
+    let grouping__nic = params.grouping__nic;
+    let grouping__nie = params.grouping__nie;
+    let grouping__niew = params.grouping__niew;
+    let grouping__nire = params.grouping__nire;
+    let grouping__nisw = params.grouping__nisw;
+    let grouping__nre = params.grouping__nre;
+    let grouping__re = params.grouping__re;
+    let grouping_override = params.grouping_override;
+    let has_sensitive_variables = params.has_sensitive_variables;
+    let has_sensitive_variables_override = params.has_sensitive_variables_override;
+    let hidden = params.hidden;
+    let hidden_override = params.hidden_override;
+    let id = params.id;
+    let id__n = params.id__n;
+    let installed = params.installed;
+    let is_job_button_receiver = params.is_job_button_receiver;
+    let is_job_hook_receiver = params.is_job_hook_receiver;
+    let is_singleton = params.is_singleton;
+    let is_singleton_override = params.is_singleton_override;
+    let job_class_name = params.job_class_name;
+    let job_class_name__ic = params.job_class_name__ic;
+    let job_class_name__ie = params.job_class_name__ie;
+    let job_class_name__iew = params.job_class_name__iew;
+    let job_class_name__ire = params.job_class_name__ire;
+    let job_class_name__isw = params.job_class_name__isw;
+    let job_class_name__n = params.job_class_name__n;
+    let job_class_name__nic = params.job_class_name__nic;
+    let job_class_name__nie = params.job_class_name__nie;
+    let job_class_name__niew = params.job_class_name__niew;
+    let job_class_name__nire = params.job_class_name__nire;
+    let job_class_name__nisw = params.job_class_name__nisw;
+    let job_class_name__nre = params.job_class_name__nre;
+    let job_class_name__re = params.job_class_name__re;
+    let job_queues = params.job_queues;
+    let job_queues__n = params.job_queues__n;
+    let limit = params.limit;
+    let module_name = params.module_name;
+    let module_name__ic = params.module_name__ic;
+    let module_name__ie = params.module_name__ie;
+    let module_name__iew = params.module_name__iew;
+    let module_name__ire = params.module_name__ire;
+    let module_name__isw = params.module_name__isw;
+    let module_name__n = params.module_name__n;
+    let module_name__nic = params.module_name__nic;
+    let module_name__nie = params.module_name__nie;
+    let module_name__niew = params.module_name__niew;
+    let module_name__nire = params.module_name__nire;
+    let module_name__nisw = params.module_name__nisw;
+    let module_name__nre = params.module_name__nre;
+    let module_name__re = params.module_name__re;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let name_override = params.name_override;
+    let offset = params.offset;
+    let q = params.q;
+    let read_only = params.read_only;
+    let soft_time_limit = params.soft_time_limit;
+    let soft_time_limit__gt = params.soft_time_limit__gt;
+    let soft_time_limit__gte = params.soft_time_limit__gte;
+    let soft_time_limit__lt = params.soft_time_limit__lt;
+    let soft_time_limit__lte = params.soft_time_limit__lte;
+    let soft_time_limit__n = params.soft_time_limit__n;
+    let soft_time_limit_override = params.soft_time_limit_override;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let time_limit = params.time_limit;
+    let time_limit__gt = params.time_limit__gt;
+    let time_limit__gte = params.time_limit__gte;
+    let time_limit__lt = params.time_limit__lt;
+    let time_limit__lte = params.time_limit__lte;
+    let time_limit__n = params.time_limit__n;
+    let time_limit_override = params.time_limit_override;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50236,11 +58547,14 @@ pub async fn extras_jobs_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_jobs_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasJobsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasJobsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50293,11 +58607,14 @@ pub async fn extras_jobs_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_jobs_notes_create_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasJobsNotesCreateByNameParams,
 ) -> Result<crate::models::Note, Error<ExtrasJobsNotesCreateByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50350,14 +58667,17 @@ pub async fn extras_jobs_notes_create_by_name(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_jobs_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasJobsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50425,14 +58745,17 @@ pub async fn extras_jobs_notes_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_jobs_notes_list_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsNotesListByNameParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasJobsNotesListByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50500,11 +58823,14 @@ pub async fn extras_jobs_notes_list_by_name(
 /// Partial update a job object.
 pub async fn extras_jobs_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_job_request: Option<crate::models::PatchedJobRequest>,
+    params: ExtrasJobsPartialUpdateParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_job_request = params.patched_job_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50557,11 +58883,14 @@ pub async fn extras_jobs_partial_update(
 /// Partial update a list of job objects.
 pub async fn extras_jobs_partial_update_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
-    patched_job_request: Option<crate::models::PatchedJobRequest>,
+    params: ExtrasJobsPartialUpdateByNameParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsPartialUpdateByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
+    let patched_job_request = params.patched_job_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50614,12 +58943,15 @@ pub async fn extras_jobs_partial_update_by_name(
 /// Retrieve a job object.
 pub async fn extras_jobs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsRetrieveParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50679,12 +59011,15 @@ pub async fn extras_jobs_retrieve(
 /// Retrieve a list of job objects.
 pub async fn extras_jobs_retrieve_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsRetrieveByNameParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsRetrieveByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50744,11 +59079,14 @@ pub async fn extras_jobs_retrieve_by_name(
 /// Run the specified Job.
 pub async fn extras_jobs_run_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    job_input_request: Option<crate::models::JobInputRequest>,
+    params: ExtrasJobsRunCreateParams,
 ) -> Result<crate::models::JobRunResponse, Error<ExtrasJobsRunCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let job_input_request = params.job_input_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50801,11 +59139,14 @@ pub async fn extras_jobs_run_create(
 /// Run the specified Job.
 pub async fn extras_jobs_run_create_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
-    job_input_request: Option<crate::models::JobInputRequest>,
+    params: ExtrasJobsRunCreateByNameParams,
 ) -> Result<crate::models::JobRunResponse, Error<ExtrasJobsRunCreateByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
+    let job_input_request = params.job_input_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50858,11 +59199,14 @@ pub async fn extras_jobs_run_create_by_name(
 /// Update a job object.
 pub async fn extras_jobs_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    job_request: crate::models::JobRequest,
-    format: Option<&str>,
+    params: ExtrasJobsUpdateParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let job_request = params.job_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50915,11 +59259,14 @@ pub async fn extras_jobs_update(
 /// Update a list of job objects.
 pub async fn extras_jobs_update_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    job_request: crate::models::JobRequest,
-    format: Option<&str>,
+    params: ExtrasJobsUpdateByNameParams,
 ) -> Result<crate::models::Job, Error<ExtrasJobsUpdateByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let job_request = params.job_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -50972,15 +59319,18 @@ pub async fn extras_jobs_update_by_name(
 /// Get details of the input variables that may/must be specified to run a particular Job.
 pub async fn extras_jobs_variables_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsVariablesListParams,
 ) -> Result<crate::models::PaginatedJobVariableList, Error<ExtrasJobsVariablesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51052,15 +59402,18 @@ pub async fn extras_jobs_variables_list(
 /// Get details of the input variables that may/must be specified to run a particular Job.
 pub async fn extras_jobs_variables_list_by_name(
     configuration: &configuration::Configuration,
-    name: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasJobsVariablesListByNameParams,
 ) -> Result<crate::models::PaginatedJobVariableList, Error<ExtrasJobsVariablesListByNameError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51132,10 +59485,13 @@ pub async fn extras_jobs_variables_list_by_name(
 /// Destroy a list of metadata choice objects.
 pub async fn extras_metadata_choices_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasMetadataChoicesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51187,13 +59543,15 @@ pub async fn extras_metadata_choices_bulk_destroy(
 /// Partial update a list of metadata choice objects.
 pub async fn extras_metadata_choices_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_metadata_choice_request: Vec<
-        crate::models::PatchedBulkWritableMetadataChoiceRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::MetadataChoice>, Error<ExtrasMetadataChoicesBulkPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_metadata_choice_request =
+        params.patched_bulk_writable_metadata_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51246,10 +59604,13 @@ pub async fn extras_metadata_choices_bulk_partial_update(
 /// Update a list of metadata choice objects.
 pub async fn extras_metadata_choices_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_metadata_choice_request: Vec<crate::models::BulkWritableMetadataChoiceRequest>,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesBulkUpdateParams,
 ) -> Result<Vec<crate::models::MetadataChoice>, Error<ExtrasMetadataChoicesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_metadata_choice_request = params.bulk_writable_metadata_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51301,10 +59662,13 @@ pub async fn extras_metadata_choices_bulk_update(
 /// Create one or more metadata choice objects.
 pub async fn extras_metadata_choices_create(
     configuration: &configuration::Configuration,
-    metadata_choice_request: crate::models::MetadataChoiceRequest,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesCreateParams,
 ) -> Result<crate::models::MetadataChoice, Error<ExtrasMetadataChoicesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let metadata_choice_request = params.metadata_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51356,10 +59720,13 @@ pub async fn extras_metadata_choices_create(
 /// Destroy a metadata choice object.
 pub async fn extras_metadata_choices_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesDestroyParams,
 ) -> Result<(), Error<ExtrasMetadataChoicesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -51411,53 +59778,56 @@ pub async fn extras_metadata_choices_destroy(
 /// Retrieve a list of metadata choice objects.
 pub async fn extras_metadata_choices_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    metadata_type: Option<Vec<String>>,
-    metadata_type__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    value: Option<Vec<String>>,
-    value__ic: Option<Vec<String>>,
-    value__ie: Option<Vec<String>>,
-    value__iew: Option<Vec<String>>,
-    value__ire: Option<Vec<String>>,
-    value__isw: Option<Vec<String>>,
-    value__n: Option<Vec<String>>,
-    value__nic: Option<Vec<String>>,
-    value__nie: Option<Vec<String>>,
-    value__niew: Option<Vec<String>>,
-    value__nire: Option<Vec<String>>,
-    value__nisw: Option<Vec<String>>,
-    value__nre: Option<Vec<String>>,
-    value__re: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasMetadataChoicesListParams,
 ) -> Result<crate::models::PaginatedMetadataChoiceList, Error<ExtrasMetadataChoicesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let metadata_type = params.metadata_type;
+    let metadata_type__n = params.metadata_type__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let value = params.value;
+    let value__ic = params.value__ic;
+    let value__ie = params.value__ie;
+    let value__iew = params.value__iew;
+    let value__ire = params.value__ire;
+    let value__isw = params.value__isw;
+    let value__n = params.value__n;
+    let value__nic = params.value__nic;
+    let value__nie = params.value__nie;
+    let value__niew = params.value__niew;
+    let value__nire = params.value__nire;
+    let value__nisw = params.value__nisw;
+    let value__nre = params.value__nre;
+    let value__re = params.value__re;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52223,11 +60593,14 @@ pub async fn extras_metadata_choices_list(
 /// Partial update a metadata choice object.
 pub async fn extras_metadata_choices_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_metadata_choice_request: Option<crate::models::PatchedMetadataChoiceRequest>,
+    params: ExtrasMetadataChoicesPartialUpdateParams,
 ) -> Result<crate::models::MetadataChoice, Error<ExtrasMetadataChoicesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_metadata_choice_request = params.patched_metadata_choice_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52280,12 +60653,15 @@ pub async fn extras_metadata_choices_partial_update(
 /// Retrieve a metadata choice object.
 pub async fn extras_metadata_choices_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasMetadataChoicesRetrieveParams,
 ) -> Result<crate::models::MetadataChoice, Error<ExtrasMetadataChoicesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52345,11 +60721,14 @@ pub async fn extras_metadata_choices_retrieve(
 /// Update a metadata choice object.
 pub async fn extras_metadata_choices_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    metadata_choice_request: crate::models::MetadataChoiceRequest,
-    format: Option<&str>,
+    params: ExtrasMetadataChoicesUpdateParams,
 ) -> Result<crate::models::MetadataChoice, Error<ExtrasMetadataChoicesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let metadata_choice_request = params.metadata_choice_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52402,10 +60781,13 @@ pub async fn extras_metadata_choices_update(
 /// Destroy a list of metadata type objects.
 pub async fn extras_metadata_types_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasMetadataTypesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52457,12 +60839,14 @@ pub async fn extras_metadata_types_bulk_destroy(
 /// Partial update a list of metadata type objects.
 pub async fn extras_metadata_types_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_metadata_type_request: Vec<
-        crate::models::PatchedBulkWritableMetadataTypeRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::MetadataType>, Error<ExtrasMetadataTypesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_metadata_type_request =
+        params.patched_bulk_writable_metadata_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52515,10 +60899,13 @@ pub async fn extras_metadata_types_bulk_partial_update(
 /// Update a list of metadata type objects.
 pub async fn extras_metadata_types_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_metadata_type_request: Vec<crate::models::BulkWritableMetadataTypeRequest>,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesBulkUpdateParams,
 ) -> Result<Vec<crate::models::MetadataType>, Error<ExtrasMetadataTypesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_metadata_type_request = params.bulk_writable_metadata_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52570,10 +60957,13 @@ pub async fn extras_metadata_types_bulk_update(
 /// Create one or more metadata type objects.
 pub async fn extras_metadata_types_create(
     configuration: &configuration::Configuration,
-    metadata_type_request: crate::models::MetadataTypeRequest,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesCreateParams,
 ) -> Result<crate::models::MetadataType, Error<ExtrasMetadataTypesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let metadata_type_request = params.metadata_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52625,10 +61015,13 @@ pub async fn extras_metadata_types_create(
 /// Destroy a metadata type object.
 pub async fn extras_metadata_types_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesDestroyParams,
 ) -> Result<(), Error<ExtrasMetadataTypesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -52680,87 +61073,90 @@ pub async fn extras_metadata_types_destroy(
 /// Retrieve a list of metadata type objects.
 pub async fn extras_metadata_types_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type_id: Option<i32>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    data_type: Option<Vec<String>>,
-    data_type__ic: Option<Vec<String>>,
-    data_type__ie: Option<Vec<String>>,
-    data_type__iew: Option<Vec<String>>,
-    data_type__ire: Option<Vec<String>>,
-    data_type__isw: Option<Vec<String>>,
-    data_type__n: Option<Vec<String>>,
-    data_type__nic: Option<Vec<String>>,
-    data_type__nie: Option<Vec<String>>,
-    data_type__niew: Option<Vec<String>>,
-    data_type__nire: Option<Vec<String>>,
-    data_type__nisw: Option<Vec<String>>,
-    data_type__nre: Option<Vec<String>>,
-    data_type__re: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasMetadataTypesListParams,
 ) -> Result<crate::models::PaginatedMetadataTypeList, Error<ExtrasMetadataTypesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type_id = params.content_type_id;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let data_type = params.data_type;
+    let data_type__ic = params.data_type__ic;
+    let data_type__ie = params.data_type__ie;
+    let data_type__iew = params.data_type__iew;
+    let data_type__ire = params.data_type__ire;
+    let data_type__isw = params.data_type__isw;
+    let data_type__n = params.data_type__n;
+    let data_type__nic = params.data_type__nic;
+    let data_type__nie = params.data_type__nie;
+    let data_type__niew = params.data_type__niew;
+    let data_type__nire = params.data_type__nire;
+    let data_type__nisw = params.data_type__nisw;
+    let data_type__nre = params.data_type__nre;
+    let data_type__re = params.data_type__re;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54112,11 +62508,14 @@ pub async fn extras_metadata_types_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_metadata_types_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasMetadataTypesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54169,14 +62568,17 @@ pub async fn extras_metadata_types_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_metadata_types_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasMetadataTypesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasMetadataTypesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54244,11 +62646,14 @@ pub async fn extras_metadata_types_notes_list(
 /// Partial update a metadata type object.
 pub async fn extras_metadata_types_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_metadata_type_request: Option<crate::models::PatchedMetadataTypeRequest>,
+    params: ExtrasMetadataTypesPartialUpdateParams,
 ) -> Result<crate::models::MetadataType, Error<ExtrasMetadataTypesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_metadata_type_request = params.patched_metadata_type_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54301,12 +62706,15 @@ pub async fn extras_metadata_types_partial_update(
 /// Retrieve a metadata type object.
 pub async fn extras_metadata_types_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasMetadataTypesRetrieveParams,
 ) -> Result<crate::models::MetadataType, Error<ExtrasMetadataTypesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54366,11 +62774,14 @@ pub async fn extras_metadata_types_retrieve(
 /// Update a metadata type object.
 pub async fn extras_metadata_types_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    metadata_type_request: crate::models::MetadataTypeRequest,
-    format: Option<&str>,
+    params: ExtrasMetadataTypesUpdateParams,
 ) -> Result<crate::models::MetadataType, Error<ExtrasMetadataTypesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let metadata_type_request = params.metadata_type_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54423,10 +62834,13 @@ pub async fn extras_metadata_types_update(
 /// Destroy a list of note objects.
 pub async fn extras_notes_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasNotesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasNotesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54475,10 +62889,13 @@ pub async fn extras_notes_bulk_destroy(
 /// Partial update a list of note objects.
 pub async fn extras_notes_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_note_request: Vec<crate::models::PatchedBulkWritableNoteRequest>,
-    format: Option<&str>,
+    params: ExtrasNotesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Note>, Error<ExtrasNotesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_note_request = params.patched_bulk_writable_note_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54527,10 +62944,13 @@ pub async fn extras_notes_bulk_partial_update(
 /// Update a list of note objects.
 pub async fn extras_notes_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_note_request: Vec<crate::models::BulkWritableNoteRequest>,
-    format: Option<&str>,
+    params: ExtrasNotesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Note>, Error<ExtrasNotesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_note_request = params.bulk_writable_note_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54579,10 +62999,13 @@ pub async fn extras_notes_bulk_update(
 /// Create one or more note objects.
 pub async fn extras_notes_create(
     configuration: &configuration::Configuration,
-    note_request: crate::models::NoteRequest,
-    format: Option<&str>,
+    params: ExtrasNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let note_request = params.note_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54631,10 +63054,13 @@ pub async fn extras_notes_create(
 /// Destroy a note object.
 pub async fn extras_notes_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasNotesDestroyParams,
 ) -> Result<(), Error<ExtrasNotesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -54686,54 +63112,57 @@ pub async fn extras_notes_destroy(
 /// Retrieve a list of note objects.
 pub async fn extras_notes_list(
     configuration: &configuration::Configuration,
-    assigned_object_id: Option<Vec<uuid::Uuid>>,
-    assigned_object_id__n: Option<Vec<uuid::Uuid>>,
-    assigned_object_type: Option<&str>,
-    assigned_object_type__n: Option<&str>,
-    assigned_object_type_id: Option<Vec<i32>>,
-    assigned_object_type_id__n: Option<Vec<i32>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    note: Option<Vec<String>>,
-    note__ic: Option<Vec<String>>,
-    note__ie: Option<Vec<String>>,
-    note__iew: Option<Vec<String>>,
-    note__ire: Option<Vec<String>>,
-    note__isw: Option<Vec<String>>,
-    note__n: Option<Vec<String>>,
-    note__nic: Option<Vec<String>>,
-    note__nie: Option<Vec<String>>,
-    note__niew: Option<Vec<String>>,
-    note__nire: Option<Vec<String>>,
-    note__nisw: Option<Vec<String>>,
-    note__nre: Option<Vec<String>>,
-    note__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    user: Option<Vec<String>>,
-    user__isnull: Option<bool>,
-    user__n: Option<Vec<String>>,
-    user_name: Option<Vec<String>>,
-    user_name__ic: Option<Vec<String>>,
-    user_name__ie: Option<Vec<String>>,
-    user_name__iew: Option<Vec<String>>,
-    user_name__ire: Option<Vec<String>>,
-    user_name__isw: Option<Vec<String>>,
-    user_name__n: Option<Vec<String>>,
-    user_name__nic: Option<Vec<String>>,
-    user_name__nie: Option<Vec<String>>,
-    user_name__niew: Option<Vec<String>>,
-    user_name__nire: Option<Vec<String>>,
-    user_name__nisw: Option<Vec<String>>,
-    user_name__nre: Option<Vec<String>>,
-    user_name__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let assigned_object_id = params.assigned_object_id;
+    let assigned_object_id__n = params.assigned_object_id__n;
+    let assigned_object_type = params.assigned_object_type;
+    let assigned_object_type__n = params.assigned_object_type__n;
+    let assigned_object_type_id = params.assigned_object_type_id;
+    let assigned_object_type_id__n = params.assigned_object_type_id__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let note = params.note;
+    let note__ic = params.note__ic;
+    let note__ie = params.note__ie;
+    let note__iew = params.note__iew;
+    let note__ire = params.note__ire;
+    let note__isw = params.note__isw;
+    let note__n = params.note__n;
+    let note__nic = params.note__nic;
+    let note__nie = params.note__nie;
+    let note__niew = params.note__niew;
+    let note__nire = params.note__nire;
+    let note__nisw = params.note__nisw;
+    let note__nre = params.note__nre;
+    let note__re = params.note__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let user = params.user;
+    let user__isnull = params.user__isnull;
+    let user__n = params.user__n;
+    let user_name = params.user_name;
+    let user_name__ic = params.user_name__ic;
+    let user_name__ie = params.user_name__ie;
+    let user_name__iew = params.user_name__iew;
+    let user_name__ire = params.user_name__ire;
+    let user_name__isw = params.user_name__isw;
+    let user_name__n = params.user_name__n;
+    let user_name__nic = params.user_name__nic;
+    let user_name__nie = params.user_name__nie;
+    let user_name__niew = params.user_name__niew;
+    let user_name__nire = params.user_name__nire;
+    let user_name__nisw = params.user_name__nisw;
+    let user_name__nre = params.user_name__nre;
+    let user_name__re = params.user_name__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -55500,11 +63929,14 @@ pub async fn extras_notes_list(
 /// Partial update a note object.
 pub async fn extras_notes_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_note_request: Option<crate::models::PatchedNoteRequest>,
+    params: ExtrasNotesPartialUpdateParams,
 ) -> Result<crate::models::Note, Error<ExtrasNotesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_note_request = params.patched_note_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -55557,12 +63989,15 @@ pub async fn extras_notes_partial_update(
 /// Retrieve a note object.
 pub async fn extras_notes_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasNotesRetrieveParams,
 ) -> Result<crate::models::Note, Error<ExtrasNotesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -55622,11 +64057,14 @@ pub async fn extras_notes_retrieve(
 /// Update a note object.
 pub async fn extras_notes_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_request: crate::models::NoteRequest,
-    format: Option<&str>,
+    params: ExtrasNotesUpdateParams,
 ) -> Result<crate::models::Note, Error<ExtrasNotesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_request = params.note_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -55679,109 +64117,112 @@ pub async fn extras_notes_update(
 /// Retrieve a list of recent changes.
 pub async fn extras_object_changes_list(
     configuration: &configuration::Configuration,
-    action: Option<Vec<String>>,
-    action__ic: Option<Vec<String>>,
-    action__ie: Option<Vec<String>>,
-    action__iew: Option<Vec<String>>,
-    action__ire: Option<Vec<String>>,
-    action__isw: Option<Vec<String>>,
-    action__n: Option<Vec<String>>,
-    action__nic: Option<Vec<String>>,
-    action__nie: Option<Vec<String>>,
-    action__niew: Option<Vec<String>>,
-    action__nire: Option<Vec<String>>,
-    action__nisw: Option<Vec<String>>,
-    action__nre: Option<Vec<String>>,
-    action__re: Option<Vec<String>>,
-    change_context: Option<Vec<String>>,
-    change_context__ic: Option<Vec<String>>,
-    change_context__ie: Option<Vec<String>>,
-    change_context__iew: Option<Vec<String>>,
-    change_context__ire: Option<Vec<String>>,
-    change_context__isw: Option<Vec<String>>,
-    change_context__n: Option<Vec<String>>,
-    change_context__nic: Option<Vec<String>>,
-    change_context__nie: Option<Vec<String>>,
-    change_context__niew: Option<Vec<String>>,
-    change_context__nire: Option<Vec<String>>,
-    change_context__nisw: Option<Vec<String>>,
-    change_context__nre: Option<Vec<String>>,
-    change_context__re: Option<Vec<String>>,
-    change_context_detail: Option<Vec<String>>,
-    change_context_detail__ic: Option<Vec<String>>,
-    change_context_detail__ie: Option<Vec<String>>,
-    change_context_detail__iew: Option<Vec<String>>,
-    change_context_detail__ire: Option<Vec<String>>,
-    change_context_detail__isw: Option<Vec<String>>,
-    change_context_detail__n: Option<Vec<String>>,
-    change_context_detail__nic: Option<Vec<String>>,
-    change_context_detail__nie: Option<Vec<String>>,
-    change_context_detail__niew: Option<Vec<String>>,
-    change_context_detail__nire: Option<Vec<String>>,
-    change_context_detail__nisw: Option<Vec<String>>,
-    change_context_detail__nre: Option<Vec<String>>,
-    change_context_detail__re: Option<Vec<String>>,
-    changed_object_id: Option<Vec<uuid::Uuid>>,
-    changed_object_id__n: Option<Vec<uuid::Uuid>>,
-    changed_object_type: Option<&str>,
-    changed_object_type__isnull: Option<bool>,
-    changed_object_type__n: Option<&str>,
-    changed_object_type_id: Option<Vec<i32>>,
-    changed_object_type_id__isnull: Option<bool>,
-    changed_object_type_id__n: Option<Vec<i32>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    object_repr: Option<Vec<String>>,
-    object_repr__ic: Option<Vec<String>>,
-    object_repr__ie: Option<Vec<String>>,
-    object_repr__iew: Option<Vec<String>>,
-    object_repr__ire: Option<Vec<String>>,
-    object_repr__isw: Option<Vec<String>>,
-    object_repr__n: Option<Vec<String>>,
-    object_repr__nic: Option<Vec<String>>,
-    object_repr__nie: Option<Vec<String>>,
-    object_repr__niew: Option<Vec<String>>,
-    object_repr__nire: Option<Vec<String>>,
-    object_repr__nisw: Option<Vec<String>>,
-    object_repr__nre: Option<Vec<String>>,
-    object_repr__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    request_id: Option<Vec<uuid::Uuid>>,
-    request_id__n: Option<Vec<uuid::Uuid>>,
-    sort: Option<&str>,
-    time: Option<Vec<String>>,
-    time__gt: Option<Vec<String>>,
-    time__gte: Option<Vec<String>>,
-    time__lt: Option<Vec<String>>,
-    time__lte: Option<Vec<String>>,
-    time__n: Option<Vec<String>>,
-    user: Option<Vec<String>>,
-    user__isnull: Option<bool>,
-    user__n: Option<Vec<String>>,
-    user_id: Option<Vec<uuid::Uuid>>,
-    user_id__isnull: Option<bool>,
-    user_id__n: Option<Vec<uuid::Uuid>>,
-    user_name: Option<Vec<String>>,
-    user_name__ic: Option<Vec<String>>,
-    user_name__ie: Option<Vec<String>>,
-    user_name__iew: Option<Vec<String>>,
-    user_name__ire: Option<Vec<String>>,
-    user_name__isw: Option<Vec<String>>,
-    user_name__n: Option<Vec<String>>,
-    user_name__nic: Option<Vec<String>>,
-    user_name__nie: Option<Vec<String>>,
-    user_name__niew: Option<Vec<String>>,
-    user_name__nire: Option<Vec<String>>,
-    user_name__nisw: Option<Vec<String>>,
-    user_name__nre: Option<Vec<String>>,
-    user_name__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasObjectChangesListParams,
 ) -> Result<crate::models::PaginatedObjectChangeList, Error<ExtrasObjectChangesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let action = params.action;
+    let action__ic = params.action__ic;
+    let action__ie = params.action__ie;
+    let action__iew = params.action__iew;
+    let action__ire = params.action__ire;
+    let action__isw = params.action__isw;
+    let action__n = params.action__n;
+    let action__nic = params.action__nic;
+    let action__nie = params.action__nie;
+    let action__niew = params.action__niew;
+    let action__nire = params.action__nire;
+    let action__nisw = params.action__nisw;
+    let action__nre = params.action__nre;
+    let action__re = params.action__re;
+    let change_context = params.change_context;
+    let change_context__ic = params.change_context__ic;
+    let change_context__ie = params.change_context__ie;
+    let change_context__iew = params.change_context__iew;
+    let change_context__ire = params.change_context__ire;
+    let change_context__isw = params.change_context__isw;
+    let change_context__n = params.change_context__n;
+    let change_context__nic = params.change_context__nic;
+    let change_context__nie = params.change_context__nie;
+    let change_context__niew = params.change_context__niew;
+    let change_context__nire = params.change_context__nire;
+    let change_context__nisw = params.change_context__nisw;
+    let change_context__nre = params.change_context__nre;
+    let change_context__re = params.change_context__re;
+    let change_context_detail = params.change_context_detail;
+    let change_context_detail__ic = params.change_context_detail__ic;
+    let change_context_detail__ie = params.change_context_detail__ie;
+    let change_context_detail__iew = params.change_context_detail__iew;
+    let change_context_detail__ire = params.change_context_detail__ire;
+    let change_context_detail__isw = params.change_context_detail__isw;
+    let change_context_detail__n = params.change_context_detail__n;
+    let change_context_detail__nic = params.change_context_detail__nic;
+    let change_context_detail__nie = params.change_context_detail__nie;
+    let change_context_detail__niew = params.change_context_detail__niew;
+    let change_context_detail__nire = params.change_context_detail__nire;
+    let change_context_detail__nisw = params.change_context_detail__nisw;
+    let change_context_detail__nre = params.change_context_detail__nre;
+    let change_context_detail__re = params.change_context_detail__re;
+    let changed_object_id = params.changed_object_id;
+    let changed_object_id__n = params.changed_object_id__n;
+    let changed_object_type = params.changed_object_type;
+    let changed_object_type__isnull = params.changed_object_type__isnull;
+    let changed_object_type__n = params.changed_object_type__n;
+    let changed_object_type_id = params.changed_object_type_id;
+    let changed_object_type_id__isnull = params.changed_object_type_id__isnull;
+    let changed_object_type_id__n = params.changed_object_type_id__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let object_repr = params.object_repr;
+    let object_repr__ic = params.object_repr__ic;
+    let object_repr__ie = params.object_repr__ie;
+    let object_repr__iew = params.object_repr__iew;
+    let object_repr__ire = params.object_repr__ire;
+    let object_repr__isw = params.object_repr__isw;
+    let object_repr__n = params.object_repr__n;
+    let object_repr__nic = params.object_repr__nic;
+    let object_repr__nie = params.object_repr__nie;
+    let object_repr__niew = params.object_repr__niew;
+    let object_repr__nire = params.object_repr__nire;
+    let object_repr__nisw = params.object_repr__nisw;
+    let object_repr__nre = params.object_repr__nre;
+    let object_repr__re = params.object_repr__re;
+    let offset = params.offset;
+    let q = params.q;
+    let request_id = params.request_id;
+    let request_id__n = params.request_id__n;
+    let sort = params.sort;
+    let time = params.time;
+    let time__gt = params.time__gt;
+    let time__gte = params.time__gte;
+    let time__lt = params.time__lt;
+    let time__lte = params.time__lte;
+    let time__n = params.time__n;
+    let user = params.user;
+    let user__isnull = params.user__isnull;
+    let user__n = params.user__n;
+    let user_id = params.user_id;
+    let user_id__isnull = params.user_id__isnull;
+    let user_id__n = params.user_id__n;
+    let user_name = params.user_name;
+    let user_name__ic = params.user_name__ic;
+    let user_name__ie = params.user_name__ie;
+    let user_name__iew = params.user_name__iew;
+    let user_name__ire = params.user_name__ire;
+    let user_name__isw = params.user_name__isw;
+    let user_name__n = params.user_name__n;
+    let user_name__nic = params.user_name__nic;
+    let user_name__nie = params.user_name__nie;
+    let user_name__niew = params.user_name__niew;
+    let user_name__nire = params.user_name__nire;
+    let user_name__nisw = params.user_name__nisw;
+    let user_name__nre = params.user_name__nre;
+    let user_name__re = params.user_name__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57551,12 +65992,15 @@ pub async fn extras_object_changes_list(
 /// Retrieve a list of recent changes.
 pub async fn extras_object_changes_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasObjectChangesRetrieveParams,
 ) -> Result<crate::models::ObjectChange, Error<ExtrasObjectChangesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57616,10 +66060,13 @@ pub async fn extras_object_changes_retrieve(
 /// Destroy a list of object metadata objects.
 pub async fn extras_object_metadata_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataBulkDestroyParams,
 ) -> Result<(), Error<ExtrasObjectMetadataBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57671,12 +66118,14 @@ pub async fn extras_object_metadata_bulk_destroy(
 /// Partial update a list of object metadata objects.
 pub async fn extras_object_metadata_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_object_metadata_request: Vec<
-        crate::models::PatchedBulkWritableObjectMetadataRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ObjectMetadata>, Error<ExtrasObjectMetadataBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_object_metadata_request =
+        params.patched_bulk_writable_object_metadata_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57729,10 +66178,13 @@ pub async fn extras_object_metadata_bulk_partial_update(
 /// Update a list of object metadata objects.
 pub async fn extras_object_metadata_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_object_metadata_request: Vec<crate::models::BulkWritableObjectMetadataRequest>,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataBulkUpdateParams,
 ) -> Result<Vec<crate::models::ObjectMetadata>, Error<ExtrasObjectMetadataBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_object_metadata_request = params.bulk_writable_object_metadata_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57784,10 +66236,13 @@ pub async fn extras_object_metadata_bulk_update(
 /// Create one or more object metadata objects.
 pub async fn extras_object_metadata_create(
     configuration: &configuration::Configuration,
-    object_metadata_request: crate::models::ObjectMetadataRequest,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataCreateParams,
 ) -> Result<crate::models::ObjectMetadata, Error<ExtrasObjectMetadataCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let object_metadata_request = params.object_metadata_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57839,10 +66294,13 @@ pub async fn extras_object_metadata_create(
 /// Destroy a object metadata object.
 pub async fn extras_object_metadata_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataDestroyParams,
 ) -> Result<(), Error<ExtrasObjectMetadataDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -57894,45 +66352,48 @@ pub async fn extras_object_metadata_destroy(
 /// Retrieve a list of object metadata objects.
 pub async fn extras_object_metadata_list(
     configuration: &configuration::Configuration,
-    assigned_object_id: Option<Vec<uuid::Uuid>>,
-    assigned_object_id__n: Option<Vec<uuid::Uuid>>,
-    assigned_object_type: Option<Vec<i32>>,
-    assigned_object_type__n: Option<Vec<i32>>,
-    contact: Option<Vec<String>>,
-    contact__isnull: Option<bool>,
-    contact__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    metadata_type: Option<Vec<String>>,
-    metadata_type__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    scoped_fields: Option<Vec<String>>,
-    sort: Option<&str>,
-    team: Option<Vec<String>>,
-    team__isnull: Option<bool>,
-    team__n: Option<Vec<String>>,
-    value: Option<serde_json::Value>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasObjectMetadataListParams,
 ) -> Result<crate::models::PaginatedObjectMetadataList, Error<ExtrasObjectMetadataListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let assigned_object_id = params.assigned_object_id;
+    let assigned_object_id__n = params.assigned_object_id__n;
+    let assigned_object_type = params.assigned_object_type;
+    let assigned_object_type__n = params.assigned_object_type__n;
+    let contact = params.contact;
+    let contact__isnull = params.contact__isnull;
+    let contact__n = params.contact__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let metadata_type = params.metadata_type;
+    let metadata_type__n = params.metadata_type__n;
+    let offset = params.offset;
+    let q = params.q;
+    let scoped_fields = params.scoped_fields;
+    let sort = params.sort;
+    let team = params.team;
+    let team__isnull = params.team__isnull;
+    let team__n = params.team__n;
+    let value = params.value;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58501,11 +66962,14 @@ pub async fn extras_object_metadata_list(
 /// Partial update a object metadata object.
 pub async fn extras_object_metadata_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_object_metadata_request: Option<crate::models::PatchedObjectMetadataRequest>,
+    params: ExtrasObjectMetadataPartialUpdateParams,
 ) -> Result<crate::models::ObjectMetadata, Error<ExtrasObjectMetadataPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_object_metadata_request = params.patched_object_metadata_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58558,12 +67022,15 @@ pub async fn extras_object_metadata_partial_update(
 /// Retrieve a object metadata object.
 pub async fn extras_object_metadata_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasObjectMetadataRetrieveParams,
 ) -> Result<crate::models::ObjectMetadata, Error<ExtrasObjectMetadataRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58623,11 +67090,14 @@ pub async fn extras_object_metadata_retrieve(
 /// Update a object metadata object.
 pub async fn extras_object_metadata_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    object_metadata_request: crate::models::ObjectMetadataRequest,
-    format: Option<&str>,
+    params: ExtrasObjectMetadataUpdateParams,
 ) -> Result<crate::models::ObjectMetadata, Error<ExtrasObjectMetadataUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let object_metadata_request = params.object_metadata_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58680,10 +67150,13 @@ pub async fn extras_object_metadata_update(
 /// Destroy a list of relationship association objects.
 pub async fn extras_relationship_associations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasRelationshipAssociationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58735,15 +67208,17 @@ pub async fn extras_relationship_associations_bulk_destroy(
 /// Partial update a list of relationship association objects.
 pub async fn extras_relationship_associations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_relationship_association_request: Vec<
-        crate::models::PatchedBulkWritableRelationshipAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::RelationshipAssociation>,
     Error<ExtrasRelationshipAssociationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_relationship_association_request =
+        params.patched_bulk_writable_relationship_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58796,15 +67271,17 @@ pub async fn extras_relationship_associations_bulk_partial_update(
 /// Update a list of relationship association objects.
 pub async fn extras_relationship_associations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_relationship_association_request: Vec<
-        crate::models::BulkWritableRelationshipAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::RelationshipAssociation>,
     Error<ExtrasRelationshipAssociationsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_relationship_association_request =
+        params.bulk_writable_relationship_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58857,11 +67334,14 @@ pub async fn extras_relationship_associations_bulk_update(
 /// Create one or more relationship association objects.
 pub async fn extras_relationship_associations_create(
     configuration: &configuration::Configuration,
-    relationship_association_request: crate::models::RelationshipAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsCreateParams,
 ) -> Result<crate::models::RelationshipAssociation, Error<ExtrasRelationshipAssociationsCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let relationship_association_request = params.relationship_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58913,10 +67393,13 @@ pub async fn extras_relationship_associations_create(
 /// Destroy a relationship association object.
 pub async fn extras_relationship_associations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsDestroyParams,
 ) -> Result<(), Error<ExtrasRelationshipAssociationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -58968,31 +67451,34 @@ pub async fn extras_relationship_associations_destroy(
 /// Retrieve a list of relationship association objects.
 pub async fn extras_relationship_associations_list(
     configuration: &configuration::Configuration,
-    destination_id: Option<Vec<uuid::Uuid>>,
-    destination_id__n: Option<Vec<uuid::Uuid>>,
-    destination_type: Option<Vec<i32>>,
-    destination_type__n: Option<Vec<i32>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    peer_id: Option<Vec<uuid::Uuid>>,
-    q: Option<&str>,
-    relationship: Option<Vec<String>>,
-    relationship__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    source_id: Option<Vec<uuid::Uuid>>,
-    source_id__n: Option<Vec<uuid::Uuid>>,
-    source_type: Option<Vec<i32>>,
-    source_type__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRelationshipAssociationsListParams,
 ) -> Result<
     crate::models::PaginatedRelationshipAssociationList,
     Error<ExtrasRelationshipAssociationsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let destination_id = params.destination_id;
+    let destination_id__n = params.destination_id__n;
+    let destination_type = params.destination_type;
+    let destination_type__n = params.destination_type__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let peer_id = params.peer_id;
+    let q = params.q;
+    let relationship = params.relationship;
+    let relationship__n = params.relationship__n;
+    let sort = params.sort;
+    let source_id = params.source_id;
+    let source_id__n = params.source_id__n;
+    let source_type = params.source_type;
+    let source_type__n = params.source_type__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59313,16 +67799,17 @@ pub async fn extras_relationship_associations_list(
 /// Partial update a relationship association object.
 pub async fn extras_relationship_associations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_relationship_association_request: Option<
-        crate::models::PatchedRelationshipAssociationRequest,
-    >,
+    params: ExtrasRelationshipAssociationsPartialUpdateParams,
 ) -> Result<
     crate::models::RelationshipAssociation,
     Error<ExtrasRelationshipAssociationsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_relationship_association_request = params.patched_relationship_association_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59375,15 +67862,18 @@ pub async fn extras_relationship_associations_partial_update(
 /// Retrieve a relationship association object.
 pub async fn extras_relationship_associations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRelationshipAssociationsRetrieveParams,
 ) -> Result<
     crate::models::RelationshipAssociation,
     Error<ExtrasRelationshipAssociationsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59443,12 +67933,15 @@ pub async fn extras_relationship_associations_retrieve(
 /// Update a relationship association object.
 pub async fn extras_relationship_associations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    relationship_association_request: crate::models::RelationshipAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasRelationshipAssociationsUpdateParams,
 ) -> Result<crate::models::RelationshipAssociation, Error<ExtrasRelationshipAssociationsUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let relationship_association_request = params.relationship_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59501,10 +67994,13 @@ pub async fn extras_relationship_associations_update(
 /// Destroy a list of relationship objects.
 pub async fn extras_relationships_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasRelationshipsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasRelationshipsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59556,12 +68052,14 @@ pub async fn extras_relationships_bulk_destroy(
 /// Partial update a list of relationship objects.
 pub async fn extras_relationships_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_relationship_request: Vec<
-        crate::models::PatchedBulkWritableRelationshipRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasRelationshipsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Relationship>, Error<ExtrasRelationshipsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_relationship_request =
+        params.patched_bulk_writable_relationship_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59613,10 +68111,13 @@ pub async fn extras_relationships_bulk_partial_update(
 /// Update a list of relationship objects.
 pub async fn extras_relationships_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_relationship_request: Vec<crate::models::BulkWritableRelationshipRequest>,
-    format: Option<&str>,
+    params: ExtrasRelationshipsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Relationship>, Error<ExtrasRelationshipsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_relationship_request = params.bulk_writable_relationship_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59668,10 +68169,13 @@ pub async fn extras_relationships_bulk_update(
 /// Create one or more relationship objects.
 pub async fn extras_relationships_create(
     configuration: &configuration::Configuration,
-    relationship_request: crate::models::RelationshipRequest,
-    format: Option<&str>,
+    params: ExtrasRelationshipsCreateParams,
 ) -> Result<crate::models::Relationship, Error<ExtrasRelationshipsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let relationship_request = params.relationship_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59723,10 +68227,13 @@ pub async fn extras_relationships_create(
 /// Destroy a relationship object.
 pub async fn extras_relationships_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasRelationshipsDestroyParams,
 ) -> Result<(), Error<ExtrasRelationshipsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -59778,71 +68285,74 @@ pub async fn extras_relationships_destroy(
 /// Retrieve a list of relationship objects.
 pub async fn extras_relationships_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    destination_type: Option<Vec<i32>>,
-    destination_type__n: Option<Vec<i32>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    key: Option<Vec<String>>,
-    key__ic: Option<Vec<String>>,
-    key__ie: Option<Vec<String>>,
-    key__iew: Option<Vec<String>>,
-    key__ire: Option<Vec<String>>,
-    key__isw: Option<Vec<String>>,
-    key__n: Option<Vec<String>>,
-    key__nic: Option<Vec<String>>,
-    key__nie: Option<Vec<String>>,
-    key__niew: Option<Vec<String>>,
-    key__nire: Option<Vec<String>>,
-    key__nisw: Option<Vec<String>>,
-    key__nre: Option<Vec<String>>,
-    key__re: Option<Vec<String>>,
-    label: Option<Vec<String>>,
-    label__ic: Option<Vec<String>>,
-    label__ie: Option<Vec<String>>,
-    label__iew: Option<Vec<String>>,
-    label__ire: Option<Vec<String>>,
-    label__isw: Option<Vec<String>>,
-    label__n: Option<Vec<String>>,
-    label__nic: Option<Vec<String>>,
-    label__nie: Option<Vec<String>>,
-    label__niew: Option<Vec<String>>,
-    label__nire: Option<Vec<String>>,
-    label__nisw: Option<Vec<String>>,
-    label__nre: Option<Vec<String>>,
-    label__re: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    source_type: Option<Vec<i32>>,
-    source_type__n: Option<Vec<i32>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    r#type: Option<Vec<String>>,
-    type__ic: Option<Vec<String>>,
-    type__ie: Option<Vec<String>>,
-    type__iew: Option<Vec<String>>,
-    type__ire: Option<Vec<String>>,
-    type__isw: Option<Vec<String>>,
-    type__n: Option<Vec<String>>,
-    type__nic: Option<Vec<String>>,
-    type__nie: Option<Vec<String>>,
-    type__niew: Option<Vec<String>>,
-    type__nire: Option<Vec<String>>,
-    type__nisw: Option<Vec<String>>,
-    type__nre: Option<Vec<String>>,
-    type__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRelationshipsListParams,
 ) -> Result<crate::models::PaginatedRelationshipList, Error<ExtrasRelationshipsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let destination_type = params.destination_type;
+    let destination_type__n = params.destination_type__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let key = params.key;
+    let key__ic = params.key__ic;
+    let key__ie = params.key__ie;
+    let key__iew = params.key__iew;
+    let key__ire = params.key__ire;
+    let key__isw = params.key__isw;
+    let key__n = params.key__n;
+    let key__nic = params.key__nic;
+    let key__nie = params.key__nie;
+    let key__niew = params.key__niew;
+    let key__nire = params.key__nire;
+    let key__nisw = params.key__nisw;
+    let key__nre = params.key__nre;
+    let key__re = params.key__re;
+    let label = params.label;
+    let label__ic = params.label__ic;
+    let label__ie = params.label__ie;
+    let label__iew = params.label__iew;
+    let label__ire = params.label__ire;
+    let label__isw = params.label__isw;
+    let label__n = params.label__n;
+    let label__nic = params.label__nic;
+    let label__nie = params.label__nie;
+    let label__niew = params.label__niew;
+    let label__nire = params.label__nire;
+    let label__nisw = params.label__nisw;
+    let label__nre = params.label__nre;
+    let label__re = params.label__re;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let source_type = params.source_type;
+    let source_type__n = params.source_type__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let r#type = params.r#type;
+    let type__ic = params.type__ic;
+    let type__ie = params.type__ie;
+    let type__iew = params.type__iew;
+    let type__ire = params.type__ire;
+    let type__isw = params.type__isw;
+    let type__n = params.type__n;
+    let type__nic = params.type__nic;
+    let type__nie = params.type__nie;
+    let type__niew = params.type__niew;
+    let type__nire = params.type__nire;
+    let type__nisw = params.type__nisw;
+    let type__nre = params.type__nre;
+    let type__re = params.type__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -60950,11 +69460,14 @@ pub async fn extras_relationships_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_relationships_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasRelationshipsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasRelationshipsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61007,14 +69520,17 @@ pub async fn extras_relationships_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_relationships_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRelationshipsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasRelationshipsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61082,11 +69598,14 @@ pub async fn extras_relationships_notes_list(
 /// Partial update a relationship object.
 pub async fn extras_relationships_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_relationship_request: Option<crate::models::PatchedRelationshipRequest>,
+    params: ExtrasRelationshipsPartialUpdateParams,
 ) -> Result<crate::models::Relationship, Error<ExtrasRelationshipsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_relationship_request = params.patched_relationship_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61139,12 +69658,15 @@ pub async fn extras_relationships_partial_update(
 /// Retrieve a relationship object.
 pub async fn extras_relationships_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRelationshipsRetrieveParams,
 ) -> Result<crate::models::Relationship, Error<ExtrasRelationshipsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61204,11 +69726,14 @@ pub async fn extras_relationships_retrieve(
 /// Update a relationship object.
 pub async fn extras_relationships_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    relationship_request: crate::models::RelationshipRequest,
-    format: Option<&str>,
+    params: ExtrasRelationshipsUpdateParams,
 ) -> Result<crate::models::Relationship, Error<ExtrasRelationshipsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let relationship_request = params.relationship_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61261,10 +69786,13 @@ pub async fn extras_relationships_update(
 /// Destroy a list of role objects.
 pub async fn extras_roles_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasRolesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasRolesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61313,10 +69841,13 @@ pub async fn extras_roles_bulk_destroy(
 /// Partial update a list of role objects.
 pub async fn extras_roles_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_role_request: Vec<crate::models::PatchedBulkWritableRoleRequest>,
-    format: Option<&str>,
+    params: ExtrasRolesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Role>, Error<ExtrasRolesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_role_request = params.patched_bulk_writable_role_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61365,10 +69896,13 @@ pub async fn extras_roles_bulk_partial_update(
 /// Update a list of role objects.
 pub async fn extras_roles_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_role_request: Vec<crate::models::BulkWritableRoleRequest>,
-    format: Option<&str>,
+    params: ExtrasRolesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Role>, Error<ExtrasRolesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_role_request = params.bulk_writable_role_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61417,10 +69951,13 @@ pub async fn extras_roles_bulk_update(
 /// Create one or more role objects.
 pub async fn extras_roles_create(
     configuration: &configuration::Configuration,
-    role_request: crate::models::RoleRequest,
-    format: Option<&str>,
+    params: ExtrasRolesCreateParams,
 ) -> Result<crate::models::Role, Error<ExtrasRolesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let role_request = params.role_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61469,10 +70006,13 @@ pub async fn extras_roles_create(
 /// Destroy a role object.
 pub async fn extras_roles_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasRolesDestroyParams,
 ) -> Result<(), Error<ExtrasRolesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -61524,76 +70064,79 @@ pub async fn extras_roles_destroy(
 /// Retrieve a list of role objects.
 pub async fn extras_roles_list(
     configuration: &configuration::Configuration,
-    color: Option<Vec<String>>,
-    color__ic: Option<Vec<String>>,
-    color__ie: Option<Vec<String>>,
-    color__iew: Option<Vec<String>>,
-    color__ire: Option<Vec<String>>,
-    color__isw: Option<Vec<String>>,
-    color__n: Option<Vec<String>>,
-    color__nic: Option<Vec<String>>,
-    color__nie: Option<Vec<String>>,
-    color__niew: Option<Vec<String>>,
-    color__nire: Option<Vec<String>>,
-    color__nisw: Option<Vec<String>>,
-    color__nre: Option<Vec<String>>,
-    color__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    weight: Option<Vec<i32>>,
-    weight__gt: Option<Vec<i32>>,
-    weight__gte: Option<Vec<i32>>,
-    weight__isnull: Option<bool>,
-    weight__lt: Option<Vec<i32>>,
-    weight__lte: Option<Vec<i32>>,
-    weight__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRolesListParams,
 ) -> Result<crate::models::PaginatedRoleList, Error<ExtrasRolesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let color = params.color;
+    let color__ic = params.color__ic;
+    let color__ie = params.color__ie;
+    let color__iew = params.color__iew;
+    let color__ire = params.color__ire;
+    let color__isw = params.color__isw;
+    let color__n = params.color__n;
+    let color__nic = params.color__nic;
+    let color__nie = params.color__nie;
+    let color__niew = params.color__niew;
+    let color__nire = params.color__nire;
+    let color__nisw = params.color__nisw;
+    let color__nre = params.color__nre;
+    let color__re = params.color__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let weight = params.weight;
+    let weight__gt = params.weight__gt;
+    let weight__gte = params.weight__gte;
+    let weight__isnull = params.weight__isnull;
+    let weight__lt = params.weight__lt;
+    let weight__lte = params.weight__lte;
+    let weight__n = params.weight__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -62748,11 +71291,14 @@ pub async fn extras_roles_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_roles_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasRolesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasRolesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -62805,14 +71351,17 @@ pub async fn extras_roles_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_roles_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRolesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasRolesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -62880,11 +71429,14 @@ pub async fn extras_roles_notes_list(
 /// Partial update a role object.
 pub async fn extras_roles_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_role_request: Option<crate::models::PatchedRoleRequest>,
+    params: ExtrasRolesPartialUpdateParams,
 ) -> Result<crate::models::Role, Error<ExtrasRolesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_role_request = params.patched_role_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -62937,12 +71489,15 @@ pub async fn extras_roles_partial_update(
 /// Retrieve a role object.
 pub async fn extras_roles_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasRolesRetrieveParams,
 ) -> Result<crate::models::Role, Error<ExtrasRolesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63002,11 +71557,14 @@ pub async fn extras_roles_retrieve(
 /// Update a role object.
 pub async fn extras_roles_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    role_request: crate::models::RoleRequest,
-    format: Option<&str>,
+    params: ExtrasRolesUpdateParams,
 ) -> Result<crate::models::Role, Error<ExtrasRolesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let role_request = params.role_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63059,10 +71617,13 @@ pub async fn extras_roles_update(
 /// Destroy a list of saved view objects.
 pub async fn extras_saved_views_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasSavedViewsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasSavedViewsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63111,12 +71672,13 @@ pub async fn extras_saved_views_bulk_destroy(
 /// Partial update a list of saved view objects.
 pub async fn extras_saved_views_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_saved_view_request: Vec<
-        crate::models::PatchedBulkWritableSavedViewRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasSavedViewsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::SavedView>, Error<ExtrasSavedViewsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_saved_view_request = params.patched_bulk_writable_saved_view_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63165,10 +71727,13 @@ pub async fn extras_saved_views_bulk_partial_update(
 /// Update a list of saved view objects.
 pub async fn extras_saved_views_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_saved_view_request: Vec<crate::models::BulkWritableSavedViewRequest>,
-    format: Option<&str>,
+    params: ExtrasSavedViewsBulkUpdateParams,
 ) -> Result<Vec<crate::models::SavedView>, Error<ExtrasSavedViewsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_saved_view_request = params.bulk_writable_saved_view_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63217,10 +71782,13 @@ pub async fn extras_saved_views_bulk_update(
 /// Create one or more saved view objects.
 pub async fn extras_saved_views_create(
     configuration: &configuration::Configuration,
-    saved_view_request: crate::models::SavedViewRequest,
-    format: Option<&str>,
+    params: ExtrasSavedViewsCreateParams,
 ) -> Result<crate::models::SavedView, Error<ExtrasSavedViewsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let saved_view_request = params.saved_view_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63269,10 +71837,13 @@ pub async fn extras_saved_views_create(
 /// Destroy a saved view object.
 pub async fn extras_saved_views_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSavedViewsDestroyParams,
 ) -> Result<(), Error<ExtrasSavedViewsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -63324,49 +71895,52 @@ pub async fn extras_saved_views_destroy(
 /// Retrieve a list of saved view objects.
 pub async fn extras_saved_views_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    is_global_default: Option<bool>,
-    is_shared: Option<bool>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    owner: Option<Vec<String>>,
-    owner__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    view: Option<Vec<String>>,
-    view__ic: Option<Vec<String>>,
-    view__ie: Option<Vec<String>>,
-    view__iew: Option<Vec<String>>,
-    view__ire: Option<Vec<String>>,
-    view__isw: Option<Vec<String>>,
-    view__n: Option<Vec<String>>,
-    view__nic: Option<Vec<String>>,
-    view__nie: Option<Vec<String>>,
-    view__niew: Option<Vec<String>>,
-    view__nire: Option<Vec<String>>,
-    view__nisw: Option<Vec<String>>,
-    view__nre: Option<Vec<String>>,
-    view__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSavedViewsListParams,
 ) -> Result<crate::models::PaginatedSavedViewList, Error<ExtrasSavedViewsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let is_global_default = params.is_global_default;
+    let is_shared = params.is_shared;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let owner = params.owner;
+    let owner__n = params.owner__n;
+    let q = params.q;
+    let sort = params.sort;
+    let view = params.view;
+    let view__ic = params.view__ic;
+    let view__ie = params.view__ie;
+    let view__iew = params.view__iew;
+    let view__ire = params.view__ire;
+    let view__isw = params.view__isw;
+    let view__n = params.view__n;
+    let view__nic = params.view__nic;
+    let view__nie = params.view__nie;
+    let view__niew = params.view__niew;
+    let view__nire = params.view__nire;
+    let view__nisw = params.view__nisw;
+    let view__nre = params.view__nre;
+    let view__re = params.view__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64053,11 +72627,14 @@ pub async fn extras_saved_views_list(
 /// Partial update a saved view object.
 pub async fn extras_saved_views_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_saved_view_request: Option<crate::models::PatchedSavedViewRequest>,
+    params: ExtrasSavedViewsPartialUpdateParams,
 ) -> Result<crate::models::SavedView, Error<ExtrasSavedViewsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_saved_view_request = params.patched_saved_view_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64110,12 +72687,15 @@ pub async fn extras_saved_views_partial_update(
 /// Retrieve a saved view object.
 pub async fn extras_saved_views_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSavedViewsRetrieveParams,
 ) -> Result<crate::models::SavedView, Error<ExtrasSavedViewsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64175,10 +72755,13 @@ pub async fn extras_saved_views_retrieve(
 /// Set (POST) or clear (DELETE) this saved view as the requesting user's default for its list view.
 pub async fn extras_saved_views_set_default_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSavedViewsSetDefaultCreateParams,
 ) -> Result<crate::models::UserSavedViewAssociation, Error<ExtrasSavedViewsSetDefaultCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64230,10 +72813,13 @@ pub async fn extras_saved_views_set_default_create(
 /// Set (POST) or clear (DELETE) this saved view as the requesting user's default for its list view.
 pub async fn extras_saved_views_set_default_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSavedViewsSetDefaultDestroyParams,
 ) -> Result<(), Error<ExtrasSavedViewsSetDefaultDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64285,11 +72871,14 @@ pub async fn extras_saved_views_set_default_destroy(
 /// Update a saved view object.
 pub async fn extras_saved_views_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    saved_view_request: crate::models::SavedViewRequest,
-    format: Option<&str>,
+    params: ExtrasSavedViewsUpdateParams,
 ) -> Result<crate::models::SavedView, Error<ExtrasSavedViewsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let saved_view_request = params.saved_view_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64342,10 +72931,13 @@ pub async fn extras_saved_views_update(
 /// Retrieve a list of scheduled jobs
 pub async fn extras_scheduled_jobs_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasScheduledJobsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasScheduledJobsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64397,10 +72989,13 @@ pub async fn extras_scheduled_jobs_bulk_destroy(
 /// Retrieve a list of scheduled jobs
 pub async fn extras_scheduled_jobs_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasScheduledJobsDestroyParams,
 ) -> Result<(), Error<ExtrasScheduledJobsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64452,10 +73047,13 @@ pub async fn extras_scheduled_jobs_destroy(
 /// Retrieve a list of scheduled jobs
 pub async fn extras_scheduled_jobs_dry_run_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasScheduledJobsDryRunCreateParams,
 ) -> Result<crate::models::JobResult, Error<ExtrasScheduledJobsDryRunCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -64507,99 +73105,102 @@ pub async fn extras_scheduled_jobs_dry_run_create(
 /// Retrieve a list of scheduled jobs
 pub async fn extras_scheduled_jobs_list(
     configuration: &configuration::Configuration,
-    approval_state: Option<Vec<String>>,
-    approval_state__ic: Option<Vec<String>>,
-    approval_state__ie: Option<Vec<String>>,
-    approval_state__iew: Option<Vec<String>>,
-    approval_state__ire: Option<Vec<String>>,
-    approval_state__isw: Option<Vec<String>>,
-    approval_state__n: Option<Vec<String>>,
-    approval_state__nic: Option<Vec<String>>,
-    approval_state__nie: Option<Vec<String>>,
-    approval_state__niew: Option<Vec<String>>,
-    approval_state__nire: Option<Vec<String>>,
-    approval_state__nisw: Option<Vec<String>>,
-    approval_state__nre: Option<Vec<String>>,
-    approval_state__re: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    job_model: Option<Vec<String>>,
-    job_model__isnull: Option<bool>,
-    job_model__n: Option<Vec<String>>,
-    job_model_id: Option<Vec<uuid::Uuid>>,
-    job_model_id__isnull: Option<bool>,
-    job_model_id__n: Option<Vec<uuid::Uuid>>,
-    last_run_at: Option<Vec<String>>,
-    last_run_at__gt: Option<Vec<String>>,
-    last_run_at__gte: Option<Vec<String>>,
-    last_run_at__isnull: Option<bool>,
-    last_run_at__lt: Option<Vec<String>>,
-    last_run_at__lte: Option<Vec<String>>,
-    last_run_at__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    start_time: Option<Vec<String>>,
-    start_time__gt: Option<Vec<String>>,
-    start_time__gte: Option<Vec<String>>,
-    start_time__lt: Option<Vec<String>>,
-    start_time__lte: Option<Vec<String>>,
-    start_time__n: Option<Vec<String>>,
-    state: Option<Vec<String>>,
-    state__ic: Option<Vec<String>>,
-    state__ie: Option<Vec<String>>,
-    state__iew: Option<Vec<String>>,
-    state__ire: Option<Vec<String>>,
-    state__isw: Option<Vec<String>>,
-    state__n: Option<Vec<String>>,
-    state__nic: Option<Vec<String>>,
-    state__nie: Option<Vec<String>>,
-    state__niew: Option<Vec<String>>,
-    state__nire: Option<Vec<String>>,
-    state__nisw: Option<Vec<String>>,
-    state__nre: Option<Vec<String>>,
-    state__re: Option<Vec<String>>,
-    time_zone: Option<Vec<String>>,
-    time_zone__ic: Option<Vec<String>>,
-    time_zone__ie: Option<Vec<String>>,
-    time_zone__iew: Option<Vec<String>>,
-    time_zone__ire: Option<Vec<String>>,
-    time_zone__isw: Option<Vec<String>>,
-    time_zone__n: Option<Vec<String>>,
-    time_zone__nic: Option<Vec<String>>,
-    time_zone__nie: Option<Vec<String>>,
-    time_zone__niew: Option<Vec<String>>,
-    time_zone__nire: Option<Vec<String>>,
-    time_zone__nisw: Option<Vec<String>>,
-    time_zone__nre: Option<Vec<String>>,
-    time_zone__re: Option<Vec<String>>,
-    total_run_count: Option<Vec<i32>>,
-    total_run_count__gt: Option<Vec<i32>>,
-    total_run_count__gte: Option<Vec<i32>>,
-    total_run_count__lt: Option<Vec<i32>>,
-    total_run_count__lte: Option<Vec<i32>>,
-    total_run_count__n: Option<Vec<i32>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasScheduledJobsListParams,
 ) -> Result<crate::models::PaginatedScheduledJobList, Error<ExtrasScheduledJobsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let approval_state = params.approval_state;
+    let approval_state__ic = params.approval_state__ic;
+    let approval_state__ie = params.approval_state__ie;
+    let approval_state__iew = params.approval_state__iew;
+    let approval_state__ire = params.approval_state__ire;
+    let approval_state__isw = params.approval_state__isw;
+    let approval_state__n = params.approval_state__n;
+    let approval_state__nic = params.approval_state__nic;
+    let approval_state__nie = params.approval_state__nie;
+    let approval_state__niew = params.approval_state__niew;
+    let approval_state__nire = params.approval_state__nire;
+    let approval_state__nisw = params.approval_state__nisw;
+    let approval_state__nre = params.approval_state__nre;
+    let approval_state__re = params.approval_state__re;
+    let enabled = params.enabled;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let job_model = params.job_model;
+    let job_model__isnull = params.job_model__isnull;
+    let job_model__n = params.job_model__n;
+    let job_model_id = params.job_model_id;
+    let job_model_id__isnull = params.job_model_id__isnull;
+    let job_model_id__n = params.job_model_id__n;
+    let last_run_at = params.last_run_at;
+    let last_run_at__gt = params.last_run_at__gt;
+    let last_run_at__gte = params.last_run_at__gte;
+    let last_run_at__isnull = params.last_run_at__isnull;
+    let last_run_at__lt = params.last_run_at__lt;
+    let last_run_at__lte = params.last_run_at__lte;
+    let last_run_at__n = params.last_run_at__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let start_time = params.start_time;
+    let start_time__gt = params.start_time__gt;
+    let start_time__gte = params.start_time__gte;
+    let start_time__lt = params.start_time__lt;
+    let start_time__lte = params.start_time__lte;
+    let start_time__n = params.start_time__n;
+    let state = params.state;
+    let state__ic = params.state__ic;
+    let state__ie = params.state__ie;
+    let state__iew = params.state__iew;
+    let state__ire = params.state__ire;
+    let state__isw = params.state__isw;
+    let state__n = params.state__n;
+    let state__nic = params.state__nic;
+    let state__nie = params.state__nie;
+    let state__niew = params.state__niew;
+    let state__nire = params.state__nire;
+    let state__nisw = params.state__nisw;
+    let state__nre = params.state__nre;
+    let state__re = params.state__re;
+    let time_zone = params.time_zone;
+    let time_zone__ic = params.time_zone__ic;
+    let time_zone__ie = params.time_zone__ie;
+    let time_zone__iew = params.time_zone__iew;
+    let time_zone__ire = params.time_zone__ire;
+    let time_zone__isw = params.time_zone__isw;
+    let time_zone__n = params.time_zone__n;
+    let time_zone__nic = params.time_zone__nic;
+    let time_zone__nie = params.time_zone__nie;
+    let time_zone__niew = params.time_zone__niew;
+    let time_zone__nire = params.time_zone__nire;
+    let time_zone__nisw = params.time_zone__nisw;
+    let time_zone__nre = params.time_zone__nre;
+    let time_zone__re = params.time_zone__re;
+    let total_run_count = params.total_run_count;
+    let total_run_count__gt = params.total_run_count__gt;
+    let total_run_count__gte = params.total_run_count__gte;
+    let total_run_count__lt = params.total_run_count__lt;
+    let total_run_count__lte = params.total_run_count__lte;
+    let total_run_count__n = params.total_run_count__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66209,12 +74810,15 @@ pub async fn extras_scheduled_jobs_list(
 /// Retrieve a list of scheduled jobs
 pub async fn extras_scheduled_jobs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasScheduledJobsRetrieveParams,
 ) -> Result<crate::models::ScheduledJob, Error<ExtrasScheduledJobsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66274,10 +74878,13 @@ pub async fn extras_scheduled_jobs_retrieve(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66326,10 +74933,13 @@ pub async fn extras_secrets_bulk_destroy(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_secret_request: Vec<crate::models::PatchedBulkWritableSecretRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Secret>, Error<ExtrasSecretsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_secret_request = params.patched_bulk_writable_secret_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66378,10 +74988,13 @@ pub async fn extras_secrets_bulk_partial_update(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_secret_request: Vec<crate::models::BulkWritableSecretRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Secret>, Error<ExtrasSecretsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_secret_request = params.bulk_writable_secret_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66430,15 +75043,18 @@ pub async fn extras_secrets_bulk_update(
 /// Check that a secret's value is accessible.
 pub async fn extras_secrets_check_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsCheckRetrieveParams,
 ) -> Result<
     crate::models::ExtrasSecretsCheckRetrieve200Response,
     Error<ExtrasSecretsCheckRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66498,10 +75114,13 @@ pub async fn extras_secrets_check_retrieve(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_create(
     configuration: &configuration::Configuration,
-    secret_request: crate::models::SecretRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsCreateParams,
 ) -> Result<crate::models::Secret, Error<ExtrasSecretsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let secret_request = params.secret_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66550,10 +75169,13 @@ pub async fn extras_secrets_create(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSecretsDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66605,10 +75227,13 @@ pub async fn extras_secrets_destroy(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsGroupsAssociationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66660,15 +75285,17 @@ pub async fn extras_secrets_groups_associations_bulk_destroy(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_secrets_group_association_request: Vec<
-        crate::models::PatchedBulkWritableSecretsGroupAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::SecretsGroupAssociation>,
     Error<ExtrasSecretsGroupsAssociationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_secrets_group_association_request =
+        params.patched_bulk_writable_secrets_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66721,15 +75348,17 @@ pub async fn extras_secrets_groups_associations_bulk_partial_update(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_secrets_group_association_request: Vec<
-        crate::models::BulkWritableSecretsGroupAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::SecretsGroupAssociation>,
     Error<ExtrasSecretsGroupsAssociationsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_secrets_group_association_request =
+        params.bulk_writable_secrets_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66782,11 +75411,14 @@ pub async fn extras_secrets_groups_associations_bulk_update(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_create(
     configuration: &configuration::Configuration,
-    secrets_group_association_request: crate::models::SecretsGroupAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsCreateParams,
 ) -> Result<crate::models::SecretsGroupAssociation, Error<ExtrasSecretsGroupsAssociationsCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let secrets_group_association_request = params.secrets_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66838,10 +75470,13 @@ pub async fn extras_secrets_groups_associations_create(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsGroupsAssociationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -66893,54 +75528,57 @@ pub async fn extras_secrets_groups_associations_destroy(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_list(
     configuration: &configuration::Configuration,
-    access_type: Option<Vec<String>>,
-    access_type__ic: Option<Vec<String>>,
-    access_type__ie: Option<Vec<String>>,
-    access_type__iew: Option<Vec<String>>,
-    access_type__ire: Option<Vec<String>>,
-    access_type__isw: Option<Vec<String>>,
-    access_type__n: Option<Vec<String>>,
-    access_type__nic: Option<Vec<String>>,
-    access_type__nie: Option<Vec<String>>,
-    access_type__niew: Option<Vec<String>>,
-    access_type__nire: Option<Vec<String>>,
-    access_type__nisw: Option<Vec<String>>,
-    access_type__nre: Option<Vec<String>>,
-    access_type__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    secret: Option<Vec<String>>,
-    secret__n: Option<Vec<String>>,
-    secret_id: Option<Vec<uuid::Uuid>>,
-    secret_id__n: Option<Vec<uuid::Uuid>>,
-    secret_type: Option<Vec<String>>,
-    secret_type__ic: Option<Vec<String>>,
-    secret_type__ie: Option<Vec<String>>,
-    secret_type__iew: Option<Vec<String>>,
-    secret_type__ire: Option<Vec<String>>,
-    secret_type__isw: Option<Vec<String>>,
-    secret_type__n: Option<Vec<String>>,
-    secret_type__nic: Option<Vec<String>>,
-    secret_type__nie: Option<Vec<String>>,
-    secret_type__niew: Option<Vec<String>>,
-    secret_type__nire: Option<Vec<String>>,
-    secret_type__nisw: Option<Vec<String>>,
-    secret_type__nre: Option<Vec<String>>,
-    secret_type__re: Option<Vec<String>>,
-    secrets_group: Option<Vec<String>>,
-    secrets_group__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsGroupsAssociationsListParams,
 ) -> Result<
     crate::models::PaginatedSecretsGroupAssociationList,
     Error<ExtrasSecretsGroupsAssociationsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let access_type = params.access_type;
+    let access_type__ic = params.access_type__ic;
+    let access_type__ie = params.access_type__ie;
+    let access_type__iew = params.access_type__iew;
+    let access_type__ire = params.access_type__ire;
+    let access_type__isw = params.access_type__isw;
+    let access_type__n = params.access_type__n;
+    let access_type__nic = params.access_type__nic;
+    let access_type__nie = params.access_type__nie;
+    let access_type__niew = params.access_type__niew;
+    let access_type__nire = params.access_type__nire;
+    let access_type__nisw = params.access_type__nisw;
+    let access_type__nre = params.access_type__nre;
+    let access_type__re = params.access_type__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let secret = params.secret;
+    let secret__n = params.secret__n;
+    let secret_id = params.secret_id;
+    let secret_id__n = params.secret_id__n;
+    let secret_type = params.secret_type;
+    let secret_type__ic = params.secret_type__ic;
+    let secret_type__ie = params.secret_type__ie;
+    let secret_type__iew = params.secret_type__iew;
+    let secret_type__ire = params.secret_type__ire;
+    let secret_type__isw = params.secret_type__isw;
+    let secret_type__n = params.secret_type__n;
+    let secret_type__nic = params.secret_type__nic;
+    let secret_type__nie = params.secret_type__nie;
+    let secret_type__niew = params.secret_type__niew;
+    let secret_type__nire = params.secret_type__nire;
+    let secret_type__nisw = params.secret_type__nisw;
+    let secret_type__nre = params.secret_type__nre;
+    let secret_type__re = params.secret_type__re;
+    let secrets_group = params.secrets_group;
+    let secrets_group__n = params.secrets_group__n;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67698,16 +76336,18 @@ pub async fn extras_secrets_groups_associations_list(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_secrets_group_association_request: Option<
-        crate::models::PatchedSecretsGroupAssociationRequest,
-    >,
+    params: ExtrasSecretsGroupsAssociationsPartialUpdateParams,
 ) -> Result<
     crate::models::SecretsGroupAssociation,
     Error<ExtrasSecretsGroupsAssociationsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_secrets_group_association_request =
+        params.patched_secrets_group_association_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67760,15 +76400,18 @@ pub async fn extras_secrets_groups_associations_partial_update(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsGroupsAssociationsRetrieveParams,
 ) -> Result<
     crate::models::SecretsGroupAssociation,
     Error<ExtrasSecretsGroupsAssociationsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67828,12 +76471,15 @@ pub async fn extras_secrets_groups_associations_retrieve(
 /// Manage Secrets Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_associations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    secrets_group_association_request: crate::models::SecretsGroupAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsAssociationsUpdateParams,
 ) -> Result<crate::models::SecretsGroupAssociation, Error<ExtrasSecretsGroupsAssociationsUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let secrets_group_association_request = params.secrets_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67886,10 +76532,13 @@ pub async fn extras_secrets_groups_associations_update(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsGroupsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67941,12 +76590,14 @@ pub async fn extras_secrets_groups_bulk_destroy(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_secrets_group_request: Vec<
-        crate::models::PatchedBulkWritableSecretsGroupRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::SecretsGroup>, Error<ExtrasSecretsGroupsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_secrets_group_request =
+        params.patched_bulk_writable_secrets_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -67999,10 +76650,13 @@ pub async fn extras_secrets_groups_bulk_partial_update(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_secrets_group_request: Vec<crate::models::BulkWritableSecretsGroupRequest>,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsBulkUpdateParams,
 ) -> Result<Vec<crate::models::SecretsGroup>, Error<ExtrasSecretsGroupsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_secrets_group_request = params.bulk_writable_secrets_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -68054,10 +76708,13 @@ pub async fn extras_secrets_groups_bulk_update(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_create(
     configuration: &configuration::Configuration,
-    secrets_group_request: crate::models::SecretsGroupRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsCreateParams,
 ) -> Result<crate::models::SecretsGroup, Error<ExtrasSecretsGroupsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let secrets_group_request = params.secrets_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -68109,10 +76766,13 @@ pub async fn extras_secrets_groups_create(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsDestroyParams,
 ) -> Result<(), Error<ExtrasSecretsGroupsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -68164,55 +76824,58 @@ pub async fn extras_secrets_groups_destroy(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    secrets: Option<Vec<String>>,
-    secrets__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsGroupsListParams,
 ) -> Result<crate::models::PaginatedSecretsGroupList, Error<ExtrasSecretsGroupsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let secrets = params.secrets;
+    let secrets__n = params.secrets__n;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -68986,11 +77649,14 @@ pub async fn extras_secrets_groups_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_secrets_groups_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasSecretsGroupsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -69043,14 +77709,17 @@ pub async fn extras_secrets_groups_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_secrets_groups_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsGroupsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasSecretsGroupsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -69118,11 +77787,14 @@ pub async fn extras_secrets_groups_notes_list(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_secrets_group_request: Option<crate::models::PatchedSecretsGroupRequest>,
+    params: ExtrasSecretsGroupsPartialUpdateParams,
 ) -> Result<crate::models::SecretsGroup, Error<ExtrasSecretsGroupsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_secrets_group_request = params.patched_secrets_group_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -69175,12 +77847,15 @@ pub async fn extras_secrets_groups_partial_update(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsGroupsRetrieveParams,
 ) -> Result<crate::models::SecretsGroup, Error<ExtrasSecretsGroupsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -69240,11 +77915,14 @@ pub async fn extras_secrets_groups_retrieve(
 /// Manage Secrets Groups through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_groups_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    secrets_group_request: crate::models::SecretsGroupRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsGroupsUpdateParams,
 ) -> Result<crate::models::SecretsGroup, Error<ExtrasSecretsGroupsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let secrets_group_request = params.secrets_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -69297,73 +77975,76 @@ pub async fn extras_secrets_groups_update(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    provider: Option<Vec<String>>,
-    provider__ic: Option<Vec<String>>,
-    provider__ie: Option<Vec<String>>,
-    provider__iew: Option<Vec<String>>,
-    provider__ire: Option<Vec<String>>,
-    provider__isw: Option<Vec<String>>,
-    provider__n: Option<Vec<String>>,
-    provider__nic: Option<Vec<String>>,
-    provider__nie: Option<Vec<String>>,
-    provider__niew: Option<Vec<String>>,
-    provider__nire: Option<Vec<String>>,
-    provider__nisw: Option<Vec<String>>,
-    provider__nre: Option<Vec<String>>,
-    provider__re: Option<Vec<String>>,
-    q: Option<&str>,
-    secrets_groups: Option<Vec<String>>,
-    secrets_groups__isnull: Option<bool>,
-    secrets_groups__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsListParams,
 ) -> Result<crate::models::PaginatedSecretList, Error<ExtrasSecretsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let provider = params.provider;
+    let provider__ic = params.provider__ic;
+    let provider__ie = params.provider__ie;
+    let provider__iew = params.provider__iew;
+    let provider__ire = params.provider__ire;
+    let provider__isw = params.provider__isw;
+    let provider__n = params.provider__n;
+    let provider__nic = params.provider__nic;
+    let provider__nie = params.provider__nie;
+    let provider__niew = params.provider__niew;
+    let provider__nire = params.provider__nire;
+    let provider__nisw = params.provider__nisw;
+    let provider__nre = params.provider__nre;
+    let provider__re = params.provider__re;
+    let q = params.q;
+    let secrets_groups = params.secrets_groups;
+    let secrets_groups__isnull = params.secrets_groups__isnull;
+    let secrets_groups__n = params.secrets_groups__n;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70446,11 +79127,14 @@ pub async fn extras_secrets_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_secrets_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasSecretsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70503,14 +79187,17 @@ pub async fn extras_secrets_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_secrets_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasSecretsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70578,11 +79265,14 @@ pub async fn extras_secrets_notes_list(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_secret_request: Option<crate::models::PatchedSecretRequest>,
+    params: ExtrasSecretsPartialUpdateParams,
 ) -> Result<crate::models::Secret, Error<ExtrasSecretsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_secret_request = params.patched_secret_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70635,12 +79325,15 @@ pub async fn extras_secrets_partial_update(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasSecretsRetrieveParams,
 ) -> Result<crate::models::Secret, Error<ExtrasSecretsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70700,11 +79393,14 @@ pub async fn extras_secrets_retrieve(
 /// Manage Secrets through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_secrets_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    secret_request: crate::models::SecretRequest,
-    format: Option<&str>,
+    params: ExtrasSecretsUpdateParams,
 ) -> Result<crate::models::Secret, Error<ExtrasSecretsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let secret_request = params.secret_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70757,10 +79453,13 @@ pub async fn extras_secrets_update(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasStaticGroupAssociationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70812,15 +79511,17 @@ pub async fn extras_static_group_associations_bulk_destroy(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_static_group_association_request: Vec<
-        crate::models::PatchedBulkWritableStaticGroupAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::StaticGroupAssociation>,
     Error<ExtrasStaticGroupAssociationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_static_group_association_request =
+        params.patched_bulk_writable_static_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70873,15 +79574,17 @@ pub async fn extras_static_group_associations_bulk_partial_update(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_static_group_association_request: Vec<
-        crate::models::BulkWritableStaticGroupAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::StaticGroupAssociation>,
     Error<ExtrasStaticGroupAssociationsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_static_group_association_request =
+        params.bulk_writable_static_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70934,11 +79637,14 @@ pub async fn extras_static_group_associations_bulk_update(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_create(
     configuration: &configuration::Configuration,
-    static_group_association_request: crate::models::StaticGroupAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsCreateParams,
 ) -> Result<crate::models::StaticGroupAssociation, Error<ExtrasStaticGroupAssociationsCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let static_group_association_request = params.static_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -70990,10 +79696,13 @@ pub async fn extras_static_group_associations_create(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsDestroyParams,
 ) -> Result<(), Error<ExtrasStaticGroupAssociationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71045,40 +79754,43 @@ pub async fn extras_static_group_associations_destroy(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_list(
     configuration: &configuration::Configuration,
-    associated_object_id: Option<Vec<uuid::Uuid>>,
-    associated_object_id__n: Option<Vec<uuid::Uuid>>,
-    associated_object_type: Option<Vec<i32>>,
-    associated_object_type__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_group: Option<Vec<String>>,
-    dynamic_group__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStaticGroupAssociationsListParams,
 ) -> Result<
     crate::models::PaginatedStaticGroupAssociationList,
     Error<ExtrasStaticGroupAssociationsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let associated_object_id = params.associated_object_id;
+    let associated_object_id__n = params.associated_object_id__n;
+    let associated_object_type = params.associated_object_type;
+    let associated_object_type__n = params.associated_object_type__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_group = params.dynamic_group;
+    let dynamic_group__n = params.dynamic_group__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71540,11 +80252,14 @@ pub async fn extras_static_group_associations_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_static_group_associations_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasStaticGroupAssociationsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71597,14 +80312,17 @@ pub async fn extras_static_group_associations_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_static_group_associations_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStaticGroupAssociationsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasStaticGroupAssociationsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71672,16 +80390,17 @@ pub async fn extras_static_group_associations_notes_list(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_static_group_association_request: Option<
-        crate::models::PatchedStaticGroupAssociationRequest,
-    >,
+    params: ExtrasStaticGroupAssociationsPartialUpdateParams,
 ) -> Result<
     crate::models::StaticGroupAssociation,
     Error<ExtrasStaticGroupAssociationsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_static_group_association_request = params.patched_static_group_association_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71734,13 +80453,16 @@ pub async fn extras_static_group_associations_partial_update(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStaticGroupAssociationsRetrieveParams,
 ) -> Result<crate::models::StaticGroupAssociation, Error<ExtrasStaticGroupAssociationsRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71800,12 +80522,15 @@ pub async fn extras_static_group_associations_retrieve(
 /// Manage Static Group Associations through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_static_group_associations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    static_group_association_request: crate::models::StaticGroupAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasStaticGroupAssociationsUpdateParams,
 ) -> Result<crate::models::StaticGroupAssociation, Error<ExtrasStaticGroupAssociationsUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let static_group_association_request = params.static_group_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71858,10 +80583,13 @@ pub async fn extras_static_group_associations_update(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasStatusesBulkDestroyParams,
 ) -> Result<(), Error<ExtrasStatusesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71910,10 +80638,13 @@ pub async fn extras_statuses_bulk_destroy(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_status_request: Vec<crate::models::PatchedBulkWritableStatusRequest>,
-    format: Option<&str>,
+    params: ExtrasStatusesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Status>, Error<ExtrasStatusesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_status_request = params.patched_bulk_writable_status_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -71962,10 +80693,13 @@ pub async fn extras_statuses_bulk_partial_update(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_status_request: Vec<crate::models::BulkWritableStatusRequest>,
-    format: Option<&str>,
+    params: ExtrasStatusesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Status>, Error<ExtrasStatusesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_status_request = params.bulk_writable_status_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -72014,10 +80748,13 @@ pub async fn extras_statuses_bulk_update(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_create(
     configuration: &configuration::Configuration,
-    status_request: crate::models::StatusRequest,
-    format: Option<&str>,
+    params: ExtrasStatusesCreateParams,
 ) -> Result<crate::models::Status, Error<ExtrasStatusesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let status_request = params.status_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -72066,10 +80803,13 @@ pub async fn extras_statuses_create(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasStatusesDestroyParams,
 ) -> Result<(), Error<ExtrasStatusesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -72121,69 +80861,72 @@ pub async fn extras_statuses_destroy(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_list(
     configuration: &configuration::Configuration,
-    color: Option<Vec<String>>,
-    color__ic: Option<Vec<String>>,
-    color__ie: Option<Vec<String>>,
-    color__iew: Option<Vec<String>>,
-    color__ire: Option<Vec<String>>,
-    color__isw: Option<Vec<String>>,
-    color__n: Option<Vec<String>>,
-    color__nic: Option<Vec<String>>,
-    color__nie: Option<Vec<String>>,
-    color__niew: Option<Vec<String>>,
-    color__nire: Option<Vec<String>>,
-    color__nisw: Option<Vec<String>>,
-    color__nre: Option<Vec<String>>,
-    color__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStatusesListParams,
 ) -> Result<crate::models::PaginatedStatusList, Error<ExtrasStatusesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let color = params.color;
+    let color__ic = params.color__ic;
+    let color__ie = params.color__ie;
+    let color__iew = params.color__iew;
+    let color__ire = params.color__ire;
+    let color__isw = params.color__isw;
+    let color__n = params.color__n;
+    let color__nic = params.color__nic;
+    let color__nie = params.color__nie;
+    let color__niew = params.color__niew;
+    let color__nire = params.color__nire;
+    let color__nisw = params.color__nisw;
+    let color__nre = params.color__nre;
+    let color__re = params.color__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73220,11 +81963,14 @@ pub async fn extras_statuses_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_statuses_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasStatusesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasStatusesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73277,14 +82023,17 @@ pub async fn extras_statuses_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_statuses_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStatusesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasStatusesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73352,11 +82101,14 @@ pub async fn extras_statuses_notes_list(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_status_request: Option<crate::models::PatchedStatusRequest>,
+    params: ExtrasStatusesPartialUpdateParams,
 ) -> Result<crate::models::Status, Error<ExtrasStatusesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_status_request = params.patched_status_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73409,12 +82161,15 @@ pub async fn extras_statuses_partial_update(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasStatusesRetrieveParams,
 ) -> Result<crate::models::Status, Error<ExtrasStatusesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73474,11 +82229,14 @@ pub async fn extras_statuses_retrieve(
 /// View and manage custom status choices for objects with a `status` field.
 pub async fn extras_statuses_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    status_request: crate::models::StatusRequest,
-    format: Option<&str>,
+    params: ExtrasStatusesUpdateParams,
 ) -> Result<crate::models::Status, Error<ExtrasStatusesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let status_request = params.status_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73531,10 +82289,13 @@ pub async fn extras_statuses_update(
 /// Destroy a list of tag objects.
 pub async fn extras_tags_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasTagsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasTagsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73583,10 +82344,13 @@ pub async fn extras_tags_bulk_destroy(
 /// Partial update a list of tag objects.
 pub async fn extras_tags_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_tag_request: Vec<crate::models::PatchedBulkWritableTagRequest>,
-    format: Option<&str>,
+    params: ExtrasTagsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Tag>, Error<ExtrasTagsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_tag_request = params.patched_bulk_writable_tag_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73635,10 +82399,13 @@ pub async fn extras_tags_bulk_partial_update(
 /// Update a list of tag objects.
 pub async fn extras_tags_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_tag_request: Vec<crate::models::BulkWritableTagRequest>,
-    format: Option<&str>,
+    params: ExtrasTagsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Tag>, Error<ExtrasTagsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_tag_request = params.bulk_writable_tag_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73687,10 +82454,13 @@ pub async fn extras_tags_bulk_update(
 /// Create one or more tag objects.
 pub async fn extras_tags_create(
     configuration: &configuration::Configuration,
-    tag_request: crate::models::TagRequest,
-    format: Option<&str>,
+    params: ExtrasTagsCreateParams,
 ) -> Result<crate::models::Tag, Error<ExtrasTagsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let tag_request = params.tag_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73739,10 +82509,13 @@ pub async fn extras_tags_create(
 /// Destroy a tag object.
 pub async fn extras_tags_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasTagsDestroyParams,
 ) -> Result<(), Error<ExtrasTagsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -73794,69 +82567,72 @@ pub async fn extras_tags_destroy(
 /// Retrieve a list of tag objects.
 pub async fn extras_tags_list(
     configuration: &configuration::Configuration,
-    color: Option<Vec<String>>,
-    color__ic: Option<Vec<String>>,
-    color__ie: Option<Vec<String>>,
-    color__iew: Option<Vec<String>>,
-    color__ire: Option<Vec<String>>,
-    color__isw: Option<Vec<String>>,
-    color__n: Option<Vec<String>>,
-    color__nic: Option<Vec<String>>,
-    color__nie: Option<Vec<String>>,
-    color__niew: Option<Vec<String>>,
-    color__nire: Option<Vec<String>>,
-    color__nisw: Option<Vec<String>>,
-    color__nre: Option<Vec<String>>,
-    color__re: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTagsListParams,
 ) -> Result<crate::models::PaginatedTagList, Error<ExtrasTagsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let color = params.color;
+    let color__ic = params.color__ic;
+    let color__ie = params.color__ie;
+    let color__iew = params.color__iew;
+    let color__ire = params.color__ire;
+    let color__isw = params.color__isw;
+    let color__n = params.color__n;
+    let color__nic = params.color__nic;
+    let color__nie = params.color__nie;
+    let color__niew = params.color__niew;
+    let color__nire = params.color__nire;
+    let color__nisw = params.color__nisw;
+    let color__nre = params.color__nre;
+    let color__re = params.color__re;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -74893,11 +83669,14 @@ pub async fn extras_tags_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_tags_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasTagsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasTagsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -74950,14 +83729,17 @@ pub async fn extras_tags_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_tags_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTagsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasTagsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75025,11 +83807,14 @@ pub async fn extras_tags_notes_list(
 /// Partial update a tag object.
 pub async fn extras_tags_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_tag_request: Option<crate::models::PatchedTagRequest>,
+    params: ExtrasTagsPartialUpdateParams,
 ) -> Result<crate::models::Tag, Error<ExtrasTagsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_tag_request = params.patched_tag_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75082,12 +83867,15 @@ pub async fn extras_tags_partial_update(
 /// Retrieve a tag object.
 pub async fn extras_tags_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTagsRetrieveParams,
 ) -> Result<crate::models::Tag, Error<ExtrasTagsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75147,11 +83935,14 @@ pub async fn extras_tags_retrieve(
 /// Update a tag object.
 pub async fn extras_tags_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    tag_request: crate::models::TagRequest,
-    format: Option<&str>,
+    params: ExtrasTagsUpdateParams,
 ) -> Result<crate::models::Tag, Error<ExtrasTagsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let tag_request = params.tag_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75204,10 +83995,13 @@ pub async fn extras_tags_update(
 /// Destroy a list of team objects.
 pub async fn extras_teams_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasTeamsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasTeamsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75256,10 +84050,13 @@ pub async fn extras_teams_bulk_destroy(
 /// Partial update a list of team objects.
 pub async fn extras_teams_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_team_request: Vec<crate::models::PatchedBulkWritableTeamRequest>,
-    format: Option<&str>,
+    params: ExtrasTeamsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Team>, Error<ExtrasTeamsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_team_request = params.patched_bulk_writable_team_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75308,10 +84105,13 @@ pub async fn extras_teams_bulk_partial_update(
 /// Update a list of team objects.
 pub async fn extras_teams_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_team_request: Vec<crate::models::BulkWritableTeamRequest>,
-    format: Option<&str>,
+    params: ExtrasTeamsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Team>, Error<ExtrasTeamsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_team_request = params.bulk_writable_team_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75360,10 +84160,13 @@ pub async fn extras_teams_bulk_update(
 /// Create one or more team objects.
 pub async fn extras_teams_create(
     configuration: &configuration::Configuration,
-    team_request: crate::models::TeamRequest,
-    format: Option<&str>,
+    params: ExtrasTeamsCreateParams,
 ) -> Result<crate::models::Team, Error<ExtrasTeamsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let team_request = params.team_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75412,10 +84215,13 @@ pub async fn extras_teams_create(
 /// Destroy a team object.
 pub async fn extras_teams_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasTeamsDestroyParams,
 ) -> Result<(), Error<ExtrasTeamsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -75467,109 +84273,112 @@ pub async fn extras_teams_destroy(
 /// Retrieve a list of team objects.
 pub async fn extras_teams_list(
     configuration: &configuration::Configuration,
-    address: Option<Vec<String>>,
-    address__ic: Option<Vec<String>>,
-    address__ie: Option<Vec<String>>,
-    address__iew: Option<Vec<String>>,
-    address__ire: Option<Vec<String>>,
-    address__isw: Option<Vec<String>>,
-    address__n: Option<Vec<String>>,
-    address__nic: Option<Vec<String>>,
-    address__nie: Option<Vec<String>>,
-    address__niew: Option<Vec<String>>,
-    address__nire: Option<Vec<String>>,
-    address__nisw: Option<Vec<String>>,
-    address__nre: Option<Vec<String>>,
-    address__re: Option<Vec<String>>,
-    comments: Option<Vec<String>>,
-    comments__ic: Option<Vec<String>>,
-    comments__ie: Option<Vec<String>>,
-    comments__iew: Option<Vec<String>>,
-    comments__ire: Option<Vec<String>>,
-    comments__isw: Option<Vec<String>>,
-    comments__n: Option<Vec<String>>,
-    comments__nic: Option<Vec<String>>,
-    comments__nie: Option<Vec<String>>,
-    comments__niew: Option<Vec<String>>,
-    comments__nire: Option<Vec<String>>,
-    comments__nisw: Option<Vec<String>>,
-    comments__nre: Option<Vec<String>>,
-    comments__re: Option<Vec<String>>,
-    contacts: Option<Vec<uuid::Uuid>>,
-    contacts__n: Option<Vec<uuid::Uuid>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    email: Option<Vec<String>>,
-    email__ic: Option<Vec<String>>,
-    email__ie: Option<Vec<String>>,
-    email__iew: Option<Vec<String>>,
-    email__ire: Option<Vec<String>>,
-    email__isw: Option<Vec<String>>,
-    email__n: Option<Vec<String>>,
-    email__nic: Option<Vec<String>>,
-    email__nie: Option<Vec<String>>,
-    email__niew: Option<Vec<String>>,
-    email__nire: Option<Vec<String>>,
-    email__nisw: Option<Vec<String>>,
-    email__nre: Option<Vec<String>>,
-    email__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    phone: Option<Vec<String>>,
-    phone__ic: Option<Vec<String>>,
-    phone__ie: Option<Vec<String>>,
-    phone__iew: Option<Vec<String>>,
-    phone__ire: Option<Vec<String>>,
-    phone__isw: Option<Vec<String>>,
-    phone__n: Option<Vec<String>>,
-    phone__nic: Option<Vec<String>>,
-    phone__nie: Option<Vec<String>>,
-    phone__niew: Option<Vec<String>>,
-    phone__nire: Option<Vec<String>>,
-    phone__nisw: Option<Vec<String>>,
-    phone__nre: Option<Vec<String>>,
-    phone__re: Option<Vec<String>>,
-    q: Option<&str>,
-    similar_to_location_data: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTeamsListParams,
 ) -> Result<crate::models::PaginatedTeamList, Error<ExtrasTeamsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let address = params.address;
+    let address__ic = params.address__ic;
+    let address__ie = params.address__ie;
+    let address__iew = params.address__iew;
+    let address__ire = params.address__ire;
+    let address__isw = params.address__isw;
+    let address__n = params.address__n;
+    let address__nic = params.address__nic;
+    let address__nie = params.address__nie;
+    let address__niew = params.address__niew;
+    let address__nire = params.address__nire;
+    let address__nisw = params.address__nisw;
+    let address__nre = params.address__nre;
+    let address__re = params.address__re;
+    let comments = params.comments;
+    let comments__ic = params.comments__ic;
+    let comments__ie = params.comments__ie;
+    let comments__iew = params.comments__iew;
+    let comments__ire = params.comments__ire;
+    let comments__isw = params.comments__isw;
+    let comments__n = params.comments__n;
+    let comments__nic = params.comments__nic;
+    let comments__nie = params.comments__nie;
+    let comments__niew = params.comments__niew;
+    let comments__nire = params.comments__nire;
+    let comments__nisw = params.comments__nisw;
+    let comments__nre = params.comments__nre;
+    let comments__re = params.comments__re;
+    let contacts = params.contacts;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let email = params.email;
+    let email__ic = params.email__ic;
+    let email__ie = params.email__ie;
+    let email__iew = params.email__iew;
+    let email__ire = params.email__ire;
+    let email__isw = params.email__isw;
+    let email__n = params.email__n;
+    let email__nic = params.email__nic;
+    let email__nie = params.email__nie;
+    let email__niew = params.email__niew;
+    let email__nire = params.email__nire;
+    let email__nisw = params.email__nisw;
+    let email__nre = params.email__nre;
+    let email__re = params.email__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let phone = params.phone;
+    let phone__ic = params.phone__ic;
+    let phone__ie = params.phone__ie;
+    let phone__iew = params.phone__iew;
+    let phone__ire = params.phone__ire;
+    let phone__isw = params.phone__isw;
+    let phone__n = params.phone__n;
+    let phone__nic = params.phone__nic;
+    let phone__nie = params.phone__nie;
+    let phone__niew = params.phone__niew;
+    let phone__nire = params.phone__nire;
+    let phone__nisw = params.phone__nisw;
+    let phone__nre = params.phone__nre;
+    let phone__re = params.phone__re;
+    let q = params.q;
+    let similar_to_location_data = params.similar_to_location_data;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77381,11 +86190,14 @@ pub async fn extras_teams_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_teams_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasTeamsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasTeamsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77438,14 +86250,17 @@ pub async fn extras_teams_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_teams_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTeamsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasTeamsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77513,11 +86328,14 @@ pub async fn extras_teams_notes_list(
 /// Partial update a team object.
 pub async fn extras_teams_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_team_request: Option<crate::models::PatchedTeamRequest>,
+    params: ExtrasTeamsPartialUpdateParams,
 ) -> Result<crate::models::Team, Error<ExtrasTeamsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_team_request = params.patched_team_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77570,12 +86388,15 @@ pub async fn extras_teams_partial_update(
 /// Retrieve a team object.
 pub async fn extras_teams_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasTeamsRetrieveParams,
 ) -> Result<crate::models::Team, Error<ExtrasTeamsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77635,11 +86456,14 @@ pub async fn extras_teams_retrieve(
 /// Update a team object.
 pub async fn extras_teams_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    team_request: crate::models::TeamRequest,
-    format: Option<&str>,
+    params: ExtrasTeamsUpdateParams,
 ) -> Result<crate::models::Team, Error<ExtrasTeamsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let team_request = params.team_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77692,10 +86516,13 @@ pub async fn extras_teams_update(
 /// Destroy a list of user saved view association objects.
 pub async fn extras_user_saved_view_associations_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsBulkDestroyParams,
 ) -> Result<(), Error<ExtrasUserSavedViewAssociationsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77747,15 +86574,17 @@ pub async fn extras_user_saved_view_associations_bulk_destroy(
 /// Partial update a list of user saved view association objects.
 pub async fn extras_user_saved_view_associations_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_user_saved_view_association_request: Vec<
-        crate::models::PatchedBulkWritableUserSavedViewAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::UserSavedViewAssociation>,
     Error<ExtrasUserSavedViewAssociationsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_user_saved_view_association_request =
+        params.patched_bulk_writable_user_saved_view_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77808,15 +86637,17 @@ pub async fn extras_user_saved_view_associations_bulk_partial_update(
 /// Update a list of user saved view association objects.
 pub async fn extras_user_saved_view_associations_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_user_saved_view_association_request: Vec<
-        crate::models::BulkWritableUserSavedViewAssociationRequest,
-    >,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::UserSavedViewAssociation>,
     Error<ExtrasUserSavedViewAssociationsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_user_saved_view_association_request =
+        params.bulk_writable_user_saved_view_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77869,13 +86700,16 @@ pub async fn extras_user_saved_view_associations_bulk_update(
 /// Create one or more user saved view association objects.
 pub async fn extras_user_saved_view_associations_create(
     configuration: &configuration::Configuration,
-    user_saved_view_association_request: crate::models::UserSavedViewAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsCreateParams,
 ) -> Result<
     crate::models::UserSavedViewAssociation,
     Error<ExtrasUserSavedViewAssociationsCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let user_saved_view_association_request = params.user_saved_view_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77927,10 +86761,13 @@ pub async fn extras_user_saved_view_associations_create(
 /// Destroy a user saved view association object.
 pub async fn extras_user_saved_view_associations_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsDestroyParams,
 ) -> Result<(), Error<ExtrasUserSavedViewAssociationsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -77982,40 +86819,43 @@ pub async fn extras_user_saved_view_associations_destroy(
 /// Retrieve a list of user saved view association objects.
 pub async fn extras_user_saved_view_associations_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    saved_view: Option<Vec<String>>,
-    saved_view__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    user: Option<Vec<String>>,
-    user__n: Option<Vec<String>>,
-    view_name: Option<Vec<String>>,
-    view_name__ic: Option<Vec<String>>,
-    view_name__ie: Option<Vec<String>>,
-    view_name__iew: Option<Vec<String>>,
-    view_name__ire: Option<Vec<String>>,
-    view_name__isw: Option<Vec<String>>,
-    view_name__n: Option<Vec<String>>,
-    view_name__nic: Option<Vec<String>>,
-    view_name__nie: Option<Vec<String>>,
-    view_name__niew: Option<Vec<String>>,
-    view_name__nire: Option<Vec<String>>,
-    view_name__nisw: Option<Vec<String>>,
-    view_name__nre: Option<Vec<String>>,
-    view_name__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasUserSavedViewAssociationsListParams,
 ) -> Result<
     crate::models::PaginatedUserSavedViewAssociationList,
     Error<ExtrasUserSavedViewAssociationsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let saved_view = params.saved_view;
+    let saved_view__n = params.saved_view__n;
+    let sort = params.sort;
+    let user = params.user;
+    let user__n = params.user__n;
+    let view_name = params.view_name;
+    let view_name__ic = params.view_name__ic;
+    let view_name__ie = params.view_name__ie;
+    let view_name__iew = params.view_name__iew;
+    let view_name__ire = params.view_name__ire;
+    let view_name__isw = params.view_name__isw;
+    let view_name__n = params.view_name__n;
+    let view_name__nic = params.view_name__nic;
+    let view_name__nie = params.view_name__nie;
+    let view_name__niew = params.view_name__niew;
+    let view_name__nire = params.view_name__nire;
+    let view_name__nisw = params.view_name__nisw;
+    let view_name__nre = params.view_name__nre;
+    let view_name__re = params.view_name__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78507,16 +87347,18 @@ pub async fn extras_user_saved_view_associations_list(
 /// Partial update a user saved view association object.
 pub async fn extras_user_saved_view_associations_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_user_saved_view_association_request: Option<
-        crate::models::PatchedUserSavedViewAssociationRequest,
-    >,
+    params: ExtrasUserSavedViewAssociationsPartialUpdateParams,
 ) -> Result<
     crate::models::UserSavedViewAssociation,
     Error<ExtrasUserSavedViewAssociationsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_user_saved_view_association_request =
+        params.patched_user_saved_view_association_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78570,15 +87412,18 @@ pub async fn extras_user_saved_view_associations_partial_update(
 /// Retrieve a user saved view association object.
 pub async fn extras_user_saved_view_associations_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasUserSavedViewAssociationsRetrieveParams,
 ) -> Result<
     crate::models::UserSavedViewAssociation,
     Error<ExtrasUserSavedViewAssociationsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78638,14 +87483,17 @@ pub async fn extras_user_saved_view_associations_retrieve(
 /// Update a user saved view association object.
 pub async fn extras_user_saved_view_associations_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    user_saved_view_association_request: crate::models::UserSavedViewAssociationRequest,
-    format: Option<&str>,
+    params: ExtrasUserSavedViewAssociationsUpdateParams,
 ) -> Result<
     crate::models::UserSavedViewAssociation,
     Error<ExtrasUserSavedViewAssociationsUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let user_saved_view_association_request = params.user_saved_view_association_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78698,10 +87546,13 @@ pub async fn extras_user_saved_view_associations_update(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: ExtrasWebhooksBulkDestroyParams,
 ) -> Result<(), Error<ExtrasWebhooksBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78750,10 +87601,13 @@ pub async fn extras_webhooks_bulk_destroy(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_webhook_request: Vec<crate::models::PatchedBulkWritableWebhookRequest>,
-    format: Option<&str>,
+    params: ExtrasWebhooksBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Webhook>, Error<ExtrasWebhooksBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_webhook_request = params.patched_bulk_writable_webhook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78802,10 +87656,13 @@ pub async fn extras_webhooks_bulk_partial_update(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_webhook_request: Vec<crate::models::BulkWritableWebhookRequest>,
-    format: Option<&str>,
+    params: ExtrasWebhooksBulkUpdateParams,
 ) -> Result<Vec<crate::models::Webhook>, Error<ExtrasWebhooksBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_webhook_request = params.bulk_writable_webhook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78854,10 +87711,13 @@ pub async fn extras_webhooks_bulk_update(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_create(
     configuration: &configuration::Configuration,
-    webhook_request: crate::models::WebhookRequest,
-    format: Option<&str>,
+    params: ExtrasWebhooksCreateParams,
 ) -> Result<crate::models::Webhook, Error<ExtrasWebhooksCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let webhook_request = params.webhook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78906,10 +87766,13 @@ pub async fn extras_webhooks_create(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: ExtrasWebhooksDestroyParams,
 ) -> Result<(), Error<ExtrasWebhooksDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -78961,59 +87824,62 @@ pub async fn extras_webhooks_destroy(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_types: Option<Vec<i32>>,
-    content_types__n: Option<Vec<i32>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    payload_url: Option<Vec<String>>,
-    payload_url__ic: Option<Vec<String>>,
-    payload_url__ie: Option<Vec<String>>,
-    payload_url__iew: Option<Vec<String>>,
-    payload_url__ire: Option<Vec<String>>,
-    payload_url__isw: Option<Vec<String>>,
-    payload_url__n: Option<Vec<String>>,
-    payload_url__nic: Option<Vec<String>>,
-    payload_url__nie: Option<Vec<String>>,
-    payload_url__niew: Option<Vec<String>>,
-    payload_url__nire: Option<Vec<String>>,
-    payload_url__nisw: Option<Vec<String>>,
-    payload_url__nre: Option<Vec<String>>,
-    payload_url__re: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    type_create: Option<bool>,
-    type_delete: Option<bool>,
-    type_update: Option<bool>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasWebhooksListParams,
 ) -> Result<crate::models::PaginatedWebhookList, Error<ExtrasWebhooksListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_types = params.content_types;
+    let content_types__n = params.content_types__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let payload_url = params.payload_url;
+    let payload_url__ic = params.payload_url__ic;
+    let payload_url__ie = params.payload_url__ie;
+    let payload_url__iew = params.payload_url__iew;
+    let payload_url__ire = params.payload_url__ire;
+    let payload_url__isw = params.payload_url__isw;
+    let payload_url__n = params.payload_url__n;
+    let payload_url__nic = params.payload_url__nic;
+    let payload_url__nie = params.payload_url__nie;
+    let payload_url__niew = params.payload_url__niew;
+    let payload_url__nire = params.payload_url__nire;
+    let payload_url__nisw = params.payload_url__nisw;
+    let payload_url__nre = params.payload_url__nre;
+    let payload_url__re = params.payload_url__re;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let type_create = params.type_create;
+    let type_delete = params.type_delete;
+    let type_update = params.type_update;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -79830,11 +88696,14 @@ pub async fn extras_webhooks_list(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_webhooks_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: ExtrasWebhooksNotesCreateParams,
 ) -> Result<crate::models::Note, Error<ExtrasWebhooksNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -79887,14 +88756,17 @@ pub async fn extras_webhooks_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn extras_webhooks_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasWebhooksNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<ExtrasWebhooksNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -79962,11 +88834,14 @@ pub async fn extras_webhooks_notes_list(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_webhook_request: Option<crate::models::PatchedWebhookRequest>,
+    params: ExtrasWebhooksPartialUpdateParams,
 ) -> Result<crate::models::Webhook, Error<ExtrasWebhooksPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_webhook_request = params.patched_webhook_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -80019,12 +88894,15 @@ pub async fn extras_webhooks_partial_update(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: ExtrasWebhooksRetrieveParams,
 ) -> Result<crate::models::Webhook, Error<ExtrasWebhooksRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -80084,11 +88962,14 @@ pub async fn extras_webhooks_retrieve(
 /// Manage Webhooks through DELETE, GET, POST, PUT, and PATCH requests.
 pub async fn extras_webhooks_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    webhook_request: crate::models::WebhookRequest,
-    format: Option<&str>,
+    params: ExtrasWebhooksUpdateParams,
 ) -> Result<crate::models::Webhook, Error<ExtrasWebhooksUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let webhook_request = params.webhook_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

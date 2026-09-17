@@ -13,6 +13,13 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`ui_core_render_jinja_template_create`]
+#[derive(Clone, Debug, Default)]
+pub struct UiCoreRenderJinjaTemplateCreateParams {
+    pub render_jinja_request: crate::models::RenderJinjaRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`ui_core_render_jinja_template_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -23,10 +30,13 @@ pub enum UiCoreRenderJinjaTemplateCreateError {
 /// View to render a Jinja template.
 pub async fn ui_core_render_jinja_template_create(
     configuration: &configuration::Configuration,
-    render_jinja_request: crate::models::RenderJinjaRequest,
-    format: Option<&str>,
+    params: UiCoreRenderJinjaTemplateCreateParams,
 ) -> Result<crate::models::RenderJinja, Error<UiCoreRenderJinjaTemplateCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let render_jinja_request = params.render_jinja_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

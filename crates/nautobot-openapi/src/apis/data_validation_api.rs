@@ -13,6 +13,900 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`data_validation_data_compliance_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceBulkPartialUpdateParams {
+    pub patched_bulk_writable_data_compliance_request:
+        Vec<crate::models::PatchedBulkWritableDataComplianceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceBulkUpdateParams {
+    pub bulk_writable_data_compliance_request:
+        Vec<crate::models::BulkWritableDataComplianceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceCreateParams {
+    pub data_compliance_request: crate::models::DataComplianceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceDestroyParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceListParams {
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceNotesCreateParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceNotesListParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataCompliancePartialUpdateParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_data_compliance_request: Option<crate::models::PatchedDataComplianceRequest>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceRetrieveParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_data_compliance_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationDataComplianceUpdateParams {
+    /// A UUID string identifying this data compliance.
+    pub id: String,
+    pub data_compliance_request: crate::models::DataComplianceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesBulkPartialUpdateParams {
+    pub patched_bulk_writable_min_max_validation_rule_request:
+        Vec<crate::models::PatchedBulkWritableMinMaxValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesBulkUpdateParams {
+    pub bulk_writable_min_max_validation_rule_request:
+        Vec<crate::models::BulkWritableMinMaxValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesCreateParams {
+    pub min_max_validation_rule_request: crate::models::MinMaxValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesDestroyParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<Vec<i32>>,
+    pub content_type__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub error_message: Option<Vec<String>>,
+    pub error_message__ic: Option<Vec<String>>,
+    pub error_message__ie: Option<Vec<String>>,
+    pub error_message__iew: Option<Vec<String>>,
+    pub error_message__ire: Option<Vec<String>>,
+    pub error_message__isw: Option<Vec<String>>,
+    pub error_message__n: Option<Vec<String>>,
+    pub error_message__nic: Option<Vec<String>>,
+    pub error_message__nie: Option<Vec<String>>,
+    pub error_message__niew: Option<Vec<String>>,
+    pub error_message__nire: Option<Vec<String>>,
+    pub error_message__nisw: Option<Vec<String>>,
+    pub error_message__nre: Option<Vec<String>>,
+    pub error_message__re: Option<Vec<String>>,
+    pub field: Option<Vec<String>>,
+    pub field__ic: Option<Vec<String>>,
+    pub field__ie: Option<Vec<String>>,
+    pub field__iew: Option<Vec<String>>,
+    pub field__ire: Option<Vec<String>>,
+    pub field__isw: Option<Vec<String>>,
+    pub field__n: Option<Vec<String>>,
+    pub field__nic: Option<Vec<String>>,
+    pub field__nie: Option<Vec<String>>,
+    pub field__niew: Option<Vec<String>>,
+    pub field__nire: Option<Vec<String>>,
+    pub field__nisw: Option<Vec<String>>,
+    pub field__nre: Option<Vec<String>>,
+    pub field__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub max: Option<Vec<f32>>,
+    pub max__gt: Option<Vec<f32>>,
+    pub max__gte: Option<Vec<f32>>,
+    pub max__isnull: Option<bool>,
+    pub max__lt: Option<Vec<f32>>,
+    pub max__lte: Option<Vec<f32>>,
+    pub max__n: Option<Vec<f32>>,
+    pub min: Option<Vec<f32>>,
+    pub min__gt: Option<Vec<f32>>,
+    pub min__gte: Option<Vec<f32>>,
+    pub min__isnull: Option<bool>,
+    pub min__lt: Option<Vec<f32>>,
+    pub min__lte: Option<Vec<f32>>,
+    pub min__n: Option<Vec<f32>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesNotesCreateParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesNotesListParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesPartialUpdateParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_min_max_validation_rule_request:
+        Option<crate::models::PatchedMinMaxValidationRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesRetrieveParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_min_max_rules_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationMinMaxRulesUpdateParams {
+    /// A UUID string identifying this min max validation rule.
+    pub id: String,
+    pub min_max_validation_rule_request: crate::models::MinMaxValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesBulkPartialUpdateParams {
+    pub patched_bulk_writable_regular_expression_validation_rule_request:
+        Vec<crate::models::PatchedBulkWritableRegularExpressionValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesBulkUpdateParams {
+    pub bulk_writable_regular_expression_validation_rule_request:
+        Vec<crate::models::BulkWritableRegularExpressionValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesCreateParams {
+    pub regular_expression_validation_rule_request:
+        crate::models::RegularExpressionValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesDestroyParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<Vec<i32>>,
+    pub content_type__n: Option<Vec<i32>>,
+    pub context_processing: Option<bool>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub error_message: Option<Vec<String>>,
+    pub error_message__ic: Option<Vec<String>>,
+    pub error_message__ie: Option<Vec<String>>,
+    pub error_message__iew: Option<Vec<String>>,
+    pub error_message__ire: Option<Vec<String>>,
+    pub error_message__isw: Option<Vec<String>>,
+    pub error_message__n: Option<Vec<String>>,
+    pub error_message__nic: Option<Vec<String>>,
+    pub error_message__nie: Option<Vec<String>>,
+    pub error_message__niew: Option<Vec<String>>,
+    pub error_message__nire: Option<Vec<String>>,
+    pub error_message__nisw: Option<Vec<String>>,
+    pub error_message__nre: Option<Vec<String>>,
+    pub error_message__re: Option<Vec<String>>,
+    pub field: Option<Vec<String>>,
+    pub field__ic: Option<Vec<String>>,
+    pub field__ie: Option<Vec<String>>,
+    pub field__iew: Option<Vec<String>>,
+    pub field__ire: Option<Vec<String>>,
+    pub field__isw: Option<Vec<String>>,
+    pub field__n: Option<Vec<String>>,
+    pub field__nic: Option<Vec<String>>,
+    pub field__nie: Option<Vec<String>>,
+    pub field__niew: Option<Vec<String>>,
+    pub field__nire: Option<Vec<String>>,
+    pub field__nisw: Option<Vec<String>>,
+    pub field__nre: Option<Vec<String>>,
+    pub field__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub regular_expression: Option<Vec<String>>,
+    pub regular_expression__ic: Option<Vec<String>>,
+    pub regular_expression__ie: Option<Vec<String>>,
+    pub regular_expression__iew: Option<Vec<String>>,
+    pub regular_expression__ire: Option<Vec<String>>,
+    pub regular_expression__isw: Option<Vec<String>>,
+    pub regular_expression__n: Option<Vec<String>>,
+    pub regular_expression__nic: Option<Vec<String>>,
+    pub regular_expression__nie: Option<Vec<String>>,
+    pub regular_expression__niew: Option<Vec<String>>,
+    pub regular_expression__nire: Option<Vec<String>>,
+    pub regular_expression__nisw: Option<Vec<String>>,
+    pub regular_expression__nre: Option<Vec<String>>,
+    pub regular_expression__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesNotesCreateParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesNotesListParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesPartialUpdateParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_regular_expression_validation_rule_request:
+        Option<crate::models::PatchedRegularExpressionValidationRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesRetrieveParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_regex_rules_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRegexRulesUpdateParams {
+    /// A UUID string identifying this regular expression validation rule.
+    pub id: String,
+    pub regular_expression_validation_rule_request:
+        crate::models::RegularExpressionValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesBulkPartialUpdateParams {
+    pub patched_bulk_writable_required_validation_rule_request:
+        Vec<crate::models::PatchedBulkWritableRequiredValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesBulkUpdateParams {
+    pub bulk_writable_required_validation_rule_request:
+        Vec<crate::models::BulkWritableRequiredValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesCreateParams {
+    pub required_validation_rule_request: crate::models::RequiredValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesDestroyParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<Vec<i32>>,
+    pub content_type__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub error_message: Option<Vec<String>>,
+    pub error_message__ic: Option<Vec<String>>,
+    pub error_message__ie: Option<Vec<String>>,
+    pub error_message__iew: Option<Vec<String>>,
+    pub error_message__ire: Option<Vec<String>>,
+    pub error_message__isw: Option<Vec<String>>,
+    pub error_message__n: Option<Vec<String>>,
+    pub error_message__nic: Option<Vec<String>>,
+    pub error_message__nie: Option<Vec<String>>,
+    pub error_message__niew: Option<Vec<String>>,
+    pub error_message__nire: Option<Vec<String>>,
+    pub error_message__nisw: Option<Vec<String>>,
+    pub error_message__nre: Option<Vec<String>>,
+    pub error_message__re: Option<Vec<String>>,
+    pub field: Option<Vec<String>>,
+    pub field__ic: Option<Vec<String>>,
+    pub field__ie: Option<Vec<String>>,
+    pub field__iew: Option<Vec<String>>,
+    pub field__ire: Option<Vec<String>>,
+    pub field__isw: Option<Vec<String>>,
+    pub field__n: Option<Vec<String>>,
+    pub field__nic: Option<Vec<String>>,
+    pub field__nie: Option<Vec<String>>,
+    pub field__niew: Option<Vec<String>>,
+    pub field__nire: Option<Vec<String>>,
+    pub field__nisw: Option<Vec<String>>,
+    pub field__nre: Option<Vec<String>>,
+    pub field__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesNotesCreateParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesNotesListParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesPartialUpdateParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_required_validation_rule_request:
+        Option<crate::models::PatchedRequiredValidationRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesRetrieveParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_required_rules_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationRequiredRulesUpdateParams {
+    /// A UUID string identifying this required validation rule.
+    pub id: String,
+    pub required_validation_rule_request: crate::models::RequiredValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesBulkPartialUpdateParams {
+    pub patched_bulk_writable_unique_validation_rule_request:
+        Vec<crate::models::PatchedBulkWritableUniqueValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesBulkUpdateParams {
+    pub bulk_writable_unique_validation_rule_request:
+        Vec<crate::models::BulkWritableUniqueValidationRuleRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesCreateParams {
+    pub unique_validation_rule_request: crate::models::UniqueValidationRuleRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesDestroyParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub content_type: Option<Vec<i32>>,
+    pub content_type__n: Option<Vec<i32>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub error_message: Option<Vec<String>>,
+    pub error_message__ic: Option<Vec<String>>,
+    pub error_message__ie: Option<Vec<String>>,
+    pub error_message__iew: Option<Vec<String>>,
+    pub error_message__ire: Option<Vec<String>>,
+    pub error_message__isw: Option<Vec<String>>,
+    pub error_message__n: Option<Vec<String>>,
+    pub error_message__nic: Option<Vec<String>>,
+    pub error_message__nie: Option<Vec<String>>,
+    pub error_message__niew: Option<Vec<String>>,
+    pub error_message__nire: Option<Vec<String>>,
+    pub error_message__nisw: Option<Vec<String>>,
+    pub error_message__nre: Option<Vec<String>>,
+    pub error_message__re: Option<Vec<String>>,
+    pub field: Option<Vec<String>>,
+    pub field__ic: Option<Vec<String>>,
+    pub field__ie: Option<Vec<String>>,
+    pub field__iew: Option<Vec<String>>,
+    pub field__ire: Option<Vec<String>>,
+    pub field__isw: Option<Vec<String>>,
+    pub field__n: Option<Vec<String>>,
+    pub field__nic: Option<Vec<String>>,
+    pub field__nie: Option<Vec<String>>,
+    pub field__niew: Option<Vec<String>>,
+    pub field__nire: Option<Vec<String>>,
+    pub field__nisw: Option<Vec<String>>,
+    pub field__nre: Option<Vec<String>>,
+    pub field__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub max_instances: Option<Vec<i32>>,
+    pub max_instances__gt: Option<Vec<i32>>,
+    pub max_instances__gte: Option<Vec<i32>>,
+    pub max_instances__lt: Option<Vec<i32>>,
+    pub max_instances__lte: Option<Vec<i32>>,
+    pub max_instances__n: Option<Vec<i32>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesNotesCreateParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesNotesListParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesPartialUpdateParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_unique_validation_rule_request:
+        Option<crate::models::PatchedUniqueValidationRuleRequest>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesRetrieveParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`data_validation_unique_rules_update`]
+#[derive(Clone, Debug, Default)]
+pub struct DataValidationUniqueRulesUpdateParams {
+    /// A UUID string identifying this unique validation rule.
+    pub id: String,
+    pub unique_validation_rule_request: crate::models::UniqueValidationRuleRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`data_validation_data_compliance_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -401,10 +1295,13 @@ pub enum DataValidationUniqueRulesUpdateError {
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: DataValidationDataComplianceBulkDestroyParams,
 ) -> Result<(), Error<DataValidationDataComplianceBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -456,15 +1353,17 @@ pub async fn data_validation_data_compliance_bulk_destroy(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_data_compliance_request: Vec<
-        crate::models::PatchedBulkWritableDataComplianceRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationDataComplianceBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::DataCompliance>,
     Error<DataValidationDataComplianceBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_data_compliance_request =
+        params.patched_bulk_writable_data_compliance_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -517,11 +1416,14 @@ pub async fn data_validation_data_compliance_bulk_partial_update(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_data_compliance_request: Vec<crate::models::BulkWritableDataComplianceRequest>,
-    format: Option<&str>,
+    params: DataValidationDataComplianceBulkUpdateParams,
 ) -> Result<Vec<crate::models::DataCompliance>, Error<DataValidationDataComplianceBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_data_compliance_request = params.bulk_writable_data_compliance_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -573,10 +1475,13 @@ pub async fn data_validation_data_compliance_bulk_update(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_create(
     configuration: &configuration::Configuration,
-    data_compliance_request: crate::models::DataComplianceRequest,
-    format: Option<&str>,
+    params: DataValidationDataComplianceCreateParams,
 ) -> Result<crate::models::DataCompliance, Error<DataValidationDataComplianceCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let data_compliance_request = params.data_compliance_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -628,10 +1533,13 @@ pub async fn data_validation_data_compliance_create(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: DataValidationDataComplianceDestroyParams,
 ) -> Result<(), Error<DataValidationDataComplianceDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -683,15 +1591,18 @@ pub async fn data_validation_data_compliance_destroy(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationDataComplianceListParams,
 ) -> Result<crate::models::PaginatedDataComplianceList, Error<DataValidationDataComplianceListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -762,11 +1673,14 @@ pub async fn data_validation_data_compliance_list(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_data_compliance_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: DataValidationDataComplianceNotesCreateParams,
 ) -> Result<crate::models::Note, Error<DataValidationDataComplianceNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -819,14 +1733,17 @@ pub async fn data_validation_data_compliance_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_data_compliance_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationDataComplianceNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<DataValidationDataComplianceNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -894,11 +1811,14 @@ pub async fn data_validation_data_compliance_notes_list(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_data_compliance_request: Option<crate::models::PatchedDataComplianceRequest>,
+    params: DataValidationDataCompliancePartialUpdateParams,
 ) -> Result<crate::models::DataCompliance, Error<DataValidationDataCompliancePartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_data_compliance_request = params.patched_data_compliance_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -951,12 +1871,15 @@ pub async fn data_validation_data_compliance_partial_update(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationDataComplianceRetrieveParams,
 ) -> Result<crate::models::DataCompliance, Error<DataValidationDataComplianceRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1016,11 +1939,14 @@ pub async fn data_validation_data_compliance_retrieve(
 /// API Views for DataCompliance.
 pub async fn data_validation_data_compliance_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    data_compliance_request: crate::models::DataComplianceRequest,
-    format: Option<&str>,
+    params: DataValidationDataComplianceUpdateParams,
 ) -> Result<crate::models::DataCompliance, Error<DataValidationDataComplianceUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let data_compliance_request = params.data_compliance_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1073,10 +1999,13 @@ pub async fn data_validation_data_compliance_update(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesBulkDestroyParams,
 ) -> Result<(), Error<DataValidationMinMaxRulesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1128,15 +2057,17 @@ pub async fn data_validation_min_max_rules_bulk_destroy(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_min_max_validation_rule_request: Vec<
-        crate::models::PatchedBulkWritableMinMaxValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::MinMaxValidationRule>,
     Error<DataValidationMinMaxRulesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_min_max_validation_rule_request =
+        params.patched_bulk_writable_min_max_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1189,13 +2120,15 @@ pub async fn data_validation_min_max_rules_bulk_partial_update(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_min_max_validation_rule_request: Vec<
-        crate::models::BulkWritableMinMaxValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesBulkUpdateParams,
 ) -> Result<Vec<crate::models::MinMaxValidationRule>, Error<DataValidationMinMaxRulesBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_min_max_validation_rule_request =
+        params.bulk_writable_min_max_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1248,10 +2181,13 @@ pub async fn data_validation_min_max_rules_bulk_update(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_create(
     configuration: &configuration::Configuration,
-    min_max_validation_rule_request: crate::models::MinMaxValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesCreateParams,
 ) -> Result<crate::models::MinMaxValidationRule, Error<DataValidationMinMaxRulesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let min_max_validation_rule_request = params.min_max_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1303,10 +2239,13 @@ pub async fn data_validation_min_max_rules_create(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesDestroyParams,
 ) -> Result<(), Error<DataValidationMinMaxRulesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1358,104 +2297,107 @@ pub async fn data_validation_min_max_rules_destroy(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<Vec<i32>>,
-    content_type__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    error_message: Option<Vec<String>>,
-    error_message__ic: Option<Vec<String>>,
-    error_message__ie: Option<Vec<String>>,
-    error_message__iew: Option<Vec<String>>,
-    error_message__ire: Option<Vec<String>>,
-    error_message__isw: Option<Vec<String>>,
-    error_message__n: Option<Vec<String>>,
-    error_message__nic: Option<Vec<String>>,
-    error_message__nie: Option<Vec<String>>,
-    error_message__niew: Option<Vec<String>>,
-    error_message__nire: Option<Vec<String>>,
-    error_message__nisw: Option<Vec<String>>,
-    error_message__nre: Option<Vec<String>>,
-    error_message__re: Option<Vec<String>>,
-    field: Option<Vec<String>>,
-    field__ic: Option<Vec<String>>,
-    field__ie: Option<Vec<String>>,
-    field__iew: Option<Vec<String>>,
-    field__ire: Option<Vec<String>>,
-    field__isw: Option<Vec<String>>,
-    field__n: Option<Vec<String>>,
-    field__nic: Option<Vec<String>>,
-    field__nie: Option<Vec<String>>,
-    field__niew: Option<Vec<String>>,
-    field__nire: Option<Vec<String>>,
-    field__nisw: Option<Vec<String>>,
-    field__nre: Option<Vec<String>>,
-    field__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    max: Option<Vec<f32>>,
-    max__gt: Option<Vec<f32>>,
-    max__gte: Option<Vec<f32>>,
-    max__isnull: Option<bool>,
-    max__lt: Option<Vec<f32>>,
-    max__lte: Option<Vec<f32>>,
-    max__n: Option<Vec<f32>>,
-    min: Option<Vec<f32>>,
-    min__gt: Option<Vec<f32>>,
-    min__gte: Option<Vec<f32>>,
-    min__isnull: Option<bool>,
-    min__lt: Option<Vec<f32>>,
-    min__lte: Option<Vec<f32>>,
-    min__n: Option<Vec<f32>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationMinMaxRulesListParams,
 ) -> Result<
     crate::models::PaginatedMinMaxValidationRuleList,
     Error<DataValidationMinMaxRulesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let error_message = params.error_message;
+    let error_message__ic = params.error_message__ic;
+    let error_message__ie = params.error_message__ie;
+    let error_message__iew = params.error_message__iew;
+    let error_message__ire = params.error_message__ire;
+    let error_message__isw = params.error_message__isw;
+    let error_message__n = params.error_message__n;
+    let error_message__nic = params.error_message__nic;
+    let error_message__nie = params.error_message__nie;
+    let error_message__niew = params.error_message__niew;
+    let error_message__nire = params.error_message__nire;
+    let error_message__nisw = params.error_message__nisw;
+    let error_message__nre = params.error_message__nre;
+    let error_message__re = params.error_message__re;
+    let field = params.field;
+    let field__ic = params.field__ic;
+    let field__ie = params.field__ie;
+    let field__iew = params.field__iew;
+    let field__ire = params.field__ire;
+    let field__isw = params.field__isw;
+    let field__n = params.field__n;
+    let field__nic = params.field__nic;
+    let field__nie = params.field__nie;
+    let field__niew = params.field__niew;
+    let field__nire = params.field__nire;
+    let field__nisw = params.field__nisw;
+    let field__nre = params.field__nre;
+    let field__re = params.field__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let max = params.max;
+    let max__gt = params.max__gt;
+    let max__gte = params.max__gte;
+    let max__isnull = params.max__isnull;
+    let max__lt = params.max__lt;
+    let max__lte = params.max__lte;
+    let max__n = params.max__n;
+    let min = params.min;
+    let min__gt = params.min__gt;
+    let min__gte = params.min__gte;
+    let min__isnull = params.min__isnull;
+    let min__lt = params.min__lt;
+    let min__lte = params.min__lte;
+    let min__n = params.min__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3043,11 +3985,14 @@ pub async fn data_validation_min_max_rules_list(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_min_max_rules_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<DataValidationMinMaxRulesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3100,14 +4045,17 @@ pub async fn data_validation_min_max_rules_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_min_max_rules_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationMinMaxRulesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<DataValidationMinMaxRulesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3175,14 +4123,15 @@ pub async fn data_validation_min_max_rules_notes_list(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_min_max_validation_rule_request: Option<
-        crate::models::PatchedMinMaxValidationRuleRequest,
-    >,
+    params: DataValidationMinMaxRulesPartialUpdateParams,
 ) -> Result<crate::models::MinMaxValidationRule, Error<DataValidationMinMaxRulesPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_min_max_validation_rule_request = params.patched_min_max_validation_rule_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3235,12 +4184,15 @@ pub async fn data_validation_min_max_rules_partial_update(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationMinMaxRulesRetrieveParams,
 ) -> Result<crate::models::MinMaxValidationRule, Error<DataValidationMinMaxRulesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3300,11 +4252,14 @@ pub async fn data_validation_min_max_rules_retrieve(
 /// View to manage min max expression validation rules.
 pub async fn data_validation_min_max_rules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    min_max_validation_rule_request: crate::models::MinMaxValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationMinMaxRulesUpdateParams,
 ) -> Result<crate::models::MinMaxValidationRule, Error<DataValidationMinMaxRulesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let min_max_validation_rule_request = params.min_max_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3357,10 +4312,13 @@ pub async fn data_validation_min_max_rules_update(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: DataValidationRegexRulesBulkDestroyParams,
 ) -> Result<(), Error<DataValidationRegexRulesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3412,15 +4370,17 @@ pub async fn data_validation_regex_rules_bulk_destroy(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_regular_expression_validation_rule_request: Vec<
-        crate::models::PatchedBulkWritableRegularExpressionValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationRegexRulesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::RegularExpressionValidationRule>,
     Error<DataValidationRegexRulesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_regular_expression_validation_rule_request =
+        params.patched_bulk_writable_regular_expression_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3473,15 +4433,17 @@ pub async fn data_validation_regex_rules_bulk_partial_update(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_regular_expression_validation_rule_request: Vec<
-        crate::models::BulkWritableRegularExpressionValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationRegexRulesBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::RegularExpressionValidationRule>,
     Error<DataValidationRegexRulesBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_regular_expression_validation_rule_request =
+        params.bulk_writable_regular_expression_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3534,13 +4496,17 @@ pub async fn data_validation_regex_rules_bulk_update(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_create(
     configuration: &configuration::Configuration,
-    regular_expression_validation_rule_request: crate::models::RegularExpressionValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationRegexRulesCreateParams,
 ) -> Result<
     crate::models::RegularExpressionValidationRule,
     Error<DataValidationRegexRulesCreateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let regular_expression_validation_rule_request =
+        params.regular_expression_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3592,10 +4558,13 @@ pub async fn data_validation_regex_rules_create(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: DataValidationRegexRulesDestroyParams,
 ) -> Result<(), Error<DataValidationRegexRulesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3647,105 +4616,108 @@ pub async fn data_validation_regex_rules_destroy(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<Vec<i32>>,
-    content_type__n: Option<Vec<i32>>,
-    context_processing: Option<bool>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    error_message: Option<Vec<String>>,
-    error_message__ic: Option<Vec<String>>,
-    error_message__ie: Option<Vec<String>>,
-    error_message__iew: Option<Vec<String>>,
-    error_message__ire: Option<Vec<String>>,
-    error_message__isw: Option<Vec<String>>,
-    error_message__n: Option<Vec<String>>,
-    error_message__nic: Option<Vec<String>>,
-    error_message__nie: Option<Vec<String>>,
-    error_message__niew: Option<Vec<String>>,
-    error_message__nire: Option<Vec<String>>,
-    error_message__nisw: Option<Vec<String>>,
-    error_message__nre: Option<Vec<String>>,
-    error_message__re: Option<Vec<String>>,
-    field: Option<Vec<String>>,
-    field__ic: Option<Vec<String>>,
-    field__ie: Option<Vec<String>>,
-    field__iew: Option<Vec<String>>,
-    field__ire: Option<Vec<String>>,
-    field__isw: Option<Vec<String>>,
-    field__n: Option<Vec<String>>,
-    field__nic: Option<Vec<String>>,
-    field__nie: Option<Vec<String>>,
-    field__niew: Option<Vec<String>>,
-    field__nire: Option<Vec<String>>,
-    field__nisw: Option<Vec<String>>,
-    field__nre: Option<Vec<String>>,
-    field__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    regular_expression: Option<Vec<String>>,
-    regular_expression__ic: Option<Vec<String>>,
-    regular_expression__ie: Option<Vec<String>>,
-    regular_expression__iew: Option<Vec<String>>,
-    regular_expression__ire: Option<Vec<String>>,
-    regular_expression__isw: Option<Vec<String>>,
-    regular_expression__n: Option<Vec<String>>,
-    regular_expression__nic: Option<Vec<String>>,
-    regular_expression__nie: Option<Vec<String>>,
-    regular_expression__niew: Option<Vec<String>>,
-    regular_expression__nire: Option<Vec<String>>,
-    regular_expression__nisw: Option<Vec<String>>,
-    regular_expression__nre: Option<Vec<String>>,
-    regular_expression__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRegexRulesListParams,
 ) -> Result<
     crate::models::PaginatedRegularExpressionValidationRuleList,
     Error<DataValidationRegexRulesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let context_processing = params.context_processing;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let error_message = params.error_message;
+    let error_message__ic = params.error_message__ic;
+    let error_message__ie = params.error_message__ie;
+    let error_message__iew = params.error_message__iew;
+    let error_message__ire = params.error_message__ire;
+    let error_message__isw = params.error_message__isw;
+    let error_message__n = params.error_message__n;
+    let error_message__nic = params.error_message__nic;
+    let error_message__nie = params.error_message__nie;
+    let error_message__niew = params.error_message__niew;
+    let error_message__nire = params.error_message__nire;
+    let error_message__nisw = params.error_message__nisw;
+    let error_message__nre = params.error_message__nre;
+    let error_message__re = params.error_message__re;
+    let field = params.field;
+    let field__ic = params.field__ic;
+    let field__ie = params.field__ie;
+    let field__iew = params.field__iew;
+    let field__ire = params.field__ire;
+    let field__isw = params.field__isw;
+    let field__n = params.field__n;
+    let field__nic = params.field__nic;
+    let field__nie = params.field__nie;
+    let field__niew = params.field__niew;
+    let field__nire = params.field__nire;
+    let field__nisw = params.field__nisw;
+    let field__nre = params.field__nre;
+    let field__re = params.field__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let regular_expression = params.regular_expression;
+    let regular_expression__ic = params.regular_expression__ic;
+    let regular_expression__ie = params.regular_expression__ie;
+    let regular_expression__iew = params.regular_expression__iew;
+    let regular_expression__ire = params.regular_expression__ire;
+    let regular_expression__isw = params.regular_expression__isw;
+    let regular_expression__n = params.regular_expression__n;
+    let regular_expression__nic = params.regular_expression__nic;
+    let regular_expression__nie = params.regular_expression__nie;
+    let regular_expression__niew = params.regular_expression__niew;
+    let regular_expression__nire = params.regular_expression__nire;
+    let regular_expression__nisw = params.regular_expression__nisw;
+    let regular_expression__nre = params.regular_expression__nre;
+    let regular_expression__re = params.regular_expression__re;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5367,11 +6339,14 @@ pub async fn data_validation_regex_rules_list(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_regex_rules_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: DataValidationRegexRulesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<DataValidationRegexRulesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5424,14 +6399,17 @@ pub async fn data_validation_regex_rules_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_regex_rules_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRegexRulesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<DataValidationRegexRulesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5499,16 +6477,18 @@ pub async fn data_validation_regex_rules_notes_list(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_regular_expression_validation_rule_request: Option<
-        crate::models::PatchedRegularExpressionValidationRuleRequest,
-    >,
+    params: DataValidationRegexRulesPartialUpdateParams,
 ) -> Result<
     crate::models::RegularExpressionValidationRule,
     Error<DataValidationRegexRulesPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_regular_expression_validation_rule_request =
+        params.patched_regular_expression_validation_rule_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5562,15 +6542,18 @@ pub async fn data_validation_regex_rules_partial_update(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRegexRulesRetrieveParams,
 ) -> Result<
     crate::models::RegularExpressionValidationRule,
     Error<DataValidationRegexRulesRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5630,14 +6613,18 @@ pub async fn data_validation_regex_rules_retrieve(
 /// View to manage regular expression validation rules.
 pub async fn data_validation_regex_rules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    regular_expression_validation_rule_request: crate::models::RegularExpressionValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationRegexRulesUpdateParams,
 ) -> Result<
     crate::models::RegularExpressionValidationRule,
     Error<DataValidationRegexRulesUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let regular_expression_validation_rule_request =
+        params.regular_expression_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5690,10 +6677,13 @@ pub async fn data_validation_regex_rules_update(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesBulkDestroyParams,
 ) -> Result<(), Error<DataValidationRequiredRulesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5745,15 +6735,17 @@ pub async fn data_validation_required_rules_bulk_destroy(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_required_validation_rule_request: Vec<
-        crate::models::PatchedBulkWritableRequiredValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::RequiredValidationRule>,
     Error<DataValidationRequiredRulesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_required_validation_rule_request =
+        params.patched_bulk_writable_required_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5806,15 +6798,17 @@ pub async fn data_validation_required_rules_bulk_partial_update(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_required_validation_rule_request: Vec<
-        crate::models::BulkWritableRequiredValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::RequiredValidationRule>,
     Error<DataValidationRequiredRulesBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_required_validation_rule_request =
+        params.bulk_writable_required_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5867,10 +6861,13 @@ pub async fn data_validation_required_rules_bulk_update(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_create(
     configuration: &configuration::Configuration,
-    required_validation_rule_request: crate::models::RequiredValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesCreateParams,
 ) -> Result<crate::models::RequiredValidationRule, Error<DataValidationRequiredRulesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let required_validation_rule_request = params.required_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5922,10 +6919,13 @@ pub async fn data_validation_required_rules_create(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesDestroyParams,
 ) -> Result<(), Error<DataValidationRequiredRulesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5977,90 +6977,93 @@ pub async fn data_validation_required_rules_destroy(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<Vec<i32>>,
-    content_type__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    error_message: Option<Vec<String>>,
-    error_message__ic: Option<Vec<String>>,
-    error_message__ie: Option<Vec<String>>,
-    error_message__iew: Option<Vec<String>>,
-    error_message__ire: Option<Vec<String>>,
-    error_message__isw: Option<Vec<String>>,
-    error_message__n: Option<Vec<String>>,
-    error_message__nic: Option<Vec<String>>,
-    error_message__nie: Option<Vec<String>>,
-    error_message__niew: Option<Vec<String>>,
-    error_message__nire: Option<Vec<String>>,
-    error_message__nisw: Option<Vec<String>>,
-    error_message__nre: Option<Vec<String>>,
-    error_message__re: Option<Vec<String>>,
-    field: Option<Vec<String>>,
-    field__ic: Option<Vec<String>>,
-    field__ie: Option<Vec<String>>,
-    field__iew: Option<Vec<String>>,
-    field__ire: Option<Vec<String>>,
-    field__isw: Option<Vec<String>>,
-    field__n: Option<Vec<String>>,
-    field__nic: Option<Vec<String>>,
-    field__nie: Option<Vec<String>>,
-    field__niew: Option<Vec<String>>,
-    field__nire: Option<Vec<String>>,
-    field__nisw: Option<Vec<String>>,
-    field__nre: Option<Vec<String>>,
-    field__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRequiredRulesListParams,
 ) -> Result<
     crate::models::PaginatedRequiredValidationRuleList,
     Error<DataValidationRequiredRulesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let error_message = params.error_message;
+    let error_message__ic = params.error_message__ic;
+    let error_message__ie = params.error_message__ie;
+    let error_message__iew = params.error_message__iew;
+    let error_message__ire = params.error_message__ire;
+    let error_message__isw = params.error_message__isw;
+    let error_message__n = params.error_message__n;
+    let error_message__nic = params.error_message__nic;
+    let error_message__nie = params.error_message__nie;
+    let error_message__niew = params.error_message__niew;
+    let error_message__nire = params.error_message__nire;
+    let error_message__nisw = params.error_message__nisw;
+    let error_message__nre = params.error_message__nre;
+    let error_message__re = params.error_message__re;
+    let field = params.field;
+    let field__ic = params.field__ic;
+    let field__ie = params.field__ie;
+    let field__iew = params.field__iew;
+    let field__ire = params.field__ire;
+    let field__isw = params.field__isw;
+    let field__n = params.field__n;
+    let field__nic = params.field__nic;
+    let field__nie = params.field__nie;
+    let field__niew = params.field__niew;
+    let field__nire = params.field__nire;
+    let field__nisw = params.field__nisw;
+    let field__nre = params.field__nre;
+    let field__re = params.field__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7412,11 +8415,14 @@ pub async fn data_validation_required_rules_list(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_required_rules_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<DataValidationRequiredRulesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7469,14 +8475,17 @@ pub async fn data_validation_required_rules_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_required_rules_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRequiredRulesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<DataValidationRequiredRulesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7544,16 +8553,17 @@ pub async fn data_validation_required_rules_notes_list(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_required_validation_rule_request: Option<
-        crate::models::PatchedRequiredValidationRuleRequest,
-    >,
+    params: DataValidationRequiredRulesPartialUpdateParams,
 ) -> Result<
     crate::models::RequiredValidationRule,
     Error<DataValidationRequiredRulesPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_required_validation_rule_request = params.patched_required_validation_rule_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7606,13 +8616,16 @@ pub async fn data_validation_required_rules_partial_update(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationRequiredRulesRetrieveParams,
 ) -> Result<crate::models::RequiredValidationRule, Error<DataValidationRequiredRulesRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7672,11 +8685,14 @@ pub async fn data_validation_required_rules_retrieve(
 /// View to manage required field validation rules.
 pub async fn data_validation_required_rules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    required_validation_rule_request: crate::models::RequiredValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationRequiredRulesUpdateParams,
 ) -> Result<crate::models::RequiredValidationRule, Error<DataValidationRequiredRulesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let required_validation_rule_request = params.required_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7729,10 +8745,13 @@ pub async fn data_validation_required_rules_update(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesBulkDestroyParams,
 ) -> Result<(), Error<DataValidationUniqueRulesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7784,15 +8803,17 @@ pub async fn data_validation_unique_rules_bulk_destroy(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_unique_validation_rule_request: Vec<
-        crate::models::PatchedBulkWritableUniqueValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::UniqueValidationRule>,
     Error<DataValidationUniqueRulesBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_unique_validation_rule_request =
+        params.patched_bulk_writable_unique_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7845,13 +8866,15 @@ pub async fn data_validation_unique_rules_bulk_partial_update(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_unique_validation_rule_request: Vec<
-        crate::models::BulkWritableUniqueValidationRuleRequest,
-    >,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesBulkUpdateParams,
 ) -> Result<Vec<crate::models::UniqueValidationRule>, Error<DataValidationUniqueRulesBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_unique_validation_rule_request =
+        params.bulk_writable_unique_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7904,10 +8927,13 @@ pub async fn data_validation_unique_rules_bulk_update(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_create(
     configuration: &configuration::Configuration,
-    unique_validation_rule_request: crate::models::UniqueValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesCreateParams,
 ) -> Result<crate::models::UniqueValidationRule, Error<DataValidationUniqueRulesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let unique_validation_rule_request = params.unique_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -7959,10 +8985,13 @@ pub async fn data_validation_unique_rules_create(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesDestroyParams,
 ) -> Result<(), Error<DataValidationUniqueRulesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8014,96 +9043,99 @@ pub async fn data_validation_unique_rules_destroy(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    content_type: Option<Vec<i32>>,
-    content_type__n: Option<Vec<i32>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    enabled: Option<bool>,
-    error_message: Option<Vec<String>>,
-    error_message__ic: Option<Vec<String>>,
-    error_message__ie: Option<Vec<String>>,
-    error_message__iew: Option<Vec<String>>,
-    error_message__ire: Option<Vec<String>>,
-    error_message__isw: Option<Vec<String>>,
-    error_message__n: Option<Vec<String>>,
-    error_message__nic: Option<Vec<String>>,
-    error_message__nie: Option<Vec<String>>,
-    error_message__niew: Option<Vec<String>>,
-    error_message__nire: Option<Vec<String>>,
-    error_message__nisw: Option<Vec<String>>,
-    error_message__nre: Option<Vec<String>>,
-    error_message__re: Option<Vec<String>>,
-    field: Option<Vec<String>>,
-    field__ic: Option<Vec<String>>,
-    field__ie: Option<Vec<String>>,
-    field__iew: Option<Vec<String>>,
-    field__ire: Option<Vec<String>>,
-    field__isw: Option<Vec<String>>,
-    field__n: Option<Vec<String>>,
-    field__nic: Option<Vec<String>>,
-    field__nie: Option<Vec<String>>,
-    field__niew: Option<Vec<String>>,
-    field__nire: Option<Vec<String>>,
-    field__nisw: Option<Vec<String>>,
-    field__nre: Option<Vec<String>>,
-    field__re: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    max_instances: Option<Vec<i32>>,
-    max_instances__gt: Option<Vec<i32>>,
-    max_instances__gte: Option<Vec<i32>>,
-    max_instances__lt: Option<Vec<i32>>,
-    max_instances__lte: Option<Vec<i32>>,
-    max_instances__n: Option<Vec<i32>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationUniqueRulesListParams,
 ) -> Result<
     crate::models::PaginatedUniqueValidationRuleList,
     Error<DataValidationUniqueRulesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let content_type = params.content_type;
+    let content_type__n = params.content_type__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let enabled = params.enabled;
+    let error_message = params.error_message;
+    let error_message__ic = params.error_message__ic;
+    let error_message__ie = params.error_message__ie;
+    let error_message__iew = params.error_message__iew;
+    let error_message__ire = params.error_message__ire;
+    let error_message__isw = params.error_message__isw;
+    let error_message__n = params.error_message__n;
+    let error_message__nic = params.error_message__nic;
+    let error_message__nie = params.error_message__nie;
+    let error_message__niew = params.error_message__niew;
+    let error_message__nire = params.error_message__nire;
+    let error_message__nisw = params.error_message__nisw;
+    let error_message__nre = params.error_message__nre;
+    let error_message__re = params.error_message__re;
+    let field = params.field;
+    let field__ic = params.field__ic;
+    let field__ie = params.field__ie;
+    let field__iew = params.field__iew;
+    let field__ire = params.field__ire;
+    let field__isw = params.field__isw;
+    let field__n = params.field__n;
+    let field__nic = params.field__nic;
+    let field__nie = params.field__nie;
+    let field__niew = params.field__niew;
+    let field__nire = params.field__nire;
+    let field__nisw = params.field__nisw;
+    let field__nre = params.field__nre;
+    let field__re = params.field__re;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let max_instances = params.max_instances;
+    let max_instances__gt = params.max_instances__gt;
+    let max_instances__gte = params.max_instances__gte;
+    let max_instances__lt = params.max_instances__lt;
+    let max_instances__lte = params.max_instances__lte;
+    let max_instances__n = params.max_instances__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9569,11 +10601,14 @@ pub async fn data_validation_unique_rules_list(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_unique_rules_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<DataValidationUniqueRulesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9626,14 +10661,17 @@ pub async fn data_validation_unique_rules_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn data_validation_unique_rules_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationUniqueRulesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<DataValidationUniqueRulesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9701,14 +10739,15 @@ pub async fn data_validation_unique_rules_notes_list(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_unique_validation_rule_request: Option<
-        crate::models::PatchedUniqueValidationRuleRequest,
-    >,
+    params: DataValidationUniqueRulesPartialUpdateParams,
 ) -> Result<crate::models::UniqueValidationRule, Error<DataValidationUniqueRulesPartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_unique_validation_rule_request = params.patched_unique_validation_rule_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9761,12 +10800,15 @@ pub async fn data_validation_unique_rules_partial_update(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: DataValidationUniqueRulesRetrieveParams,
 ) -> Result<crate::models::UniqueValidationRule, Error<DataValidationUniqueRulesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9826,11 +10868,14 @@ pub async fn data_validation_unique_rules_retrieve(
 /// View to manage unique value validation rules.
 pub async fn data_validation_unique_rules_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    unique_validation_rule_request: crate::models::UniqueValidationRuleRequest,
-    format: Option<&str>,
+    params: DataValidationUniqueRulesUpdateParams,
 ) -> Result<crate::models::UniqueValidationRule, Error<DataValidationUniqueRulesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let unique_validation_rule_request = params.unique_validation_rule_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

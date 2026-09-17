@@ -13,6 +13,16 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`status_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct StatusRetrieveParams {
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
 /// struct for typed errors of method [`status_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -23,11 +33,14 @@ pub enum StatusRetrieveError {
 /// A lightweight read-only endpoint for conveying the current operational status.
 pub async fn status_retrieve(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: StatusRetrieveParams,
 ) -> Result<crate::models::StatusRetrieve200Response, Error<StatusRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 

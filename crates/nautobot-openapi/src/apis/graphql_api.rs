@@ -13,6 +13,13 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`graphql_create`]
+#[derive(Clone, Debug, Default)]
+pub struct GraphqlCreateParams {
+    pub graph_qlapi_request: crate::models::GraphQlapiRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`graphql_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -24,10 +31,13 @@ pub enum GraphqlCreateError {
 /// Query the database using a GraphQL query
 pub async fn graphql_create(
     configuration: &configuration::Configuration,
-    graph_qlapi_request: crate::models::GraphQlapiRequest,
-    format: Option<&str>,
+    params: GraphqlCreateParams,
 ) -> Result<crate::models::GraphqlCreate200Response, Error<GraphqlCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let graph_qlapi_request = params.graph_qlapi_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

@@ -13,6 +13,549 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`users_config_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersConfigRetrieveParams {
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_groups_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsBulkDestroyParams {
+    pub bulk_operation_integer_id_request: Vec<crate::models::BulkOperationIntegerIdRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_groups_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsBulkPartialUpdateParams {
+    pub patched_bulk_writable_group_request: Vec<crate::models::PatchedBulkWritableGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_groups_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsBulkUpdateParams {
+    pub bulk_writable_group_request: Vec<crate::models::BulkWritableGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_groups_create`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsCreateParams {
+    pub group_request: crate::models::GroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_groups_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsDestroyParams {
+    /// A unique integer value identifying this group.
+    pub id: i32,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_groups_list`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsListParams {
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<i32>>,
+    pub id__gt: Option<Vec<i32>>,
+    pub id__gte: Option<Vec<i32>>,
+    pub id__lt: Option<Vec<i32>>,
+    pub id__lte: Option<Vec<i32>>,
+    pub id__n: Option<Vec<i32>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_groups_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsPartialUpdateParams {
+    /// A unique integer value identifying this group.
+    pub id: i32,
+    pub format: Option<String>,
+    pub patched_group_request: Option<crate::models::PatchedGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`users_groups_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsRetrieveParams {
+    /// A unique integer value identifying this group.
+    pub id: i32,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_groups_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersGroupsUpdateParams {
+    /// A unique integer value identifying this group.
+    pub id: i32,
+    pub group_request: crate::models::GroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsBulkPartialUpdateParams {
+    pub patched_bulk_writable_object_permission_request:
+        Vec<crate::models::PatchedBulkWritableObjectPermissionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsBulkUpdateParams {
+    pub bulk_writable_object_permission_request:
+        Vec<crate::models::BulkWritableObjectPermissionRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_create`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsCreateParams {
+    pub object_permission_request: crate::models::ObjectPermissionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsDestroyParams {
+    /// A UUID string identifying this permission.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_list`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsListParams {
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub enabled: Option<bool>,
+    pub format: Option<String>,
+    /// Group (name)
+    pub groups: Option<Vec<String>>,
+    /// Exclude Group (name)
+    pub groups__n: Option<Vec<String>>,
+    /// Group (ID)
+    pub groups_id: Option<Vec<i32>>,
+    /// Exclude Group (ID)
+    pub groups_id__n: Option<Vec<i32>>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub object_types: Option<Vec<i32>>,
+    pub object_types__n: Option<Vec<i32>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub users: Option<Vec<String>>,
+    pub users__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsPartialUpdateParams {
+    /// A UUID string identifying this permission.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_object_permission_request: Option<crate::models::PatchedObjectPermissionRequest>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsRetrieveParams {
+    /// A UUID string identifying this permission.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_permissions_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersPermissionsUpdateParams {
+    /// A UUID string identifying this permission.
+    pub id: String,
+    pub object_permission_request: crate::models::ObjectPermissionRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensBulkPartialUpdateParams {
+    pub patched_bulk_writable_token_request: Vec<crate::models::PatchedBulkWritableTokenRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensBulkUpdateParams {
+    pub bulk_writable_token_request: Vec<crate::models::BulkWritableTokenRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_create`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensCreateParams {
+    pub format: Option<String>,
+    pub token_request: Option<crate::models::TokenRequest>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensDestroyParams {
+    /// A UUID string identifying this token.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_list`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensListParams {
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub expires: Option<Vec<String>>,
+    pub expires__gt: Option<Vec<String>>,
+    pub expires__gte: Option<Vec<String>>,
+    pub expires__isnull: Option<bool>,
+    pub expires__lt: Option<Vec<String>>,
+    pub expires__lte: Option<Vec<String>>,
+    pub expires__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub key: Option<Vec<String>>,
+    pub key__ic: Option<Vec<String>>,
+    pub key__ie: Option<Vec<String>>,
+    pub key__iew: Option<Vec<String>>,
+    pub key__ire: Option<Vec<String>>,
+    pub key__isw: Option<Vec<String>>,
+    pub key__n: Option<Vec<String>>,
+    pub key__nic: Option<Vec<String>>,
+    pub key__nie: Option<Vec<String>>,
+    pub key__niew: Option<Vec<String>>,
+    pub key__nire: Option<Vec<String>>,
+    pub key__nisw: Option<Vec<String>>,
+    pub key__nre: Option<Vec<String>>,
+    pub key__re: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub write_enabled: Option<bool>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensPartialUpdateParams {
+    /// A UUID string identifying this token.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_token_request: Option<crate::models::PatchedTokenRequest>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensRetrieveParams {
+    /// A UUID string identifying this token.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_tokens_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersTokensUpdateParams {
+    /// A UUID string identifying this token.
+    pub id: String,
+    pub format: Option<String>,
+    pub token_request: Option<crate::models::TokenRequest>,
+}
+
+/// struct for passing parameters to the method [`users_users_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_users_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersBulkPartialUpdateParams {
+    pub patched_bulk_writable_user_request: Vec<crate::models::PatchedBulkWritableUserRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_users_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersBulkUpdateParams {
+    pub bulk_writable_user_request: Vec<crate::models::BulkWritableUserRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_users_create`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersCreateParams {
+    pub user_request: crate::models::UserRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_users_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersDestroyParams {
+    /// A UUID string identifying this user.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`users_users_list`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersListParams {
+    pub email: Option<Vec<String>>,
+    pub email__ic: Option<Vec<String>>,
+    pub email__ie: Option<Vec<String>>,
+    pub email__iew: Option<Vec<String>>,
+    pub email__ire: Option<Vec<String>>,
+    pub email__isw: Option<Vec<String>>,
+    pub email__n: Option<Vec<String>>,
+    pub email__nic: Option<Vec<String>>,
+    pub email__nie: Option<Vec<String>>,
+    pub email__niew: Option<Vec<String>>,
+    pub email__nire: Option<Vec<String>>,
+    pub email__nisw: Option<Vec<String>>,
+    pub email__nre: Option<Vec<String>>,
+    pub email__re: Option<Vec<String>>,
+    pub first_name: Option<Vec<String>>,
+    pub first_name__ic: Option<Vec<String>>,
+    pub first_name__ie: Option<Vec<String>>,
+    pub first_name__iew: Option<Vec<String>>,
+    pub first_name__ire: Option<Vec<String>>,
+    pub first_name__isw: Option<Vec<String>>,
+    pub first_name__n: Option<Vec<String>>,
+    pub first_name__nic: Option<Vec<String>>,
+    pub first_name__nie: Option<Vec<String>>,
+    pub first_name__niew: Option<Vec<String>>,
+    pub first_name__nire: Option<Vec<String>>,
+    pub first_name__nisw: Option<Vec<String>>,
+    pub first_name__nre: Option<Vec<String>>,
+    pub first_name__re: Option<Vec<String>>,
+    pub format: Option<String>,
+    pub groups: Option<Vec<String>>,
+    pub groups__n: Option<Vec<String>>,
+    /// Group (ID)
+    pub groups_id: Option<Vec<i32>>,
+    /// Exclude Group (ID)
+    pub groups_id__n: Option<Vec<i32>>,
+    /// Has Changes
+    pub has_object_changes: Option<bool>,
+    /// Has object permissions
+    pub has_object_permissions: Option<bool>,
+    /// Has Rack Reservations
+    pub has_rack_reservations: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub is_active: Option<bool>,
+    pub is_staff: Option<bool>,
+    pub last_name: Option<Vec<String>>,
+    pub last_name__ic: Option<Vec<String>>,
+    pub last_name__ie: Option<Vec<String>>,
+    pub last_name__iew: Option<Vec<String>>,
+    pub last_name__ire: Option<Vec<String>>,
+    pub last_name__isw: Option<Vec<String>>,
+    pub last_name__n: Option<Vec<String>>,
+    pub last_name__nic: Option<Vec<String>>,
+    pub last_name__nie: Option<Vec<String>>,
+    pub last_name__niew: Option<Vec<String>>,
+    pub last_name__nire: Option<Vec<String>>,
+    pub last_name__nisw: Option<Vec<String>>,
+    pub last_name__nre: Option<Vec<String>>,
+    pub last_name__re: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// Object Changes (ID)
+    pub object_changes: Option<Vec<uuid::Uuid>>,
+    /// Object Changes (ID) is null
+    pub object_changes__isnull: Option<bool>,
+    /// Exclude Object Changes (ID)
+    pub object_changes__n: Option<Vec<uuid::Uuid>>,
+    pub object_permissions: Option<Vec<String>>,
+    pub object_permissions__isnull: Option<bool>,
+    pub object_permissions__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub rack_reservations_id: Option<Vec<uuid::Uuid>>,
+    pub rack_reservations_id__isnull: Option<bool>,
+    pub rack_reservations_id__n: Option<Vec<uuid::Uuid>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub username: Option<Vec<String>>,
+    pub username__ic: Option<Vec<String>>,
+    pub username__ie: Option<Vec<String>>,
+    pub username__iew: Option<Vec<String>>,
+    pub username__ire: Option<Vec<String>>,
+    pub username__isw: Option<Vec<String>>,
+    pub username__n: Option<Vec<String>>,
+    pub username__nic: Option<Vec<String>>,
+    pub username__nie: Option<Vec<String>>,
+    pub username__niew: Option<Vec<String>>,
+    pub username__nire: Option<Vec<String>>,
+    pub username__nisw: Option<Vec<String>>,
+    pub username__nre: Option<Vec<String>>,
+    pub username__re: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_users_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersPartialUpdateParams {
+    /// A UUID string identifying this user.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_user_request: Option<crate::models::PatchedUserRequest>,
+}
+
+/// struct for passing parameters to the method [`users_users_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersRetrieveParams {
+    /// A UUID string identifying this user.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`users_users_update`]
+#[derive(Clone, Debug, Default)]
+pub struct UsersUsersUpdateParams {
+    /// A UUID string identifying this user.
+    pub id: String,
+    pub user_request: crate::models::UserRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`users_config_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -275,12 +818,15 @@ pub enum UsersUsersUpdateError {
 /// Return the config_data for the currently authenticated User.
 pub async fn users_config_retrieve(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersConfigRetrieveParams,
 ) -> Result<::std::collections::HashMap<String, serde_json::Value>, Error<UsersConfigRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -336,10 +882,13 @@ pub async fn users_config_retrieve(
 /// Destroy a list of group objects.
 pub async fn users_groups_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_integer_id_request: Vec<crate::models::BulkOperationIntegerIdRequest>,
-    format: Option<&str>,
+    params: UsersGroupsBulkDestroyParams,
 ) -> Result<(), Error<UsersGroupsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_integer_id_request = params.bulk_operation_integer_id_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -388,10 +937,13 @@ pub async fn users_groups_bulk_destroy(
 /// Partial update a list of group objects.
 pub async fn users_groups_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_group_request: Vec<crate::models::PatchedBulkWritableGroupRequest>,
-    format: Option<&str>,
+    params: UsersGroupsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Group>, Error<UsersGroupsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_group_request = params.patched_bulk_writable_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -440,10 +992,13 @@ pub async fn users_groups_bulk_partial_update(
 /// Update a list of group objects.
 pub async fn users_groups_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_group_request: Vec<crate::models::BulkWritableGroupRequest>,
-    format: Option<&str>,
+    params: UsersGroupsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Group>, Error<UsersGroupsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_group_request = params.bulk_writable_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -492,10 +1047,13 @@ pub async fn users_groups_bulk_update(
 /// Create one or more group objects.
 pub async fn users_groups_create(
     configuration: &configuration::Configuration,
-    group_request: crate::models::GroupRequest,
-    format: Option<&str>,
+    params: UsersGroupsCreateParams,
 ) -> Result<crate::models::Group, Error<UsersGroupsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let group_request = params.group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -544,10 +1102,13 @@ pub async fn users_groups_create(
 /// Destroy a group object.
 pub async fn users_groups_destroy(
     configuration: &configuration::Configuration,
-    id: i32,
-    format: Option<&str>,
+    params: UsersGroupsDestroyParams,
 ) -> Result<(), Error<UsersGroupsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -599,35 +1160,38 @@ pub async fn users_groups_destroy(
 /// Retrieve a list of group objects.
 pub async fn users_groups_list(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    id: Option<Vec<i32>>,
-    id__gt: Option<Vec<i32>>,
-    id__gte: Option<Vec<i32>>,
-    id__lt: Option<Vec<i32>>,
-    id__lte: Option<Vec<i32>>,
-    id__n: Option<Vec<i32>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersGroupsListParams,
 ) -> Result<crate::models::PaginatedGroupList, Error<UsersGroupsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let id = params.id;
+    let id__gt = params.id__gt;
+    let id__gte = params.id__gte;
+    let id__lt = params.id__lt;
+    let id__lte = params.id__lte;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1078,11 +1642,14 @@ pub async fn users_groups_list(
 /// Partial update a group object.
 pub async fn users_groups_partial_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    format: Option<&str>,
-    patched_group_request: Option<crate::models::PatchedGroupRequest>,
+    params: UsersGroupsPartialUpdateParams,
 ) -> Result<crate::models::Group, Error<UsersGroupsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_group_request = params.patched_group_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1135,12 +1702,15 @@ pub async fn users_groups_partial_update(
 /// Retrieve a group object.
 pub async fn users_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: i32,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersGroupsRetrieveParams,
 ) -> Result<crate::models::Group, Error<UsersGroupsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1200,11 +1770,14 @@ pub async fn users_groups_retrieve(
 /// Update a group object.
 pub async fn users_groups_update(
     configuration: &configuration::Configuration,
-    id: i32,
-    group_request: crate::models::GroupRequest,
-    format: Option<&str>,
+    params: UsersGroupsUpdateParams,
 ) -> Result<crate::models::Group, Error<UsersGroupsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let group_request = params.group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1257,10 +1830,13 @@ pub async fn users_groups_update(
 /// Destroy a list of permission objects.
 pub async fn users_permissions_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: UsersPermissionsBulkDestroyParams,
 ) -> Result<(), Error<UsersPermissionsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1309,12 +1885,14 @@ pub async fn users_permissions_bulk_destroy(
 /// Partial update a list of permission objects.
 pub async fn users_permissions_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_object_permission_request: Vec<
-        crate::models::PatchedBulkWritableObjectPermissionRequest,
-    >,
-    format: Option<&str>,
+    params: UsersPermissionsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::ObjectPermission>, Error<UsersPermissionsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_object_permission_request =
+        params.patched_bulk_writable_object_permission_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1364,12 +1942,13 @@ pub async fn users_permissions_bulk_partial_update(
 /// Update a list of permission objects.
 pub async fn users_permissions_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_object_permission_request: Vec<
-        crate::models::BulkWritableObjectPermissionRequest,
-    >,
-    format: Option<&str>,
+    params: UsersPermissionsBulkUpdateParams,
 ) -> Result<Vec<crate::models::ObjectPermission>, Error<UsersPermissionsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_object_permission_request = params.bulk_writable_object_permission_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1418,10 +1997,13 @@ pub async fn users_permissions_bulk_update(
 /// Create one or more permission objects.
 pub async fn users_permissions_create(
     configuration: &configuration::Configuration,
-    object_permission_request: crate::models::ObjectPermissionRequest,
-    format: Option<&str>,
+    params: UsersPermissionsCreateParams,
 ) -> Result<crate::models::ObjectPermission, Error<UsersPermissionsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let object_permission_request = params.object_permission_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1470,10 +2052,13 @@ pub async fn users_permissions_create(
 /// Destroy a permission object.
 pub async fn users_permissions_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: UsersPermissionsDestroyParams,
 ) -> Result<(), Error<UsersPermissionsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1525,54 +2110,57 @@ pub async fn users_permissions_destroy(
 /// Retrieve a list of permission objects.
 pub async fn users_permissions_list(
     configuration: &configuration::Configuration,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    enabled: Option<bool>,
-    format: Option<&str>,
-    groups: Option<Vec<String>>,
-    groups__n: Option<Vec<String>>,
-    groups_id: Option<Vec<i32>>,
-    groups_id__n: Option<Vec<i32>>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    object_types: Option<Vec<i32>>,
-    object_types__n: Option<Vec<i32>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    users: Option<Vec<String>>,
-    users__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersPermissionsListParams,
 ) -> Result<crate::models::PaginatedObjectPermissionList, Error<UsersPermissionsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let enabled = params.enabled;
+    let format = params.format;
+    let groups = params.groups;
+    let groups__n = params.groups__n;
+    let groups_id = params.groups_id;
+    let groups_id__n = params.groups_id__n;
+    let id = params.id;
+    let id__n = params.id__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let object_types = params.object_types;
+    let object_types__n = params.object_types__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let users = params.users;
+    let users__n = params.users__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2369,11 +2957,14 @@ pub async fn users_permissions_list(
 /// Partial update a permission object.
 pub async fn users_permissions_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_object_permission_request: Option<crate::models::PatchedObjectPermissionRequest>,
+    params: UsersPermissionsPartialUpdateParams,
 ) -> Result<crate::models::ObjectPermission, Error<UsersPermissionsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_object_permission_request = params.patched_object_permission_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2426,12 +3017,15 @@ pub async fn users_permissions_partial_update(
 /// Retrieve a permission object.
 pub async fn users_permissions_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersPermissionsRetrieveParams,
 ) -> Result<crate::models::ObjectPermission, Error<UsersPermissionsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2491,11 +3085,14 @@ pub async fn users_permissions_retrieve(
 /// Update a permission object.
 pub async fn users_permissions_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    object_permission_request: crate::models::ObjectPermissionRequest,
-    format: Option<&str>,
+    params: UsersPermissionsUpdateParams,
 ) -> Result<crate::models::ObjectPermission, Error<UsersPermissionsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let object_permission_request = params.object_permission_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2548,10 +3145,13 @@ pub async fn users_permissions_update(
 /// Destroy a list of token objects.
 pub async fn users_tokens_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: UsersTokensBulkDestroyParams,
 ) -> Result<(), Error<UsersTokensBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2606,10 +3206,13 @@ pub async fn users_tokens_bulk_destroy(
 /// Partial update a list of token objects.
 pub async fn users_tokens_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_token_request: Vec<crate::models::PatchedBulkWritableTokenRequest>,
-    format: Option<&str>,
+    params: UsersTokensBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Token>, Error<UsersTokensBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_token_request = params.patched_bulk_writable_token_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2664,10 +3267,13 @@ pub async fn users_tokens_bulk_partial_update(
 /// Update a list of token objects.
 pub async fn users_tokens_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_token_request: Vec<crate::models::BulkWritableTokenRequest>,
-    format: Option<&str>,
+    params: UsersTokensBulkUpdateParams,
 ) -> Result<Vec<crate::models::Token>, Error<UsersTokensBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_token_request = params.bulk_writable_token_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2722,10 +3328,13 @@ pub async fn users_tokens_bulk_update(
 /// Create one or more token objects.
 pub async fn users_tokens_create(
     configuration: &configuration::Configuration,
-    format: Option<&str>,
-    token_request: Option<crate::models::TokenRequest>,
+    params: UsersTokensCreateParams,
 ) -> Result<crate::models::Token, Error<UsersTokensCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let format = params.format;
+    let token_request = params.token_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2780,10 +3389,13 @@ pub async fn users_tokens_create(
 /// Destroy a token object.
 pub async fn users_tokens_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: UsersTokensDestroyParams,
 ) -> Result<(), Error<UsersTokensDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2841,59 +3453,62 @@ pub async fn users_tokens_destroy(
 /// Retrieve a list of token objects.
 pub async fn users_tokens_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    expires: Option<Vec<String>>,
-    expires__gt: Option<Vec<String>>,
-    expires__gte: Option<Vec<String>>,
-    expires__isnull: Option<bool>,
-    expires__lt: Option<Vec<String>>,
-    expires__lte: Option<Vec<String>>,
-    expires__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    key: Option<Vec<String>>,
-    key__ic: Option<Vec<String>>,
-    key__ie: Option<Vec<String>>,
-    key__iew: Option<Vec<String>>,
-    key__ire: Option<Vec<String>>,
-    key__isw: Option<Vec<String>>,
-    key__n: Option<Vec<String>>,
-    key__nic: Option<Vec<String>>,
-    key__nie: Option<Vec<String>>,
-    key__niew: Option<Vec<String>>,
-    key__nire: Option<Vec<String>>,
-    key__nisw: Option<Vec<String>>,
-    key__nre: Option<Vec<String>>,
-    key__re: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    write_enabled: Option<bool>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersTokensListParams,
 ) -> Result<crate::models::PaginatedTokenList, Error<UsersTokensListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let expires = params.expires;
+    let expires__gt = params.expires__gt;
+    let expires__gte = params.expires__gte;
+    let expires__isnull = params.expires__isnull;
+    let expires__lt = params.expires__lt;
+    let expires__lte = params.expires__lte;
+    let expires__n = params.expires__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let key = params.key;
+    let key__ic = params.key__ic;
+    let key__ie = params.key__ie;
+    let key__iew = params.key__iew;
+    let key__ire = params.key__ire;
+    let key__isw = params.key__isw;
+    let key__n = params.key__n;
+    let key__nic = params.key__nic;
+    let key__nie = params.key__nie;
+    let key__niew = params.key__niew;
+    let key__nire = params.key__nire;
+    let key__nisw = params.key__nisw;
+    let key__nre = params.key__nre;
+    let key__re = params.key__re;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let write_enabled = params.write_enabled;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3776,11 +4391,14 @@ pub async fn users_tokens_list(
 /// Partial update a token object.
 pub async fn users_tokens_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_token_request: Option<crate::models::PatchedTokenRequest>,
+    params: UsersTokensPartialUpdateParams,
 ) -> Result<crate::models::Token, Error<UsersTokensPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_token_request = params.patched_token_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3839,12 +4457,15 @@ pub async fn users_tokens_partial_update(
 /// Retrieve a token object.
 pub async fn users_tokens_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersTokensRetrieveParams,
 ) -> Result<crate::models::Token, Error<UsersTokensRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3910,11 +4531,14 @@ pub async fn users_tokens_retrieve(
 /// Update a token object.
 pub async fn users_tokens_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    token_request: Option<crate::models::TokenRequest>,
+    params: UsersTokensUpdateParams,
 ) -> Result<crate::models::Token, Error<UsersTokensUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let token_request = params.token_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3973,10 +4597,13 @@ pub async fn users_tokens_update(
 /// Destroy a list of user objects.
 pub async fn users_users_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: UsersUsersBulkDestroyParams,
 ) -> Result<(), Error<UsersUsersBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4025,10 +4652,13 @@ pub async fn users_users_bulk_destroy(
 /// Partial update a list of user objects.
 pub async fn users_users_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_user_request: Vec<crate::models::PatchedBulkWritableUserRequest>,
-    format: Option<&str>,
+    params: UsersUsersBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::User>, Error<UsersUsersBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_user_request = params.patched_bulk_writable_user_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4077,10 +4707,13 @@ pub async fn users_users_bulk_partial_update(
 /// Update a list of user objects.
 pub async fn users_users_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_user_request: Vec<crate::models::BulkWritableUserRequest>,
-    format: Option<&str>,
+    params: UsersUsersBulkUpdateParams,
 ) -> Result<Vec<crate::models::User>, Error<UsersUsersBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_user_request = params.bulk_writable_user_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4129,10 +4762,13 @@ pub async fn users_users_bulk_update(
 /// Create one or more user objects.
 pub async fn users_users_create(
     configuration: &configuration::Configuration,
-    user_request: crate::models::UserRequest,
-    format: Option<&str>,
+    params: UsersUsersCreateParams,
 ) -> Result<crate::models::User, Error<UsersUsersCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let user_request = params.user_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4181,10 +4817,13 @@ pub async fn users_users_create(
 /// Destroy a user object.
 pub async fn users_users_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: UsersUsersDestroyParams,
 ) -> Result<(), Error<UsersUsersDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4236,91 +4875,94 @@ pub async fn users_users_destroy(
 /// Retrieve a list of user objects.
 pub async fn users_users_list(
     configuration: &configuration::Configuration,
-    email: Option<Vec<String>>,
-    email__ic: Option<Vec<String>>,
-    email__ie: Option<Vec<String>>,
-    email__iew: Option<Vec<String>>,
-    email__ire: Option<Vec<String>>,
-    email__isw: Option<Vec<String>>,
-    email__n: Option<Vec<String>>,
-    email__nic: Option<Vec<String>>,
-    email__nie: Option<Vec<String>>,
-    email__niew: Option<Vec<String>>,
-    email__nire: Option<Vec<String>>,
-    email__nisw: Option<Vec<String>>,
-    email__nre: Option<Vec<String>>,
-    email__re: Option<Vec<String>>,
-    first_name: Option<Vec<String>>,
-    first_name__ic: Option<Vec<String>>,
-    first_name__ie: Option<Vec<String>>,
-    first_name__iew: Option<Vec<String>>,
-    first_name__ire: Option<Vec<String>>,
-    first_name__isw: Option<Vec<String>>,
-    first_name__n: Option<Vec<String>>,
-    first_name__nic: Option<Vec<String>>,
-    first_name__nie: Option<Vec<String>>,
-    first_name__niew: Option<Vec<String>>,
-    first_name__nire: Option<Vec<String>>,
-    first_name__nisw: Option<Vec<String>>,
-    first_name__nre: Option<Vec<String>>,
-    first_name__re: Option<Vec<String>>,
-    format: Option<&str>,
-    groups: Option<Vec<String>>,
-    groups__n: Option<Vec<String>>,
-    groups_id: Option<Vec<i32>>,
-    groups_id__n: Option<Vec<i32>>,
-    has_object_changes: Option<bool>,
-    has_object_permissions: Option<bool>,
-    has_rack_reservations: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    is_active: Option<bool>,
-    is_staff: Option<bool>,
-    last_name: Option<Vec<String>>,
-    last_name__ic: Option<Vec<String>>,
-    last_name__ie: Option<Vec<String>>,
-    last_name__iew: Option<Vec<String>>,
-    last_name__ire: Option<Vec<String>>,
-    last_name__isw: Option<Vec<String>>,
-    last_name__n: Option<Vec<String>>,
-    last_name__nic: Option<Vec<String>>,
-    last_name__nie: Option<Vec<String>>,
-    last_name__niew: Option<Vec<String>>,
-    last_name__nire: Option<Vec<String>>,
-    last_name__nisw: Option<Vec<String>>,
-    last_name__nre: Option<Vec<String>>,
-    last_name__re: Option<Vec<String>>,
-    limit: Option<i32>,
-    object_changes: Option<Vec<uuid::Uuid>>,
-    object_changes__isnull: Option<bool>,
-    object_changes__n: Option<Vec<uuid::Uuid>>,
-    object_permissions: Option<Vec<String>>,
-    object_permissions__isnull: Option<bool>,
-    object_permissions__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    rack_reservations_id: Option<Vec<uuid::Uuid>>,
-    rack_reservations_id__isnull: Option<bool>,
-    rack_reservations_id__n: Option<Vec<uuid::Uuid>>,
-    sort: Option<&str>,
-    username: Option<Vec<String>>,
-    username__ic: Option<Vec<String>>,
-    username__ie: Option<Vec<String>>,
-    username__iew: Option<Vec<String>>,
-    username__ire: Option<Vec<String>>,
-    username__isw: Option<Vec<String>>,
-    username__n: Option<Vec<String>>,
-    username__nic: Option<Vec<String>>,
-    username__nie: Option<Vec<String>>,
-    username__niew: Option<Vec<String>>,
-    username__nire: Option<Vec<String>>,
-    username__nisw: Option<Vec<String>>,
-    username__nre: Option<Vec<String>>,
-    username__re: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersUsersListParams,
 ) -> Result<crate::models::PaginatedUserList, Error<UsersUsersListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let email = params.email;
+    let email__ic = params.email__ic;
+    let email__ie = params.email__ie;
+    let email__iew = params.email__iew;
+    let email__ire = params.email__ire;
+    let email__isw = params.email__isw;
+    let email__n = params.email__n;
+    let email__nic = params.email__nic;
+    let email__nie = params.email__nie;
+    let email__niew = params.email__niew;
+    let email__nire = params.email__nire;
+    let email__nisw = params.email__nisw;
+    let email__nre = params.email__nre;
+    let email__re = params.email__re;
+    let first_name = params.first_name;
+    let first_name__ic = params.first_name__ic;
+    let first_name__ie = params.first_name__ie;
+    let first_name__iew = params.first_name__iew;
+    let first_name__ire = params.first_name__ire;
+    let first_name__isw = params.first_name__isw;
+    let first_name__n = params.first_name__n;
+    let first_name__nic = params.first_name__nic;
+    let first_name__nie = params.first_name__nie;
+    let first_name__niew = params.first_name__niew;
+    let first_name__nire = params.first_name__nire;
+    let first_name__nisw = params.first_name__nisw;
+    let first_name__nre = params.first_name__nre;
+    let first_name__re = params.first_name__re;
+    let format = params.format;
+    let groups = params.groups;
+    let groups__n = params.groups__n;
+    let groups_id = params.groups_id;
+    let groups_id__n = params.groups_id__n;
+    let has_object_changes = params.has_object_changes;
+    let has_object_permissions = params.has_object_permissions;
+    let has_rack_reservations = params.has_rack_reservations;
+    let id = params.id;
+    let id__n = params.id__n;
+    let is_active = params.is_active;
+    let is_staff = params.is_staff;
+    let last_name = params.last_name;
+    let last_name__ic = params.last_name__ic;
+    let last_name__ie = params.last_name__ie;
+    let last_name__iew = params.last_name__iew;
+    let last_name__ire = params.last_name__ire;
+    let last_name__isw = params.last_name__isw;
+    let last_name__n = params.last_name__n;
+    let last_name__nic = params.last_name__nic;
+    let last_name__nie = params.last_name__nie;
+    let last_name__niew = params.last_name__niew;
+    let last_name__nire = params.last_name__nire;
+    let last_name__nisw = params.last_name__nisw;
+    let last_name__nre = params.last_name__nre;
+    let last_name__re = params.last_name__re;
+    let limit = params.limit;
+    let object_changes = params.object_changes;
+    let object_changes__isnull = params.object_changes__isnull;
+    let object_changes__n = params.object_changes__n;
+    let object_permissions = params.object_permissions;
+    let object_permissions__isnull = params.object_permissions__isnull;
+    let object_permissions__n = params.object_permissions__n;
+    let offset = params.offset;
+    let q = params.q;
+    let rack_reservations_id = params.rack_reservations_id;
+    let rack_reservations_id__isnull = params.rack_reservations_id__isnull;
+    let rack_reservations_id__n = params.rack_reservations_id__n;
+    let sort = params.sort;
+    let username = params.username;
+    let username__ic = params.username__ic;
+    let username__ie = params.username__ie;
+    let username__iew = params.username__iew;
+    let username__ire = params.username__ire;
+    let username__isw = params.username__isw;
+    let username__n = params.username__n;
+    let username__nic = params.username__nic;
+    let username__nie = params.username__nie;
+    let username__niew = params.username__niew;
+    let username__nire = params.username__nire;
+    let username__nisw = params.username__nisw;
+    let username__nre = params.username__nre;
+    let username__re = params.username__re;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5715,11 +6357,14 @@ pub async fn users_users_list(
 /// Partial update a user object.
 pub async fn users_users_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_user_request: Option<crate::models::PatchedUserRequest>,
+    params: UsersUsersPartialUpdateParams,
 ) -> Result<crate::models::User, Error<UsersUsersPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_user_request = params.patched_user_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5772,12 +6417,15 @@ pub async fn users_users_partial_update(
 /// Retrieve a user object.
 pub async fn users_users_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: UsersUsersRetrieveParams,
 ) -> Result<crate::models::User, Error<UsersUsersRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -5837,11 +6485,14 @@ pub async fn users_users_retrieve(
 /// Update a user object.
 pub async fn users_users_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    user_request: crate::models::UserRequest,
-    format: Option<&str>,
+    params: UsersUsersUpdateParams,
 ) -> Result<crate::models::User, Error<UsersUsersUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let user_request = params.user_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

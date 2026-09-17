@@ -13,6 +13,2636 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesBulkPartialUpdateParams {
+    pub patched_bulk_writable_ip_address_range_request:
+        Vec<crate::models::PatchedBulkWritableIpAddressRangeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesBulkUpdateParams {
+    pub bulk_writable_ip_address_range_request:
+        Vec<crate::models::BulkWritableIpAddressRangeRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesCreateParams {
+    pub ip_address_range_request: crate::models::IpAddressRangeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesDestroyParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    /// IP Address Ranges which contain this IP address
+    pub contains: Option<Vec<String>>,
+    pub count_as_utilized: Option<bool>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    /// End address (exact)
+    pub end_address: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub ip_version: Option<i32>,
+    pub is_exclusive: Option<bool>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub namespace: Option<Vec<String>>,
+    pub namespace__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub parent: Option<Vec<String>>,
+    pub parent__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    /// Role (name or ID) is null
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Start address (exact)
+    pub start_address: Option<Vec<String>>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesNotesCreateParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesNotesListParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesPartialUpdateParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_ip_address_range_request: Option<crate::models::PatchedIpAddressRangeRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesRetrieveParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_ranges_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressRangesUpdateParams {
+    /// A UUID string identifying this IP address range.
+    pub id: String,
+    pub ip_address_range_request: crate::models::IpAddressRangeRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceBulkPartialUpdateParams {
+    pub patched_bulk_writable_ip_address_to_interface_request:
+        Vec<crate::models::PatchedBulkWritableIpAddressToInterfaceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceBulkUpdateParams {
+    pub bulk_writable_ip_address_to_interface_request:
+        Vec<crate::models::BulkWritableIpAddressToInterfaceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceCreateParams {
+    pub ip_address_to_interface_request: crate::models::IpAddressToInterfaceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceDestroyParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub interface: Option<Vec<String>>,
+    pub interface__isnull: Option<bool>,
+    pub interface__n: Option<Vec<String>>,
+    pub ip_address: Option<Vec<uuid::Uuid>>,
+    pub ip_address__n: Option<Vec<uuid::Uuid>>,
+    pub is_default: Option<bool>,
+    pub is_destination: Option<bool>,
+    pub is_preferred: Option<bool>,
+    pub is_primary: Option<bool>,
+    pub is_secondary: Option<bool>,
+    pub is_source: Option<bool>,
+    pub is_standby: Option<bool>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vm_interface: Option<Vec<String>>,
+    pub vm_interface__isnull: Option<bool>,
+    pub vm_interface__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceNotesCreateParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceNotesListParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfacePartialUpdateParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_ip_address_to_interface_request:
+        Option<crate::models::PatchedIpAddressToInterfaceRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceRetrieveParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_address_to_interface_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressToInterfaceUpdateParams {
+    /// A UUID string identifying this IP Address Assignment.
+    pub id: String,
+    pub ip_address_to_interface_request: crate::models::IpAddressToInterfaceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesBulkPartialUpdateParams {
+    pub patched_bulk_writable_ip_address_request:
+        Vec<crate::models::PatchedBulkWritableIpAddressRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesBulkUpdateParams {
+    pub bulk_writable_ip_address_request: Vec<crate::models::BulkWritableIpAddressRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesCreateParams {
+    pub ip_address_request: crate::models::IpAddressRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesDestroyParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesListParams {
+    /// Address
+    pub address: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    /// Device (name)
+    pub device: Option<Vec<String>>,
+    /// Device (ID)
+    pub device_id: Option<Vec<uuid::Uuid>>,
+    pub dns_name: Option<Vec<String>>,
+    pub dns_name__ic: Option<Vec<String>>,
+    pub dns_name__ie: Option<Vec<String>>,
+    pub dns_name__iew: Option<Vec<String>>,
+    pub dns_name__ire: Option<Vec<String>>,
+    pub dns_name__isw: Option<Vec<String>>,
+    pub dns_name__n: Option<Vec<String>>,
+    pub dns_name__nic: Option<Vec<String>>,
+    pub dns_name__nie: Option<Vec<String>>,
+    pub dns_name__niew: Option<Vec<String>>,
+    pub dns_name__nire: Option<Vec<String>>,
+    pub dns_name__nisw: Option<Vec<String>>,
+    pub dns_name__nre: Option<Vec<String>>,
+    pub dns_name__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has Interface Assignments
+    pub has_interface_assignments: Option<bool>,
+    /// Has NAT Inside
+    pub has_nat_inside: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub interfaces: Option<Vec<String>>,
+    pub interfaces__isnull: Option<bool>,
+    pub interfaces__n: Option<Vec<String>>,
+    pub ip_version: Option<i32>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub mask_length: Option<Vec<i32>>,
+    pub mask_length__gt: Option<Vec<i32>>,
+    pub mask_length__gte: Option<Vec<i32>>,
+    pub mask_length__lt: Option<Vec<i32>>,
+    pub mask_length__lte: Option<Vec<i32>>,
+    pub mask_length__n: Option<Vec<i32>>,
+    pub namespace: Option<Vec<String>>,
+    pub namespace__n: Option<Vec<String>>,
+    /// NAT (Inside)
+    pub nat_inside: Option<Vec<uuid::Uuid>>,
+    pub nat_inside__isnull: Option<bool>,
+    /// NAT (Inside)
+    pub nat_inside__n: Option<Vec<uuid::Uuid>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Parent prefix
+    pub parent: Option<Vec<uuid::Uuid>>,
+    /// Parent prefix is null
+    pub parent__isnull: Option<bool>,
+    /// Exclude Parent prefix
+    pub parent__n: Option<Vec<uuid::Uuid>>,
+    /// Contained in prefix
+    pub prefix: Option<Vec<String>>,
+    /// Prefix (exact, strict)
+    pub prefix_exact: Option<Vec<String>>,
+    /// VRF (RD)
+    pub present_in_vrf: Option<String>,
+    /// VRF (ID)
+    pub present_in_vrf_id: Option<String>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    /// Role (name or ID) is null
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<String>>,
+    pub services: Option<Vec<String>>,
+    /// Services (name or ID) is null
+    pub services__isnull: Option<bool>,
+    pub services__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub r#type: Option<Vec<String>>,
+    pub type__ic: Option<Vec<String>>,
+    pub type__ie: Option<Vec<String>>,
+    pub type__iew: Option<Vec<String>>,
+    pub type__ire: Option<Vec<String>>,
+    pub type__isw: Option<Vec<String>>,
+    pub type__n: Option<Vec<String>>,
+    pub type__nic: Option<Vec<String>>,
+    pub type__nie: Option<Vec<String>>,
+    pub type__niew: Option<Vec<String>>,
+    pub type__nire: Option<Vec<String>>,
+    pub type__nisw: Option<Vec<String>>,
+    pub type__nre: Option<Vec<String>>,
+    pub type__re: Option<Vec<String>>,
+    /// Virtual machine (name)
+    pub virtual_machine: Option<Vec<String>>,
+    /// Virtual machine (ID)
+    pub virtual_machine_id: Option<Vec<uuid::Uuid>>,
+    pub vm_interfaces: Option<Vec<String>>,
+    pub vm_interfaces__isnull: Option<bool>,
+    pub vm_interfaces__n: Option<Vec<String>>,
+    pub vrfs: Option<Vec<String>>,
+    /// VRF (ID or RD) is null
+    pub vrfs__isnull: Option<bool>,
+    pub vrfs__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesNotesCreateParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesNotesListParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesPartialUpdateParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_ip_address_request: Option<crate::models::PatchedIpAddressRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesRetrieveParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_ip_addresses_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamIpAddressesUpdateParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub ip_address_request: crate::models::IpAddressRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesBulkPartialUpdateParams {
+    pub patched_bulk_writable_namespace_request:
+        Vec<crate::models::PatchedBulkWritableNamespaceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesBulkUpdateParams {
+    pub bulk_writable_namespace_request: Vec<crate::models::BulkWritableNamespaceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesCreateParams {
+    pub namespace_request: crate::models::NamespaceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesDestroyParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<uuid::Uuid>>,
+    pub location__isnull: Option<bool>,
+    pub location__n: Option<Vec<uuid::Uuid>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesNotesCreateParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesNotesListParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesPartialUpdateParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_namespace_request: Option<crate::models::PatchedNamespaceRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesRetrieveParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_namespaces_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamNamespacesUpdateParams {
+    /// A UUID string identifying this namespace.
+    pub id: String,
+    pub namespace_request: crate::models::NamespaceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_prefix_location_assignment_request:
+        Vec<crate::models::PatchedBulkWritablePrefixLocationAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsBulkUpdateParams {
+    pub bulk_writable_prefix_location_assignment_request:
+        Vec<crate::models::BulkWritablePrefixLocationAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsCreateParams {
+    pub prefix_location_assignment_request: crate::models::PrefixLocationAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsDestroyParams {
+    /// A UUID string identifying this prefix location assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    pub location__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub prefix: Option<Vec<String>>,
+    pub prefix__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this prefix location assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_prefix_location_assignment_request:
+        Option<crate::models::PatchedPrefixLocationAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsRetrieveParams {
+    /// A UUID string identifying this prefix location assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefix_location_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixLocationAssignmentsUpdateParams {
+    /// A UUID string identifying this prefix location assignment.
+    pub id: String,
+    pub prefix_location_assignment_request: crate::models::PrefixLocationAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_available_ips_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesAvailableIpsCreateParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub ip_allocation_request: Vec<crate::models::IpAllocationRequest>,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// IP from which enumeration/allocation should stop.
+    pub range_end: Option<String>,
+    /// IP from which enumeration/allocation should start.
+    pub range_start: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_available_ips_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesAvailableIpsListParams {
+    /// A UUID string identifying this IP address.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// IP from which enumeration/allocation should stop.
+    pub range_end: Option<String>,
+    /// IP from which enumeration/allocation should start.
+    pub range_start: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_available_prefixes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesAvailablePrefixesCreateParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub prefix_length_request: crate::models::PrefixLengthRequest,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_available_prefixes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesAvailablePrefixesListParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesBulkPartialUpdateParams {
+    pub patched_bulk_writable_prefix_request: Vec<crate::models::PatchedBulkWritablePrefixRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesBulkUpdateParams {
+    pub bulk_writable_prefix_request: Vec<crate::models::BulkWritablePrefixRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesCreateParams {
+    pub writable_prefix_request: crate::models::WritablePrefixRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesDestroyParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesListParams {
+    pub ancestors: Option<Vec<String>>,
+    pub cloud_networks: Option<Vec<String>>,
+    pub cloud_networks__isnull: Option<bool>,
+    pub cloud_networks__n: Option<Vec<String>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    /// Prefixes which contain this prefix or IP
+    pub contains: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub date_allocated: Option<Vec<String>>,
+    pub date_allocated__gt: Option<Vec<String>>,
+    pub date_allocated__gte: Option<Vec<String>>,
+    pub date_allocated__isnull: Option<bool>,
+    pub date_allocated__lt: Option<Vec<String>>,
+    pub date_allocated__lte: Option<Vec<String>>,
+    pub date_allocated__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Has RIR
+    pub has_rir: Option<bool>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub ip_version: Option<i32>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    pub location__n: Option<Vec<String>>,
+    pub locations: Option<Vec<String>>,
+    pub locations__n: Option<Vec<String>>,
+    /// Maximum nesting depth within parent Prefixes
+    pub max_depth: Option<f32>,
+    pub namespace: Option<Vec<String>>,
+    pub namespace__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub parent: Option<Vec<String>>,
+    /// Prefix (ID or prefix string) is null
+    pub parent__isnull: Option<bool>,
+    pub parent__n: Option<Vec<String>>,
+    /// Prefix
+    pub prefix: Option<Vec<String>>,
+    pub prefix_and_descendants: Option<Vec<String>>,
+    /// Prefix (exact, strict)
+    pub prefix_exact: Option<Vec<String>>,
+    pub prefix_length: Option<Vec<i32>>,
+    pub prefix_length__gt: Option<Vec<i32>>,
+    pub prefix_length__gte: Option<Vec<i32>>,
+    pub prefix_length__lt: Option<Vec<i32>>,
+    pub prefix_length__lte: Option<Vec<i32>>,
+    pub prefix_length__n: Option<Vec<i32>>,
+    /// Present in VRF (RD)
+    pub present_in_vrf: Option<String>,
+    /// Present in VRF
+    pub present_in_vrf_id: Option<String>,
+    /// Search
+    pub q: Option<String>,
+    pub rir: Option<Vec<String>>,
+    pub rir__isnull: Option<bool>,
+    pub rir__n: Option<Vec<String>>,
+    pub role: Option<Vec<String>>,
+    /// Role (name or ID) is null
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub r#type: Option<Vec<String>>,
+    pub type__ic: Option<Vec<String>>,
+    pub type__ie: Option<Vec<String>>,
+    pub type__iew: Option<Vec<String>>,
+    pub type__ire: Option<Vec<String>>,
+    pub type__isw: Option<Vec<String>>,
+    pub type__n: Option<Vec<String>>,
+    pub type__nic: Option<Vec<String>>,
+    pub type__nie: Option<Vec<String>>,
+    pub type__niew: Option<Vec<String>>,
+    pub type__nire: Option<Vec<String>>,
+    pub type__nisw: Option<Vec<String>>,
+    pub type__nre: Option<Vec<String>>,
+    pub type__re: Option<Vec<String>>,
+    pub vlan_id: Option<Vec<uuid::Uuid>>,
+    pub vlan_id__isnull: Option<bool>,
+    pub vlan_id__n: Option<Vec<uuid::Uuid>>,
+    /// VLAN number (1-4095)
+    pub vlan_vid: Option<Vec<i32>>,
+    /// VLAN number (1-4095) is greater than
+    pub vlan_vid__gt: Option<Vec<i32>>,
+    /// VLAN number (1-4095) is greater than or equal to
+    pub vlan_vid__gte: Option<Vec<i32>>,
+    /// VLAN number (1-4095) is less than
+    pub vlan_vid__lt: Option<Vec<i32>>,
+    /// VLAN number (1-4095) is less than or equal to
+    pub vlan_vid__lte: Option<Vec<i32>>,
+    /// Exclude VLAN number (1-4095)
+    pub vlan_vid__n: Option<Vec<i32>>,
+    pub vpn_tunnel_endpoints: Option<Vec<String>>,
+    /// VPN Tunnel Endpoint ID is null
+    pub vpn_tunnel_endpoints__isnull: Option<bool>,
+    pub vpn_tunnel_endpoints__n: Option<Vec<String>>,
+    /// VPN Tunnel Endpoint Name Contains
+    pub vpn_tunnel_endpoints_name_contains: Option<String>,
+    pub vrfs: Option<Vec<String>>,
+    /// Assigned VRF (ID or RD) is null
+    pub vrfs__isnull: Option<bool>,
+    pub vrfs__n: Option<Vec<String>>,
+    /// Within prefix
+    pub within: Option<Vec<String>>,
+    /// Within and including prefix
+    pub within_include: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesNotesCreateParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesNotesListParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesPartialUpdateParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_writable_prefix_request: Option<crate::models::PatchedWritablePrefixRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesRetrieveParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_prefixes_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamPrefixesUpdateParams {
+    /// A UUID string identifying this prefix.
+    pub id: String,
+    pub writable_prefix_request: crate::models::WritablePrefixRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsBulkPartialUpdateParams {
+    pub patched_bulk_writable_rir_request: Vec<crate::models::PatchedBulkWritableRirRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsBulkUpdateParams {
+    pub bulk_writable_rir_request: Vec<crate::models::BulkWritableRirRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsCreateParams {
+    pub rir_request: crate::models::RirRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsDestroyParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub is_private: Option<bool>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsNotesCreateParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsNotesListParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsPartialUpdateParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_rir_request: Option<crate::models::PatchedRirRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsRetrieveParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_rirs_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRirsUpdateParams {
+    /// A UUID string identifying this RIR.
+    pub id: String,
+    pub rir_request: crate::models::RirRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsBulkPartialUpdateParams {
+    pub patched_bulk_writable_route_target_request:
+        Vec<crate::models::PatchedBulkWritableRouteTargetRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsBulkUpdateParams {
+    pub bulk_writable_route_target_request: Vec<crate::models::BulkWritableRouteTargetRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsCreateParams {
+    pub route_target_request: crate::models::RouteTargetRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsDestroyParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub exporting_vrfs: Option<Vec<String>>,
+    /// Export VRF(s) (ID or RD) is null
+    pub exporting_vrfs__isnull: Option<bool>,
+    pub exporting_vrfs__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub importing_vrfs: Option<Vec<String>>,
+    /// Import VRF(s) (ID or RD) is null
+    pub importing_vrfs__isnull: Option<bool>,
+    pub importing_vrfs__n: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsNotesCreateParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsNotesListParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsPartialUpdateParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_route_target_request: Option<crate::models::PatchedRouteTargetRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsRetrieveParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_route_targets_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamRouteTargetsUpdateParams {
+    /// A UUID string identifying this route target.
+    pub id: String,
+    pub route_target_request: crate::models::RouteTargetRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesBulkPartialUpdateParams {
+    pub patched_bulk_writable_service_request:
+        Vec<crate::models::PatchedBulkWritableServiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesBulkUpdateParams {
+    pub bulk_writable_service_request: Vec<crate::models::BulkWritableServiceRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesCreateParams {
+    pub writable_service_request: crate::models::WritableServiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesDestroyParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub device: Option<Vec<String>>,
+    pub device__isnull: Option<bool>,
+    pub device__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub ports: Option<f32>,
+    pub protocol: Option<Vec<String>>,
+    pub protocol__ic: Option<Vec<String>>,
+    pub protocol__ie: Option<Vec<String>>,
+    pub protocol__iew: Option<Vec<String>>,
+    pub protocol__ire: Option<Vec<String>>,
+    pub protocol__isw: Option<Vec<String>>,
+    pub protocol__n: Option<Vec<String>>,
+    pub protocol__nic: Option<Vec<String>>,
+    pub protocol__nie: Option<Vec<String>>,
+    pub protocol__niew: Option<Vec<String>>,
+    pub protocol__nire: Option<Vec<String>>,
+    pub protocol__nisw: Option<Vec<String>>,
+    pub protocol__nre: Option<Vec<String>>,
+    pub protocol__re: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub virtual_machine: Option<Vec<String>>,
+    pub virtual_machine__isnull: Option<bool>,
+    pub virtual_machine__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesNotesCreateParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesNotesListParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesPartialUpdateParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_writable_service_request: Option<crate::models::PatchedWritableServiceRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesRetrieveParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_services_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamServicesUpdateParams {
+    /// A UUID string identifying this service.
+    pub id: String,
+    pub writable_service_request: crate::models::WritableServiceRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_available_vlans_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsAvailableVlansCreateParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub vlan_allocation_request: Vec<crate::models::VlanAllocationRequest>,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_available_vlans_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsAvailableVlansListParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vlan_group_request:
+        Vec<crate::models::PatchedBulkWritableVlanGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsBulkUpdateParams {
+    pub bulk_writable_vlan_group_request: Vec<crate::models::BulkWritableVlanGroupRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsCreateParams {
+    pub vlan_group_request: crate::models::VlanGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsDestroyParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    /// Location (name or ID) is null
+    pub location__isnull: Option<bool>,
+    pub location__n: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsNotesCreateParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsNotesListParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsPartialUpdateParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vlan_group_request: Option<crate::models::PatchedVlanGroupRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsRetrieveParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_groups_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanGroupsUpdateParams {
+    /// A UUID string identifying this VLAN group.
+    pub id: String,
+    pub vlan_group_request: crate::models::VlanGroupRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vlan_location_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVlanLocationAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsBulkUpdateParams {
+    pub bulk_writable_vlan_location_assignment_request:
+        Vec<crate::models::BulkWritableVlanLocationAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsCreateParams {
+    pub vlan_location_assignment_request: crate::models::VlanLocationAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsDestroyParams {
+    /// A UUID string identifying this vlan location assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    pub location__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vlan: Option<Vec<String>>,
+    pub vlan__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this vlan location assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vlan_location_assignment_request:
+        Option<crate::models::PatchedVlanLocationAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsRetrieveParams {
+    /// A UUID string identifying this vlan location assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlan_location_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlanLocationAssignmentsUpdateParams {
+    /// A UUID string identifying this vlan location assignment.
+    pub id: String,
+    pub vlan_location_assignment_request: crate::models::VlanLocationAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansBulkPartialUpdateParams {
+    pub patched_bulk_writable_vlan_request: Vec<crate::models::PatchedBulkWritableVlanRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansBulkUpdateParams {
+    pub bulk_writable_vlan_request: Vec<crate::models::BulkWritableVlanRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansCreateParams {
+    pub vlan_request: crate::models::VlanRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansDestroyParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansListParams {
+    /// Device (ID)
+    pub available_on_device: Option<Vec<uuid::Uuid>>,
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub interfaces: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub location: Option<Vec<String>>,
+    pub location__n: Option<Vec<String>>,
+    pub locations: Option<Vec<String>>,
+    pub locations__n: Option<Vec<String>>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub role: Option<Vec<String>>,
+    /// Role (name or ID) is null
+    pub role__isnull: Option<bool>,
+    pub role__n: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    pub status__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub vid: Option<Vec<i32>>,
+    pub vid__gt: Option<Vec<i32>>,
+    pub vid__gte: Option<Vec<i32>>,
+    pub vid__lt: Option<Vec<i32>>,
+    pub vid__lte: Option<Vec<i32>>,
+    pub vid__n: Option<Vec<i32>>,
+    pub vlan_group: Option<Vec<String>>,
+    pub vlan_group__isnull: Option<bool>,
+    pub vlan_group__n: Option<Vec<String>>,
+    pub vm_interfaces: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansNotesCreateParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansNotesListParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansPartialUpdateParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vlan_request: Option<crate::models::PatchedVlanRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansRetrieveParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vlans_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVlansUpdateParams {
+    /// A UUID string identifying this VLAN.
+    pub id: String,
+    pub vlan_request: crate::models::VlanRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vrf_device_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVrfDeviceAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsBulkUpdateParams {
+    pub bulk_writable_vrf_device_assignment_request:
+        Vec<crate::models::BulkWritableVrfDeviceAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsCreateParams {
+    pub vrf_device_assignment_request: crate::models::VrfDeviceAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsDestroyParams {
+    /// A UUID string identifying this VRF-device assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsListParams {
+    pub created: Option<Vec<String>>,
+    pub device: Option<Vec<String>>,
+    pub device__isnull: Option<bool>,
+    pub device__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Search
+    pub q: Option<String>,
+    pub rd: Option<Vec<String>>,
+    pub rd__ic: Option<Vec<String>>,
+    pub rd__ie: Option<Vec<String>>,
+    pub rd__iew: Option<Vec<String>>,
+    pub rd__ire: Option<Vec<String>>,
+    pub rd__isnull: Option<bool>,
+    pub rd__isw: Option<Vec<String>>,
+    pub rd__n: Option<Vec<String>>,
+    pub rd__nic: Option<Vec<String>>,
+    pub rd__nie: Option<Vec<String>>,
+    pub rd__niew: Option<Vec<String>>,
+    pub rd__nire: Option<Vec<String>>,
+    pub rd__nisw: Option<Vec<String>>,
+    pub rd__nre: Option<Vec<String>>,
+    pub rd__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub virtual_device_context: Option<Vec<String>>,
+    pub virtual_device_context__isnull: Option<bool>,
+    pub virtual_device_context__n: Option<Vec<String>>,
+    pub virtual_machine: Option<Vec<String>>,
+    pub virtual_machine__isnull: Option<bool>,
+    pub virtual_machine__n: Option<Vec<String>>,
+    pub vrf: Option<Vec<String>>,
+    pub vrf__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this VRF-device assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vrf_device_assignment_request:
+        Option<crate::models::PatchedVrfDeviceAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsRetrieveParams {
+    /// A UUID string identifying this VRF-device assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_device_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfDeviceAssignmentsUpdateParams {
+    /// A UUID string identifying this VRF-device assignment.
+    pub id: String,
+    pub vrf_device_assignment_request: crate::models::VrfDeviceAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vrf_prefix_assignment_request:
+        Vec<crate::models::PatchedBulkWritableVrfPrefixAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsBulkUpdateParams {
+    pub bulk_writable_vrf_prefix_assignment_request:
+        Vec<crate::models::BulkWritableVrfPrefixAssignmentRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsCreateParams {
+    pub vrf_prefix_assignment_request: crate::models::VrfPrefixAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsDestroyParams {
+    /// A UUID string identifying this VRF-prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsListParams {
+    pub created: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub last_updated: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub prefix: Option<Vec<String>>,
+    pub prefix__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub vrf: Option<Vec<String>>,
+    pub vrf__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsPartialUpdateParams {
+    /// A UUID string identifying this VRF-prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vrf_prefix_assignment_request:
+        Option<crate::models::PatchedVrfPrefixAssignmentRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsRetrieveParams {
+    /// A UUID string identifying this VRF-prefix assignment.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrf_prefix_assignments_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfPrefixAssignmentsUpdateParams {
+    /// A UUID string identifying this VRF-prefix assignment.
+    pub id: String,
+    pub vrf_prefix_assignment_request: crate::models::VrfPrefixAssignmentRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_bulk_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsBulkDestroyParams {
+    pub bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_bulk_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsBulkPartialUpdateParams {
+    pub patched_bulk_writable_vrf_request: Vec<crate::models::PatchedBulkWritableVrfRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_bulk_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsBulkUpdateParams {
+    pub bulk_writable_vrf_request: Vec<crate::models::BulkWritableVrfRequest>,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsCreateParams {
+    pub vrf_request: crate::models::VrfRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_destroy`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsDestroyParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsListParams {
+    pub contacts: Option<Vec<String>>,
+    /// Contacts (name or ID) is null
+    pub contacts__isnull: Option<bool>,
+    pub contacts__n: Option<Vec<String>>,
+    pub created: Option<Vec<String>>,
+    pub created__gt: Option<Vec<String>>,
+    pub created__gte: Option<Vec<String>>,
+    pub created__isnull: Option<bool>,
+    pub created__lt: Option<Vec<String>>,
+    pub created__lte: Option<Vec<String>>,
+    pub created__n: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub description__ic: Option<Vec<String>>,
+    pub description__ie: Option<Vec<String>>,
+    pub description__iew: Option<Vec<String>>,
+    pub description__ire: Option<Vec<String>>,
+    pub description__isw: Option<Vec<String>>,
+    pub description__n: Option<Vec<String>>,
+    pub description__nic: Option<Vec<String>>,
+    pub description__nie: Option<Vec<String>>,
+    pub description__niew: Option<Vec<String>>,
+    pub description__nire: Option<Vec<String>>,
+    pub description__nisw: Option<Vec<String>>,
+    pub description__nre: Option<Vec<String>>,
+    pub description__re: Option<Vec<String>>,
+    pub device: Option<Vec<String>>,
+    pub device__n: Option<Vec<String>>,
+    pub dynamic_groups: Option<Vec<String>>,
+    pub dynamic_groups__n: Option<Vec<String>>,
+    pub export_targets: Option<Vec<String>>,
+    pub export_targets__n: Option<Vec<String>>,
+    pub format: Option<String>,
+    /// Unique object identifier, either a UUID primary key or a composite key.
+    pub id: Option<Vec<uuid::Uuid>>,
+    pub id__n: Option<Vec<uuid::Uuid>>,
+    pub import_targets: Option<Vec<String>>,
+    pub import_targets__n: Option<Vec<String>>,
+    pub last_updated: Option<Vec<String>>,
+    pub last_updated__gt: Option<Vec<String>>,
+    pub last_updated__gte: Option<Vec<String>>,
+    pub last_updated__isnull: Option<bool>,
+    pub last_updated__lt: Option<Vec<String>>,
+    pub last_updated__lte: Option<Vec<String>>,
+    pub last_updated__n: Option<Vec<String>>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    pub name: Option<Vec<String>>,
+    pub name__ic: Option<Vec<String>>,
+    pub name__ie: Option<Vec<String>>,
+    pub name__iew: Option<Vec<String>>,
+    pub name__ire: Option<Vec<String>>,
+    pub name__isw: Option<Vec<String>>,
+    pub name__n: Option<Vec<String>>,
+    pub name__nic: Option<Vec<String>>,
+    pub name__nie: Option<Vec<String>>,
+    pub name__niew: Option<Vec<String>>,
+    pub name__nire: Option<Vec<String>>,
+    pub name__nisw: Option<Vec<String>>,
+    pub name__nre: Option<Vec<String>>,
+    pub name__re: Option<Vec<String>>,
+    pub namespace: Option<Vec<String>>,
+    pub namespace__n: Option<Vec<String>>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    pub prefix: Option<Vec<String>>,
+    pub prefix__n: Option<Vec<String>>,
+    /// Search
+    pub q: Option<String>,
+    pub rd: Option<Vec<String>>,
+    pub rd__ic: Option<Vec<String>>,
+    pub rd__ie: Option<Vec<String>>,
+    pub rd__iew: Option<Vec<String>>,
+    pub rd__ire: Option<Vec<String>>,
+    pub rd__isnull: Option<bool>,
+    pub rd__isw: Option<Vec<String>>,
+    pub rd__n: Option<Vec<String>>,
+    pub rd__nic: Option<Vec<String>>,
+    pub rd__nie: Option<Vec<String>>,
+    pub rd__niew: Option<Vec<String>>,
+    pub rd__nire: Option<Vec<String>>,
+    pub rd__nisw: Option<Vec<String>>,
+    pub rd__nre: Option<Vec<String>>,
+    pub rd__re: Option<Vec<String>>,
+    /// Which field to use when ordering the results.
+    pub sort: Option<String>,
+    pub status: Option<Vec<String>>,
+    /// Status (name or ID) is null
+    pub status__isnull: Option<bool>,
+    pub status__n: Option<Vec<String>>,
+    pub tags: Option<Vec<String>>,
+    pub tags__isnull: Option<bool>,
+    pub tags__n: Option<Vec<String>>,
+    pub teams: Option<Vec<String>>,
+    /// Teams (name or ID) is null
+    pub teams__isnull: Option<bool>,
+    pub teams__n: Option<Vec<String>>,
+    pub tenant: Option<Vec<String>>,
+    /// Tenant (name or ID) is null
+    pub tenant__isnull: Option<bool>,
+    pub tenant__n: Option<Vec<String>>,
+    pub tenant_group: Option<Vec<String>>,
+    /// Tenant Group (name or ID) is null
+    pub tenant_group__isnull: Option<bool>,
+    pub tenant_group__n: Option<Vec<String>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id: Option<Vec<uuid::Uuid>>,
+    /// Tenant (ID) (deprecated, use \"tenant\" filter instead) is null
+    pub tenant_id__isnull: Option<bool>,
+    /// Exclude Tenant (ID) (deprecated, use \"tenant\" filter instead)
+    pub tenant_id__n: Option<Vec<uuid::Uuid>>,
+    pub virtual_device_contexts: Option<Vec<String>>,
+    pub virtual_device_contexts__n: Option<Vec<String>>,
+    pub virtual_machines: Option<Vec<String>>,
+    pub virtual_machines__n: Option<Vec<String>>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_notes_create`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsNotesCreateParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub note_input_request: crate::models::NoteInputRequest,
+    pub format: Option<String>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_notes_list`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsNotesListParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub format: Option<String>,
+    /// Number of results to return per page.
+    pub limit: Option<i32>,
+    /// The initial index from which to return the results.
+    pub offset: Option<i32>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_partial_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsPartialUpdateParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub format: Option<String>,
+    pub patched_vrf_request: Option<crate::models::PatchedVrfRequest>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsRetrieveParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub format: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
+/// struct for passing parameters to the method [`ipam_vrfs_update`]
+#[derive(Clone, Debug, Default)]
+pub struct IpamVrfsUpdateParams {
+    /// A UUID string identifying this VRF.
+    pub id: String,
+    pub vrf_request: crate::models::VrfRequest,
+    pub format: Option<String>,
+}
+
 /// struct for typed errors of method [`ipam_ip_address_ranges_bulk_destroy`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -1157,10 +3787,13 @@ pub enum IpamVrfsUpdateError {
 /// Destroy a list of IP address range objects.
 pub async fn ipam_ip_address_ranges_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamIpAddressRangesBulkDestroyParams,
 ) -> Result<(), Error<IpamIpAddressRangesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1212,12 +3845,14 @@ pub async fn ipam_ip_address_ranges_bulk_destroy(
 /// Partial update a list of IP address range objects.
 pub async fn ipam_ip_address_ranges_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_ip_address_range_request: Vec<
-        crate::models::PatchedBulkWritableIpAddressRangeRequest,
-    >,
-    format: Option<&str>,
+    params: IpamIpAddressRangesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::IpAddressRange>, Error<IpamIpAddressRangesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_ip_address_range_request =
+        params.patched_bulk_writable_ip_address_range_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1270,10 +3905,13 @@ pub async fn ipam_ip_address_ranges_bulk_partial_update(
 /// Update a list of IP address range objects.
 pub async fn ipam_ip_address_ranges_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_ip_address_range_request: Vec<crate::models::BulkWritableIpAddressRangeRequest>,
-    format: Option<&str>,
+    params: IpamIpAddressRangesBulkUpdateParams,
 ) -> Result<Vec<crate::models::IpAddressRange>, Error<IpamIpAddressRangesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_ip_address_range_request = params.bulk_writable_ip_address_range_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1325,10 +3963,13 @@ pub async fn ipam_ip_address_ranges_bulk_update(
 /// Create one or more IP address range objects.
 pub async fn ipam_ip_address_ranges_create(
     configuration: &configuration::Configuration,
-    ip_address_range_request: crate::models::IpAddressRangeRequest,
-    format: Option<&str>,
+    params: IpamIpAddressRangesCreateParams,
 ) -> Result<crate::models::IpAddressRange, Error<IpamIpAddressRangesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ip_address_range_request = params.ip_address_range_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1380,10 +4021,13 @@ pub async fn ipam_ip_address_ranges_create(
 /// Destroy a IP address range object.
 pub async fn ipam_ip_address_ranges_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamIpAddressRangesDestroyParams,
 ) -> Result<(), Error<IpamIpAddressRangesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1435,80 +4079,83 @@ pub async fn ipam_ip_address_ranges_destroy(
 /// Retrieve a list of IP address range objects.
 pub async fn ipam_ip_address_ranges_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    contains: Option<Vec<String>>,
-    count_as_utilized: Option<bool>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    end_address: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    ip_version: Option<i32>,
-    is_exclusive: Option<bool>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    namespace: Option<Vec<String>>,
-    namespace__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    parent: Option<Vec<String>>,
-    parent__n: Option<Vec<String>>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    start_address: Option<Vec<String>>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressRangesListParams,
 ) -> Result<crate::models::PaginatedIpAddressRangeList, Error<IpamIpAddressRangesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let contains = params.contains;
+    let count_as_utilized = params.count_as_utilized;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let end_address = params.end_address;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let ip_version = params.ip_version;
+    let is_exclusive = params.is_exclusive;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let namespace = params.namespace;
+    let namespace__n = params.namespace__n;
+    let offset = params.offset;
+    let parent = params.parent;
+    let parent__n = params.parent__n;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let sort = params.sort;
+    let start_address = params.start_address;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2637,11 +5284,14 @@ pub async fn ipam_ip_address_ranges_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_address_ranges_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamIpAddressRangesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamIpAddressRangesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2694,14 +5344,17 @@ pub async fn ipam_ip_address_ranges_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_address_ranges_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressRangesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamIpAddressRangesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2769,11 +5422,14 @@ pub async fn ipam_ip_address_ranges_notes_list(
 /// Partial update a IP address range object.
 pub async fn ipam_ip_address_ranges_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_ip_address_range_request: Option<crate::models::PatchedIpAddressRangeRequest>,
+    params: IpamIpAddressRangesPartialUpdateParams,
 ) -> Result<crate::models::IpAddressRange, Error<IpamIpAddressRangesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_ip_address_range_request = params.patched_ip_address_range_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2826,12 +5482,15 @@ pub async fn ipam_ip_address_ranges_partial_update(
 /// Retrieve a IP address range object.
 pub async fn ipam_ip_address_ranges_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressRangesRetrieveParams,
 ) -> Result<crate::models::IpAddressRange, Error<IpamIpAddressRangesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2891,11 +5550,14 @@ pub async fn ipam_ip_address_ranges_retrieve(
 /// Update a IP address range object.
 pub async fn ipam_ip_address_ranges_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    ip_address_range_request: crate::models::IpAddressRangeRequest,
-    format: Option<&str>,
+    params: IpamIpAddressRangesUpdateParams,
 ) -> Result<crate::models::IpAddressRange, Error<IpamIpAddressRangesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let ip_address_range_request = params.ip_address_range_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -2948,10 +5610,13 @@ pub async fn ipam_ip_address_ranges_update(
 /// Destroy a list of IP Address Assignment objects.
 pub async fn ipam_ip_address_to_interface_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceBulkDestroyParams,
 ) -> Result<(), Error<IpamIpAddressToInterfaceBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3003,15 +5668,17 @@ pub async fn ipam_ip_address_to_interface_bulk_destroy(
 /// Partial update a list of IP Address Assignment objects.
 pub async fn ipam_ip_address_to_interface_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_ip_address_to_interface_request: Vec<
-        crate::models::PatchedBulkWritableIpAddressToInterfaceRequest,
-    >,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::IpAddressToInterface>,
     Error<IpamIpAddressToInterfaceBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_ip_address_to_interface_request =
+        params.patched_bulk_writable_ip_address_to_interface_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3064,13 +5731,15 @@ pub async fn ipam_ip_address_to_interface_bulk_partial_update(
 /// Update a list of IP Address Assignment objects.
 pub async fn ipam_ip_address_to_interface_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_ip_address_to_interface_request: Vec<
-        crate::models::BulkWritableIpAddressToInterfaceRequest,
-    >,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceBulkUpdateParams,
 ) -> Result<Vec<crate::models::IpAddressToInterface>, Error<IpamIpAddressToInterfaceBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_ip_address_to_interface_request =
+        params.bulk_writable_ip_address_to_interface_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3123,10 +5792,13 @@ pub async fn ipam_ip_address_to_interface_bulk_update(
 /// Create one or more IP Address Assignment objects.
 pub async fn ipam_ip_address_to_interface_create(
     configuration: &configuration::Configuration,
-    ip_address_to_interface_request: crate::models::IpAddressToInterfaceRequest,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceCreateParams,
 ) -> Result<crate::models::IpAddressToInterface, Error<IpamIpAddressToInterfaceCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ip_address_to_interface_request = params.ip_address_to_interface_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3178,10 +5850,13 @@ pub async fn ipam_ip_address_to_interface_create(
 /// Destroy a IP Address Assignment object.
 pub async fn ipam_ip_address_to_interface_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceDestroyParams,
 ) -> Result<(), Error<IpamIpAddressToInterfaceDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3233,37 +5908,40 @@ pub async fn ipam_ip_address_to_interface_destroy(
 /// Retrieve a list of IP Address Assignment objects.
 pub async fn ipam_ip_address_to_interface_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    interface: Option<Vec<String>>,
-    interface__isnull: Option<bool>,
-    interface__n: Option<Vec<String>>,
-    ip_address: Option<Vec<uuid::Uuid>>,
-    ip_address__n: Option<Vec<uuid::Uuid>>,
-    is_default: Option<bool>,
-    is_destination: Option<bool>,
-    is_preferred: Option<bool>,
-    is_primary: Option<bool>,
-    is_secondary: Option<bool>,
-    is_source: Option<bool>,
-    is_standby: Option<bool>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vm_interface: Option<Vec<String>>,
-    vm_interface__isnull: Option<bool>,
-    vm_interface__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressToInterfaceListParams,
 ) -> Result<
     crate::models::PaginatedIpAddressToInterfaceList,
     Error<IpamIpAddressToInterfaceListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let interface = params.interface;
+    let interface__isnull = params.interface__isnull;
+    let interface__n = params.interface__n;
+    let ip_address = params.ip_address;
+    let ip_address__n = params.ip_address__n;
+    let is_default = params.is_default;
+    let is_destination = params.is_destination;
+    let is_preferred = params.is_preferred;
+    let is_primary = params.is_primary;
+    let is_secondary = params.is_secondary;
+    let is_source = params.is_source;
+    let is_standby = params.is_standby;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let vm_interface = params.vm_interface;
+    let vm_interface__isnull = params.vm_interface__isnull;
+    let vm_interface__n = params.vm_interface__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3563,11 +6241,14 @@ pub async fn ipam_ip_address_to_interface_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_address_to_interface_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamIpAddressToInterfaceNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3620,14 +6301,17 @@ pub async fn ipam_ip_address_to_interface_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_address_to_interface_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressToInterfaceNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamIpAddressToInterfaceNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3695,14 +6379,15 @@ pub async fn ipam_ip_address_to_interface_notes_list(
 /// Partial update a IP Address Assignment object.
 pub async fn ipam_ip_address_to_interface_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_ip_address_to_interface_request: Option<
-        crate::models::PatchedIpAddressToInterfaceRequest,
-    >,
+    params: IpamIpAddressToInterfacePartialUpdateParams,
 ) -> Result<crate::models::IpAddressToInterface, Error<IpamIpAddressToInterfacePartialUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_ip_address_to_interface_request = params.patched_ip_address_to_interface_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3755,12 +6440,15 @@ pub async fn ipam_ip_address_to_interface_partial_update(
 /// Retrieve a IP Address Assignment object.
 pub async fn ipam_ip_address_to_interface_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressToInterfaceRetrieveParams,
 ) -> Result<crate::models::IpAddressToInterface, Error<IpamIpAddressToInterfaceRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3820,11 +6508,14 @@ pub async fn ipam_ip_address_to_interface_retrieve(
 /// Update a IP Address Assignment object.
 pub async fn ipam_ip_address_to_interface_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    ip_address_to_interface_request: crate::models::IpAddressToInterfaceRequest,
-    format: Option<&str>,
+    params: IpamIpAddressToInterfaceUpdateParams,
 ) -> Result<crate::models::IpAddressToInterface, Error<IpamIpAddressToInterfaceUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let ip_address_to_interface_request = params.ip_address_to_interface_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3877,10 +6568,13 @@ pub async fn ipam_ip_address_to_interface_update(
 /// Destroy a list of IP address objects.
 pub async fn ipam_ip_addresses_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamIpAddressesBulkDestroyParams,
 ) -> Result<(), Error<IpamIpAddressesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3929,12 +6623,13 @@ pub async fn ipam_ip_addresses_bulk_destroy(
 /// Partial update a list of IP address objects.
 pub async fn ipam_ip_addresses_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_ip_address_request: Vec<
-        crate::models::PatchedBulkWritableIpAddressRequest,
-    >,
-    format: Option<&str>,
+    params: IpamIpAddressesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::IpAddress>, Error<IpamIpAddressesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_ip_address_request = params.patched_bulk_writable_ip_address_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -3983,10 +6678,13 @@ pub async fn ipam_ip_addresses_bulk_partial_update(
 /// Update a list of IP address objects.
 pub async fn ipam_ip_addresses_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_ip_address_request: Vec<crate::models::BulkWritableIpAddressRequest>,
-    format: Option<&str>,
+    params: IpamIpAddressesBulkUpdateParams,
 ) -> Result<Vec<crate::models::IpAddress>, Error<IpamIpAddressesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_ip_address_request = params.bulk_writable_ip_address_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4035,10 +6733,13 @@ pub async fn ipam_ip_addresses_bulk_update(
 /// Create one or more IP address objects.
 pub async fn ipam_ip_addresses_create(
     configuration: &configuration::Configuration,
-    ip_address_request: crate::models::IpAddressRequest,
-    format: Option<&str>,
+    params: IpamIpAddressesCreateParams,
 ) -> Result<crate::models::IpAddress, Error<IpamIpAddressesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ip_address_request = params.ip_address_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4087,10 +6788,13 @@ pub async fn ipam_ip_addresses_create(
 /// Destroy a IP address object.
 pub async fn ipam_ip_addresses_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamIpAddressesDestroyParams,
 ) -> Result<(), Error<IpamIpAddressesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -4142,136 +6846,139 @@ pub async fn ipam_ip_addresses_destroy(
 /// Retrieve a list of IP address objects.
 pub async fn ipam_ip_addresses_list(
     configuration: &configuration::Configuration,
-    address: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device_id: Option<Vec<uuid::Uuid>>,
-    dns_name: Option<Vec<String>>,
-    dns_name__ic: Option<Vec<String>>,
-    dns_name__ie: Option<Vec<String>>,
-    dns_name__iew: Option<Vec<String>>,
-    dns_name__ire: Option<Vec<String>>,
-    dns_name__isw: Option<Vec<String>>,
-    dns_name__n: Option<Vec<String>>,
-    dns_name__nic: Option<Vec<String>>,
-    dns_name__nie: Option<Vec<String>>,
-    dns_name__niew: Option<Vec<String>>,
-    dns_name__nire: Option<Vec<String>>,
-    dns_name__nisw: Option<Vec<String>>,
-    dns_name__nre: Option<Vec<String>>,
-    dns_name__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    has_interface_assignments: Option<bool>,
-    has_nat_inside: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    interfaces: Option<Vec<String>>,
-    interfaces__isnull: Option<bool>,
-    interfaces__n: Option<Vec<String>>,
-    ip_version: Option<i32>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    mask_length: Option<Vec<i32>>,
-    mask_length__gt: Option<Vec<i32>>,
-    mask_length__gte: Option<Vec<i32>>,
-    mask_length__lt: Option<Vec<i32>>,
-    mask_length__lte: Option<Vec<i32>>,
-    mask_length__n: Option<Vec<i32>>,
-    namespace: Option<Vec<String>>,
-    namespace__n: Option<Vec<String>>,
-    nat_inside: Option<Vec<uuid::Uuid>>,
-    nat_inside__isnull: Option<bool>,
-    nat_inside__n: Option<Vec<uuid::Uuid>>,
-    offset: Option<i32>,
-    parent: Option<Vec<uuid::Uuid>>,
-    parent__isnull: Option<bool>,
-    parent__n: Option<Vec<uuid::Uuid>>,
-    prefix: Option<Vec<String>>,
-    prefix_exact: Option<Vec<String>>,
-    present_in_vrf: Option<&str>,
-    present_in_vrf_id: Option<&str>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<String>>,
-    services: Option<Vec<String>>,
-    services__isnull: Option<bool>,
-    services__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    r#type: Option<Vec<String>>,
-    type__ic: Option<Vec<String>>,
-    type__ie: Option<Vec<String>>,
-    type__iew: Option<Vec<String>>,
-    type__ire: Option<Vec<String>>,
-    type__isw: Option<Vec<String>>,
-    type__n: Option<Vec<String>>,
-    type__nic: Option<Vec<String>>,
-    type__nie: Option<Vec<String>>,
-    type__niew: Option<Vec<String>>,
-    type__nire: Option<Vec<String>>,
-    type__nisw: Option<Vec<String>>,
-    type__nre: Option<Vec<String>>,
-    type__re: Option<Vec<String>>,
-    virtual_machine: Option<Vec<String>>,
-    virtual_machine_id: Option<Vec<uuid::Uuid>>,
-    vm_interfaces: Option<Vec<String>>,
-    vm_interfaces__isnull: Option<bool>,
-    vm_interfaces__n: Option<Vec<String>>,
-    vrfs: Option<Vec<String>>,
-    vrfs__isnull: Option<bool>,
-    vrfs__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressesListParams,
 ) -> Result<crate::models::PaginatedIpAddressList, Error<IpamIpAddressesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let address = params.address;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let device = params.device;
+    let device_id = params.device_id;
+    let dns_name = params.dns_name;
+    let dns_name__ic = params.dns_name__ic;
+    let dns_name__ie = params.dns_name__ie;
+    let dns_name__iew = params.dns_name__iew;
+    let dns_name__ire = params.dns_name__ire;
+    let dns_name__isw = params.dns_name__isw;
+    let dns_name__n = params.dns_name__n;
+    let dns_name__nic = params.dns_name__nic;
+    let dns_name__nie = params.dns_name__nie;
+    let dns_name__niew = params.dns_name__niew;
+    let dns_name__nire = params.dns_name__nire;
+    let dns_name__nisw = params.dns_name__nisw;
+    let dns_name__nre = params.dns_name__nre;
+    let dns_name__re = params.dns_name__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let has_interface_assignments = params.has_interface_assignments;
+    let has_nat_inside = params.has_nat_inside;
+    let id = params.id;
+    let id__n = params.id__n;
+    let interfaces = params.interfaces;
+    let interfaces__isnull = params.interfaces__isnull;
+    let interfaces__n = params.interfaces__n;
+    let ip_version = params.ip_version;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let mask_length = params.mask_length;
+    let mask_length__gt = params.mask_length__gt;
+    let mask_length__gte = params.mask_length__gte;
+    let mask_length__lt = params.mask_length__lt;
+    let mask_length__lte = params.mask_length__lte;
+    let mask_length__n = params.mask_length__n;
+    let namespace = params.namespace;
+    let namespace__n = params.namespace__n;
+    let nat_inside = params.nat_inside;
+    let nat_inside__isnull = params.nat_inside__isnull;
+    let nat_inside__n = params.nat_inside__n;
+    let offset = params.offset;
+    let parent = params.parent;
+    let parent__isnull = params.parent__isnull;
+    let parent__n = params.parent__n;
+    let prefix = params.prefix;
+    let prefix_exact = params.prefix_exact;
+    let present_in_vrf = params.present_in_vrf;
+    let present_in_vrf_id = params.present_in_vrf_id;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let services = params.services;
+    let services__isnull = params.services__isnull;
+    let services__n = params.services__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let r#type = params.r#type;
+    let type__ic = params.type__ic;
+    let type__ie = params.type__ie;
+    let type__iew = params.type__iew;
+    let type__ire = params.type__ire;
+    let type__isw = params.type__isw;
+    let type__n = params.type__n;
+    let type__nic = params.type__nic;
+    let type__nie = params.type__nie;
+    let type__niew = params.type__niew;
+    let type__nire = params.type__nire;
+    let type__nisw = params.type__nisw;
+    let type__nre = params.type__nre;
+    let type__re = params.type__re;
+    let virtual_machine = params.virtual_machine;
+    let virtual_machine_id = params.virtual_machine_id;
+    let vm_interfaces = params.vm_interfaces;
+    let vm_interfaces__isnull = params.vm_interfaces__isnull;
+    let vm_interfaces__n = params.vm_interfaces__n;
+    let vrfs = params.vrfs;
+    let vrfs__isnull = params.vrfs__isnull;
+    let vrfs__n = params.vrfs__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6341,11 +9048,14 @@ pub async fn ipam_ip_addresses_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_addresses_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamIpAddressesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamIpAddressesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6398,14 +9108,17 @@ pub async fn ipam_ip_addresses_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_ip_addresses_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamIpAddressesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6473,11 +9186,14 @@ pub async fn ipam_ip_addresses_notes_list(
 /// Partial update a IP address object.
 pub async fn ipam_ip_addresses_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_ip_address_request: Option<crate::models::PatchedIpAddressRequest>,
+    params: IpamIpAddressesPartialUpdateParams,
 ) -> Result<crate::models::IpAddress, Error<IpamIpAddressesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_ip_address_request = params.patched_ip_address_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6530,12 +9246,15 @@ pub async fn ipam_ip_addresses_partial_update(
 /// Retrieve a IP address object.
 pub async fn ipam_ip_addresses_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamIpAddressesRetrieveParams,
 ) -> Result<crate::models::IpAddress, Error<IpamIpAddressesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6595,11 +9314,14 @@ pub async fn ipam_ip_addresses_retrieve(
 /// Update a IP address object.
 pub async fn ipam_ip_addresses_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    ip_address_request: crate::models::IpAddressRequest,
-    format: Option<&str>,
+    params: IpamIpAddressesUpdateParams,
 ) -> Result<crate::models::IpAddress, Error<IpamIpAddressesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let ip_address_request = params.ip_address_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6652,10 +9374,13 @@ pub async fn ipam_ip_addresses_update(
 /// Destroy a list of namespace objects.
 pub async fn ipam_namespaces_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamNamespacesBulkDestroyParams,
 ) -> Result<(), Error<IpamNamespacesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6704,12 +9429,13 @@ pub async fn ipam_namespaces_bulk_destroy(
 /// Partial update a list of namespace objects.
 pub async fn ipam_namespaces_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_namespace_request: Vec<
-        crate::models::PatchedBulkWritableNamespaceRequest,
-    >,
-    format: Option<&str>,
+    params: IpamNamespacesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Namespace>, Error<IpamNamespacesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_namespace_request = params.patched_bulk_writable_namespace_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6758,10 +9484,13 @@ pub async fn ipam_namespaces_bulk_partial_update(
 /// Update a list of namespace objects.
 pub async fn ipam_namespaces_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_namespace_request: Vec<crate::models::BulkWritableNamespaceRequest>,
-    format: Option<&str>,
+    params: IpamNamespacesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Namespace>, Error<IpamNamespacesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_namespace_request = params.bulk_writable_namespace_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6810,10 +9539,13 @@ pub async fn ipam_namespaces_bulk_update(
 /// Create one or more namespace objects.
 pub async fn ipam_namespaces_create(
     configuration: &configuration::Configuration,
-    namespace_request: crate::models::NamespaceRequest,
-    format: Option<&str>,
+    params: IpamNamespacesCreateParams,
 ) -> Result<crate::models::Namespace, Error<IpamNamespacesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let namespace_request = params.namespace_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6862,10 +9594,13 @@ pub async fn ipam_namespaces_create(
 /// Destroy a namespace object.
 pub async fn ipam_namespaces_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamNamespacesDestroyParams,
 ) -> Result<(), Error<IpamNamespacesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -6917,82 +9652,85 @@ pub async fn ipam_namespaces_destroy(
 /// Retrieve a list of namespace objects.
 pub async fn ipam_namespaces_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<uuid::Uuid>>,
-    location__isnull: Option<bool>,
-    location__n: Option<Vec<uuid::Uuid>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamNamespacesListParams,
 ) -> Result<crate::models::PaginatedNamespaceList, Error<IpamNamespacesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let location = params.location;
+    let location__isnull = params.location__isnull;
+    let location__n = params.location__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8201,11 +10939,14 @@ pub async fn ipam_namespaces_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_namespaces_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamNamespacesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamNamespacesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8258,14 +10999,17 @@ pub async fn ipam_namespaces_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_namespaces_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamNamespacesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamNamespacesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8333,11 +11077,14 @@ pub async fn ipam_namespaces_notes_list(
 /// Partial update a namespace object.
 pub async fn ipam_namespaces_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_namespace_request: Option<crate::models::PatchedNamespaceRequest>,
+    params: IpamNamespacesPartialUpdateParams,
 ) -> Result<crate::models::Namespace, Error<IpamNamespacesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_namespace_request = params.patched_namespace_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8390,12 +11137,15 @@ pub async fn ipam_namespaces_partial_update(
 /// Retrieve a namespace object.
 pub async fn ipam_namespaces_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamNamespacesRetrieveParams,
 ) -> Result<crate::models::Namespace, Error<IpamNamespacesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8455,11 +11205,14 @@ pub async fn ipam_namespaces_retrieve(
 /// Update a namespace object.
 pub async fn ipam_namespaces_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    namespace_request: crate::models::NamespaceRequest,
-    format: Option<&str>,
+    params: IpamNamespacesUpdateParams,
 ) -> Result<crate::models::Namespace, Error<IpamNamespacesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let namespace_request = params.namespace_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8512,10 +11265,13 @@ pub async fn ipam_namespaces_update(
 /// Destroy a list of prefix location assignment objects.
 pub async fn ipam_prefix_location_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<IpamPrefixLocationAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8567,15 +11323,17 @@ pub async fn ipam_prefix_location_assignments_bulk_destroy(
 /// Partial update a list of prefix location assignment objects.
 pub async fn ipam_prefix_location_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_prefix_location_assignment_request: Vec<
-        crate::models::PatchedBulkWritablePrefixLocationAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::PrefixLocationAssignment>,
     Error<IpamPrefixLocationAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_prefix_location_assignment_request =
+        params.patched_bulk_writable_prefix_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8628,15 +11386,17 @@ pub async fn ipam_prefix_location_assignments_bulk_partial_update(
 /// Update a list of prefix location assignment objects.
 pub async fn ipam_prefix_location_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_prefix_location_assignment_request: Vec<
-        crate::models::BulkWritablePrefixLocationAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::PrefixLocationAssignment>,
     Error<IpamPrefixLocationAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_prefix_location_assignment_request =
+        params.bulk_writable_prefix_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8689,11 +11449,14 @@ pub async fn ipam_prefix_location_assignments_bulk_update(
 /// Create one or more prefix location assignment objects.
 pub async fn ipam_prefix_location_assignments_create(
     configuration: &configuration::Configuration,
-    prefix_location_assignment_request: crate::models::PrefixLocationAssignmentRequest,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsCreateParams,
 ) -> Result<crate::models::PrefixLocationAssignment, Error<IpamPrefixLocationAssignmentsCreateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let prefix_location_assignment_request = params.prefix_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8745,10 +11508,13 @@ pub async fn ipam_prefix_location_assignments_create(
 /// Destroy a prefix location assignment object.
 pub async fn ipam_prefix_location_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsDestroyParams,
 ) -> Result<(), Error<IpamPrefixLocationAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -8800,26 +11566,29 @@ pub async fn ipam_prefix_location_assignments_destroy(
 /// Retrieve a list of prefix location assignment objects.
 pub async fn ipam_prefix_location_assignments_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    prefix: Option<Vec<String>>,
-    prefix__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixLocationAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedPrefixLocationAssignmentList,
     Error<IpamPrefixLocationAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let location = params.location;
+    let location__n = params.location__n;
+    let offset = params.offset;
+    let prefix = params.prefix;
+    let prefix__n = params.prefix__n;
+    let q = params.q;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9045,16 +11814,18 @@ pub async fn ipam_prefix_location_assignments_list(
 /// Partial update a prefix location assignment object.
 pub async fn ipam_prefix_location_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_prefix_location_assignment_request: Option<
-        crate::models::PatchedPrefixLocationAssignmentRequest,
-    >,
+    params: IpamPrefixLocationAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::PrefixLocationAssignment,
     Error<IpamPrefixLocationAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_prefix_location_assignment_request =
+        params.patched_prefix_location_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9107,15 +11878,18 @@ pub async fn ipam_prefix_location_assignments_partial_update(
 /// Retrieve a prefix location assignment object.
 pub async fn ipam_prefix_location_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixLocationAssignmentsRetrieveParams,
 ) -> Result<
     crate::models::PrefixLocationAssignment,
     Error<IpamPrefixLocationAssignmentsRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9175,12 +11949,15 @@ pub async fn ipam_prefix_location_assignments_retrieve(
 /// Update a prefix location assignment object.
 pub async fn ipam_prefix_location_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    prefix_location_assignment_request: crate::models::PrefixLocationAssignmentRequest,
-    format: Option<&str>,
+    params: IpamPrefixLocationAssignmentsUpdateParams,
 ) -> Result<crate::models::PrefixLocationAssignment, Error<IpamPrefixLocationAssignmentsUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let prefix_location_assignment_request = params.prefix_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9233,16 +12010,19 @@ pub async fn ipam_prefix_location_assignments_update(
 /// A convenience method for listing and/or allocating available IP addresses within a prefix.  By default, the number of IPs returned will be equivalent to PAGINATE_COUNT. An arbitrary limit (up to MAX_PAGE_SIZE, if set) may be passed, however results will not be paginated.  This uses a Redis lock to prevent this API from being invoked in parallel, in order to avoid a race condition if multiple clients tried to simultaneously request allocation from the same parent prefix.
 pub async fn ipam_prefixes_available_ips_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    ip_allocation_request: Vec<crate::models::IpAllocationRequest>,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    range_end: Option<&str>,
-    range_start: Option<&str>,
-    sort: Option<&str>,
+    params: IpamPrefixesAvailableIpsCreateParams,
 ) -> Result<crate::models::PaginatedIpAddressList, Error<IpamPrefixesAvailableIpsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let ip_allocation_request = params.ip_allocation_request;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let range_end = params.range_end;
+    let range_start = params.range_start;
+    let sort = params.sort;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9315,17 +12095,20 @@ pub async fn ipam_prefixes_available_ips_create(
 /// A convenience method for listing and/or allocating available IP addresses within a prefix.  By default, the number of IPs returned will be equivalent to PAGINATE_COUNT. An arbitrary limit (up to MAX_PAGE_SIZE, if set) may be passed, however results will not be paginated.  This uses a Redis lock to prevent this API from being invoked in parallel, in order to avoid a race condition if multiple clients tried to simultaneously request allocation from the same parent prefix.
 pub async fn ipam_prefixes_available_ips_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    range_end: Option<&str>,
-    range_start: Option<&str>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixesAvailableIpsListParams,
 ) -> Result<crate::models::PaginatedAvailableIpList, Error<IpamPrefixesAvailableIpsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let range_end = params.range_end;
+    let range_start = params.range_start;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9405,14 +12188,17 @@ pub async fn ipam_prefixes_available_ips_list(
 /// A convenience method for listing and/or allocating available child prefixes within a parent.  This uses a Redis lock to prevent this API from being invoked in parallel, in order to avoid a race condition if multiple clients tried to simultaneously request allocation from the same parent prefix.
 pub async fn ipam_prefixes_available_prefixes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    prefix_length_request: crate::models::PrefixLengthRequest,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
+    params: IpamPrefixesAvailablePrefixesCreateParams,
 ) -> Result<crate::models::PaginatedPrefixList, Error<IpamPrefixesAvailablePrefixesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let prefix_length_request = params.prefix_length_request;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9477,18 +12263,21 @@ pub async fn ipam_prefixes_available_prefixes_create(
 /// A convenience method for listing and/or allocating available child prefixes within a parent.  This uses a Redis lock to prevent this API from being invoked in parallel, in order to avoid a race condition if multiple clients tried to simultaneously request allocation from the same parent prefix.
 pub async fn ipam_prefixes_available_prefixes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixesAvailablePrefixesListParams,
 ) -> Result<
     crate::models::PaginatedAvailablePrefixList,
     Error<IpamPrefixesAvailablePrefixesListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9560,10 +12349,13 @@ pub async fn ipam_prefixes_available_prefixes_list(
 /// Destroy a list of prefix objects.
 pub async fn ipam_prefixes_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamPrefixesBulkDestroyParams,
 ) -> Result<(), Error<IpamPrefixesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9612,10 +12404,13 @@ pub async fn ipam_prefixes_bulk_destroy(
 /// Partial update a list of prefix objects.
 pub async fn ipam_prefixes_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_prefix_request: Vec<crate::models::PatchedBulkWritablePrefixRequest>,
-    format: Option<&str>,
+    params: IpamPrefixesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Prefix>, Error<IpamPrefixesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_prefix_request = params.patched_bulk_writable_prefix_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9664,10 +12459,13 @@ pub async fn ipam_prefixes_bulk_partial_update(
 /// Update a list of prefix objects.
 pub async fn ipam_prefixes_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_prefix_request: Vec<crate::models::BulkWritablePrefixRequest>,
-    format: Option<&str>,
+    params: IpamPrefixesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Prefix>, Error<IpamPrefixesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_prefix_request = params.bulk_writable_prefix_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9716,10 +12514,13 @@ pub async fn ipam_prefixes_bulk_update(
 /// Create one or more prefix objects.
 pub async fn ipam_prefixes_create(
     configuration: &configuration::Configuration,
-    writable_prefix_request: crate::models::WritablePrefixRequest,
-    format: Option<&str>,
+    params: IpamPrefixesCreateParams,
 ) -> Result<crate::models::Prefix, Error<IpamPrefixesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let writable_prefix_request = params.writable_prefix_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9768,10 +12569,13 @@ pub async fn ipam_prefixes_create(
 /// Destroy a prefix object.
 pub async fn ipam_prefixes_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamPrefixesDestroyParams,
 ) -> Result<(), Error<IpamPrefixesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -9823,126 +12627,129 @@ pub async fn ipam_prefixes_destroy(
 /// Retrieve a list of prefix objects.
 pub async fn ipam_prefixes_list(
     configuration: &configuration::Configuration,
-    ancestors: Option<Vec<String>>,
-    cloud_networks: Option<Vec<String>>,
-    cloud_networks__isnull: Option<bool>,
-    cloud_networks__n: Option<Vec<String>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    contains: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    date_allocated: Option<Vec<String>>,
-    date_allocated__gt: Option<Vec<String>>,
-    date_allocated__gte: Option<Vec<String>>,
-    date_allocated__isnull: Option<bool>,
-    date_allocated__lt: Option<Vec<String>>,
-    date_allocated__lte: Option<Vec<String>>,
-    date_allocated__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    has_rir: Option<bool>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    ip_version: Option<i32>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__n: Option<Vec<String>>,
-    locations: Option<Vec<String>>,
-    locations__n: Option<Vec<String>>,
-    max_depth: Option<f32>,
-    namespace: Option<Vec<String>>,
-    namespace__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    parent: Option<Vec<String>>,
-    parent__isnull: Option<bool>,
-    parent__n: Option<Vec<String>>,
-    prefix: Option<Vec<String>>,
-    prefix_and_descendants: Option<Vec<String>>,
-    prefix_exact: Option<Vec<String>>,
-    prefix_length: Option<Vec<i32>>,
-    prefix_length__gt: Option<Vec<i32>>,
-    prefix_length__gte: Option<Vec<i32>>,
-    prefix_length__lt: Option<Vec<i32>>,
-    prefix_length__lte: Option<Vec<i32>>,
-    prefix_length__n: Option<Vec<i32>>,
-    present_in_vrf: Option<&str>,
-    present_in_vrf_id: Option<&str>,
-    q: Option<&str>,
-    rir: Option<Vec<String>>,
-    rir__isnull: Option<bool>,
-    rir__n: Option<Vec<String>>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    r#type: Option<Vec<String>>,
-    type__ic: Option<Vec<String>>,
-    type__ie: Option<Vec<String>>,
-    type__iew: Option<Vec<String>>,
-    type__ire: Option<Vec<String>>,
-    type__isw: Option<Vec<String>>,
-    type__n: Option<Vec<String>>,
-    type__nic: Option<Vec<String>>,
-    type__nie: Option<Vec<String>>,
-    type__niew: Option<Vec<String>>,
-    type__nire: Option<Vec<String>>,
-    type__nisw: Option<Vec<String>>,
-    type__nre: Option<Vec<String>>,
-    type__re: Option<Vec<String>>,
-    vlan_id: Option<Vec<uuid::Uuid>>,
-    vlan_id__isnull: Option<bool>,
-    vlan_id__n: Option<Vec<uuid::Uuid>>,
-    vlan_vid: Option<Vec<i32>>,
-    vlan_vid__gt: Option<Vec<i32>>,
-    vlan_vid__gte: Option<Vec<i32>>,
-    vlan_vid__lt: Option<Vec<i32>>,
-    vlan_vid__lte: Option<Vec<i32>>,
-    vlan_vid__n: Option<Vec<i32>>,
-    vpn_tunnel_endpoints: Option<Vec<String>>,
-    vpn_tunnel_endpoints__isnull: Option<bool>,
-    vpn_tunnel_endpoints__n: Option<Vec<String>>,
-    vpn_tunnel_endpoints_name_contains: Option<&str>,
-    vrfs: Option<Vec<String>>,
-    vrfs__isnull: Option<bool>,
-    vrfs__n: Option<Vec<String>>,
-    within: Option<Vec<String>>,
-    within_include: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixesListParams,
 ) -> Result<crate::models::PaginatedPrefixList, Error<IpamPrefixesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let ancestors = params.ancestors;
+    let cloud_networks = params.cloud_networks;
+    let cloud_networks__isnull = params.cloud_networks__isnull;
+    let cloud_networks__n = params.cloud_networks__n;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let contains = params.contains;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let date_allocated = params.date_allocated;
+    let date_allocated__gt = params.date_allocated__gt;
+    let date_allocated__gte = params.date_allocated__gte;
+    let date_allocated__isnull = params.date_allocated__isnull;
+    let date_allocated__lt = params.date_allocated__lt;
+    let date_allocated__lte = params.date_allocated__lte;
+    let date_allocated__n = params.date_allocated__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let has_rir = params.has_rir;
+    let id = params.id;
+    let id__n = params.id__n;
+    let ip_version = params.ip_version;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let location = params.location;
+    let location__n = params.location__n;
+    let locations = params.locations;
+    let locations__n = params.locations__n;
+    let max_depth = params.max_depth;
+    let namespace = params.namespace;
+    let namespace__n = params.namespace__n;
+    let offset = params.offset;
+    let parent = params.parent;
+    let parent__isnull = params.parent__isnull;
+    let parent__n = params.parent__n;
+    let prefix = params.prefix;
+    let prefix_and_descendants = params.prefix_and_descendants;
+    let prefix_exact = params.prefix_exact;
+    let prefix_length = params.prefix_length;
+    let prefix_length__gt = params.prefix_length__gt;
+    let prefix_length__gte = params.prefix_length__gte;
+    let prefix_length__lt = params.prefix_length__lt;
+    let prefix_length__lte = params.prefix_length__lte;
+    let prefix_length__n = params.prefix_length__n;
+    let present_in_vrf = params.present_in_vrf;
+    let present_in_vrf_id = params.present_in_vrf_id;
+    let q = params.q;
+    let rir = params.rir;
+    let rir__isnull = params.rir__isnull;
+    let rir__n = params.rir__n;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let r#type = params.r#type;
+    let type__ic = params.type__ic;
+    let type__ie = params.type__ie;
+    let type__iew = params.type__iew;
+    let type__ire = params.type__ire;
+    let type__isw = params.type__isw;
+    let type__n = params.type__n;
+    let type__nic = params.type__nic;
+    let type__nie = params.type__nie;
+    let type__niew = params.type__niew;
+    let type__nire = params.type__nire;
+    let type__nisw = params.type__nisw;
+    let type__nre = params.type__nre;
+    let type__re = params.type__re;
+    let vlan_id = params.vlan_id;
+    let vlan_id__isnull = params.vlan_id__isnull;
+    let vlan_id__n = params.vlan_id__n;
+    let vlan_vid = params.vlan_vid;
+    let vlan_vid__gt = params.vlan_vid__gt;
+    let vlan_vid__gte = params.vlan_vid__gte;
+    let vlan_vid__lt = params.vlan_vid__lt;
+    let vlan_vid__lte = params.vlan_vid__lte;
+    let vlan_vid__n = params.vlan_vid__n;
+    let vpn_tunnel_endpoints = params.vpn_tunnel_endpoints;
+    let vpn_tunnel_endpoints__isnull = params.vpn_tunnel_endpoints__isnull;
+    let vpn_tunnel_endpoints__n = params.vpn_tunnel_endpoints__n;
+    let vpn_tunnel_endpoints_name_contains = params.vpn_tunnel_endpoints_name_contains;
+    let vrfs = params.vrfs;
+    let vrfs__isnull = params.vrfs__isnull;
+    let vrfs__n = params.vrfs__n;
+    let within = params.within;
+    let within_include = params.within_include;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11794,11 +14601,14 @@ pub async fn ipam_prefixes_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_prefixes_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamPrefixesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamPrefixesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11851,14 +14661,17 @@ pub async fn ipam_prefixes_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_prefixes_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamPrefixesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11926,11 +14739,14 @@ pub async fn ipam_prefixes_notes_list(
 /// Partial update a prefix object.
 pub async fn ipam_prefixes_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_writable_prefix_request: Option<crate::models::PatchedWritablePrefixRequest>,
+    params: IpamPrefixesPartialUpdateParams,
 ) -> Result<crate::models::Prefix, Error<IpamPrefixesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_writable_prefix_request = params.patched_writable_prefix_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -11983,12 +14799,15 @@ pub async fn ipam_prefixes_partial_update(
 /// Retrieve a prefix object.
 pub async fn ipam_prefixes_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamPrefixesRetrieveParams,
 ) -> Result<crate::models::Prefix, Error<IpamPrefixesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12048,11 +14867,14 @@ pub async fn ipam_prefixes_retrieve(
 /// Update a prefix object.
 pub async fn ipam_prefixes_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    writable_prefix_request: crate::models::WritablePrefixRequest,
-    format: Option<&str>,
+    params: IpamPrefixesUpdateParams,
 ) -> Result<crate::models::Prefix, Error<IpamPrefixesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let writable_prefix_request = params.writable_prefix_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12105,10 +14927,13 @@ pub async fn ipam_prefixes_update(
 /// Destroy a list of RIR objects.
 pub async fn ipam_rirs_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamRirsBulkDestroyParams,
 ) -> Result<(), Error<IpamRirsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12157,10 +14982,13 @@ pub async fn ipam_rirs_bulk_destroy(
 /// Partial update a list of RIR objects.
 pub async fn ipam_rirs_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_rir_request: Vec<crate::models::PatchedBulkWritableRirRequest>,
-    format: Option<&str>,
+    params: IpamRirsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Rir>, Error<IpamRirsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_rir_request = params.patched_bulk_writable_rir_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12209,10 +15037,13 @@ pub async fn ipam_rirs_bulk_partial_update(
 /// Update a list of RIR objects.
 pub async fn ipam_rirs_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_rir_request: Vec<crate::models::BulkWritableRirRequest>,
-    format: Option<&str>,
+    params: IpamRirsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Rir>, Error<IpamRirsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_rir_request = params.bulk_writable_rir_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12261,10 +15092,13 @@ pub async fn ipam_rirs_bulk_update(
 /// Create one or more RIR objects.
 pub async fn ipam_rirs_create(
     configuration: &configuration::Configuration,
-    rir_request: crate::models::RirRequest,
-    format: Option<&str>,
+    params: IpamRirsCreateParams,
 ) -> Result<crate::models::Rir, Error<IpamRirsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let rir_request = params.rir_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12313,10 +15147,13 @@ pub async fn ipam_rirs_create(
 /// Destroy a RIR object.
 pub async fn ipam_rirs_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamRirsDestroyParams,
 ) -> Result<(), Error<IpamRirsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -12368,68 +15205,71 @@ pub async fn ipam_rirs_destroy(
 /// Retrieve a list of RIR objects.
 pub async fn ipam_rirs_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    is_private: Option<bool>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRirsListParams,
 ) -> Result<crate::models::PaginatedRirList, Error<IpamRirsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let is_private = params.is_private;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13432,11 +16272,14 @@ pub async fn ipam_rirs_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_rirs_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamRirsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamRirsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13489,14 +16332,17 @@ pub async fn ipam_rirs_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_rirs_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRirsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamRirsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13564,11 +16410,14 @@ pub async fn ipam_rirs_notes_list(
 /// Partial update a RIR object.
 pub async fn ipam_rirs_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_rir_request: Option<crate::models::PatchedRirRequest>,
+    params: IpamRirsPartialUpdateParams,
 ) -> Result<crate::models::Rir, Error<IpamRirsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_rir_request = params.patched_rir_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13621,12 +16470,15 @@ pub async fn ipam_rirs_partial_update(
 /// Retrieve a RIR object.
 pub async fn ipam_rirs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRirsRetrieveParams,
 ) -> Result<crate::models::Rir, Error<IpamRirsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13686,11 +16538,14 @@ pub async fn ipam_rirs_retrieve(
 /// Update a RIR object.
 pub async fn ipam_rirs_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    rir_request: crate::models::RirRequest,
-    format: Option<&str>,
+    params: IpamRirsUpdateParams,
 ) -> Result<crate::models::Rir, Error<IpamRirsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let rir_request = params.rir_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13743,10 +16598,13 @@ pub async fn ipam_rirs_update(
 /// Destroy a list of route target objects.
 pub async fn ipam_route_targets_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamRouteTargetsBulkDestroyParams,
 ) -> Result<(), Error<IpamRouteTargetsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13795,12 +16653,14 @@ pub async fn ipam_route_targets_bulk_destroy(
 /// Partial update a list of route target objects.
 pub async fn ipam_route_targets_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_route_target_request: Vec<
-        crate::models::PatchedBulkWritableRouteTargetRequest,
-    >,
-    format: Option<&str>,
+    params: IpamRouteTargetsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::RouteTarget>, Error<IpamRouteTargetsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_route_target_request =
+        params.patched_bulk_writable_route_target_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13849,10 +16709,13 @@ pub async fn ipam_route_targets_bulk_partial_update(
 /// Update a list of route target objects.
 pub async fn ipam_route_targets_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_route_target_request: Vec<crate::models::BulkWritableRouteTargetRequest>,
-    format: Option<&str>,
+    params: IpamRouteTargetsBulkUpdateParams,
 ) -> Result<Vec<crate::models::RouteTarget>, Error<IpamRouteTargetsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_route_target_request = params.bulk_writable_route_target_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13901,10 +16764,13 @@ pub async fn ipam_route_targets_bulk_update(
 /// Create one or more route target objects.
 pub async fn ipam_route_targets_create(
     configuration: &configuration::Configuration,
-    route_target_request: crate::models::RouteTargetRequest,
-    format: Option<&str>,
+    params: IpamRouteTargetsCreateParams,
 ) -> Result<crate::models::RouteTarget, Error<IpamRouteTargetsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let route_target_request = params.route_target_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -13953,10 +16819,13 @@ pub async fn ipam_route_targets_create(
 /// Destroy a route target object.
 pub async fn ipam_route_targets_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamRouteTargetsDestroyParams,
 ) -> Result<(), Error<IpamRouteTargetsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -14008,71 +16877,74 @@ pub async fn ipam_route_targets_destroy(
 /// Retrieve a list of route target objects.
 pub async fn ipam_route_targets_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    exporting_vrfs: Option<Vec<String>>,
-    exporting_vrfs__isnull: Option<bool>,
-    exporting_vrfs__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    importing_vrfs: Option<Vec<String>>,
-    importing_vrfs__isnull: Option<bool>,
-    importing_vrfs__n: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRouteTargetsListParams,
 ) -> Result<crate::models::PaginatedRouteTargetList, Error<IpamRouteTargetsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let exporting_vrfs = params.exporting_vrfs;
+    let exporting_vrfs__isnull = params.exporting_vrfs__isnull;
+    let exporting_vrfs__n = params.exporting_vrfs__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let importing_vrfs = params.importing_vrfs;
+    let importing_vrfs__isnull = params.importing_vrfs__isnull;
+    let importing_vrfs__n = params.importing_vrfs__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15057,11 +17929,14 @@ pub async fn ipam_route_targets_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_route_targets_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamRouteTargetsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamRouteTargetsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15114,14 +17989,17 @@ pub async fn ipam_route_targets_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_route_targets_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRouteTargetsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamRouteTargetsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15189,11 +18067,14 @@ pub async fn ipam_route_targets_notes_list(
 /// Partial update a route target object.
 pub async fn ipam_route_targets_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_route_target_request: Option<crate::models::PatchedRouteTargetRequest>,
+    params: IpamRouteTargetsPartialUpdateParams,
 ) -> Result<crate::models::RouteTarget, Error<IpamRouteTargetsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_route_target_request = params.patched_route_target_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15246,12 +18127,15 @@ pub async fn ipam_route_targets_partial_update(
 /// Retrieve a route target object.
 pub async fn ipam_route_targets_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamRouteTargetsRetrieveParams,
 ) -> Result<crate::models::RouteTarget, Error<IpamRouteTargetsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15311,11 +18195,14 @@ pub async fn ipam_route_targets_retrieve(
 /// Update a route target object.
 pub async fn ipam_route_targets_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    route_target_request: crate::models::RouteTargetRequest,
-    format: Option<&str>,
+    params: IpamRouteTargetsUpdateParams,
 ) -> Result<crate::models::RouteTarget, Error<IpamRouteTargetsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let route_target_request = params.route_target_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15368,10 +18255,13 @@ pub async fn ipam_route_targets_update(
 /// Destroy a list of service objects.
 pub async fn ipam_services_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamServicesBulkDestroyParams,
 ) -> Result<(), Error<IpamServicesBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15420,10 +18310,13 @@ pub async fn ipam_services_bulk_destroy(
 /// Partial update a list of service objects.
 pub async fn ipam_services_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_service_request: Vec<crate::models::PatchedBulkWritableServiceRequest>,
-    format: Option<&str>,
+    params: IpamServicesBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Service>, Error<IpamServicesBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_service_request = params.patched_bulk_writable_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15472,10 +18365,13 @@ pub async fn ipam_services_bulk_partial_update(
 /// Update a list of service objects.
 pub async fn ipam_services_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_service_request: Vec<crate::models::BulkWritableServiceRequest>,
-    format: Option<&str>,
+    params: IpamServicesBulkUpdateParams,
 ) -> Result<Vec<crate::models::Service>, Error<IpamServicesBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_service_request = params.bulk_writable_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15524,10 +18420,13 @@ pub async fn ipam_services_bulk_update(
 /// Create one or more service objects.
 pub async fn ipam_services_create(
     configuration: &configuration::Configuration,
-    writable_service_request: crate::models::WritableServiceRequest,
-    format: Option<&str>,
+    params: IpamServicesCreateParams,
 ) -> Result<crate::models::Service, Error<IpamServicesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let writable_service_request = params.writable_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15576,10 +18475,13 @@ pub async fn ipam_services_create(
 /// Destroy a service object.
 pub async fn ipam_services_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamServicesDestroyParams,
 ) -> Result<(), Error<IpamServicesDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -15631,77 +18533,80 @@ pub async fn ipam_services_destroy(
 /// Retrieve a list of service objects.
 pub async fn ipam_services_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device__isnull: Option<bool>,
-    device__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    ports: Option<f32>,
-    protocol: Option<Vec<String>>,
-    protocol__ic: Option<Vec<String>>,
-    protocol__ie: Option<Vec<String>>,
-    protocol__iew: Option<Vec<String>>,
-    protocol__ire: Option<Vec<String>>,
-    protocol__isw: Option<Vec<String>>,
-    protocol__n: Option<Vec<String>>,
-    protocol__nic: Option<Vec<String>>,
-    protocol__nie: Option<Vec<String>>,
-    protocol__niew: Option<Vec<String>>,
-    protocol__nire: Option<Vec<String>>,
-    protocol__nisw: Option<Vec<String>>,
-    protocol__nre: Option<Vec<String>>,
-    protocol__re: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    virtual_machine: Option<Vec<String>>,
-    virtual_machine__isnull: Option<bool>,
-    virtual_machine__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamServicesListParams,
 ) -> Result<crate::models::PaginatedServiceList, Error<IpamServicesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let device = params.device;
+    let device__isnull = params.device__isnull;
+    let device__n = params.device__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let ports = params.ports;
+    let protocol = params.protocol;
+    let protocol__ic = params.protocol__ic;
+    let protocol__ie = params.protocol__ie;
+    let protocol__iew = params.protocol__iew;
+    let protocol__ire = params.protocol__ire;
+    let protocol__isw = params.protocol__isw;
+    let protocol__n = params.protocol__n;
+    let protocol__nic = params.protocol__nic;
+    let protocol__nie = params.protocol__nie;
+    let protocol__niew = params.protocol__niew;
+    let protocol__nire = params.protocol__nire;
+    let protocol__nisw = params.protocol__nisw;
+    let protocol__nre = params.protocol__nre;
+    let protocol__re = params.protocol__re;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let virtual_machine = params.virtual_machine;
+    let virtual_machine__isnull = params.virtual_machine__isnull;
+    let virtual_machine__n = params.virtual_machine__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16830,11 +19735,14 @@ pub async fn ipam_services_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_services_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamServicesNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamServicesNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16887,14 +19795,17 @@ pub async fn ipam_services_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_services_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamServicesNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamServicesNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -16962,11 +19873,14 @@ pub async fn ipam_services_notes_list(
 /// Partial update a service object.
 pub async fn ipam_services_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_writable_service_request: Option<crate::models::PatchedWritableServiceRequest>,
+    params: IpamServicesPartialUpdateParams,
 ) -> Result<crate::models::Service, Error<IpamServicesPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_writable_service_request = params.patched_writable_service_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17019,12 +19933,15 @@ pub async fn ipam_services_partial_update(
 /// Retrieve a service object.
 pub async fn ipam_services_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamServicesRetrieveParams,
 ) -> Result<crate::models::Service, Error<IpamServicesRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17084,11 +20001,14 @@ pub async fn ipam_services_retrieve(
 /// Update a service object.
 pub async fn ipam_services_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    writable_service_request: crate::models::WritableServiceRequest,
-    format: Option<&str>,
+    params: IpamServicesUpdateParams,
 ) -> Result<crate::models::Service, Error<IpamServicesUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let writable_service_request = params.writable_service_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17141,14 +20061,17 @@ pub async fn ipam_services_update(
 /// A convenience method for listing available VLAN IDs within a VLANGroup. By default, the number of VIDs returned will be equivalent to PAGINATE_COUNT. An arbitrary limit (up to MAX_PAGE_SIZE, if set) may be passed, however results will not be paginated.
 pub async fn ipam_vlan_groups_available_vlans_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    vlan_allocation_request: Vec<crate::models::VlanAllocationRequest>,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
+    params: IpamVlanGroupsAvailableVlansCreateParams,
 ) -> Result<crate::models::PaginatedVlanList, Error<IpamVlanGroupsAvailableVlansCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vlan_allocation_request = params.vlan_allocation_request;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17213,18 +20136,21 @@ pub async fn ipam_vlan_groups_available_vlans_create(
 /// A convenience method for listing available VLAN IDs within a VLANGroup. By default, the number of VIDs returned will be equivalent to PAGINATE_COUNT. An arbitrary limit (up to MAX_PAGE_SIZE, if set) may be passed, however results will not be paginated.
 pub async fn ipam_vlan_groups_available_vlans_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    sort: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanGroupsAvailableVlansListParams,
 ) -> Result<
     crate::models::IpamVlanGroupsAvailableVlansList200Response,
     Error<IpamVlanGroupsAvailableVlansListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let sort = params.sort;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17296,10 +20222,13 @@ pub async fn ipam_vlan_groups_available_vlans_list(
 /// Destroy a list of VLAN group objects.
 pub async fn ipam_vlan_groups_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVlanGroupsBulkDestroyParams,
 ) -> Result<(), Error<IpamVlanGroupsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17348,12 +20277,13 @@ pub async fn ipam_vlan_groups_bulk_destroy(
 /// Partial update a list of VLAN group objects.
 pub async fn ipam_vlan_groups_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vlan_group_request: Vec<
-        crate::models::PatchedBulkWritableVlanGroupRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVlanGroupsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::VlanGroup>, Error<IpamVlanGroupsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vlan_group_request = params.patched_bulk_writable_vlan_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17402,10 +20332,13 @@ pub async fn ipam_vlan_groups_bulk_partial_update(
 /// Update a list of VLAN group objects.
 pub async fn ipam_vlan_groups_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vlan_group_request: Vec<crate::models::BulkWritableVlanGroupRequest>,
-    format: Option<&str>,
+    params: IpamVlanGroupsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VlanGroup>, Error<IpamVlanGroupsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vlan_group_request = params.bulk_writable_vlan_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17454,10 +20387,13 @@ pub async fn ipam_vlan_groups_bulk_update(
 /// Create one or more VLAN group objects.
 pub async fn ipam_vlan_groups_create(
     configuration: &configuration::Configuration,
-    vlan_group_request: crate::models::VlanGroupRequest,
-    format: Option<&str>,
+    params: IpamVlanGroupsCreateParams,
 ) -> Result<crate::models::VlanGroup, Error<IpamVlanGroupsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vlan_group_request = params.vlan_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17506,10 +20442,13 @@ pub async fn ipam_vlan_groups_create(
 /// Destroy a VLAN group object.
 pub async fn ipam_vlan_groups_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVlanGroupsDestroyParams,
 ) -> Result<(), Error<IpamVlanGroupsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -17561,73 +20500,76 @@ pub async fn ipam_vlan_groups_destroy(
 /// Retrieve a list of VLAN group objects.
 pub async fn ipam_vlan_groups_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__isnull: Option<bool>,
-    location__n: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanGroupsListParams,
 ) -> Result<crate::models::PaginatedVlanGroupList, Error<IpamVlanGroupsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let location = params.location;
+    let location__isnull = params.location__isnull;
+    let location__n = params.location__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18710,11 +21652,14 @@ pub async fn ipam_vlan_groups_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vlan_groups_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamVlanGroupsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamVlanGroupsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18767,14 +21712,17 @@ pub async fn ipam_vlan_groups_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vlan_groups_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanGroupsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamVlanGroupsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18842,11 +21790,14 @@ pub async fn ipam_vlan_groups_notes_list(
 /// Partial update a VLAN group object.
 pub async fn ipam_vlan_groups_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vlan_group_request: Option<crate::models::PatchedVlanGroupRequest>,
+    params: IpamVlanGroupsPartialUpdateParams,
 ) -> Result<crate::models::VlanGroup, Error<IpamVlanGroupsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vlan_group_request = params.patched_vlan_group_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18899,12 +21850,15 @@ pub async fn ipam_vlan_groups_partial_update(
 /// Retrieve a VLAN group object.
 pub async fn ipam_vlan_groups_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanGroupsRetrieveParams,
 ) -> Result<crate::models::VlanGroup, Error<IpamVlanGroupsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -18964,11 +21918,14 @@ pub async fn ipam_vlan_groups_retrieve(
 /// Update a VLAN group object.
 pub async fn ipam_vlan_groups_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vlan_group_request: crate::models::VlanGroupRequest,
-    format: Option<&str>,
+    params: IpamVlanGroupsUpdateParams,
 ) -> Result<crate::models::VlanGroup, Error<IpamVlanGroupsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vlan_group_request = params.vlan_group_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19021,10 +21978,13 @@ pub async fn ipam_vlan_groups_update(
 /// Destroy a list of vlan location assignment objects.
 pub async fn ipam_vlan_location_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<IpamVlanLocationAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19076,15 +22036,17 @@ pub async fn ipam_vlan_location_assignments_bulk_destroy(
 /// Partial update a list of vlan location assignment objects.
 pub async fn ipam_vlan_location_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vlan_location_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVlanLocationAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VlanLocationAssignment>,
     Error<IpamVlanLocationAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vlan_location_assignment_request =
+        params.patched_bulk_writable_vlan_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19137,15 +22099,17 @@ pub async fn ipam_vlan_location_assignments_bulk_partial_update(
 /// Update a list of vlan location assignment objects.
 pub async fn ipam_vlan_location_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vlan_location_assignment_request: Vec<
-        crate::models::BulkWritableVlanLocationAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsBulkUpdateParams,
 ) -> Result<
     Vec<crate::models::VlanLocationAssignment>,
     Error<IpamVlanLocationAssignmentsBulkUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vlan_location_assignment_request =
+        params.bulk_writable_vlan_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19198,10 +22162,13 @@ pub async fn ipam_vlan_location_assignments_bulk_update(
 /// Create one or more vlan location assignment objects.
 pub async fn ipam_vlan_location_assignments_create(
     configuration: &configuration::Configuration,
-    vlan_location_assignment_request: crate::models::VlanLocationAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsCreateParams,
 ) -> Result<crate::models::VlanLocationAssignment, Error<IpamVlanLocationAssignmentsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vlan_location_assignment_request = params.vlan_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19253,10 +22220,13 @@ pub async fn ipam_vlan_location_assignments_create(
 /// Destroy a vlan location assignment object.
 pub async fn ipam_vlan_location_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsDestroyParams,
 ) -> Result<(), Error<IpamVlanLocationAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19308,26 +22278,29 @@ pub async fn ipam_vlan_location_assignments_destroy(
 /// Retrieve a list of vlan location assignment objects.
 pub async fn ipam_vlan_location_assignments_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vlan: Option<Vec<String>>,
-    vlan__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanLocationAssignmentsListParams,
 ) -> Result<
     crate::models::PaginatedVlanLocationAssignmentList,
     Error<IpamVlanLocationAssignmentsListError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let location = params.location;
+    let location__n = params.location__n;
+    let offset = params.offset;
+    let q = params.q;
+    let sort = params.sort;
+    let vlan = params.vlan;
+    let vlan__n = params.vlan__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19553,16 +22526,17 @@ pub async fn ipam_vlan_location_assignments_list(
 /// Partial update a vlan location assignment object.
 pub async fn ipam_vlan_location_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vlan_location_assignment_request: Option<
-        crate::models::PatchedVlanLocationAssignmentRequest,
-    >,
+    params: IpamVlanLocationAssignmentsPartialUpdateParams,
 ) -> Result<
     crate::models::VlanLocationAssignment,
     Error<IpamVlanLocationAssignmentsPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vlan_location_assignment_request = params.patched_vlan_location_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19615,13 +22589,16 @@ pub async fn ipam_vlan_location_assignments_partial_update(
 /// Retrieve a vlan location assignment object.
 pub async fn ipam_vlan_location_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlanLocationAssignmentsRetrieveParams,
 ) -> Result<crate::models::VlanLocationAssignment, Error<IpamVlanLocationAssignmentsRetrieveError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19681,11 +22658,14 @@ pub async fn ipam_vlan_location_assignments_retrieve(
 /// Update a vlan location assignment object.
 pub async fn ipam_vlan_location_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vlan_location_assignment_request: crate::models::VlanLocationAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVlanLocationAssignmentsUpdateParams,
 ) -> Result<crate::models::VlanLocationAssignment, Error<IpamVlanLocationAssignmentsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vlan_location_assignment_request = params.vlan_location_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19738,10 +22718,13 @@ pub async fn ipam_vlan_location_assignments_update(
 /// Destroy a list of VLAN objects.
 pub async fn ipam_vlans_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVlansBulkDestroyParams,
 ) -> Result<(), Error<IpamVlansBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19790,10 +22773,13 @@ pub async fn ipam_vlans_bulk_destroy(
 /// Partial update a list of VLAN objects.
 pub async fn ipam_vlans_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vlan_request: Vec<crate::models::PatchedBulkWritableVlanRequest>,
-    format: Option<&str>,
+    params: IpamVlansBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Vlan>, Error<IpamVlansBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vlan_request = params.patched_bulk_writable_vlan_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19842,10 +22828,13 @@ pub async fn ipam_vlans_bulk_partial_update(
 /// Update a list of VLAN objects.
 pub async fn ipam_vlans_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vlan_request: Vec<crate::models::BulkWritableVlanRequest>,
-    format: Option<&str>,
+    params: IpamVlansBulkUpdateParams,
 ) -> Result<Vec<crate::models::Vlan>, Error<IpamVlansBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vlan_request = params.bulk_writable_vlan_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19894,10 +22883,13 @@ pub async fn ipam_vlans_bulk_update(
 /// Create one or more VLAN objects.
 pub async fn ipam_vlans_create(
     configuration: &configuration::Configuration,
-    vlan_request: crate::models::VlanRequest,
-    format: Option<&str>,
+    params: IpamVlansCreateParams,
 ) -> Result<crate::models::Vlan, Error<IpamVlansCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vlan_request = params.vlan_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -19946,10 +22938,13 @@ pub async fn ipam_vlans_create(
 /// Destroy a VLAN object.
 pub async fn ipam_vlans_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVlansDestroyParams,
 ) -> Result<(), Error<IpamVlansDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -20001,86 +22996,89 @@ pub async fn ipam_vlans_destroy(
 /// Retrieve a list of VLAN objects.
 pub async fn ipam_vlans_list(
     configuration: &configuration::Configuration,
-    available_on_device: Option<Vec<uuid::Uuid>>,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    interfaces: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    location: Option<Vec<String>>,
-    location__n: Option<Vec<String>>,
-    locations: Option<Vec<String>>,
-    locations__n: Option<Vec<String>>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    role: Option<Vec<String>>,
-    role__isnull: Option<bool>,
-    role__n: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    vid: Option<Vec<i32>>,
-    vid__gt: Option<Vec<i32>>,
-    vid__gte: Option<Vec<i32>>,
-    vid__lt: Option<Vec<i32>>,
-    vid__lte: Option<Vec<i32>>,
-    vid__n: Option<Vec<i32>>,
-    vlan_group: Option<Vec<String>>,
-    vlan_group__isnull: Option<bool>,
-    vlan_group__n: Option<Vec<String>>,
-    vm_interfaces: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlansListParams,
 ) -> Result<crate::models::PaginatedVlanList, Error<IpamVlansListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let available_on_device = params.available_on_device;
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let interfaces = params.interfaces;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let location = params.location;
+    let location__n = params.location__n;
+    let locations = params.locations;
+    let locations__n = params.locations__n;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let role = params.role;
+    let role__isnull = params.role__isnull;
+    let role__n = params.role__n;
+    let sort = params.sort;
+    let status = params.status;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let vid = params.vid;
+    let vid__gt = params.vid__gt;
+    let vid__gte = params.vid__gte;
+    let vid__lt = params.vid__lt;
+    let vid__lte = params.vid__lte;
+    let vid__n = params.vid__n;
+    let vlan_group = params.vlan_group;
+    let vlan_group__isnull = params.vlan_group__isnull;
+    let vlan_group__n = params.vlan_group__n;
+    let vm_interfaces = params.vm_interfaces;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21350,11 +24348,14 @@ pub async fn ipam_vlans_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vlans_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamVlansNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamVlansNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21407,14 +24408,17 @@ pub async fn ipam_vlans_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vlans_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlansNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamVlansNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21482,11 +24486,14 @@ pub async fn ipam_vlans_notes_list(
 /// Partial update a VLAN object.
 pub async fn ipam_vlans_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vlan_request: Option<crate::models::PatchedVlanRequest>,
+    params: IpamVlansPartialUpdateParams,
 ) -> Result<crate::models::Vlan, Error<IpamVlansPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vlan_request = params.patched_vlan_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21539,12 +24546,15 @@ pub async fn ipam_vlans_partial_update(
 /// Retrieve a VLAN object.
 pub async fn ipam_vlans_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVlansRetrieveParams,
 ) -> Result<crate::models::Vlan, Error<IpamVlansRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21604,11 +24614,14 @@ pub async fn ipam_vlans_retrieve(
 /// Update a VLAN object.
 pub async fn ipam_vlans_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vlan_request: crate::models::VlanRequest,
-    format: Option<&str>,
+    params: IpamVlansUpdateParams,
 ) -> Result<crate::models::Vlan, Error<IpamVlansUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vlan_request = params.vlan_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21661,10 +24674,13 @@ pub async fn ipam_vlans_update(
 /// Destroy a list of VRF-device assignment objects.
 pub async fn ipam_vrf_device_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<IpamVrfDeviceAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21716,15 +24732,17 @@ pub async fn ipam_vrf_device_assignments_bulk_destroy(
 /// Partial update a list of VRF-device assignment objects.
 pub async fn ipam_vrf_device_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vrf_device_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVrfDeviceAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VrfDeviceAssignment>,
     Error<IpamVrfDeviceAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vrf_device_assignment_request =
+        params.patched_bulk_writable_vrf_device_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21777,13 +24795,15 @@ pub async fn ipam_vrf_device_assignments_bulk_partial_update(
 /// Update a list of VRF-device assignment objects.
 pub async fn ipam_vrf_device_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vrf_device_assignment_request: Vec<
-        crate::models::BulkWritableVrfDeviceAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VrfDeviceAssignment>, Error<IpamVrfDeviceAssignmentsBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vrf_device_assignment_request =
+        params.bulk_writable_vrf_device_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21836,10 +24856,13 @@ pub async fn ipam_vrf_device_assignments_bulk_update(
 /// Create one or more VRF-device assignment objects.
 pub async fn ipam_vrf_device_assignments_create(
     configuration: &configuration::Configuration,
-    vrf_device_assignment_request: crate::models::VrfDeviceAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsCreateParams,
 ) -> Result<crate::models::VrfDeviceAssignment, Error<IpamVrfDeviceAssignmentsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vrf_device_assignment_request = params.vrf_device_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21891,10 +24914,13 @@ pub async fn ipam_vrf_device_assignments_create(
 /// Destroy a VRF-device assignment object.
 pub async fn ipam_vrf_device_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsDestroyParams,
 ) -> Result<(), Error<IpamVrfDeviceAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -21946,60 +24972,63 @@ pub async fn ipam_vrf_device_assignments_destroy(
 /// Retrieve a list of VRF-device assignment objects.
 pub async fn ipam_vrf_device_assignments_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device__isnull: Option<bool>,
-    device__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    offset: Option<i32>,
-    q: Option<&str>,
-    rd: Option<Vec<String>>,
-    rd__ic: Option<Vec<String>>,
-    rd__ie: Option<Vec<String>>,
-    rd__iew: Option<Vec<String>>,
-    rd__ire: Option<Vec<String>>,
-    rd__isnull: Option<bool>,
-    rd__isw: Option<Vec<String>>,
-    rd__n: Option<Vec<String>>,
-    rd__nic: Option<Vec<String>>,
-    rd__nie: Option<Vec<String>>,
-    rd__niew: Option<Vec<String>>,
-    rd__nire: Option<Vec<String>>,
-    rd__nisw: Option<Vec<String>>,
-    rd__nre: Option<Vec<String>>,
-    rd__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    virtual_device_context: Option<Vec<String>>,
-    virtual_device_context__isnull: Option<bool>,
-    virtual_device_context__n: Option<Vec<String>>,
-    virtual_machine: Option<Vec<String>>,
-    virtual_machine__isnull: Option<bool>,
-    virtual_machine__n: Option<Vec<String>>,
-    vrf: Option<Vec<String>>,
-    vrf__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfDeviceAssignmentsListParams,
 ) -> Result<crate::models::PaginatedVrfDeviceAssignmentList, Error<IpamVrfDeviceAssignmentsListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let device = params.device;
+    let device__isnull = params.device__isnull;
+    let device__n = params.device__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let offset = params.offset;
+    let q = params.q;
+    let rd = params.rd;
+    let rd__ic = params.rd__ic;
+    let rd__ie = params.rd__ie;
+    let rd__iew = params.rd__iew;
+    let rd__ire = params.rd__ire;
+    let rd__isnull = params.rd__isnull;
+    let rd__isw = params.rd__isw;
+    let rd__n = params.rd__n;
+    let rd__nic = params.rd__nic;
+    let rd__nie = params.rd__nie;
+    let rd__niew = params.rd__niew;
+    let rd__nire = params.rd__nire;
+    let rd__nisw = params.rd__nisw;
+    let rd__nre = params.rd__nre;
+    let rd__re = params.rd__re;
+    let sort = params.sort;
+    let virtual_device_context = params.virtual_device_context;
+    let virtual_device_context__isnull = params.virtual_device_context__isnull;
+    let virtual_device_context__n = params.virtual_device_context__n;
+    let virtual_machine = params.virtual_machine;
+    let virtual_machine__isnull = params.virtual_machine__isnull;
+    let virtual_machine__n = params.virtual_machine__n;
+    let vrf = params.vrf;
+    let vrf__n = params.vrf__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -22849,11 +25878,14 @@ pub async fn ipam_vrf_device_assignments_list(
 /// Partial update a VRF-device assignment object.
 pub async fn ipam_vrf_device_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vrf_device_assignment_request: Option<crate::models::PatchedVrfDeviceAssignmentRequest>,
+    params: IpamVrfDeviceAssignmentsPartialUpdateParams,
 ) -> Result<crate::models::VrfDeviceAssignment, Error<IpamVrfDeviceAssignmentsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vrf_device_assignment_request = params.patched_vrf_device_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -22906,12 +25938,15 @@ pub async fn ipam_vrf_device_assignments_partial_update(
 /// Retrieve a VRF-device assignment object.
 pub async fn ipam_vrf_device_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfDeviceAssignmentsRetrieveParams,
 ) -> Result<crate::models::VrfDeviceAssignment, Error<IpamVrfDeviceAssignmentsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -22971,11 +26006,14 @@ pub async fn ipam_vrf_device_assignments_retrieve(
 /// Update a VRF-device assignment object.
 pub async fn ipam_vrf_device_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vrf_device_assignment_request: crate::models::VrfDeviceAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVrfDeviceAssignmentsUpdateParams,
 ) -> Result<crate::models::VrfDeviceAssignment, Error<IpamVrfDeviceAssignmentsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vrf_device_assignment_request = params.vrf_device_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23028,10 +26066,13 @@ pub async fn ipam_vrf_device_assignments_update(
 /// Destroy a list of VRF-prefix assignment objects.
 pub async fn ipam_vrf_prefix_assignments_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsBulkDestroyParams,
 ) -> Result<(), Error<IpamVrfPrefixAssignmentsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23083,15 +26124,17 @@ pub async fn ipam_vrf_prefix_assignments_bulk_destroy(
 /// Partial update a list of VRF-prefix assignment objects.
 pub async fn ipam_vrf_prefix_assignments_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vrf_prefix_assignment_request: Vec<
-        crate::models::PatchedBulkWritableVrfPrefixAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsBulkPartialUpdateParams,
 ) -> Result<
     Vec<crate::models::VrfPrefixAssignment>,
     Error<IpamVrfPrefixAssignmentsBulkPartialUpdateError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vrf_prefix_assignment_request =
+        params.patched_bulk_writable_vrf_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23144,13 +26187,15 @@ pub async fn ipam_vrf_prefix_assignments_bulk_partial_update(
 /// Update a list of VRF-prefix assignment objects.
 pub async fn ipam_vrf_prefix_assignments_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vrf_prefix_assignment_request: Vec<
-        crate::models::BulkWritableVrfPrefixAssignmentRequest,
-    >,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsBulkUpdateParams,
 ) -> Result<Vec<crate::models::VrfPrefixAssignment>, Error<IpamVrfPrefixAssignmentsBulkUpdateError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vrf_prefix_assignment_request =
+        params.bulk_writable_vrf_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23203,10 +26248,13 @@ pub async fn ipam_vrf_prefix_assignments_bulk_update(
 /// Create one or more VRF-prefix assignment objects.
 pub async fn ipam_vrf_prefix_assignments_create(
     configuration: &configuration::Configuration,
-    vrf_prefix_assignment_request: crate::models::VrfPrefixAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsCreateParams,
 ) -> Result<crate::models::VrfPrefixAssignment, Error<IpamVrfPrefixAssignmentsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vrf_prefix_assignment_request = params.vrf_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23258,10 +26306,13 @@ pub async fn ipam_vrf_prefix_assignments_create(
 /// Destroy a VRF-prefix assignment object.
 pub async fn ipam_vrf_prefix_assignments_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsDestroyParams,
 ) -> Result<(), Error<IpamVrfPrefixAssignmentsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23313,24 +26364,27 @@ pub async fn ipam_vrf_prefix_assignments_destroy(
 /// Retrieve a list of VRF-prefix assignment objects.
 pub async fn ipam_vrf_prefix_assignments_list(
     configuration: &configuration::Configuration,
-    created: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    last_updated: Option<Vec<String>>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    prefix: Option<Vec<String>>,
-    prefix__n: Option<Vec<String>>,
-    q: Option<&str>,
-    sort: Option<&str>,
-    vrf: Option<Vec<String>>,
-    vrf__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfPrefixAssignmentsListParams,
 ) -> Result<crate::models::PaginatedVrfPrefixAssignmentList, Error<IpamVrfPrefixAssignmentsListError>>
 {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let created = params.created;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let last_updated = params.last_updated;
+    let limit = params.limit;
+    let offset = params.offset;
+    let prefix = params.prefix;
+    let prefix__n = params.prefix__n;
+    let q = params.q;
+    let sort = params.sort;
+    let vrf = params.vrf;
+    let vrf__n = params.vrf__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23556,11 +26610,14 @@ pub async fn ipam_vrf_prefix_assignments_list(
 /// Partial update a VRF-prefix assignment object.
 pub async fn ipam_vrf_prefix_assignments_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vrf_prefix_assignment_request: Option<crate::models::PatchedVrfPrefixAssignmentRequest>,
+    params: IpamVrfPrefixAssignmentsPartialUpdateParams,
 ) -> Result<crate::models::VrfPrefixAssignment, Error<IpamVrfPrefixAssignmentsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vrf_prefix_assignment_request = params.patched_vrf_prefix_assignment_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23613,12 +26670,15 @@ pub async fn ipam_vrf_prefix_assignments_partial_update(
 /// Retrieve a VRF-prefix assignment object.
 pub async fn ipam_vrf_prefix_assignments_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfPrefixAssignmentsRetrieveParams,
 ) -> Result<crate::models::VrfPrefixAssignment, Error<IpamVrfPrefixAssignmentsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23678,11 +26738,14 @@ pub async fn ipam_vrf_prefix_assignments_retrieve(
 /// Update a VRF-prefix assignment object.
 pub async fn ipam_vrf_prefix_assignments_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vrf_prefix_assignment_request: crate::models::VrfPrefixAssignmentRequest,
-    format: Option<&str>,
+    params: IpamVrfPrefixAssignmentsUpdateParams,
 ) -> Result<crate::models::VrfPrefixAssignment, Error<IpamVrfPrefixAssignmentsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vrf_prefix_assignment_request = params.vrf_prefix_assignment_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23735,10 +26798,13 @@ pub async fn ipam_vrf_prefix_assignments_update(
 /// Destroy a list of VRF objects.
 pub async fn ipam_vrfs_bulk_destroy(
     configuration: &configuration::Configuration,
-    bulk_operation_request: Vec<crate::models::BulkOperationRequest>,
-    format: Option<&str>,
+    params: IpamVrfsBulkDestroyParams,
 ) -> Result<(), Error<IpamVrfsBulkDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_operation_request = params.bulk_operation_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23787,10 +26853,13 @@ pub async fn ipam_vrfs_bulk_destroy(
 /// Partial update a list of VRF objects.
 pub async fn ipam_vrfs_bulk_partial_update(
     configuration: &configuration::Configuration,
-    patched_bulk_writable_vrf_request: Vec<crate::models::PatchedBulkWritableVrfRequest>,
-    format: Option<&str>,
+    params: IpamVrfsBulkPartialUpdateParams,
 ) -> Result<Vec<crate::models::Vrf>, Error<IpamVrfsBulkPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let patched_bulk_writable_vrf_request = params.patched_bulk_writable_vrf_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23839,10 +26908,13 @@ pub async fn ipam_vrfs_bulk_partial_update(
 /// Update a list of VRF objects.
 pub async fn ipam_vrfs_bulk_update(
     configuration: &configuration::Configuration,
-    bulk_writable_vrf_request: Vec<crate::models::BulkWritableVrfRequest>,
-    format: Option<&str>,
+    params: IpamVrfsBulkUpdateParams,
 ) -> Result<Vec<crate::models::Vrf>, Error<IpamVrfsBulkUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let bulk_writable_vrf_request = params.bulk_writable_vrf_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23891,10 +26963,13 @@ pub async fn ipam_vrfs_bulk_update(
 /// Create one or more VRF objects.
 pub async fn ipam_vrfs_create(
     configuration: &configuration::Configuration,
-    vrf_request: crate::models::VrfRequest,
-    format: Option<&str>,
+    params: IpamVrfsCreateParams,
 ) -> Result<crate::models::Vrf, Error<IpamVrfsCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let vrf_request = params.vrf_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23943,10 +27018,13 @@ pub async fn ipam_vrfs_create(
 /// Destroy a VRF object.
 pub async fn ipam_vrfs_destroy(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
+    params: IpamVrfsDestroyParams,
 ) -> Result<(), Error<IpamVrfsDestroyError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -23998,111 +27076,114 @@ pub async fn ipam_vrfs_destroy(
 /// Retrieve a list of VRF objects.
 pub async fn ipam_vrfs_list(
     configuration: &configuration::Configuration,
-    contacts: Option<Vec<String>>,
-    contacts__isnull: Option<bool>,
-    contacts__n: Option<Vec<String>>,
-    created: Option<Vec<String>>,
-    created__gt: Option<Vec<String>>,
-    created__gte: Option<Vec<String>>,
-    created__isnull: Option<bool>,
-    created__lt: Option<Vec<String>>,
-    created__lte: Option<Vec<String>>,
-    created__n: Option<Vec<String>>,
-    description: Option<Vec<String>>,
-    description__ic: Option<Vec<String>>,
-    description__ie: Option<Vec<String>>,
-    description__iew: Option<Vec<String>>,
-    description__ire: Option<Vec<String>>,
-    description__isw: Option<Vec<String>>,
-    description__n: Option<Vec<String>>,
-    description__nic: Option<Vec<String>>,
-    description__nie: Option<Vec<String>>,
-    description__niew: Option<Vec<String>>,
-    description__nire: Option<Vec<String>>,
-    description__nisw: Option<Vec<String>>,
-    description__nre: Option<Vec<String>>,
-    description__re: Option<Vec<String>>,
-    device: Option<Vec<String>>,
-    device__n: Option<Vec<String>>,
-    dynamic_groups: Option<Vec<String>>,
-    dynamic_groups__n: Option<Vec<String>>,
-    export_targets: Option<Vec<String>>,
-    export_targets__n: Option<Vec<String>>,
-    format: Option<&str>,
-    id: Option<Vec<uuid::Uuid>>,
-    id__n: Option<Vec<uuid::Uuid>>,
-    import_targets: Option<Vec<String>>,
-    import_targets__n: Option<Vec<String>>,
-    last_updated: Option<Vec<String>>,
-    last_updated__gt: Option<Vec<String>>,
-    last_updated__gte: Option<Vec<String>>,
-    last_updated__isnull: Option<bool>,
-    last_updated__lt: Option<Vec<String>>,
-    last_updated__lte: Option<Vec<String>>,
-    last_updated__n: Option<Vec<String>>,
-    limit: Option<i32>,
-    name: Option<Vec<String>>,
-    name__ic: Option<Vec<String>>,
-    name__ie: Option<Vec<String>>,
-    name__iew: Option<Vec<String>>,
-    name__ire: Option<Vec<String>>,
-    name__isw: Option<Vec<String>>,
-    name__n: Option<Vec<String>>,
-    name__nic: Option<Vec<String>>,
-    name__nie: Option<Vec<String>>,
-    name__niew: Option<Vec<String>>,
-    name__nire: Option<Vec<String>>,
-    name__nisw: Option<Vec<String>>,
-    name__nre: Option<Vec<String>>,
-    name__re: Option<Vec<String>>,
-    namespace: Option<Vec<String>>,
-    namespace__n: Option<Vec<String>>,
-    offset: Option<i32>,
-    prefix: Option<Vec<String>>,
-    prefix__n: Option<Vec<String>>,
-    q: Option<&str>,
-    rd: Option<Vec<String>>,
-    rd__ic: Option<Vec<String>>,
-    rd__ie: Option<Vec<String>>,
-    rd__iew: Option<Vec<String>>,
-    rd__ire: Option<Vec<String>>,
-    rd__isnull: Option<bool>,
-    rd__isw: Option<Vec<String>>,
-    rd__n: Option<Vec<String>>,
-    rd__nic: Option<Vec<String>>,
-    rd__nie: Option<Vec<String>>,
-    rd__niew: Option<Vec<String>>,
-    rd__nire: Option<Vec<String>>,
-    rd__nisw: Option<Vec<String>>,
-    rd__nre: Option<Vec<String>>,
-    rd__re: Option<Vec<String>>,
-    sort: Option<&str>,
-    status: Option<Vec<String>>,
-    status__isnull: Option<bool>,
-    status__n: Option<Vec<String>>,
-    tags: Option<Vec<String>>,
-    tags__isnull: Option<bool>,
-    tags__n: Option<Vec<String>>,
-    teams: Option<Vec<String>>,
-    teams__isnull: Option<bool>,
-    teams__n: Option<Vec<String>>,
-    tenant: Option<Vec<String>>,
-    tenant__isnull: Option<bool>,
-    tenant__n: Option<Vec<String>>,
-    tenant_group: Option<Vec<String>>,
-    tenant_group__isnull: Option<bool>,
-    tenant_group__n: Option<Vec<String>>,
-    tenant_id: Option<Vec<uuid::Uuid>>,
-    tenant_id__isnull: Option<bool>,
-    tenant_id__n: Option<Vec<uuid::Uuid>>,
-    virtual_device_contexts: Option<Vec<String>>,
-    virtual_device_contexts__n: Option<Vec<String>>,
-    virtual_machines: Option<Vec<String>>,
-    virtual_machines__n: Option<Vec<String>>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfsListParams,
 ) -> Result<crate::models::PaginatedVrfList, Error<IpamVrfsListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let contacts = params.contacts;
+    let contacts__isnull = params.contacts__isnull;
+    let contacts__n = params.contacts__n;
+    let created = params.created;
+    let created__gt = params.created__gt;
+    let created__gte = params.created__gte;
+    let created__isnull = params.created__isnull;
+    let created__lt = params.created__lt;
+    let created__lte = params.created__lte;
+    let created__n = params.created__n;
+    let description = params.description;
+    let description__ic = params.description__ic;
+    let description__ie = params.description__ie;
+    let description__iew = params.description__iew;
+    let description__ire = params.description__ire;
+    let description__isw = params.description__isw;
+    let description__n = params.description__n;
+    let description__nic = params.description__nic;
+    let description__nie = params.description__nie;
+    let description__niew = params.description__niew;
+    let description__nire = params.description__nire;
+    let description__nisw = params.description__nisw;
+    let description__nre = params.description__nre;
+    let description__re = params.description__re;
+    let device = params.device;
+    let device__n = params.device__n;
+    let dynamic_groups = params.dynamic_groups;
+    let dynamic_groups__n = params.dynamic_groups__n;
+    let export_targets = params.export_targets;
+    let export_targets__n = params.export_targets__n;
+    let format = params.format;
+    let id = params.id;
+    let id__n = params.id__n;
+    let import_targets = params.import_targets;
+    let import_targets__n = params.import_targets__n;
+    let last_updated = params.last_updated;
+    let last_updated__gt = params.last_updated__gt;
+    let last_updated__gte = params.last_updated__gte;
+    let last_updated__isnull = params.last_updated__isnull;
+    let last_updated__lt = params.last_updated__lt;
+    let last_updated__lte = params.last_updated__lte;
+    let last_updated__n = params.last_updated__n;
+    let limit = params.limit;
+    let name = params.name;
+    let name__ic = params.name__ic;
+    let name__ie = params.name__ie;
+    let name__iew = params.name__iew;
+    let name__ire = params.name__ire;
+    let name__isw = params.name__isw;
+    let name__n = params.name__n;
+    let name__nic = params.name__nic;
+    let name__nie = params.name__nie;
+    let name__niew = params.name__niew;
+    let name__nire = params.name__nire;
+    let name__nisw = params.name__nisw;
+    let name__nre = params.name__nre;
+    let name__re = params.name__re;
+    let namespace = params.namespace;
+    let namespace__n = params.namespace__n;
+    let offset = params.offset;
+    let prefix = params.prefix;
+    let prefix__n = params.prefix__n;
+    let q = params.q;
+    let rd = params.rd;
+    let rd__ic = params.rd__ic;
+    let rd__ie = params.rd__ie;
+    let rd__iew = params.rd__iew;
+    let rd__ire = params.rd__ire;
+    let rd__isnull = params.rd__isnull;
+    let rd__isw = params.rd__isw;
+    let rd__n = params.rd__n;
+    let rd__nic = params.rd__nic;
+    let rd__nie = params.rd__nie;
+    let rd__niew = params.rd__niew;
+    let rd__nire = params.rd__nire;
+    let rd__nisw = params.rd__nisw;
+    let rd__nre = params.rd__nre;
+    let rd__re = params.rd__re;
+    let sort = params.sort;
+    let status = params.status;
+    let status__isnull = params.status__isnull;
+    let status__n = params.status__n;
+    let tags = params.tags;
+    let tags__isnull = params.tags__isnull;
+    let tags__n = params.tags__n;
+    let teams = params.teams;
+    let teams__isnull = params.teams__isnull;
+    let teams__n = params.teams__n;
+    let tenant = params.tenant;
+    let tenant__isnull = params.tenant__isnull;
+    let tenant__n = params.tenant__n;
+    let tenant_group = params.tenant_group;
+    let tenant_group__isnull = params.tenant_group__isnull;
+    let tenant_group__n = params.tenant_group__n;
+    let tenant_id = params.tenant_id;
+    let tenant_id__isnull = params.tenant_id__isnull;
+    let tenant_id__n = params.tenant_id__n;
+    let virtual_device_contexts = params.virtual_device_contexts;
+    let virtual_device_contexts__n = params.virtual_device_contexts__n;
+    let virtual_machines = params.virtual_machines;
+    let virtual_machines__n = params.virtual_machines__n;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25847,11 +28928,14 @@ pub async fn ipam_vrfs_list(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vrfs_notes_create(
     configuration: &configuration::Configuration,
-    id: &str,
-    note_input_request: crate::models::NoteInputRequest,
-    format: Option<&str>,
+    params: IpamVrfsNotesCreateParams,
 ) -> Result<crate::models::Note, Error<IpamVrfsNotesCreateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let note_input_request = params.note_input_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25904,14 +28988,17 @@ pub async fn ipam_vrfs_notes_create(
 /// API methods for returning or creating notes on an object.
 pub async fn ipam_vrfs_notes_list(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfsNotesListParams,
 ) -> Result<crate::models::PaginatedNoteList, Error<IpamVrfsNotesListError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let limit = params.limit;
+    let offset = params.offset;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -25979,11 +29066,14 @@ pub async fn ipam_vrfs_notes_list(
 /// Partial update a VRF object.
 pub async fn ipam_vrfs_partial_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    patched_vrf_request: Option<crate::models::PatchedVrfRequest>,
+    params: IpamVrfsPartialUpdateParams,
 ) -> Result<crate::models::Vrf, Error<IpamVrfsPartialUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let patched_vrf_request = params.patched_vrf_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26036,12 +29126,15 @@ pub async fn ipam_vrfs_partial_update(
 /// Retrieve a VRF object.
 pub async fn ipam_vrfs_retrieve(
     configuration: &configuration::Configuration,
-    id: &str,
-    format: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: IpamVrfsRetrieveParams,
 ) -> Result<crate::models::Vrf, Error<IpamVrfsRetrieveError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let format = params.format;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -26101,11 +29194,14 @@ pub async fn ipam_vrfs_retrieve(
 /// Update a VRF object.
 pub async fn ipam_vrfs_update(
     configuration: &configuration::Configuration,
-    id: &str,
-    vrf_request: crate::models::VrfRequest,
-    format: Option<&str>,
+    params: IpamVrfsUpdateParams,
 ) -> Result<crate::models::Vrf, Error<IpamVrfsUpdateError>> {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let vrf_request = params.vrf_request;
+    let format = params.format;
 
     let local_var_client = &local_var_configuration.client;
 

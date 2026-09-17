@@ -13,6 +13,16 @@ use reqwest;
 use super::{Error, configuration};
 use crate::apis::ResponseContent;
 
+/// struct for passing parameters to the method [`swagger_period_yaml_retrieve`]
+#[derive(Clone, Debug, Default)]
+pub struct SwaggerPeriodYamlRetrieveParams {
+    pub lang: Option<String>,
+    /// Serializer Depth
+    pub depth: Option<i32>,
+    /// Exclude many-to-many fields from the response
+    pub exclude_m2m: Option<bool>,
+}
+
 /// struct for typed errors of method [`swagger_period_yaml_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -23,14 +33,17 @@ pub enum SwaggerPeriodYamlRetrieveError {
 /// OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
 pub async fn swagger_period_yaml_retrieve(
     configuration: &configuration::Configuration,
-    lang: Option<&str>,
-    depth: Option<i32>,
-    exclude_m2m: Option<bool>,
+    params: SwaggerPeriodYamlRetrieveParams,
 ) -> Result<
     ::std::collections::HashMap<String, serde_json::Value>,
     Error<SwaggerPeriodYamlRetrieveError>,
 > {
     let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let lang = params.lang;
+    let depth = params.depth;
+    let exclude_m2m = params.exclude_m2m;
 
     let local_var_client = &local_var_configuration.client;
 
