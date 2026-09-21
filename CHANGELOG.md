@@ -2,7 +2,11 @@
 
 ## [unreleased]
 
+### ci
+- bump integration CI from Nautobot 3.2.4 to 3.2.5 (closes #55)
+
 ### openapi
+- regenerate bindings from Nautobot 3.2.5. the rest api is unchanged: same paths, same models, and the 3.2.5 security fixes do not reach the public schema. only `JobStatusEnum` moves, and its variants are reordered rather than changed
 - **breaking:** generated api functions take one params struct instead of positional parameters: `dcim_devices_list(&config, DcimDevicesListParams { asset_tag: Some(vec![..]), ..Default::default() })`. all 1675 parameterised functions are affected. the structs derive `Default`, so a caller that spreads it keeps compiling when upstream adds a filter (closes #53)
 
 ### scripts

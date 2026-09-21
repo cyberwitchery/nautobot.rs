@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API Documentation",
-    "version": "3.2.4 (3.2)",
+    "version": "3.2.5 (3.2)",
     "description": "Source of truth and network automation platform",
     "license": {
       "name": "Apache v2 License"
@@ -315594,13 +315594,13 @@
           "RUNNING",
           "NOT RUNNING",
           "UNKNOWN",
-          "RETRY",
-          "RECEIVED",
-          "STARTED",
           "PENDING",
-          "SUCCESS",
+          "RECEIVED",
           "REVOKED",
-          "FAILURE"
+          "SUCCESS",
+          "STARTED",
+          "FAILURE",
+          "RETRY"
         ],
         "type": "string"
       },

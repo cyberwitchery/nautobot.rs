@@ -6,7 +6,7 @@ series is inferred from the absence of breaking api changes in that range.
 
 | nautobot.rs   | nautobot | notes                                        |
 |---------------|----------|----------------------------------------------|
-| main          | 3.2.x    | CI pinned to 3.2.4                           |
+| main          | 3.2.x    | CI pinned to 3.2.5                           |
 | 0.7.0         | 3.2.x    | CI pinned to 3.2.4                           |
 | 0.6.0         | 3.2.x    | CI pinned to 3.2.2                           |
 | 0.5.0         | 3.1.x    | CI pinned to 3.1.6                           |
