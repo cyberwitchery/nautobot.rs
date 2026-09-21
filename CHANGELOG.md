@@ -1,6 +1,6 @@
 # changelog
 
-## [unreleased]
+## [0.8.0] - 2026-09-21
 
 ### ci
 - bump integration CI from Nautobot 3.2.4 to 3.2.5 (closes #55)

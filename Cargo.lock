@@ -1319,7 +1319,7 @@ dependencies = [
 
 [[package]]
 name = "nautobot"
-version = "0.7.0"
+version = "0.8.0"
 dependencies = [
  "httpmock",
  "nautobot-openapi",
@@ -1336,7 +1336,7 @@ dependencies = [
 
 [[package]]
 name = "nautobot-cli"
-version = "0.7.0"
+version = "0.8.0"
 dependencies = [
  "async-trait",
  "clap",
@@ -1355,7 +1355,7 @@ dependencies = [
 
 [[package]]
 name = "nautobot-openapi"
-version = "0.7.0"
+version = "0.8.0"
 dependencies = [
  "reqwest",
  "serde",
