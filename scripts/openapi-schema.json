@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API Documentation",
-    "version": "3.2.5 (3.2)",
+    "version": "3.2.6 (3.2)",
     "description": "Source of truth and network automation platform",
     "license": {
       "name": "Apache v2 License"
@@ -1955,7 +1955,7 @@
     "/circuits/circuit-terminations/{id}/trace/": {
       "get": {
         "operationId": "circuits_circuit_terminations_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -33994,7 +33994,7 @@
     "/dcim/console-ports/{id}/trace/": {
       "get": {
         "operationId": "dcim_console_ports_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -37339,7 +37339,7 @@
     "/dcim/console-server-ports/{id}/trace/": {
       "get": {
         "operationId": "dcim_console_server_ports_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -66617,7 +66617,7 @@
     "/dcim/interfaces/{id}/trace/": {
       "get": {
         "operationId": "dcim_interfaces_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -90861,7 +90861,7 @@
     "/dcim/power-feeds/{id}/trace/": {
       "get": {
         "operationId": "dcim_power_feeds_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -94628,7 +94628,7 @@
     "/dcim/power-outlets/{id}/trace/": {
       "get": {
         "operationId": "dcim_power_outlets_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -100183,7 +100183,7 @@
     "/dcim/power-ports/{id}/trace/": {
       "get": {
         "operationId": "dcim_power_ports_trace_retrieve",
-        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).\n\nEach element is serialized according to the requesting user's permission to view that specific object;\nan element the user may not view is restricted to its brief `{id, object_type, url, display}` form.\nElements are never omitted and the path is never truncated, so the number and shape of the returned\nsegments does not depend on the requesting user's permissions.",
         "parameters": [
           {
             "in": "query",
@@ -243003,26 +243003,7 @@
                 "type": "string"
               }
             },
-            "explode": true,
-            "style": "form"
-          },
-          {
-            "in": "query",
-            "name": "source_ipaddress__isnull",
-            "schema": {
-              "type": "boolean"
-            },
-            "description": "Source IPAddress (ID or name) is null"
-          },
-          {
-            "in": "query",
-            "name": "source_ipaddress__n",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
+            "description": "Source IP Address (address or ID)",
             "explode": true,
             "style": "form"
           },
@@ -286284,154 +286265,6 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "required": [
@@ -286501,154 +286334,6 @@
               "url": {
                 "type": "string",
                 "format": "uri"
-              }
-            }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -315596,11 +315281,11 @@
           "UNKNOWN",
           "PENDING",
           "RECEIVED",
-          "REVOKED",
-          "SUCCESS",
           "STARTED",
+          "RETRY",
+          "REVOKED",
           "FAILURE",
-          "RETRY"
+          "SUCCESS"
         ],
         "type": "string"
       },
@@ -362550,154 +362235,6 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "required": [
@@ -362765,154 +362302,6 @@
               "url": {
                 "type": "string",
                 "format": "uri"
-              }
-            }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -387400,154 +386789,6 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       },
@@ -387612,154 +386853,6 @@
               "url": {
                 "type": "string",
                 "format": "uri"
-              }
-            }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -417522,11 +416615,6 @@
             "example": "attribute1_attribute2",
             "readOnly": true
           },
-          "notes_url": {
-            "type": "string",
-            "format": "uri",
-            "readOnly": true
-          },
           "weight": {
             "type": "integer",
             "maximum": 2147483647,
@@ -417582,19 +416670,11 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
           }
         },
         "required": [
           "display",
           "natural_slug",
-          "notes_url",
           "object_type",
           "url",
           "vpn_phase1_policy",
@@ -417664,154 +416744,6 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "required": [
@@ -417846,11 +416778,6 @@
           "natural_slug": {
             "type": "string",
             "example": "attribute1_attribute2",
-            "readOnly": true
-          },
-          "notes_url": {
-            "type": "string",
-            "format": "uri",
             "readOnly": true
           },
           "weight": {
@@ -417908,19 +416835,11 @@
                 "format": "uri"
               }
             }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
           }
         },
         "required": [
           "display",
           "natural_slug",
-          "notes_url",
           "object_type",
           "url",
           "vpn_phase2_policy",
@@ -417988,154 +416907,6 @@
               "url": {
                 "type": "string",
                 "format": "uri"
-              }
-            }
-          },
-          "custom_fields": {
-            "type": "object",
-            "description": "Custom field data for this object, keyed by each applicable Custom Field's `key`. Value types vary with the custom field's type (text, integer, boolean, date, URL, JSON, select, multi-select); undefined values are `null`. On write, the payload is merged with existing values (PATCH-style: keys omitted from the payload are left untouched), and keys that do not correspond to a defined custom field are ignored.",
-            "additionalProperties": {
-              "nullable": true
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "required": [
-                "id",
-                "url",
-                "label",
-                "type"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "readOnly": true
-                },
-                "url": {
-                  "type": "string",
-                  "format": "uri",
-                  "readOnly": true
-                },
-                "label": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "type": {
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "one-to-many"
-                },
-                "source": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "destination": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                },
-                "peer": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "readOnly": true
-                    },
-                    "object_type": {
-                      "type": "string",
-                      "readOnly": true,
-                      "example": "dcim.site"
-                    },
-                    "objects": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid"
-                          },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "readOnly": true
-                          },
-                          "display": {
-                            "type": "string",
-                            "readOnly": true
-                          }
-                        },
-                        "additionalProperties": true
-                      }
-                    }
-                  }
-                }
               }
             }
           }

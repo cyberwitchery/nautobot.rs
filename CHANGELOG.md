@@ -1,5 +1,15 @@
 # changelog
 
+## Unreleased
+
+### ci
+- bump integration CI from Nautobot 3.2.5 to 3.2.6 (closes #58)
+
+### openapi
+- regenerate bindings from Nautobot 3.2.6
+- **breaking:** vpn profile phase 1 and phase 2 policy assignments drop `custom_fields` and `relationships` (and `notes_url` on the read models), since upstream no longer serves them
+- **breaking:** `vpn_vpn_tunnel_endpoints_list` loses the `source_ipaddress__isnull` and `source_ipaddress__n` filters
+
 ## [0.8.0] - 2026-09-21
 
 ### ci
