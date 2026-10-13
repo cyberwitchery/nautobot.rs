@@ -42,7 +42,7 @@ pub fn format_output(
 
     match output.format {
         OutputFormat::Json => Ok(to_string_pretty(&selected)?),
-        OutputFormat::Yaml => Ok(serde_yaml::to_string(&selected)?),
+        OutputFormat::Yaml => Ok(serde_saphyr::to_string(&selected)?),
         OutputFormat::Table => Ok(format_table(
             &selected,
             output.columns.as_deref(),
