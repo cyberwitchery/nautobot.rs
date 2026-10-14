@@ -1,6 +1,6 @@
 # changelog
 
-## Unreleased
+## [0.9.0] - 2026-10-14
 
 ### cli
 - yaml output uses serde-saphyr instead of the deprecated serde_yaml, dropping the unmaintained unsafe-libyaml (RUSTSEC-2024-0449). strings are now double-quoted, and yaml 1.1 words like `yes` are quoted
