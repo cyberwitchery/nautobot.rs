@@ -176,49 +176,41 @@ mod tests {
     }
 
     #[test]
-    fn test_single_filter() {
-        let query = QueryBuilder::new().filter("site", "dc1");
-        assert!(!query.is_empty());
-        assert_eq!(query.params.get("site").unwrap(), &vec!["dc1"]);
-    }
-
-    #[test]
-    fn test_multiple_values_same_key() {
-        let query = QueryBuilder::new()
-            .filter("site", "dc1")
-            .filter("site", "dc2");
-
-        let sites = query.params.get("site").unwrap();
-        assert_eq!(sites.len(), 2);
-        assert!(sites.contains(&"dc1".to_string()));
-        assert!(sites.contains(&"dc2".to_string()));
-    }
-
-    #[test]
-    fn test_limit_and_offset() {
-        let query = QueryBuilder::new().limit(100).offset(50);
-
-        assert_eq!(query.params.get("limit").unwrap(), &vec!["100"]);
-        assert_eq!(query.params.get("offset").unwrap(), &vec!["50"]);
-    }
-
-    #[test]
-    fn test_order_by() {
-        let query = QueryBuilder::new().order_by("-name");
-        assert_eq!(query.params.get("ordering").unwrap(), &vec!["-name"]);
-    }
-
-    #[test]
-    fn test_search() {
-        let query = QueryBuilder::new().search("test device");
-        assert_eq!(query.params.get("q").unwrap(), &vec!["test device"]);
-    }
-
-    #[test]
-    fn test_multiple_ids() {
-        let query = QueryBuilder::new().ids(vec!["1", "2", "3"]);
-        let ids = query.params.get("id").unwrap();
-        assert_eq!(ids.len(), 3);
+    fn test_builder_params() {
+        // (query, key, expected values in any order)
+        let cases: [(QueryBuilder, &str, &[&str]); 7] = [
+            (QueryBuilder::new().filter("site", "dc1"), "site", &["dc1"]),
+            (
+                QueryBuilder::new()
+                    .filter("site", "dc1")
+                    .filter("site", "dc2"),
+                "site",
+                &["dc1", "dc2"],
+            ),
+            (QueryBuilder::new().limit(100).offset(50), "limit", &["100"]),
+            (QueryBuilder::new().limit(100).offset(50), "offset", &["50"]),
+            (
+                QueryBuilder::new().order_by("-name"),
+                "ordering",
+                &["-name"],
+            ),
+            (
+                QueryBuilder::new().search("test device"),
+                "q",
+                &["test device"],
+            ),
+            (
+                QueryBuilder::new().ids(vec!["1", "2", "3"]),
+                "id",
+                &["1", "2", "3"],
+            ),
+        ];
+        for (query, key, expected) in cases {
+            assert!(!query.is_empty(), "{key}");
+            let mut values = query.params.get(key).cloned().unwrap_or_default();
+            values.sort();
+            assert_eq!(values, expected, "{key}");
+        }
     }
 
     #[test]
