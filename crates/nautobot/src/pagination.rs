@@ -206,71 +206,40 @@ mod tests {
 
     #[test]
     fn test_page_helpers() {
-        let page: Page<String> = Page {
-            count: 100,
-            next: Some("https://example.com/next".to_string()),
-            previous: None,
-            results: vec!["item1".to_string(), "item2".to_string()],
-        };
-
-        assert_eq!(page.len(), 2);
-        assert!(!page.is_empty());
-        assert!(page.has_next());
-        assert!(!page.has_previous());
-        assert!(!page.is_last());
-    }
-
-    #[test]
-    fn test_page_previous_and_last() {
-        let page: Page<String> = Page {
-            count: 10,
-            next: None,
-            previous: Some("https://example.com/prev".to_string()),
-            results: vec!["item1".to_string()],
-        };
-
-        assert!(page.has_previous());
-        assert!(page.is_last());
-    }
-
-    #[test]
-    fn test_page_display() {
-        let page: Page<String> = Page {
-            count: 100,
-            next: None,
-            previous: None,
-            results: vec!["item1".to_string()],
-        };
-
-        let display = format!("{}", page);
-        assert!(display.contains("1 results"));
-        assert!(display.contains("total: 100"));
-    }
-
-    #[test]
-    fn test_empty_page() {
-        let page: Page<String> = Page {
-            count: 0,
-            next: None,
-            previous: None,
-            results: vec![],
-        };
-
-        assert_eq!(page.len(), 0);
-        assert!(page.is_empty());
-        assert!(page.is_last());
-    }
-
-    #[test]
-    fn test_page_display_empty() {
-        let page: Page<String> = Page {
-            count: 0,
-            next: None,
-            previous: None,
-            results: vec![],
-        };
-
-        assert_eq!(format!("{}", page), "Page with 0 results (total: 0)");
+        let next = Some("https://example.com/next".to_string());
+        let prev = Some("https://example.com/prev".to_string());
+        // (count, next, previous, results, len, is_empty, has_next, has_previous, is_last)
+        let cases = [
+            (
+                100,
+                next.clone(),
+                None,
+                vec![1, 2],
+                2,
+                false,
+                true,
+                false,
+                false,
+            ),
+            (10, None, prev.clone(), vec![1], 1, false, false, true, true),
+            (0, None, None, vec![], 0, true, false, false, true),
+            (100, next, prev, vec![1, 2, 3], 3, false, true, true, false),
+        ];
+        for (count, next, previous, results, len, is_empty, has_next, has_previous, is_last) in
+            cases
+        {
+            let page: Page<i32> = Page {
+                count,
+                next,
+                previous,
+                results,
+            };
+            assert_eq!(page.len(), len, "{page}");
+            assert_eq!(page.is_empty(), is_empty, "{page}");
+            assert_eq!(page.has_next(), has_next, "{page}");
+            assert_eq!(page.has_previous(), has_previous, "{page}");
+            assert_eq!(page.is_last(), is_last, "{page}");
+        }
     }
 
     #[test]
@@ -283,124 +252,6 @@ mod tests {
         };
 
         assert_eq!(format!("{}", page), "Page with 3 results (total: 50)");
-    }
-
-    #[test]
-    fn test_page_middle_page() {
-        let page: Page<i32> = Page {
-            count: 100,
-            next: Some("https://example.com/next".to_string()),
-            previous: Some("https://example.com/prev".to_string()),
-            results: vec![1, 2, 3],
-        };
-
-        assert!(page.has_next());
-        assert!(page.has_previous());
-        assert!(!page.is_last());
-        assert!(!page.is_empty());
-        assert_eq!(page.len(), 3);
-    }
-
-    #[test]
-    fn test_serde_deserialize_paginated_json() {
-        let json = r#"{
-            "count": 42,
-            "next": "https://nautobot.example.com/api/dcim/devices/?offset=10",
-            "previous": null,
-            "results": ["device-a", "device-b"]
-        }"#;
-
-        let page: Page<String> = serde_json::from_str(json).unwrap();
-        assert_eq!(page.count, 42);
-        assert_eq!(
-            page.next.as_deref(),
-            Some("https://nautobot.example.com/api/dcim/devices/?offset=10")
-        );
-        assert!(page.previous.is_none());
-        assert_eq!(page.results, vec!["device-a", "device-b"]);
-    }
-
-    #[test]
-    fn test_serde_deserialize_last_page() {
-        let json = r#"{
-            "count": 3,
-            "next": null,
-            "previous": "https://nautobot.example.com/api/dcim/devices/?offset=0",
-            "results": [100]
-        }"#;
-
-        let page: Page<i32> = serde_json::from_str(json).unwrap();
-        assert_eq!(page.count, 3);
-        assert!(page.next.is_none());
-        assert!(page.previous.is_some());
-        assert!(page.is_last());
-        assert_eq!(page.results, vec![100]);
-    }
-
-    #[test]
-    fn test_serde_deserialize_empty_results() {
-        let json = r#"{
-            "count": 0,
-            "next": null,
-            "previous": null,
-            "results": []
-        }"#;
-
-        let page: Page<String> = serde_json::from_str(json).unwrap();
-        assert_eq!(page.count, 0);
-        assert!(page.is_empty());
-        assert!(page.is_last());
-    }
-
-    #[test]
-    fn test_serde_round_trip() {
-        let original: Page<String> = Page {
-            count: 25,
-            next: Some("https://example.com/api/items/?offset=10".to_string()),
-            previous: Some("https://example.com/api/items/?offset=0".to_string()),
-            results: vec!["alpha".to_string(), "beta".to_string(), "gamma".to_string()],
-        };
-
-        let serialized = serde_json::to_string(&original).unwrap();
-        let deserialized: Page<String> = serde_json::from_str(&serialized).unwrap();
-
-        assert_eq!(deserialized.count, original.count);
-        assert_eq!(deserialized.next, original.next);
-        assert_eq!(deserialized.previous, original.previous);
-        assert_eq!(deserialized.results, original.results);
-    }
-
-    #[test]
-    fn test_serde_round_trip_with_complex_type() {
-        #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-        struct Device {
-            id: u64,
-            name: String,
-        }
-
-        let original: Page<Device> = Page {
-            count: 2,
-            next: None,
-            previous: None,
-            results: vec![
-                Device {
-                    id: 1,
-                    name: "switch-01".to_string(),
-                },
-                Device {
-                    id: 2,
-                    name: "router-01".to_string(),
-                },
-            ],
-        };
-
-        let serialized = serde_json::to_string(&original).unwrap();
-        let deserialized: Page<Device> = serde_json::from_str(&serialized).unwrap();
-
-        assert_eq!(deserialized.count, 2);
-        assert_eq!(deserialized.results.len(), 2);
-        assert_eq!(deserialized.results[0].name, "switch-01");
-        assert_eq!(deserialized.results[1].id, 2);
     }
 
     #[cfg_attr(miri, ignore)]

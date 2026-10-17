@@ -861,12 +861,30 @@ mod tests {
         assert_eq!(selected, json!(["a", "b"]));
     }
 
+    /// cell text of each header and data row of a rendered table.
+    fn table_rows(table: &str) -> Vec<Vec<String>> {
+        table
+            .lines()
+            .filter(|line| {
+                line.starts_with('|') && !line.chars().all(|c| matches!(c, '|' | '-' | '+' | '='))
+            })
+            .map(|line| {
+                line.trim_matches('|')
+                    .split('|')
+                    .map(|cell| cell.trim().to_string())
+                    .collect()
+            })
+            .collect()
+    }
+
     #[test]
     fn format_table_handles_objects() {
         let value = json!({"name": "leaf-1", "status": "active"});
         let table = format_table(&value, None, 6);
-        assert!(table.contains("name"));
-        assert!(table.contains("leaf-1"));
+        assert_eq!(
+            table_rows(&table),
+            vec![vec!["name", "status"], vec!["leaf-1", "active"]]
+        );
     }
 
     #[test]
@@ -899,15 +917,11 @@ mod tests {
     }
 
     #[test]
-    fn build_schema_path_returns_swagger_json() {
-        let path = build_schema_path(Some("json")).unwrap();
-        assert_eq!(path, "swagger.json");
-    }
-
-    #[test]
-    fn build_schema_path_returns_swagger_yaml() {
-        let path = build_schema_path(Some("yaml")).unwrap();
-        assert_eq!(path, "swagger.yaml");
+    fn build_schema_path_returns_swagger_file() {
+        for (format, expected) in [("json", "swagger.json"), ("yaml", "swagger.yaml")] {
+            let path = build_schema_path(Some(format)).unwrap();
+            assert_eq!(path, expected);
+        }
     }
 
     #[test]
@@ -922,9 +936,11 @@ mod tests {
             ]
         });
         let table = format_table(&value, None, 6);
-        assert!(table.contains("count: 2"));
-        assert!(table.contains("alpha"));
-        assert!(table.contains("beta"));
+        assert_eq!(table.lines().next(), Some("count: 2"));
+        assert_eq!(
+            table_rows(&table),
+            vec![vec!["id", "name"], vec!["1", "alpha"], vec!["2", "beta"]]
+        );
     }
 
     #[test]
@@ -1008,102 +1024,90 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn handle_resource_action_list_calls_get() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let action = ResourceAction::List {
-            query: vec!["name=leaf-1".to_string()],
-        };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls.len(), 1);
-        assert_eq!(calls[0].method, Method::GET);
-        assert_eq!(calls[0].path, "dcim/devices/?name=leaf-1");
-        assert!(calls[0].body.is_none());
-    }
-
-    #[tokio::test]
-    async fn handle_resource_action_get_calls_get() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let action = ResourceAction::Get {
-            id: "42".to_string(),
-        };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::GET);
-        assert_eq!(calls[0].path, "dcim/devices/42/");
-    }
-
-    #[tokio::test]
-    async fn handle_resource_action_create_calls_post() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let input = JsonInput {
-            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
-            file: None,
-        };
-        let action = ResourceAction::Create { input };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::POST);
-        assert_eq!(calls[0].path, "dcim/devices/");
-        assert_eq!(calls[0].body.as_ref().unwrap()["name"], "leaf-1");
-    }
-
-    #[tokio::test]
-    async fn handle_resource_action_update_calls_put() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let input = JsonInput {
-            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
-            file: None,
-        };
-        let action = ResourceAction::Update {
-            id: "7".to_string(),
-            input,
-        };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::PUT);
-        assert_eq!(calls[0].path, "dcim/devices/7/");
-    }
-
-    #[tokio::test]
-    async fn handle_resource_action_patch_calls_patch() {
-        let client = FakeApiClient::new(json!({"ok": true}));
-        let input = JsonInput {
-            json: Some(r#"{"name":"leaf-1"}"#.to_string()),
-            file: None,
-        };
-        let action = ResourceAction::Patch {
-            id: "7".to_string(),
-            input,
-        };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::PATCH);
-        assert_eq!(calls[0].path, "dcim/devices/7/");
-    }
-
-    #[tokio::test]
-    async fn handle_resource_action_delete_calls_delete() {
-        let client = FakeApiClient::new(Value::Null);
-        let action = ResourceAction::Delete {
-            id: "7".to_string(),
-        };
-        handle_resource_action(&client, &output_config(), "dcim/devices/", action)
-            .await
-            .unwrap();
-        let calls = client.calls();
-        assert_eq!(calls[0].method, Method::DELETE);
-        assert_eq!(calls[0].path, "dcim/devices/7/");
+    async fn handle_resource_action_maps_to_request() {
+        let leaf = json!({"name": "leaf-1"});
+        // (action, fake response, method, path, body)
+        let cases = [
+            (
+                ResourceAction::List {
+                    query: vec!["name=leaf-1".to_string()],
+                },
+                json!({"ok": true}),
+                Method::GET,
+                "dcim/devices/?name=leaf-1",
+                None,
+            ),
+            (
+                ResourceAction::Get {
+                    id: "42".to_string(),
+                },
+                json!({"ok": true}),
+                Method::GET,
+                "dcim/devices/42/",
+                None,
+            ),
+            (
+                ResourceAction::Create {
+                    input: JsonInput {
+                        json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+                        file: None,
+                    },
+                },
+                json!({"ok": true}),
+                Method::POST,
+                "dcim/devices/",
+                Some(leaf.clone()),
+            ),
+            (
+                ResourceAction::Update {
+                    id: "7".to_string(),
+                    input: JsonInput {
+                        json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+                        file: None,
+                    },
+                },
+                json!({"ok": true}),
+                Method::PUT,
+                "dcim/devices/7/",
+                Some(leaf.clone()),
+            ),
+            (
+                ResourceAction::Patch {
+                    id: "7".to_string(),
+                    input: JsonInput {
+                        json: Some(r#"{"name":"leaf-1"}"#.to_string()),
+                        file: None,
+                    },
+                },
+                json!({"ok": true}),
+                Method::PATCH,
+                "dcim/devices/7/",
+                Some(leaf.clone()),
+            ),
+            (
+                ResourceAction::Delete {
+                    id: "7".to_string(),
+                },
+                Value::Null,
+                Method::DELETE,
+                "dcim/devices/7/",
+                None,
+            ),
+        ];
+        for (action, response, method, path, body) in cases {
+            let client = FakeApiClient::new(response);
+            handle_resource_action(&client, &output_config(), "dcim/devices/", action)
+                .await
+                .unwrap();
+            assert_eq!(
+                client.calls(),
+                vec![RecordedCall {
+                    method,
+                    path: path.to_string(),
+                    body,
+                }]
+            );
+        }
     }
 
     #[tokio::test]
@@ -1349,51 +1353,28 @@ mod tests {
     }
 
     #[test]
-    fn parse_config_path_command() {
-        let args = vec!["nautobot-cli", "config", "path"];
-        let cli = Cli::parse_from(args);
-        match cli.command {
-            Commands::Config {
-                action: ConfigAction::Path,
-            } => {}
-            _ => panic!("expected config path command"),
-        }
-    }
-
-    #[test]
-    fn parse_config_list_command() {
-        let args = vec!["nautobot-cli", "config", "list"];
-        let cli = Cli::parse_from(args);
-        match cli.command {
-            Commands::Config {
-                action: ConfigAction::List,
-            } => {}
-            _ => panic!("expected config list command"),
-        }
-    }
-
-    #[test]
-    fn parse_config_show_command() {
-        let args = vec!["nautobot-cli", "--profile", "prod", "config", "show"];
-        let cli = Cli::parse_from(args);
-        assert_eq!(cli.profile, "prod");
-        match cli.command {
-            Commands::Config {
-                action: ConfigAction::Show,
-            } => {}
-            _ => panic!("expected config show command"),
-        }
-    }
-
-    #[test]
-    fn parse_config_validate_command() {
-        let args = vec!["nautobot-cli", "config", "validate"];
-        let cli = Cli::parse_from(args);
-        match cli.command {
-            Commands::Config {
-                action: ConfigAction::Validate,
-            } => {}
-            _ => panic!("expected config validate command"),
+    fn parse_config_commands() {
+        // (args, profile, expected action)
+        let cases: [(&[&str], &str, &str); 4] = [
+            (&["config", "path"], "default", "path"),
+            (&["config", "list"], "default", "list"),
+            (&["--profile", "prod", "config", "show"], "prod", "show"),
+            (&["config", "validate"], "default", "validate"),
+        ];
+        for (args, profile, expected) in cases {
+            let cli = Cli::parse_from(std::iter::once(&"nautobot-cli").chain(args));
+            assert_eq!(cli.profile, profile, "{args:?}");
+            let action = match cli.command {
+                Commands::Config { action } => action,
+                _ => panic!("expected config command for {args:?}"),
+            };
+            let action = match action {
+                ConfigAction::Path => "path",
+                ConfigAction::List => "list",
+                ConfigAction::Show => "show",
+                ConfigAction::Validate => "validate",
+            };
+            assert_eq!(action, expected, "{args:?}");
         }
     }
 
@@ -1413,35 +1394,31 @@ mod tests {
     }
 
     #[test]
-    fn parse_max_columns_flag() {
-        let mut args = base_args();
-        args.extend(["--max-columns", "10", "dcim", "devices", "list"]);
-        let cli = Cli::parse_from(args);
-        assert_eq!(cli.max_columns, 10);
+    fn parse_max_columns() {
+        let cases: [(&[&str], usize); 2] = [
+            (&["--max-columns", "10", "dcim", "devices", "list"], 10),
+            (&["dcim", "devices", "list"], 6),
+        ];
+        for (extra, expected) in cases {
+            let mut args = base_args();
+            args.extend(extra);
+            let cli = Cli::parse_from(args);
+            assert_eq!(cli.max_columns, expected, "{extra:?}");
+        }
     }
 
     #[test]
-    fn parse_max_columns_default() {
-        let mut args = base_args();
-        args.extend(["dcim", "devices", "list"]);
-        let cli = Cli::parse_from(args);
-        assert_eq!(cli.max_columns, 6);
-    }
-
-    #[test]
-    fn parse_profile_flag() {
-        let mut args = base_args();
-        args.extend(["--profile", "prod", "status"]);
-        let cli = Cli::parse_from(args);
-        assert_eq!(cli.profile, "prod");
-    }
-
-    #[test]
-    fn parse_profile_default() {
-        let mut args = base_args();
-        args.extend(["status"]);
-        let cli = Cli::parse_from(args);
-        assert_eq!(cli.profile, "default");
+    fn parse_profile() {
+        let cases: [(&[&str], &str); 2] = [
+            (&["--profile", "prod", "status"], "prod"),
+            (&["status"], "default"),
+        ];
+        for (extra, expected) in cases {
+            let mut args = base_args();
+            args.extend(extra);
+            let cli = Cli::parse_from(args);
+            assert_eq!(cli.profile, expected, "{extra:?}");
+        }
     }
 
     #[test]
@@ -1470,12 +1447,7 @@ mod tests {
             ]
         });
         let table = format_table(&value, None, 2);
-        let header_line = table.lines().nth(1).unwrap_or("");
-        let column_count = header_line.matches('|').count() - 1;
-        assert!(
-            column_count <= 2,
-            "expected at most 2 columns, got {}",
-            column_count
-        );
+        let rows = table_rows(&table);
+        assert_eq!(rows[0].len(), 2, "{table}");
     }
 }
