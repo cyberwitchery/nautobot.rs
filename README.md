@@ -18,6 +18,10 @@ nautobot = "0.4"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
+## version compatibility
+
+CI is pinned to Nautobot 3.2.7. see [`docs/compat.md`](docs/compat.md) for release compatibility.
+
 ## quick start
 
 ```rust
