@@ -74,7 +74,7 @@ mod tests {
         });
 
         let metrics = api.metrics().await.unwrap();
-        assert!(metrics.contains("test_metric"));
+        assert_eq!(metrics, "# HELP test_metric 1");
     }
 
     #[cfg_attr(miri, ignore)]

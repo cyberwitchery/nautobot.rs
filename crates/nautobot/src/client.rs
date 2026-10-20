@@ -784,17 +784,10 @@ mod tests {
     use std::sync::{Arc, Mutex};
 
     #[test]
-    fn test_client_creation() {
-        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
-        let client = Client::new(config);
-        assert!(client.is_ok());
-    }
-
-    #[test]
     fn test_client_invalid_config() {
         let config = ClientConfig::new("https://nautobot.example.com", "");
         let client = Client::new(config);
-        assert!(client.is_err());
+        assert!(matches!(client, Err(Error::Config(_))));
     }
 
     #[test]
@@ -803,6 +796,7 @@ mod tests {
         let client = Client::new(config).unwrap();
         let debug_str = format!("{:?}", client);
         assert!(debug_str.contains("nautobot.example.com"));
+        assert!(!debug_str.contains("test-token"));
     }
 
     #[test]
@@ -817,50 +811,32 @@ mod tests {
     }
 
     #[test]
-    fn test_should_retry_respects_limits_and_method() {
-        let err = Error::ApiError {
-            status: 500,
-            message: "server".to_string(),
-            body: "".to_string(),
-        };
-        assert!(Client::should_retry(&err, &Method::GET, 0, 3, false));
-        assert!(!Client::should_retry(&err, &Method::POST, 0, 3, false));
-        assert!(!Client::should_retry(&err, &Method::GET, 3, 3, false));
-        assert!(Client::should_retry(&err, &Method::DELETE, 0, 3, false));
-        assert!(!Client::should_retry(&err, &Method::DELETE, 3, 3, false));
-    }
-
-    #[test]
-    fn test_should_retry_idempotent_allows_post() {
-        let err = Error::ApiError {
-            status: 500,
-            message: "server".to_string(),
-            body: "".to_string(),
-        };
-        assert!(Client::should_retry(&err, &Method::POST, 0, 3, true));
-        assert!(!Client::should_retry(&err, &Method::POST, 3, 3, true));
-    }
-
-    #[test]
-    fn test_should_retry_status_codes() {
-        let err_429 = Error::ApiError {
-            status: 429,
-            message: "rate".to_string(),
-            body: "".to_string(),
-        };
-        let err_500 = Error::ApiError {
-            status: 500,
-            message: "server".to_string(),
-            body: "".to_string(),
-        };
-        let err_404 = Error::ApiError {
-            status: 404,
-            message: "missing".to_string(),
-            body: "".to_string(),
-        };
-        assert!(Client::should_retry(&err_429, &Method::GET, 0, 1, false));
-        assert!(Client::should_retry(&err_500, &Method::GET, 0, 1, false));
-        assert!(!Client::should_retry(&err_404, &Method::GET, 0, 1, false));
+    fn test_should_retry() {
+        // (status, method, attempt, max_retries, idempotent, expected)
+        let cases = [
+            (500, Method::GET, 0, 3, false, true),
+            (500, Method::POST, 0, 3, false, false),
+            (500, Method::GET, 3, 3, false, false),
+            (500, Method::DELETE, 0, 3, false, true),
+            (500, Method::DELETE, 3, 3, false, false),
+            (500, Method::POST, 0, 3, true, true),
+            (500, Method::POST, 3, 3, true, false),
+            (429, Method::GET, 0, 1, false, true),
+            (500, Method::GET, 0, 1, false, true),
+            (404, Method::GET, 0, 1, false, false),
+        ];
+        for (status, method, attempt, max, idempotent, expected) in cases {
+            let err = Error::ApiError {
+                status,
+                message: "error".to_string(),
+                body: "".to_string(),
+            };
+            assert_eq!(
+                Client::should_retry(&err, &method, attempt, max, idempotent),
+                expected,
+                "status {status} {method} attempt {attempt}/{max} idempotent {idempotent}"
+            );
+        }
     }
 
     #[test]
@@ -1172,7 +1148,9 @@ mod tests {
         // headers while api_key still carries the token.
         let server = MockServer::start();
         let mock = server.mock(|when, then| {
-            when.method(GET).path("/api/test/");
+            when.method(GET)
+                .path("/api/test/")
+                .header_missing("authorization");
             then.status(200).json_body(json!({ "ok": true }));
         });
 
@@ -1188,13 +1166,5 @@ mod tests {
         let api_key = openapi_config.api_key.expect("api key should be set");
         assert_eq!(api_key.prefix.as_deref(), Some("Token"));
         assert_eq!(api_key.key, "test-token");
-    }
-
-    #[cfg(feature = "tracing")]
-    #[test]
-    fn tracing_feature_client_creation() {
-        let config = ClientConfig::new("https://nautobot.example.com", "test-token");
-        let client = Client::new(config);
-        assert!(client.is_ok());
     }
 }
