@@ -1,5 +1,13 @@
 # changelog
 
+## [unreleased]
+
+### ci
+- bump integration CI from Nautobot 3.2.6 to 3.2.7 (refs #66)
+
+### openapi
+- regenerate bindings from Nautobot 3.2.7; endpoints, filter types, model fields and enum values are unchanged. `JobStatusEnum` variants are reordered
+
 ## [0.9.1] - 2026-10-14
 
 ### cli
