@@ -31,7 +31,7 @@ pub struct BulkWritableVpnPhase1PolicyRequest {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "ike_version", skip_serializing_if = "Option::is_none")]
-    pub ike_version: Option<Box<crate::models::BulkWritableVpnPhase1PolicyRequestIkeVersion>>,
+    pub ike_version: Option<IkeVersion>,
     /// Only applicable to IKEv1
     #[serde(rename = "aggressive_mode", skip_serializing_if = "Option::is_none")]
     pub aggressive_mode: Option<bool>,
@@ -49,12 +49,12 @@ pub struct BulkWritableVpnPhase1PolicyRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub lifetime_kb: Option<Option<i32>>,
+    /// PSK, RSA, ECDSA, Certificate
     #[serde(
         rename = "authentication_method",
         skip_serializing_if = "Option::is_none"
     )]
-    pub authentication_method:
-        Option<Box<crate::models::BulkWritableVpnPhase1PolicyRequestAuthenticationMethod>>,
+    pub authentication_method: Option<AuthenticationMethod>,
     #[serde(
         rename = "tenant",
         default,
@@ -96,5 +96,42 @@ impl BulkWritableVpnPhase1PolicyRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum IkeVersion {
+    #[serde(rename = "IKEv1")]
+    Ikev1,
+    #[serde(rename = "IKEv2")]
+    Ikev2,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for IkeVersion {
+    fn default() -> IkeVersion {
+        Self::Ikev1
+    }
+}
+/// PSK, RSA, ECDSA, Certificate
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AuthenticationMethod {
+    #[serde(rename = "PSK")]
+    Psk,
+    #[serde(rename = "RSA")]
+    Rsa,
+    #[serde(rename = "ECDSA")]
+    Ecdsa,
+    #[serde(rename = "Certificate")]
+    Certificate,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for AuthenticationMethod {
+    fn default() -> AuthenticationMethod {
+        Self::Psk
     }
 }

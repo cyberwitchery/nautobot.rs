@@ -17,7 +17,7 @@ pub struct PatchedWritablePowerPanelRequest {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "panel_type", skip_serializing_if = "Option::is_none")]
-    pub panel_type: Option<Box<crate::models::PatchedWritablePowerPanelRequestPanelType>>,
+    pub panel_type: Option<PanelType>,
     /// Total number of breaker positions in the panel (e.g., 42)
     #[serde(
         rename = "breaker_position_count",
@@ -26,8 +26,9 @@ pub struct PatchedWritablePowerPanelRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub breaker_position_count: Option<Option<i32>>,
+    /// Physical power distribution redundancy path.
     #[serde(rename = "power_path", skip_serializing_if = "Option::is_none")]
-    pub power_path: Option<Box<crate::models::PatchedWritablePowerFeedRequestPowerPath>>,
+    pub power_path: Option<PowerPath>,
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<Box<crate::models::BulkWritableCableRequestStatus>>,
     #[serde(
@@ -66,5 +67,54 @@ impl PatchedWritablePowerPanelRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum PanelType {
+    #[serde(rename = "utility")]
+    Utility,
+    #[serde(rename = "generator")]
+    Generator,
+    #[serde(rename = "switchgear")]
+    Switchgear,
+    #[serde(rename = "mdp")]
+    Mdp,
+    #[serde(rename = "ups")]
+    Ups,
+    #[serde(rename = "transfer-switch")]
+    TransferSwitch,
+    #[serde(rename = "pdu")]
+    Pdu,
+    #[serde(rename = "panelboard")]
+    Panelboard,
+    #[serde(rename = "mlc")]
+    Mlc,
+    #[serde(rename = "rpp")]
+    Rpp,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for PanelType {
+    fn default() -> PanelType {
+        Self::Utility
+    }
+}
+/// Physical power distribution redundancy path.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum PowerPath {
+    #[serde(rename = "a")]
+    A,
+    #[serde(rename = "b")]
+    B,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for PowerPath {
+    fn default() -> PowerPath {
+        Self::A
     }
 }

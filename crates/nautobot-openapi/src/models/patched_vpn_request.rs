@@ -20,8 +20,9 @@ pub struct PatchedVpnRequest {
     pub description: Option<String>,
     #[serde(rename = "vpn_id", skip_serializing_if = "Option::is_none")]
     pub vpn_id: Option<String>,
+    /// Optional classification of this VPN service, for example IPSec or VXLAN-EVPN.
     #[serde(rename = "service_type", skip_serializing_if = "Option::is_none")]
-    pub service_type: Option<Box<crate::models::BulkWritableVpnRequestServiceType>>,
+    pub service_type: Option<ServiceType>,
     /// Free-form scalar service metadata only; not for references to real Nautobot objects.
     #[serde(
         rename = "extra_attributes",
@@ -90,5 +91,48 @@ impl PatchedVpnRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Optional classification of this VPN service, for example IPSec or VXLAN-EVPN.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum ServiceType {
+    #[serde(rename = "ipsec")]
+    Ipsec,
+    #[serde(rename = "vpws")]
+    Vpws,
+    #[serde(rename = "vpls")]
+    Vpls,
+    #[serde(rename = "vxlan")]
+    Vxlan,
+    #[serde(rename = "vxlan-evpn")]
+    VxlanEvpn,
+    #[serde(rename = "mpls-evpn")]
+    MplsEvpn,
+    #[serde(rename = "pbb-evpn")]
+    PbbEvpn,
+    #[serde(rename = "evpn-vpws")]
+    EvpnVpws,
+    #[serde(rename = "epl")]
+    Epl,
+    #[serde(rename = "evpl")]
+    Evpl,
+    #[serde(rename = "ep-lan")]
+    EpLan,
+    #[serde(rename = "evp-lan")]
+    EvpLan,
+    #[serde(rename = "ep-tree")]
+    EpTree,
+    #[serde(rename = "evp-tree")]
+    EvpTree,
+    #[serde(rename = "spb")]
+    Spb,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for ServiceType {
+    fn default() -> ServiceType {
+        Self::Ipsec
     }
 }

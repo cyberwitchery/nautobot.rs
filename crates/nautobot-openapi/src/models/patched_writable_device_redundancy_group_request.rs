@@ -19,8 +19,7 @@ pub struct PatchedWritableDeviceRedundancyGroupRequest {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "failover_strategy", skip_serializing_if = "Option::is_none")]
-    pub failover_strategy:
-        Option<Box<crate::models::PatchedWritableDeviceRedundancyGroupRequestFailoverStrategy>>,
+    pub failover_strategy: Option<FailoverStrategy>,
     #[serde(rename = "comments", skip_serializing_if = "Option::is_none")]
     pub comments: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
@@ -61,5 +60,22 @@ impl PatchedWritableDeviceRedundancyGroupRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum FailoverStrategy {
+    #[serde(rename = "active-active")]
+    ActiveActive,
+    #[serde(rename = "active-passive")]
+    ActivePassive,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for FailoverStrategy {
+    fn default() -> FailoverStrategy {
+        Self::ActiveActive
     }
 }

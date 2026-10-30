@@ -21,10 +21,12 @@ pub struct PatchedWritablePowerOutletRequest {
     pub label: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Physical port type
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Box<crate::models::PatchedWritablePowerOutletRequestType>>,
+    pub r#type: Option<RHashType>,
+    /// Phase (for three-phase feeds)
     #[serde(rename = "feed_leg", skip_serializing_if = "Option::is_none")]
-    pub feed_leg: Option<Box<crate::models::PatchedWritablePowerOutletRequestFeedLeg>>,
+    pub feed_leg: Option<FeedLeg>,
     #[serde(
         rename = "device",
         default,
@@ -77,5 +79,224 @@ impl PatchedWritablePowerOutletRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Physical port type
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RHashType {
+    #[serde(rename = "iec-60320-c5")]
+    Iec60320C5,
+    #[serde(rename = "iec-60320-c7")]
+    Iec60320C7,
+    #[serde(rename = "iec-60320-c13")]
+    Iec60320C13,
+    #[serde(rename = "iec-60320-c15")]
+    Iec60320C15,
+    #[serde(rename = "iec-60320-c19")]
+    Iec60320C19,
+    #[serde(rename = "iec-60320-c21")]
+    Iec60320C21,
+    #[serde(rename = "iec-60309-p-n-e-4h")]
+    Iec60309PNE4h,
+    #[serde(rename = "iec-60309-p-n-e-6h")]
+    Iec60309PNE6h,
+    #[serde(rename = "iec-60309-p-n-e-9h")]
+    Iec60309PNE9h,
+    #[serde(rename = "iec-60309-2p-e-4h")]
+    Iec603092pE4h,
+    #[serde(rename = "iec-60309-2p-e-6h")]
+    Iec603092pE6h,
+    #[serde(rename = "iec-60309-2p-e-9h")]
+    Iec603092pE9h,
+    #[serde(rename = "iec-60309-3p-e-4h")]
+    Iec603093pE4h,
+    #[serde(rename = "iec-60309-3p-e-6h")]
+    Iec603093pE6h,
+    #[serde(rename = "iec-60309-3p-e-9h")]
+    Iec603093pE9h,
+    #[serde(rename = "iec-60309-3p-n-e-4h")]
+    Iec603093pNE4h,
+    #[serde(rename = "iec-60309-3p-n-e-6h")]
+    Iec603093pNE6h,
+    #[serde(rename = "iec-60309-3p-n-e-9h")]
+    Iec603093pNE9h,
+    #[serde(rename = "iec-60906-1")]
+    Iec609061,
+    #[serde(rename = "nbr-14136-10a")]
+    Nbr1413610a,
+    #[serde(rename = "nbr-14136-20a")]
+    Nbr1413620a,
+    #[serde(rename = "nema-1-15r")]
+    Nema115r,
+    #[serde(rename = "nema-5-15r")]
+    Nema515r,
+    #[serde(rename = "nema-5-20r")]
+    Nema520r,
+    #[serde(rename = "nema-5-30r")]
+    Nema530r,
+    #[serde(rename = "nema-5-50r")]
+    Nema550r,
+    #[serde(rename = "nema-6-15r")]
+    Nema615r,
+    #[serde(rename = "nema-6-20r")]
+    Nema620r,
+    #[serde(rename = "nema-6-30r")]
+    Nema630r,
+    #[serde(rename = "nema-6-50r")]
+    Nema650r,
+    #[serde(rename = "nema-10-30r")]
+    Nema1030r,
+    #[serde(rename = "nema-10-50r")]
+    Nema1050r,
+    #[serde(rename = "nema-14-20r")]
+    Nema1420r,
+    #[serde(rename = "nema-14-30r")]
+    Nema1430r,
+    #[serde(rename = "nema-14-50r")]
+    Nema1450r,
+    #[serde(rename = "nema-14-60r")]
+    Nema1460r,
+    #[serde(rename = "nema-15-15r")]
+    Nema1515r,
+    #[serde(rename = "nema-15-20r")]
+    Nema1520r,
+    #[serde(rename = "nema-15-30r")]
+    Nema1530r,
+    #[serde(rename = "nema-15-50r")]
+    Nema1550r,
+    #[serde(rename = "nema-15-60r")]
+    Nema1560r,
+    #[serde(rename = "nema-l1-15r")]
+    NemaL115r,
+    #[serde(rename = "nema-l5-15r")]
+    NemaL515r,
+    #[serde(rename = "nema-l5-20r")]
+    NemaL520r,
+    #[serde(rename = "nema-l5-30r")]
+    NemaL530r,
+    #[serde(rename = "nema-l5-50r")]
+    NemaL550r,
+    #[serde(rename = "nema-l6-15r")]
+    NemaL615r,
+    #[serde(rename = "nema-l6-20r")]
+    NemaL620r,
+    #[serde(rename = "nema-l6-30r")]
+    NemaL630r,
+    #[serde(rename = "nema-l6-50r")]
+    NemaL650r,
+    #[serde(rename = "nema-l10-30r")]
+    NemaL1030r,
+    #[serde(rename = "nema-l14-20r")]
+    NemaL1420r,
+    #[serde(rename = "nema-l14-30r")]
+    NemaL1430r,
+    #[serde(rename = "nema-l14-50r")]
+    NemaL1450r,
+    #[serde(rename = "nema-l14-60r")]
+    NemaL1460r,
+    #[serde(rename = "nema-l15-20r")]
+    NemaL1520r,
+    #[serde(rename = "nema-l15-30r")]
+    NemaL1530r,
+    #[serde(rename = "nema-l15-50r")]
+    NemaL1550r,
+    #[serde(rename = "nema-l15-60r")]
+    NemaL1560r,
+    #[serde(rename = "nema-l21-20r")]
+    NemaL2120r,
+    #[serde(rename = "nema-l21-30r")]
+    NemaL2130r,
+    #[serde(rename = "nema-l22-30r")]
+    NemaL2230r,
+    #[serde(rename = "CS6360C")]
+    Cs6360C,
+    #[serde(rename = "CS6364C")]
+    Cs6364C,
+    #[serde(rename = "CS8164C")]
+    Cs8164C,
+    #[serde(rename = "CS8264C")]
+    Cs8264C,
+    #[serde(rename = "CS8364C")]
+    Cs8364C,
+    #[serde(rename = "CS8464C")]
+    Cs8464C,
+    #[serde(rename = "ita-e")]
+    ItaE,
+    #[serde(rename = "ita-f")]
+    ItaF,
+    #[serde(rename = "ita-g")]
+    ItaG,
+    #[serde(rename = "ita-h")]
+    ItaH,
+    #[serde(rename = "ita-i")]
+    ItaI,
+    #[serde(rename = "ita-j")]
+    ItaJ,
+    #[serde(rename = "ita-k")]
+    ItaK,
+    #[serde(rename = "ita-l")]
+    ItaL,
+    #[serde(rename = "ita-m")]
+    ItaM,
+    #[serde(rename = "ita-n")]
+    ItaN,
+    #[serde(rename = "ita-o")]
+    ItaO,
+    #[serde(rename = "ita-multistandard")]
+    ItaMultistandard,
+    #[serde(rename = "usb-a")]
+    UsbA,
+    #[serde(rename = "usb-micro-b")]
+    UsbMicroB,
+    #[serde(rename = "usb-c")]
+    UsbC,
+    #[serde(rename = "dc-terminal")]
+    DcTerminal,
+    #[serde(rename = "hdot-cx")]
+    HdotCx,
+    #[serde(rename = "saf-d-grid")]
+    SafDGrid,
+    #[serde(rename = "neutrik-powercon-20a")]
+    NeutrikPowercon20a,
+    #[serde(rename = "neutrik-powercon-32a")]
+    NeutrikPowercon32a,
+    #[serde(rename = "neutrik-powercon-true1")]
+    NeutrikPowerconTrue1,
+    #[serde(rename = "neutrik-powercon-true1-top")]
+    NeutrikPowerconTrue1Top,
+    #[serde(rename = "ubiquiti-smartpower")]
+    UbiquitiSmartpower,
+    #[serde(rename = "eaton-c39")]
+    EatonC39,
+    #[serde(rename = "hardwired")]
+    Hardwired,
+    #[serde(rename = "other")]
+    Other,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for RHashType {
+    fn default() -> RHashType {
+        Self::Iec60320C5
+    }
+}
+/// Phase (for three-phase feeds)
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum FeedLeg {
+    #[serde(rename = "A")]
+    A,
+    #[serde(rename = "B")]
+    B,
+    #[serde(rename = "C")]
+    C,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for FeedLeg {
+    fn default() -> FeedLeg {
+        Self::A
     }
 }

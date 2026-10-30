@@ -45,6 +45,9 @@ notes about the generator:
   `Default`, so callers spread `..Default::default()` and survive upstream filter
   additions
 - normalizes schema enums with value `"---------"` to `"none"`
+- collapses `oneOf` shapes the generator would emit as empty structs: nested reference
+  ids become uuids, blank-able choices become string enums that admit `""`, and
+  nullable integer choices become nullable integers
 - injects crate-level allow attributes in `crates/nautobot-openapi/src/lib.rs`
 - normalizes generated `Cargo.toml` for `rustls-tls`
 

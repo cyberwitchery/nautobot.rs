@@ -55,8 +55,7 @@ pub struct HealthCheckMonitor {
     )]
     pub port: Option<Option<i32>>,
     #[serde(rename = "health_check_type", skip_serializing_if = "Option::is_none")]
-    pub health_check_type:
-        Option<Box<crate::models::BulkWritableHealthCheckMonitorRequestHealthCheckType>>,
+    pub health_check_type: Option<HealthCheckType>,
     #[serde(
         rename = "tenant",
         default,
@@ -109,5 +108,30 @@ impl HealthCheckMonitor {
             custom_fields: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum HealthCheckType {
+    #[serde(rename = "ping")]
+    Ping,
+    #[serde(rename = "tcp")]
+    Tcp,
+    #[serde(rename = "dns")]
+    Dns,
+    #[serde(rename = "http")]
+    Http,
+    #[serde(rename = "https")]
+    Https,
+    #[serde(rename = "custom")]
+    Custom,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for HealthCheckType {
+    fn default() -> HealthCheckType {
+        Self::Ping
     }
 }

@@ -21,8 +21,9 @@ pub struct PatchedWritableConsoleServerPortRequest {
     pub label: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Physical port type
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Box<crate::models::PatchedWritableConsolePortRequestType>>,
+    pub r#type: Option<RHashType>,
     #[serde(
         rename = "device",
         default,
@@ -66,5 +67,48 @@ impl PatchedWritableConsoleServerPortRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Physical port type
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RHashType {
+    #[serde(rename = "de-9")]
+    De9,
+    #[serde(rename = "db-25")]
+    Db25,
+    #[serde(rename = "rj-11")]
+    Rj11,
+    #[serde(rename = "rj-12")]
+    Rj12,
+    #[serde(rename = "rj-45")]
+    Rj45,
+    #[serde(rename = "mini-din-8")]
+    MiniDin8,
+    #[serde(rename = "usb-a")]
+    UsbA,
+    #[serde(rename = "usb-b")]
+    UsbB,
+    #[serde(rename = "usb-c")]
+    UsbC,
+    #[serde(rename = "usb-mini-a")]
+    UsbMiniA,
+    #[serde(rename = "usb-mini-b")]
+    UsbMiniB,
+    #[serde(rename = "usb-micro-a")]
+    UsbMicroA,
+    #[serde(rename = "usb-micro-b")]
+    UsbMicroB,
+    #[serde(rename = "usb-micro-ab")]
+    UsbMicroAb,
+    #[serde(rename = "other")]
+    Other,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for RHashType {
+    fn default() -> RHashType {
+        Self::De9
     }
 }

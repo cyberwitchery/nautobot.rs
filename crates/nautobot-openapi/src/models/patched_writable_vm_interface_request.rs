@@ -31,7 +31,7 @@ pub struct PatchedWritableVmInterfaceRequest {
     )]
     pub mtu: Option<Option<i32>>,
     #[serde(rename = "mode", skip_serializing_if = "Option::is_none")]
-    pub mode: Option<Box<crate::models::Model8021QMode>>,
+    pub mode: Option<Mode>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
@@ -115,5 +115,24 @@ impl PatchedWritableVmInterfaceRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Mode {
+    #[serde(rename = "access")]
+    Access,
+    #[serde(rename = "tagged")]
+    Tagged,
+    #[serde(rename = "tagged-all")]
+    TaggedAll,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Mode {
+    fn default() -> Mode {
+        Self::Access
     }
 }

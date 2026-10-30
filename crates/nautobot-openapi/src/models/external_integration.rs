@@ -42,7 +42,7 @@ pub struct ExternalIntegration {
     )]
     pub extra_config: Option<Option<serde_json::Value>>,
     #[serde(rename = "http_method", skip_serializing_if = "Option::is_none")]
-    pub http_method: Option<Box<crate::models::BulkWritableExternalIntegrationRequestHttpMethod>>,
+    pub http_method: Option<HttpMethod>,
     /// Headers for the HTTP request
     #[serde(
         rename = "headers",
@@ -108,5 +108,28 @@ impl ExternalIntegration {
             custom_fields: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum HttpMethod {
+    #[serde(rename = "GET")]
+    Get,
+    #[serde(rename = "POST")]
+    Post,
+    #[serde(rename = "PUT")]
+    Put,
+    #[serde(rename = "PATCH")]
+    Patch,
+    #[serde(rename = "DELETE")]
+    Delete,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for HttpMethod {
+    fn default() -> HttpMethod {
+        Self::Get
     }
 }

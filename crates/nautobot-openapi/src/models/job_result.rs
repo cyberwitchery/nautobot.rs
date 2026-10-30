@@ -141,8 +141,9 @@ pub struct JobResult {
         skip_serializing_if = "Option::is_none"
     )]
     pub canceled_by_user_name: Option<String>,
+    /// Cancel type of the Job being canceled
     #[serde(rename = "cancel_type", skip_serializing_if = "Option::is_none")]
-    pub cancel_type: Option<Box<crate::models::JobResultCancelType>>,
+    pub cancel_type: Option<CancelType>,
     /// Timestamp at which the job was canceled
     #[serde(
         rename = "date_canceled",
@@ -223,5 +224,24 @@ impl JobResult {
             custom_fields: None,
             computed_fields: None,
         }
+    }
+}
+
+/// Cancel type of the Job being canceled
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum CancelType {
+    #[serde(rename = "terminated")]
+    Terminated,
+    #[serde(rename = "reaped")]
+    Reaped,
+    #[serde(rename = "abandoned")]
+    Abandoned,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for CancelType {
+    fn default() -> CancelType {
+        Self::Terminated
     }
 }

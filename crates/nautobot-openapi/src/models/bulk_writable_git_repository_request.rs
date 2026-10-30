@@ -15,8 +15,7 @@ pub struct BulkWritableGitRepositoryRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "provided_contents", skip_serializing_if = "Option::is_none")]
-    pub provided_contents:
-        Option<Vec<crate::models::BulkWritableGitRepositoryRequestProvidedContentsInner>>,
+    pub provided_contents: Option<Vec<ProvidedContents>>,
     #[serde(rename = "name")]
     pub name: String,
     /// Internal field name. Please use underscores rather than dashes in this key.
@@ -68,5 +67,30 @@ impl BulkWritableGitRepositoryRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum ProvidedContents {
+    #[serde(rename = "data_validation.data_compliance_rule")]
+    DataValidationPeriodDataComplianceRule,
+    #[serde(rename = "extras.configcontext")]
+    ExtrasPeriodConfigcontext,
+    #[serde(rename = "extras.configcontextschema")]
+    ExtrasPeriodConfigcontextschema,
+    #[serde(rename = "extras.exporttemplate")]
+    ExtrasPeriodExporttemplate,
+    #[serde(rename = "extras.graphqlquery")]
+    ExtrasPeriodGraphqlquery,
+    #[serde(rename = "extras.job")]
+    ExtrasPeriodJob,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for ProvidedContents {
+    fn default() -> ProvidedContents {
+        Self::DataValidationPeriodDataComplianceRule
     }
 }

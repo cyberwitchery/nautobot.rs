@@ -45,8 +45,9 @@ pub struct CableTypeRequest {
     /// Number of physical strands per logical lane (e.g. 1 for copper, 2 for duplex fiber).
     #[serde(rename = "strands_per_lane", skip_serializing_if = "Option::is_none")]
     pub strands_per_lane: Option<i32>,
+    /// Fiber polarity method. Informational only.
     #[serde(rename = "polarity_method", skip_serializing_if = "Option::is_none")]
-    pub polarity_method: Option<Box<crate::models::BulkWritableCableTypeRequestPolarityMethod>>,
+    pub polarity_method: Option<PolarityMethod>,
     #[serde(
         rename = "manufacturer",
         default,
@@ -89,5 +90,26 @@ impl CableTypeRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Fiber polarity method. Informational only.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum PolarityMethod {
+    #[serde(rename = "straight-through")]
+    StraightThrough,
+    #[serde(rename = "reversed")]
+    Reversed,
+    #[serde(rename = "pair-reversed")]
+    PairReversed,
+    #[serde(rename = "other")]
+    Other,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for PolarityMethod {
+    fn default() -> PolarityMethod {
+        Self::StraightThrough
     }
 }

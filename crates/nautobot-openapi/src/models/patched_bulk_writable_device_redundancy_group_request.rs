@@ -15,8 +15,7 @@ pub struct PatchedBulkWritableDeviceRedundancyGroupRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "failover_strategy", skip_serializing_if = "Option::is_none")]
-    pub failover_strategy:
-        Option<Box<crate::models::BulkWritableDeviceRedundancyGroupRequestFailoverStrategy>>,
+    pub failover_strategy: Option<FailoverStrategy>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
@@ -61,5 +60,22 @@ impl PatchedBulkWritableDeviceRedundancyGroupRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum FailoverStrategy {
+    #[serde(rename = "active-active")]
+    ActiveActive,
+    #[serde(rename = "active-passive")]
+    ActivePassive,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for FailoverStrategy {
+    fn default() -> FailoverStrategy {
+        Self::ActiveActive
     }
 }

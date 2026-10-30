@@ -35,7 +35,7 @@ pub struct PatchedWritableRackRequest {
     )]
     pub asset_tag: Option<Option<String>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Box<crate::models::PatchedWritableRackRequestType>>,
+    pub r#type: Option<RHashType>,
     #[serde(rename = "width", skip_serializing_if = "Option::is_none")]
     pub width: Option<i32>,
     /// Height in rack units
@@ -61,7 +61,7 @@ pub struct PatchedWritableRackRequest {
     )]
     pub outer_depth: Option<Option<i32>>,
     #[serde(rename = "outer_unit", skip_serializing_if = "Option::is_none")]
-    pub outer_unit: Option<Box<crate::models::PatchedWritableRackRequestOuterUnit>>,
+    pub outer_unit: Option<OuterUnit>,
     #[serde(rename = "comments", skip_serializing_if = "Option::is_none")]
     pub comments: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
@@ -129,5 +129,50 @@ impl PatchedWritableRackRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RHashType {
+    #[serde(rename = "2-post-frame")]
+    Variant2PostFrame,
+    #[serde(rename = "4-post-frame")]
+    Variant4PostFrame,
+    #[serde(rename = "4-post-cabinet")]
+    Variant4PostCabinet,
+    #[serde(rename = "wall-frame")]
+    WallFrame,
+    #[serde(rename = "wall-frame-vertical")]
+    WallFrameVertical,
+    #[serde(rename = "wall-cabinet")]
+    WallCabinet,
+    #[serde(rename = "wall-cabinet-vertical")]
+    WallCabinetVertical,
+    #[serde(rename = "other")]
+    Other,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for RHashType {
+    fn default() -> RHashType {
+        Self::Variant2PostFrame
+    }
+}
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum OuterUnit {
+    #[serde(rename = "mm")]
+    Mm,
+    #[serde(rename = "in")]
+    In,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for OuterUnit {
+    fn default() -> OuterUnit {
+        Self::Mm
     }
 }

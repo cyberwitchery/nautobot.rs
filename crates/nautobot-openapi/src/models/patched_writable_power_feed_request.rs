@@ -18,8 +18,9 @@ pub struct PatchedWritablePowerFeedRequest {
     pub name: Option<String>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<crate::models::PowerFeedTypeChoices>,
+    /// Physical power distribution redundancy path.
     #[serde(rename = "power_path", skip_serializing_if = "Option::is_none")]
-    pub power_path: Option<Box<crate::models::PatchedWritablePowerFeedRequestPowerPath>>,
+    pub power_path: Option<PowerPath>,
     #[serde(rename = "supply", skip_serializing_if = "Option::is_none")]
     pub supply: Option<crate::models::SupplyEnum>,
     #[serde(rename = "phase", skip_serializing_if = "Option::is_none")]
@@ -39,14 +40,14 @@ pub struct PatchedWritablePowerFeedRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub breaker_position: Option<Option<i32>>,
+    /// Number of breaker poles
     #[serde(
         rename = "breaker_pole_count",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub breaker_pole_count:
-        Option<Option<Box<crate::models::PatchedWritablePowerFeedRequestBreakerPoleCount>>>,
+    pub breaker_pole_count: Option<Option<i32>>,
     #[serde(rename = "comments", skip_serializing_if = "Option::is_none")]
     pub comments: Option<String>,
     #[serde(rename = "power_panel", skip_serializing_if = "Option::is_none")]
@@ -106,5 +107,22 @@ impl PatchedWritablePowerFeedRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Physical power distribution redundancy path.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum PowerPath {
+    #[serde(rename = "a")]
+    A,
+    #[serde(rename = "b")]
+    B,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for PowerPath {
+    fn default() -> PowerPath {
+        Self::A
     }
 }

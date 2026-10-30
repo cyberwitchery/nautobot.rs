@@ -24,7 +24,7 @@ pub struct BulkWritableRadioProfileRequest {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "frequency", skip_serializing_if = "Option::is_none")]
-    pub frequency: Option<Box<crate::models::BulkWritableRadioProfileRequestFrequency>>,
+    pub frequency: Option<Frequency>,
     #[serde(
         rename = "tx_power_min",
         default,
@@ -89,5 +89,24 @@ impl BulkWritableRadioProfileRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Frequency {
+    #[serde(rename = "2.4GHz")]
+    Variant2Period4Ghz,
+    #[serde(rename = "5GHz")]
+    Variant5Ghz,
+    #[serde(rename = "6GHz")]
+    Variant6Ghz,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Frequency {
+    fn default() -> Frequency {
+        Self::Variant2Period4Ghz
     }
 }

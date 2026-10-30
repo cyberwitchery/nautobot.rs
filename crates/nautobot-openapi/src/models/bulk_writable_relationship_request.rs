@@ -28,8 +28,9 @@ pub struct BulkWritableRelationshipRequest {
     pub description: Option<String>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<crate::models::RelationshipTypeChoices>,
+    /// Objects on the specified side MUST implement this relationship. Not permitted for symmetric relationships.
     #[serde(rename = "required_on", skip_serializing_if = "Option::is_none")]
-    pub required_on: Option<Box<crate::models::BulkWritableRelationshipRequestRequiredOn>>,
+    pub required_on: Option<RequiredOn>,
     /// Label for related destination objects, as displayed on the source object.
     #[serde(rename = "source_label", skip_serializing_if = "Option::is_none")]
     pub source_label: Option<String>,
@@ -88,5 +89,22 @@ impl BulkWritableRelationshipRequest {
             destination_filter: None,
             advanced_ui: None,
         }
+    }
+}
+
+/// Objects on the specified side MUST implement this relationship. Not permitted for symmetric relationships.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RequiredOn {
+    #[serde(rename = "source")]
+    Source,
+    #[serde(rename = "destination")]
+    Destination,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for RequiredOn {
+    fn default() -> RequiredOn {
+        Self::Source
     }
 }

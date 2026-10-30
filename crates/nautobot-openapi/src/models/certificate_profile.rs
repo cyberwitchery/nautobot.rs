@@ -26,8 +26,7 @@ pub struct CertificateProfile {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "certificate_type", skip_serializing_if = "Option::is_none")]
-    pub certificate_type:
-        Option<Box<crate::models::BulkWritableCertificateProfileRequestCertificateType>>,
+    pub certificate_type: Option<CertificateType>,
     #[serde(
         rename = "certificate_file_path",
         skip_serializing_if = "Option::is_none"
@@ -99,5 +98,24 @@ impl CertificateProfile {
             custom_fields: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum CertificateType {
+    #[serde(rename = "client")]
+    Client,
+    #[serde(rename = "server")]
+    Server,
+    #[serde(rename = "mutual_tls")]
+    MutualTls,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for CertificateType {
+    fn default() -> CertificateType {
+        Self::Client
     }
 }
