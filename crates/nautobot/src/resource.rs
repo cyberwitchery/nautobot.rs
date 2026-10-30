@@ -425,4 +425,61 @@ mod tests {
         assert_eq!(page.count, 0);
         mock.assert();
     }
+
+    #[test]
+    fn typed_models_decode_nested_references_and_blank_choices() {
+        use crate::models::interface_template::Duplex;
+        use crate::models::job_result::CancelType;
+        use crate::models::{BulkWritableCableRequestStatus, Device, InterfaceTemplate, JobResult};
+
+        const ID: &str = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        let reference = serde_json::json!({
+            "id": ID,
+            "object_type": "extras.status",
+            "url": format!("https://nautobot.example.com/api/extras/statuses/{ID}/"),
+        });
+
+        let device: Device = serde_json::from_value(serde_json::json!({
+            "status": reference,
+            "role": reference,
+            "location": reference,
+            "device_type": reference,
+        }))
+        .unwrap();
+        for nested in [
+            &device.status,
+            &device.role,
+            &device.location,
+            &device.device_type,
+        ] {
+            assert_eq!(nested.id.map(|id| id.to_string()).as_deref(), Some(ID));
+        }
+
+        for (raw, expected) in [
+            ("", CancelType::Empty),
+            ("terminated", CancelType::Terminated),
+        ] {
+            let result: JobResult =
+                serde_json::from_value(serde_json::json!({"name": "job", "cancel_type": raw}))
+                    .unwrap();
+            assert_eq!(result.cancel_type, Some(expected));
+        }
+
+        for (raw, expected) in [("", Duplex::Empty), ("full", Duplex::Full)] {
+            let template: InterfaceTemplate = serde_json::from_value(serde_json::json!({
+                "name": "eth0",
+                "type": {"value": "1000base-t", "label": "1000BASE-T (1GE)"},
+                "duplex": raw,
+            }))
+            .unwrap();
+            assert_eq!(template.duplex, Some(expected));
+        }
+
+        let mut status = BulkWritableCableRequestStatus::new();
+        status.id = Some(ID.parse().unwrap());
+        assert_eq!(
+            serde_json::to_value(&status).unwrap(),
+            serde_json::json!({"id": ID})
+        );
+    }
 }

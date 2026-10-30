@@ -45,16 +45,17 @@ pub struct WritableInterfaceRequest {
     )]
     pub mtu: Option<Option<i32>>,
     #[serde(rename = "mode", skip_serializing_if = "Option::is_none")]
-    pub mode: Option<Box<crate::models::Model8021QMode>>,
+    pub mode: Option<Mode>,
     #[serde(rename = "type")]
     pub r#type: crate::models::InterfaceTypeChoices,
+    /// Physical connector type
     #[serde(rename = "port_type", skip_serializing_if = "Option::is_none")]
-    pub port_type: Option<Box<crate::models::PatchedWritableInterfaceRequestPortType>>,
+    pub port_type: Option<PortType>,
     /// This interface is used only for out-of-band management
     #[serde(rename = "mgmt_only", skip_serializing_if = "Option::is_none")]
     pub mgmt_only: Option<bool>,
     #[serde(rename = "duplex", skip_serializing_if = "Option::is_none")]
-    pub duplex: Option<Box<crate::models::BulkWritableInterfaceTemplateRequestDuplex>>,
+    pub duplex: Option<Duplex>,
     /// For a child interface of a breakout-cable trunk, the position on the parent interface's trunk connector that this child interface maps to.
     #[serde(
         rename = "breakout_position",
@@ -174,5 +175,154 @@ impl WritableInterfaceRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Mode {
+    #[serde(rename = "access")]
+    Access,
+    #[serde(rename = "tagged")]
+    Tagged,
+    #[serde(rename = "tagged-all")]
+    TaggedAll,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Mode {
+    fn default() -> Mode {
+        Self::Access
+    }
+}
+/// Physical connector type
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum PortType {
+    #[serde(rename = "8p8c")]
+    Variant8p8c,
+    #[serde(rename = "8p6c")]
+    Variant8p6c,
+    #[serde(rename = "8p4c")]
+    Variant8p4c,
+    #[serde(rename = "8p2c")]
+    Variant8p2c,
+    #[serde(rename = "6p6c")]
+    Variant6p6c,
+    #[serde(rename = "6p4c")]
+    Variant6p4c,
+    #[serde(rename = "6p2c")]
+    Variant6p2c,
+    #[serde(rename = "4p4c")]
+    Variant4p4c,
+    #[serde(rename = "4p2c")]
+    Variant4p2c,
+    #[serde(rename = "gg45")]
+    Gg45,
+    #[serde(rename = "tera-4p")]
+    Tera4p,
+    #[serde(rename = "tera-2p")]
+    Tera2p,
+    #[serde(rename = "tera-1p")]
+    Tera1p,
+    #[serde(rename = "110-punch")]
+    Variant110Punch,
+    #[serde(rename = "bnc")]
+    Bnc,
+    #[serde(rename = "f")]
+    F,
+    #[serde(rename = "n")]
+    N,
+    #[serde(rename = "mrj21")]
+    Mrj21,
+    #[serde(rename = "fc")]
+    Fc,
+    #[serde(rename = "lc")]
+    Lc,
+    #[serde(rename = "lc-pc")]
+    LcPc,
+    #[serde(rename = "lc-upc")]
+    LcUpc,
+    #[serde(rename = "lc-apc")]
+    LcApc,
+    #[serde(rename = "lsh")]
+    Lsh,
+    #[serde(rename = "lsh-pc")]
+    LshPc,
+    #[serde(rename = "lsh-upc")]
+    LshUpc,
+    #[serde(rename = "lsh-apc")]
+    LshApc,
+    #[serde(rename = "lx5")]
+    Lx5,
+    #[serde(rename = "lx5-pc")]
+    Lx5Pc,
+    #[serde(rename = "lx5-upc")]
+    Lx5Upc,
+    #[serde(rename = "lx5-apc")]
+    Lx5Apc,
+    #[serde(rename = "mpo")]
+    Mpo,
+    #[serde(rename = "mtrj")]
+    Mtrj,
+    #[serde(rename = "sc")]
+    Sc,
+    #[serde(rename = "sc-pc")]
+    ScPc,
+    #[serde(rename = "sc-upc")]
+    ScUpc,
+    #[serde(rename = "sc-apc")]
+    ScApc,
+    #[serde(rename = "st")]
+    St,
+    #[serde(rename = "cs")]
+    Cs,
+    #[serde(rename = "cs-pc")]
+    CsPc,
+    #[serde(rename = "cs-upc")]
+    CsUpc,
+    #[serde(rename = "cs-apc")]
+    CsApc,
+    #[serde(rename = "sn")]
+    Sn,
+    #[serde(rename = "sma-905")]
+    Sma905,
+    #[serde(rename = "sma-906")]
+    Sma906,
+    #[serde(rename = "urm-p2")]
+    UrmP2,
+    #[serde(rename = "urm-p4")]
+    UrmP4,
+    #[serde(rename = "urm-p8")]
+    UrmP8,
+    #[serde(rename = "splice")]
+    Splice,
+    #[serde(rename = "other")]
+    Other,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for PortType {
+    fn default() -> PortType {
+        Self::Variant8p8c
+    }
+}
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Duplex {
+    #[serde(rename = "auto")]
+    Auto,
+    #[serde(rename = "full")]
+    Full,
+    #[serde(rename = "half")]
+    Half,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Duplex {
+    fn default() -> Duplex {
+        Self::Auto
     }
 }

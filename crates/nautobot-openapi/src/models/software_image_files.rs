@@ -11,7 +11,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct SoftwareImageFiles {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<Box<crate::models::ApprovalWorkflowApprovalWorkflowDefinitionId>>,
+    pub id: Option<uuid::Uuid>,
     #[serde(rename = "object_type", skip_serializing_if = "Option::is_none")]
     pub object_type: Option<String>,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]

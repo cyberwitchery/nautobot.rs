@@ -54,7 +54,7 @@ pub struct PatchedWritableDeviceRequest {
     )]
     pub position: Option<Option<i32>>,
     #[serde(rename = "face", skip_serializing_if = "Option::is_none")]
-    pub face: Option<Box<crate::models::RackFace>>,
+    pub face: Option<Face>,
     /// The priority the device has in the device redundancy group.
     #[serde(
         rename = "device_redundancy_group_priority",
@@ -239,5 +239,22 @@ impl PatchedWritableDeviceRequest {
             tags: None,
             parent_bay: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Face {
+    #[serde(rename = "front")]
+    Front,
+    #[serde(rename = "rear")]
+    Rear,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Face {
+    fn default() -> Face {
+        Self::Front
     }
 }

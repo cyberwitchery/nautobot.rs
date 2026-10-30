@@ -21,9 +21,9 @@ pub struct BulkWritableSoftwareImageFileRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub image_file_checksum: Option<String>,
+    /// Hashing algorithm for image file checksum
     #[serde(rename = "hashing_algorithm", skip_serializing_if = "Option::is_none")]
-    pub hashing_algorithm:
-        Option<Box<crate::models::BulkWritableSoftwareImageFileRequestHashingAlgorithm>>,
+    pub hashing_algorithm: Option<HashingAlgorithm>,
     /// Image file size in bytes
     #[serde(
         rename = "image_file_size",
@@ -85,5 +85,36 @@ impl BulkWritableSoftwareImageFileRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Hashing algorithm for image file checksum
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum HashingAlgorithm {
+    #[serde(rename = "md5")]
+    Md5,
+    #[serde(rename = "sha1")]
+    Sha1,
+    #[serde(rename = "sha224")]
+    Sha224,
+    #[serde(rename = "sha384")]
+    Sha384,
+    #[serde(rename = "sha256")]
+    Sha256,
+    #[serde(rename = "sha512")]
+    Sha512,
+    #[serde(rename = "sha3")]
+    Sha3,
+    #[serde(rename = "blake2")]
+    Blake2,
+    #[serde(rename = "blake3")]
+    Blake3,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for HashingAlgorithm {
+    fn default() -> HashingAlgorithm {
+        Self::Md5
     }
 }

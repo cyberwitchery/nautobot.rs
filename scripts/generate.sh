@@ -38,6 +38,8 @@ src, dst = sys.argv[1], sys.argv[2]
 with open(src, "r", encoding="utf-8") as handle:
     data = json.load(handle)
 
+schemas = data.get("components", {}).get("schemas", {})
+
 anchor_re = re.compile(r'<a href="(https?://[^"]+)"[^>]*>([^<]+)</a>')
 url_re = re.compile(r'(?<!<)(https?://[^\s<>()]+)(?P<punct>[)\].,;:]?)')
 
@@ -85,6 +87,49 @@ def simplify_oneof_strings(obj: dict) -> None:
         obj.pop("oneOf", None)
         obj["type"] = "string"
 
+def collapse_oneof_uuid_or_integer(obj: dict) -> None:
+    """collapse the uuid-or-integer id of nested references to the uuid."""
+    one_of = obj.get("oneOf")
+    uuid = {"type": "string", "format": "uuid"}
+    if not isinstance(one_of, list) or len(one_of) != 2:
+        return
+    if uuid not in one_of or {"type": "integer"} not in one_of:
+        return
+    obj.pop("oneOf")
+    obj.update(uuid)
+
+def enum_paired_with(obj: dict, marker: str):
+    """return the schema a two-branch oneOf pairs with a `$ref` to `marker`, if any."""
+    one_of = obj.get("oneOf")
+    marker_ref = {"$ref": f"#/components/schemas/{marker}"}
+    if not isinstance(one_of, list) or len(one_of) != 2 or marker_ref not in one_of:
+        return None
+    other = one_of[1 - one_of.index(marker_ref)]
+    if not isinstance(other, dict) or set(other) != {"$ref"}:
+        return None
+    return schemas.get(other["$ref"].rsplit("/", 1)[-1])
+
+def collapse_oneof_blank_enum(obj: dict) -> None:
+    """inline a oneOf of a string enum and BlankEnum as one string enum that admits ""."""
+    target = enum_paired_with(obj, "BlankEnum")
+    if not isinstance(target, dict) or target.get("type") != "string":
+        return
+    values = target.get("enum")
+    if not isinstance(values, list):
+        return
+    obj.pop("oneOf")
+    obj["type"] = "string"
+    obj["enum"] = values + ([] if "" in values else [""])
+
+def collapse_oneof_null_enum(obj: dict) -> None:
+    """collapse a oneOf of an integer enum and NullEnum to a nullable integer."""
+    target = enum_paired_with(obj, "NullEnum")
+    if not isinstance(target, dict) or target.get("type") != "integer":
+        return
+    obj.pop("oneOf")
+    obj["type"] = "integer"
+    obj["nullable"] = True
+
 def flatten_nested_arrays(obj: dict) -> None:
     """flatten nested array types (array of arrays) to single-level arrays."""
     if obj.get("type") != "array":
@@ -101,6 +146,9 @@ def normalize(obj):
         drop_readonly_required(obj)
         drop_integer_enums(obj)
         simplify_oneof_strings(obj)
+        collapse_oneof_uuid_or_integer(obj)
+        collapse_oneof_blank_enum(obj)
+        collapse_oneof_null_enum(obj)
         flatten_nested_arrays(obj)
         for key, value in obj.items():
             if key == "enum" and isinstance(value, list):

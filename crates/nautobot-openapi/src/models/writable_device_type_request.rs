@@ -38,8 +38,9 @@ pub struct WritableDeviceTypeRequest {
     /// Device consumes both front and rear rack faces
     #[serde(rename = "is_full_depth", skip_serializing_if = "Option::is_none")]
     pub is_full_depth: Option<bool>,
+    /// Parent devices house child devices in device bays. Leave blank if this device type is neither a parent nor a child.
     #[serde(rename = "subdevice_role", skip_serializing_if = "Option::is_none")]
-    pub subdevice_role: Option<Box<crate::models::ParentChildStatus>>,
+    pub subdevice_role: Option<SubdeviceRole>,
     #[serde(rename = "comments", skip_serializing_if = "Option::is_none")]
     pub comments: Option<String>,
     #[serde(rename = "manufacturer")]
@@ -87,5 +88,24 @@ impl WritableDeviceTypeRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+/// Parent devices house child devices in device bays. Leave blank if this device type is neither a parent nor a child.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum SubdeviceRole {
+    #[serde(rename = "parent")]
+    Parent,
+    #[serde(rename = "child")]
+    Child,
+    #[serde(rename = "parent-child")]
+    ParentChild,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for SubdeviceRole {
+    fn default() -> SubdeviceRole {
+        Self::Parent
     }
 }

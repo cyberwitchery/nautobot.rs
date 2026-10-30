@@ -35,7 +35,7 @@ pub struct BulkWritableInterfaceTemplateRequest {
     )]
     pub speed: Option<Option<i32>>,
     #[serde(rename = "duplex", skip_serializing_if = "Option::is_none")]
-    pub duplex: Option<Box<crate::models::BulkWritableInterfaceTemplateRequestDuplex>>,
+    pub duplex: Option<Duplex>,
     #[serde(
         rename = "device_type",
         default,
@@ -84,5 +84,24 @@ impl BulkWritableInterfaceTemplateRequest {
             custom_fields: None,
             relationships: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Duplex {
+    #[serde(rename = "auto")]
+    Auto,
+    #[serde(rename = "full")]
+    Full,
+    #[serde(rename = "half")]
+    Half,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Duplex {
+    fn default() -> Duplex {
+        Self::Auto
     }
 }

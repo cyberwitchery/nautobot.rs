@@ -21,7 +21,7 @@ pub struct VpnTunnelRequest {
     #[serde(rename = "tunnel_id", skip_serializing_if = "Option::is_none")]
     pub tunnel_id: Option<String>,
     #[serde(rename = "encapsulation", skip_serializing_if = "Option::is_none")]
-    pub encapsulation: Option<Box<crate::models::BulkWritableVpnTunnelRequestEncapsulation>>,
+    pub encapsulation: Option<Encapsulation>,
     #[serde(
         rename = "vpn_profile",
         default,
@@ -111,5 +111,36 @@ impl VpnTunnelRequest {
             relationships: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Encapsulation {
+    #[serde(rename = "IPsec-Transport")]
+    IPsecTransport,
+    #[serde(rename = "IPsec-Tunnel")]
+    IPsecTunnel,
+    #[serde(rename = "IP-in-IP")]
+    IpInIp,
+    #[serde(rename = "GRE")]
+    Gre,
+    #[serde(rename = "WireGuard")]
+    WireGuard,
+    #[serde(rename = "L2TP")]
+    L2Tp,
+    #[serde(rename = "PPTP")]
+    Pptp,
+    #[serde(rename = "OpenVPN")]
+    OpenVpn,
+    #[serde(rename = "EoIP")]
+    EoIp,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Encapsulation {
+    fn default() -> Encapsulation {
+        Self::IPsecTransport
     }
 }

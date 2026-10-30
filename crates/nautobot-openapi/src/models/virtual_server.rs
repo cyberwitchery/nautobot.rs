@@ -33,12 +33,11 @@ pub struct VirtualServer {
     )]
     pub port: Option<Option<i32>>,
     #[serde(rename = "protocol")]
-    pub protocol: Box<crate::models::BulkWritableVirtualServerRequestProtocol>,
+    pub protocol: Protocol,
     #[serde(rename = "source_nat_type", skip_serializing_if = "Option::is_none")]
-    pub source_nat_type: Option<Box<crate::models::BulkWritableVirtualServerRequestSourceNatType>>,
+    pub source_nat_type: Option<SourceNatType>,
     #[serde(rename = "load_balancer_type", skip_serializing_if = "Option::is_none")]
-    pub load_balancer_type:
-        Option<Box<crate::models::BulkWritableVirtualServerRequestLoadBalancerType>>,
+    pub load_balancer_type: Option<LoadBalancerType>,
     #[serde(rename = "enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
     #[serde(rename = "ssl_offload", skip_serializing_if = "Option::is_none")]
@@ -128,7 +127,7 @@ impl VirtualServer {
     /// VirtualServer Serializer.
     pub fn new(
         name: String,
-        protocol: crate::models::BulkWritableVirtualServerRequestProtocol,
+        protocol: Protocol,
         vip: crate::models::BulkWritableCableRequestStatus,
     ) -> VirtualServer {
         VirtualServer {
@@ -139,7 +138,7 @@ impl VirtualServer {
             natural_slug: None,
             name,
             port: None,
-            protocol: Box::new(protocol),
+            protocol,
             source_nat_type: None,
             load_balancer_type: None,
             enabled: None,
@@ -159,5 +158,78 @@ impl VirtualServer {
             custom_fields: None,
             tags: None,
         }
+    }
+}
+
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Protocol {
+    #[serde(rename = "tcp")]
+    Tcp,
+    #[serde(rename = "udp")]
+    Udp,
+    #[serde(rename = "icmp")]
+    Icmp,
+    #[serde(rename = "sctp")]
+    Sctp,
+    #[serde(rename = "http")]
+    Http,
+    #[serde(rename = "https")]
+    Https,
+    #[serde(rename = "http2")]
+    Http2,
+    #[serde(rename = "grpc")]
+    Grpc,
+    #[serde(rename = "quic")]
+    Quic,
+    #[serde(rename = "dns")]
+    Dns,
+    #[serde(rename = "any")]
+    Any,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for Protocol {
+    fn default() -> Protocol {
+        Self::Tcp
+    }
+}
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum SourceNatType {
+    #[serde(rename = "auto")]
+    Auto,
+    #[serde(rename = "pool")]
+    Pool,
+    #[serde(rename = "static")]
+    Static,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for SourceNatType {
+    fn default() -> SourceNatType {
+        Self::Auto
+    }
+}
+///
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum LoadBalancerType {
+    #[serde(rename = "layer2")]
+    Layer2,
+    #[serde(rename = "layer4")]
+    Layer4,
+    #[serde(rename = "layer7")]
+    Layer7,
+    #[serde(rename = "dns")]
+    Dns,
+    #[serde(rename = "")]
+    Empty,
+}
+
+impl Default for LoadBalancerType {
+    fn default() -> LoadBalancerType {
+        Self::Layer2
     }
 }
