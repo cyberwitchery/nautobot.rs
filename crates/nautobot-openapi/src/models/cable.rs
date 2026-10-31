@@ -68,7 +68,7 @@ pub struct Cable {
     #[serde(rename = "length_unit", skip_serializing_if = "Option::is_none")]
     pub length_unit: Option<Box<crate::models::CableLengthUnit>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Box<crate::models::CableType>>,
+    pub r#type: Option<Box<crate::models::CableTypeChoice>>,
     #[serde(rename = "total_lanes", skip_serializing_if = "Option::is_none")]
     pub total_lanes: Option<i32>,
     #[serde(rename = "connected_lanes", skip_serializing_if = "Option::is_none")]

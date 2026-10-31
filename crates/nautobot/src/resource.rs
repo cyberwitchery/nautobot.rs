@@ -428,9 +428,12 @@ mod tests {
 
     #[test]
     fn typed_models_decode_nested_references_and_blank_choices() {
+        use crate::models::cable_type_choice;
         use crate::models::interface_template::Duplex;
         use crate::models::job_result::CancelType;
-        use crate::models::{BulkWritableCableRequestStatus, Device, InterfaceTemplate, JobResult};
+        use crate::models::{
+            BulkWritableCableRequestStatus, Cable, CableType, Device, InterfaceTemplate, JobResult,
+        };
 
         const ID: &str = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
         let reference = serde_json::json!({
@@ -474,6 +477,30 @@ mod tests {
             .unwrap();
             assert_eq!(template.duplex, Some(expected));
         }
+
+        let cable_type: CableType = serde_json::from_value(serde_json::json!({
+            "id": ID,
+            "name": "MPO-12 to 6x LC",
+            "manufacturer": reference,
+            "a_connectors": 1,
+            "b_connectors": 6,
+            "total_lanes": 6,
+            "polarity_method": "straight-through",
+        }))
+        .unwrap();
+        assert_eq!(cable_type.name, "MPO-12 to 6x LC");
+        let manufacturer = cable_type.manufacturer.flatten().and_then(|m| m.id);
+        assert_eq!(manufacturer.map(|id| id.to_string()).as_deref(), Some(ID));
+
+        let cable: Cable = serde_json::from_value(serde_json::json!({
+            "status": reference,
+            "type": {"value": "smf", "label": "Singlemode Fiber"},
+        }))
+        .unwrap();
+        assert_eq!(
+            cable.r#type.and_then(|choice| choice.value),
+            Some(cable_type_choice::Value::Smf)
+        );
 
         let mut status = BulkWritableCableRequestStatus::new();
         status.id = Some(ID.parse().unwrap());

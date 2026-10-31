@@ -10,6 +10,7 @@
 - **breaking:** the `id` of nested references (`status`, `role`, `location`, `device_type`, ... on every model) is a `uuid::Uuid`. it was generated as an empty struct that failed to deserialize any id, so typed reads of objects with a foreign key failed, e.g. listing devices, and a reference set on a write model serialized as `{"id":{}}`. `ApprovalWorkflowApprovalWorkflowDefinitionId` is removed
 - **breaking:** blank-able choice fields (`duplex`, `cancel_type`, `mode`, `face`, `provided_contents`, ...) are per-model enums with an `Empty` variant for `""`, e.g. `interface_template::Duplex`; `type` fields get `RHashType`. they were generated as empty structs that failed to deserialize any value, e.g. reading a job result or an interface template. the 35 wrapper types such as `JobResultCancelType`, `BulkWritableInterfaceTemplateRequestDuplex` and `Model8021QMode` are removed, and the virtual server constructors take `Protocol`
 - **breaking:** `breaker_pole_count` on the writable power feed requests is an `i32`. `PatchedWritablePowerFeedRequestBreakerPoleCount` is removed
+- **breaking:** the `type` of `Cable` is a `CableTypeChoice`, and `CableType` is the cable type model (`name`, `manufacturer`, `polarity_method`, ...). the `{value, label}` choice object was generated under the same name and overwrote the model, so reading cable types decoded every one as `CableType { value: None, label: None }` without an error. `cable_type::Value` and `cable_type::Label` move to `cable_type_choice`
 
 ## [0.9.1] - 2026-10-14
 

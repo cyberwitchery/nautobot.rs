@@ -438,6 +438,8 @@ pub mod cable_to_cable_termination_request;
 pub use self::cable_to_cable_termination_request::CableToCableTerminationRequest;
 pub mod cable_type;
 pub use self::cable_type::CableType;
+pub mod cable_type_choice;
+pub use self::cable_type_choice::CableTypeChoice;
 pub mod cable_type_choices;
 pub use self::cable_type_choices::CableTypeChoices;
 pub mod cable_type_request;
