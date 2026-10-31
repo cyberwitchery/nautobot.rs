@@ -141,6 +141,26 @@ def flatten_nested_arrays(obj: dict) -> None:
         inner_items = items.get("items", {})
         obj["items"] = inner_items
 
+def model_file(name: str) -> str:
+    """the model file name the rust generator derives from a schema name."""
+    name = re.sub(r"([A-Z]+)([A-Z][a-z][a-z]+)", r"\1_\2", name)
+    return re.sub(r"([a-z\d])([A-Z])", r"\1_\2", name).lower()
+
+def hoist_shadowing_choices() -> None:
+    """hoist inline choice objects whose generated model would overwrite a component's."""
+    taken = {model_file(name) for name in schemas}
+    for name, schema in list(schemas.items()):
+        props = schema.get("properties")
+        if not isinstance(props, dict):
+            continue
+        for prop, value in props.items():
+            if not isinstance(value, dict) or set(value.get("properties", ())) != {"value", "label"}:
+                continue
+            if model_file(f"{name}_{prop}") in taken:
+                hoisted = f"{name}_{prop}_choice"
+                schemas[hoisted] = value
+                props[prop] = {"$ref": f"#/components/schemas/{hoisted}"}
+
 def normalize(obj):
     if isinstance(obj, dict):
         drop_readonly_required(obj)
@@ -161,6 +181,7 @@ def normalize(obj):
         for item in obj:
             normalize(item)
 
+hoist_shadowing_choices()
 normalize(data)
 
 with open(dst, "w", encoding="utf-8") as handle:

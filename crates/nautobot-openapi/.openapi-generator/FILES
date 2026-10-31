@@ -244,6 +244,7 @@ src/models/cable_termination.rs
 src/models/cable_to_cable_termination.rs
 src/models/cable_to_cable_termination_request.rs
 src/models/cable_type.rs
+src/models/cable_type_choice.rs
 src/models/cable_type_choices.rs
 src/models/cable_type_request.rs
 src/models/cancel_type_enum.rs

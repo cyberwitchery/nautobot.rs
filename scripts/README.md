@@ -48,6 +48,9 @@ notes about the generator:
 - collapses `oneOf` shapes the generator would emit as empty structs: nested reference
   ids become uuids, blank-able choices become string enums that admit `""`, and
   nullable integer choices become nullable integers
+- moves an inline `{value, label}` choice object into its own `<Schema><Prop>Choice` model
+  when its generated name would overwrite a schema's, e.g. `Cable.type` becomes
+  `CableTypeChoice` instead of replacing `CableType`
 - injects crate-level allow attributes in `crates/nautobot-openapi/src/lib.rs`
 - normalizes generated `Cargo.toml` for `rustls-tls`
 
