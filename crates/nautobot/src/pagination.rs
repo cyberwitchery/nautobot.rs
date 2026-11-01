@@ -68,6 +68,15 @@ impl<T> fmt::Display for Page<T> {
     }
 }
 
+/// the part of a `next` link after `/api/`. nautobot sends an absolute url on
+/// the host it believes it is served from, so only the path is followed.
+fn api_path(url: &str) -> String {
+    match url.find("/api/") {
+        Some(at) => url[at + "/api/".len()..].to_string(),
+        None => url.to_string(),
+    }
+}
+
 /// iterator for paginated api results
 ///
 /// this allows iterating through all pages of results automatically.
@@ -116,7 +125,7 @@ where
         match self.next_url.take() {
             Some(url) => {
                 let page: Page<T> = self.client.get(&url).await?;
-                self.next_url = page.next.clone();
+                self.next_url = page.next.as_deref().map(api_path);
                 Ok(Some(page))
             }
             None => Ok(None),
@@ -298,6 +307,43 @@ mod tests {
 
         assert!(paginator.next_page().await.unwrap().is_none());
         first.assert();
+        second.assert();
+    }
+
+    /// nautobot sends `next` as an absolute url, on whatever host it believes
+    /// it is served from; the page is fetched from the configured one.
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn paginator_follows_an_absolute_next_url() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = crate::Client::new(config).unwrap();
+
+        server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/extras/content-types/")
+                .query_param_missing("offset");
+            then.status(200).json_body(serde_json::json!({
+                "count": 2,
+                "next": "https://nautobot.internal/api/extras/content-types/?limit=1&offset=1",
+                "previous": null,
+                "results": [1]
+            }));
+        });
+        let second = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/extras/content-types/")
+                .query_param("offset", "1");
+            then.status(200).json_body(serde_json::json!({
+                "count": 2,
+                "next": null,
+                "previous": "https://nautobot.internal/api/extras/content-types/?limit=1",
+                "results": [2]
+            }));
+        });
+
+        let paginator: Paginator<i32> = Paginator::new(client, "extras/content-types/".to_string());
+        assert_eq!(paginator.collect_all().await.unwrap(), vec![1, 2]);
         second.assert();
     }
 
