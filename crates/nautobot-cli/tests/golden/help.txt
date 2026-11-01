@@ -16,6 +16,7 @@ Commands:
   wireless          Wireless resources (profiles, networks, ...)
   users-config      fetch current user config
   status            fetch Nautobot status
+  types             list every model with the route that serves it
   schema            fetch OpenAPI schema
   graphql           run a read-only graphql query
   connected-device  find a device connected to a peer device/interface
