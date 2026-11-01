@@ -10,6 +10,7 @@ use crate::extras::ExtrasApi;
 use crate::graphql::GraphqlApi;
 use crate::ipam::IpamApi;
 use crate::metrics::MetricsApi;
+use crate::object_types::{self, ObjectTypeIndex, ObjectTypes};
 use crate::status::StatusApi;
 use crate::tenancy::TenancyApi;
 use crate::ui::UiApi;
@@ -22,7 +23,7 @@ use serde::Serialize;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::sync::Arc;
-use std::sync::OnceLock;
+use std::sync::{Mutex, OnceLock};
 use std::time::Duration;
 use std::time::Instant;
 use tokio::time::sleep;
@@ -50,6 +51,7 @@ pub struct Client {
     config: Arc<ClientConfig>,
     http_client: reqwest::Client,
     openapi_config: OnceLock<nautobot_openapi::apis::configuration::Configuration>,
+    object_types: Arc<Mutex<Option<Arc<ObjectTypeIndex>>>>,
 }
 
 impl Client {
@@ -97,6 +99,7 @@ impl Client {
             config: Arc::new(config),
             http_client,
             openapi_config: OnceLock::new(),
+            object_types: Arc::default(),
         })
     }
 
@@ -104,6 +107,28 @@ impl Client {
         &self,
     ) -> &OnceLock<nautobot_openapi::apis::configuration::Configuration> {
         &self.openapi_config
+    }
+
+    /// every model nautobot knows, with the route that serves it. fetched on
+    /// the first call and shared by every clone of this client.
+    ///
+    /// # Errors
+    ///
+    /// returns an error if the openapi schema or the content types cannot be read.
+    pub async fn object_types(&self) -> Result<ObjectTypes> {
+        let cached = self
+            .object_types
+            .lock()
+            .ok()
+            .and_then(|cached| cached.clone());
+        if let Some(index) = cached {
+            return Ok(ObjectTypes::new(self.clone(), index));
+        }
+        let index = Arc::new(object_types::fetch(self).await?);
+        if let Ok(mut cached) = self.object_types.lock() {
+            *cached = Some(index.clone());
+        }
+        Ok(ObjectTypes::new(self.clone(), index))
     }
 
     /// access the underlying http client

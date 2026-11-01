@@ -6,12 +6,13 @@ use crate::pagination::{Page, Paginator};
 use crate::query::QueryBuilder;
 use serde::Serialize;
 use serde::de::DeserializeOwned;
+use std::borrow::Cow;
 
 /// generic resource wrapper for list/get/create/update/patch/delete operations.
 #[derive(Clone)]
 pub struct Resource<T> {
     client: Client,
-    path: &'static str,
+    path: Cow<'static, str>,
     _marker: std::marker::PhantomData<T>,
 }
 
@@ -51,10 +52,10 @@ where
     T: DeserializeOwned,
 {
     /// create a new resource wrapper for a given api path.
-    pub fn new(client: Client, path: &'static str) -> Self {
+    pub fn new(client: Client, path: impl Into<Cow<'static, str>>) -> Self {
         Self {
             client,
-            path,
+            path: path.into(),
             _marker: std::marker::PhantomData,
         }
     }
@@ -62,7 +63,7 @@ where
     /// list all resources for this endpoint.
     pub async fn list(&self, query: Option<QueryBuilder>) -> Result<Page<T>> {
         let query = query.unwrap_or_default();
-        self.client.get_with_params(self.path, &query).await
+        self.client.get_with_params(&self.path, &query).await
     }
 
     /// list notes for a resource by id.
@@ -112,7 +113,7 @@ where
     where
         B: Serialize,
     {
-        self.client.post(self.path, body).await
+        self.client.post(&self.path, body).await
     }
 
     /// create resources in bulk.
@@ -120,7 +121,7 @@ where
     where
         B: Serialize,
     {
-        self.client.post(self.path, body).await
+        self.client.post(&self.path, body).await
     }
 
     /// update a resource (full update).
@@ -138,7 +139,7 @@ where
     where
         B: Serialize,
     {
-        self.client.put(self.path, body).await
+        self.client.put(&self.path, body).await
     }
 
     /// partially update a resource.
@@ -156,7 +157,7 @@ where
     where
         B: Serialize,
     {
-        self.client.patch(self.path, body).await
+        self.client.patch(&self.path, body).await
     }
 
     /// delete a resource.
@@ -169,7 +170,7 @@ where
     where
         B: Serialize,
     {
-        self.client.delete_with_body(self.path, body).await
+        self.client.delete_with_body(&self.path, body).await
     }
 }
 

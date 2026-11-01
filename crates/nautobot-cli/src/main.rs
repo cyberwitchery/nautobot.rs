@@ -33,6 +33,7 @@ trait ApiClient {
         variables: Option<&Value>,
     ) -> Result<Value, Box<dyn std::error::Error>>;
     async fn status(&self) -> Result<Value, Box<dyn std::error::Error>>;
+    async fn object_types(&self) -> Result<Value, Box<dyn std::error::Error>>;
     async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>>;
     async fn schema(
         &self,
@@ -72,6 +73,14 @@ impl ApiClient for NautobotApiClient {
     async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
         let status = self.inner.status().status().await?;
         Ok(serde_json::to_value(status)?)
+    }
+
+    async fn object_types(&self) -> Result<Value, Box<dyn std::error::Error>> {
+        let types = self.inner.object_types().await?;
+        Ok(types
+            .iter()
+            .map(|ty| serde_json::json!({"name": ty.name(), "route": ty.route()}))
+            .collect())
     }
 
     async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>> {
@@ -217,6 +226,8 @@ enum Commands {
     UsersConfig,
     /// fetch Nautobot status
     Status,
+    /// list every model with the route that serves it
+    Types,
     /// fetch OpenAPI schema
     Schema {
         /// schema format (json, yaml)
@@ -478,6 +489,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .map_err(|err| wrap_request_error(Method::GET, "status/", err))?;
             print_output(&value, &output)?;
         }
+        Commands::Types => {
+            let value = api
+                .object_types()
+                .await
+                .map_err(|err| wrap_request_error(Method::GET, "swagger.json", err))?;
+            print_output(&value, &output)?;
+        }
         Commands::Schema { format } => {
             let schema_path = build_schema_path(format.as_deref())?;
             let value = api
@@ -632,6 +650,10 @@ mod tests {
             Err("api error".into())
         }
 
+        async fn object_types(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Err("api error".into())
+        }
+
         async fn metrics(&self) -> Result<Value, Box<dyn std::error::Error>> {
             Err("api error".into())
         }
@@ -671,6 +693,10 @@ mod tests {
         }
 
         async fn status(&self) -> Result<Value, Box<dyn std::error::Error>> {
+            Ok(self.next.lock().unwrap().clone())
+        }
+
+        async fn object_types(&self) -> Result<Value, Box<dyn std::error::Error>> {
             Ok(self.next.lock().unwrap().clone())
         }
 

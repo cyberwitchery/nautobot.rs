@@ -59,6 +59,10 @@ println!("traced interface: {}", trace.name);
 // extras: run a job
 use nautobot::extras::JobInputRequest;
 let response = client.extras().job_run("job-uuid", &JobInputRequest::new()).await?;
+
+// any model by name, e.g. the target of a generic reference
+let types = client.object_types().await?;
+let interfaces = types.resource::<serde_json::Value>("virtualization.vminterface");
 # Ok(())
 # }
 ```

@@ -2,6 +2,13 @@
 
 ## [unreleased]
 
+### client
+- add `Client::object_types()`: every content type as `app_label.model`, with the rest route that serves it, read from the openapi schema (nautobot reports none per model). `ObjectTypes` has `get`, `resource::<T>`, `for_url` and `iter`; the first call fetches, later calls on the client or its clones reuse it
+- `Resource::new` takes an owned path as well as a `&'static str`
+
+### cli
+- add `types`: every model with the route that serves it
+
 ### fixed
 - `Paginator` follows the absolute `next` link nautobot sends, so `collect_all()` and `next_page()` past the first page read the next page instead of failing with a 404
 
