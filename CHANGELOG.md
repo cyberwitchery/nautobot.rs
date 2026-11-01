@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### fixed
+- `Paginator` follows the absolute `next` link nautobot sends, so `collect_all()` and `next_page()` past the first page read the next page instead of failing with a 404
+
 ### ci
 - bump integration CI from Nautobot 3.2.6 to 3.2.7 (refs #66)
 
