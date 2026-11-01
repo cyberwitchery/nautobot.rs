@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## [0.10.0] - 2026-11-01
+
 ### client
 - add `Client::object_types()`: every content type as `app_label.model`, with the rest route that serves it, read from the openapi schema (nautobot reports none per model). `ObjectTypes` has `get`, `resource::<T>`, `for_url` and `iter`; the first call fetches, later calls on the client or its clones reuse it
 - `Resource::new` takes an owned path as well as a `&'static str`
