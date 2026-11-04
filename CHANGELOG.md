@@ -2,6 +2,15 @@
 
 ## [unreleased]
 
+### ci
+- bump integration CI from Nautobot 3.2.7 to 3.2.8 (refs #78)
+
+### openapi
+- regenerate bindings from Nautobot 3.2.8
+- **breaking:** `protocol` on `VirtualServer`, `VirtualServerRequest` and `BulkWritableVirtualServerRequest` is `Option<Protocol>`, since nautobot no longer requires it. the `new` constructors of the two request types no longer take it
+- **breaking:** `ObjectChange.change_context` is `Option<ChangeContextEnum>` (`web`, `job`, `job-hook`, `orm`, `unknown`) instead of `Option<String>`
+- add the `is_multi_connector` filter to `DcimCableTypesListParams`. `JobStatusEnum` variants are reordered
+
 ## [0.10.0] - 2026-11-01
 
 ### client

@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API Documentation",
-    "version": "3.2.7 (3.2)",
+    "version": "3.2.8 (3.2)",
     "description": "Source of truth and network automation platform",
     "license": {
       "name": "Apache v2 License"
@@ -25340,6 +25340,13 @@
           {
             "in": "query",
             "name": "is_breakout",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "is_multi_connector",
             "schema": {
               "type": "boolean"
             }
@@ -290326,7 +290333,6 @@
         "required": [
           "id",
           "name",
-          "protocol",
           "vip"
         ]
       },
@@ -292689,6 +292695,16 @@
           "client",
           "server",
           "mutual_tls"
+        ],
+        "type": "string"
+      },
+      "ChangeContextEnum": {
+        "enum": [
+          "web",
+          "job",
+          "job-hook",
+          "orm",
+          "unknown"
         ],
         "type": "string"
       },
@@ -308309,7 +308325,11 @@
             "$ref": "#/components/schemas/IPAddressTypeChoices"
           },
           "ip_version": {
-            "type": "integer",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IpVersionEnum"
+              }
+            ],
             "readOnly": true
           },
           "dns_name": {
@@ -308579,7 +308599,11 @@
             "description": "Last IP host address in the range (inclusive)"
           },
           "ip_version": {
-            "type": "integer",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IpVersionEnum"
+              }
+            ],
             "readOnly": true
           },
           "description": {
@@ -312936,6 +312960,13 @@
           "name"
         ]
       },
+      "IpVersionEnum": {
+        "enum": [
+          4,
+          6
+        ],
+        "type": "integer"
+      },
       "Job": {
         "type": "object",
         "description": "Base class to use for serializers based on OrganizationalModel or PrimaryModel.\n\nCan also be used for models derived from BaseModel, so long as they support custom fields, notes, and relationships.",
@@ -315279,12 +315310,12 @@
           "RUNNING",
           "NOT RUNNING",
           "UNKNOWN",
-          "RETRY",
-          "SUCCESS",
           "FAILURE",
+          "RETRY",
           "STARTED",
           "REVOKED",
           "PENDING",
+          "SUCCESS",
           "RECEIVED"
         ],
         "type": "string"
@@ -325340,7 +325371,11 @@
             "format": "uuid"
           },
           "change_context": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChangeContextEnum"
+              }
+            ],
             "readOnly": true
           },
           "change_context_detail": {
@@ -402203,7 +402238,11 @@
             "description": "Length of the Network prefix, in bits."
           },
           "ip_version": {
-            "type": "integer",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IpVersionEnum"
+              }
+            ],
             "readOnly": true
           },
           "date_allocated": {
@@ -422777,7 +422816,6 @@
           "natural_slug",
           "notes_url",
           "object_type",
-          "protocol",
           "url",
           "vip"
         ]
@@ -423418,7 +423456,6 @@
         },
         "required": [
           "name",
-          "protocol",
           "vip"
         ]
       },
