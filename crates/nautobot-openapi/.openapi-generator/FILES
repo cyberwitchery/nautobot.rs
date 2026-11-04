@@ -252,6 +252,7 @@ src/models/capabilities_enum.rs
 src/models/certificate_profile.rs
 src/models/certificate_profile_request.rs
 src/models/certificate_type_enum.rs
+src/models/change_context_enum.rs
 src/models/circuit.rs
 src/models/circuit_circuit_termination_a.rs
 src/models/circuit_request.rs

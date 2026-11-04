@@ -454,6 +454,8 @@ pub mod certificate_profile_request;
 pub use self::certificate_profile_request::CertificateProfileRequest;
 pub mod certificate_type_enum;
 pub use self::certificate_type_enum::CertificateTypeEnum;
+pub mod change_context_enum;
+pub use self::change_context_enum::ChangeContextEnum;
 pub mod circuit;
 pub use self::circuit::Circuit;
 pub mod circuit_circuit_termination_a;
