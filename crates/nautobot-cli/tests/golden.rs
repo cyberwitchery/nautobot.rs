@@ -21,24 +21,8 @@ fn env_var(key: &str) -> Option<String> {
     std::env::var(key).ok().filter(|v| !v.trim().is_empty())
 }
 
-fn workspace_root() -> PathBuf {
-    let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    path.pop(); // nautobot-cli -> crates
-    path.pop(); // crates -> workspace root
-    path
-}
-
 fn cli_binary() -> PathBuf {
-    let root = workspace_root();
-    // respect CARGO_TARGET_DIR if set (e.g. in CI), resolving relative paths
-    // against the workspace root.
-    let target_dir = std::env::var("CARGO_TARGET_DIR")
-        .map(|d| {
-            let p = PathBuf::from(&d);
-            if p.is_absolute() { p } else { root.join(p) }
-        })
-        .unwrap_or_else(|_| root.join("target"));
-    target_dir.join("debug").join("nautobot-cli")
+    PathBuf::from(env!("CARGO_BIN_EXE_nautobot-cli"))
 }
 
 fn golden_dir() -> PathBuf {
@@ -125,19 +109,6 @@ fn check_golden(name: &str, actual: &str) {
 
 #[test]
 fn golden_help_output() {
-    let status = Command::new("cargo")
-        .args(["build", "-p", "nautobot-cli"])
-        .current_dir(
-            PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap(),
-        )
-        .status()
-        .expect("failed to build CLI");
-    assert!(status.success(), "CLI build failed");
-
     let output = Command::new(cli_binary())
         .arg("--help")
         .output()
@@ -150,19 +121,6 @@ fn golden_help_output() {
 #[test]
 #[ignore]
 fn golden_status_json() {
-    let status = Command::new("cargo")
-        .args(["build", "-p", "nautobot-cli"])
-        .current_dir(
-            PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap(),
-        )
-        .status()
-        .expect("failed to build CLI");
-    assert!(status.success(), "CLI build failed");
-
     let (stdout, stderr, code) = run_cli(&["--output", "json", "status"]);
     assert_eq!(code, 0, "CLI failed: {}", stderr);
 
@@ -181,19 +139,6 @@ fn golden_status_json() {
 #[test]
 #[ignore]
 fn golden_list_json_structure() {
-    let status = Command::new("cargo")
-        .args(["build", "-p", "nautobot-cli"])
-        .current_dir(
-            PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap(),
-        )
-        .status()
-        .expect("failed to build CLI");
-    assert!(status.success(), "CLI build failed");
-
     let (stdout, stderr, code) = run_cli(&[
         "--output", "json", "dcim", "devices", "list", "--query", "limit=1",
     ]);
@@ -208,19 +153,6 @@ fn golden_list_json_structure() {
 #[test]
 #[ignore]
 fn golden_table_headers() {
-    let status = Command::new("cargo")
-        .args(["build", "-p", "nautobot-cli"])
-        .current_dir(
-            PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap(),
-        )
-        .status()
-        .expect("failed to build CLI");
-    assert!(status.success(), "CLI build failed");
-
     let (stdout, stderr, code) = run_cli(&[
         "--output",
         "table",
