@@ -12,7 +12,7 @@ use cli::{
     normalize_api_path, print_dry_run, print_output, print_resources, request_raw_with_context,
     wrap_request_error,
 };
-use config::{Profile, load_config};
+use config::{ConfigError, Profile, load_config};
 use nautobot::{Client, ClientConfig};
 use reqwest::Method;
 use serde_json::Value;
@@ -330,6 +330,16 @@ struct GraphqlInput {
     vars: Option<String>,
 }
 
+fn resolve_token(
+    cli_token: Option<String>,
+    profile: &Profile,
+) -> Result<Option<String>, ConfigError> {
+    match cli_token.filter(|t| !t.is_empty()) {
+        Some(token) => Ok(Some(token)),
+        None => profile.resolve_token(),
+    }
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
@@ -360,9 +370,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if cli.url.is_some() {
         profile.url = cli.url.clone();
     }
-    if cli.token.is_some() {
-        profile.token = cli.token.clone();
-    }
     if cli.output.is_some() {
         profile.output = cli.output.map(|o| format!("{:?}", o).to_lowercase());
     }
@@ -371,7 +378,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .url
         .clone()
         .ok_or("url not specified (use --url, NAUTOBOT_URL, or config file)")?;
-    let token = profile.resolve_token()?.ok_or(
+    let token = resolve_token(cli.token.clone(), &profile)?.ok_or(
         "token not specified (use --token, NAUTOBOT_TOKEN, token_env, or token_command in config)",
     )?;
 
@@ -975,6 +982,46 @@ mod tests {
         assert_eq!(path, Some("dcim/devices/"));
         let missing = find_resource_path(DCIM_RESOURCES, "not-a-device");
         assert!(missing.is_none());
+    }
+
+    #[test]
+    fn non_empty_cli_token_beats_profile_token_command_and_token_env() {
+        let ran =
+            std::env::temp_dir().join(format!("nautobot-cli-token-command-{}", std::process::id()));
+        let command = Profile {
+            token_command: Some(format!("touch '{}'", ran.display())),
+            ..Default::default()
+        };
+        let env = Profile {
+            token_env: Some("PATH".to_string()),
+            ..Default::default()
+        };
+        let flag = parse_args(&["nautobot-cli", "--token", "flag-token", "status"]).token;
+        let nautobot_token = Some("env-token".to_string());
+        for profile in [&command, &env] {
+            for cli_token in [&flag, &nautobot_token] {
+                assert_eq!(
+                    resolve_token(cli_token.clone(), profile).unwrap(),
+                    *cli_token
+                );
+            }
+        }
+        assert!(!ran.exists());
+        let echo = Profile {
+            token_command: Some("echo command-token".to_string()),
+            ..Default::default()
+        };
+        let empty_flag = parse_args(&["nautobot-cli", "--token", "", "status"]).token;
+        for cli_token in [None, empty_flag, Some(String::new())] {
+            assert_eq!(
+                resolve_token(cli_token.clone(), &echo).unwrap().as_deref(),
+                Some("command-token")
+            );
+            assert_eq!(
+                resolve_token(cli_token, &env).unwrap(),
+                std::env::var("PATH").ok()
+            );
+        }
     }
 
     #[test]
