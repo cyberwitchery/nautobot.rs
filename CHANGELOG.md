@@ -2,6 +2,14 @@
 
 ## [unreleased]
 
+### client
+- `BulkUpdate` and `BulkDelete` ids are strings: nautobot identifies objects by uuid, and the `u64` they took could not address any object. `new` takes anything `Into<String>`
+
+### fixed
+- `Paginator::collect_all()` no longer preallocates from the `count` the server reports, so a page claiming a huge count can't make it panic with a capacity overflow
+- `Paginator` returns a `Pagination` error for an absolute `next` link outside `/api/`, instead of requesting `<base>/api/https://…`
+- `Resource::paginate` with a query keeps the path's trailing slash, requesting `dcim/devices/?…` instead of `dcim/devices?…` (fixes #81)
+
 ### ci
 - bump integration CI from Nautobot 3.2.7 to 3.2.8 (refs #78)
 
