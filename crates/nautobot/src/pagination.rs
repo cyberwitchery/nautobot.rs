@@ -113,7 +113,7 @@ fn api_path(link: &str) -> Result<String> {
 /// ```
 pub struct Paginator<T> {
     client: crate::Client,
-    next_url: Option<String>,
+    next_url: Option<Result<String>>,
     _phantom: std::marker::PhantomData<T>,
 }
 
@@ -125,7 +125,7 @@ where
     pub fn new(client: crate::Client, initial_path: String) -> Self {
         Self {
             client,
-            next_url: Some(initial_path),
+            next_url: Some(Ok(initial_path)),
             _phantom: std::marker::PhantomData,
         }
     }
@@ -136,8 +136,8 @@ where
     pub async fn next_page(&mut self) -> Result<Option<Page<T>>> {
         match self.next_url.take() {
             Some(url) => {
-                let page: Page<T> = self.client.get(&url).await?;
-                self.next_url = page.next.as_deref().map(api_path).transpose()?;
+                let page: Page<T> = self.client.get(&url?).await?;
+                self.next_url = page.next.as_deref().map(api_path);
                 Ok(Some(page))
             }
             None => Ok(None),
@@ -170,7 +170,7 @@ where
 #[cfg(test)]
 impl<T> Paginator<T> {
     pub(crate) fn next_url(&self) -> Option<&str> {
-        self.next_url.as_deref()
+        self.next_url.as_ref()?.as_deref().ok()
     }
 }
 
@@ -197,14 +197,7 @@ where
 
     /// collect all results up to the page limit
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
-        let first_page = match self.next_page().await? {
-            Some(page) => page,
-            None => return Ok(Vec::new()),
-        };
-        let page_size = first_page.results.len();
-        let max_items = self.max_pages.saturating_mul(page_size);
-        let mut all_results = Vec::with_capacity(first_page.count.min(max_items));
-        all_results.extend(first_page.results);
+        let mut all_results = Vec::new();
         while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);
         }
@@ -381,6 +374,39 @@ mod tests {
 
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
+    async fn paginator_refuses_a_next_link_outside_api() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = crate::Client::new(config).unwrap();
+
+        let first = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/dcim/devices/")
+                .query_param("offset", "0");
+            then.status(200).json_body(serde_json::json!({
+                "count": 2,
+                "next": "https://nautobot.internal/dcim/devices/?offset=1",
+                "previous": null,
+                "results": [1]
+            }));
+        });
+
+        let mut paginator: Paginator<i32> =
+            Paginator::new(client.clone(), "dcim/devices/?offset=0".to_string());
+        let page1 = paginator.next_page().await.unwrap().unwrap();
+        assert_eq!(page1.results, vec![1]);
+        let err = paginator.next_page().await.unwrap_err();
+        assert!(matches!(err, Error::Pagination(_)), "{err}");
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator.limit_pages(1).collect_all().await.unwrap();
+        assert_eq!(results, vec![1]);
+        first.assert_calls(2);
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
     async fn paginator_collects_all_results() {
         let server = MockServer::start();
         let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
@@ -411,8 +437,17 @@ mod tests {
         });
 
         let paginator: Paginator<i32> =
-            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+            Paginator::new(client.clone(), "dcim/devices/?offset=0".to_string());
         let results = paginator.collect_all().await.unwrap();
+        assert_eq!(results, vec![1, 2, 3]);
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator
+            .limit_pages(usize::MAX)
+            .collect_all()
+            .await
+            .unwrap();
         assert_eq!(results, vec![1, 2, 3]);
     }
 
