@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### cli
+- `--token` and `NAUTOBOT_TOKEN` take precedence over a profile's `token_command` and `token_env`, as documented. the profile's token command no longer runs when either is set. an empty `--token` or `NAUTOBOT_TOKEN` counts as unset and falls back to the profile (fixes #83)
+
 ### ci
 - bump integration CI from Nautobot 3.2.7 to 3.2.8 (refs #78)
 
