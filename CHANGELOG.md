@@ -5,6 +5,9 @@
 ### client
 - `BulkUpdate` and `BulkDelete` ids are strings: nautobot identifies objects by uuid, and the `u64` they took could not address any object. `new` takes anything `Into<String>`
 
+### cli
+- `--token` and `NAUTOBOT_TOKEN` take precedence over a profile's `token_command` and `token_env`, as documented. the profile's token command no longer runs when either is set. an empty `--token` or `NAUTOBOT_TOKEN` counts as unset and falls back to the profile (fixes #83)
+
 ### fixed
 - `Paginator::collect_all()` and `LimitedPaginator::collect_all()` no longer preallocate from the `count` the server reports, so a page claiming a huge count can't make them panic with a capacity overflow
 - `Paginator` no longer follows an absolute `next` link outside `/api/` by requesting `<base>/api/https://…`: the page that carried the link is still returned, and the following call returns a `Pagination` error
