@@ -1,8 +1,9 @@
 //! pagination support for nautobot api list endpoints
 
-use crate::error::Result;
+use crate::error::{Error, Result};
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use url::Url;
 
 /// a paginated response from the nautobot api
 ///
@@ -70,11 +71,22 @@ impl<T> fmt::Display for Page<T> {
 
 /// the part of a `next` link after `/api/`. nautobot sends an absolute url on
 /// the host it believes it is served from, so only the path is followed.
-fn api_path(url: &str) -> String {
-    match url.find("/api/") {
-        Some(at) => url[at + "/api/".len()..].to_string(),
-        None => url.to_string(),
-    }
+fn api_path(link: &str) -> Result<String> {
+    let url = match Url::parse(link) {
+        Err(url::ParseError::RelativeUrlWithoutBase) => {
+            let rest = link.split_once("/api/").map_or(link, |(_, rest)| rest);
+            return Ok(rest.to_string());
+        }
+        parsed => parsed?,
+    };
+    let (_, rest) = url
+        .path()
+        .split_once("/api/")
+        .ok_or_else(|| Error::Pagination(format!("next link {link} is not under /api/")))?;
+    Ok(match url.query() {
+        Some(query) => format!("{rest}?{query}"),
+        None => rest.to_string(),
+    })
 }
 
 /// iterator for paginated api results
@@ -101,7 +113,7 @@ fn api_path(url: &str) -> String {
 /// ```
 pub struct Paginator<T> {
     client: crate::Client,
-    next_url: Option<String>,
+    next_url: Option<Result<String>>,
     _phantom: std::marker::PhantomData<T>,
 }
 
@@ -113,7 +125,7 @@ where
     pub fn new(client: crate::Client, initial_path: String) -> Self {
         Self {
             client,
-            next_url: Some(initial_path),
+            next_url: Some(Ok(initial_path)),
             _phantom: std::marker::PhantomData,
         }
     }
@@ -124,7 +136,7 @@ where
     pub async fn next_page(&mut self) -> Result<Option<Page<T>>> {
         match self.next_url.take() {
             Some(url) => {
-                let page: Page<T> = self.client.get(&url).await?;
+                let page: Page<T> = self.client.get(&url?).await?;
                 self.next_url = page.next.as_deref().map(api_path);
                 Ok(Some(page))
             }
@@ -137,12 +149,7 @@ where
     /// **warning**: this will fetch all pages, which could be slow and memory-intensive
     /// for large result sets.
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
-        let first_page = match self.next_page().await? {
-            Some(page) => page,
-            None => return Ok(Vec::new()),
-        };
-        let mut all_results = Vec::with_capacity(first_page.count);
-        all_results.extend(first_page.results);
+        let mut all_results = Vec::new();
         while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);
         }
@@ -163,7 +170,7 @@ where
 #[cfg(test)]
 impl<T> Paginator<T> {
     pub(crate) fn next_url(&self) -> Option<&str> {
-        self.next_url.as_deref()
+        self.next_url.as_ref()?.as_deref().ok()
     }
 }
 
@@ -190,14 +197,7 @@ where
 
     /// collect all results up to the page limit
     pub async fn collect_all(mut self) -> Result<Vec<T>> {
-        let first_page = match self.next_page().await? {
-            Some(page) => page,
-            None => return Ok(Vec::new()),
-        };
-        let page_size = first_page.results.len();
-        let max_items = self.max_pages.saturating_mul(page_size);
-        let mut all_results = Vec::with_capacity(first_page.count.min(max_items));
-        all_results.extend(first_page.results);
+        let mut all_results = Vec::new();
         while let Some(page) = self.next_page().await? {
             all_results.extend(page.results);
         }
@@ -261,6 +261,31 @@ mod tests {
         };
 
         assert_eq!(format!("{}", page), "Page with 3 results (total: 50)");
+    }
+
+    #[test]
+    fn api_path_follows_links_under_api_only() {
+        for (link, expected) in [
+            ("dcim/devices/?offset=1", Some("dcim/devices/?offset=1")),
+            (
+                "/api/dcim/devices/?offset=1",
+                Some("dcim/devices/?offset=1"),
+            ),
+            (
+                "https://nautobot.internal/api/dcim/devices/?offset=1",
+                Some("dcim/devices/?offset=1"),
+            ),
+            ("https://nautobot.internal/dcim/devices/?offset=1", None),
+            ("https://nautobot.internal/dcim/devices/?next=/api/x/", None),
+        ] {
+            match api_path(link) {
+                Ok(path) => assert_eq!(Some(path.as_str()), expected, "{link}"),
+                Err(err) => assert!(
+                    expected.is_none() && matches!(err, Error::Pagination(_)),
+                    "{link}: {err}"
+                ),
+            }
+        }
     }
 
     #[cfg_attr(miri, ignore)]
@@ -349,6 +374,39 @@ mod tests {
 
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
+    async fn paginator_refuses_a_next_link_outside_api() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = crate::Client::new(config).unwrap();
+
+        let first = server.mock(|when, then| {
+            when.method(GET)
+                .path("/api/dcim/devices/")
+                .query_param("offset", "0");
+            then.status(200).json_body(serde_json::json!({
+                "count": 2,
+                "next": "https://nautobot.internal/dcim/devices/?offset=1",
+                "previous": null,
+                "results": [1]
+            }));
+        });
+
+        let mut paginator: Paginator<i32> =
+            Paginator::new(client.clone(), "dcim/devices/?offset=0".to_string());
+        let page1 = paginator.next_page().await.unwrap().unwrap();
+        assert_eq!(page1.results, vec![1]);
+        let err = paginator.next_page().await.unwrap_err();
+        assert!(matches!(err, Error::Pagination(_)), "{err}");
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator.limit_pages(1).collect_all().await.unwrap();
+        assert_eq!(results, vec![1]);
+        first.assert_calls(2);
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
     async fn paginator_collects_all_results() {
         let server = MockServer::start();
         let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
@@ -359,7 +417,7 @@ mod tests {
                 .path("/api/dcim/devices/")
                 .query_param("offset", "0");
             then.status(200).json_body(serde_json::json!({
-                "count": 3,
+                "count": usize::MAX,
                 "next": "dcim/devices/?offset=2",
                 "previous": null,
                 "results": [1, 2]
@@ -379,8 +437,17 @@ mod tests {
         });
 
         let paginator: Paginator<i32> =
-            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+            Paginator::new(client.clone(), "dcim/devices/?offset=0".to_string());
         let results = paginator.collect_all().await.unwrap();
+        assert_eq!(results, vec![1, 2, 3]);
+
+        let paginator: Paginator<i32> =
+            Paginator::new(client, "dcim/devices/?offset=0".to_string());
+        let results = paginator
+            .limit_pages(usize::MAX)
+            .collect_all()
+            .await
+            .unwrap();
         assert_eq!(results, vec![1, 2, 3]);
     }
 

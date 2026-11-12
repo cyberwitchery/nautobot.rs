@@ -19,8 +19,8 @@ pub struct Resource<T> {
 /// bulk update wrapper that includes an id with the update payload.
 #[derive(Debug, Clone, Serialize)]
 pub struct BulkUpdate<T> {
-    /// resource id.
-    pub id: u64,
+    /// resource id (UUID string).
+    pub id: String,
     /// update payload to serialize alongside the id.
     #[serde(flatten)]
     pub data: T,
@@ -28,22 +28,25 @@ pub struct BulkUpdate<T> {
 
 impl<T> BulkUpdate<T> {
     /// create a new bulk update entry.
-    pub fn new(id: u64, data: T) -> Self {
-        Self { id, data }
+    pub fn new(id: impl Into<String>, data: T) -> Self {
+        Self {
+            id: id.into(),
+            data,
+        }
     }
 }
 
 /// bulk delete wrapper that includes the id to delete.
 #[derive(Debug, Clone, Serialize)]
 pub struct BulkDelete {
-    /// resource id.
-    pub id: u64,
+    /// resource id (UUID string).
+    pub id: String,
 }
 
 impl BulkDelete {
     /// create a new bulk delete entry.
-    pub fn new(id: u64) -> Self {
-        Self { id }
+    pub fn new(id: impl Into<String>) -> Self {
+        Self { id: id.into() }
     }
 }
 
@@ -95,7 +98,7 @@ where
             if query_string.is_empty() {
                 self.path.to_string()
             } else {
-                format!("{}?{}", self.path.trim_end_matches('/'), query_string)
+                format!("{}?{}", self.path, query_string)
             }
         } else {
             self.path.to_string()
@@ -200,7 +203,7 @@ mod tests {
         let paginator = resource.paginate(Some(query)).unwrap();
         let actual = paginator.next_url().expect("expected paginator url");
         let (actual_path, actual_query) = actual.split_once('?').unwrap_or((actual, ""));
-        assert_eq!(actual_path, "dcim/devices");
+        assert_eq!(actual_path, "dcim/devices/");
 
         let mut actual_pairs: Vec<(String, String)> =
             url::form_urlencoded::parse(actual_query.as_bytes())
@@ -335,13 +338,16 @@ mod tests {
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
     async fn resource_bulk_calls_expected_paths() {
+        const A: &str = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        const B: &str = "9b2d6c1e-8f4a-4e3b-a5d7-0c1f2e3d4b5a";
         let server = MockServer::start();
         let base_url = server.base_url();
         let config = ClientConfig::new(&base_url, "token").with_max_retries(0);
         let client = Client::new(config).unwrap();
         let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
 
-        let bulk_response = serde_json::json!([{"id": 1}, {"id": 2}]);
+        let bulk_response = serde_json::json!([{"id": A}, {"id": B}]);
+        let changes_body = serde_json::json!([{"id": A, "name": "a"}, {"id": B, "name": "b"}]);
 
         server.mock(|when, then| {
             when.method(POST)
@@ -353,21 +359,21 @@ mod tests {
         server.mock(|when, then| {
             when.method(PUT)
                 .path("/api/dcim/devices/")
-                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+                .json_body(changes_body.clone());
             then.status(200).json_body(bulk_response.clone());
         });
 
         server.mock(|when, then| {
             when.method(PATCH)
                 .path("/api/dcim/devices/")
-                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+                .json_body(changes_body.clone());
             then.status(200).json_body(bulk_response.clone());
         });
 
         server.mock(|when, then| {
             when.method(DELETE)
                 .path("/api/dcim/devices/")
-                .json_body(serde_json::json!([{"id": 1}, {"id": 2}]));
+                .json_body(serde_json::json!([{"id": A}, {"id": B}]));
             then.status(204);
         });
 
@@ -380,20 +386,20 @@ mod tests {
             .unwrap();
         assert_eq!(created.len(), 2);
 
-        let updated = resource
-            .bulk_update(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
-            .await
-            .unwrap();
+        let changes = [
+            BulkUpdate::new(A, serde_json::json!({"name": "a"})),
+            BulkUpdate::new(B, serde_json::json!({"name": "b"})),
+        ];
+        assert_eq!(serde_json::to_value(&changes).unwrap(), changes_body);
+
+        let updated = resource.bulk_update(&changes).await.unwrap();
         assert_eq!(updated.len(), 2);
 
-        let patched = resource
-            .bulk_patch(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
-            .await
-            .unwrap();
+        let patched = resource.bulk_patch(&changes).await.unwrap();
         assert_eq!(patched.len(), 2);
 
         let deleted = resource
-            .bulk_delete(&[serde_json::json!({"id": 1}), serde_json::json!({"id": 2})])
+            .bulk_delete(&[BulkDelete::new(A), BulkDelete::new(B)])
             .await;
         assert!(deleted.is_ok());
     }
