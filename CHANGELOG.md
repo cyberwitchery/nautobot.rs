@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## [0.11.0] - 2026-11-13
+
 ### client
 - `BulkUpdate` and `BulkDelete` ids are strings: nautobot identifies objects by uuid, and the `u64` they took could not address any object. `new` takes anything `Into<String>`
 
