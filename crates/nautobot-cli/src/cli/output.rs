@@ -176,6 +176,15 @@ fn table_from_items(
     max_columns: usize,
 ) -> String {
     let mut table = base_table(width);
+    if items.is_empty() {
+        let headers = columns
+            .filter(|cols| names_a_column(cols))
+            .map(|cols| cols.to_vec())
+            .unwrap_or_else(|| vec!["value".to_string()]);
+        table.set_header(headers.iter().map(Cell::new));
+        return table.to_string();
+    }
+
     if let Some(Value::Object(first)) = items.first() {
         let headers = if let Some(cols) = columns {
             cols.to_vec()
@@ -194,16 +203,28 @@ fn table_from_items(
                 table.add_row(vec![Cell::new(value_to_cell(Some(item)))]);
             }
         }
-    } else if let Some(cols) = columns {
-        // empty result set with explicit columns: render the headers anyway.
-        table.set_header(cols.iter().map(Cell::new));
     } else {
-        table.set_header(vec![Cell::new("value")]);
+        // a name fits one column of rows that print themselves; anything else has no mapping
+        let header = columns
+            .filter(|cols| cols.len() == 1 && names_a_column(cols))
+            .filter(|_| items.iter().all(prints_itself))
+            .map(|cols| cols[0].clone())
+            .unwrap_or_else(|| "value".to_string());
+        table.set_header(vec![Cell::new(header)]);
         for item in items {
             table.add_row(vec![Cell::new(value_to_cell(Some(item)))]);
         }
     }
     table.to_string()
+}
+
+fn names_a_column(cols: &[String]) -> bool {
+    cols.iter().any(|name| !name.is_empty())
+}
+
+/// whether `value_to_cell` renders this as the value itself rather than a summary of it.
+fn prints_itself(value: &Value) -> bool {
+    !matches!(value, Value::Object(_) | Value::Array(_))
 }
 
 fn infer_columns(

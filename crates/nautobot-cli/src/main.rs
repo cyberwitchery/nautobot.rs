@@ -14,9 +14,13 @@ use cli::{
 };
 use config::{ConfigError, Profile, load_config};
 use nautobot::{Client, ClientConfig};
-use reqwest::Method;
+use reqwest::{
+    Method,
+    header::{HeaderMap, HeaderName, HeaderValue},
+};
 use serde_json::Value;
 use std::path::PathBuf;
+use std::str::FromStr;
 use std::time::Duration;
 
 #[async_trait::async_trait]
@@ -101,6 +105,27 @@ impl ApiClient for NautobotApiClient {
             "yaml" => Ok(Value::String(self.inner.core().swagger_yaml().await?)),
             other => Err(format!("unsupported schema format: {other}").into()),
         }
+    }
+}
+
+#[derive(Clone, Debug)]
+struct RequestHeader {
+    name: HeaderName,
+    value: HeaderValue,
+}
+
+impl FromStr for RequestHeader {
+    type Err = String;
+
+    fn from_str(header: &str) -> Result<Self, Self::Err> {
+        let (name, value) = header
+            .split_once(':')
+            .ok_or_else(|| "header must use NAME: VALUE syntax".to_string())?;
+        let name = HeaderName::from_str(name.trim())
+            .map_err(|err| format!("invalid header name: {err}"))?;
+        let value = HeaderValue::from_str(value.trim())
+            .map_err(|err| format!("invalid value for header '{name}': {err}"))?;
+        Ok(Self { name, value })
     }
 }
 
@@ -261,6 +286,9 @@ enum Commands {
         /// query string parameters (repeatable key=value)
         #[arg(long = "query")]
         query: Vec<String>,
+        /// request header (repeatable NAME: VALUE)
+        #[arg(short = 'H', long = "header", value_name = "NAME: VALUE")]
+        headers: Vec<RequestHeader>,
         #[command(flatten)]
         input: JsonInputOptional,
     },
@@ -391,6 +419,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     if let Some(ssl_verify) = profile.ssl_verify {
         client_config = client_config.with_ssl_verification(ssl_verify);
+    }
+    if let Commands::Raw { headers, .. } = &cli.command {
+        let mut header_map = HeaderMap::new();
+        for header in headers {
+            header_map.append(header.name.clone(), header.value.clone());
+        }
+        client_config = client_config.with_headers(header_map);
     }
 
     let client = Client::new(client_config)?;
@@ -545,6 +580,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             method,
             path,
             query,
+            headers: _,
             input,
         } => {
             let method = Method::from_bytes(method.as_bytes())?;
@@ -1084,16 +1120,61 @@ mod tests {
                 method,
                 path,
                 query,
+                headers,
                 input,
             } => {
                 assert_eq!(method, "POST");
                 assert_eq!(path, "api/dcim/sites/");
                 assert_eq!(query, vec!["name=dc1"]);
+                assert!(headers.is_empty());
                 assert!(input.json.is_some());
                 assert!(input.file.is_none());
             }
             _ => panic!("expected raw command"),
         }
+    }
+
+    #[test]
+    fn parse_raw_command_with_headers() {
+        let mut args = base_args();
+        args.extend([
+            "raw",
+            "--method",
+            "GET",
+            "--path",
+            "dcim/devices/",
+            "-H",
+            "X-Session-Key: session-key",
+            "--header",
+            "X-Trace-Id: trace-id",
+        ]);
+
+        let cli = Cli::try_parse_from(&args).unwrap();
+        match cli.command {
+            Commands::Raw { headers, .. } => {
+                assert_eq!(headers.len(), 2);
+                assert_eq!(headers[0].name.as_str(), "x-session-key");
+                assert_eq!(headers[0].value, "session-key");
+                assert_eq!(headers[1].name.as_str(), "x-trace-id");
+                assert_eq!(headers[1].value, "trace-id");
+            }
+            _ => panic!("expected raw command"),
+        }
+    }
+
+    #[test]
+    fn parse_raw_header_preserves_colons_in_value() {
+        let header = RequestHeader::from_str("X-Callback: https://example.com:8443/path").unwrap();
+
+        assert_eq!(header.name.as_str(), "x-callback");
+        assert_eq!(header.value, "https://example.com:8443/path");
+    }
+
+    #[test]
+    fn parse_raw_header_rejects_invalid_syntax() {
+        assert!(RequestHeader::from_str("X-Session-Key").is_err());
+        assert!(RequestHeader::from_str("invalid name: value").is_err());
+        assert!(RequestHeader::from_str("X-Session-Key: value\nother").is_err());
     }
 
     #[tokio::test]
@@ -1513,6 +1594,123 @@ mod tests {
     }
 
     #[test]
+    fn format_table_respects_explicit_columns_with_empty_results() {
+        let value = json!({
+            "count": 0,
+            "next": null,
+            "previous": null,
+            "results": []
+        });
+        let columns = vec!["id".to_string(), "name".to_string(), "slug".to_string()];
+        let table = format_table(&value, Some(&columns), 6);
+        assert_eq!(table.lines().next(), Some("count: 0"));
+        assert_eq!(table_rows(&table), vec![vec!["id", "name", "slug"]]);
+    }
+
+    #[test]
+    fn format_table_keeps_non_object_rows_with_explicit_columns() {
+        let value = json!(["alpha", "beta", 42]);
+        let columns = vec!["name".to_string()];
+        let table = format_table(&value, Some(&columns), 6);
+        assert_eq!(
+            table_rows(&table),
+            vec![vec!["name"], vec!["alpha"], vec!["beta"], vec!["42"]]
+        );
+    }
+
+    #[test]
+    fn format_table_scalar_header_does_not_depend_on_row_count() {
+        let specs: [Option<Vec<String>>; 4] = [
+            None,
+            Some(vec![]),
+            Some(vec![String::new()]),
+            Some(vec!["id".to_string()]),
+        ];
+        for columns in specs {
+            let columns = columns.as_deref();
+            let empty = format_table(&json!([]), columns, 6);
+            let rows = format_table(&json!([101, 202]), columns, 6);
+            assert_eq!(
+                table_rows(&empty).first(),
+                table_rows(&rows).first(),
+                "{columns:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn format_table_falls_back_to_value_for_several_columns_over_scalars() {
+        let columns = vec!["id".to_string(), "name".to_string()];
+        let rows = format_table(&json!([101, 202]), Some(&columns), 6);
+        assert_eq!(
+            table_rows(&rows),
+            vec![vec!["value"], vec!["101"], vec!["202"]]
+        );
+
+        let empty = format_table(&json!([]), Some(&columns), 6);
+        assert_eq!(table_rows(&empty), vec![vec!["id", "name"]]);
+    }
+
+    #[test]
+    fn format_table_falls_back_to_value_when_a_row_does_not_print_itself() {
+        let columns = vec!["id".to_string()];
+
+        let mixed = format_table(
+            &json!([101, {"id": 7, "name": "widget"}]),
+            Some(&columns),
+            6,
+        );
+        assert_eq!(
+            table_rows(&mixed),
+            vec![vec!["value"], vec!["101"], vec!["widget"]]
+        );
+
+        let nested = format_table(&json!([[1, 2], [3]]), Some(&columns), 6);
+        assert_eq!(
+            table_rows(&nested),
+            vec![vec!["value"], vec!["[2]"], vec!["[1]"]]
+        );
+    }
+
+    #[test]
+    fn format_table_ignores_a_blank_column_name() {
+        let columns = vec![String::new()];
+        let rows = format_table(&json!([101, 202]), Some(&columns), 6);
+        assert_eq!(
+            table_rows(&rows),
+            vec![vec!["value"], vec!["101"], vec!["202"]]
+        );
+
+        let empty = format_table(&json!([]), Some(&columns), 6);
+        assert_eq!(table_rows(&empty), vec![vec!["value"]]);
+    }
+
+    #[test]
+    fn format_table_keeps_non_object_rows_when_first_item_is_object() {
+        let value = json!([{"name": "alpha", "status": "active"}, "bare"]);
+        let columns = vec!["name".to_string()];
+        let table = format_table(&value, Some(&columns), 6);
+        assert_eq!(
+            table_rows(&table),
+            vec![vec!["name"], vec!["alpha"], vec!["bare"]]
+        );
+    }
+
+    #[test]
+    fn format_table_renders_non_object_items_without_columns() {
+        for (value, rows) in [
+            (
+                json!(["alpha", "beta"]),
+                vec![vec!["value"], vec!["alpha"], vec!["beta"]],
+            ),
+            (json!([]), vec![vec!["value"]]),
+        ] {
+            let table = format_table(&value, None, 6);
+            assert_eq!(table_rows(&table), rows, "{value}");
+        }
+    }
+
+    #[test]
     fn format_table_respects_max_columns() {
         let value = json!({
             "results": [
@@ -1522,5 +1720,30 @@ mod tests {
         let table = format_table(&value, None, 2);
         let rows = table_rows(&table);
         assert_eq!(rows[0].len(), 2, "{table}");
+    }
+
+    #[test]
+    fn format_output_keeps_selected_scalar_rows_with_explicit_columns() {
+        let value = json!({
+            "count": 2,
+            "next": null,
+            "previous": null,
+            "results": [
+                {"id": 101, "name": "alpha"},
+                {"id": 202, "name": "beta"}
+            ]
+        });
+        let output = OutputConfig {
+            format: OutputFormat::Table,
+            select: Some("results.id".to_string()),
+            columns: Some(vec!["id".to_string()]),
+            max_columns: 6,
+            dry_run: false,
+        };
+        let table = format_output(&value, &output).unwrap();
+        assert_eq!(
+            table_rows(&table),
+            vec![vec!["id"], vec!["101"], vec!["202"]]
+        );
     }
 }

@@ -1142,6 +1142,23 @@ mod tests {
 
     #[cfg_attr(miri, ignore)]
     #[tokio::test]
+    async fn delete_retries_on_503() {
+        let server = MockServer::start();
+
+        let fail = server.mock(|when, then| {
+            when.method(DELETE).path("/api/items/1/");
+            then.status(503).body("service unavailable");
+        });
+
+        let config = ClientConfig::new(server.base_url(), "test-token").with_max_retries(2);
+        let client = Client::new(config).unwrap();
+        let err = client.delete("items/1/").await.unwrap_err();
+        assert!(matches!(err, Error::ApiError { status: 503, .. }));
+        fail.assert_calls(3);
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
     async fn openapi_http_client_sends_default_headers() {
         let server = MockServer::start();
         let mock = server.mock(|when, then| {

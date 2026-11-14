@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+### cli
+- `raw` accepts repeatable `-H`/`--header "name: value"` request headers (refs #84)
+- table output over a list of plain values with `--columns` (e.g. `--select results.id --columns id`) prints the values instead of only the header line. a single name heads the column; two or more names, a blank name, or a list that mixes plain values with objects or nested lists fall back to `value` (refs #84)
+
 ## [0.11.0] - 2026-11-13
 
 ### client

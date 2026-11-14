@@ -154,6 +154,8 @@ nautobot-cli --output table --columns id,name,status dcim devices list
 nautobot-cli --output table --max-columns 10 dcim devices list
 ```
 
+over a list of plain values (e.g. `--select results.id`), a single `--columns` name heads the column, whether or not any rows came back. two or more names, or a list that mixes plain values with objects or nested lists, fall back to a single `value` column.
+
 ## dry run
 
 print the request for write operations without sending them:
@@ -169,12 +171,14 @@ use `raw` for any endpoint:
 ```bash
 nautobot-cli raw --method GET --path dcim/devices/ --query "name=leaf-1" --query "limit=5"
 nautobot-cli raw --method POST --path ipam/vrfs/ --json '{"name":"blue","rd":"65000:100"}'
+nautobot-cli raw --method GET --path dcim/devices/ --header "Accept: application/json; version=3.2"
 ```
 
 notes:
 - `--path` is api-relative, e.g. `dcim/devices/`
 - a leading `api/` is stripped if present
 - repeat `--query key=value` for multiple params
+- repeat `-H "name: value"` or `--header "name: value"` for multiple request headers
 
 ## help
 
