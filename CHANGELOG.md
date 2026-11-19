@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### client
+- `Paginator` no longer loops forever when a `next` link leads back to a page it already fetched: the page carrying that link is still returned, and the following call returns a `Pagination` error, so `collect_all()` ends with that error
+
 ### cli
 - `raw` accepts repeatable `-H`/`--header "name: value"` request headers (refs #84)
 - table output over a list of plain values with `--columns` (e.g. `--select results.id --columns id`) prints the values instead of only the header line. a single name heads the column; two or more names, a blank name, or a list that mixes plain values with objects or nested lists fall back to `value` (refs #84)
