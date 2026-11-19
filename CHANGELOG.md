@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### client
+- ids and names passed to `Resource` methods and the per-module helpers (`job_run_by_name`, `device_napalm`, `prefix_available_ips`, ...) are percent-encoded as one path segment. before, a `/`, `..`, `?` or `#` in one could point the request at another endpoint, e.g. `devices().delete("../../users/tokens/<id>")` sent `DELETE /api/users/tokens/<id>/`. `.`, `..` and an empty id now fail with a configuration error
+
 ### cli
 - `raw` accepts repeatable `-H`/`--header "name: value"` request headers (refs #84)
 - table output over a list of plain values with `--columns` (e.g. `--select results.id --columns id`) prints the values instead of only the header line. a single name heads the column; two or more names, a blank name, or a list that mixes plain values with objects or nested lists fall back to `value` (refs #84)

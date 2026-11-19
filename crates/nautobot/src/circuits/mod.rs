@@ -12,6 +12,7 @@
 //! ```
 
 use crate::Client;
+use crate::config::path_segment;
 use crate::error::Result;
 use crate::resource::Resource;
 
@@ -59,7 +60,10 @@ impl CircuitsApi {
         id: &str,
     ) -> Result<crate::models::CircuitTermination> {
         self.client
-            .get(&format!("circuits/circuit-terminations/{}/trace/", id))
+            .get(&format!(
+                "circuits/circuit-terminations/{}/trace/",
+                path_segment(id)?
+            ))
             .await
     }
 

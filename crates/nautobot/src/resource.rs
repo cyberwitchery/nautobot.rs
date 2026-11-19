@@ -1,6 +1,7 @@
 //! generic api resource wrapper for standard nautobot crud endpoints.
 
 use crate::Client;
+use crate::config::path_segment;
 use crate::error::Result;
 use crate::pagination::{Page, Paginator};
 use crate::query::QueryBuilder;
@@ -77,7 +78,10 @@ where
     ) -> Result<Page<crate::models::Note>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("{}{}/notes/", self.path, id), &query)
+            .get_with_params(
+                &format!("{}{}/notes/", self.path, path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -87,7 +91,7 @@ where
         B: Serialize,
     {
         self.client
-            .post(&format!("{}{}/notes/", self.path, id), body)
+            .post(&format!("{}{}/notes/", self.path, path_segment(id)?), body)
             .await
     }
 
@@ -108,7 +112,9 @@ where
 
     /// get a resource by id (UUID string).
     pub async fn get(&self, id: &str) -> Result<T> {
-        self.client.get(&format!("{}{}/", self.path, id)).await
+        self.client
+            .get(&format!("{}{}/", self.path, path_segment(id)?))
+            .await
     }
 
     /// create a resource.
@@ -133,7 +139,7 @@ where
         B: Serialize,
     {
         self.client
-            .put(&format!("{}{}/", self.path, id), body)
+            .put(&format!("{}{}/", self.path, path_segment(id)?), body)
             .await
     }
 
@@ -151,7 +157,7 @@ where
         B: Serialize,
     {
         self.client
-            .patch(&format!("{}{}/", self.path, id), body)
+            .patch(&format!("{}{}/", self.path, path_segment(id)?), body)
             .await
     }
 
@@ -165,7 +171,9 @@ where
 
     /// delete a resource.
     pub async fn delete(&self, id: &str) -> Result<()> {
-        self.client.delete(&format!("{}{}/", self.path, id)).await
+        self.client
+            .delete(&format!("{}{}/", self.path, path_segment(id)?))
+            .await
     }
 
     /// delete resources in bulk.
@@ -293,6 +301,50 @@ mod tests {
         assert_eq!(patched["patched"], true);
 
         resource.delete("1").await.unwrap();
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn resource_ids_cannot_leave_the_resource_path() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let client = Client::new(config).unwrap();
+        let resource: Resource<serde_json::Value> = Resource::new(client, "dcim/devices/");
+
+        let tokens = server.mock(|when, then| {
+            when.path_includes("/users/");
+            then.status(200).json_body(serde_json::json!({}));
+        });
+        let collection = server.mock(|when, then| {
+            when.path("/api/dcim/devices/");
+            then.status(200).json_body(serde_json::json!({}));
+        });
+        let encoded = server.mock(|when, then| {
+            when.method(DELETE)
+                .path("/api/dcim/devices/..%2F..%2Fusers%2Ftokens%2Fabc/");
+            then.status(204);
+        });
+
+        let body = serde_json::json!({"is_superuser": true});
+        let _ = resource.delete("../../users/tokens/abc").await;
+        let _ = resource.delete("%2e%2e/%2e%2e/users/tokens/abc").await;
+        let _ = resource.patch("../../users/users/abc", &body).await;
+        let _ = resource.update("x/../../../users/users/abc/#", &body).await;
+        let _ = resource.get("../../users/users/?is_superuser=true#").await;
+        let _ = resource.notes("../../users/tokens/abc", None).await;
+        assert_eq!(tokens.calls_async().await, 0, "an id reached /api/users/");
+
+        assert!(resource.delete("..").await.is_err());
+        assert!(resource.delete(".").await.is_err());
+        assert!(resource.delete("").await.is_err());
+        assert_eq!(
+            collection.calls_async().await,
+            0,
+            "an id reached the collection"
+        );
+
+        // the first delete above, sent as one encoded segment.
+        assert_eq!(encoded.calls_async().await, 1);
     }
 
     #[cfg_attr(miri, ignore)]

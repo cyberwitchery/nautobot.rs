@@ -12,6 +12,7 @@
 //! ```
 
 use crate::Client;
+use crate::config::path_segment;
 use crate::error::Result;
 use crate::pagination::Page;
 use crate::query::QueryBuilder;
@@ -266,7 +267,7 @@ impl DcimApi {
     /// fetch napalm data for a device by id.
     pub async fn device_napalm(&self, id: &str) -> Result<DeviceNapalm> {
         self.client
-            .get(&format!("dcim/devices/{}/napalm/", id))
+            .get(&format!("dcim/devices/{}/napalm/", path_segment(id)?))
             .await
     }
 
@@ -278,7 +279,10 @@ impl DcimApi {
     ) -> Result<Page<CablePath>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("dcim/front-ports/{}/paths/", id), &query)
+            .get_with_params(
+                &format!("dcim/front-ports/{}/paths/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -290,7 +294,10 @@ impl DcimApi {
     ) -> Result<Page<CablePath>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("dcim/rear-ports/{}/paths/", id), &query)
+            .get_with_params(
+                &format!("dcim/rear-ports/{}/paths/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -302,7 +309,10 @@ impl DcimApi {
     ) -> Result<Page<RackUnit>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("dcim/racks/{}/elevation/", id), &query)
+            .get_with_params(
+                &format!("dcim/racks/{}/elevation/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -324,7 +334,7 @@ impl DcimApi {
     /// trace a console port path by id.
     pub async fn console_port_trace(&self, id: &str) -> Result<crate::models::ConsolePort> {
         self.client
-            .get(&format!("dcim/console-ports/{}/trace/", id))
+            .get(&format!("dcim/console-ports/{}/trace/", path_segment(id)?))
             .await
     }
 
@@ -344,7 +354,10 @@ impl DcimApi {
         id: &str,
     ) -> Result<crate::models::ConsoleServerPort> {
         self.client
-            .get(&format!("dcim/console-server-ports/{}/trace/", id))
+            .get(&format!(
+                "dcim/console-server-ports/{}/trace/",
+                path_segment(id)?
+            ))
             .await
     }
 
@@ -447,7 +460,7 @@ impl DcimApi {
     /// trace an interface path by id.
     pub async fn interface_trace(&self, id: &str) -> Result<crate::models::Interface> {
         self.client
-            .get(&format!("dcim/interfaces/{}/trace/", id))
+            .get(&format!("dcim/interfaces/{}/trace/", path_segment(id)?))
             .await
     }
 
@@ -474,7 +487,10 @@ impl DcimApi {
     ) -> Result<Page<Stats>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("dcim/locations/{}/stats/", id), &query)
+            .get_with_params(
+                &format!("dcim/locations/{}/stats/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -526,7 +542,7 @@ impl DcimApi {
     /// trace a power feed path by id.
     pub async fn power_feed_trace(&self, id: &str) -> Result<crate::models::PowerFeed> {
         self.client
-            .get(&format!("dcim/power-feeds/{}/trace/", id))
+            .get(&format!("dcim/power-feeds/{}/trace/", path_segment(id)?))
             .await
     }
 
@@ -543,7 +559,7 @@ impl DcimApi {
     /// trace a power outlet path by id.
     pub async fn power_outlet_trace(&self, id: &str) -> Result<crate::models::PowerOutlet> {
         self.client
-            .get(&format!("dcim/power-outlets/{}/trace/", id))
+            .get(&format!("dcim/power-outlets/{}/trace/", path_segment(id)?))
             .await
     }
 
@@ -565,7 +581,7 @@ impl DcimApi {
     /// trace a power port path by id.
     pub async fn power_port_trace(&self, id: &str) -> Result<crate::models::PowerPort> {
         self.client
-            .get(&format!("dcim/power-ports/{}/trace/", id))
+            .get(&format!("dcim/power-ports/{}/trace/", path_segment(id)?))
             .await
     }
 

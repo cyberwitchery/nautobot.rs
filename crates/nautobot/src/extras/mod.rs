@@ -12,6 +12,7 @@
 //! ```
 
 use crate::Client;
+use crate::config::path_segment;
 use crate::error::{Error, Result};
 use crate::pagination::Page;
 use crate::query::QueryBuilder;
@@ -435,10 +436,10 @@ impl ExtrasApi {
 
     /// download a file proxy payload by id.
     pub async fn file_proxy_download(&self, id: &str) -> Result<Vec<u8>> {
-        let url = self
-            .client
-            .config()
-            .build_url(&format!("extras/file-proxies/{}/download/", id))?;
+        let url = self.client.config().build_url(&format!(
+            "extras/file-proxies/{}/download/",
+            path_segment(id)?
+        ))?;
         let response = self.client.http_client().get(url).send().await?;
         let status = response.status();
         if status.is_success() {
@@ -453,7 +454,7 @@ impl ExtrasApi {
     pub async fn git_repository_sync(&self, id: &str) -> Result<GitRepositorySyncResponse> {
         self.client
             .post(
-                &format!("extras/git-repositories/{}/sync/", id),
+                &format!("extras/git-repositories/{}/sync/", path_segment(id)?),
                 &serde_json::json!({}),
             )
             .await
@@ -466,21 +467,24 @@ impl ExtrasApi {
         request: &GraphQlQueryInputRequest,
     ) -> Result<GraphQlQueryOutput> {
         self.client
-            .post(&format!("extras/graphql-queries/{}/run/", id), request)
+            .post(
+                &format!("extras/graphql-queries/{}/run/", path_segment(id)?),
+                request,
+            )
             .await
     }
 
     /// fetch job result logs by id.
     pub async fn job_result_logs(&self, id: &str) -> Result<JobResult> {
         self.client
-            .get(&format!("extras/job-results/{}/logs/", id))
+            .get(&format!("extras/job-results/{}/logs/", path_segment(id)?))
             .await
     }
 
     /// run a job by id.
     pub async fn job_run(&self, id: &str, request: &JobInputRequest) -> Result<JobRunResponse> {
         self.client
-            .post(&format!("extras/jobs/{}/run/", id), request)
+            .post(&format!("extras/jobs/{}/run/", path_segment(id)?), request)
             .await
     }
 
@@ -491,13 +495,18 @@ impl ExtrasApi {
         request: &JobInputRequest,
     ) -> Result<JobRunResponse> {
         self.client
-            .post(&format!("extras/jobs/{}/run/", name), request)
+            .post(
+                &format!("extras/jobs/{}/run/", path_segment(name)?),
+                request,
+            )
             .await
     }
 
     /// fetch a job by name.
     pub async fn job_by_name(&self, name: &str) -> Result<Job> {
-        self.client.get(&format!("extras/jobs/{}/", name)).await
+        self.client
+            .get(&format!("extras/jobs/{}/", path_segment(name)?))
+            .await
     }
 
     /// fetch job notes by name.
@@ -508,7 +517,10 @@ impl ExtrasApi {
     ) -> Result<Page<Note>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("extras/jobs/{}/notes/", name), &query)
+            .get_with_params(
+                &format!("extras/jobs/{}/notes/", path_segment(name)?),
+                &query,
+            )
             .await
     }
 
@@ -519,14 +531,17 @@ impl ExtrasApi {
         request: &NoteInputRequest,
     ) -> Result<Note> {
         self.client
-            .post(&format!("extras/jobs/{}/notes/", name), request)
+            .post(
+                &format!("extras/jobs/{}/notes/", path_segment(name)?),
+                request,
+            )
             .await
     }
 
     /// fetch job variables by id.
     pub async fn job_variables(&self, id: &str) -> Result<crate::models::PaginatedJobVariableList> {
         self.client
-            .get(&format!("extras/jobs/{}/variables/", id))
+            .get(&format!("extras/jobs/{}/variables/", path_segment(id)?))
             .await
     }
 
@@ -536,7 +551,7 @@ impl ExtrasApi {
         name: &str,
     ) -> Result<crate::models::PaginatedJobVariableList> {
         self.client
-            .get(&format!("extras/jobs/{}/variables/", name))
+            .get(&format!("extras/jobs/{}/variables/", path_segment(name)?))
             .await
     }
 
@@ -544,7 +559,7 @@ impl ExtrasApi {
     pub async fn scheduled_job_approve(&self, id: &str) -> Result<ScheduledJob> {
         self.client
             .post(
-                &format!("extras/scheduled-jobs/{}/approve/", id),
+                &format!("extras/scheduled-jobs/{}/approve/", path_segment(id)?),
                 &serde_json::json!({}),
             )
             .await
@@ -554,7 +569,7 @@ impl ExtrasApi {
     pub async fn scheduled_job_deny(&self, id: &str) -> Result<ScheduledJob> {
         self.client
             .post(
-                &format!("extras/scheduled-jobs/{}/deny/", id),
+                &format!("extras/scheduled-jobs/{}/deny/", path_segment(id)?),
                 &serde_json::json!({}),
             )
             .await
@@ -564,7 +579,7 @@ impl ExtrasApi {
     pub async fn scheduled_job_dry_run(&self, id: &str) -> Result<JobResult> {
         self.client
             .post(
-                &format!("extras/scheduled-jobs/{}/dry-run/", id),
+                &format!("extras/scheduled-jobs/{}/dry-run/", path_segment(id)?),
                 &serde_json::json!({}),
             )
             .await
@@ -573,14 +588,17 @@ impl ExtrasApi {
     /// check that a secret's value is accessible.
     pub async fn secret_check(&self, id: &str) -> Result<SecretsCheckResponse> {
         self.client
-            .get(&format!("extras/secrets/{}/check/", id))
+            .get(&format!("extras/secrets/{}/check/", path_segment(id)?))
             .await
     }
 
     /// resolve a dynamic group membership snapshot.
     pub async fn dynamic_group_members(&self, id: &str) -> Result<DynamicGroup> {
         self.client
-            .get(&format!("extras/dynamic-groups/{}/members/", id))
+            .get(&format!(
+                "extras/dynamic-groups/{}/members/",
+                path_segment(id)?
+            ))
             .await
     }
 }
@@ -603,6 +621,26 @@ mod tests {
     {
         let paginator = resource.paginate(None).unwrap();
         assert_eq!(paginator.next_url(), Some(expected));
+    }
+
+    #[cfg_attr(miri, ignore)]
+    #[tokio::test]
+    async fn helper_ids_cannot_leave_their_path() {
+        let server = MockServer::start();
+        let config = ClientConfig::new(server.base_url(), "token").with_max_retries(0);
+        let api = ExtrasApi::new(Client::new(config).unwrap());
+
+        let other = server.mock(|when, then| {
+            when.path_includes("/OTHER/");
+            then.status(200).json_body(json!({}));
+        });
+
+        let request = JobInputRequest::new();
+        let _ = api.job_run_by_name("../jobs/OTHER/run/#", &request).await;
+        let _ = api.job_run("../jobs/OTHER/run/#", &request).await;
+        let _ = api.job_by_name("x/../OTHER/?a=b#").await;
+        let _ = api.file_proxy_download("../../jobs/OTHER/").await;
+        assert_eq!(other.calls_async().await, 0, "an id left its path");
     }
 
     #[test]

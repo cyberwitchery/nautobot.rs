@@ -12,6 +12,7 @@
 //! ```
 
 use crate::Client;
+use crate::config::path_segment;
 use crate::error::Result;
 use crate::pagination::Page;
 use crate::query::QueryBuilder;
@@ -124,7 +125,10 @@ impl IpamApi {
     ) -> Result<Page<AvailableIp>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("ipam/prefixes/{}/available-ips/", id), &query)
+            .get_with_params(
+                &format!("ipam/prefixes/{}/available-ips/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -135,7 +139,10 @@ impl IpamApi {
         request: &[IpAllocationRequest],
     ) -> Result<Page<IpAddress>> {
         self.client
-            .post(&format!("ipam/prefixes/{}/available-ips/", id), request)
+            .post(
+                &format!("ipam/prefixes/{}/available-ips/", path_segment(id)?),
+                request,
+            )
             .await
     }
 
@@ -147,7 +154,10 @@ impl IpamApi {
     ) -> Result<Page<AvailablePrefix>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("ipam/prefixes/{}/available-prefixes/", id), &query)
+            .get_with_params(
+                &format!("ipam/prefixes/{}/available-prefixes/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -159,7 +169,7 @@ impl IpamApi {
     ) -> Result<Page<Prefix>> {
         self.client
             .post(
-                &format!("ipam/prefixes/{}/available-prefixes/", id),
+                &format!("ipam/prefixes/{}/available-prefixes/", path_segment(id)?),
                 request,
             )
             .await
@@ -198,7 +208,10 @@ impl IpamApi {
     ) -> Result<Page<i32>> {
         let query = query.unwrap_or_default();
         self.client
-            .get_with_params(&format!("ipam/vlan-groups/{}/available-vlans/", id), &query)
+            .get_with_params(
+                &format!("ipam/vlan-groups/{}/available-vlans/", path_segment(id)?),
+                &query,
+            )
             .await
     }
 
@@ -210,7 +223,7 @@ impl IpamApi {
     ) -> Result<Page<Vlan>> {
         self.client
             .post(
-                &format!("ipam/vlan-groups/{}/available-vlans/", id),
+                &format!("ipam/vlan-groups/{}/available-vlans/", path_segment(id)?),
                 request,
             )
             .await

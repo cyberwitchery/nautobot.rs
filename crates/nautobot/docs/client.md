@@ -171,6 +171,8 @@ note: for local dev instances with self-signed certs, call `with_ssl_verificatio
 
 nautobot uses uuid strings for all resource ids, not integers.
 
+an id or name passed to a client method always addresses exactly one path segment under the endpoint the method names. it is percent-encoded, so `/`, `?`, `#` and `%` in it reach nautobot as data, and `.`, `..` or an empty string fail with a configuration error before any request is sent.
+
 ```rust,no_run
 use nautobot::{Client, ClientConfig};
 
