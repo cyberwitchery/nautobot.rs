@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+### client
+- the api token no longer shows in the `Debug` output of `Client::http_client()` or `Client::openapi_config()`. the default client marks its `authorization` header sensitive, and the generated `Configuration` and `ApiKey` print `<redacted>` for the api key, basic auth password and bearer and oauth tokens
+
 ### cli
 - `raw` accepts repeatable `-H`/`--header "name: value"` request headers (refs #84)
 - table output over a list of plain values with `--columns` (e.g. `--select results.id --columns id`) prints the values instead of only the header line. a single name heads the column; two or more names, a blank name, or a list that mixes plain values with objects or nested lists fall back to `value` (refs #84)
