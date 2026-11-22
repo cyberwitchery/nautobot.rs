@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableHealthCheckMonitorRequest : HealthCheckMonitor Serializer.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableHealthCheckMonitorRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

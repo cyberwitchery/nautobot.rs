@@ -10,7 +10,7 @@
 
 /// BulkWritableUniqueValidationRuleRequest : Serializer for `UniqueValidationRule` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableUniqueValidationRuleRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

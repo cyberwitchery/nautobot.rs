@@ -10,7 +10,7 @@
 
 /// BulkWritableVpnTerminationRequest : Serializer for VPNTermination.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableVpnTerminationRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

@@ -10,7 +10,7 @@
 
 /// BulkOperationIntegerIdRequest : As BulkOperationSerializer, but for models such as users.Group that have an integer ID field.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkOperationIntegerIdRequest {
     #[serde(rename = "id")]
     pub id: i32,

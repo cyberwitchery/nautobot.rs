@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableMinMaxValidationRuleRequest : Serializer for `MinMaxValidationRule` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableMinMaxValidationRuleRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

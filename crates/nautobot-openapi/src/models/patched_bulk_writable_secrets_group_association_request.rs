@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableSecretsGroupAssociationRequest : Serializer for `SecretsGroupAssociation` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableSecretsGroupAssociationRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

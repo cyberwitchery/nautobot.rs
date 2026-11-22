@@ -10,7 +10,7 @@
 
 /// BulkWritableLocationRequest : Add a `tree_depth` field to non-nested model serializers based on django-tree-queries.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableLocationRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

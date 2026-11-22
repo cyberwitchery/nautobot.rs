@@ -4168,20 +4168,12 @@ pub async fn ipam_ip_address_ranges_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4191,39 +4183,23 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = contains {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contains".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contains", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contains",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4233,58 +4209,33 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4294,115 +4245,66 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = end_address {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("end_address".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("end_address", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "end_address",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4412,40 +4314,18 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = ip_version {
@@ -4458,58 +4338,33 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4519,58 +4374,33 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4580,305 +4410,174 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("namespace", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "namespace",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("namespace__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "namespace__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4888,39 +4587,21 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = parent {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "parent",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("parent", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = parent__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "parent__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4929,21 +4610,11 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = role {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "role",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("role", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = role__isnull {
@@ -4952,20 +4623,12 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = role__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "role__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -4975,78 +4638,41 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = start_address {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("start_address".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("start_address", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "start_address",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = status {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "status",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("status", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = status__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "status__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -5055,40 +4681,22 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -5097,40 +4705,22 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -5139,39 +4729,22 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -5181,39 +4754,22 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -5223,20 +4779,11 @@ pub async fn ipam_ip_address_ranges_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -5954,20 +5501,12 @@ pub async fn ipam_ip_address_to_interface_list(
 
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -5977,58 +5516,28 @@ pub async fn ipam_ip_address_to_interface_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = interface {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("interface".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("interface", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "interface",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -6038,58 +5547,32 @@ pub async fn ipam_ip_address_to_interface_list(
     }
     if let Some(ref local_var_str) = interface__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("interface__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("interface__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "interface__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = ip_address {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("ip_address".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("ip_address", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "ip_address",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = ip_address__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("ip_address__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("ip_address__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "ip_address__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -6123,20 +5606,11 @@ pub async fn ipam_ip_address_to_interface_list(
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -6157,20 +5631,11 @@ pub async fn ipam_ip_address_to_interface_list(
     }
     if let Some(ref local_var_str) = vm_interface {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vm_interface".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vm_interface", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vm_interface",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -6180,20 +5645,11 @@ pub async fn ipam_ip_address_to_interface_list(
     }
     if let Some(ref local_var_str) = vm_interface__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vm_interface__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vm_interface__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vm_interface__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -6988,39 +6444,23 @@ pub async fn ipam_ip_addresses_list(
 
     if let Some(ref local_var_str) = address {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("address".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("address", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "address",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7030,77 +6470,44 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7110,666 +6517,364 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("description", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "description",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__niew",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nire",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nisw",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = device {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "device",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("device", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = device_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "device_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("dns_name", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "dns_name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("dns_name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "dns_name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__niew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__nire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__nisw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dns_name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dns_name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dns_name__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dns_name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7787,58 +6892,28 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = interfaces {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("interfaces".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("interfaces", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "interfaces",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7848,20 +6923,11 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = interfaces__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("interfaces__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("interfaces__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "interfaces__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7871,58 +6937,33 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7932,58 +6973,33 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -7993,172 +7009,94 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = mask_length {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("mask_length", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "mask_length",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = mask_length__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("mask_length__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "mask_length__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = mask_length__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("mask_length__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "mask_length__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = mask_length__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("mask_length__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "mask_length__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = mask_length__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("mask_length__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "mask_length__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = mask_length__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("mask_length__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("mask_length__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "mask_length__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("namespace", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "namespace",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("namespace__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "namespace__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = nat_inside {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("nat_inside".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("nat_inside", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "nat_inside",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8168,20 +7106,11 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = nat_inside__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("nat_inside__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("nat_inside__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "nat_inside__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8191,21 +7120,11 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = parent {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "parent",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("parent", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = parent__isnull {
@@ -8214,58 +7133,31 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = parent__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "parent__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "prefix",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("prefix", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = prefix_exact {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_exact".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("prefix_exact", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "prefix_exact",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8282,21 +7174,11 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = role {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "role",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("role", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = role__isnull {
@@ -8305,39 +7187,23 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = role__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "role__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = services {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("services".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("services", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "services",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8347,20 +7213,12 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = services__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("services__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("services__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "services__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8370,59 +7228,31 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = status {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "status",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("status", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = status__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "status__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -8431,40 +7261,22 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -8473,40 +7285,22 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -8515,39 +7309,22 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8557,39 +7334,22 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8599,343 +7359,195 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = r#type {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "type",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("type", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = type__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machine {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("virtual_machine", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machine_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_machine_id",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vm_interfaces {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vm_interfaces".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vm_interfaces", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vm_interfaces",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -8945,40 +7557,21 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = vm_interfaces__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vm_interfaces__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vm_interfaces__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vm_interfaces__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vrfs {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrfs".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrfs",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrfs", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vrfs", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vrfs__isnull {
@@ -8987,20 +7580,12 @@ pub async fn ipam_ip_addresses_list(
     }
     if let Some(ref local_var_str) = vrfs__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrfs__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrfs__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vrfs__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -9740,20 +8325,12 @@ pub async fn ipam_namespaces_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -9763,77 +8340,44 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -9843,362 +8387,202 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("description", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "description",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__niew",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nire",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nisw",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10208,96 +8592,49 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10307,58 +8644,33 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10368,20 +8680,12 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10391,286 +8695,164 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10687,21 +8869,11 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -10710,40 +8882,22 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -10752,40 +8906,22 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -10794,39 +8930,22 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10836,39 +8955,22 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -10878,20 +8980,11 @@ pub async fn ipam_namespaces_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -11601,20 +9694,12 @@ pub async fn ipam_prefix_location_assignments_list(
 
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -11624,58 +9709,27 @@ pub async fn ipam_prefix_location_assignments_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -11685,39 +9739,23 @@ pub async fn ipam_prefix_location_assignments_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -11727,39 +9765,21 @@ pub async fn ipam_prefix_location_assignments_list(
     }
     if let Some(ref local_var_str) = prefix {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "prefix",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("prefix", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = prefix__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "prefix__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -12759,39 +10779,22 @@ pub async fn ipam_prefixes_list(
 
     if let Some(ref local_var_str) = ancestors {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("ancestors".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("ancestors", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "ancestors",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = cloud_networks {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("cloud_networks".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("cloud_networks", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "cloud_networks",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -12801,39 +10804,24 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = cloud_networks__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("cloud_networks__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "cloud_networks__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "cloud_networks__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -12843,96 +10831,55 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = contains {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contains".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contains", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contains",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -12942,115 +10889,67 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = date_allocated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("date_allocated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "date_allocated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = date_allocated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "date_allocated__gt",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "date_allocated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = date_allocated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "date_allocated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "date_allocated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13060,96 +10959,59 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = date_allocated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "date_allocated__lt",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "date_allocated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = date_allocated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "date_allocated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "date_allocated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = date_allocated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("date_allocated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "date_allocated__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "date_allocated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13163,40 +11025,18 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = ip_version {
@@ -13205,58 +11045,33 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13266,58 +11081,33 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13327,77 +11117,44 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = locations {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("locations".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("locations", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "locations",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = locations__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("locations__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("locations__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "locations__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13407,39 +11164,22 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = namespace {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("namespace", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "namespace",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("namespace__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "namespace__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13449,21 +11189,11 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = parent {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "parent",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("parent", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = parent__isnull {
@@ -13472,191 +11202,111 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = parent__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("parent__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("parent__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "parent__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "prefix",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("prefix", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = prefix_and_descendants {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_and_descendants".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "prefix_and_descendants",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "prefix_and_descendants",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_exact {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_exact".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("prefix_exact", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "prefix_exact",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("prefix_length", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "prefix_length",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "prefix_length__gt",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "prefix_length__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "prefix_length__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "prefix_length__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "prefix_length__lt",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "prefix_length__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "prefix_length__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "prefix_length__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = prefix_length__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix_length__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("prefix_length__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "prefix_length__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13673,21 +11323,9 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = rir {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rir".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rir",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("rir", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("rir", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rir__isnull {
@@ -13696,40 +11334,20 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = rir__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rir__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rir__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rir__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rir__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = role {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "role",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("role", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = role__isnull {
@@ -13738,20 +11356,12 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = role__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "role__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13761,59 +11371,31 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = status {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "status",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("status", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = status__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "status__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -13822,40 +11404,22 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -13864,40 +11428,22 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -13906,39 +11452,22 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13948,39 +11477,22 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -13990,305 +11502,174 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = r#type {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "type",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("type", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = type__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = type__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("type__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("type__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "type__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -14298,153 +11679,86 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = vlan_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan_id__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan_vid", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan_vid",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vlan_vid__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vlan_vid__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vlan_vid__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vlan_vid__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vlan_vid__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vlan_vid__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vlan_vid__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vlan_vid__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vlan_vid__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_vid__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan_vid__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan_vid__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vpn_tunnel_endpoints {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vpn_tunnel_endpoints".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "vpn_tunnel_endpoints",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "vpn_tunnel_endpoints",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -14454,20 +11768,13 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = vpn_tunnel_endpoints__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vpn_tunnel_endpoints__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "vpn_tunnel_endpoints__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "vpn_tunnel_endpoints__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -14479,21 +11786,11 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = vrfs {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrfs".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrfs",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrfs", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vrfs", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vrfs__isnull {
@@ -14502,58 +11799,31 @@ pub async fn ipam_prefixes_list(
     }
     if let Some(ref local_var_str) = vrfs__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrfs__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrfs__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vrfs__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = within {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("within".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "within",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("within", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("within", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = within_include {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("within_include".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("within_include", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "within_include",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15279,20 +12549,12 @@ pub async fn ipam_rirs_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15302,77 +12564,44 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15382,362 +12611,202 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("description", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "description",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__niew",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nire",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nisw",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15747,40 +12816,18 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = is_private {
@@ -15789,58 +12836,33 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15850,58 +12872,33 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -15911,267 +12908,153 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -16188,21 +13071,11 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -16211,20 +13084,12 @@ pub async fn ipam_rirs_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -16954,20 +13819,12 @@ pub async fn ipam_route_targets_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -16977,77 +13834,44 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17057,115 +13881,65 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = exporting_vrfs {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("exporting_vrfs".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("exporting_vrfs", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "exporting_vrfs",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17175,20 +13949,13 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = exporting_vrfs__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("exporting_vrfs__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "exporting_vrfs__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "exporting_vrfs__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17198,58 +13965,27 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = importing_vrfs {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("importing_vrfs".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("importing_vrfs", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "importing_vrfs",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17259,77 +13995,45 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = importing_vrfs__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("importing_vrfs__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "importing_vrfs__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "importing_vrfs__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17339,58 +14043,33 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17400,267 +14079,153 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17677,21 +14242,11 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -17700,40 +14255,22 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -17742,40 +14279,22 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -17784,39 +14303,22 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17826,39 +14328,22 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -17868,20 +14353,11 @@ pub async fn ipam_route_targets_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -18616,20 +15092,12 @@ pub async fn ipam_services_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -18639,77 +15107,44 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -18719,78 +15154,43 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = device {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "device",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("device", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = device__isnull {
@@ -18799,58 +15199,34 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = device__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "device__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -18860,96 +15236,49 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -18959,58 +15288,33 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -19020,267 +15324,153 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -19294,267 +15484,143 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = protocol {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("protocol", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "protocol",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("protocol__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "protocol__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__niew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__nire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__nisw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = protocol__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("protocol__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("protocol__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "protocol__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -19567,21 +15633,11 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -19590,40 +15646,22 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -19632,39 +15670,22 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machine {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("virtual_machine", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -19674,20 +15695,13 @@ pub async fn ipam_services_list(
     }
     if let Some(ref local_var_str) = virtual_machine__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_machine__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -20579,20 +16593,12 @@ pub async fn ipam_vlan_groups_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -20602,77 +16608,44 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -20682,362 +16655,202 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("description", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "description",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__niew",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nire",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nisw",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -21047,96 +16860,49 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -21146,58 +16912,33 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -21207,20 +16948,12 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -21230,286 +16963,164 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -21526,21 +17137,11 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -21549,40 +17150,22 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -21591,20 +17174,12 @@ pub async fn ipam_vlan_groups_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -22313,20 +17888,12 @@ pub async fn ipam_vlan_location_assignments_list(
 
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -22336,58 +17903,27 @@ pub async fn ipam_vlan_location_assignments_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -22397,39 +17933,23 @@ pub async fn ipam_vlan_location_assignments_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -22446,39 +17966,21 @@ pub async fn ipam_vlan_location_assignments_list(
     }
     if let Some(ref local_var_str) = vlan {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vlan",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vlan", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vlan__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23088,39 +18590,24 @@ pub async fn ipam_vlans_list(
 
     if let Some(ref local_var_str) = available_on_device {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("available_on_device".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "available_on_device",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "available_on_device",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23130,77 +18617,44 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23210,96 +18664,55 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23309,115 +18722,60 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = interfaces {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("interfaces".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("interfaces", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "interfaces",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23427,58 +18785,33 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23488,343 +18821,196 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = location {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = location__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("location__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("location__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "location__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = locations {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("locations".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("locations", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "locations",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = locations__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("locations__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("locations__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "locations__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23837,21 +19023,11 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = role {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "role",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("role", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = role__isnull {
@@ -23860,20 +19036,12 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = role__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("role__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("role__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "role__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -23883,59 +19051,31 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = status {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "status",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("status", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = status__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "status__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -23944,40 +19084,22 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -23986,40 +19108,22 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -24028,39 +19132,22 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -24070,39 +19157,22 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -24112,153 +19182,82 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vid {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vid",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("vid", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("vid", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vid__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vid__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vid__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vid__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vid__gte", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vid__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vid__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vid__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vid__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vid__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vid__lte", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vid__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vid__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vid__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vid__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vid__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vid__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vlan_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vlan_group", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "vlan_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -24268,39 +19267,21 @@ pub async fn ipam_vlans_list(
     }
     if let Some(ref local_var_str) = vlan_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vlan_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vlan_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vlan_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vm_interfaces {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vm_interfaces".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("vm_interfaces", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "vm_interfaces",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25041,40 +20022,22 @@ pub async fn ipam_vrf_device_assignments_list(
 
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = device {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "device",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("device", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = device__isnull {
@@ -25083,20 +20046,12 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = device__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "device__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25106,58 +20061,27 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25167,267 +20091,153 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25440,96 +20250,48 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = rd {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("rd", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("rd", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ic", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__ic", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ie", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__ie", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25539,173 +20301,97 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = rd__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__re", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__re", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = sort {
@@ -25714,20 +20400,13 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = virtual_device_context {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_device_context".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_device_context",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_device_context",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25737,39 +20416,23 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = virtual_device_context__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_device_context__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_device_context__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_device_context__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machine {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("virtual_machine", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -25779,59 +20442,30 @@ pub async fn ipam_vrf_device_assignments_list(
     }
     if let Some(ref local_var_str) = virtual_machine__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machine__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_machine__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_machine__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = vrf {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrf".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrf",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("vrf", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("vrf", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vrf__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrf__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrf__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrf__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vrf__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = depth {
@@ -26397,20 +21031,12 @@ pub async fn ipam_vrf_prefix_assignments_list(
 
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -26420,58 +21046,27 @@ pub async fn ipam_vrf_prefix_assignments_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -26485,39 +21080,21 @@ pub async fn ipam_vrf_prefix_assignments_list(
     }
     if let Some(ref local_var_str) = prefix {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "prefix",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("prefix", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = prefix__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "prefix__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -26530,40 +21107,18 @@ pub async fn ipam_vrf_prefix_assignments_list(
     }
     if let Some(ref local_var_str) = vrf {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrf".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrf",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("vrf", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("vrf", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = vrf__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("vrf__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "vrf__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("vrf__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("vrf__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = depth {
@@ -27193,20 +21748,12 @@ pub async fn ipam_vrfs_list(
 
     if let Some(ref local_var_str) = contacts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -27216,77 +21763,44 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = contacts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("contacts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("contacts__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "contacts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__gt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__gte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -27296,438 +21810,244 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = created__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__lt", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("created__lte", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "created__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = created__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("created__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("created__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "created__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("description", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "description",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__iew", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__ire", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__isw", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nic", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nie", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__niew",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nire",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "description__nisw",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "description__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__nre", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = description__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("description__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("description__re", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "description__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = device {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "device",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("device", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = device__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("device__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("device__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "device__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("dynamic_groups", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = dynamic_groups__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("dynamic_groups__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "dynamic_groups__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "dynamic_groups__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = export_targets {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("export_targets".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("export_targets", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "export_targets",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = export_targets__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("export_targets__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "export_targets__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "export_targets__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -27737,134 +22057,71 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("id", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("id", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("id__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("id__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = import_targets {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("import_targets".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("import_targets", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "import_targets",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = import_targets__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("import_targets__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "import_targets__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "import_targets__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__gt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__gte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__gte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__gte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__gte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -27874,58 +22131,33 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = last_updated__lt {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lt".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__lt", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lt",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__lte {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__lte".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "last_updated__lte",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "last_updated__lte",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = last_updated__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("last_updated__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("last_updated__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "last_updated__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -27935,305 +22167,174 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "name",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("name", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = name__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = name__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("name__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("name__re", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "name__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("namespace", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "namespace",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = namespace__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("namespace__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("namespace__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "namespace__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -28243,39 +22344,21 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = prefix {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "prefix",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("prefix", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = prefix__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("prefix__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("prefix__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "prefix__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -28284,96 +22367,48 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = rd {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi("rd", local_var_str)),
+            _ => local_var_req_builder
+                .query(&[("rd", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__ic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__ic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ic", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__ic", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__ie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__ie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ie", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__ie", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__iew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__iew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__iew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__iew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__ire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__ire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__ire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__ire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -28383,173 +22418,97 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = rd__isw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__isw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__isw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__isw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__n", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__n", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = rd__nic {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nic".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nic", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nic",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nie {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nie".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nie", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nie",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__niew {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__niew".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__niew", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__niew",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nire {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nire".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nire", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nire",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nisw {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nisw".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nisw", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nisw",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__nre {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__nre".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__nre", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "rd__nre",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = rd__re {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("rd__re".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "rd__re",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("rd__re", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("rd__re", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = sort {
@@ -28558,21 +22517,11 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = status {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "status",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("status", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = status__isnull {
@@ -28581,40 +22530,22 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = status__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("status__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("status__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "status__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tags {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tags",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tags", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tags__isnull {
@@ -28623,40 +22554,22 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = tags__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tags__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tags__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tags__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = teams {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "teams",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("teams", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = teams__isnull {
@@ -28665,40 +22578,22 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = teams__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("teams__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("teams__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "teams__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
-            _ => local_var_req_builder.query(&[(
-                "tenant",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
-            )]),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant", local_var_str))
+            }
+            _ => local_var_req_builder
+                .query(&[("tenant", &crate::apis::query_csv(local_var_str).to_string())]),
         };
     }
     if let Some(ref local_var_str) = tenant__isnull {
@@ -28707,39 +22602,22 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = tenant__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant__n", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_group {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -28749,39 +22627,22 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = tenant_group__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_group__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_group__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_group__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = tenant_id {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => {
+                local_var_req_builder.query(&crate::apis::query_multi("tenant_id", local_var_str))
+            }
             _ => local_var_req_builder.query(&[(
                 "tenant_id",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
@@ -28791,96 +22652,57 @@ pub async fn ipam_vrfs_list(
     }
     if let Some(ref local_var_str) = tenant_id__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("tenant_id__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("tenant_id__n", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "tenant_id__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_device_contexts {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_device_contexts".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_device_contexts",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_device_contexts",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_device_contexts__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_device_contexts__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_device_contexts__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_device_contexts__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machines {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machines".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder
+                .query(&crate::apis::query_multi("virtual_machines", local_var_str)),
             _ => local_var_req_builder.query(&[(
                 "virtual_machines",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }
     if let Some(ref local_var_str) = virtual_machines__n {
         local_var_req_builder = match "multi" {
-            "multi" => local_var_req_builder.query(
-                &local_var_str
-                    .into_iter()
-                    .map(|p| ("virtual_machines__n".to_owned(), p.to_string()))
-                    .collect::<Vec<(std::string::String, std::string::String)>>(),
-            ),
+            "multi" => local_var_req_builder.query(&crate::apis::query_multi(
+                "virtual_machines__n",
+                local_var_str,
+            )),
             _ => local_var_req_builder.query(&[(
                 "virtual_machines__n",
-                &local_var_str
-                    .into_iter()
-                    .map(|p| p.to_string())
-                    .collect::<Vec<String>>()
-                    .join(",")
-                    .to_string(),
+                &crate::apis::query_csv(local_var_str).to_string(),
             )]),
         };
     }

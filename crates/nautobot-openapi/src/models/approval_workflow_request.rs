@@ -10,7 +10,7 @@
 
 /// ApprovalWorkflowRequest : ApprovalWorkflow Serializer.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct ApprovalWorkflowRequest {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,

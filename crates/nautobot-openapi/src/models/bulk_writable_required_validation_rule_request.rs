@@ -10,7 +10,7 @@
 
 /// BulkWritableRequiredValidationRuleRequest : Serializer for `RequiredValidationRule` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableRequiredValidationRuleRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

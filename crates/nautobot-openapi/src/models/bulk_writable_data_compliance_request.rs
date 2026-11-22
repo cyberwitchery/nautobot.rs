@@ -10,7 +10,7 @@
 
 /// BulkWritableDataComplianceRequest : Serializer for DataCompliance.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableDataComplianceRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

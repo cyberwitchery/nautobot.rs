@@ -10,7 +10,7 @@
 
 /// BulkOperationRequest : Representation of bulk-DELETE request for most models; also used to validate required ID field for bulk-PATCH/PUT.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkOperationRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

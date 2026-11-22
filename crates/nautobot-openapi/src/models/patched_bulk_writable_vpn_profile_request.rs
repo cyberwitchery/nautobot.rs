@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableVpnProfileRequest : VPNProfile Serializer.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableVpnProfileRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

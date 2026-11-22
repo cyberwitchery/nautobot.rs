@@ -10,7 +10,7 @@
 
 /// JobCreationRequest : Nested serializer specifically for use with `JobInputSerializer.schedule`.  We don't use `WritableNestedSerializer` here because this is not used to look up an existing `ScheduledJob`, but instead used to specify parameters for creating one.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct JobCreationRequest {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,

@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableModuleFamilyRequest : API serializer for ModuleFamily objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableModuleFamilyRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

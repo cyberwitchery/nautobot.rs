@@ -10,7 +10,7 @@
 
 /// PrefixLengthRequest : Input serializer for POST to /api/ipam/prefixes/{id}/available-prefixes/, i.e. allocating one or more sub-prefixes.  Since setting of multiple locations on create is not supported, this uses the legacy single-location option.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PrefixLengthRequest {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,

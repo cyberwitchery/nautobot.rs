@@ -10,7 +10,7 @@
 
 /// WritableCableRequest : Schema-only variant of `CableSerializer` advertising the writable `terminations` payload.  The runtime `CableSerializer.terminations` field is a `SerializerMethodField` (for depth-aware reads), so drf-spectacular marks it `readOnly: true` by default. This subclass overrides the field with a writable JSON field purely so the OpenAPI request body schema for POST/PUT/PATCH on `/api/dcim/cables/` advertises `terminations` as writable, and documents its accepted shape.  Not used at runtime; referenced only from `@extend_schema_view` on `CableViewSet`.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct WritableCableRequest {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,

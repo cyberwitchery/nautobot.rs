@@ -10,7 +10,7 @@
 
 /// BulkWritableModuleFamilyRequest : API serializer for ModuleFamily objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableModuleFamilyRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

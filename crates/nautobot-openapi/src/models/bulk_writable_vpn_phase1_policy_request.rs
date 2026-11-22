@@ -10,7 +10,7 @@
 
 /// BulkWritableVpnPhase1PolicyRequest : VPNPhase1Policy Serializer.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableVpnPhase1PolicyRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

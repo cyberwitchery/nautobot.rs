@@ -10,7 +10,7 @@
 
 /// IpAllocationRequest : Input serializer for POST to /api/ipam/prefixes/{id}/available-ips/, i.e. allocating addresses from a prefix.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct IpAllocationRequest {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,

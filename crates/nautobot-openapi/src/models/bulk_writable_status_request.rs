@@ -10,7 +10,7 @@
 
 /// BulkWritableStatusRequest : Serializer for `Status` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableStatusRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

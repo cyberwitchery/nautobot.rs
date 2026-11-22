@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableRegularExpressionValidationRuleRequest : Serializer for `RegularExpressionValidationRule` objects.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableRegularExpressionValidationRuleRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

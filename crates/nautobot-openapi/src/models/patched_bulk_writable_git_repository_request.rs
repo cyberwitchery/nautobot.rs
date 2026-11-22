@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableGitRepositoryRequest : Git repositories defined as a data source.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableGitRepositoryRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

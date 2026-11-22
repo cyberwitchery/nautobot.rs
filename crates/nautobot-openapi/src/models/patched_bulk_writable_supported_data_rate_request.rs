@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableSupportedDataRateRequest : Base class to use for serializers based on OrganizationalModel or PrimaryModel.  Can also be used for models derived from BaseModel, so long as they support custom fields, notes, and relationships.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableSupportedDataRateRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

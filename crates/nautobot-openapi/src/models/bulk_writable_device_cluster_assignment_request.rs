@@ -10,7 +10,7 @@
 
 /// BulkWritableDeviceClusterAssignmentRequest : Serializer for DeviceClusterAssignment model.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct BulkWritableDeviceClusterAssignmentRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,

@@ -10,7 +10,7 @@
 
 /// PatchedBulkWritableDataComplianceRequest : Serializer for DataCompliance.
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize)]
 pub struct PatchedBulkWritableDataComplianceRequest {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
